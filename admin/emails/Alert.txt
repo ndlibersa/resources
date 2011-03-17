@@ -1,0 +1,5 @@
+For resource: <ResourceTitle>
+
+The subscription end date for this resource is approaching or passing.
+
+Visit the record at <ResourceRecordURL><ResourceID>

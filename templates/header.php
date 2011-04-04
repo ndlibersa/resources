@@ -153,4 +153,4 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
 </td>
 </tr>
 </table>
-<span id='span_message' style='color:red;text-align:left;'><?php if (isset($_POST['message'])) echo $_POST['message']; if (isset($errorMessage)) echo $errorMessage; ?></span>
+<span id='span_message' class='darkRedText' style='text-align:left;'><?php if (isset($_POST['message'])) echo $_POST['message']; if (isset($errorMessage)) echo $errorMessage; ?></span>

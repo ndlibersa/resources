@@ -104,6 +104,53 @@ class Utility {
 	}
 
 
+
+	public function createMessageFromTemplate($messageType, $resourceID, $resourceTitle, $stepName, $systemNumber){
+		$config = new Configuration();
+
+		$templateFile = $this->getCORALPath() . "resources/admin/emails/" . $messageType . ".txt";
+
+		if (file_exists($templateFile)){
+
+			$fh = @fopen($templateFile, 'r');
+
+			while (($buffer = fgets($fh, 4096)) !== false) {
+				$defaultMessage .= $buffer;
+			}
+			if (!feof($fh)) {
+				return "Error: unexpected fgets() fail\n";
+			}
+
+			fclose($fh);
+
+			//also add on the final link with the system number, if system number is included
+			//this is custom for us at ND
+			if (($systemNumber != '') && ($config->settings->completionLink != '')){
+				$resourceTitleInURL = urlencode($resourceTitle);
+				$completionLink = str_replace('<ResourceTitle>', $resourceTitleInURL, $config->settings->completionLink);
+				$defaultMessage .= "Edit DDW facet/term selections at: " . $completionLink;
+			}
+
+
+			//now do the replace
+			$defaultMessage = str_replace('<ResourceID>', $resourceID, $defaultMessage);
+			$defaultMessage = str_replace('<ResourceRecordURL>', $this->getResourceRecordURL(), $defaultMessage);
+			$defaultMessage = str_replace('<ResourceTitle>', $resourceTitle, $defaultMessage);
+			$defaultMessage = str_replace('<StepName>', $stepName, $defaultMessage);
+			$defaultMessage = str_replace('<SystemNumber>', $systemNumber, $defaultMessage);
+
+			return $defaultMessage;
+
+		}else{
+			return 'Email template file not found: ' . $templateFile;
+		}
+
+
+	}
+
+
+
+
 }
 
 ?>

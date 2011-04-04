@@ -50,7 +50,7 @@ if ($resource->titleText){
 		<table style='width:100%; height:35px; margin:0;padding:0;'>
 		<tr style='vertical-align:top;'>
 		<td>
-		<span class="headerText" id='span_resourceName'><?php echo $resource->titleText; ?></span>
+		<span class="headerText" id='span_resourceName'><?php echo $resource->titleText; ?></span>&nbsp;&nbsp;<span id='span_new' class='darkRedText'><?php if ($_GET['ref'] == 'new'){ ?>New resource successfully added<?php } ?></span>
 		<br />
 		</td>
 		<td>

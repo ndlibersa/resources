@@ -211,7 +211,7 @@ class DatabaseObject extends DynamicObject {
 		$pairs = array();
 		foreach (array_keys($this->attributeNames) as $attributeName) {
 			$value = $this->attributes[$attributeName];
-			if (!isset($value)) {
+			if ($value == '' || !isset($value)) {
 				$value = "NULL";
 			} else {
 				$value = addslashes($value);
@@ -237,6 +237,7 @@ class DatabaseObject extends DynamicObject {
 
 	public function all() {
 		$query = "SELECT * FROM `$this->tableName` ORDER BY 2, 1";
+
 		$result = $this->db->processQuery($query);
 		$objects = array();
 		foreach ($result as $row) {

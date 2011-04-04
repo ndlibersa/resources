@@ -480,7 +480,7 @@ switch ($_GET['action']) {
 						if (strtoupper($resourceType['resourceTypeID']) == $resource->resourceTypeID) $checked = 'checked';
 					}
 
-					echo "<td style='width:90px;'><input type='radio' name='resourceTypeID' id='resourceTypeID' value='" . $resourceType['resourceTypeID'] . "'" . $checked . "/>  " . $resourceType['shortName'] . "</td>\n";
+					echo "<td><input type='radio' name='resourceTypeID' id='resourceTypeID' value='" . $resourceType['resourceTypeID'] . "'" . $checked . "/>  " . $resourceType['shortName'] . "</td>\n";
 
 					if(($i % 3)==0){
 						echo "</tr>\n";

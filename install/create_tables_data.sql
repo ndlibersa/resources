@@ -1191,18 +1191,18 @@ INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (5, 'R
 
 
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
-VALUES (1, '', 'Funding Approval', 3, 1, 1);
+VALUES (1, NULL, 'Funding Approval', 3, 1, 1);
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
-VALUES (2, '', 'Licensing', 2, 1, 2);
+VALUES (2, NULL, 'Licensing', 2, 1, 2);
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (3, 2, 'Order Processing', 4, 1, 3);
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (4, 3, 'Activation', 1, 1, 4);
 
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
-VALUES (5, '', 'Licensing', 2, 2, 1);
+VALUES (5, NULL, 'Licensing', 2, 2, 1);
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
-VALUES (6, '', 'Activation', 1, 2, 2);
+VALUES (6, NULL, 'Activation', 1, 2, 2);
 
 
 

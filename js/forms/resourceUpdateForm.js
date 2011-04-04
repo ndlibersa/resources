@@ -41,13 +41,6 @@
 	}); 
 
 
-	$('#descriptionText').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitProductForm();
-	      }
-	}); 
-
-
 	$('#isbnOrISSN').keyup(function(e) {
 	      if(e.keyCode == 13) {
 		submitProductForm();

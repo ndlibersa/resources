@@ -66,7 +66,7 @@ if ($config->settings->enableAlerts == 'Y'){
 			//formulate email to be sent
 			$email = new Email();
 			$email->to = implode(", ", $sendToArray);
-			$email->createMessageFromTemplate('Alert', $resourceID, $resource->titleText, '');
+			$email->message = $util->createMessageFromTemplate('Alert', $resourceID, $resource->titleText, '', '');
 			$email->subject		= "CORAL Alert: " . $resource->titleText;
 
 			$email->send();

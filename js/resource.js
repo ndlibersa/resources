@@ -123,7 +123,9 @@
 		$('.date-pick').datePicker({startDate:'01/01/1996'});
 	});
 
- 
+
+	// empty the new message span in 3 seconds
+	setTimeout("emptyNewMessage();",3000); 
  
 
  });
@@ -531,3 +533,14 @@ function bind_routing(){
 function emptyDiv(divName){
  	$('#' + divName).html("");
 }
+
+
+
+ 
+ function emptyNewMessage(){
+
+    //$('#span_new').fadeTo(500, 0, function () { 
+	$('#span_new').html("");
+    //});
+ 	
+ }

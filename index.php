@@ -382,6 +382,29 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 
+	<tr>
+	<td class='searchRow'><label for='searchAuthenticationTypeID'><b>Authentication Type</b></label>
+	<br />
+	<select name='searchAuthenticationTypeID' id='searchAuthenticationTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<option value=''>All</option>
+	<?php
+
+		$display = array();
+		$authenticationType = new AuthenticationType();
+
+		foreach($authenticationType->allAsArray() as $display) {
+			if (($_SESSION['res_authenticationTypeID'] == $display['authenticationTypeID']) && ($reset != 'Y')){
+				echo "<option value='" . $display['authenticationTypeID'] . "' selected>" . $display['shortName'] . "</option>";
+			}else{
+				echo "<option value='" . $display['authenticationTypeID'] . "'>" . $display['shortName'] . "</option>";
+			}
+		}
+
+	?>
+	</select>
+	</td>
+	</tr>
+
 
 
 	</table>

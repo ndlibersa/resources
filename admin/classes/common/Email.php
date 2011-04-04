@@ -65,40 +65,6 @@ class Email extends Object {
 		}
 	}
 
-	public function createMessageFromTemplate($messageType, $resourceID, $resourceTitle, $stepName){
-		$util = new Utility();
-		$templateFile = $util->getCORALPath() . "resources/admin/emails/" . $messageType . ".txt";
-
-		if (file_exists($templateFile)){
-
-			$fh = @fopen($templateFile, 'r');
-
-			while (($buffer = fgets($fh, 4096)) !== false) {
-				$defaultMessage .= $buffer;
-			}
-			if (!feof($fh)) {
-				$this->Message = "Error: unexpected fgets() fail\n";
-			}
-
-
-			fclose($fh);
-
-
-			//now do the replace
-			$defaultMessage = str_replace('<ResourceID>', $resourceID, $defaultMessage);
-			$defaultMessage = str_replace('<ResourceRecordURL>', $util->getResourceRecordURL(), $defaultMessage);
-			$defaultMessage = str_replace('<ResourceTitle>', $resourceTitle, $defaultMessage);
-			$defaultMessage = str_replace('<StepName>', $stepName, $defaultMessage);
-
-			$this->message = $defaultMessage;
-
-		}else{
-			$this->message = 'Email template file not found: ' . $templateFile;
-		}
-
-
-	}
-
 
 	public function fullMessage() {
 		return $this->getHeaders() . "\n" . $this->to . "\n" . $this->subject . "\n" . $this->message;
@@ -110,9 +76,7 @@ class Email extends Object {
 		//add on feedback email address if it exists
 		if ($config->settings->feedbackEmailAddress){
 			$this->replyTo = $config->settings->feedbackEmailAddress;
-			if ($this->to){
-				$this->to = $this->to . ", " . $config->settings->feedbackEmailAddress;
-			}else{
+			if (!$this->to){
 				$this->to = $config->settings->feedbackEmailAddress;
 			}
 		}

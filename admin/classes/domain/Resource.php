@@ -30,7 +30,7 @@ class Resource extends DatabaseObject {
 
 		$query = "SELECT *
 			FROM Resource
-			WHERE UPPER(titleText) = '" . strtoupper($title) . "'
+			WHERE UPPER(titleText) = '" . str_replace("'", "\'", strtoupper($title)) . "'
 			ORDER BY 1";
 
 		$result = $this->db->processQuery($query, 'assoc');
@@ -708,7 +708,7 @@ class Resource extends DatabaseObject {
 
 		$query = "SELECT * FROM ResourceNote RN
 					WHERE resourceID = '" . $this->resourceID . "'
-					AND noteTypeID = " . $noteType->getInitialNoteTypeID . "
+					AND noteTypeID = '" . $noteType->getInitialNoteTypeID . "'
 					ORDER BY noteTypeID desc LIMIT 0,1";
 
 
@@ -990,7 +990,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN Status S ON R.statusID = S.statusID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
 									LEFT JOIN User CU ON R.createLoginID = CU.loginID
-									LEFT JOIN User UU ON R.createLoginID = UU.loginID
+									LEFT JOIN User UU ON R.updateLoginID = UU.loginID
 									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
 									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
 									LEFT JOIN PurchaseSite PS ON RPSL.purchaseSiteID = PS.purchaseSiteID
@@ -1713,6 +1713,7 @@ class Resource extends DatabaseObject {
 
 	//enters resource into new workflow
 	public function enterNewWorkflow(){
+		$config = new Configuration();
 
 		//remove any current workflow steps
 		$this->removeResourceSteps();
@@ -1749,11 +1750,25 @@ class Resource extends DatabaseObject {
 
 
 			//Start the first step
-			//this handles updating the db and sending notifications
+			//this handles updating the db and sending notifications for approval groups
 			foreach ($this->getFirstSteps() as $resourceStep){
 				$resourceStep->startStep();
 
 			}
+		}
+
+
+		//send an email notification to the feedback email address
+		if ($config->settings->feedbackEmailAddress){
+			$email = new Email();
+			$util = new Utility();
+
+			$email->message = $util->createMessageFromTemplate('NewResourceMain', $this->resourceID, $this->titleText, '', '');
+			$email->to 			= $config->settings->feedbackEmailAddress;
+			$email->subject		= "CORAL Alert: New Resource Added: " . $this->titleText;
+
+			$email->send();
+
 		}
 
 	}
@@ -1763,12 +1778,13 @@ class Resource extends DatabaseObject {
 
 	//completes a workflow (changes status to complete and sends notifications to creator and "master email")
 	public function completeWorkflow(){
+		$config = new Configuration();
+		$util = new Utility();
 		$status = new Status();
 		$statusID = $status->getIDFromName('complete');
 
 		if ($statusID){
 			$this->statusID = $statusID;
-
 			$this->save();
 		}
 
@@ -1776,12 +1792,17 @@ class Resource extends DatabaseObject {
 
 		//send notification to creator and master email address
 
-		$user = new User(new NamedArguments(array('primaryKey' => $this->createLoginID)));
+		$cUser = new User(new NamedArguments(array('primaryKey' => $this->createLoginID)));
 
 		//formulate emil to be sent
 		$email = new Email();
-		$email->createMessageFromTemplate('CompleteResource', $this->resourceID, $this->titleText, '');
-		$email->to 			= $user->emailAddress;
+		$email->message = $util->createMessageFromTemplate('CompleteResource', $this->resourceID, $this->titleText, '', $this->systemNumber);
+		$email->to 			= $cUser->emailAddress;
+
+		if ($config->settings->feedbackEmailAddress != ''){
+			$email->to 			= $cUser->emailAddress . ", " . $config->settings->feedbackEmailAddress;
+		}
+
 		$email->subject		= "CORAL Alert: Workflow completion for " . $this->titleText;
 
 

@@ -1300,6 +1300,7 @@ switch ($_GET['action']) {
 				<th style='background-color:#dad8d8;width:250px;'>Complete</th>
 				</tr>
 			<?php
+			$openStep=0;
 			foreach($resourceSteps as $resourceStep){
 				$userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $resourceStep->userGroupID)));
 				$eUser = new User(new NamedArguments(array('primaryKey' => $resourceStep->endLoginID)));
@@ -1329,6 +1330,8 @@ switch ($_GET['action']) {
 						if ((($user->isAdmin) || ($user->isInGroup($resourceStep->userGroupID))) && ($resourceStep->stepStartDate) &&  ($resource->statusID != $archiveStatusID) && ($resource->statusID != $completeStatusID)){
 							echo "<a href='javascript:void(0);' class='markComplete' id='" . $resourceStep->resourceStepID . "'>mark complete</a>";
 						}
+						//track how many open steps there are
+						$openStep++;
 					}?>
 				</td>
 				</tr>
@@ -1342,10 +1345,21 @@ switch ($_GET['action']) {
 
 		if ($resource->workflowRestartLoginID){
 			$rUser = new User(new NamedArguments(array('primaryKey' => $resource->workflowRestartLoginID)));
-			if ($rUser->firstName){
-				echo "<i>Workflow restarted on " . format_date($resource->workflowRestartDate) . " by " . $rUser->firstName . " " . $rUser->lastName . "</i><br />";
+
+			//workflow restart is being used for both completion and restart - until the next database upgrade
+			//this was marked complete...
+			if (($openStep > 0) && ($resource->statusID == $completeStatusID)){
+				if ($rUser->firstName){
+					echo "<i>Workflow completed on " . format_date($resource->workflowRestartDate) . " by " . $rUser->firstName . " " . $rUser->lastName . "</i><br />";
+				}else{
+					echo "<i>Workflow completed on " . format_date($resource->workflowRestartDate) . " by " . $resource->workflowRestartLoginID . "</i><br />";
+				}
 			}else{
-				echo "<i>Workflow restarted on " . format_date($resource->workflowRestartDate) . " by " . $resource->workflowRestartLoginID . "</i><br />";
+				if ($rUser->firstName){
+					echo "<i>Workflow restarted on " . format_date($resource->workflowRestartDate) . " by " . $rUser->firstName . " " . $rUser->lastName . "</i><br />";
+				}else{
+					echo "<i>Workflow restarted on " . format_date($resource->workflowRestartDate) . " by " . $resource->workflowRestartLoginID . "</i><br />";
+				}
 			}
 		}
 
@@ -1778,6 +1792,8 @@ switch ($_GET['action']) {
 		if ($_POST['authorizedSiteID']) $whereAdd[] = "RAUSL.authorizedSiteID = '" . $_POST['authorizedSiteID'] . "'";
 		if ($_POST['administeringSiteID']) $whereAdd[] = "RADSL.administeringSiteID = '" . $_POST['administeringSiteID'] . "'";
 
+		if ($_POST['authenticationTypeID']) $whereAdd[] = "R.authenticationTypeID = '" . $_POST['authenticationTypeID'] . "'";
+
 
 		if ($_POST['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $_POST['startWith'] . "%')";
 
@@ -2015,6 +2031,7 @@ switch ($_GET['action']) {
 		$_SESSION['res_PurchaseSiteID'] = $_POST['purchaseSiteID'];
 		$_SESSION['res_AuthorizedSiteID'] = $_POST['authorizedSiteID'];
 		$_SESSION['res_AdministeringSiteID'] = $_POST['administeringSiteID'];
+		$_SESSION['res_AuthenticationTypeID'] = $_POST['authenticationTypeID'];
 		$_SESSION['res_startWith'] = $_POST['startWith'];
 		$_SESSION['res_orderBy'] = $_POST['orderBy'];
 
@@ -2267,7 +2284,7 @@ switch ($_GET['action']) {
 	case 'getAdminWorkflowDisplay':
 
 		$workflow = new Workflow();
-		$workflowArray = $workflow->all();
+		$workflowArray = $workflow->allAsArray();
 
 		$userGroup = new UserGroup();
 		$userGroupArray = $userGroup->allAsArray();
@@ -2289,10 +2306,10 @@ switch ($_GET['action']) {
 
 				foreach($workflowArray as $wf) {
 
-					$resourceFormat = new ResourceFormat(new NamedArguments(array('primaryKey' => $wf->resourceFormatIDValue)));
-					$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $wf->acquisitionTypeIDValue)));
-					if (($wf->resourceTypeIDValue != '') && ($wf->resourceTypeIDValue != '0')){
-						$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $wf->resourceTypeIDValue)));
+					$resourceFormat = new ResourceFormat(new NamedArguments(array('primaryKey' => $wf['resourceFormatIDValue'])));
+					$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $wf['acquisitionTypeIDValue'])));
+					if (($wf['resourceTypeIDValue'] != '') && ($wf['resourceTypeIDValue'] != '0')){
+						$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $wf['resourceTypeIDValue'])));
 						$rtName = $resourceType->shortName;
 					}else{
 						$rtName = 'any';
@@ -2302,8 +2319,8 @@ switch ($_GET['action']) {
 					echo "<td>" . $acquisitionType->shortName . "</td>";
 					echo "<td>" . $resourceFormat->shortName . "</td>";
 					echo "<td>" . $rtName . "</td>";
-					echo "<td><a href='ajax_forms.php?action=getAdminWorkflowForm&workflowID=" . $wf->workflowID . "&height=528&width=750&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-					echo "<td><a href='javascript:deleteWorkflow(\"Workflow\", " . $wf->workflowID . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "<td><a href='ajax_forms.php?action=getAdminWorkflowForm&workflowID=" . $wf['workflowID'] . "&height=528&width=750&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td><a href='javascript:deleteWorkflow(\"Workflow\", " . $wf['workflowID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					echo "</tr>";
 				}
 

@@ -176,6 +176,13 @@ header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 
 
 foreach($resourceArray as $resource) {
+
+	if ($resource['updateDateFormatted'] == "0/0/0000"){
+		$updateDateFormatted="";
+	}else{
+		$updateDateFormatted=$resource['updateDateFormatted'];
+	}
+
 	echo "<tr>";
 
 	echo "<td style='vertical-align:top;'>" . $resource['resourceID'] . "</td>";
@@ -184,7 +191,7 @@ foreach($resourceArray as $resource) {
 	echo "<td style='vertical-align:top;'>" . $resource['resourceFormat'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['createDateFormatted'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['createName'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['updateDateFormatted'] . "</td>";
+	echo "<td style='vertical-align:top;'>" . $updateDateFormatted . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['updateName'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['status'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['childResources'] . "<br />" . $resource['parentResources'] . "</td>";

@@ -153,25 +153,27 @@ class ResourceStep extends DatabaseObject {
 		$userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $this->userGroupID)));
 		$resource = new Resource(new NamedArguments(array('primaryKey' => $this->resourceID)));
 
+		//only send if there is an email address set up for this group
+		if ($userGroup->emailAddress){
+			if (($this->priorStepID) && ($this->priorStepID != '0')){
+				$priorResourceStep = $this->getPriorStep();
+				$priorStepName = $priorResourceStep->stepName;
+				$messageType='ResourceQueue';
+			}else{
+				$messageType='NewResource';
+				$priorStepName = '';
+			}
 
-		if (($this->priorStepID) && ($this->priorStepID != '0')){
-			$priorResourceStep = $this->getPriorStep();
-			$priorStepName = $priorResourceStep->stepName;
-			$messageType='ResourceQueue';
-		}else{
-			$messageType='NewResource';
-			$priorStepName = '';
+
+
+			//formulate emil to be sent
+			$email = new Email();
+			$email->message = $util->createMessageFromTemplate($messageType, $this->resourceID, $resource->titleText, $priorStepName, '');
+			$email->to 			= $userGroup->emailAddress;
+			$email->subject		= "CORAL Alert: " . $resource->titleText;
+
+			$email->send();
 		}
-
-
-
-		//formulate emil to be sent
-		$email = new Email();
-		$email->createMessageFromTemplate($messageType, $this->resourceID, $resource->titleText, $priorStepName);
-		$email->to 			= $userGroup->emailAddress;
-		$email->subject		= "CORAL Alert: " . $resource->titleText;
-
-		$email->send();
 
 
 	}

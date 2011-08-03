@@ -1931,7 +1931,7 @@ switch ($_GET['action']) {
 				}else{
 					echo "<td $classAdd>" . $resource['createLoginID'] . "</td>";
 				}
-				echo "<td $classAdd>" . $resource['createDateFormatted'] . "</td>";
+				echo "<td $classAdd>" . format_date($resource['createDate']) . "</td>";
 
 				echo "<td $classAdd>" . $resource['acquisitionType'] . "</td>";
 				echo "<td $classAdd>" . $resource['status'] . "</td>";

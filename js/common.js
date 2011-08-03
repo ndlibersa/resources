@@ -32,6 +32,8 @@
 
 //Required for date picker
 Date.firstDayOfWeek = 0;
+
+//suggested: mm/dd/yyyy OR dd-mm-yyyy
 Date.format = 'mm/dd/yyyy';
 
 

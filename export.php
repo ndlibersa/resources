@@ -34,11 +34,11 @@ if ($_SESSION['res_name']) {
 	if ($config->settings->organizationsModule == 'Y'){
 		$dbName = $config->settings->organizationsDatabaseName;
 
-		$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')))";
+		$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')))";
 
 	}else{
 
-		$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_name']) . "%')))";
+		$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_name']) . "%')))";
 
 	}
 
@@ -92,7 +92,7 @@ if ($_SESSION['res_noteTypeID']){
 }
 
 if ($_SESSION['res_resourceNote']){
-	$whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","\'",$_SESSION['res_resourceNote']) . "%')";
+	$whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","''",$_SESSION['res_resourceNote']) . "%')";
 	$searchDisplay[] = "Note contains: " . $_SESSION['res_resourceNote'];
 }
 
@@ -131,7 +131,9 @@ $resourceArray = array();
 $resourceArray = $resourceObj->export($whereAdd, $orderBy);
 
 
-$excelfile = "resources_export_" . date('mdY');
+
+$replace = array("/", "-");
+$excelfile = "resources_export_" . str_replace( $replace, "_", format_date( date( 'Y-m-d' ) ) );
 
 
 header("Content-type: application/vnd.ms-excel");
@@ -141,10 +143,11 @@ header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 
 <html>
 <head>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="public">
 </head>
 <body>
 
-<h2>Resource Record Export</h2><?php echo date('m/d/Y'); ?><br />
+<h2>Resource Record Export</h2><?php echo format_date( date( 'Y-m-d' ) ); ?><br />
 <?php echo "<table><tr><td>" . implode("</td></tr><tr><td>", $searchDisplay) . "</td></tr></table>"; ?>
 <table border='1'>
 <tr>
@@ -177,10 +180,10 @@ header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 
 foreach($resourceArray as $resource) {
 
-	if ($resource['updateDateFormatted'] == "0/0/0000"){
+	if ($resource['updateDate'] == "0000-00-00"){
 		$updateDateFormatted="";
 	}else{
-		$updateDateFormatted=$resource['updateDateFormatted'];
+		$updateDateFormatted=format_date($resource['updateDate']);
 	}
 
 	echo "<tr>";
@@ -189,7 +192,7 @@ foreach($resourceArray as $resource) {
 	echo "<td style='vertical-align:top;'>" . $resource['titleText'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['resourceType'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['resourceFormat'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['createDateFormatted'] . "</td>";
+	echo "<td style='vertical-align:top;'>" . format_date($resource['createDate']) . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['createName'] . "</td>";
 	echo "<td style='vertical-align:top;'>" . $updateDateFormatted . "</td>";
 	echo "<td style='vertical-align:top;'>" . $resource['updateName'] . "</td>";

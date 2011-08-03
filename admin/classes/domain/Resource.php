@@ -30,7 +30,7 @@ class Resource extends DatabaseObject {
 
 		$query = "SELECT *
 			FROM Resource
-			WHERE UPPER(titleText) = '" . str_replace("'", "\'", strtoupper($title)) . "'
+			WHERE UPPER(titleText) = '" . str_replace("'", "''", strtoupper($title)) . "'
 			ORDER BY 1";
 
 		$result = $this->db->processQuery($query, 'assoc');
@@ -708,7 +708,7 @@ class Resource extends DatabaseObject {
 
 		$query = "SELECT * FROM ResourceNote RN
 					WHERE resourceID = '" . $this->resourceID . "'
-					AND noteTypeID = '" . $noteType->getInitialNoteTypeID . "'
+					AND noteTypeID = " . $noteType->getInitialNoteTypeID . "
 					ORDER BY noteTypeID desc LIMIT 0,1";
 
 
@@ -970,8 +970,8 @@ class Resource extends DatabaseObject {
 
 		//now actually execute query
 		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, CONCAT_WS(' ', CU.firstName, CU.lastName) createName,
-						date_format(R.createDate, '%c/%e/%Y') createDateFormatted, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
-						date_format(R.updateDate, '%c/%e/%Y') updateDateFormatted, S.shortName status,
+						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
+						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . ",
@@ -1537,12 +1537,7 @@ class Resource extends DatabaseObject {
 	//search used for the resource autocomplete
 	public function resourceAutocomplete($q){
 		$resourceArray = array();
-		$result = mysql_query("SELECT CONCAT(A.shortName, ' (', R.titleText, ')') titleText, R.resourceID
-								FROM Alias A, Resource R
-								WHERE A.resourceID=R.resourceID
-								AND upper(A.shortName) like upper('%" . $q . "%')
-								UNION
-								SELECT titleText, resourceID
+		$result = mysql_query("SELECT titleText, resourceID
 								FROM Resource
 								WHERE upper(titleText) like upper('%" . $q . "%')
 								ORDER BY 1;");
@@ -1758,14 +1753,40 @@ class Resource extends DatabaseObject {
 		}
 
 
-		//send an email notification to the feedback email address
-		if ($config->settings->feedbackEmailAddress){
+		//send an email notification to the feedback email address and the creator
+		$cUser = new User(new NamedArguments(array('primaryKey' => $this->createLoginID)));
+		$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $this->acquisitionTypeID)));
+
+		if ($cUser->firstName){
+			$creator = $cUser->firstName . " " . $cUser->lastName;
+		}else if ($this->createLoginID){  //for some reason user isn't set up or their firstname/last name don't exist
+			$creator = $this->createLoginID;
+		}else{
+			$creator = "(unknown user)";
+		}
+
+
+		if (($config->settings->feedbackEmailAddress) || ($cUser->emailAddress)){
 			$email = new Email();
 			$util = new Utility();
 
-			$email->message = $util->createMessageFromTemplate('NewResourceMain', $this->resourceID, $this->titleText, '', '');
-			$email->to 			= $config->settings->feedbackEmailAddress;
-			$email->subject		= "CORAL Alert: New Resource Added: " . $this->titleText;
+			$email->message = $util->createMessageFromTemplate('NewResourceMain', $this->resourceID, $this->titleText, '', '', $creator);
+
+			if ($cUser->emailAddress){
+				$emailTo[] 			= $cUser->emailAddress;
+			}
+
+			if ($config->settings->feedbackEmailAddress != ''){
+				$emailTo[] 			=  $config->settings->feedbackEmailAddress;
+			}
+
+			$email->to = implode(",", $emailTo);
+
+			if ($acquisitionType->shortName){
+				$email->subject		= "CORAL Alert: New " . $acquisitionType->shortName . " Resource Added: " . $this->titleText;
+			}else{
+				$email->subject		= "CORAL Alert: New Resource Added: " . $this->titleText;
+			}
 
 			$email->send();
 
@@ -1796,12 +1817,17 @@ class Resource extends DatabaseObject {
 
 		//formulate emil to be sent
 		$email = new Email();
-		$email->message = $util->createMessageFromTemplate('CompleteResource', $this->resourceID, $this->titleText, '', $this->systemNumber);
-		$email->to 			= $cUser->emailAddress;
+		$email->message = $util->createMessageFromTemplate('CompleteResource', $this->resourceID, $this->titleText, '', $this->systemNumber, '');
+
+		if ($cUser->emailAddress){
+			$emailTo[] 			= $cUser->emailAddress;
+		}
 
 		if ($config->settings->feedbackEmailAddress != ''){
-			$email->to 			= $cUser->emailAddress . ", " . $config->settings->feedbackEmailAddress;
+			$emailTo[] 			=  $config->settings->feedbackEmailAddress;
 		}
+
+		$email->to = implode(",", $emailTo);
 
 		$email->subject		= "CORAL Alert: Workflow completion for " . $this->titleText;
 

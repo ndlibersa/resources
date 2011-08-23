@@ -1673,19 +1673,23 @@ switch ($_GET['action']) {
 		}else{
 		?>
 
-			<table class='dataTable' style='width:570px;margin-bottom:5px;'>
+
+			<table class='dataTable' style='width:646px;padding:0x;margin:0px;height:100%;'>
 			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Date Created</th>
-				<th>Acquisition Type</th>
-				<th>Status</th>
+				<th style='width:45px;'>ID</th>
+				<th style='width:300px;'>Name</th>
+				<th style='width:95px;'>Acquisition Type</th>
+				<th style='width:125px;'>Task</th>
+				<th style='width:75px;'>Start Date</th>
 			</tr>
 
 		<?php
 			$i=0;
 			foreach ($resourceArray as $resource){
+				$taskArray = $user->getOutstandingTasksByResource($resource['resourceID']);
+				$countTasks = count($taskArray);
 
+				//for shading every other row
 				$i++;
 				if ($i % 2 == 0){
 					$classAdd="";
@@ -1693,25 +1697,53 @@ switch ($_GET['action']) {
 					$classAdd="class='alt'";
 				}
 
+
+
 				$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource['acquisitionTypeID'])));
 				$status = new Status(new NamedArguments(array('primaryKey' => $resource['statusID'])));
 
 		?>
-				<tr id='tr_<?php echo $resource['resourceID']; ?>'>
+				<tr id='tr_<?php echo $resource['resourceID']; ?>' style='padding:0x;margin:0px;height:100%;'>
 					<td <?php echo $classAdd; ?>><a href='resource.php?resourceID=<?php echo $resource['resourceID']; ?>'><?php echo $resource['resourceID']; ?></a></td>
 					<td <?php echo $classAdd; ?>><a href='resource.php?resourceID=<?php echo $resource['resourceID']; ?>'><?php echo $resource['titleText']; ?></a></td>
-					<td <?php echo $classAdd; ?>><?php echo $resource['createDate']; ?></td>
 					<td <?php echo $classAdd; ?>><?php echo $acquisitionType->shortName; ?></td>
-					<td <?php echo $classAdd; ?>><?php echo $status->shortName; ?></td>
-					</td>
-				</tr>
+
+					<?php
+						$j=0;
 
 
+						if (count($taskArray) > 0){
+							foreach ($taskArray as $task){
+								if ($j > 0){
+								?>
+								<tr>
+								<td <?php echo $classAdd; ?> style='border-top-style:none;'>&nbsp;</td>
+								<td <?php echo $classAdd; ?> style='border-top-style:none;'>&nbsp;</td>
+								<td <?php echo $classAdd; ?> style='border-top-style:none;'>&nbsp;</td>
 
-			<?php
+								<?php
+									$styleAdd=" style='border-top-style:none;'";
+								}else{
+									$styleAdd="";
+								}
+
+
+								echo "<td " . $classAdd . " " . $styleAdd . ">" . $task['stepName'] . "</td>";
+								echo "<td " . $classAdd . " " . $styleAdd . ">" . format_date($task['startDate']) . "</td>";
+								echo "</tr>";
+
+								$j++;
+							}
+
+						}else{
+							echo "<td " . $classAdd . ">&nbsp;</td><td " . $classAdd . ">&nbsp;</td></tr>";
+						}
+
+
 			}
 
 			echo "</table>";
+
 
 		}
 
@@ -1760,11 +1792,11 @@ switch ($_GET['action']) {
 			if ($config->settings->organizationsModule == 'Y'){
 				$dbName = $config->settings->organizationsDatabaseName;
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
 
 			}else{
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","\'",$_POST['name']) . "%')))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
 
 			}
 		}
@@ -1782,7 +1814,7 @@ switch ($_GET['action']) {
 		if ($_POST['acquisitionTypeID']) $whereAdd[] = "R.acquisitionTypeID = '" . $_POST['acquisitionTypeID'] . "'";
 
 		if ($_POST['noteTypeID']) $whereAdd[] = "RN.noteTypeID = '" . $_POST['noteTypeID'] . "'";
-		if ($_POST['resourceNote']) $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","\'",$_POST['resourceNote']) . "%')";
+		if ($_POST['resourceNote']) $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","''",$_POST['resourceNote']) . "%')";
 
 		if ($_POST['createDateStart']) $whereAdd[] = "R.createDate >= STR_TO_DATE('" . $_POST['createDateStart'] . "','%m/%d/%Y')";
 		if ($_POST['createDateEnd']) $whereAdd[] = "R.createDate <= STR_TO_DATE('" . $_POST['createDateEnd'] . "','%m/%d/%Y')";

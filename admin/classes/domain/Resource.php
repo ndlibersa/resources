@@ -949,7 +949,7 @@ class Resource extends DatabaseObject {
 			$licJoinAdd = " LEFT JOIN ResourceLicenseLink RLL ON RLL.resourceID = R.resourceID
 							LEFT JOIN " . $dbName . ".License L ON RLL.licenseID = L.licenseID";
 
-			$licSelectAdd = "GROUP_CONCAT(DISTINCT L.shortName ORDER BY L.shortName DESC SEPARATOR '<br />') licenseNames";
+			$licSelectAdd = "GROUP_CONCAT(DISTINCT L.shortName ORDER BY L.shortName DESC SEPARATOR '<br />') licenseNames, ";
 
 		}
 
@@ -974,7 +974,7 @@ class Resource extends DatabaseObject {
 						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
 						" . $orgSelectAdd . ",
-						" . $licSelectAdd . ",
+						" . $licSelectAdd . "
 						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases,
 						GROUP_CONCAT(DISTINCT PS.shortName ORDER BY PS.shortName DESC SEPARATOR '<br />') purchasingSites,
 						GROUP_CONCAT(DISTINCT AUS.shortName ORDER BY AUS.shortName DESC SEPARATOR '<br />') authorizedSites,

@@ -64,6 +64,16 @@ a.helpfulLink {color:#526972;}
 
 
 
+img {border:0;}
+fieldset {border:0;}
+
+
+select option { color: #3D545D; font-family: "arial"; font-size: 95%; margin:1px; }
+.optionStyle { color: #3D545D; font-family: "arial"; font-size: 8pt; font-weight: medium; }
+
+
+input, select, multiple, textarea{color: #3D545D; font-family: "arial"; font-size: 95%; font-weight: medium;}
+
 
 /* following is for the right panel (helpful links) in the resource page
 *************************/
@@ -302,15 +312,6 @@ div.f2 { float: left; }
 div.f3 { clear: both; }
 
 
-img {border:0;}
-fieldset {border:0;}
-
-
-select option { color: #3D545D; font-family: "arial"; font-size: 95%; margin:1px; }
-.optionStyle { color: #3D545D; font-family: "arial"; font-size: 8pt; font-weight: medium; }
-
-
-input, select, multiple, textarea{color: #3D545D; font-family: "arial"; font-size: 95%; font-weight: medium;}
 
 
 
@@ -949,7 +950,7 @@ table.thickboxTable td{
 
 table.noBorderTable {padding:0px; width:100%; border-style:none;}
 table.noBorderTable td {padding:0px; border-style:none; vertical-align:middle;}
-
+table.noBorderTable td.alt {padding:0px; border-style:none; vertical-align:middle;background-color: #f5f8fa;}
 
 ul li {	margin-left: 1.5em;}
 

@@ -44,17 +44,17 @@ $_SESSION['ref_script']=$currentPage;
 		</table>
 
 
-		<table style='width:700px; text-align:left; vertical-align:top;'>
+		<table style='width:890px; text-align:left; vertical-align:top;'>
 		<tr>
 		<td style='width:170px;vertical-align:top;'>
 			<table class='queueMenuTable' style='width:170px;'>
-				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SavedRequests'>Saved Requests</a></div><span class='span_SavedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
 				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='OutstandingTasks'>Outstanding Tasks</a></div><span class='span_OutstandingTasksNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
+				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SavedRequests'>Saved Requests</a></div><span class='span_SavedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
 				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SubmittedRequests'>Submitted Requests</a></div><span class='span_SubmittedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
 
 			</table>
 		</td>
-		<td class='queueRightPanel' style='width:530px;margin:0;'>
+		<td class='queueRightPanel' style='width:720px;margin:0;'>
 			<div id='div_QueueContent'>
 			<img src = "images/circle.gif" />Loading...
 			</div>

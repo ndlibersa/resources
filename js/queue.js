@@ -23,7 +23,7 @@
 	 updateSubmittedRequestsNumber();
       
 
-      	 updateSavedRequests();
+      	 updateOutstandingTasks();
       
  	 $('.deleteRequest').live('click', function () {
  		  deleteRequest($(this).attr("id"));

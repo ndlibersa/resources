@@ -202,7 +202,7 @@ switch ($_GET['action']) {
 
 					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='titleText'>Name:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
-					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value='<?php echo $resource->titleText; ?>' /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
+					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value="<?php echo $resource->titleText; ?>" /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>

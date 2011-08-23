@@ -214,7 +214,7 @@ class DatabaseObject extends DynamicObject {
 			if ($value == '' || !isset($value)) {
 				$value = "NULL";
 			} else {
-				$value = addslashes($value);
+				$value = $this->db->escapeString($value);
 				$value = "'$value'";
 			}
 			$pair = "`$attributeName`=$value";

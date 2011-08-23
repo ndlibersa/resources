@@ -121,6 +121,10 @@ switch ($_GET['action']) {
 			echo $resource->primaryKey;
 			$resourceID=$resource->primaryKey;
 
+			//get the provider ID in case we insert what was entered in the provider text box as an organization link
+			$organizationRole = new OrganizationRole();
+			$organizationRoleID = $organizationRole->getProviderID();
+
 			//add notes
 			if (($_POST['noteText']) || (($_POST['providerText']) && (!$_POST['organizationID']))){
 				//first, remove existing notes in case this was saved before
@@ -128,11 +132,6 @@ switch ($_GET['action']) {
 
 				//this is just to figure out what the creator entered note type ID is
 				$noteType = new NoteType();
-
-				//get the provider ID in case we insert what was entered in the provider text box as an organization link
-				$organizationRole = new OrganizationRole();
-				$organizationRoleID = $organizationRole->getProviderID();
-
 
 				$resourceNote = new ResourceNote();
 				$resourceNote->resourceNoteID 	= '';
@@ -868,6 +867,7 @@ switch ($_GET['action']) {
 
  		break;
 
+	//used for the parent resource list in the edit resource box
     case 'getResourceList':
 
 		if (isset($_GET['searchMode'])) $searchMode = $_GET['searchMode']; else $searchMode='';

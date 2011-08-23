@@ -56,7 +56,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceTitle'><b>Name (contains)</b></label>
 	<br />
-	<input type='text' name='searchName' id='searchName' style='width:145px' value='<?php if ($reset != 'Y') echo $_SESSION['res_name']; ?>' /><br />
+	<input type='text' name='searchName' id='searchName' style='width:145px' value="<?php if ($reset != 'Y') echo $_SESSION['res_name']; ?>" /><br />
 	<div id='div_searchName' style='<?php if ((!$_SESSION['res_name']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchName' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>

@@ -124,8 +124,8 @@
 	});
 
 
-	// empty the new message span in 3 seconds
-	setTimeout("emptyNewMessage();",3000); 
+	// empty the new message span in 10 seconds
+	setTimeout("emptyNewMessage();",10000); 
  
 
  });
@@ -539,8 +539,8 @@ function emptyDiv(divName){
  
  function emptyNewMessage(){
 
-    //$('#span_new').fadeTo(500, 0, function () { 
-	$('#span_new').html("");
-    //});
+    $('#div_new').fadeTo(1000, 0, function () { 
+	$('#div_new').html("");
+    });
  	
  }

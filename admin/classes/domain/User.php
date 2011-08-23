@@ -150,7 +150,7 @@ class User extends DatabaseObject {
 
 
 
-	//returns array of resource records that are saved/submitted for this user
+	//returns array of resource arrays that are in the outstanding queue for this user
 	public function getOutstandingTasks(){
 
 		$status = new Status();
@@ -174,7 +174,7 @@ class User extends DatabaseObject {
 			AND (RS.stepEndDate IS NULL OR RS.stepEndDate = '0000-00-00')
 			AND (RS.stepStartDate IS NOT NULL AND RS.stepStartDate != '0000-00-00')
 			" . $whereAdd . "
-			ORDER BY 1 desc LIMIT 0,25";
+			ORDER BY 1 desc";
 
 		$result = $this->db->processQuery($query, 'assoc');
 
@@ -204,6 +204,65 @@ class User extends DatabaseObject {
 		return $resourceArray;
 	}
 
+
+
+
+
+
+	//returns array of tasks that are in the outstanding queue for this resource and user
+	public function getOutstandingTasksByResource($outstandingResourceID){
+
+		$status = new Status();
+		$excludeStatus =  Array();
+		$excludeStatus[]=$status->getIDFromName('complete');
+		$excludeStatus[]=$status->getIDFromName('archive');
+
+		if (count($excludeStatus) > 1){
+			$whereAdd = "AND R.statusID NOT IN (" . implode(",", $excludeStatus) . ")";
+		}else if (count($excludeStatus) == 1){
+			$whereAdd = "AND R.statusID != '" . implode("", $excludeStatus) . "'";
+		}else{
+			$whereAdd = "";
+		}
+
+		$query = "SELECT DISTINCT RS.stepName, date_format(stepStartDate, '%c/%e/%Y') startDate
+			FROM Resource R, ResourceStep RS, UserGroupLink UGL
+			WHERE R.resourceID = RS.resourceID
+			AND RS.userGroupID = UGL.userGroupID
+			AND UGL.loginID = '" . $this->loginID . "'
+			AND R.resourceID = '" . $outstandingResourceID . "'
+			AND (RS.stepEndDate IS NULL OR RS.stepEndDate = '0000-00-00')
+			AND (RS.stepStartDate IS NOT NULL AND RS.stepStartDate != '0000-00-00')
+			" . $whereAdd . "
+			ORDER BY 1 desc LIMIT 0,25";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$resourceArray = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['stepName'])){
+
+			foreach (array_keys($result) as $attributeName) {
+				$resultArray[$attributeName] = $result[$attributeName];
+			}
+
+			array_push($resourceArray, $resultArray);
+
+		}else{
+			foreach ($result as $row) {
+				$resultArray = array();
+				foreach (array_keys($row) as $attributeName) {
+					$resultArray[$attributeName] = $row[$attributeName];
+				}
+
+				array_push($resourceArray, $resultArray);
+			}
+		}
+
+
+		return $resourceArray;
+	}
 
 
 

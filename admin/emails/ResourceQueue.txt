@@ -1,0 +1,5 @@
+For resource: <ResourceTitle>
+
+<StepName> has been completed. Resource is now in your queue.
+
+Visit the record at <ResourceRecordURL><ResourceID>

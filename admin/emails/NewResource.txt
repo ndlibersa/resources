@@ -1,0 +1,5 @@
+For resource: <ResourceTitle>
+
+A new resource has been entered and is now in your queue.
+
+Visit the record at <ResourceRecordURL><ResourceID>

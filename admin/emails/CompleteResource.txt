@@ -1,0 +1,8 @@
+For resource: <ResourceTitle>
+
+Resource has finished all of the workflow steps and is marked complete.
+
+Visit the record at <ResourceRecordURL><ResourceID>
+
+
+

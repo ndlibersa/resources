@@ -65,20 +65,14 @@ if ($resource->titleText){
 	<div style='width:900px;'>
 	<div style='float:left; width:597px;vertical-align:top;margin:0; padding:0;'>
 		<?php if (!isset($_GET['showTab'])){ ?>
-		<div style="width: 597px;" id ='div_product'>
+		<div style="width: 597px;" id ='div_product' class="resource_tab_content">
 		<?php } else { ?>
-		<div style="display:none;width: 597px;" id ='div_product'>
+		<div style="display:none;width: 597px;" id ='div_product' class="resource_tab_content">
 		<?php } ?>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_product'><img src='images/butterflyfishicon.jpg'></span><span class='link'>Product</span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('product'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -91,20 +85,14 @@ if ($resource->titleText){
 		</div>
 
 		<?php if ((isset($_GET['showTab'])) && ($_GET['showTab'] == 'acquisitions')){ ?>
-		<div style="width: 597px;" id ='div_acquisitions'>
+		<div style="width: 597px;" id ='div_acquisitions' class="resource_tab_content">
 		<?php } else { ?>
-		<div style="display:none;width: 597px;" id ='div_acquisitions'>
+		<div style="display:none;width: 597px;" id ='div_acquisitions' class="resource_tab_content">
 		<?php } ?>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_acquisitions'><img src='images/acquisitions.gif'></span><span class='link'>Acquisitions</span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('acquisitions'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -121,21 +109,15 @@ if ($resource->titleText){
 
 
 		<?php if ((isset($_GET['showTab'])) && ($_GET['showTab'] == 'access')){ ?>
-		<div style="width: 597px;" id ='div_access'>
+		<div style="width: 597px;" id ='div_access' class="resource_tab_content">
 		<?php } else { ?>
-		<div style="display:none;width: 597px;" id ='div_access'>
+		<div style="display:none;width: 597px;" id ='div_access' class="resource_tab_content">
 		<?php } ?>
 
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_access'><img src='images/key.gif'></span><span class='link'>Access</span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('access'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -149,17 +131,11 @@ if ($resource->titleText){
 
 
 
-		<div style="display:none;width: 597px;" id ='div_contacts'>
+		<div style="display:none;width: 597px;" id ='div_contacts' class="resource_tab_content">
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_contacts'><img src='images/contacts.gif'></span><span class='link'>Contacts</span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('contacts'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -176,17 +152,11 @@ if ($resource->titleText){
 		<?php if ($user->accountTabIndicator == '1') { ?>
 
 
-		<div style="display:none;width: 597px;" id ='div_accounts'>
+		<div style="display:none;width: 597px;" id ='div_accounts' class="resource_tab_content">
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_accounts'><img src='images/lock.gif'></span><span class='link'>Accounts</span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('accounts'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -201,17 +171,11 @@ if ($resource->titleText){
 
 		<?php } ?>
 
-		<div style="display:none;width: 597px;" id ='div_attachments'>
+		<div style="display:none;width: 597px;" id ='div_attachments' class="resource_tab_content">
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_attachments'><img src='images/attachment.gif'></span><span class='link'>Attachments</span><br /><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/routing_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showRouting'>Routing</a></span></div>
+						<?php echo resource_sidemenu('attachments'); ?>
 					</td>
 					<td class='mainContent'>
 
@@ -223,17 +187,27 @@ if ($resource->titleText){
 
 		</div>
 
-		<div style="display:none;width: 897px;" id ='div_routing'>
+		<div style="display:none;width: 897px;" id ='div_routing' class="resource_tab_content">
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
-						<div class='sidemenuunselected'><span class='icon'><img src='images/butterflyfishicon_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showProduct'>Product</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/acquisitions_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAcquisitions'>Acquisitions</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/key_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccess'>Access</a></span></div>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/contacts_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showContacts'>Contacts</a></span></div>
-						<?php if ($user->accountTabIndicator == '1') { ?><div class='sidemenuunselected'><span class='icon'><img src='images/lock_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAccounts'>Accounts</a></span></div><?php } ?>
-						<div class='sidemenuunselected'><span class='icon'><img src='images/attachment_bw.gif'></span><span class='link'><a href='javascript:void(0)' class='showAttachments'>Attachments</a></span><span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span></div>
-						<div class="sidemenuselected" style='position: relative; width: 105px'><span class='icon' id='icon_routing'><img src='images/routing.gif'></span><span class='link'>Routing</span></div>
+						<?php echo resource_sidemenu('routing'); ?>
+					</td>
+					<td class='mainContent'>
+
+						<div class='div_mainContent'>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+		
+		<div style="display:none;width: 897px;" id ='div_cataloging' class="resource_tab_content">
+			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
+				<tr>
+					<td class="sidemenu">
+						<?php echo resource_sidemenu('cataloging'); ?>
 					</td>
 					<td class='mainContent'>
 

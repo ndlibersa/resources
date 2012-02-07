@@ -113,5 +113,45 @@ function format_date($mysqlDate) {
 
 }
 
+function resource_sidemenu($selected_link = '') {
+  global $user;
+  $links = array(
+    'product' => 'butterflyfishicon',
+    'acquisitions' => 'acquisitions',
+    'access' => 'key',
+    'contacts' => 'contacts',
+    'accounts' => 'lock',
+    'attachments' => 'attachment',
+    'routing' => 'routing',
+    'cataloging' => 'cataloging'
+  );
+  
+  foreach ($links as $key => $icon) {
+    $name = ucfirst($key);
+    if ($selected_link == $key) {
+      $class = 'sidemenuselected';
+      $image = "images/".$icon;
+      $icon_id = "icon_$key";
+    } else {
+      $class = 'sidemenuunselected';
+      $image = "images/".$icon."_bw";
+      $icon_id = "";
+    }
+    if ($key == 'product' && $class == 'sidemenuselected') {
+      $image .= '.jpg';
+    } else {
+      $image .= '.gif';
+    }
+    if ($key != 'accounts' || $user->accountTabIndicator == '1') {
+    ?>
+    <div class="<?php echo $class; ?>" style='position: relative; width: 105px'><span class='icon' id='<?php echo $icon_id; ?>'><img src='<?php echo $image; ?>'></span><span class='link'><a href='javascript:void(0)' class='show<?php echo $name; ?>'><?php echo $name; ?></a></span>
+      <?php if ($key == 'attachments') { ?>
+        <span class='span_AttachmentNumber smallGreyText' style='clear:right; margin-left:18px;'></span>
+      <?php } ?>
+    </div>
+    <?php
+    }
+  }
+}
 
 ?>

@@ -404,6 +404,26 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
+	
+	<tr>
+	<td class='searchRow'><label for='searchCatalogingStatus'><b>Search Cataloging Status</b></label>
+	<br />
+	<select name='searchCatalogingStatus' id='searchCatalogingStatus' style='width:150px' onchange='javsacript:updateSearch();'>
+	<option value=''>All</option>
+	<?php
+	
+		foreach(array('Rejected','Ongoing','Completed') as $status) {
+			if (($_SESSION['res_catalogingStatus'] == $status) && ($reset != 'Y')){
+				echo "<option value='" . $status . "' selected>" . $status . "</option>";
+			}else{
+				echo "<option value='" . $status . "'>" . $status . "</option>";
+			}
+		}
+
+	?>
+	</select>
+	</td>
+	</tr>
 
 
 

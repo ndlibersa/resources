@@ -110,68 +110,29 @@ $licenseArray = $resource->getLicenseArray();
 </tr>
 	<tr>
 	<td style='vertical-align:top;width:110px;'>Identifier</td>
-	<td style='width:350px;'>12345</td>
+	<td style='width:350px;'><?php echo $resource->recordSetIdentifier ?></td>
 	</tr>
 	<tr>
 	<td style='vertical-align:top;width:110px;'>URL</td>
-	<td style='width:350px;'>http://example.com</td>
+	<td style='width:350px;'><?php echo $resource->bibSourceURL ?></td>
 	</tr>
 	<tr>
 	<td style='vertical-align:top;width:110px;'>OCLC Holdings</td>
-	<td style='width:350px;'>Yes</td>
+	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No' ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Records Loaded</td>
-	<td style='width:350px;'>12345</td>
+	<td style='vertical-align:top;width:110px;'>Number of Records Loaded</td>
+	<td style='width:350px;'><?php echo $resource->numberLoaded ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Rejected</td>
-	<td style='width:350px;'>No</td>
+	<td style='vertical-align:top;width:110px;'>Cataloging Type</td>
+	<td style='width:350px;'><?php echo $resource->catalogingType ?></td>
 	</tr>
-
-<?php if ($resource->orderNumber) { ?>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Order Number:</td>
-	<td style='width:350px;'><?php echo $resource->orderNumber; ?></td>
+	<td style='vertical-align:top;width:110px;'>Cataloging Status</td>
+	<td style='width:350px;'><?php echo $resource->catalogingStatus ?></td>
 	</tr>
-<?php } ?>
 
-<?php if ($resource->systemNumber) { ?>
-	<tr>
-	<td style='vertical-align:top;width:110px;'>System Number:</td>
-	<td style='width:350px;'>
-	<?php
-		echo $resource->systemNumber;
-		if ($config->settings->catalogURL != ''){
-			echo "&nbsp;&nbsp;<a href='" . $config->settings->catalogURL . $resource->systemNumber . "' target='_blank'>catalog view</a>";
-		}
-	?>
-	</td>
-	</tr>
-<?php } ?>
-
-<?php if (count($purchaseSiteArray) > 0) { ?>
-	<tr>
-	<td style='vertical-align:top;width:110px;'>Purchasing Sites:</td>
-	<td style='width:350px;'><?php echo implode(", ", $purchaseSiteArray); ?></td>
-	</tr>
-<?php } ?>
-
-<?php if (($resource->subscriptionStartDate) && ($resource->subscriptionStartDate != '0000-00-00')) { ?>
-<tr>
-<td style='vertical-align:top;width:110px;'>Subscription Start:</td>
-<td style='width:350px;'><?php echo format_date($resource->subscriptionStartDate); ?></td>
-</tr>
-<?php } ?>
-
-<?php if (($resource->subscriptionEndDate) && ($resource->subscriptionEndDate != '0000-00-00')) { ?>
-<tr>
-<td style='vertical-align:top;width:110px;'>Subscription End:</td>
-<td style='width:350px;'><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;
-<?php if ($resource->subscriptionAlertEnabledInd == "1") { echo "<i>Expiration Alert Enabled</i>"; } ?>
-</td>
-</tr>
-<?php } ?>
 
 </table>
 <br />
@@ -185,7 +146,7 @@ $licenseArray = $resource->getLicenseArray();
 //get notes for this tab
 $sanitizedInstance = array();
 $noteArray = array();
-foreach ($resource->getNotes('Acquisitions') as $instance) {
+foreach ($resource->getNotes('Cataloging') as $instance) {
 foreach (array_keys($instance->attributeNames) as $attributeName) {
 	$sanitizedInstance[$attributeName] = $instance->$attributeName;
 }
@@ -218,7 +179,7 @@ if (count($noteArray) > 0){
 	<th>Additional Notes</th>
 	<th>
 	<?php if ($user->canEdit()){?>
-		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Acquisitions&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'>add new note</a>
+		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'>add new note</a>
 	<?php } ?>
 	</th>
 	</tr>
@@ -226,7 +187,7 @@ if (count($noteArray) > 0){
 		<tr>
 		<td style='width:110px;'><?php echo $resourceNote['noteTypeName']; ?><br />
 		<?php if ($user->canEdit()){?>
-		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Acquisitions&resourceID=<?php echo $resourceID; ?>&resourceNoteID=<?php echo $resourceNote['resourceNoteID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit note'></a>  <a href='javascript:void(0);' class='removeNote' id='<?php echo $resourceNote['resourceNoteID']; ?>' tab='Acquisitions'><img src='images/cross.gif' alt='remove note' title='remove note'></a>
+		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=<?php echo $resourceNote['resourceNoteID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit note'></a>  <a href='javascript:void(0);' class='removeNote' id='<?php echo $resourceNote['resourceNoteID']; ?>' tab='Cataloging'><img src='images/cross.gif' alt='remove note' title='remove note'></a>
 		<?php } ?>
 		</td>
 		<td><?php echo nl2br($resourceNote['noteText']); ?><br /><i><?php echo format_date($resourceNote['updateDate']) . " by " . $resourceNote['updateUser']; ?></i></td>
@@ -237,7 +198,7 @@ if (count($noteArray) > 0){
 }else{
 if ($user->canEdit()){
 ?>
-	<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Acquisitions&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'>add new note</a>
+	<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'>add new note</a>
 <?php
 }
 }

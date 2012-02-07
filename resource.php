@@ -203,7 +203,11 @@ if ($resource->titleText){
 
 		</div>
 		
+		<?php if ((isset($_GET['showTab'])) && ($_GET['showTab'] == 'cataloging')){ ?>
+		<div style="width: 597px;" id ='div_cataloging' class="resource_tab_content">
+		<?php } else { ?>
 		<div style="display:none;width: 897px;" id ='div_cataloging' class="resource_tab_content">
+		<?php } ?>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>
 					<td class="sidemenu">
@@ -237,7 +241,13 @@ if ($resource->titleText){
 	</div>
 	</div>
 	<script type="text/javascript" src="js/resource.js"></script>
-
+  <?php if ((isset($_GET['showTab'])) && ($_GET['showTab'] == 'cataloging')){ ?>
+    <script>
+      $(document).ready(function() {
+        $('a.showCataloging').click();
+      });
+    </script>
+  <?php } ?>
 	<?php
 
 }

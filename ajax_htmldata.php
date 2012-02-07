@@ -1792,11 +1792,11 @@ switch ($_GET['action']) {
 			if ($config->settings->organizationsModule == 'Y'){
 				$dbName = $config->settings->organizationsDatabaseName;
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(R.recordSetIdentifier) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
 
 			}else{
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')) OR (UPPER(R.recordSetIdentifier) LIKE UPPER('%" . str_replace("'","''",$_POST['name']) . "%')))";
 
 			}
 		}
@@ -1825,6 +1825,8 @@ switch ($_GET['action']) {
 		if ($_POST['administeringSiteID']) $whereAdd[] = "RADSL.administeringSiteID = '" . $_POST['administeringSiteID'] . "'";
 
 		if ($_POST['authenticationTypeID']) $whereAdd[] = "R.authenticationTypeID = '" . $_POST['authenticationTypeID'] . "'";
+		
+		if ($_POST['catalogingStatus']) $whereAdd[] = "R.catalogingStatus = '" . $_POST['catalogingStatus'] . "'";
 
 
 		if ($_POST['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $_POST['startWith'] . "%')";
@@ -2066,7 +2068,7 @@ switch ($_GET['action']) {
 		$_SESSION['res_AuthenticationTypeID'] = $_POST['authenticationTypeID'];
 		$_SESSION['res_startWith'] = $_POST['startWith'];
 		$_SESSION['res_orderBy'] = $_POST['orderBy'];
-
+    $_SESSION['res_catalogingStatus'] = $_POST['catalogingStatus'];
 
 		break;
 

@@ -113,17 +113,60 @@ function format_date($mysqlDate) {
 
 }
 
+function label_tag($field, $name, $required = false) {
+  if ($required) {
+    $required_text = '&nbsp;&nbsp;<span class="bigDarkRedText">*</span>';
+  } else {
+    $required_text = '';
+  }
+  return '<label for="'. $field.'">'.htmlspecialchars($name).':'.$required_text.'</label>';
+}
+
+function text_field($field, $object) {
+  return '<input type="text" id="'.$field.'" name="'.$field.'" style="width:90%" class="changeInput" value="'.htmlspecialchars($object->$field). '" /><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
+}
+
+function text_field2($field, $object) {
+  return '<input type="text" id="'.$field.'" name="'.$field.'" style="width:95px" class="changeInput" value="'.htmlspecialchars($object->$field). '" /><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
+}
+
+function select_field($field, $object, $collection) {
+  $str = '<select id="'.$field.'" name="'.$field.'" style="width:95px;"><option></option>';
+  foreach ($collection as $item) {
+    if ($item == $object->$field) {
+      $str .= '<option value="'.htmlspecialchars($item).'" selected="selected">'.htmlspecialchars($item).'</option>';
+    } else {
+      $str .= '<option value="'.htmlspecialchars($item).'">'.htmlspecialchars($item).'</option>';
+    }
+  }
+  $str .= '</select><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
+  return $str;
+}
+
+function select_field2($field, $object, $collection) {
+  $str = '<select id="'.$field.'" name="'.$field.'" style="width:90%;"><option></option>';
+  foreach ($collection as $item) {
+    if ($item == $object->$field) {
+      $str .= '<option value="'.htmlspecialchars($item).'" selected="selected">'.htmlspecialchars($item).'</option>';
+    } else {
+      $str .= '<option value="'.htmlspecialchars($item).'">'.htmlspecialchars($item).'</option>';
+    }
+  }
+  $str .= '</select><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
+  return $str;
+}
+
 function resource_sidemenu($selected_link = '') {
   global $user;
   $links = array(
     'product' => 'butterflyfishicon',
     'acquisitions' => 'acquisitions',
     'access' => 'key',
+    'cataloging' => 'cataloging',
     'contacts' => 'contacts',
     'accounts' => 'lock',
     'attachments' => 'attachment',
     'routing' => 'routing',
-    'cataloging' => 'cataloging'
   );
   
   foreach ($links as $key => $icon) {
@@ -152,6 +195,10 @@ function resource_sidemenu($selected_link = '') {
     <?php
     }
   }
+}
+
+function debug($value) {
+  echo '<pre>'.print_r($value, true).'</pre>';
 }
 
 ?>

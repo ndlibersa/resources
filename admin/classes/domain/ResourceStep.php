@@ -168,7 +168,7 @@ class ResourceStep extends DatabaseObject {
 
 			//formulate emil to be sent
 			$email = new Email();
-			$email->message = $util->createMessageFromTemplate($messageType, $this->resourceID, $resource->titleText, $priorStepName, '');
+			$email->message = $util->createMessageFromTemplate($messageType, $this->resourceID, $resource->titleText, $priorStepName, '','');
 			$email->to 			= $userGroup->emailAddress;
 			$email->subject		= "CORAL Alert: " . $resource->titleText;
 

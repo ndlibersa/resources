@@ -1078,10 +1078,10 @@ switch ($_GET['action']) {
 		if (count($externalLoginArray) > 0){
 			foreach ($externalLoginArray as $externalLogin){
 
-				if (($resELFlag == 0) && (!isset($externalLogin['organizationName']))){
+				if (($resELFlag == 0) && ($externalLogin['organizationName'] == '')){
 					echo "<div class='formTitle' style='padding:4px; font-weight:bold; margin-bottom:8px;'>Resource Specific:</div>";
 					$resELFlag = 1;
-				}else if (($orgELFlag == 0) && (isset($externalLogin['organizationName']))){
+				}else if (($orgELFlag == 0) && ($externalLogin['organizationName'] != '')){
 					if ($resELFlag == 0){
 						echo "<i>No Resource Specific Accounts</i><br /><br />";
 					}
@@ -1108,7 +1108,7 @@ switch ($_GET['action']) {
 
 				<span style='float:right;'>
 				<?php
-					if (($user->canEdit()) && (!isset($externalLogin['organizationName']))){ ?>
+					if (($user->canEdit()) && ($externalLogin['organizationName'] == '')){ ?>
 						<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>&externalLoginID=<?php echo $externalLogin['externalLoginID']; ?>' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit account'></a>  <a href='javascript:void(0);' class='removeAccount' id='<?php echo $externalLogin['externalLoginID']; ?>'><img src='images/cross.gif' alt='remove account' title='remove account'></a>
 						<?php
 					}else{
@@ -1180,11 +1180,13 @@ switch ($_GET['action']) {
 			}
 		} else {
 			echo "<i>No accounts available</i><br /><br />";
-			if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'>add new account</a>
-				<br /><br /><br />
-			<?php
-			}
+
+		}
+
+		if ($user->canEdit() && ($orgELFlag == 0)){ ?>
+			<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'>add new account</a>
+			<br /><br /><br />
+		<?php
 		}
 
         break;

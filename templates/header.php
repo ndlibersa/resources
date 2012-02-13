@@ -76,12 +76,12 @@ $currentPage = $parts[count($parts) - 1];
 	if ($user->lastName){
 		echo $user->firstName . " " . $user->lastName;
 	}else{
-		echo "Guest User";
+		echo $user->loginID;
 	}
 
 ?>
 </span>
-<br /><span style='color:red;font-size:90%;'>&nbsp;</span>
+<br /><?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>logout</a>"; } ?>
 </div>
 </td>
 </tr>

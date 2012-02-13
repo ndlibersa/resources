@@ -135,7 +135,7 @@ $resourceArray = $resourceObj->export($whereAdd, $orderBy);
 $replace = array("/", "-");
 $excelfile = "resources_export_" . str_replace( $replace, "_", format_date( date( 'Y-m-d' ) ) );
 
-
+header("Pragma: public");
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 

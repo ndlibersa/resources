@@ -1,5 +1,5 @@
 For resource: <ResourceTitle>
 
-A new resource has been added.
+A new resource has been added by <Creator>.
 
 Visit the record at <ResourceRecordURL><ResourceID>

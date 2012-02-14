@@ -30,6 +30,9 @@ if (!($testUser)){
 	//default user to read only privilege
 	$user->privilegeID='3';
 
+	//default to no account tab privilege
+	$user->accountTabIndicator='0';
+
 	try{
 		$ldap = new LdapPerson($loginID);
 

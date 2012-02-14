@@ -80,8 +80,19 @@ class Email extends Object {
 				$this->to = $config->settings->feedbackEmailAddress;
 			}
 		}
-
-		return mail($this->to, $this->subject, $this->message, rtrim($this->getHeaders()));
+		
+		if ($config->settings->testMode == 'Y') {
+		  if ($config->settings->feedbackEmailAddress) {
+		    $updatedTo = $config->settings->feedbackEmailAddress;
+		    $updatedMessage = "Original To: ".$this->to."\n\n".$this->message;
+		    $updatedSubject = "CORAL Test Mode: ".$this->subject;
+		    return mail($updatedTo, $updatedSubject, $updatedMessage, rtrim($this->getHeaders()));
+		  } else {
+		    return false;
+		  }
+		} else {
+		  return mail($this->to, $this->subject, $this->message, rtrim($this->getHeaders()));
+	  }
 	}
 
 }

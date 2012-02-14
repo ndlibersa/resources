@@ -314,9 +314,9 @@ if ($resource->titleText){
 			foreach ($orgArray as $organization){
 				//if organizations is installed provide a link
 				if ($config->settings->organizationsModule == 'Y'){
-					echo "<span style='float:left; width:65px;'>" . $organization['organizationRole'] . ":</span><span style='width:270px;'>" . $organization['organization'] . "</span><br />";
+					echo "<span style='float:left; width:70px;'>" . $organization['organizationRole'] . ":</span><span style='width:270px;'>" . $organization['organization'] . "</span><br />";
 				}else{
-					echo "<span style='float:left; width:65px;'>" . $organization['organizationRole'] . ":</span><span style='width:270px;'>" . $organization['organization'] . "</span><br />";
+					echo "<span style='float:left; width:70px;'>" . $organization['organizationRole'] . ":</span><span style='width:270px;'>" . $organization['organization'] . "</span><br />";
 				}
 			}
 			?>

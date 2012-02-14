@@ -1078,10 +1078,10 @@ switch ($_GET['action']) {
 		if (count($externalLoginArray) > 0){
 			foreach ($externalLoginArray as $externalLogin){
 
-				if (($resELFlag == 0) && (!isset($externalLogin['organizationName']))){
+				if (($resELFlag == 0) && ($externalLogin['organizationName'] == '')){
 					echo "<div class='formTitle' style='padding:4px; font-weight:bold; margin-bottom:8px;'>Resource Specific:</div>";
 					$resELFlag = 1;
-				}else if (($orgELFlag == 0) && (isset($externalLogin['organizationName']))){
+				}else if (($orgELFlag == 0) && ($externalLogin['organizationName'] != '')){
 					if ($resELFlag == 0){
 						echo "<i>No Resource Specific Accounts</i><br /><br />";
 					}
@@ -1108,7 +1108,7 @@ switch ($_GET['action']) {
 
 				<span style='float:right;'>
 				<?php
-					if (($user->canEdit()) && (!isset($externalLogin['organizationName']))){ ?>
+					if (($user->canEdit()) && ($externalLogin['organizationName'] == '')){ ?>
 						<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>&externalLoginID=<?php echo $externalLogin['externalLoginID']; ?>' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit account'></a>  <a href='javascript:void(0);' class='removeAccount' id='<?php echo $externalLogin['externalLoginID']; ?>'><img src='images/cross.gif' alt='remove account' title='remove account'></a>
 						<?php
 					}else{
@@ -1180,11 +1180,13 @@ switch ($_GET['action']) {
 			}
 		} else {
 			echo "<i>No accounts available</i><br /><br />";
-			if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'>add new account</a>
-				<br /><br /><br />
-			<?php
-			}
+
+		}
+
+		if ($user->canEdit() && ($orgELFlag == 0)){ ?>
+			<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'>add new account</a>
+			<br /><br /><br />
+		<?php
 		}
 
         break;
@@ -1810,26 +1812,59 @@ switch ($_GET['action']) {
 		if ($_POST['creatorLoginID']) $whereAdd[] = "R.createLoginID = '" . $_POST['creatorLoginID'] . "'";
 
 		if ($_POST['resourceFormatID']) $whereAdd[] = "R.resourceFormatID = '" . $_POST['resourceFormatID'] . "'";
-		if ($_POST['resourceTypeID']) $whereAdd[] = "R.resourceTypeID = '" . $_POST['resourceTypeID'] . "'";
 		if ($_POST['acquisitionTypeID']) $whereAdd[] = "R.acquisitionTypeID = '" . $_POST['acquisitionTypeID'] . "'";
 
-		if ($_POST['noteTypeID']) $whereAdd[] = "RN.noteTypeID = '" . $_POST['noteTypeID'] . "'";
+
 		if ($_POST['resourceNote']) $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","''",$_POST['resourceNote']) . "%')";
 
 		if ($_POST['createDateStart']) $whereAdd[] = "R.createDate >= STR_TO_DATE('" . $_POST['createDateStart'] . "','%m/%d/%Y')";
 		if ($_POST['createDateEnd']) $whereAdd[] = "R.createDate <= STR_TO_DATE('" . $_POST['createDateEnd'] . "','%m/%d/%Y')";
 
+		if ($_POST['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $_POST['startWith'] . "%')";
 
-		if ($_POST['purchaseSiteID']) $whereAdd[] = "RPSL.purchaseSiteID = '" . $_POST['purchaseSiteID'] . "'";
-		if ($_POST['authorizedSiteID']) $whereAdd[] = "RAUSL.authorizedSiteID = '" . $_POST['authorizedSiteID'] . "'";
-		if ($_POST['administeringSiteID']) $whereAdd[] = "RADSL.administeringSiteID = '" . $_POST['administeringSiteID'] . "'";
-
-		if ($_POST['authenticationTypeID']) $whereAdd[] = "R.authenticationTypeID = '" . $_POST['authenticationTypeID'] . "'";
-		
 		if ($_POST['catalogingStatus']) $whereAdd[] = "R.catalogingStatus = '" . $_POST['catalogingStatus'] . "'";
 
+		//the following are not-required fields with dropdowns and have "none" as an option
+		if ($_POST['resourceTypeID'] == 'none'){
+			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
+		}else if ($_POST['resourceTypeID']){
+			$whereAdd[] = "R.resourceTypeID = '" . $_POST['resourceTypeID'] . "'";
+		}
 
-		if ($_POST['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $_POST['startWith'] . "%')";
+		if ($_POST['noteTypeID'] == 'none'){
+			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
+		}else if ($_POST['noteTypeID']){
+			$whereAdd[] = "RN.noteTypeID = '" . $_POST['noteTypeID'] . "'";
+		}
+
+
+		if ($_POST['purchaseSiteID'] == 'none'){
+			$whereAdd[] = "RPSL.purchaseSiteID IS NULL";
+		}else if ($_POST['purchaseSiteID']){
+			$whereAdd[] = "RPSL.purchaseSiteID = '" . $_POST['purchaseSiteID'] . "'";
+		}
+
+
+		if ($_POST['authorizedSiteID'] == 'none'){
+			$whereAdd[] = "RAUSL.authorizedSiteID IS NULL";
+		}else if ($_POST['authorizedSiteID']){
+			$whereAdd[] = "RAUSL.authorizedSiteID = '" . $_POST['authorizedSiteID'] . "'";
+		}
+
+
+		if ($_POST['administeringSiteID'] == 'none'){
+			$whereAdd[] = "RADSL.administeringSiteID IS NULL";
+		}else if ($_POST['administeringSiteID']){
+			$whereAdd[] = "RADSL.administeringSiteID = '" . $_POST['administeringSiteID'] . "'";
+		}
+
+
+		if ($_POST['authenticationTypeID'] == 'none'){
+			$whereAdd[] = "R.authenticationTypeID IS NULL";
+		}else if ($_POST['authenticationTypeID']){
+			$whereAdd[] = "R.authenticationTypeID = '" . $_POST['authenticationTypeID'] . "'";
+		}
+
 
 
 		$orderBy = $_POST['orderBy'];
@@ -2062,10 +2097,10 @@ switch ($_GET['action']) {
 		$_SESSION['res_resourceNote'] = $_POST['resourceNote'];
 		$_SESSION['res_createDateStart'] = $_POST['createDateStart'];
 		$_SESSION['res_createDateEnd'] = $_POST['createDateEnd'];
-		$_SESSION['res_PurchaseSiteID'] = $_POST['purchaseSiteID'];
-		$_SESSION['res_AuthorizedSiteID'] = $_POST['authorizedSiteID'];
-		$_SESSION['res_AdministeringSiteID'] = $_POST['administeringSiteID'];
-		$_SESSION['res_AuthenticationTypeID'] = $_POST['authenticationTypeID'];
+		$_SESSION['res_purchaseSiteID'] = $_POST['purchaseSiteID'];
+		$_SESSION['res_authorizedSiteID'] = $_POST['authorizedSiteID'];
+		$_SESSION['res_administeringSiteID'] = $_POST['administeringSiteID'];
+		$_SESSION['res_authenticationTypeID'] = $_POST['authenticationTypeID'];
 		$_SESSION['res_startWith'] = $_POST['startWith'];
 		$_SESSION['res_orderBy'] = $_POST['orderBy'];
     $_SESSION['res_catalogingStatus'] = $_POST['catalogingStatus'];

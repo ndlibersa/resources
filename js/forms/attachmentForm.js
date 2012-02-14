@@ -69,7 +69,7 @@
 
 
 
-
+	createUploader();
   	 
  });
 
@@ -91,10 +91,12 @@ function checkUploadAttachment (file, extension){
 		 success:    function(response) {
 			if (response == "1"){
 				exists = "1";
+				fileName="";
 				$("#div_file_message").html("  <font color='red'>File name is already being used...</font>");
 				return false;
 			}else if (response == "2"){
 				exists = "2";
+				fileName="";
 				$("#div_file_message").html("  <font color='red'>File name may not contain special characters - ampersand, single quote, double quote or less than/greater than characters</font>");
 				return false;				
 			}else{
@@ -106,6 +108,24 @@ function checkUploadAttachment (file, extension){
 	});
 }
 
+
+
+
+
+        function createUploader(){            
+            var uploader = new qq.FileUploader({
+                element: document.getElementById('div_uploadFile'),
+                action: 'ajax_processing.php?action=uploadAttachment',
+                debug: true
+            });           
+        }
+
+
+
+
+
+
+
 //do actual upload
 new AjaxUpload('upload_button',
 	{action: 'ajax_processing.php?action=uploadAttachment',
@@ -114,10 +134,13 @@ new AjaxUpload('upload_button',
 			onComplete : function(data){
 				fileName=data;
 
-				if (exists == ""){
+				//passed test
+				if ((exists == "") && (data != "")){
 					$("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + " successfully uploaded.");
-					$("#div_uploadFile").html("<br />");
-
+					$("#div_uploadFile").html("");
+				}else{
+					$("#div_file_message").html("<font color='red'>" . fileName + " was not successfully uploaded.  Please make sure the /attachments/ directory exists and is writable.</font>");
+					fileName='';
 				}
 
 		}

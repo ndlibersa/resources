@@ -47,17 +47,14 @@ if ($resource->titleText){
 	<table style="background-image:url('images/header.gif');background-repeat:no-repeat;margin:0; padding:0; width:900px;">
 	<tr>
 	<td style='margin:0;padding:0;text-align:left;'>
-		<table style='width:100%; height:35px; margin:0;padding:0;'>
-		<tr style='vertical-align:top;'>
-		<td>
-		<span class="headerText" id='span_resourceName'><?php echo $resource->titleText; ?></span>&nbsp;&nbsp;<span id='span_new' class='darkRedText'><?php if ($_GET['ref'] == 'new'){ ?>New resource successfully added<?php } ?></span>
-		<br />
-		</td>
-		<td>
-			&nbsp;
-		</td>
-		</tr>
-		</table>
+
+		<div style='vertical-align:top; width:100%; height:35px; margin-left:5px;padding:0;'>
+			<span class="headerText" id='span_resourceName' style='float:left;vertical-align:text-top;'><?php echo $resource->titleText; ?>&nbsp;</span>
+			<div id='div_new' style='float:left;vertical-align:bottom;font-weight:115%;margin-top:3px;' class='darkRedText'><?php if ($_GET['ref'] == 'new'){ ?>&nbsp;&nbsp;<img src='images/red_checkmark.gif' />
+				<span class='boldText'>Success!</span>&nbsp;&nbsp;New resource added<?php } ?>
+			</div>
+		</div>
+
 	</td>
 	</tr>
 	</table>
@@ -231,11 +228,16 @@ if ($resource->titleText){
 		</div>
 
 		<div style="background-image:url('images/helpfullinks-bottom.jpg');background-repeat:no-repeat;width:265px;height:50px;padding:6px; margin:0px 19px 15px 19px;">
-			<div style='margin:0px 8px 10px 8px;'>
-				<div style='width:219px; padding:7px; margin-bottom:5px;'>
-					<a href="mailto:<?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'>Send feedback on this resource</a>
-				</div>
-			</div>
+
+
+					<?php if ($config->settings->feedbackEmailAddress != '') {?>
+						<div style='margin:0px 8px 10px 8px;'>
+						<div style='width:219px; padding:7px; margin-bottom:5px;'>
+						<a href="mailto: <?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'>Send feedback on this resource</a>
+						</div>
+						</div>
+					<?php } ?>
+
 		</div>
 
 	</div>

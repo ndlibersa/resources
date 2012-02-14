@@ -85,6 +85,23 @@ if ($_SESSION['res_acquisitionTypeID']){
 	$searchDisplay[] = "Acquisition Type: </td><td>" . $acquisitionType->shortName;
 }
 
+
+if ($_SESSION['res_creatorLoginID']){
+	$whereAdd[] = "R.createLoginID = '" . $_SESSION['res_creatorLoginID'] . "'";
+	$createUser = new User(new NamedArguments(array('primaryKey' => $_SESSION['res_creatorLoginID'])));
+
+	if ($createUser->firstName){
+		$name = $createUser->lastName . ", " . $createUser->firstName;
+	}else{
+		$name = $createUser->loginID;
+	}
+
+	$searchDisplay[] = "Creator: </td><td>" . $name;
+}
+
+if ($_POST['creatorLoginID']) $whereAdd[] = "R.createLoginID = '" . $_POST['creatorLoginID'] . "'";
+
+
 if ($_SESSION['res_noteTypeID']){
 	$whereAdd[] = "RN.noteTypeID = '" . $_SESSION['res_noteTypeID'] . "'";
 	$noteType = new NoteType(new NamedArguments(array('primaryKey' => $_SESSION['res_noteTypeID'])));
@@ -135,7 +152,7 @@ $resourceArray = $resourceObj->export($whereAdd, $orderBy);
 $replace = array("/", "-");
 $excelfile = "resources_export_" . str_replace( $replace, "_", format_date( date( 'Y-m-d' ) ) );
 
-
+header("Pragma: public");
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 

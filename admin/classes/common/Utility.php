@@ -105,7 +105,7 @@ class Utility {
 
 
 
-	public function createMessageFromTemplate($messageType, $resourceID, $resourceTitle, $stepName, $systemNumber){
+	public function createMessageFromTemplate($messageType, $resourceID, $resourceTitle, $stepName, $systemNumber, $creator){
 		$config = new Configuration();
 
 		$templateFile = $this->getCORALPath() . "resources/admin/emails/" . $messageType . ".txt";
@@ -127,6 +127,8 @@ class Utility {
 			//this is custom for us at ND
 			if (($systemNumber != '') && ($config->settings->completionLink != '')){
 				$resourceTitleInURL = urlencode($resourceTitle);
+				$resourceTitleInURL = str_replace('+', '%20', $resourceTitleInURL);
+
 				$completionLink = str_replace('<ResourceTitle>', $resourceTitleInURL, $config->settings->completionLink);
 				$defaultMessage .= "Edit DDW facet/term selections at: " . $completionLink;
 			}
@@ -138,6 +140,7 @@ class Utility {
 			$defaultMessage = str_replace('<ResourceTitle>', $resourceTitle, $defaultMessage);
 			$defaultMessage = str_replace('<StepName>', $stepName, $defaultMessage);
 			$defaultMessage = str_replace('<SystemNumber>', $systemNumber, $defaultMessage);
+			$defaultMessage = str_replace('<Creator>', $creator, $defaultMessage);
 
 			return $defaultMessage;
 
@@ -149,6 +152,22 @@ class Utility {
 	}
 
 
+
+	public function getLoginCookie(){
+
+		if(array_key_exists('CORALLoginID', $_COOKIE)){
+			return $_COOKIE['CORALLoginID'];
+		}
+
+	}
+
+	public function getSessionCookie(){
+
+		if(array_key_exists('CORALSessionID', $_COOKIE)){
+			return $_COOKIE['CORALSessionID'];
+		}
+
+	}
 
 
 }

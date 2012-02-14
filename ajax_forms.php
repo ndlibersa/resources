@@ -2114,13 +2114,6 @@ switch ($_GET['action']) {
 			<table class='noBorder' style='width:310px; margin:10px 15px;'>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b>Name:</b></label></td>
-			<td>
-			<input type='text' class='changeInput' id='shortName' name='shortName' value = '<?php echo $attachment->shortName; ?>' style='width:230px' /><span id='span_error_shortName' class='smallDarkRedText'></span>
-			</td>
-			</tr>
-
-			<tr>
 			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b>Type:</b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 

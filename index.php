@@ -143,6 +143,7 @@ $_SESSION['ref_script']=$currentPage;
 	<br />
 	<select name='searchCreatorLoginID' id='searchCreatorLoginID' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>
+
 	<?php
 
 		$display = array();
@@ -198,7 +199,15 @@ $_SESSION['ref_script']=$currentPage;
 	<br />
 	<select name='searchResourceTypeID' id='searchResourceTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>
+
 	<?php
+
+		if (($_SESSION['res_resourceTypeID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
 
 		$display = array();
 		$resourceType = new ResourceType();
@@ -264,6 +273,12 @@ $_SESSION['ref_script']=$currentPage;
 	<option value=''>All</option>
 	<?php
 
+		if (($_SESSION['res_noteTypeID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
 		$display = array();
 		$noteType = new NoteType();
 
@@ -313,6 +328,12 @@ $_SESSION['ref_script']=$currentPage;
 	<option value=''>All</option>
 	<?php
 
+		if (($_SESSION['res_purchaseSiteID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
 		$display = array();
 		$purchaseSite = new PurchaseSite();
 
@@ -338,6 +359,12 @@ $_SESSION['ref_script']=$currentPage;
 	<select name='searchAuthorizedSiteID' id='searchAuthorizedSiteID' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>
 	<?php
+
+		if (($_SESSION['res_authorizedSiteID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
 
 		$display = array();
 		$authorizedSite = new AuthorizedSite();
@@ -365,6 +392,12 @@ $_SESSION['ref_script']=$currentPage;
 	<option value=''>All</option>
 	<?php
 
+		if (($_SESSION['res_administeringSiteID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
 		$display = array();
 		$administeringSite = new AdministeringSite();
 
@@ -388,6 +421,13 @@ $_SESSION['ref_script']=$currentPage;
 	<select name='searchAuthenticationTypeID' id='searchAuthenticationTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>
 	<?php
+
+		if (($_SESSION['res_authenticationTypeID'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
 
 		$display = array();
 		$authenticationType = new AuthenticationType();

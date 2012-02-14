@@ -267,11 +267,6 @@ class User extends DatabaseObject {
 
 
 
-
-
-
-
-
 	public function isInGroup($groupID) {
 		$query = "SELECT DISTINCT userGroupID FROM UserGroupLink WHERE loginID = '" . $this->loginID . "' AND userGroupID='" . $groupID . "'";
 		$result = $this->db->processQuery($query, 'assoc');
@@ -284,6 +279,26 @@ class User extends DatabaseObject {
 
 	}
 
+
+
+	public function hasOpenSession() {
+		$util = new Utility();
+		$config = new Configuration();
+
+		$dbName = $config->settings->authDatabaseName;
+		$sessionID = $util->getSessionCookie();
+
+
+		$query = "SELECT DISTINCT sessionID FROM " . $dbName . ".Session WHERE loginID = '" . $this->loginID . "' AND sessionID='" . $sessionID . "'";
+		$result = $this->db->processQuery($query, 'assoc');
+
+		if (isset($result['sessionID'])){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
 
 
 

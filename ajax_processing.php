@@ -661,12 +661,12 @@ switch ($_GET['action']) {
 
 		//first check that it doesn't have any offending characters
 		if ((strpos($uploadAttachment,"'") > 0) || (strpos($uploadAttachment,'"') > 0) || (strpos($uploadAttachment,"&") > 0) || (strpos($uploadAttachment,"<") > 0) || (strpos($uploadAttachment,">") > 0)){
-			echo 2;
+			echo "2";
 		}else{
 			//loop through each existing attachment to verify this name isn't already being used
 			foreach ($attachment->allAsArray() as $attachmentTestArray) {
 				if (strtoupper($attachmentTestArray['attachmentURL']) == strtoupper($uploadAttachment)) {
-					$exists++;
+					$exists = 1;
 				}
 			}
 
@@ -703,8 +703,6 @@ switch ($_GET['action']) {
 				//this way we can edit the attachment directly on the server
 				chmod ($target_path, 0766);
 				echo "success uploading!";
-			}else{
-				echo "problems moving " . $_FILES['myfile']['tmp_name'] . " to " . $target_path;
 			}
 
 		}

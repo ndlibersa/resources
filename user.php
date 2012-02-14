@@ -17,37 +17,89 @@
 **************************************************************************************************************************
 */
 
+$util = new Utility();
+$config = new Configuration();
 
-if (!isset($_SESSION['loginID'])){
-	//the following code takes the remote auth variable name from the config settings and evaluates it to get the actual value from web server
-	$config = new Configuration();
+$addURL = '';
 
-	$varName = $config->settings->remoteAuthVariableName;
+//if set to use auth module
+if ($config->settings->authModule == 'Y'){
 
-	//if the first character is a $ it needs to be stripped off for the eval to work
-	$theVarStem = ltrim($varName, "$");
 
-	//evaluate the remote variable
-	$remoteAuth=eval("return \$$theVarStem;");
+	//check if a cookie has been set for this user in a session
+	$loginID = $util->getLoginCookie();
 
-	//use the split in case the remote login is supplied as an email address
-	list ($loginID,$restofAddr) = explode("@", $remoteAuth);
+	//load user and verify they have a valid open session
+	$user = new User(new NamedArguments(array('primaryKey' => $loginID)));
 
-	session_start();
-	$_SESSION['loginID'] = $loginID;
+
+	//if the user has an open session
+	if (($loginID) && ($user->hasOpenSession())){
+
+		session_start();
+		$_SESSION['loginID'] = $loginID;
+
+	//no open session
+	}else{
+
+		//redirect to auth page
+		if (isset($user->loginID)) {
+			$addURL = '?timeout&service=';
+		}else{
+			$addURL = '?service=';
+		}
+
+
+		$authURL = $util->getCORALURL() . "auth/" . $addURL . htmlentities($_SERVER['REQUEST_URI']);
+		header('Location: ' . $authURL, true);
+
+	}
+
+
+//otherwise plug into apache server variable
 }else{
-	$loginID = $_SESSION['loginID'];
+
+	//get login id from server
+	if (!isset($_SESSION['loginID']) || ($_SESSION['loginID'] == '')){
+
+
+		$varName = $config->settings->remoteAuthVariableName;
+
+		//the following code takes the remote auth variable name from the config settings and evaluates it to get the actual value from web server
+
+		//if the first character is a $ it needs to be stripped off for the eval to work
+		$theVarStem = ltrim($varName, "$");
+
+		//evaluate the remote variable
+		$remoteAuth=eval("return \$$theVarStem;");
+
+		//use the split in case the remote login is supplied as an email address
+		list ($loginID,$restofAddr) = explode("@", $remoteAuth);
+
+
+
+		session_start();
+		$_SESSION['loginID'] = $loginID;
+
+
+	}else{
+
+		$loginID = $_SESSION['loginID'];
+
+	}
+
 }
 
 
 
-if ($loginID){
+
+
+if (isset($loginID) && ($loginID != "")){
 	include_once('setuser.php');
 }else{
 	$user = new User();
 	$errorMessage = "Login is not working.  Check the .htaccess file and the remoteAuthVariableName specified in /admin/configuration.ini";
 }
-
 
 
 ?>

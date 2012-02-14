@@ -1,6 +1,6 @@
-ALTER TABLE  `Resource` ADD  `recordSetIdentifier` VARCHAR( 45 ) NOT NULL ,
-ADD  `hasOclcHoldings` TINYINT( 1 ) NOT NULL ,
-ADD  `numberLoaded` INT( 11 ) NOT NULL ,
-ADD  `bibSourceURL` VARCHAR( 2000 ) NOT NULL ,
-ADD  `catalogingType` VARCHAR( 45 ) NOT NULL ,
-ADD  `catalogingStatus` VARCHAR( 45 ) NOT NULL
+ALTER TABLE  `Resource` ADD  `recordSetIdentifier` VARCHAR( 45 ) NULL DEFAULT NULL ,
+ADD  `hasOclcHoldings` varchar( 10 ) NULL DEFAULT NULL ,
+ADD  `numberLoaded` INT( 11 ) NULL DEFAULT NULL ,
+ADD  `bibSourceURL` VARCHAR( 2000 ) NULL DEFAULT NULL ,
+ADD  `catalogingType` VARCHAR( 45 ) NULL DEFAULT NULL ,
+ADD  `catalogingStatus` VARCHAR( 45 ) NULL DEFAULT NULL

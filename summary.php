@@ -710,6 +710,106 @@ if ($resource->titleText){
 	}
 	?>
 
+  <table class='linedFormTable' style='width:510px;'>
+  <tr>
+  <th colspan='2' style='vertical-align:bottom;'>
+  <span style='float:left;vertical-align:bottom;'>Cataloging</span>
+
+  </th>
+  </tr>
+    <?php if ($resource->recordSetIdentifier) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>Identifier:</td>
+  		<td><?php echo $resource->recordSetIdentifier; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->bibSourceURL) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>URL:</td>
+  		<td><?php echo $resource->bibSourceURL; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->hasOclcHoldings) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
+  		<td><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No'; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->numberLoaded) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>Number of Records Loaded:</td>
+  		<td><?php echo $resource->numberLoaded; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->catalogingType) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
+  		<td><?php echo $resource->catalogingType; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->catalogingStatus) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
+  		<td><?php echo $resource->catalogingStatus; ?></td>
+  		</tr>
+  	<?php } ?>
+
+
+  </table>
+  
+  <br />
+
+	<?php
+
+
+	//get notes for this tab
+	$sanitizedInstance = array();
+	$noteArray = array();
+	foreach ($resource->getNotes('Cataloging') as $instance) {
+		foreach (array_keys($instance->attributeNames) as $attributeName) {
+			$sanitizedInstance[$attributeName] = $instance->$attributeName;
+		}
+
+		$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+
+		$updateUser = new User(new NamedArguments(array('primaryKey' => $instance->updateLoginID)));
+
+		//in case this user doesn't have a first / last name set up
+		if (($updateUser->firstName != '') || ($updateUser->lastName != '')){
+			$sanitizedInstance['updateUser'] = $updateUser->firstName . " " . $updateUser->lastName;
+		}else{
+			$sanitizedInstance['updateUser'] = $instance->updateLoginID;
+		}
+
+		$noteType = new NoteType(new NamedArguments(array('primaryKey' => $instance->noteTypeID)));
+		if (!$noteType->shortName){
+			$sanitizedInstance['noteTypeName'] = 'General Note';
+		}else{
+			$sanitizedInstance['noteTypeName'] = $noteType->shortName;
+		}
+
+		array_push($noteArray, $sanitizedInstance);
+	}
+
+	if (count($noteArray) > 0){
+	?>
+		<table class='linedFormTable' style='width:510px;'>
+			<tr>
+			<th colspan='2'>Additional Cataloging Notes</th>
+			</tr>
+			<?php foreach ($noteArray as $resourceNote){ ?>
+				<tr>
+				<td style='width:150px;'><?php echo $resourceNote['noteTypeName']; ?>:</td>
+				<td><?php echo nl2br($resourceNote['noteText']); ?><br /><i><?php echo format_date($resourceNote['updateDate']) . " by " . $resourceNote['updateUser']; ?></i></td>
+				</tr>
+			<?php } ?>
+		</table>
+	<?php
+	}
+	?>
+
+
+
 	</div>
 	</body>
 	</html>

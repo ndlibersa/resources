@@ -114,7 +114,7 @@ $licenseArray = $resource->getLicenseArray();
 	</tr>
 	<tr>
 	<td style='vertical-align:top;width:110px;'>Source URL:</td>
-	<td style='width:350px;'><?php echo $resource->bibSourceURL ?></td>
+	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='Visit Source URL' style='vertical-align:top;'></a><?php } ?></td>
 	</tr>
 	<tr>
 	<td style='vertical-align:top;width:110px;'>OCLC Holdings:</td>

@@ -122,16 +122,22 @@ function label_tag($field, $name, $required = false) {
   return '<label for="'. $field.'">'.htmlspecialchars($name).':'.$required_text.'</label>';
 }
 
-function text_field($field, $object) {
+function text_field2($field, $object) {
   return '<input type="text" id="'.$field.'" name="'.$field.'" style="width:90%" class="changeInput" value="'.htmlspecialchars($object->$field). '" /><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
 }
 
-function text_field2($field, $object) {
-  return '<input type="text" id="'.$field.'" name="'.$field.'" style="width:95px" class="changeInput" value="'.htmlspecialchars($object->$field). '" /><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
+function text_field($field, $object, $options = array()) {
+  $default_options = array('width' => '180px');
+  $options = array_merge($default_options, $options);
+  
+  return '<input type="text" id="'.$field.'" name="'.$field.'" style="width:'.$options['width'].'" class="changeInput" value="'.htmlspecialchars($object->$field). '" /><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';
 }
 
-function select_field($field, $object, $collection) {
-  $str = '<select id="'.$field.'" name="'.$field.'" style="width:95px;"><option></option>';
+function select_field($field, $object, $collection, $options = array()) {
+  $default_options = array('width' => '180px');
+  $options = array_merge($default_options, $options);
+  
+  $str = '<select id="'.$field.'" name="'.$field.'" style="width:'.$options['width'].'"><option></option>';
   foreach ($collection as $item) {
     if ($item == $object->$field) {
       $str .= '<option value="'.htmlspecialchars($item).'" selected="selected">'.htmlspecialchars($item).'</option>';

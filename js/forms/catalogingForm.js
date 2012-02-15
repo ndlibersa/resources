@@ -35,3 +35,74 @@ function kill(){
 	$('.select').die('focus');
 
 }
+
+//the following are all to change the look of the inputs when they're clicked
+$('.changeDefaultWhite').live('focus', function(e) {
+	if (this.value == this.defaultValue){
+		this.value = '';
+	}
+});
+
+ $('.changeDefaultWhite').live('blur', function() {
+	if(this.value == ''){
+		this.value = this.defaultValue;
+	}		
+ });
+
+
+  	$('.changeInput').addClass("idleField");
+  	
+$('.changeInput').live('focus', function() {
+
+
+	$(this).removeClass("idleField").addClass("focusField");
+
+	if(this.value != this.defaultValue){
+		this.select();
+	}
+
+ });
+
+
+ $('.changeInput').live('blur', function() {
+	$(this).removeClass("focusField").addClass("idleField");
+ });
+
+
+$('.changeAutocomplete').live('focus', function() {
+	if (this.value == this.defaultValue){
+		this.value = '';
+	}
+
+ });
+
+
+ $('.changeAutocomplete').live('blur', function() {
+	if(this.value == ''){
+		this.value = this.defaultValue;
+	}	
+ });
+ 
+
+
+
+$('select').addClass("idleField");
+$('select').live('focus', function() {
+	$(this).removeClass("idleField").addClass("focusField");
+
+});
+
+$('select').live('blur', function() {
+	$(this).removeClass("focusField").addClass("idleField");
+});
+
+
+
+$('textarea').addClass("idleField");
+$('textarea').focus(function() {
+	$(this).removeClass("idleField").addClass("focusField");
+});
+    
+$('textarea').blur(function() {
+	$(this).removeClass("focusField").addClass("idleField");
+});

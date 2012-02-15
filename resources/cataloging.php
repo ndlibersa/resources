@@ -103,38 +103,42 @@ $licenseArray = $resource->getLicenseArray();
 <span style='float:left;vertical-align:bottom;'>Cataloging</span>
 
 <?php if ($user->canEdit()){ ?>
-	<span style='float:right;vertical-align:bottom;'><a href='resources/cataloging_edit.php?height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='edit order information'></a></span>
+	<span style='float:right;vertical-align:bottom;'><a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='edit order information'></a></span>
 <?php } ?>
 
 </th>
 </tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Identifier</td>
+	<td style='vertical-align:top;width:110px;'>Identifier:</td>
 	<td style='width:350px;'><?php echo $resource->recordSetIdentifier ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>URL</td>
+	<td style='vertical-align:top;width:110px;'>Source URL:</td>
 	<td style='width:350px;'><?php echo $resource->bibSourceURL ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>OCLC Holdings</td>
+	<td style='vertical-align:top;width:110px;'>OCLC Holdings:</td>
 	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No' ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Number of Records Loaded</td>
+	<td style='vertical-align:top;width:110px;'>Records Loaded:</td>
 	<td style='width:350px;'><?php echo $resource->numberLoaded ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Cataloging Type</td>
+	<td style='vertical-align:top;width:110px;'>Cataloging Type:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingType ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Cataloging Status</td>
+	<td style='vertical-align:top;width:110px;'>Cataloging Status:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingStatus ?></td>
 	</tr>
 
 
 </table>
+<?php if ($user->canEdit()){ ?>
+<a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cataloging details</a><br />
+<?php } ?>
+
 <br />
 
 <br />

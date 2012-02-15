@@ -10,42 +10,42 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 <form id='catalogingForm' method="post" action="resources/cataloging_update.php">
 <input type='hidden' name='resourceID' id='resourceID' value='<?php echo $resourceID; ?>'>
 
-<div class='formTitle' style='width:617px; margin-bottom:5px;'><span class='headerText'>Edit Cataloging</span></div>
+<div class='formTitle' style='width:715px; margin-bottom:5px;'><span class='headerText'>Edit Cataloging</span></div>
 
 <span class='smallDarkRedText' id='span_errors'></span>
 
-<table class='noBorder' style='width:610px;'>
+<table class='noBorder' style='width:100%;'>
 <tr style='vertical-align:top;'>
 <td style='vertical-align:top;' colspan='2'>
 
 
 <span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b>Record Set</b></label>&nbsp;&nbsp;</span>
 
-<table class='surroundBox' style='width:610px;'>
+<table class='surroundBox' style='width:710px;'>
 <tr>
 <td>
   <?php //debug($resource); ?>
   
-	<table class='noBorder' style='width:570px; margin:15px 20px 10px 20px;'>
+	<table class='noBorder' style='width:670px; margin:15px 20px 10px 20px;'>
 	<tr>
-	<td>
+	<td style="width:380px;">
 		<table>
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='recordSetIdentifier'>Identifier:</label></td>
-		<td><?php echo text_field2('recordSetIdentifier', $resource) ?>
+		<td><?php echo text_field('recordSetIdentifier', $resource, array('width' => '260px')) ?>
 		</td>
 		</tr>
 
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='bibSourceURL'>Bib Source URL:</label></td>
-		<td><?php echo text_field2('bibSourceURL', $resource) ?>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='bibSourceURL'>Source URL:</label></td>
+		<td><?php echo text_field('bibSourceURL', $resource, array('width' => '260px')) ?>
 		</td>
 		</tr>
 
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberLoaded'>Number Loaded:</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberLoaded'>Records Loaded:</label></td>
 		<td>
-		  <?php echo text_field2('numberLoaded', $resource) ?>
+		  <?php echo text_field('numberLoaded', $resource, array('width' => '260px')) ?>
 		</td>
 		</tr>
 
@@ -63,14 +63,14 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingType'>Cataloging Type</label></td>
 		<td>
-		  <?php echo select_field('catalogingType', $resource, array('MARCit','Batch','Manual')); ?>
+		  <?php echo select_field('catalogingType', $resource, array('MARCit','Batch','Manual'), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingStatus'>Cataloging Status</label></td>
 		<td>
-		  <?php echo select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed')); ?>
+		  <?php echo select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		</table>
@@ -86,7 +86,7 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 </table>
 
 
-<hr style='width:620px;margin:15px 0px 10px 0px;' />
+<hr style='width:710px;margin:15px 0px 10px 0px;' />
 
 <table class='noBorderTable' style='width:125px;'>
 <tr>

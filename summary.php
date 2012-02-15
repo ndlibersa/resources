@@ -729,12 +729,6 @@ if ($resource->titleText){
   		<td><?php echo $resource->bibSourceURL; ?></td>
   		</tr>
   	<?php } ?>
-  	<?php if ($resource->hasOclcHoldings) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
-  		<td><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No'; ?></td>
-  		</tr>
-  	<?php } ?>
   	<?php if ($resource->numberLoaded) { ?>
   		<tr>
   		<td style='vertical-align:top;width:150px;'>Number of Records Loaded:</td>
@@ -751,6 +745,12 @@ if ($resource->titleText){
   		<tr>
   		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
   		<td><?php echo $resource->catalogingStatus; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->hasOclcHoldings) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
+  		<td><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No'; ?></td>
   		</tr>
   	<?php } ?>
 

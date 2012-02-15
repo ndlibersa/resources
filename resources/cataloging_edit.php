@@ -55,10 +55,6 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 	</td>
 	<td>
 		<table>
-		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='hasOclcHoldings'>OCLC Holdings:</label></td>
-		<td><input type='checkbox' value="1" id='hasOclcHoldings' name='hasOclcHoldings' <?php if ($resource->hasOclcHoldings) { echo 'checked'; } ?> /></td>
-		</tr>
 
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingType'>Cataloging Type</label></td>
@@ -72,6 +68,11 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		<td>
 		  <?php echo select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
 		</td>
+		</tr>
+		
+		<tr>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='hasOclcHoldings'>OCLC Holdings:</label></td>
+		<td><input type='checkbox' value="1" id='hasOclcHoldings' name='hasOclcHoldings' <?php if ($resource->hasOclcHoldings) { echo 'checked'; } ?> /></td>
 		</tr>
 		</table>
 	</td>

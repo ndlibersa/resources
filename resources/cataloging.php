@@ -117,10 +117,6 @@ $licenseArray = $resource->getLicenseArray();
 	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='Visit Source URL' style='vertical-align:top;'></a><?php } ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>OCLC Holdings:</td>
-	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No' ?></td>
-	</tr>
-	<tr>
 	<td style='vertical-align:top;width:110px;'>Records Loaded:</td>
 	<td style='width:350px;'><?php echo $resource->numberLoaded ?></td>
 	</tr>
@@ -131,6 +127,10 @@ $licenseArray = $resource->getLicenseArray();
 	<tr>
 	<td style='vertical-align:top;width:110px;'>Cataloging Status:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingStatus ?></td>
+	</tr>
+	<tr>
+	<td style='vertical-align:top;width:110px;'>OCLC Holdings:</td>
+	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No' ?></td>
 	</tr>
 
 

@@ -109,27 +109,27 @@ $licenseArray = $resource->getLicenseArray();
 </th>
 </tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Identifier:</td>
+	<td style='vertical-align:top;width:150px;'>Identifier:</td>
 	<td style='width:350px;'><?php echo $resource->recordSetIdentifier ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Source URL:</td>
+	<td style='vertical-align:top;width:150px;'>Source URL:</td>
 	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='Visit Source URL' style='vertical-align:top;'></a><?php } ?></td>
 	</tr>
-	<tr>
-	<td style='vertical-align:top;width:110px;'>Records Loaded:</td>
+	<tr title="Number of Records Loaded">
+	<td style='vertical-align:top;width:150px;'>No. of Records Loaded:</td>
 	<td style='width:350px;'><?php echo $resource->numberLoaded ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Cataloging Type:</td>
+	<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingType ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>Cataloging Status:</td>
+	<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingStatus ?></td>
 	</tr>
 	<tr>
-	<td style='vertical-align:top;width:110px;'>OCLC Holdings:</td>
+	<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
 	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No' ?></td>
 	</tr>
 
@@ -189,7 +189,7 @@ if (count($noteArray) > 0){
 	</tr>
 	<?php foreach ($noteArray as $resourceNote){ ?>
 		<tr>
-		<td style='width:110px;'><?php echo $resourceNote['noteTypeName']; ?><br />
+		<td style='width:150px;'><?php echo $resourceNote['noteTypeName']; ?><br />
 		<?php if ($user->canEdit()){?>
 		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=<?php echo $resourceNote['resourceNoteID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit note'></a>  <a href='javascript:void(0);' class='removeNote' id='<?php echo $resourceNote['resourceNoteID']; ?>' tab='Cataloging'><img src='images/cross.gif' alt='remove note' title='remove note'></a>
 		<?php } ?>

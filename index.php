@@ -446,7 +446,7 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 	
 	<tr>
-	<td class='searchRow'><label for='searchCatalogingStatus'><b>Search Cataloging Status</b></label>
+	<td class='searchRow'><label for='searchCatalogingStatus'><b>Cataloging Status</b></label>
 	<br />
 	<select name='searchCatalogingStatus' id='searchCatalogingStatus' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>

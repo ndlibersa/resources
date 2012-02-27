@@ -32,20 +32,27 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		<table>
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='recordSetIdentifier'>Identifier:</label></td>
-		<td><?php echo text_field('recordSetIdentifier', $resource, array('width' => '260px')) ?>
+		<td><?php echo text_field('recordSetIdentifier', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
 
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='bibSourceURL'>Source URL:</label></td>
-		<td><?php echo text_field('bibSourceURL', $resource, array('width' => '260px')) ?>
+		<td><?php echo text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
-
-		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberLoaded'>Records Loaded:</label></td>
+    
+    <tr>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Available:</label></td>
 		<td>
-		  <?php echo text_field('numberLoaded', $resource, array('width' => '260px')) ?>
+		  <?php echo text_field('numberRecordsAvailable', $resource, array('width' => '50px')) ?>
+		</td>
+		</tr>
+    
+		<tr>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Loaded:</label></td>
+		<td>
+		  <?php echo text_field('numberRecordsLoaded', $resource, array('width' => '50px')) ?>
 		</td>
 		</tr>
 

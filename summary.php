@@ -729,10 +729,16 @@ if ($resource->titleText){
   		<td><?php echo $resource->bibSourceURL; ?></td>
   		</tr>
   	<?php } ?>
-  	<?php if ($resource->numberLoaded) { ?>
+  	<?php if ($resource->numberRecordsAvailable) { ?>
   		<tr>
-  		<td style='vertical-align:top;width:150px;'>Number of Records Loaded:</td>
-  		<td><?php echo $resource->numberLoaded; ?></td>
+  		<td style='vertical-align:top;width:150px;'># Records Available:</td>
+  		<td><?php echo $resource->numberRecordsAvailable; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->numberRecordsLoaded) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'># Records Loaded:</td>
+  		<td><?php echo $resource->numberRecordsLoaded; ?></td>
   		</tr>
   	<?php } ?>
   	<?php if ($resource->catalogingType) { ?>

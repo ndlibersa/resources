@@ -14,7 +14,7 @@ $resource->updateDate			= date( 'Y-m-d H:i:s' );
 
 $_POST['hasOclcHoldings'] = intval($_POST['hasOclcHoldings']);
 
-foreach (array('bibSourceURL','catalogingStatus','catalogingType','numberLoaded','recordSetIdentifier','hasOclcHoldings') as $field) {
+foreach (array('bibSourceURL','catalogingStatus','catalogingType','numberRecordsAvailable','numberRecordsLoaded','recordSetIdentifier','hasOclcHoldings') as $field) {
   $resource->$field = $_POST[$field];
 }
 //debug($_POST);

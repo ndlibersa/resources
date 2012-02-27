@@ -121,7 +121,7 @@ function updateSearch(){
          type:       "POST",
          url:        "ajax_htmldata.php?action=getSearchResources",
          cache:      false,
-         data:       { resourceID: $("#searchResourceID").val(), name: $("#searchName").val(), resourceISBNOrISSN: $("#searchResourceISBNOrISSN").val(), fund: $("#searchFund").val(), acquisitionTypeID: $("#searchAcquisitionTypeID").val(), statusID: $("#searchStatusID").val(), creatorLoginID: $("#searchCreatorLoginID").val(), resourceFormatID: $("#searchResourceFormatID").val(), resourceTypeID: $("#searchResourceTypeID").val(), noteTypeID: $("#searchNoteTypeID").val(), resourceNote: $("#searchResourceNote").val(), createDateStart: $("#searchCreateDateStart").val(), createDateEnd: $("#searchCreateDateEnd").val(), administeringSiteID: $("#searchAdministeringSiteID").val(), authorizedSiteID: $("#searchAuthorizedSiteID").val(), purchaseSiteID: $("#searchPurchaseSiteID").val(), authenticationTypeID: $("#searchAuthenticationTypeID").val(), catalogingStatus: $('#searchCatalogingStatus').val(), orderBy: orderBy, page: page, recordsPerPage: recordsPerPage, startWith: startWith },
+         data:       { resourceID: $("#searchResourceID").val(), name: $("#searchName").val(), resourceISBNOrISSN: $("#searchResourceISBNOrISSN").val(), fund: $("#searchFund").val(), acquisitionTypeID: $("#searchAcquisitionTypeID").val(), workflowStep: $("#searchWorkflowStep"), statusID: $("#searchStatusID").val(), creatorLoginID: $("#searchCreatorLoginID").val(), resourceFormatID: $("#searchResourceFormatID").val(), resourceTypeID: $("#searchResourceTypeID").val(), noteTypeID: $("#searchNoteTypeID").val(), resourceNote: $("#searchResourceNote").val(), createDateStart: $("#searchCreateDateStart").val(), createDateEnd: $("#searchCreateDateEnd").val(), administeringSiteID: $("#searchAdministeringSiteID").val(), authorizedSiteID: $("#searchAuthorizedSiteID").val(), purchaseSiteID: $("#searchPurchaseSiteID").val(), authenticationTypeID: $("#searchAuthenticationTypeID").val(), catalogingStatus: $('#searchCatalogingStatus').val(), orderBy: orderBy, page: page, recordsPerPage: recordsPerPage, startWith: startWith },
          success:    function(html) { 
          	$("#div_feedback").html("&nbsp;");
          	$('#div_searchResults').html(html);  
@@ -202,6 +202,7 @@ function searchValidResource(){
   	$("#searchResourceISBNOrISSN").val("");
   	$("#searchFund").val("");
   	$("#searchAcquisitionTypeID").val("");
+  	$("#searchWorkflowStep").val("");
   	$("#searchStatusID").val("");
   	$("#searchCreatorLoginID").val("");
   	$("#searchResourceFormatID").val("");
@@ -215,6 +216,7 @@ function searchValidResource(){
   	$("#searchAuthorizedSite").val("");
   	$("#searchAdministeringSite").val("");
   	$("#searchAuthenticationTypeID").val("");
+  	$("#searchCatalogingStatus").val("");
 
 
   	//reset startwith background color

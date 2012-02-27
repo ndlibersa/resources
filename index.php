@@ -106,6 +106,28 @@ $_SESSION['ref_script']=$currentPage;
 	</td>
 	</tr>
 
+  <tr>
+	<td class='searchRow'><label for='searchWorkflowStep'><b>Workflow Step</b></label>
+	<br />
+	<select name='searchWorkflowStep' id='searchWorkflowStep' style='width:150px' onchange='javsacript:updateSearch();'>
+	<option value=''>All</option>
+	<?php
+	  $step = new Step();
+    $stepNames = $step->allStepNames();
+    
+		foreach($stepNames as $stepName) {
+		  if (($_SESSION['res_stepName'] == $stepName) && ($reset != 'Y')) {
+		    $stepSelected = " selected";
+		  } else {
+		    $stepSelected = false;
+		  }
+		  echo "<option value=\"" . htmlspecialchars($stepName) . "\" $stepSelected>" . htmlspecialchars($stepName) . "</option>";
+		}
+
+	?>
+	</select>
+	</td>
+	</tr>
 
 	<tr>
 	<td class='searchRow'><label for='searchStatusID'><b>Status</b></label>

@@ -77,6 +77,26 @@ class Step extends DatabaseObject {
 
 		return $objects;
 	}
+	
+	//returns all distinct step names
+	public function allStepNames() {
+	  $query = "SELECT DISTINCT(s.stepName) FROM Step s JOIN Workflow w ON w.workflowID = s.workflowID  ORDER BY LOWER(s.stepName)";
+	  
+	  $result = $this->db->processQuery($query, 'assoc');
+
+		$names = array();
+		
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['stepName'])){
+			$names[]= $result['stepName'];
+		}else{
+			foreach ($result as $row) {
+			  $names[]= $row['stepName'];
+			}
+		}
+		
+		return $names;
+	}
 
 
 }

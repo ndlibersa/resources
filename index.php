@@ -107,7 +107,7 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
   <tr>
-	<td class='searchRow'><label for='searchWorkflowStep'><b>Workflow Step</b></label>
+	<td class='searchRow'><label for='searchWorkflowStep'><b>Routing Step</b></label>
 	<br />
 	<select name='searchWorkflowStep' id='searchWorkflowStep' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>

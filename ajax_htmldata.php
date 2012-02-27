@@ -1681,7 +1681,7 @@ switch ($_GET['action']) {
 				<th style='width:45px;'>ID</th>
 				<th style='width:300px;'>Name</th>
 				<th style='width:95px;'>Acquisition Type</th>
-				<th style='width:125px;'>Task</th>
+				<th style='width:125px;'>Routing Step</th>
 				<th style='width:75px;'>Start Date</th>
 			</tr>
 

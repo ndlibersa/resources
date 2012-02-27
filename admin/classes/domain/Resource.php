@@ -859,6 +859,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
 									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
+									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
 									LEFT JOIN Status S ON R.statusID = S.statusID
 									LEFT JOIN User U ON R.createLoginID = U.loginID
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID

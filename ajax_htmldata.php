@@ -1808,6 +1808,12 @@ switch ($_GET['action']) {
 		if ($_POST['resourceISBNOrISSN']) $whereAdd[] = "REPLACE(R.isbnOrISSN,'-','') = '" . str_replace("-","",$_POST['resourceISBNOrISSN']) . "'";
 		if ($_POST['fund']) $whereAdd[] = "REPLACE(fundName,'-','') = '" . str_replace("-","",$_POST['fund']) . "'";
 
+    if ($_POST['workflowStep']) {
+      $status = new Status();
+      $completedStatusID = $status->getIDFromName('complete');
+      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($_POST['workflowStep']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
+    }
+    
 		if ($_POST['statusID']) $whereAdd[] = "R.statusID = '" . $_POST['statusID'] . "'";
 		if ($_POST['creatorLoginID']) $whereAdd[] = "R.createLoginID = '" . $_POST['creatorLoginID'] . "'";
 

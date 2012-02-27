@@ -729,18 +729,6 @@ if ($resource->titleText){
   		<td><?php echo $resource->bibSourceURL; ?></td>
   		</tr>
   	<?php } ?>
-  	<?php if ($resource->numberRecordsAvailable) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'># Records Available:</td>
-  		<td><?php echo $resource->numberRecordsAvailable; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->numberRecordsLoaded) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'># Records Loaded:</td>
-  		<td><?php echo $resource->numberRecordsLoaded; ?></td>
-  		</tr>
-  	<?php } ?>
   	<?php if ($resource->catalogingType) { ?>
   		<tr>
   		<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
@@ -751,6 +739,18 @@ if ($resource->titleText){
   		<tr>
   		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
   		<td><?php echo $resource->catalogingStatus; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->numberRecordsAvailable) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'># Records Available:</td>
+  		<td><?php echo $resource->numberRecordsAvailable; ?></td>
+  		</tr>
+  	<?php } ?>
+  	<?php if ($resource->numberRecordsLoaded) { ?>
+  		<tr>
+  		<td style='vertical-align:top;width:150px;'># Records Loaded:</td>
+  		<td><?php echo $resource->numberRecordsLoaded; ?></td>
   		</tr>
   	<?php } ?>
   	<?php if ($resource->hasOclcHoldings) { ?>

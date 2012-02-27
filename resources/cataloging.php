@@ -116,14 +116,6 @@ $licenseArray = $resource->getLicenseArray();
 	<td style='vertical-align:top;width:130px;'>Source URL:</td>
 	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='Visit Source URL' style='vertical-align:top;'></a><?php } ?></td>
 	</tr>
-	<tr title="Number of Records Available">
-	<td style='vertical-align:top;width:130px;'># Records Available:</td>
-	<td style='width:350px;'><?php echo $resource->numberRecordsAvailable ?></td>
-	</tr>
-	<tr title="Number of Records Loaded">
-	<td style='vertical-align:top;width:130px;'># Records Loaded:</td>
-	<td style='width:350px;'><?php echo $resource->numberRecordsLoaded ?></td>
-	</tr>
 	<tr>
 	<td style='vertical-align:top;width:130px;'>Cataloging Type:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingType ?></td>
@@ -131,6 +123,14 @@ $licenseArray = $resource->getLicenseArray();
 	<tr>
 	<td style='vertical-align:top;width:130px;'>Cataloging Status:</td>
 	<td style='width:350px;'><?php echo $resource->catalogingStatus ?></td>
+	</tr>
+	<tr title="Number of Records Available">
+	<td style='vertical-align:top;width:130px;'># Records Available:</td>
+	<td style='width:350px;'><?php echo $resource->numberRecordsAvailable ?></td>
+	</tr>
+	<tr title="Number of Records Loaded">
+	<td style='vertical-align:top;width:130px;'># Records Loaded:</td>
+	<td style='width:350px;'><?php echo $resource->numberRecordsLoaded ?></td>
 	</tr>
 	<tr>
 	<td style='vertical-align:top;width:130px;'>OCLC Holdings:</td>

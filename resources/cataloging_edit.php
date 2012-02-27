@@ -28,7 +28,7 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
   
 	<table class='noBorder' style='width:670px; margin:15px 20px 10px 20px;'>
 	<tr>
-	<td style="width:380px;">
+	<td style="width:400px;">
 		<table>
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='recordSetIdentifier'>Identifier:</label></td>
@@ -41,41 +41,40 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		<td><?php echo text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
-    
-    <tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Available:</label></td>
-		<td>
-		  <?php echo text_field('numberRecordsAvailable', $resource, array('width' => '50px')) ?>
-		</td>
-		</tr>
-    
+		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Loaded:</label></td>
-		<td>
-		  <?php echo text_field('numberRecordsLoaded', $resource, array('width' => '50px')) ?>
-		</td>
-		</tr>
-
-
-		</table>
-
-	</td>
-	<td>
-		<table>
-
-		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingType'>Cataloging Type</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingType'>Cataloging Type:</label></td>
 		<td>
 		  <?php echo select_field('catalogingType', $resource, array('MARCit','Batch','Manual'), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingStatus'>Cataloging Status</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingStatus'>Cataloging Status:</label></td>
 		<td>
 		  <?php echo select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
 		</td>
 		</tr>
+		
+		</table>
+
+	</td>
+	<td>
+		<table>
+    
+      <tr>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsAvailable'># Records Available:</label></td>
+  		<td>
+  		  <?php echo text_field('numberRecordsAvailable', $resource, array('width' => '60px')) ?>
+  		</td>
+  		</tr>
+
+  		<tr>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Loaded:</label></td>
+  		<td>
+  		  <?php echo text_field('numberRecordsLoaded', $resource, array('width' => '60px')) ?>
+  		</td>
+  		</tr>
 		
 		<tr>
 		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='hasOclcHoldings'>OCLC Holdings:</label></td>

@@ -203,7 +203,7 @@ if ($resource->titleText){
 		<?php if ((isset($_GET['showTab'])) && ($_GET['showTab'] == 'cataloging')){ ?>
 		<div style="width: 597px;" id ='div_cataloging' class="resource_tab_content">
 		<?php } else { ?>
-		<div style="display:none;width: 897px;" id ='div_cataloging' class="resource_tab_content">
+		<div style="display:none;width: 597px;" id ='div_cataloging' class="resource_tab_content">
 		<?php } ?>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed;">
 				<tr>

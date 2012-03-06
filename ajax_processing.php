@@ -658,7 +658,13 @@ switch ($_GET['action']) {
 		$attachment = new Attachment();
 
 		$exists = 0;
-
+    
+    if (!is_writable("attachments")) {
+      echo 3;
+      break;
+    }
+    
+    
 		//first check that it doesn't have any offending characters
 		if ((strpos($uploadAttachment,"'") > 0) || (strpos($uploadAttachment,'"') > 0) || (strpos($uploadAttachment,"&") > 0) || (strpos($uploadAttachment,"<") > 0) || (strpos($uploadAttachment,">") > 0)){
 			echo "2";
@@ -703,6 +709,9 @@ switch ($_GET['action']) {
 				//this way we can edit the attachment directly on the server
 				chmod ($target_path, 0766);
 				echo "success uploading!";
+			} else {
+			  header('HTTP/1.1 500 Internal Server Error');
+			  echo "<div id=\"error\">There was a problem saving your file to $target_path.  Please ensure your attachments directory is writable.</div>";
 			}
 
 		}

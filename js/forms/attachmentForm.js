@@ -69,7 +69,6 @@
 
 
 
-	createUploader();
   	 
  });
 
@@ -82,67 +81,49 @@ var exists = '';
 //verify filename isn't already used
 function checkUploadAttachment (file, extension){
 	$("#div_file_message").html("");
-	 $.ajax({
-		 type:       "GET",
-		 url:        "ajax_processing.php",
-		 cache:      false,
-		 async: 	 false,
-		 data:       "action=checkUploadAttachment&uploadAttachment=" + file,
-		 success:    function(response) {
+	$.ajax({
+		type:       "GET",
+		url:        "ajax_processing.php",
+		cache:      false,
+		async: 	 false,
+		data:       "action=checkUploadAttachment&uploadAttachment=" + file,
+		success:    function(response) {
+		  exists = "";
 			if (response == "1"){
 				exists = "1";
-				fileName="";
 				$("#div_file_message").html("  <font color='red'>File name is already being used...</font>");
 				return false;
-			}else if (response == "2"){
+			} else if (response == "2"){
 				exists = "2";
-				fileName="";
 				$("#div_file_message").html("  <font color='red'>File name may not contain special characters - ampersand, single quote, double quote or less than/greater than characters</font>");
 				return false;				
-			}else{
-				exists = "";
+			} else if (response == "3"){
+				exists = "3";
+				$("#div_file_message").html("  <font color='red'>The attachments directory is not writable.</font>");
+				return false;
 			}
-		 }
-
+			
+		}
 
 	});
 }
-
-
-
-
-
-        function createUploader(){            
-            var uploader = new qq.FileUploader({
-                element: document.getElementById('div_uploadFile'),
-                action: 'ajax_processing.php?action=uploadAttachment',
-                debug: true
-            });           
-        }
-
-
-
-
-
-
 
 //do actual upload
 new AjaxUpload('upload_button',
 	{action: 'ajax_processing.php?action=uploadAttachment',
 			name: 'myfile',
 			onChange : function (file, extension){checkUploadAttachment(file, extension);},
-			onComplete : function(data){
+			onComplete : function(data,response){
 				fileName=data;
 
-				//passed test
-				if ((exists == "") && (data != "")){
-					$("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + " successfully uploaded.");
-					$("#div_uploadFile").html("");
-				}else{
-					$("#div_file_message").html("<font color='red'>" . fileName + " was not successfully uploaded.  Please make sure the /attachments/ directory exists and is writable.</font>");
-					fileName='';
+				if (exists == ""){
+          var errorMessage = $(response).filter('#error');
+          if (errorMessage.size() > 0) {
+            $("#div_file_message").html("<font color='red'>" + errorMessage.html() + "</font>");
+          } else {
+            $("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + " successfully uploaded.");
 				}
-
+      }
 		}
 });
 

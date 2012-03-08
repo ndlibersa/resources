@@ -1365,7 +1365,9 @@ class Resource extends DatabaseObject {
 	}
 
 
-
+  public function hasCatalogingInformation() {
+    return ($this->recordSetIdentifier || $this->recordSetIdentifier || $this->bibSourceURL || $this->catalogingType || $this->catalogingStatus || $this->numberRecordsAvailable || $this->numberRecordsLoaded || $this->hasOclcHoldings);
+  }
 
 
 

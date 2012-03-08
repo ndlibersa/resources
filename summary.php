@@ -711,56 +711,61 @@ if ($resource->titleText){
 	?>
 
   <table class='linedFormTable' style='width:510px;'>
-  <tr>
-  <th colspan='2' style='vertical-align:bottom;'>
-  <span style='float:left;vertical-align:bottom;'>Cataloging</span>
-
-  </th>
-  </tr>
-    <?php if ($resource->recordSetIdentifier) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>Identifier:</td>
-  		<td><?php echo $resource->recordSetIdentifier; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->bibSourceURL) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>URL:</td>
-  		<td><?php echo $resource->bibSourceURL; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->catalogingType) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
-  		<td><?php echo $resource->catalogingType; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->catalogingStatus) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
-  		<td><?php echo $resource->catalogingStatus; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->numberRecordsAvailable) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'># Records Available:</td>
-  		<td><?php echo $resource->numberRecordsAvailable; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->numberRecordsLoaded) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'># Records Loaded:</td>
-  		<td><?php echo $resource->numberRecordsLoaded; ?></td>
-  		</tr>
-  	<?php } ?>
-  	<?php if ($resource->hasOclcHoldings) { ?>
-  		<tr>
-  		<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
-  		<td><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No'; ?></td>
-  		</tr>
-  	<?php } ?>
-
-
+    <tr>
+      <th colspan='2' style='vertical-align:bottom;'>
+        <span style='float:left;vertical-align:bottom;'>Cataloging</span>
+      </th>
+    </tr>
+    <?php if ($resource->hasCatalogingInformation()) { ?>
+      <?php if ($resource->recordSetIdentifier) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'>Identifier:</td>
+      		<td><?php echo $resource->recordSetIdentifier; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->bibSourceURL) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'>URL:</td>
+      		<td><?php echo $resource->bibSourceURL; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->catalogingType) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
+      		<td><?php echo $resource->catalogingType; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->catalogingStatus) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
+      		<td><?php echo $resource->catalogingStatus; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->numberRecordsAvailable) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'># Records Available:</td>
+      		<td><?php echo $resource->numberRecordsAvailable; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->numberRecordsLoaded) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'># Records Loaded:</td>
+      		<td><?php echo $resource->numberRecordsLoaded; ?></td>
+    		</tr>
+    	<?php } ?>
+    	<?php if ($resource->hasOclcHoldings) { ?>
+    		<tr>
+      		<td style='vertical-align:top;width:150px;'>OCLC Holdings:</td>
+      		<td><?php echo $resource->hasOclcHoldings ? 'Yes' : 'No'; ?></td>
+    		</tr>
+    	<?php } ?>
+    <?php } else { ?>
+      <tr>
+        <td colspan="2">
+          <em>No cataloging information available.</em>
+        </td>
+      </tr>
+    <?php } ?>
   </table>
   
   <br />

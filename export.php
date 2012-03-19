@@ -136,6 +136,21 @@ if ($_SESSION['res_administeringSiteID']){
 	$searchDisplay[] = "Administering Site: " . $administeringSite->shortName;
 }
 
+if ($_SESSION['res_catalogingStatus'] == 'none') {
+  $whereAdd[] = "(R.catalogingStatus = '' OR R.catalogingStatus IS NULL)";
+  $searchDisplay[] = "Cataloging Status: none";
+} else if ($_SESSION['res_catalogingStatus']) {
+  $whereAdd[] = "R.catalogingStatus = '" . mysql_real_escape_string($_SESSION['res_catalogingStatus']) . "'";
+  $searchDisplay[] = "Cataloging Status: " . $_SESSION['res_catalogingStatus'];
+}
+
+if ($_SESSION['res_stepName']) {
+  $status = new Status();
+  $completedStatusID = $status->getIDFromName('complete');
+  $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($_SESSION['res_stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
+  $searchDisplay[] = "Routing Step: " . $_SESSION['res_stepName'];
+}
+
 
 
 $orderBy = $_SESSION['res_orderBy'];

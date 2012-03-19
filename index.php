@@ -31,10 +31,14 @@ include 'templates/header.php';
 //check what referring script is
 
 if ($_SESSION['ref_script'] != "resource.php"){
-	$reset='Y';
+	Resource::resetSearch();
 }
 
+$search = Resource::getSearch();
+
 $_SESSION['ref_script']=$currentPage;
+
+
 
 ?>
 
@@ -42,6 +46,13 @@ $_SESSION['ref_script']=$currentPage;
 <table class="headerTable" style="background-image:url('images/header.gif');background-repeat:no-repeat;">
 <tr style='vertical-align:top;'>
 <td style="width:155px;padding-right:10px;">
+  <form method="get" action="ajax_htmldata.php?action=getSearchResources" id="resourceSearchForm">
+    <?php 
+    foreach(array('orderBy','page','recordsPerPage','startWith') as $hidden) {
+      echo Html::hidden_search_field_tag($hidden, $search[$hidden]);
+    }
+    ?>
+    
 	<table class='noBorder'>
 	<tr><td style='text-align:left;width:75px;' align='left'>
 	<span style='font-size:130%;font-weight:bold;'>Search</span><br />
@@ -54,10 +65,11 @@ $_SESSION['ref_script']=$currentPage;
 	<table class='borderedFormTable' style="width:150px">
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceTitle'><b>Name (contains)</b></label>
+	<td class='searchRow'><label for='searchName'><b>Name (contains)</b></label>
 	<br />
-	<input type='text' name='searchName' id='searchName' style='width:145px' value="<?php if ($reset != 'Y') echo $_SESSION['res_name']; ?>" /><br />
-	<div id='div_searchName' style='<?php if ((!$_SESSION['res_name']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchName' value='go!' class='searchButton' /></div>
+	<?php echo Html::text_search_field_tag('name', $search['name']); ?>
+	<br />
+	<div id='div_searchName' style='<?php if (!$search['name']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchName' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -66,8 +78,9 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceISBNOrISSN'><b>ISBN/ISSN</b></label>
 	<br />
-	<input type='text' name='searchResourceISBNOrISSN' id='searchResourceISBNOrISSN' style='width:145px' value='<?php if ($reset != 'Y') echo $_SESSION['res_resourceISBNOrISSN']; ?>' /><br />
-	<div id='div_searchISBNOrISSN' style='<?php if ((!$_SESSION['res_resourceISBNOrISSN']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='go!' class='searchButton' /></div>
+	<?php echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
+	<br />
+	<div id='div_searchISBNOrISSN' style='<?php if (!$search['res_resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -76,8 +89,8 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchFund'><b>Fund</b></label>
 	<br />
-	<input type='text' name='searchFund' id='searchFund' style='width:145px' value='<?php if ($reset != 'Y') echo $_SESSION['res_fund']; ?>' /><br />
-	<div id='div_searchFund' style='<?php if ((!$_SESSION['res_fund']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='go!' class='searchButton' /></div>
+	<?php echo Html::text_search_field_tag('fund', $search['fund']); ?><br />
+	<div id='div_searchFund' style='<?php if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -86,7 +99,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchAcquisitionTypeID'><b>Acquisition Type</b></label>
 	<br />
-	<select name='searchAcquisitionTypeID' id='searchAcquisitionTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[acquisitionTypeID]' id='searchAcquisitionTypeID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
@@ -94,7 +107,7 @@ $_SESSION['ref_script']=$currentPage;
 		$acquisitionType = new AcquisitionType();
 
 		foreach($acquisitionType->allAsArray() as $display) {
-			if (($_SESSION['res_acquisitionTypeID'] == $display['acquisitionTypeID']) && ($reset != 'Y')){
+			if ($search['acquisitionTypeID'] == $display['acquisitionTypeID']) {
 				echo "<option value='" . $display['acquisitionTypeID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['acquisitionTypeID'] . "'>" . $display['shortName'] . "</option>";
@@ -109,7 +122,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchStatusID'><b>Status</b></label>
 	<br />
-	<select name='searchStatusID' id='searchStatusID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='searchsearch[statusID]' id='searchStatusID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
@@ -228,8 +241,9 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceID'><b>Record ID</b></label>
 	<br />
-	<input type='text' name='searchResourceID' id='searchResourceID' style='width:145px' value='<?php if ($reset != 'Y') echo $_SESSION['res_resourceID']; ?>' /><br />
-	<div id='div_searchID' style='<?php if ((!$_SESSION['res_resourceID']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' value='go!' id='searchResourceIDButton' /></div>
+	<?php echo Html::text_search_field_tag('resourceID', $search['resourceID']); ?>
+	<br />
+	<div id='div_searchID' style='<?php if (!$search['resourceID']) echo "display:none;"; ?>margin-left:123px;'><input type='button' value='go!' id='searchResourceIDButton' /></div>
 	</td>
 	</tr>
 
@@ -450,7 +464,12 @@ $_SESSION['ref_script']=$currentPage;
 	<select name='searchCatalogingStatus' id='searchCatalogingStatus' style='width:150px' onchange='javsacript:updateSearch();'>
 	<option value=''>All</option>
 	<?php
-	
+	  if (($_SESSION['res_catalogingStatus'] == "none") && ($reset != 'Y')){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+		
 		foreach(array('Rejected','Ongoing','Completed') as $status) {
 			if (($_SESSION['res_catalogingStatus'] == $status) && ($reset != 'Y')){
 				echo "<option value='" . $status . "' selected>" . $status . "</option>";
@@ -465,16 +484,16 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
   
   <tr>
-	<td class='searchRow'><label for='searchWorkflowStep'><b>Routing Step</b></label>
+	<td class='searchRow'><label for='searchStepName'><b>Routing Step</b></label>
 	<br />
-	<select name='searchWorkflowStep' id='searchWorkflowStep' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[stepName]' id='searchStepName' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 	  $step = new Step();
     $stepNames = $step->allStepNames();
     
 		foreach($stepNames as $stepName) {
-		  if (($_SESSION['res_stepName'] == $stepName) && ($reset != 'Y')) {
+		  if ($search['stepName'] == $stepName) {
 		    $stepSelected = " selected";
 		  } else {
 		    $stepSelected = false;
@@ -491,7 +510,7 @@ $_SESSION['ref_script']=$currentPage;
 	</table>
 	</div>
 
-	</div>
+  </form>
 </td>
 <td>
 <div id='div_searchResults'></div>

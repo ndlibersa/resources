@@ -811,7 +811,26 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
-
+  
+  public static function setSearch($search) {
+    $_SESSION['resourceSearch'] = $search;
+  }
+  
+  public static function resetSearch() {
+    Resource::setSearch(array(
+      "orderBy" => "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc",
+      "page" => 1,
+      "recordsPerPage" => 25,
+      "startWith" => ''
+    ));
+  }
+  
+  public static function getSearch() {
+    if (!isset($_SESSION['resourceSearch'])) {
+      Resource::resetSearch();
+    }
+    return $_SESSION['resourceSearch'];
+  }
 
 
 
@@ -987,6 +1006,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
 									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
+									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN Status S ON R.statusID = S.statusID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID

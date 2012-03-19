@@ -31,28 +31,28 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 	<td style="width:400px;">
 		<table>
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='recordSetIdentifier'>Identifier:</label></td>
-		<td><?php echo text_field('recordSetIdentifier', $resource, array('width' => '240px')) ?>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('recordSetIdentifier', 'Identifier'); ?></td>
+		<td><?php echo Html::text_field('recordSetIdentifier', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
 
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='bibSourceURL'>Source URL:</label></td>
-		<td><?php echo text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('bibSourceURL', 'Source URL'); ?></td>
+		<td><?php echo Html::text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingType'>Cataloging Type:</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingType'); ?></td>
 		<td>
-		  <?php echo select_field('catalogingType', $resource, array('MARCit','Batch','Manual'), array('width' => '150px')); ?>
+		  <?php echo Html::select_field('catalogingType', $resource, array('MARCit','Batch','Manual'), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='catalogingStatus'>Cataloging Status:</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingStatus'); ?></td>
 		<td>
-		  <?php echo select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
+		  <?php echo Html::select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		
@@ -63,21 +63,21 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		<table>
     
       <tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsAvailable'># Records Available:</label></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsAvailable', '# Records Available'); ?></td>
   		<td>
-  		  <?php echo text_field('numberRecordsAvailable', $resource, array('width' => '60px')) ?>
+  		  <?php echo Html::text_field('numberRecordsAvailable', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 
   		<tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='numberRecordsLoaded'># Records Loaded:</label></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsLoaded', '# Records Loaded'); ?></td>
   		<td>
-  		  <?php echo text_field('numberRecordsLoaded', $resource, array('width' => '60px')) ?>
+  		  <?php echo Html::text_field('numberRecordsLoaded', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='hasOclcHoldings'>OCLC Holdings:</label></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('hasOclcHoldings', 'OCLC Holdings'); ?></td>
 		<td><input type='checkbox' value="1" id='hasOclcHoldings' name='hasOclcHoldings' <?php if ($resource->hasOclcHoldings) { echo 'checked'; } ?> /></td>
 		</tr>
 		</table>

@@ -102,8 +102,14 @@
 	$(".setPage").live('click', function () {
 		page = $(this).attr('id');
 		updateSearch();	
-	});                   
-                   
+	});
+	
+	$('#resourceSearchForm select').change(updateSearch);
+	
+	$('#resourceSearchForm').submit(function() {
+	  updateSearch();
+	  return false;
+	})
  });
  
  
@@ -112,7 +118,21 @@ var page = '1';
 var recordsPerPage = 25;
 var startWith = '';
 
-function updateSearch(){
+function updateSearch() {
+  var form = $('#resourceSearchForm');
+  $.post(
+    form.attr('action'),
+    form.serialize(),
+    function(html) { 
+     	$("#div_feedback").html("&nbsp;");
+     	$('#div_searchResults').html(html);  
+     }
+   );
+   
+   window.scrollTo(0, 0);
+}
+
+function updateSearch2(){
       $("#div_feedback").html("<img src='images/circle.gif'>  <span style='font-size:90%'>Processing...</span>");
       
 	
@@ -198,25 +218,8 @@ function searchValidResource(){
  
   $(".newSearch").click(function () {
   	//reset fields
-  	$("#searchName").val("");
-  	$("#searchResourceISBNOrISSN").val("");
-  	$("#searchFund").val("");
-  	$("#searchAcquisitionTypeID").val("");
-  	$("#searchWorkflowStep").val("");
-  	$("#searchStatusID").val("");
-  	$("#searchCreatorLoginID").val("");
-  	$("#searchResourceFormatID").val("");
-  	$("#searchResourceTypeID").val("");
-  	$("#searchResourceID").val("");
-  	$("#searchNoteTypeID").val("");
-  	$("#searchResourceNote").val("");
-  	$("#searchCreateDateStart").val("");
-  	$("#searchCreateDateEnd").val("");
-  	$("#searchPurchaseSite").val("");
-  	$("#searchAuthorizedSite").val("");
-  	$("#searchAdministeringSite").val("");
-  	$("#searchAuthenticationTypeID").val("");
-  	$("#searchCatalogingStatus").val("");
+  	$('#resourceSearchForm input[type="text"]').val("");
+  	$('#resourceSearchForm select').val("");
 
 
   	//reset startwith background color

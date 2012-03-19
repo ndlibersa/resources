@@ -80,7 +80,7 @@ $_SESSION['ref_script']=$currentPage;
 	<br />
 	<?php echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
 	<br />
-	<div id='div_searchISBNOrISSN' style='<?php if (!$search['res_resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='go!' class='searchButton' /></div>
+	<div id='div_searchISBNOrISSN' style='<?php if (!$search['resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -122,7 +122,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchStatusID'><b>Status</b></label>
 	<br />
-	<select name='searchsearch[statusID]' id='searchStatusID' style='width:150px'>
+	<select name='search[statusID]' id='searchStatusID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
@@ -132,7 +132,7 @@ $_SESSION['ref_script']=$currentPage;
 		foreach($status->allAsArray() as $display) {
 			//exclude saved status
 			if (strtoupper($display['shortName']) != 'SAVED'){
-				if (($_SESSION['res_statusID'] == $display['statusID']) && ($reset != 'Y')){
+				if ($search['statusID'] == $display['statusID']){
 					echo "<option value='" . $display['statusID'] . "' selected>" . $display['shortName'] . "</option>";
 				}else{
 					echo "<option value='" . $display['statusID'] . "'>" . $display['shortName'] . "</option>";
@@ -153,7 +153,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchCreatorLoginID'><b>Creator</b></label>
 	<br />
-	<select name='searchCreatorLoginID' id='searchCreatorLoginID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[creatorLoginID]' id='searchCreatorLoginID' style='width:150px'>
 	<option value=''>All</option>
 
 	<?php
@@ -168,7 +168,7 @@ $_SESSION['ref_script']=$currentPage;
 				$name = $display['loginID'];
 			}
 
-			if (($_SESSION['res_creatorLoginID'] == $display['loginID']) && ($reset != 'Y')){
+			if ($search['creatorLoginID'] == $display['loginID']){
 				echo "<option value='" . $display['loginID'] . "' selected>" . $name . "</option>";
 			}else{
 				echo "<option value='" . $display['loginID'] . "'>" . $name . "</option>";
@@ -185,7 +185,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceFormatID'><b>Resource Format</b></label>
 	<br />
-	<select name='searchResourceFormatID' id='searchResourceFormatID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[resourceFormatID]' id='searchResourceFormatID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
@@ -193,7 +193,7 @@ $_SESSION['ref_script']=$currentPage;
 		$resourceFormat = new ResourceFormat();
 
 		foreach($resourceFormat->allAsArray() as $display) {
-			if (($_SESSION['res_resourceFormatID'] == $display['resourceFormatID']) && ($reset != 'Y')){
+			if ($search['resourceFormatID'] == $display['resourceFormatID']){
 				echo "<option value='" . $display['resourceFormatID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['resourceFormatID'] . "'>" . $display['shortName'] . "</option>";
@@ -209,12 +209,12 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceTypeID'><b>Resource Type</b></label>
 	<br />
-	<select name='searchResourceTypeID' id='searchResourceTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[resourceTypeID]' id='searchResourceTypeID' style='width:150px'>
 	<option value=''>All</option>
 
 	<?php
 
-		if (($_SESSION['res_resourceTypeID'] == "none") && ($reset != 'Y')){
+		if ($search['resourceTypeID'] == "none"){
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -225,7 +225,7 @@ $_SESSION['ref_script']=$currentPage;
 		$resourceType = new ResourceType();
 
 		foreach($resourceType->allAsArray() as $display) {
-			if (($_SESSION['res_resourceTypeID'] == $display['resourceTypeID']) && ($reset != 'Y')){
+			if ($search['resourceTypeID'] == $display['resourceTypeID']){
 				echo "<option value='" . $display['resourceTypeID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['resourceTypeID'] . "'>" . $display['shortName'] . "</option>";
@@ -241,7 +241,7 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceID'><b>Record ID</b></label>
 	<br />
-	<?php echo Html::text_search_field_tag('resourceID', $search['resourceID']); ?>
+	<?php echo Html::text_search_field_tag('resourceID', ''); ?>
 	<br />
 	<div id='div_searchID' style='<?php if (!$search['resourceID']) echo "display:none;"; ?>margin-left:123px;'><input type='button' value='go!' id='searchResourceIDButton' /></div>
 	</td>
@@ -276,17 +276,17 @@ $_SESSION['ref_script']=$currentPage;
 	</table>
 
 	<div id='hideShowOptions'><a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'>more options...</a></div>
-	<div id='div_additionalSearch' style='display:none;'>
+	<div id='div_additionalSearch' style='display:auto;'>
 	<table class='borderedFormTable' style="width:150px">
 
 	<tr>
 	<td class='searchRow'><label for='searchNoteTypeID'><b>Note Type</b></label>
 	<br />
-	<select name='searchNoteTypeID' id='searchNoteTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[noteTypeID]' id='searchNoteTypeID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
-		if (($_SESSION['res_noteTypeID'] == "none") && ($reset != 'Y')){
+		if ($search['noteTypeID'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -296,7 +296,7 @@ $_SESSION['ref_script']=$currentPage;
 		$noteType = new NoteType();
 
 		foreach($noteType->allAsArray() as $display) {
-			if (($_SESSION['res_noteTypeID'] == $display['noteTypeID']) && ($reset != 'Y')){
+			if ($search['noteTypeID'] == $display['noteTypeID']) {
 				echo "<option value='" . $display['noteTypeID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['noteTypeID'] . "'>" . $display['shortName'] . "</option>";
@@ -312,8 +312,9 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchResourceNote'><b>Note (contains)</b></label>
 	<br />
-	<input type='text' name='searchResourceNote' id='searchResourceNote' style='width:145px' value='<?php if ($reset != 'Y') echo $_SESSION['res_resourceNote']; ?>' /><br />
-	<div id='div_searchResourceNote' style='<?php if ((!$_SESSION['res_resourceNote']) || ($reset == 'Y')) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceNote' value='go!' class='searchButton' /></div>
+	<?php echo Html::text_search_field_tag('resourceNote', $search['resourceNote']); ?>
+	<br />
+	<div id='div_searchResourceNote' style='<?php if (!$search['resourceNote']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceNote' value='go!' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -322,12 +323,14 @@ $_SESSION['ref_script']=$currentPage;
 
 	<tr>
 	<td class='searchRow'><label for='createDate'><b>Date Created Between</b></label><br />
-	<input class='date-pick' name='searchCreateDateStart' id='searchCreateDateStart' style='width:65px' value='<?php if ($reset != 'Y') echo $_SESSION['res_createDateStart']; ?>' />&nbsp;&nbsp;<b>and</b>
+	  <?php echo Html::text_search_field_tag('createDateStart', $search['createDateStart'], array('class' => 'date-pick', 'width' => '65px')); ?>
+	&nbsp;&nbsp;<b>and</b>
 	</td>
 	</tr>
 	<tr>
 	<td style="border-top:0px;padding-top:0px;">
-	<input class='date-pick' name='searchCreateDateEnd' id='searchCreateDateEnd' style='width:65px' value='<?php if ($reset != 'Y') echo $_SESSION['res_createDateEnd']; ?>' /><br />
+	  <?php echo Html::text_search_field_tag('createDateEnd', $search['createDateEnd'], array('class' => 'date-pick', 'width' => '65px')); ?>
+	<br />
 	<div id='div_searchCreateDate' style='display:none;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='searchButton' value='go!' /></div>
 	</td>
 	</tr>
@@ -337,11 +340,11 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchPurchaseSiteID'><b>Purchase Site</b></label>
 	<br />
-	<select name='searchPurchaseSiteID' id='searchPurchaseSiteID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[purchaseSiteID]' id='searchPurchaseSiteID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
-		if (($_SESSION['res_purchaseSiteID'] == "none") && ($reset != 'Y')){
+		if ($search['purchaseSiteID'] == "none"){
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -351,7 +354,7 @@ $_SESSION['ref_script']=$currentPage;
 		$purchaseSite = new PurchaseSite();
 
 		foreach($purchaseSite->allAsArray() as $display) {
-			if (($_SESSION['res_purchaseSiteID'] == $display['purchaseSiteID']) && ($reset != 'Y')){
+			if ($search['purchaseSiteID'] == $display['purchaseSiteID']){
 				echo "<option value='" . $display['purchaseSiteID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['purchaseSiteID'] . "'>" . $display['shortName'] . "</option>";
@@ -369,11 +372,11 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchAuthorizedSiteID'><b>Authorized Site</b></label>
 	<br />
-	<select name='searchAuthorizedSiteID' id='searchAuthorizedSiteID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[authorizedSiteID]' id='searchAuthorizedSiteID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
-		if (($_SESSION['res_authorizedSiteID'] == "none") && ($reset != 'Y')){
+		if ($search['authorizedSiteID'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -383,7 +386,7 @@ $_SESSION['ref_script']=$currentPage;
 		$authorizedSite = new AuthorizedSite();
 
 		foreach($authorizedSite->allAsArray() as $display) {
-			if (($_SESSION['res_authorizedSiteID'] == $display['authorizedSiteID']) && ($reset != 'Y')){
+			if ($search['authorizedSiteID'] == $display['authorizedSiteID']){
 				echo "<option value='" . $display['authorizedSiteID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['authorizedSiteID'] . "'>" . $display['shortName'] . "</option>";
@@ -401,11 +404,11 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchAdministeringSiteID'><b>Administering Site</b></label>
 	<br />
-	<select name='searchAdministeringSiteID' id='searchAdministeringSiteID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[administeringSiteID]' id='searchAdministeringSiteID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
-		if (($_SESSION['res_administeringSiteID'] == "none") && ($reset != 'Y')){
+		if ($search['administeringSiteID'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -415,7 +418,7 @@ $_SESSION['ref_script']=$currentPage;
 		$administeringSite = new AdministeringSite();
 
 		foreach($administeringSite->allAsArray() as $display) {
-			if (($_SESSION['res_administeringSiteID'] == $display['administeringSiteID']) && ($reset != 'Y')){
+			if ($search['administeringSiteID'] == $display['administeringSiteID']) {
 				echo "<option value='" . $display['administeringSiteID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['administeringSiteID'] . "'>" . $display['shortName'] . "</option>";
@@ -431,11 +434,11 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchAuthenticationTypeID'><b>Authentication Type</b></label>
 	<br />
-	<select name='searchAuthenticationTypeID' id='searchAuthenticationTypeID' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[authenticationTypeID]' id='searchAuthenticationTypeID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 
-		if (($_SESSION['res_authenticationTypeID'] == "none") && ($reset != 'Y')){
+		if ($search['authenticationTypeID'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
@@ -446,7 +449,7 @@ $_SESSION['ref_script']=$currentPage;
 		$authenticationType = new AuthenticationType();
 
 		foreach($authenticationType->allAsArray() as $display) {
-			if (($_SESSION['res_authenticationTypeID'] == $display['authenticationTypeID']) && ($reset != 'Y')){
+			if ($search['authenticationTypeID'] == $display['authenticationTypeID']) {
 				echo "<option value='" . $display['authenticationTypeID'] . "' selected>" . $display['shortName'] . "</option>";
 			}else{
 				echo "<option value='" . $display['authenticationTypeID'] . "'>" . $display['shortName'] . "</option>";
@@ -461,17 +464,17 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchCatalogingStatus'><b>Cataloging Status</b></label>
 	<br />
-	<select name='searchCatalogingStatus' id='searchCatalogingStatus' style='width:150px' onchange='javsacript:updateSearch();'>
+	<select name='search[catalogingStatus]' id='searchCatalogingStatus' style='width:150px'>
 	<option value=''>All</option>
 	<?php
-	  if (($_SESSION['res_catalogingStatus'] == "none") && ($reset != 'Y')){
+	  if ($search['catalogingStatus'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
 		}
 		
 		foreach(array('Rejected','Ongoing','Completed') as $status) {
-			if (($_SESSION['res_catalogingStatus'] == $status) && ($reset != 'Y')){
+			if ($search['catalogingStatus'] == $status) {
 				echo "<option value='" . $status . "' selected>" . $status . "</option>";
 			}else{
 				echo "<option value='" . $status . "'>" . $status . "</option>";

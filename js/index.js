@@ -201,16 +201,17 @@ function searchValidResource(){
  
   
   function setStartWith(startWithLetter){
-  	//first, set the previous selected letter (if any) to the regular class
-  	if (startWith != ''){
-  		$("#span_letter_" + startWith).removeClass('searchLetterSelected').addClass('searchLetter');
-  	}
+    //first, set the previous selected letter (if any) to the regular class
+  	$("span.searchLetterSelected").removeClass('searchLetterSelected').addClass('searchLetter');
   	
-  	//next, set the new start with letter to show selected
-  	$("#span_letter_" + startWithLetter).removeClass('searchLetter').addClass('searchLetterSelected');
-
-  	pageStart = '1';
-  	startWith=startWithLetter;
+    if ($('#searchStartWith').val() == startWithLetter) {
+      $('#searchStartWith').val('');
+    } else {
+    	//next, set the new start with letter to show selected
+    	$("#span_letter_" + startWithLetter).removeClass('searchLetter').addClass('searchLetterSelected');
+  	
+    	$('#searchStartWith').val(startWithLetter);
+  	}
   	updateSearch();
   }
  

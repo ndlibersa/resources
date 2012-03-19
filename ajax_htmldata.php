@@ -1825,67 +1825,77 @@ switch ($_GET['action']) {
       $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
     }
     
-		if ($_POST['statusID']) $whereAdd[] = "R.statusID = '" . $_POST['statusID'] . "'";
-		if ($_POST['creatorLoginID']) $whereAdd[] = "R.createLoginID = '" . $_POST['creatorLoginID'] . "'";
+		if ($search['statusID']) {
+		  $whereAdd[] = "R.statusID = '" . mysql_real_escape_string($search['statusID']) . "'";
+	  }
+	  
+		if ($search['creatorLoginID']) {
+		  $whereAdd[] = "R.createLoginID = '" . mysql_real_escape_string($search['creatorLoginID']) . "'";
+	  }
 
-		if ($_POST['resourceFormatID']) $whereAdd[] = "R.resourceFormatID = '" . $_POST['resourceFormatID'] . "'";
+		if ($search['resourceFormatID']) {
+		  $whereAdd[] = "R.resourceFormatID = '" . mysql_real_escape_string($search['resourceFormatID']) . "'";
+	  }
+	  
 		if ($search['acquisitionTypeID']) {
 		  $whereAdd[] = "R.acquisitionTypeID = '" . mysql_real_escape_string($search['acquisitionTypeID']) . "'";
 	  }
 
 
-		if ($_POST['resourceNote']) $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . str_replace("'","''",$_POST['resourceNote']) . "%')";
+		if ($search['resourceNote']) {
+		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . mysql_real_escape_string($search['resourceNote']) . "%')";
+	  }
 
-		if ($_POST['createDateStart']) $whereAdd[] = "R.createDate >= STR_TO_DATE('" . $_POST['createDateStart'] . "','%m/%d/%Y')";
-		if ($_POST['createDateEnd']) $whereAdd[] = "R.createDate <= STR_TO_DATE('" . $_POST['createDateEnd'] . "','%m/%d/%Y')";
+		if ($search['createDateStart']) $whereAdd[] = "R.createDate >= STR_TO_DATE('" . mysql_real_escape_string($search['createDateStart']) . "','%m/%d/%Y')";
+		if ($search['createDateEnd']) $whereAdd[] = "R.createDate <= STR_TO_DATE('" . mysql_real_escape_string($search['createDateEnd']) . "','%m/%d/%Y')";
 
-		if ($_POST['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $_POST['startWith'] . "%')";
+		if ($search['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . mysql_real_escape_string($search['startWith']) . "%')";
 
 		//the following are not-required fields with dropdowns and have "none" as an option
-		if ($_POST['resourceTypeID'] == 'none'){
+		if ($search['resourceTypeID'] == 'none'){
 			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
-		}else if ($_POST['resourceTypeID']){
-			$whereAdd[] = "R.resourceTypeID = '" . $_POST['resourceTypeID'] . "'";
+		}else if ($search['resourceTypeID']){
+			$whereAdd[] = "R.resourceTypeID = '" . mysql_real_escape_string($search['resourceTypeID']) . "'";
 		}
 
-		if ($_POST['noteTypeID'] == 'none'){
+		if ($search['noteTypeID'] == 'none'){
 			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
-		}else if ($_POST['noteTypeID']){
-			$whereAdd[] = "RN.noteTypeID = '" . $_POST['noteTypeID'] . "'";
+		}else if ($search['noteTypeID']){
+			$whereAdd[] = "RN.noteTypeID = '" . mysql_real_escape_string($search['noteTypeID']) . "'";
 		}
 
 
-		if ($_POST['purchaseSiteID'] == 'none'){
+		if ($search['purchaseSiteID'] == 'none'){
 			$whereAdd[] = "RPSL.purchaseSiteID IS NULL";
-		}else if ($_POST['purchaseSiteID']){
-			$whereAdd[] = "RPSL.purchaseSiteID = '" . $_POST['purchaseSiteID'] . "'";
+		}else if ($search['purchaseSiteID']){
+			$whereAdd[] = "RPSL.purchaseSiteID = '" . mysql_real_escape_string($search['purchaseSiteID']) . "'";
 		}
 
 
-		if ($_POST['authorizedSiteID'] == 'none'){
+		if ($search['authorizedSiteID'] == 'none'){
 			$whereAdd[] = "RAUSL.authorizedSiteID IS NULL";
-		}else if ($_POST['authorizedSiteID']){
-			$whereAdd[] = "RAUSL.authorizedSiteID = '" . $_POST['authorizedSiteID'] . "'";
+		}else if ($search['authorizedSiteID']){
+			$whereAdd[] = "RAUSL.authorizedSiteID = '" . mysql_real_escape_string($search['authorizedSiteID']) . "'";
 		}
 
 
-		if ($_POST['administeringSiteID'] == 'none'){
+		if ($search['administeringSiteID'] == 'none'){
 			$whereAdd[] = "RADSL.administeringSiteID IS NULL";
-		}else if ($_POST['administeringSiteID']){
-			$whereAdd[] = "RADSL.administeringSiteID = '" . $_POST['administeringSiteID'] . "'";
+		}else if ($search['administeringSiteID']){
+			$whereAdd[] = "RADSL.administeringSiteID = '" . mysql_real_escape_string($search['administeringSiteID']) . "'";
 		}
 
 
-		if ($_POST['authenticationTypeID'] == 'none'){
+		if ($search['authenticationTypeID'] == 'none'){
 			$whereAdd[] = "R.authenticationTypeID IS NULL";
-		}else if ($_POST['authenticationTypeID']){
-			$whereAdd[] = "R.authenticationTypeID = '" . $_POST['authenticationTypeID'] . "'";
+		}else if ($search['authenticationTypeID']){
+			$whereAdd[] = "R.authenticationTypeID = '" . mysql_real_escape_string($search['authenticationTypeID']) . "'";
 		}
 		
-		if ($_POST['catalogingStatus'] == 'none') {
+		if ($search['catalogingStatus'] == 'none') {
 		  $whereAdd[] = "(R.catalogingStatus = '' OR R.catalogingStatus IS NULL)";
-		} else if ($_POST['catalogingStatus']) {
-		  $whereAdd[] = "R.catalogingStatus = '" . $_POST['catalogingStatus'] . "'";
+		} else if ($search['catalogingStatus']) {
+		  $whereAdd[] = "R.catalogingStatus = '" . mysql_real_escape_string($search['catalogingStatus']) . "'";
 	  }
 
 
@@ -2103,31 +2113,6 @@ switch ($_GET['action']) {
 
 			<?php
 		}
-
-		//set everything in sessions to make form "sticky" - also used for excel export
-		$_SESSION['res_pageStart'] = $_POST['pageStart'];
-		$_SESSION['res_recordsPerPage'] = $_POST['recordsPerPage'];
-		$_SESSION['res_resourceID'] = $_POST['resourceID'];
-		$_SESSION['res_name'] = $_POST['name'];
-		$_SESSION['res_fund'] = $_POST['fund'];
-		$_SESSION['res_acquisitionTypeID'] = $_POST['acquisitionTypeID'];
-		$_SESSION['res_resourceISBNOrISSN'] = $_POST['resourceISBNOrISSN'];
-		$_SESSION['res_statusID'] = $_POST['statusID'];
-		$_SESSION['res_creatorLoginID'] = $_POST['creatorLoginID'];
-		$_SESSION['res_resourceFormatID'] = $_POST['resourceFormatID'];
-		$_SESSION['res_resourceTypeID'] = $_POST['resourceTypeID'];
-		$_SESSION['res_noteTypeID'] = $_POST['noteTypeID'];
-		$_SESSION['res_resourceNote'] = $_POST['resourceNote'];
-		$_SESSION['res_createDateStart'] = $_POST['createDateStart'];
-		$_SESSION['res_createDateEnd'] = $_POST['createDateEnd'];
-		$_SESSION['res_purchaseSiteID'] = $_POST['purchaseSiteID'];
-		$_SESSION['res_authorizedSiteID'] = $_POST['authorizedSiteID'];
-		$_SESSION['res_administeringSiteID'] = $_POST['administeringSiteID'];
-		$_SESSION['res_authenticationTypeID'] = $_POST['authenticationTypeID'];
-		$_SESSION['res_startWith'] = $_POST['startWith'];
-		$_SESSION['res_orderBy'] = $_POST['orderBy'];
-    $_SESSION['res_catalogingStatus'] = $_POST['catalogingStatus'];
-    $_SESSION['res_stepName'] = $_POST['workflowStep'];
 
 		break;
 

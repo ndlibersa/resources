@@ -77,16 +77,9 @@ $(document).ready(function(){
 		return false;
 	});
 
-
-
-	$(".searchButton").click(function () {
-		pageStart = '1';
-		updateSearch(); 
-	});	
-
-
 	$("#searchResourceIDButton").click(function () {
 		searchValidResource();
+		return false;
 	});
 	
 	
@@ -109,9 +102,6 @@ $(document).ready(function(){
 	})
  });
  
- 
-var orderBy = "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc";
-
 function updateSearch(pageNumber) {
   if (!pageNumber) {
     pageNumber = 1;

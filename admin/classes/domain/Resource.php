@@ -836,6 +836,131 @@ class Resource extends DatabaseObject {
     }
     return $_SESSION['resourceSearch'];
   }
+  
+  public static function getSearchDetails() {
+    $search = Resource::getSearch();
+    
+		$whereAdd = array();
+		$config = new Configuration();
+
+
+		//if name is passed in also search alias, organizations and organization aliases
+		if ($search['name']) {
+		  $name = mysql_real_escape_string($search['name']);
+			if ($config->settings->organizationsModule == 'Y'){
+				$dbName = $config->settings->organizationsDatabaseName;
+
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . $name . "%')) OR (UPPER(O.name) LIKE UPPER('%" . $name . "%')) OR (UPPER(OA.name) LIKE UPPER('%" . $name . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(R.recordSetIdentifier) LIKE UPPER('%" . $name . "%')))";
+
+			}else{
+
+				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(A.shortName) LIKE UPPER('%" . $name . "%')) OR (UPPER(O.shortName) LIKE UPPER('%" . $name . "%')) OR (UPPER(RP.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(RC.titleText) LIKE UPPER('%" . $name . "%')) OR (UPPER(R.recordSetIdentifier) LIKE UPPER('%" . $name . "%')))";
+
+			}
+		}
+
+		//get where statements together (and escape single quotes)
+		if ($search['resourceID']) {
+		  $whereAdd[] = "R.resourceID = '" . mysql_real_escape_string($search['resourceID']) . "'";
+	  }
+		if ($search['resourceISBNOrISSN']) {
+		  $resourceISBNOrISSN = mysql_real_escape_string(str_replace("-","",$search['resourceISBNOrISSN']));
+		  $whereAdd[] = "REPLACE(R.isbnOrISSN,'-','') = '" . $resourceISBNOrISSN . "'";
+		} 
+		if ($search['fund']) {
+		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
+		  $whereAdd[] = "REPLACE(fundName,'-','') = '" . $fund . "'";
+	  }
+
+    if ($search['stepName']) {
+      $status = new Status();
+      $completedStatusID = $status->getIDFromName('complete');
+      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
+    }
+    
+		if ($search['statusID']) {
+		  $whereAdd[] = "R.statusID = '" . mysql_real_escape_string($search['statusID']) . "'";
+	  }
+	  
+		if ($search['creatorLoginID']) {
+		  $whereAdd[] = "R.createLoginID = '" . mysql_real_escape_string($search['creatorLoginID']) . "'";
+	  }
+
+		if ($search['resourceFormatID']) {
+		  $whereAdd[] = "R.resourceFormatID = '" . mysql_real_escape_string($search['resourceFormatID']) . "'";
+	  }
+	  
+		if ($search['acquisitionTypeID']) {
+		  $whereAdd[] = "R.acquisitionTypeID = '" . mysql_real_escape_string($search['acquisitionTypeID']) . "'";
+	  }
+
+
+		if ($search['resourceNote']) {
+		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . mysql_real_escape_string($search['resourceNote']) . "%')";
+	  }
+
+		if ($search['createDateStart']) $whereAdd[] = "R.createDate >= STR_TO_DATE('" . mysql_real_escape_string($search['createDateStart']) . "','%m/%d/%Y')";
+		if ($search['createDateEnd']) $whereAdd[] = "R.createDate <= STR_TO_DATE('" . mysql_real_escape_string($search['createDateEnd']) . "','%m/%d/%Y')";
+
+		if ($search['startWith']) $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . mysql_real_escape_string($search['startWith']) . "%')";
+
+		//the following are not-required fields with dropdowns and have "none" as an option
+		if ($search['resourceTypeID'] == 'none'){
+			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
+		}else if ($search['resourceTypeID']){
+			$whereAdd[] = "R.resourceTypeID = '" . mysql_real_escape_string($search['resourceTypeID']) . "'";
+		}
+
+		if ($search['noteTypeID'] == 'none'){
+			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
+		}else if ($search['noteTypeID']){
+			$whereAdd[] = "RN.noteTypeID = '" . mysql_real_escape_string($search['noteTypeID']) . "'";
+		}
+
+
+		if ($search['purchaseSiteID'] == 'none'){
+			$whereAdd[] = "RPSL.purchaseSiteID IS NULL";
+		}else if ($search['purchaseSiteID']){
+			$whereAdd[] = "RPSL.purchaseSiteID = '" . mysql_real_escape_string($search['purchaseSiteID']) . "'";
+		}
+
+
+		if ($search['authorizedSiteID'] == 'none'){
+			$whereAdd[] = "RAUSL.authorizedSiteID IS NULL";
+		}else if ($search['authorizedSiteID']){
+			$whereAdd[] = "RAUSL.authorizedSiteID = '" . mysql_real_escape_string($search['authorizedSiteID']) . "'";
+		}
+
+
+		if ($search['administeringSiteID'] == 'none'){
+			$whereAdd[] = "RADSL.administeringSiteID IS NULL";
+		}else if ($search['administeringSiteID']){
+			$whereAdd[] = "RADSL.administeringSiteID = '" . mysql_real_escape_string($search['administeringSiteID']) . "'";
+		}
+
+
+		if ($search['authenticationTypeID'] == 'none'){
+			$whereAdd[] = "R.authenticationTypeID IS NULL";
+		}else if ($search['authenticationTypeID']){
+			$whereAdd[] = "R.authenticationTypeID = '" . mysql_real_escape_string($search['authenticationTypeID']) . "'";
+		}
+		
+		if ($search['catalogingStatus'] == 'none') {
+		  $whereAdd[] = "(R.catalogingStatus = '' OR R.catalogingStatus IS NULL)";
+		} else if ($search['catalogingStatus']) {
+		  $whereAdd[] = "R.catalogingStatus = '" . mysql_real_escape_string($search['catalogingStatus']) . "'";
+	  }
+
+
+
+		$orderBy = $search['orderBy'];
+
+
+		$page = $search['page'];
+		$recordsPerPage = $search['recordsPerPage'];
+		
+		return array("where" => $whereAdd, "page" => $page, "order" => $orderBy, "perPage" => $recordsPerPage);
+  }
 
 
 

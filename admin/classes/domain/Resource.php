@@ -813,16 +813,21 @@ class Resource extends DatabaseObject {
 
   
   public static function setSearch($search) {
+    $defaultSearchParameters = array(
+      "orderBy" => "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc",
+      "page" => 1,
+      "recordsPerPage" => 25,
+    );
+    foreach ($defaultSearchParameters as $key => $value) {
+      if (!$search[$key]) {
+        $search[$key] = $value;
+      }
+    }
     $_SESSION['resourceSearch'] = $search;
   }
   
   public static function resetSearch() {
-    Resource::setSearch(array(
-      "orderBy" => "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc",
-      "page" => 1,
-      "recordsPerPage" => 25,
-      "startWith" => ''
-    ));
+    Resource::setSearch(array());
   }
   
   public static function getSearch() {

@@ -16,9 +16,9 @@
 */
 
 
- $(document).ready(function(){
+$(document).ready(function(){
 
-        updateSearch();      
+  updateSearch($('#searchPage').val());      
       
 	//perform search if enter is hit
 	$('#searchResourceID').keyup(function(e) {
@@ -92,16 +92,13 @@
 	
 	//bind change event to Records Per Page drop down
 	$("#numberRecordsPerPage").live('change', function () {
-		recordsPerPage=$("#numberRecordsPerPage").val();
-		pageStart = 1;
-		updateSearch();	
+	  setNumberOfRecords($(this).val())
 	});
                    
 
 	//bind change event to each of the page start
 	$(".setPage").live('click', function () {
-		page = $(this).attr('id');
-		updateSearch();	
+		setPageStart($(this).attr('id'));
 	});
 	
 	$('#resourceSearchForm select').change(updateSearch);
@@ -114,11 +111,13 @@
  
  
 var orderBy = "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc";
-var page = '1';
-var recordsPerPage = 25;
-var startWith = '';
 
-function updateSearch() {
+function updateSearch(pageNumber) {
+  if (!pageNumber) {
+    pageNumber = 1;
+  }
+  $('#searchPage').val(pageNumber);
+  
   var form = $('#resourceSearchForm');
   $.post(
     form.attr('action'),
@@ -179,23 +178,21 @@ function searchValidResource(){
 }
  
  
- function setOrder(column, direction){
- 	orderBy = column + " " + direction;
- 	updateSearch();
- }
+function setOrder(column, direction){
+  $("#searchOrderBy").val(column + " " + direction)
+  updateSearch();
+}
  
  
- function setPageStart(pageStartNumber){
- 	pageStart=pageStartNumber;
- 	updateSearch();
- }
- 
- 
- function setNumberOfRecords(recordsPerPageNumber){
- 	pageStart = '1';
- 	recordsPerPage=$("#recordsPerPage").val();
- 	updateSearch();
- }
+function setPageStart(pageStartNumber){
+  updateSearch(pageStartNumber);
+}
+
+
+function setNumberOfRecords(recordsPerPageNumber){
+  $("#searchRecordsPerPage").val(recordsPerPageNumber);
+  updateSearch();
+}
  
  
  
@@ -219,16 +216,14 @@ function searchValidResource(){
  
   $(".newSearch").click(function () {
   	//reset fields
-  	$('#resourceSearchForm input[type="text"]').val("");
+  	$('#resourceSearchForm input').not('#searchRecordsPerPage').val("");
   	$('#resourceSearchForm select').val("");
 
 
   	//reset startwith background color
-  	$("#span_letter_" + startWith).removeClass('searchLetterSelected').addClass('searchLetter');
-  	startWith='';
-	
-	orderBy = "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc";
-	pageStart = '1';
+  	$("span.searchLetterSelected").removeClass('searchLetterSelected').addClass('searchLetter');
+  	//$("#span_letter_" + startWith).removeClass('searchLetterSelected').addClass('searchLetter');
+  	//startWith='';
   	updateSearch();
   });
   

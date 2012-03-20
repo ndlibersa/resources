@@ -276,7 +276,7 @@ $_SESSION['ref_script']=$currentPage;
 	</table>
 
 	<div id='hideShowOptions'><a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'>more options...</a></div>
-	<div id='div_additionalSearch' style='display:auto;'>
+	<div id='div_additionalSearch' style='display:none;'>
 	<table class='borderedFormTable' style="width:150px">
 
 	<tr>

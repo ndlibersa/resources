@@ -62,17 +62,38 @@ header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 <th>Date Updated</th>
 <th>User Updated</th>
 <th>Status</th>
-<th>Related Product</th>
 <th>ISSN/ISBN</th>
+<th>Resource URL</th>
 <th>Organizations</th>
-<th>Purchasing Sites</th>
-<th>Authorized Sites</th>
+<th>Description</th>
+<th>Aliases</th>
+<th>Parent Record</th>
+<th>Child Record</th>
 <th>Acquisition Type</th>
+<th>Initial Cost</th>
 <th>Order Number</th>
 <th>System Number</th>
+<th>Purchasing Sites</th>
+<th>Subscription Start</th>
+<th>Subscription End</th>
+<th>Subscription Alert Enabled</th>
 <th>License Names</th>
+<th>License Status</th>
+<th>Authorized Sites</th>
 <th>Administering Sites</th>
-<th>Resource URL</th>
+<th>Authentication Type</th>
+<th>Access Method</th>
+<th>Storage Location</th>
+<th>Simultaneous User Limit</th>
+<th>Username / Password</th>
+<th>Cataloging Type</th>
+<th>Cataloging Status</th>
+<th>Catalog Record Set Identifier</th>
+<th>Catalog Record Source URL</th>
+<th>Catalog Records Available</th>
+<th>Catalog Records Loaded</th>
+<th>OCLC Holdings Updated</th>
+<th>Notes</th>
 </tr>
 
 <?php
@@ -88,28 +109,49 @@ foreach($resourceArray as $resource) {
 		$updateDateFormatted=format_date($resource['updateDate']);
 	}
 
-	echo "<tr>";
+	echo "<tr style='vertical-align:top;'>";
 
-	echo "<td style='vertical-align:top;'>" . $resource['resourceID'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['titleText'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['resourceType'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['resourceFormat'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . format_date($resource['createDate']) . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['createName'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $updateDateFormatted . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['updateName'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['status'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['childResources'] . "<br />" . $resource['parentResources'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['isbnOrISSN'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['organizationNames'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['purchasingSites'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['authorizedSites'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['acquisitionType'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['orderNumber'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['systemNumber'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['licenseNames'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['administeringSites'] . "</td>";
-	echo "<td style='vertical-align:top;'>" . $resource['resourceURL'] . "</td>";
+	echo "<td>" . $resource['resourceID'] . "</td>";
+	echo "<td>" . $resource['titleText'] . "</td>";
+	echo "<td>" . $resource['resourceType'] . "</td>";
+	echo "<td>" . $resource['resourceFormat'] . "</td>";
+	echo "<td>" . format_date($resource['createDate']) . "</td>";
+	echo "<td>" . $resource['createName'] . "</td>";
+	echo "<td>" . $updateDateFormatted . "</td>";
+	echo "<td>" . $resource['updateName'] . "</td>";
+	echo "<td>" . $resource['status'] . "</td>";
+	echo "<td>" . $resource['isbnOrISSN'] . "</td>";
+	echo "<td>" . $resource['resourceURL'] . "</td>";
+	echo "<td>" . $resource['organizationNames'] . "</td>";
+	echo "<td>" . $resource['descriptionText'] . "</td>";
+	echo "<td>" . $resource['aliases'] . "</td>";
+	echo "<td>" . $resource['parentResources'] . "</td>";
+	echo "<td>" . $resource['childResources'] . "</td>";
+	echo "<td>" . $resource['acquisitionType'] . "</td>";
+	echo "<td>" . $resource['payments'] . "</td>";
+	echo "<td>" . $resource['orderNumber'] . "</td>";
+	echo "<td>" . $resource['systemNumber'] . "</td>";
+	echo "<td>" . $resource['purchasingSites'] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['licenseNames'] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['authorizedSites'] . "</td>";
+	echo "<td>" . $resource['administeringSites'] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource[''] . "</td>";
 
 
 	echo "</tr>";

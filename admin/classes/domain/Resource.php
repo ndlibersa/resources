@@ -1177,7 +1177,7 @@ class Resource extends DatabaseObject {
 
 
 		//now actually execute query
-		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, CONCAT_WS(' ', CU.firstName, CU.lastName) createName,
+		$query = "SELECT R.resourceID, R.titleText, R.descriptionText, AT.shortName acquisitionType, CONCAT_WS(' ', CU.firstName, CU.lastName) createName,
 						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
 						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
@@ -1188,7 +1188,8 @@ class Resource extends DatabaseObject {
 						GROUP_CONCAT(DISTINCT AUS.shortName ORDER BY AUS.shortName DESC SEPARATOR '<br />') authorizedSites,
 						GROUP_CONCAT(DISTINCT ADS.shortName ORDER BY ADS.shortName DESC SEPARATOR '<br />') administeringSites,
 						GROUP_CONCAT(DISTINCT RP.titleText ORDER BY RP.titleText DESC SEPARATOR '<br />') parentResources,
-						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '<br />') childResources
+						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '<br />') childResources,
+						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(RPAY.paymentAmount / 100, 2), ' ', RPAY.currencyCode ORDER BY RPAY.paymentAmount DESC SEPARATOR '<br />') payments
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID

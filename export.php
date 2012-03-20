@@ -151,7 +151,7 @@ foreach($resourceArray as $resource) {
 	echo "<td>" . $resource[''] . "</td>";
 	echo "<td>" . $resource[''] . "</td>";
 	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['notes'] . "</td>";
 
 
 	echo "</tr>";

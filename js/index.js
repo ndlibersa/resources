@@ -94,10 +94,17 @@ $(document).ready(function(){
 		setPageStart($(this).attr('id'));
 	});
 	
-	$('#resourceSearchForm select').change(updateSearch);
+	$('#resourceSearchForm select').change(function() {
+	  updateSearch();
+	});
 	
 	$('#resourceSearchForm').submit(function() {
 	  updateSearch();
+	  return false;
+	});
+	
+	$(".searchButton").click(function() {
+	  $('#resourceSearchForm').submit();
 	  return false;
 	})
  });

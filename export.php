@@ -85,7 +85,8 @@ header("Content-Disposition: attachment; filename='" . $excelfile . "'");
 <th>Access Method</th>
 <th>Storage Location</th>
 <th>Simultaneous User Limit</th>
-<th>Username / Password</th>
+<th>Username</th>
+<th>Password</th>
 <th>Cataloging Type</th>
 <th>Cataloging Status</th>
 <th>Catalog Record Set Identifier</th>
@@ -132,25 +133,26 @@ foreach($resourceArray as $resource) {
 	echo "<td>" . $resource['orderNumber'] . "</td>";
 	echo "<td>" . $resource['systemNumber'] . "</td>";
 	echo "<td>" . $resource['purchasingSites'] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['subscriptionStartDate'] . "</td>";
+	echo "<td>" . $resource['subscriptionEndDate'] . "</td>";
+	echo "<td>" . ($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N') . "</td>";
 	echo "<td>" . $resource['licenseNames'] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['licenseStatuses'] . "</td>";
 	echo "<td>" . $resource['authorizedSites'] . "</td>";
 	echo "<td>" . $resource['administeringSites'] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
-	echo "<td>" . $resource[''] . "</td>";
+	echo "<td>" . $resource['authenticationType'] . "</td>";
+	echo "<td>" . $resource['accessMethod'] . "</td>";
+	echo "<td>" . $resource['storageLocation'] . "</td>";
+	echo "<td>" . $resource['userLimit'] . "</td>";
+	echo "<td>" . $resource['authenticationUserName'] . "</td>";
+	echo "<td>" . $resource['authenticationPassword'] . "</td>";
+	echo "<td>" . $resource['catalogingType'] . "</td>";
+	echo "<td>" . $resource['catalogingStatus'] . "</td>";
+	echo "<td>" . $resource['recordSetIdentifier'] . "</td>";
+	echo "<td>" . $resource['bibSourceURL'] . "</td>";
+	echo "<td>" . $resource['numberRecordsAvailable'] . "</td>";
+	echo "<td>" . $resource['numberRecordsLoaded'] . "</td>";
+	echo "<td>" . ($resource['hasOclcHoldings'] ? 'Y' : 'N') . "</td>";
 	echo "<td>" . $resource['notes'] . "</td>";
 
 

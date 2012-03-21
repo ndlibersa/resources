@@ -1155,9 +1155,12 @@ class Resource extends DatabaseObject {
 			$dbName = $config->settings->licensingDatabaseName;
 
 			$licJoinAdd = " LEFT JOIN ResourceLicenseLink RLL ON RLL.resourceID = R.resourceID
-							LEFT JOIN " . $dbName . ".License L ON RLL.licenseID = L.licenseID";
+							LEFT JOIN " . $dbName . ".License L ON RLL.licenseID = L.licenseID
+							LEFT JOIN ResourceLicenseStatus RLS ON RLS.resourceID = R.resourceID
+							LEFT JOIN LicenseStatus LS ON LS.licenseStatusID = RLS.licenseStatusID";
 
-			$licSelectAdd = "GROUP_CONCAT(DISTINCT L.shortName ORDER BY L.shortName DESC SEPARATOR '<br />') licenseNames, ";
+			$licSelectAdd = "GROUP_CONCAT(DISTINCT L.shortName ORDER BY L.shortName DESC SEPARATOR '<br />') licenseNames, 
+			        GROUP_CONCAT(DISTINCT LS.shortName, ': ', DATE_FORMAT(RLS.licenseStatusChangeDate, '%m/%d/%Y') ORDER BY RLS.licenseStatusChangeDate DESC SEPARATOR '<br />') licenseStatuses, ";
 
 		}
 
@@ -1181,6 +1184,10 @@ class Resource extends DatabaseObject {
 						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
 						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
+						R.subscriptionStartDate, R.subscriptionEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
+						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, r.authenticationUserName, 
+						R.authenticationPassword,	R.catalogingType, R.catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
+						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . "
 						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases,
@@ -1214,6 +1221,10 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
 									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
+									LEFT JOIN AuthenticationType AUT ON AUT.authenticationTypeID = R.authenticationTypeID
+									LEFT JOIN AccessMethod AM ON AM.accessMethodID = R.accessMethodID
+									LEFT JOIN StorageLocation SL ON SL.storageLocationID = R.storageLocationID
+									LEFT JOIN UserLimit UL ON UL.userLimitID = R.userLimitID
 									" . $orgJoinAdd . "
 									" . $licJoinAdd . "
 								" . $whereStatement . "

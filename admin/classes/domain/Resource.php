@@ -1041,9 +1041,10 @@ class Resource extends DatabaseObject {
 
 
 		}
-
+    
+    $savedStatusID = intval($status->getIDFromName('saved'));
 		//also add to not retrieve saved records
-		$whereAdd[] = "UPPER(S.shortName) != 'SAVED'";
+		$whereAdd[] = "R.statusID != " . $savedStatusID;
 
 		if (count($whereAdd) > 0){
 			$whereStatement = " WHERE " . implode(" AND ", $whereAdd);
@@ -1059,7 +1060,7 @@ class Resource extends DatabaseObject {
 
 
 		//now actually execute query
-		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, date_format(R.createDate, '%c/%e/%Y') createDateFormatted, R.createDate, S.shortName status,
+		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, S.shortName status,
 						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
@@ -1081,9 +1082,9 @@ class Resource extends DatabaseObject {
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									" . $orgJoinAdd . "
 								" . $whereStatement . "
-								GROUP BY R.resourceID, R.titleText, R.isbnOrISSN, RF.shortName, RT.shortName, S.shortName
+								GROUP BY R.resourceID
 								ORDER BY " . $orderBy . $limitStatement;
-
+    
 		$result = $this->db->processQuery(stripslashes($query), 'assoc');
 
 		$searchArray = array();

@@ -22,6 +22,10 @@ session_start();
 
 include_once 'directory.php';
 
+function export_value($value) {
+  echo "<td>" . nl2br(htmlspecialchars($value)) . "</td>";
+}
+
 $queryDetails = Resource::getSearchDetails();
 $whereAdd = $queryDetails["where"];
 $searchDisplay = $queryDetails["display"];
@@ -112,48 +116,51 @@ foreach($resourceArray as $resource) {
 
 	echo "<tr style='vertical-align:top;'>";
 
-	echo "<td>" . $resource['resourceID'] . "</td>";
-	echo "<td>" . $resource['titleText'] . "</td>";
-	echo "<td>" . $resource['resourceType'] . "</td>";
-	echo "<td>" . $resource['resourceFormat'] . "</td>";
-	echo "<td>" . format_date($resource['createDate']) . "</td>";
-	echo "<td>" . $resource['createName'] . "</td>";
-	echo "<td>" . $updateDateFormatted . "</td>";
-	echo "<td>" . $resource['updateName'] . "</td>";
-	echo "<td>" . $resource['status'] . "</td>";
-	echo "<td>" . $resource['isbnOrISSN'] . "</td>";
-	echo "<td>" . $resource['resourceURL'] . "</td>";
-	echo "<td>" . $resource['organizationNames'] . "</td>";
-	echo "<td>" . $resource['descriptionText'] . "</td>";
-	echo "<td>" . $resource['aliases'] . "</td>";
-	echo "<td>" . $resource['parentResources'] . "</td>";
-	echo "<td>" . $resource['childResources'] . "</td>";
-	echo "<td>" . $resource['acquisitionType'] . "</td>";
-	echo "<td>" . $resource['payments'] . "</td>";
-	echo "<td>" . $resource['orderNumber'] . "</td>";
-	echo "<td>" . $resource['systemNumber'] . "</td>";
-	echo "<td>" . $resource['purchasingSites'] . "</td>";
-	echo "<td>" . $resource['subscriptionStartDate'] . "</td>";
-	echo "<td>" . $resource['subscriptionEndDate'] . "</td>";
-	echo "<td>" . ($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N') . "</td>";
-	echo "<td>" . $resource['licenseNames'] . "</td>";
-	echo "<td>" . $resource['licenseStatuses'] . "</td>";
-	echo "<td>" . $resource['authorizedSites'] . "</td>";
-	echo "<td>" . $resource['administeringSites'] . "</td>";
-	echo "<td>" . $resource['authenticationType'] . "</td>";
-	echo "<td>" . $resource['accessMethod'] . "</td>";
-	echo "<td>" . $resource['storageLocation'] . "</td>";
-	echo "<td>" . $resource['userLimit'] . "</td>";
-	echo "<td>" . $resource['authenticationUserName'] . "</td>";
-	echo "<td>" . $resource['authenticationPassword'] . "</td>";
-	echo "<td>" . $resource['catalogingType'] . "</td>";
-	echo "<td>" . $resource['catalogingStatus'] . "</td>";
-	echo "<td>" . $resource['recordSetIdentifier'] . "</td>";
-	echo "<td>" . $resource['bibSourceURL'] . "</td>";
-	echo "<td>" . $resource['numberRecordsAvailable'] . "</td>";
-	echo "<td>" . $resource['numberRecordsLoaded'] . "</td>";
-	echo "<td>" . ($resource['hasOclcHoldings'] ? 'Y' : 'N') . "</td>";
-	echo "<td>" . $resource['notes'] . "</td>";
+	export_value($resource['resourceID']);
+	export_value($resource['titleText']);
+	export_value($resource['resourceType']);
+	export_value($resource['resourceFormat']);
+	export_value(format_date($resource['createDate']));
+	export_value($resource['createName']);
+	export_value($updateDateFormatted);
+	export_value($resource['updateName']);
+	export_value($resource['status']);
+	export_value($resource['isbnOrISSN']);
+	export_value($resource['resourceURL']);
+	export_value($resource['organizationNames']);
+	export_value($resource['descriptionText']);
+	export_value($resource['aliases']);
+	export_value($resource['parentResources']);
+	export_value($resource['childResources']);
+	export_value($resource['acquisitionType']);
+	export_value($resource['payments']);
+	export_value($resource['orderNumber']);
+	export_value($resource['systemNumber']);
+	export_value($resource['purchasingSites']);
+	export_value($resource['subscriptionStartDate']);
+	export_value($resource['subscriptionEndDate']);
+	export_value(($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N'));
+	export_value($resource['licenseNames']);
+	export_value($resource['licenseStatuses']);
+	export_value($resource['authorizedSites']);
+	export_value($resource['administeringSites']);
+	export_value($resource['authenticationType']);
+	export_value($resource['accessMethod']);
+	export_value($resource['storageLocation']);
+	export_value($resource['userLimit']);
+	export_value($resource['authenticationUserName']);
+	export_value($resource['authenticationPassword']);
+	export_value($resource['catalogingType']);
+	export_value($resource['catalogingStatus']);
+	export_value($resource['recordSetIdentifier']);
+	export_value($resource['bibSourceURL']);
+	export_value($resource['numberRecordsAvailable']);
+	export_value($resource['numberRecordsLoaded']);
+	export_value(($resource['hasOclcHoldings'] ? 'Y' : 'N'));
+	$notes_array = explode('CORAL_SPLIT', $resource['notes']);
+	foreach ($notes_array as $note) {
+	  export_value($note);
+	}
 
 
 	echo "</tr>";

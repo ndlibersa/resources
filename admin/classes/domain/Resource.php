@@ -1166,18 +1166,16 @@ class Resource extends DatabaseObject {
 		}
 
 
-
+    $status = new Status();
 		//also add to not retrieve saved records
-		$whereAdd[] = "UPPER(S.shortName) != 'SAVED'";
-
-
+		$savedStatusID = intval($status->getIDFromName('saved'));
+		$whereAdd[] = "R.statusID != " . $savedStatusID;
+    
 		if (count($whereAdd) > 0){
 			$whereStatement = " WHERE " . implode(" AND ", $whereAdd);
 		}else{
 			$whereStatement = "";
 		}
-
-
 
 
 		//now actually execute query
@@ -1191,14 +1189,14 @@ class Resource extends DatabaseObject {
 						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . "
-						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases,
-						GROUP_CONCAT(DISTINCT PS.shortName ORDER BY PS.shortName DESC SEPARATOR '<br />') purchasingSites,
-						GROUP_CONCAT(DISTINCT AUS.shortName ORDER BY AUS.shortName DESC SEPARATOR '<br />') authorizedSites,
-						GROUP_CONCAT(DISTINCT ADS.shortName ORDER BY ADS.shortName DESC SEPARATOR '<br />') administeringSites,
-						GROUP_CONCAT(DISTINCT RP.titleText ORDER BY RP.titleText DESC SEPARATOR '<br />') parentResources,
-						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '<br />') childResources,
-						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode ORDER BY RPAY.paymentAmount ASC SEPARATOR '<br />') payments,
-						GROUP_CONCAT(DISTINCT RN.tabName, ' Tab, ', COALESCE(NT.shortName, 'General'), ', ', RN.updateDate, '<br />', RN.noteText ORDER BY RN.resourceNoteID ASC SEPARATOR '</td><td>') notes
+						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '\n') aliases,
+						GROUP_CONCAT(DISTINCT PS.shortName ORDER BY PS.shortName DESC SEPARATOR '\n') purchasingSites,
+						GROUP_CONCAT(DISTINCT AUS.shortName ORDER BY AUS.shortName DESC SEPARATOR '\n') authorizedSites,
+						GROUP_CONCAT(DISTINCT ADS.shortName ORDER BY ADS.shortName DESC SEPARATOR '\n') administeringSites,
+						GROUP_CONCAT(DISTINCT RP.titleText ORDER BY RP.titleText DESC SEPARATOR '\n') parentResources,
+						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '\n') childResources,
+						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode ORDER BY RPAY.paymentAmount ASC SEPARATOR '\n') payments,
+						GROUP_CONCAT(DISTINCT RN.tabName, ' Tab, ', COALESCE(NT.shortName, 'General'), ', ', RN.updateDate, '\n', RN.noteText ORDER BY RN.resourceNoteID ASC SEPARATOR 'CORAL_SPLIT') notes
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
@@ -1229,9 +1227,9 @@ class Resource extends DatabaseObject {
 									" . $orgJoinAdd . "
 									" . $licJoinAdd . "
 								" . $whereStatement . "
-								GROUP BY R.resourceID, R.titleText, R.isbnOrISSN, RF.shortName, RT.shortName, S.shortName
+								GROUP BY R.resourceID
 								ORDER BY " . $orderBy;
-
+		
 		$result = $this->db->processQuery(stripslashes($query), 'assoc');
 
 		$searchArray = array();

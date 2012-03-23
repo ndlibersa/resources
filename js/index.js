@@ -110,6 +110,7 @@ $(document).ready(function(){
  });
  
 function updateSearch(pageNumber) {
+  $("#div_feedback").html("<img src='images/circle.gif'>  <span style='font-size:90%'>Processing...</span>");
   if (!pageNumber) {
     pageNumber = 1;
   }

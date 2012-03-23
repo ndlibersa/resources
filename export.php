@@ -67,7 +67,6 @@ $columnHeaders = array(
   "ISSN/ISBN",
   "Resource URL",
   "Organizations",
-  "Description",
   "Aliases",
   "Parent Record",
   "Child Record",
@@ -95,15 +94,14 @@ $columnHeaders = array(
   "Catalog Record Source URL",
   "Catalog Records Available",
   "Catalog Records Loaded",
-  "OCLC Holdings Updated",
-  "Notes",
+  "OCLC Holdings Updated"
 );
 
-echo array_to_csv_row(array("Resource Record Export:", format_date( date( 'Y-m-d' ))));
+echo array_to_csv_row(array("Resource Record Export " . format_date( date( 'Y-m-d' ))));
 if (!$searchDisplay) {
-  $searchDisplay = array("None");
+  $searchDisplay = array("All Resource Records");
 }
-echo array_to_csv_row(array_merge(array("Filters: "), $searchDisplay));
+echo array_to_csv_row(array(implode('; ', $searchDisplay)));
 echo array_to_csv_row($columnHeaders);
 
 foreach($resourceArray as $resource) {
@@ -126,7 +124,6 @@ foreach($resourceArray as $resource) {
     $resource['isbnOrISSN'],
     $resource['resourceURL'],
     $resource['organizationNames'],
-    $resource['descriptionText'],
     $resource['aliases'],
     $resource['parentResources'],
     $resource['childResources'],
@@ -156,10 +153,6 @@ foreach($resourceArray as $resource) {
     $resource['numberRecordsLoaded'],
     ($resource['hasOclcHoldings'] ? 'Y' : 'N')
   );
-	$notes_array = explode('CORAL_SPLIT', $resource['notes']);
-	foreach ($notes_array as $note) {
-	  $resourceValues[] = $note;
-	}
 	
 	echo array_to_csv_row($resourceValues);
 }

@@ -1184,7 +1184,7 @@ class Resource extends DatabaseObject {
 						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
 						R.subscriptionStartDate, R.subscriptionEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
-						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, r.authenticationUserName, 
+						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, R.authenticationUserName, 
 						R.authenticationPassword,	R.catalogingType, R.catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
 						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 
 						" . $orgSelectAdd . ",

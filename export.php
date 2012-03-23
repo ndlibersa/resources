@@ -22,8 +22,17 @@ session_start();
 
 include_once 'directory.php';
 
-function export_value($value) {
-  echo "<td>" . nl2br(htmlspecialchars($value)) . "</td>";
+function escape_csv($value) {
+  // replace \n with \r\n
+  $value = preg_replace("/(?<!\r)\n/", "\r\n", $value);
+  // escape quotes
+  $value = str_replace('"', '""', $value);
+  return '"'.$value.'"';
+}
+
+function array_to_csv_row($array) {
+  $escaped_array = array_map("escape_csv", $array);
+  return implode(",",$escaped_array)."\r\n";
 }
 
 $queryDetails = Resource::getSearchDetails();
@@ -39,72 +48,63 @@ $resourceArray = $resourceObj->export($whereAdd, $orderBy);
 
 
 $replace = array("/", "-");
-$excelfile = "resources_export_" . str_replace( $replace, "_", format_date( date( 'Y-m-d' ) ) );
+$excelfile = "resources_export_" . str_replace( $replace, "_", format_date( date( 'Y-m-d' ) ) ).".csv";
 
 header("Pragma: public");
-header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename='" . $excelfile . "'");
+header("Content-type: text/csv");
+header("Content-Disposition: attachment; filename=\"" . $excelfile . "\"");
 
-?>
+$columnHeaders = array(
+  "Record ID",
+  "Name",
+  "Type",
+  "Format",
+  "Date Created",
+  "User Created",
+  "Date Updated",
+  "User Updated",
+  "Status",
+  "ISSN/ISBN",
+  "Resource URL",
+  "Organizations",
+  "Description",
+  "Aliases",
+  "Parent Record",
+  "Child Record",
+  "Acquisition Type",
+  "Initial Cost",
+  "Order Number",
+  "System Number",
+  "Purchasing Sites",
+  "Subscription Start",
+  "Subscription End",
+  "Subscription Alert Enabled",
+  "License Names",
+  "License Status",
+  "Authorized Sites",
+  "Administering Sites",
+  "Authentication Type",
+  "Access Method",
+  "Storage Location",
+  "Simultaneous User Limit",
+  "Username",
+  "Password",
+  "Cataloging Type",
+  "Cataloging Status",
+  "Catalog Record Set Identifier",
+  "Catalog Record Source URL",
+  "Catalog Records Available",
+  "Catalog Records Loaded",
+  "OCLC Holdings Updated",
+  "Notes",
+);
 
-<html>
-<head>
-<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="public">
-</head>
-<body>
-
-<h2>Resource Record Export</h2><?php echo format_date( date( 'Y-m-d' ) ); ?><br />
-<?php echo "<table><tr><td>" . implode("</td></tr><tr><td>", $searchDisplay) . "</td></tr></table>"; ?>
-<table border='1'>
-<tr>
-<th>Record ID</th>
-<th>Name</th>
-<th>Type</th>
-<th>Format</th>
-<th>Date Created</th>
-<th>User Created</th>
-<th>Date Updated</th>
-<th>User Updated</th>
-<th>Status</th>
-<th>ISSN/ISBN</th>
-<th>Resource URL</th>
-<th>Organizations</th>
-<th>Description</th>
-<th>Aliases</th>
-<th>Parent Record</th>
-<th>Child Record</th>
-<th>Acquisition Type</th>
-<th>Initial Cost</th>
-<th>Order Number</th>
-<th>System Number</th>
-<th>Purchasing Sites</th>
-<th>Subscription Start</th>
-<th>Subscription End</th>
-<th>Subscription Alert Enabled</th>
-<th>License Names</th>
-<th>License Status</th>
-<th>Authorized Sites</th>
-<th>Administering Sites</th>
-<th>Authentication Type</th>
-<th>Access Method</th>
-<th>Storage Location</th>
-<th>Simultaneous User Limit</th>
-<th>Username</th>
-<th>Password</th>
-<th>Cataloging Type</th>
-<th>Cataloging Status</th>
-<th>Catalog Record Set Identifier</th>
-<th>Catalog Record Source URL</th>
-<th>Catalog Records Available</th>
-<th>Catalog Records Loaded</th>
-<th>OCLC Holdings Updated</th>
-<th>Notes</th>
-</tr>
-
-<?php
-
-
-
+echo array_to_csv_row(array("Resource Record Export:", format_date( date( 'Y-m-d' ))));
+if (!$searchDisplay) {
+  $searchDisplay = array("None");
+}
+echo array_to_csv_row(array_merge(array("Filters: "), $searchDisplay));
+echo array_to_csv_row($columnHeaders);
 
 foreach($resourceArray as $resource) {
 
@@ -113,64 +113,54 @@ foreach($resourceArray as $resource) {
 	}else{
 		$updateDateFormatted=format_date($resource['updateDate']);
 	}
-
-	echo "<tr style='vertical-align:top;'>";
-
-	export_value($resource['resourceID']);
-	export_value($resource['titleText']);
-	export_value($resource['resourceType']);
-	export_value($resource['resourceFormat']);
-	export_value(format_date($resource['createDate']));
-	export_value($resource['createName']);
-	export_value($updateDateFormatted);
-	export_value($resource['updateName']);
-	export_value($resource['status']);
-	export_value($resource['isbnOrISSN']);
-	export_value($resource['resourceURL']);
-	export_value($resource['organizationNames']);
-	export_value($resource['descriptionText']);
-	export_value($resource['aliases']);
-	export_value($resource['parentResources']);
-	export_value($resource['childResources']);
-	export_value($resource['acquisitionType']);
-	export_value($resource['payments']);
-	export_value($resource['orderNumber']);
-	export_value($resource['systemNumber']);
-	export_value($resource['purchasingSites']);
-	export_value($resource['subscriptionStartDate']);
-	export_value($resource['subscriptionEndDate']);
-	export_value(($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N'));
-	export_value($resource['licenseNames']);
-	export_value($resource['licenseStatuses']);
-	export_value($resource['authorizedSites']);
-	export_value($resource['administeringSites']);
-	export_value($resource['authenticationType']);
-	export_value($resource['accessMethod']);
-	export_value($resource['storageLocation']);
-	export_value($resource['userLimit']);
-	export_value($resource['authenticationUserName']);
-	export_value($resource['authenticationPassword']);
-	export_value($resource['catalogingType']);
-	export_value($resource['catalogingStatus']);
-	export_value($resource['recordSetIdentifier']);
-	export_value($resource['bibSourceURL']);
-	export_value($resource['numberRecordsAvailable']);
-	export_value($resource['numberRecordsLoaded']);
-	export_value(($resource['hasOclcHoldings'] ? 'Y' : 'N'));
+  $resourceValues = array(
+	  $resource['resourceID'],
+    $resource['titleText'],
+    $resource['resourceType'],
+    $resource['resourceFormat'],
+    format_date($resource['createDate']),
+    $resource['createName'],
+    $updateDateFormatted,
+    $resource['updateName'],
+    $resource['status'],
+    $resource['isbnOrISSN'],
+    $resource['resourceURL'],
+    $resource['organizationNames'],
+    $resource['descriptionText'],
+    $resource['aliases'],
+    $resource['parentResources'],
+    $resource['childResources'],
+    $resource['acquisitionType'],
+    $resource['payments'],
+    $resource['orderNumber'],
+    $resource['systemNumber'],
+    $resource['purchasingSites'],
+    $resource['subscriptionStartDate'],
+    $resource['subscriptionEndDate'],
+    ($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N'),
+    $resource['licenseNames'],
+    $resource['licenseStatuses'],
+    $resource['authorizedSites'],
+    $resource['administeringSites'],
+    $resource['authenticationType'],
+    $resource['accessMethod'],
+    $resource['storageLocation'],
+    $resource['userLimit'],
+    $resource['authenticationUserName'],
+    $resource['authenticationPassword'],
+    $resource['catalogingType'],
+    $resource['catalogingStatus'],
+    $resource['recordSetIdentifier'],
+    $resource['bibSourceURL'],
+    $resource['numberRecordsAvailable'],
+    $resource['numberRecordsLoaded'],
+    ($resource['hasOclcHoldings'] ? 'Y' : 'N')
+  );
 	$notes_array = explode('CORAL_SPLIT', $resource['notes']);
 	foreach ($notes_array as $note) {
-	  export_value($note);
+	  $resourceValues[] = $note;
 	}
-
-
-	echo "</tr>";
+	
+	echo array_to_csv_row($resourceValues);
 }
-
-
-
 ?>
-
-</table>
-
-</body>
-</html>

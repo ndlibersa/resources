@@ -14,8 +14,6 @@ body {
  background: #FFFFFF;
  margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
  padding: 0;
- text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
- 
 }
 
 

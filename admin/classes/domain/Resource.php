@@ -1001,12 +1001,13 @@ class Resource extends DatabaseObject {
 			$searchDisplay[] = "Authentication Type: " . $authenticationType->shortName;
 		}
 		
-		if ($search['catalogingStatus'] == 'none') {
-		  $whereAdd[] = "(R.catalogingStatus = '' OR R.catalogingStatus IS NULL)";
+		if ($search['catalogingStatusID'] == 'none') {
+		  $whereAdd[] = "(R.catalogingStatusID IS NULL)";
 		  $searchDisplay[] = "Cataloging Status: none";
-		} else if ($search['catalogingStatus']) {
-		  $whereAdd[] = "R.catalogingStatus = '" . mysql_real_escape_string($search['catalogingStatus']) . "'";
-		  $searchDisplay[] = "Cataloging Status: " . $search['catalogingStatus'];
+		} else if ($search['catalogingStatusID']) {
+			$whereAdd[] = "R.catalogingStatusID = '" . mysql_real_escape_string($search['catalogingStatusID']) . "'";
+			$catalogingStatus = new CatalogingStatus(new NamedArguments(array('primaryKey' => $search['catalogingStatusID'])));
+		  $searchDisplay[] = "Cataloging Status: " . $catalogingStatus->shortName;
 	  }
 
 
@@ -1185,7 +1186,7 @@ class Resource extends DatabaseObject {
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL,
 						R.subscriptionStartDate, R.subscriptionEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
 						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, R.authenticationUserName, 
-						R.authenticationPassword,	R.catalogingType, R.catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
+						R.authenticationPassword,	CT.shortName catalogingType, CS.shortName catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
 						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . "
@@ -1209,6 +1210,8 @@ class Resource extends DatabaseObject {
 									LEFT JOIN NoteType NT ON RN.noteTypeID = NT.noteTypeID
 									LEFT JOIN User CU ON R.createLoginID = CU.loginID
 									LEFT JOIN User UU ON R.updateLoginID = UU.loginID
+									LEFT JOIN CatalogingStatus CS ON R.catalogingStatusID = CS.catalogingStatusID
+									LEFT JOIN CatalogingType CT ON R.catalogingTypeID = CT.catalogingTypeID
 									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
 									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
 									LEFT JOIN PurchaseSite PS ON RPSL.purchaseSiteID = PS.purchaseSiteID
@@ -1587,7 +1590,7 @@ class Resource extends DatabaseObject {
 
 
   public function hasCatalogingInformation() {
-    return ($this->recordSetIdentifier || $this->recordSetIdentifier || $this->bibSourceURL || $this->catalogingType || $this->catalogingStatus || $this->numberRecordsAvailable || $this->numberRecordsLoaded || $this->hasOclcHoldings);
+    return ($this->recordSetIdentifier || $this->recordSetIdentifier || $this->bibSourceURL || $this->catalogingTypeID || $this->catalogingStatusID || $this->numberRecordsAvailable || $this->numberRecordsLoaded || $this->hasOclcHoldings);
   }
 
 

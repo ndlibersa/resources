@@ -29,6 +29,7 @@ class Html {
   
   public function humanize($str) {
     $str = trim($str);
+    $str = preg_replace('/ID$/i', '', $str);
     $str = preg_replace('/[A-Z]+/', " $0", $str);
     $str = preg_replace('/[^a-z0-9\s+]/i', '', $str);
     $str = preg_replace('/\s+/', ' ', $str);
@@ -89,10 +90,18 @@ class Html {
 
     $str = '<select id="'.$field.'" name="'.$field.'" style="width:'.$options['width'].'"><option></option>';
     foreach ($collection as $item) {
-      if ($item == $object->$field) {
-        $str .= '<option value="'.htmlspecialchars($item).'" selected="selected">'.htmlspecialchars($item).'</option>';
+      if (is_subclass_of($item, 'DatabaseObject')) {
+        $key = $item->getPrimaryKeyName();
+        $value = $item->$key;
+        $name = $item->shortName;
       } else {
-        $str .= '<option value="'.htmlspecialchars($item).'">'.htmlspecialchars($item).'</option>';
+        $value = $item;
+        $name = $item;
+      }
+      if ($value == $object->$field) {
+        $str .= '<option value="'.htmlspecialchars($value).'" selected="selected">'.htmlspecialchars($name).'</option>';
+      } else {
+        $str .= '<option value="'.htmlspecialchars($value).'">'.htmlspecialchars($name).'</option>';
       }
     }
     $str .= '</select><span id="span_error_'.$field.'" class="smallDarkRedText"></span>';

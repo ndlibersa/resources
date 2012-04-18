@@ -129,30 +129,6 @@ function updateSearch(pageNumber) {
    window.scrollTo(0, 0);
 }
 
-function updateSearch2(){
-      $("#div_feedback").html("<img src='images/circle.gif'>  <span style='font-size:90%'>Processing...</span>");
-      
-	
-      $.ajax({
-            
-         type:       "POST",
-         url:        "ajax_htmldata.php?action=getSearchResources",
-         cache:      false,
-         data:       { resourceID: $("#searchResourceID").val(), name: $("#searchName").val(), resourceISBNOrISSN: $("#searchResourceISBNOrISSN").val(), fund: $("#searchFund").val(), acquisitionTypeID: $("#searchAcquisitionTypeID").val(), workflowStep: $("#searchWorkflowStep").val(), statusID: $("#searchStatusID").val(), creatorLoginID: $("#searchCreatorLoginID").val(), resourceFormatID: $("#searchResourceFormatID").val(), resourceTypeID: $("#searchResourceTypeID").val(), noteTypeID: $("#searchNoteTypeID").val(), resourceNote: $("#searchResourceNote").val(), createDateStart: $("#searchCreateDateStart").val(), createDateEnd: $("#searchCreateDateEnd").val(), administeringSiteID: $("#searchAdministeringSiteID").val(), authorizedSiteID: $("#searchAuthorizedSiteID").val(), purchaseSiteID: $("#searchPurchaseSiteID").val(), authenticationTypeID: $("#searchAuthenticationTypeID").val(), catalogingStatus: $('#searchCatalogingStatus').val(), orderBy: orderBy, page: page, recordsPerPage: recordsPerPage, startWith: startWith },
-         success:    function(html) { 
-         	$("#div_feedback").html("&nbsp;");
-         	$('#div_searchResults').html(html);  
-         }
-
-
-     });	
-     
-     //jump to top of page in case user was scrolled down
-     window.scrollTo(0, 0);
-
-	
-}
-
 function searchValidResource(){
 
 

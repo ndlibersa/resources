@@ -61,6 +61,8 @@ if ($user->isAdmin()){
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AttachmentType' class='AdminLink'>Attachment Type</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthenticationType' class='AdminLink'>Authentication Type</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthorizedSite' class='AdminLink'>Authorized Site</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingStatus' class='AdminLink'>Cataloging Status</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingType' class='AdminLink'>CatalogingType</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ContactRole' class='AdminLink'>Contact Role</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='CurrencyLink'>Currency</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'>License Status</div></td></tr>

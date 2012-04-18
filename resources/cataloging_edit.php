@@ -5,6 +5,8 @@ include_once '../user.php';
 $resourceID = $_GET['resourceID'];
 $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
+$catalogingStatus = new CatalogingStatus();
+$catalogingType = new CatalogingType();
 ?>
 <div id='div_catalogingForm'>
 <form id='catalogingForm' method="post" action="resources/cataloging_update.php">
@@ -43,16 +45,16 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingType'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingTypeID'); ?></td>
 		<td>
-		  <?php echo Html::select_field('catalogingType', $resource, array('MARCit','Batch','Manual'), array('width' => '150px')); ?>
+		  <?php echo Html::select_field('catalogingTypeID', $resource, $catalogingType->all(), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingStatus'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('catalogingStatusID'); ?></td>
 		<td>
-		  <?php echo Html::select_field('catalogingStatus', $resource, array('Rejected','Ongoing','Completed'), array('width' => '150px')); ?>
+		  <?php echo Html::select_field('catalogingStatusID', $resource, $catalogingStatus->all(), array('width' => '150px')); ?>
 		</td>
 		</tr>
 		

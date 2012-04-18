@@ -98,6 +98,10 @@ class DatabaseObject extends DynamicObject {
 		$this->parentNames[$parentName] = $parentClassName;
 	}
 
+	public function getPrimaryKeyName() {
+		return $this->primaryKeyName;
+	}
+
 	public function valueForKey($key) {
 		if (array_key_exists($key, $this->attributeNames)) {
 			if (!array_key_exists($key, $this->attributes)) {

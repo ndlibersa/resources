@@ -729,16 +729,20 @@ if ($resource->titleText){
       		<td><?php echo $resource->bibSourceURL; ?></td>
     		</tr>
     	<?php } ?>
-    	<?php if ($resource->catalogingType) { ?>
+    	<?php if ($resource->catalogingTypeID) { 
+    		$catalogingType = new CatalogingType(new NamedArguments(array('primaryKey' => $resource->catalogingTypeID)));
+    		?>
     		<tr>
       		<td style='vertical-align:top;width:150px;'>Cataloging Type:</td>
-      		<td><?php echo $resource->catalogingType; ?></td>
+      		<td><?php echo $catalogingType->shortName; ?></td>
     		</tr>
     	<?php } ?>
-    	<?php if ($resource->catalogingStatus) { ?>
+    	<?php if ($resource->catalogingStatusID) { 
+    		$catalogingStatus = new CatalogingStatus(new NamedArguments(array('primaryKey' => $resource->catalogingStatusID)));
+    		?>
     		<tr>
       		<td style='vertical-align:top;width:150px;'>Cataloging Status:</td>
-      		<td><?php echo $resource->catalogingStatus; ?></td>
+      		<td><?php echo $catalogingStatus->shortName; ?></td>
     		</tr>
     	<?php } ?>
     	<?php if ($resource->numberRecordsAvailable) { ?>

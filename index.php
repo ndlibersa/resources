@@ -462,22 +462,24 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 	
 	<tr>
-	<td class='searchRow'><label for='searchCatalogingStatus'><b>Cataloging Status</b></label>
+	<td class='searchRow'><label for='searchCatalogingStatusID'><b>Cataloging Status</b></label>
 	<br />
-	<select name='search[catalogingStatus]' id='searchCatalogingStatus' style='width:150px'>
+	<select name='search[catalogingStatusID]' id='searchCatalogingStatusID' style='width:150px'>
 	<option value=''>All</option>
 	<?php
-	  if ($search['catalogingStatus'] == "none") {
+	  if ($search['catalogingStatusID'] == "none") {
 			echo "<option value='none' selected>(none)</option>";
 		}else{
 			echo "<option value='none'>(none)</option>";
 		}
+
+		$catalogingStatus = new CatalogingStatus();
 		
-		foreach(array('Rejected','Ongoing','Completed') as $status) {
-			if ($search['catalogingStatus'] == $status) {
-				echo "<option value='" . $status . "' selected>" . $status . "</option>";
+		foreach($catalogingStatus->allAsArray() as $status) {
+			if ($search['catalogingStatusID'] == $status['catalogingStatusID']) {
+				echo "<option value='" . $status['catalogingStatusID'] . "' selected>" . $status['shortName'] . "</option>";
 			}else{
-				echo "<option value='" . $status . "'>" . $status . "</option>";
+				echo "<option value='" . $status['catalogingStatusID'] . "'>" . $status['shortName'] . "</option>";
 			}
 		}
 

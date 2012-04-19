@@ -290,7 +290,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Resource` (
   `numberRecordsLoaded` VARCHAR( 45 ) DEFAULT NULL ,
   `bibSourceURL` VARCHAR( 2000 ) DEFAULT NULL ,
   `catalogingTypeID` int(11) DEFAULT NULL,
-  `catalogingStatusID` int(11) DEFAULT NULL
+  `catalogingStatusID` int(11) DEFAULT NULL,
   PRIMARY KEY  (`resourceID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

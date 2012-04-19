@@ -95,6 +95,19 @@ CREATE TABLE  `_DATABASE_NAME_`.`AuthorizedSite` (
   PRIMARY KEY  (`authorizedSiteID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CatalogingType`;
+CREATE TABLE  `_DATABASE_NAME_`.`CatalogingType` (
+  `catalogingTypeID` int(11) NOT NULL auto_increment,
+  `shortName` varchar(45) default NULL,
+  PRIMARY KEY  (`catalogingTypeID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CatalogingStatus`;
+CREATE TABLE  `_DATABASE_NAME_`.`CatalogingStatus` (
+  `catalogingStatusID` int(11) NOT NULL auto_increment,
+  `shortName` varchar(45) default NULL,
+  PRIMARY KEY  (`catalogingStatusID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Contact`;
 CREATE TABLE  `_DATABASE_NAME_`.`Contact` (
@@ -271,6 +284,13 @@ CREATE TABLE  `_DATABASE_NAME_`.`Resource` (
   `authenticationTypeID` int(10) unsigned default NULL,
   `accessMethodID` int(10) unsigned default NULL,
   `providerText` varchar(200) default NULL,
+  `recordSetIdentifier` VARCHAR( 45 ) DEFAULT NULL ,
+  `hasOclcHoldings` varchar( 10 ) DEFAULT NULL ,
+  `numberRecordsAvailable` VARCHAR( 45 ) DEFAULT NULL ,
+  `numberRecordsLoaded` VARCHAR( 45 ) DEFAULT NULL ,
+  `bibSourceURL` VARCHAR( 2000 ) DEFAULT NULL ,
+  `catalogingTypeID` int(11) DEFAULT NULL,
+  `catalogingStatusID` int(11) DEFAULT NULL
   PRIMARY KEY  (`resourceID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -511,11 +531,9 @@ CREATE TABLE  `_DATABASE_NAME_`.`Workflow` (
 
 
 
-
-
-
 ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_aliasTypeID`(`aliasTypeID`),
+ ADD INDEX `shortName` ( `shortName` ),
  ADD INDEX `Index_All`(`resourceID`, `aliasTypeID`);
  
  
@@ -527,8 +545,11 @@ ALTER TABLE `_DATABASE_NAME_`.`Resource` ADD INDEX `Index_createDate`(`createDat
  ADD INDEX `Index_resourceTypeID`(`resourceTypeID`),
  ADD INDEX `Index_resourceFormatID`(`resourceFormatID`),
  ADD INDEX `Index_acquisitionTypeID`(`authenticationTypeID`),
+ ADD INDEX `catalogingTypeID` ( `catalogingTypeID` ),
+ ADD INDEX `catalogingStatusID` ( `catalogingStatusID` ),
  ADD INDEX `Index_All`(`createDate`, `createLoginID`, `titleText`, `isbnOrISSN`, `statusID`, `resourceTypeID`, `resourceFormatID`, `acquisitionTypeID`);
  
+ALTER TABLE `_DATABASE_NAME_`.`ResourceFormat` ADD INDEX `shortName` ( `shortName` );
 
 ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_fundName`(`fundName`),
@@ -539,7 +560,9 @@ ALTER TABLE `_DATABASE_NAME_`.`ResourceNote` ADD INDEX `Index_resourceID`(`resou
  ADD INDEX `Index_noteTypeID`(`noteTypeID`),
  ADD INDEX `Index_All`(`resourceID`, `noteTypeID`);
  
+ALTER TABLE `_DATABASE_NAME_`.`ResourceStep` ADD INDEX `resourceID` ( `resourceID` );
 
+ALTER TABLE `_DATABASE_NAME_`.`ResourceType` ADD INDEX `shortName` ( `shortName` );
 
 ALTER TABLE `_DATABASE_NAME_`.`ResourceOrganizationLink` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_organizationID`(`organizationID`),
@@ -560,14 +583,16 @@ ALTER TABLE `_DATABASE_NAME_`.`ResourceAuthorizedSiteLink` ADD INDEX `Index_reso
  ADD INDEX `Index_authorizedSiteID`(`authorizedSiteID`),
  ADD INDEX `Index_All`(`resourceID`, `authorizedSiteID`); 
  
- 
+ALTER TABLE `_DATABASE_NAME_`.`ResourceLicenseLink` ADD INDEX `resourceID` ( `resourceID` );
 
+ALTER TABLE `_DATABASE_NAME_`.`ResourceLicenseStatus` ADD INDEX `resourceID` ( `resourceID` );
  
 ALTER TABLE `_DATABASE_NAME_`.`ResourceRelationship` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_relatedResourceID`(`relatedResourceID`),
  ADD INDEX `Index_All`(`resourceID`, `relatedResourceID`);
  
- 
+ALTER TABLE `_DATABASE_NAME_`.`Status` ADD INDEX `shortName` ( `shortName` );
+
  
  
  
@@ -612,6 +637,13 @@ INSERT INTO `_DATABASE_NAME_`.`AuthenticationType` (shortName) values ('Referrin
 
 INSERT INTO `_DATABASE_NAME_`.`AuthorizedSite` (shortName) values ('Main Campus');
 
+INSERT INTO `_DATABASE_NAME_`.`CatalogingType` (catalogingTypeID, shortName) values (1, 'Batch');
+INSERT INTO `_DATABASE_NAME_`.`CatalogingType` (catalogingTypeID, shortName) values (2, 'Manual');
+INSERT INTO `_DATABASE_NAME_`.`CatalogingType` (catalogingTypeID, shortName) values (3, 'MARCit');
+
+INSERT INTO `_DATABASE_NAME_`.`CatalogingStatus` (catalogingStatusID, shortName) values (1, 'Completed');
+INSERT INTO `_DATABASE_NAME_`.`CatalogingStatus` (catalogingStatusID, shortName) values (2, 'Ongoing');
+INSERT INTO `_DATABASE_NAME_`.`CatalogingStatus` (catalogingStatusID, shortName) values (3, 'Rejected');
 
 INSERT INTO `_DATABASE_NAME_`.`ContactRole` (shortName) values ('Support');
 INSERT INTO `_DATABASE_NAME_`.`ContactRole` (shortName) values ('Accounting');

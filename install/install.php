@@ -1,4 +1,12 @@
 <?php
+include_once 'CORALInstaller.php';
+$installer = new CORALInstaller();
+
+if ($installer->installed()) {
+  header('Location: index.php');
+  exit;
+}
+
 //this script runs entire installation process in 5 steps
 
 //take "step" variable to determine which step the current is
@@ -49,8 +57,8 @@ if ($step == "3"){
 
 						//passed db host, name check, can open/run file now
 						//make sure SQL file exists
-						$test_sql_file = "test_create.sql";
-						$sql_file = "create_tables_data.sql";
+						$test_sql_file = "protected/test_create.sql";
+						$sql_file = "protected/install.sql";
 
 						if (!file_exists($test_sql_file)) {
 							$errorMessage[] = "Could not open sql file: " . $test_sql_file . ".  If this file does not exist you must download new install files.";
@@ -785,7 +793,6 @@ if ($step == "3"){
 	It is recommended you now:
 	<ul>
 		<li>Set up your .htaccess file</li>
-		<li>Remove the /install/ directory for security purposes</li>
 		<li>Chmod the /attachments/ directory to allow attachment uploads through CORAL resources</li>
 		<li>Set up your users on the <a href='../admin.php'>admin screen</a>.</li>
 	</ul>

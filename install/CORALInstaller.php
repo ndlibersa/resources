@@ -18,9 +18,9 @@ class CORALInstaller {
       "privileges" => array("ALTER","CREATE"),
       "description" => "<p>The 1.1 update to the CORAL Resources module includes a number of enhancements:</p>
       <ul>
-        <li>Added a cataloging tab to resource records, allowing for tracking cataloging-specific details and notes.</li>
+        <li>Added a cataloging tab to resource records, allowing tracking of cataloging details and notes.</li>
         <li>Search resources by active routing steps and cataloging status, as well as some minor performance enhancements to the search listings.</li>
-        <li>The export file has been completely revamped.  Clicking the excel icon on the module homepage now downloads a CSV file which includes many more fields and should open much more quickly.</li>
+        <li>The export file has been completely revamped.  Clicking the Excel icon on the resources search page now downloads a CSV file which includes many more fields and should open much more quickly.</li>
       </ul> 
       <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. No changes to the configuration file are required.  Database structure changes include:</p>
     	<ul>

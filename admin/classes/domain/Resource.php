@@ -823,6 +823,9 @@ class Resource extends DatabaseObject {
         $search[$key] = $value;
       }
     }
+    foreach ($search as $key => $value) {
+    	$search[$key] = trim($value);
+    }
     $_SESSION['resourceSearch'] = $search;
   }
   
@@ -847,15 +850,15 @@ class Resource extends DatabaseObject {
 
 		//if name is passed in also search alias, organizations and organization aliases
 		if ($search['name']) {
-		  $nameQueryString = "'%" . mysql_real_escape_string($search['name']) . "%'";
+		  $nameQueryString = "'%" . mysql_real_escape_string(strtoupper($search['name'])) . "%'";
 			if ($config->settings->organizationsModule == 'Y'){
 				$dbName = $config->settings->organizationsDatabaseName;
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(A.shortName) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(O.name) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(OA.name) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(RP.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(RC.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(R.recordSetIdentifier) LIKE UPPER(" . $nameQueryString . ")))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE " . $nameQueryString . ") OR (UPPER(A.shortName) LIKE " . $nameQueryString . ") OR (UPPER(O.name) LIKE " . $nameQueryString . ") OR (UPPER(OA.name) LIKE " . $nameQueryString . ") OR (UPPER(RP.titleText) LIKE " . $nameQueryString . ") OR (UPPER(RC.titleText) LIKE " . $nameQueryString . ") OR (UPPER(R.recordSetIdentifier) LIKE " . $nameQueryString . "))";
 
 			}else{
 
-				$whereAdd[] = "((UPPER(R.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(A.shortName) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(O.shortName) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(RP.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(RC.titleText) LIKE UPPER(" . $nameQueryString . ")) OR (UPPER(R.recordSetIdentifier) LIKE UPPER(" . $nameQueryString . ")))";
+				$whereAdd[] = "((UPPER(R.titleText) LIKE " . $nameQueryString . ") OR (UPPER(A.shortName) LIKE " . $nameQueryString . ") OR (UPPER(O.shortName) LIKE " . $nameQueryString . ") OR (UPPER(RP.titleText) LIKE " . $nameQueryString . ") OR (UPPER(RC.titleText) LIKE " . $nameQueryString . ") OR (UPPER(R.recordSetIdentifier) LIKE " . $nameQueryString . "))";
 
 			}
 			

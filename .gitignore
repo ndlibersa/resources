@@ -1,4 +1,4 @@
 .DS_Store
-admin/configuration.ini
-attachments/*
+/admin/configuration.ini
+/attachments/*
 Thumbs.db

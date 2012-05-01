@@ -190,14 +190,13 @@ function setNumberOfRecords(recordsPerPageNumber){
  
   $(".newSearch").click(function () {
   	//reset fields
-  	$('#resourceSearchForm input').not('#searchRecordsPerPage').val("");
+  	$('#resourceSearchForm input[type=hidden]').not('#searchRecordsPerPage').val("");
+    $('#resourceSearchForm input[type=text]').val("");
   	$('#resourceSearchForm select').val("");
 
 
   	//reset startwith background color
   	$("span.searchLetterSelected").removeClass('searchLetterSelected').addClass('searchLetter');
-  	//$("#span_letter_" + startWith).removeClass('searchLetterSelected').addClass('searchLetter');
-  	//startWith='';
   	updateSearch();
   });
   

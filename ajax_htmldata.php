@@ -1802,8 +1802,8 @@ switch ($_GET['action']) {
 
 
 		//get total number of records to print out and calculate page selectors
-		$totalResObj = new Resource();
-		$totalRecords = count($totalResObj->search($whereAdd, $orderBy, ""));
+		$resourceObj = new Resource();
+		$totalRecords = $resourceObj->searchCount($whereAdd);
 
 		//reset pagestart to 1 - happens when a new search is run but it kept the old page start
 		if ($totalRecords < $startingRecNumber){
@@ -1813,7 +1813,6 @@ switch ($_GET['action']) {
 
 		$limit = $startingRecNumber . ", " . $recordsPerPage;
 
-		$resourceObj = new Resource();
 		$resourceArray = array();
 		$resourceArray = $resourceObj->search($whereAdd, $orderBy, $limit);
 

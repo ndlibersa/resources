@@ -1051,16 +1051,17 @@ class Resource extends DatabaseObject {
 			$whereStatement = "";
 		}
 
-		if ($limit != ""){
-			$limitStatement = " LIMIT " . $limit;
-		}else{
-			$limitStatement = "";
-		}
-
+		if ($count) {
+      $select = "SELECT COUNT(DISTINCT R.resourceID) count";
+      $groupBy = "";
+    } else {
+      $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, S.shortName status,
+						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
+      $groupBy = "GROUP BY R.resourceID";
+    }
 
 		//now actually execute query
-		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, S.shortName status,
-						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases
+		$query = $select . "
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
@@ -1081,8 +1082,15 @@ class Resource extends DatabaseObject {
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									" . $orgJoinAdd . "
 								" . $whereStatement . "
-								GROUP BY R.resourceID
-								ORDER BY " . $orderBy . $limitStatement;
+								" . $groupBy;
+
+		if ($orderBy) {
+		  $query .= "\nORDER BY " . $orderBy;
+		}
+
+		if ($limit) {
+  	  $query .= "\nLIMIT " . $limit;
+		}
 
 		return $query;
   }
@@ -1116,6 +1124,13 @@ class Resource extends DatabaseObject {
 
 		return $searchArray;
 	}
+
+	public function searchCount($whereAdd) {
+    $query = $this->searchQuery($whereAdd, '', '', true);
+    debug($query);
+    $result = $this->db->processQuery($query, 'assoc');
+    return $result['count'];
+  }
 
 
 	//used for A-Z on search (index)

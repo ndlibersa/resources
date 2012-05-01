@@ -850,7 +850,7 @@ class Resource extends DatabaseObject {
 
 		//if name is passed in also search alias, organizations and organization aliases
 		if ($search['name']) {
-			$nameQueryString = mysql_real_escape_string(strtoupper(trim($search['name'])));
+			$nameQueryString = mysql_real_escape_string(strtoupper($search['name']));
 			$nameQueryString = preg_replace("/ +/", "%", $nameQueryString);
 		  $nameQueryString = "'%" . $nameQueryString . "%'";
 

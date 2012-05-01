@@ -1027,14 +1027,9 @@ class Resource extends DatabaseObject {
 		return array("where" => $whereAdd, "page" => $page, "order" => $orderBy, "perPage" => $recordsPerPage, "display" => $searchDisplay);
   }
 
-
-
-	//returns array based on search
-	public function search($whereAdd, $orderBy, $limit){
-
-		$config = new Configuration();
+  public function searchQuery($whereAdd, $orderBy = '', $limit = '', $count = false) {
+  	$config = new Configuration();
 		$status = new Status();
-
 
 		if ($config->settings->organizationsModule == 'Y'){
 			$dbName = $config->settings->organizationsDatabaseName;
@@ -1043,10 +1038,7 @@ class Resource extends DatabaseObject {
 						   LEFT JOIN " . $dbName . ".Alias OA ON OA.organizationID = ROL.organizationID";
 
 		}else{
-
 			$orgJoinAdd = "LEFT JOIN Organization O ON O.organizationID = ROL.organizationID";
-
-
 		}
     
     $savedStatusID = intval($status->getIDFromName('saved'));
@@ -1091,6 +1083,13 @@ class Resource extends DatabaseObject {
 								" . $whereStatement . "
 								GROUP BY R.resourceID
 								ORDER BY " . $orderBy . $limitStatement;
+
+		return $query;
+  }
+
+	//returns array based on search
+	public function search($whereAdd, $orderBy, $limit){
+		$query = $this->searchQuery($whereAdd, $orderBy, $limit, false);
     
 		$result = $this->db->processQuery($query, 'assoc');
 

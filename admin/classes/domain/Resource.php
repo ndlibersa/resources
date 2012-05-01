@@ -1064,6 +1064,12 @@ class Resource extends DatabaseObject {
 		$query = $select . "
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
+									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
+									" . $orgJoinAdd . "
+									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
+									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
+									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
+									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
 									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
@@ -1072,15 +1078,9 @@ class Resource extends DatabaseObject {
 									LEFT JOIN User CU ON R.createLoginID = CU.loginID
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
-									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
 									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
 									LEFT JOIN ResourceAuthorizedSiteLink RAUSL ON R.resourceID = RAUSL.resourceID
 									LEFT JOIN ResourceAdministeringSiteLink RADSL ON R.resourceID = RADSL.resourceID
-									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
-									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
-									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
-									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
-									" . $orgJoinAdd . "
 								" . $whereStatement . "
 								" . $groupBy;
 
@@ -1218,6 +1218,12 @@ class Resource extends DatabaseObject {
 						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode, ' ', OT.shortName ORDER BY RPAY.paymentAmount ASC SEPARATOR '; ') payments
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
+									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
+									" . $orgJoinAdd . "
+									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
+									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
+									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
+									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
 									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
@@ -1231,22 +1237,16 @@ class Resource extends DatabaseObject {
 									LEFT JOIN User UU ON R.updateLoginID = UU.loginID
 									LEFT JOIN CatalogingStatus CS ON R.catalogingStatusID = CS.catalogingStatusID
 									LEFT JOIN CatalogingType CT ON R.catalogingTypeID = CT.catalogingTypeID
-									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
 									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
 									LEFT JOIN PurchaseSite PS ON RPSL.purchaseSiteID = PS.purchaseSiteID
 									LEFT JOIN ResourceAuthorizedSiteLink RAUSL ON R.resourceID = RAUSL.resourceID
 									LEFT JOIN AuthorizedSite AUS ON RAUSL.authorizedSiteID = AUS.authorizedSiteID
 									LEFT JOIN ResourceAdministeringSiteLink RADSL ON R.resourceID = RADSL.resourceID
 									LEFT JOIN AdministeringSite ADS ON RADSL.administeringSiteID = ADS.administeringSiteID
-									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
-									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
-									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
-									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									LEFT JOIN AuthenticationType AUT ON AUT.authenticationTypeID = R.authenticationTypeID
 									LEFT JOIN AccessMethod AM ON AM.accessMethodID = R.accessMethodID
 									LEFT JOIN StorageLocation SL ON SL.storageLocationID = R.storageLocationID
 									LEFT JOIN UserLimit UL ON UL.userLimitID = R.userLimitID
-									" . $orgJoinAdd . "
 									" . $licJoinAdd . "
 								" . $whereStatement . "
 								GROUP BY R.resourceID

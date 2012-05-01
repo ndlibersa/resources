@@ -1089,7 +1089,7 @@ class Resource extends DatabaseObject {
 								GROUP BY R.resourceID
 								ORDER BY " . $orderBy . $limitStatement;
     
-		$result = $this->db->processQuery(stripslashes($query), 'assoc');
+		$result = $this->db->processQuery($query, 'assoc');
 
 		$searchArray = array();
 		$resultArray = array();

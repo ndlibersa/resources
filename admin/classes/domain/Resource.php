@@ -880,7 +880,7 @@ class Resource extends DatabaseObject {
 		} 
 		if ($search['fund']) {
 		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
-		  $whereAdd[] = "REPLACE(fundName,'-','') = '" . $fund . "'";
+		  $whereAdd[] = "REPLACE(RPAY.fundName,'-','') = '" . $fund . "'";
 		  $searchDisplay[] = "Fund: " . $search['fund'];
 	  }
 
@@ -1115,7 +1115,7 @@ class Resource extends DatabaseObject {
 		if ($limit) {
   	  $query .= "\nLIMIT " . $limit;
 		}
-    
+
 		return $query;
   }
 

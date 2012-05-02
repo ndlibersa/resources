@@ -16,6 +16,7 @@ $installer->header('CORAL Maintenance');
   <?php $installer->displayErrorMessages(); ?>
   <h3>CORAL Resources</h3>
 	<p>Your CORAL Resources Module is correctly installed and there are no pending updates.</p>
+  <p><a href="..">Go to Resources Module</a></p>
 <?php
 $installer->footer();
 ?>

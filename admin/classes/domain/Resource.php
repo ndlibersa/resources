@@ -1060,7 +1060,41 @@ class Resource extends DatabaseObject {
       $groupBy = "GROUP BY R.resourceID";
     }
 
-		//now actually execute query
+    $referenced_tables = array();
+
+    $table_matches = array();
+
+    // Build a list of tables that are referenced by the select and where statements in order to limit the number of joins performed in the search.
+    preg_match_all("/[A-Z]+(?=[.][A-Z]+)/i", $select, $table_matches);
+    $referenced_tables = array_unique($table_matches[0]);
+
+    preg_match_all("/[A-Z]+(?=[.][A-Z]+)/i", $whereStatement, $table_matches);
+    $referenced_tables = array_unique(array_merge($referenced_tables, $table_matches[0]));
+
+    // These join statements will only be included in the query if the alias is referenced by the select and/or where.
+    $conditional_joins = explode("\n", "LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
+									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
+									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
+									LEFT JOIN Status S ON R.statusID = S.statusID
+									LEFT JOIN User CU ON R.createLoginID = CU.loginID
+									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
+									LEFT JOIN ResourceAuthorizedSiteLink RAUSL ON R.resourceID = RAUSL.resourceID
+									LEFT JOIN ResourceAdministeringSiteLink RADSL ON R.resourceID = RADSL.resourceID
+									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
+									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
+									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID");
+
+		$additional_joins = array();
+
+		foreach($conditional_joins as $join) {
+			$match = array();
+			preg_match("/[A-Z]+(?= ON )/i", $join, $match);
+			$table_name = $match[0];
+			if (in_array($table_name, $referenced_tables)) {
+        $additional_joins[] = $join;
+      }
+		}
+
 		$query = $select . "
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
@@ -1070,19 +1104,9 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
 									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
-									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
-									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
-									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
-									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
-									LEFT JOIN Status S ON R.statusID = S.statusID
-									LEFT JOIN User CU ON R.createLoginID = CU.loginID
-									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
-									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
-									LEFT JOIN ResourcePurchaseSiteLink RPSL ON R.resourceID = RPSL.resourceID
-									LEFT JOIN ResourceAuthorizedSiteLink RAUSL ON R.resourceID = RAUSL.resourceID
-									LEFT JOIN ResourceAdministeringSiteLink RADSL ON R.resourceID = RADSL.resourceID
-								" . $whereStatement . "
-								" . $groupBy;
+                  " . implode("\n", $additional_joins) . "
+								  " . $whereStatement . "
+								  " . $groupBy;
 
 		if ($orderBy) {
 		  $query .= "\nORDER BY " . $orderBy;
@@ -1091,7 +1115,7 @@ class Resource extends DatabaseObject {
 		if ($limit) {
   	  $query .= "\nLIMIT " . $limit;
 		}
-
+    
 		return $query;
   }
 

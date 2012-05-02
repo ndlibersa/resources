@@ -1,0 +1,22 @@
+2012-05-02 CORAL Resources Module 1.1
+  
+  The CORAL Resources Module 1.1 update includes support for cataloging processes, an improved export, and improved search functionality.  After updating your module from https://github.com/ndlibersa/resources you will need to visit the install page for your module ( http://your_server/coral/resources/install/ ) and follow the instructions there.  The update process has also been streamlined, so it should automatically detect the update that needs to be applied (1.1 in this case) and prompt you if you need to provide alternate database credentials for applying the update.
+
+  Resource records have a new cataloging tab to facilitate any of your cataloging processes such as manual or batch loading of catalog records. The tab allows notes specific to the cataloging tab and adds the following new fields:
+    * Record Set Identifier
+    * Source URL
+    * Cataloging Type (dropdown options controllable via admin)
+    * Cataloging Status (dropdown options controllable via admin)
+    * Number of Records Available
+    * Number of Records Loaded
+    * OCLC Holdings
+
+  The search functionality on the Resources Module home page has undergone some performance optimization and has several new features:
+    * The "Name (contains)" search is now much more user friendly! The name search is no longer an exact title search and instead treats spaces as wildcards, allowing you to omit common words (of, and, &, etc) and extra characters (such as commas, hyphens, colons, etc) that may be entered inconsistently.  For example, a search such as "mathematics culture" would now find either "Journal of Mathematics and Culture" or "Journal of Mathematics & Culture"
+    * New search field: Routing Step (searches the resources by their active routing step(s))
+    * New search field: Cataloging Status (set on the new cataloging tab)
+    * Searches are now significantly faster when dealing with large numbers of resource records.
+    * Spaces are now automatically trimmed from all search values and should no longer cause searches to fail.
+    * Including an apostrophe in a search will no longer cause the search to fail.
+
+  The resources export (accessible by clicking the Excel icon from the Resource module home page) has been improved to be faster and to include many more fields.  The export now generates a comma-separated values (CSV) file which should open much more quickly than the previous version.

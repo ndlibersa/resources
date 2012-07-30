@@ -841,6 +841,9 @@ class Resource extends DatabaseObject {
   }
   
   public static function getSearchDetails() {
+    // A successful mysql_connect must be run before mysql_real_escape_string will function.  Instantiating a resource model will set up the connection
+    $resource = new Resource();
+    
     $search = Resource::getSearch();
     
 		$whereAdd = array();

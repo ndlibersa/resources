@@ -54,7 +54,6 @@ class DetailedSubject extends DatabaseObject {
 	public function getNumberOfChildren(){
 
 		$query = "SELECT count(*) childCount FROM GeneralDetailSubjectLink WHERE detailedSubjectID = '" . $this->detailedSubjectID . "';";
-
 		$result = $this->db->processQuery($query, 'assoc');
 
 		return $result['childCount'];
@@ -63,7 +62,7 @@ class DetailedSubject extends DatabaseObject {
 
 	//returns number of detail subjects that match what is passed. 	
 	public function duplicateCheck($shortName){
-		$query = "SELECT count(*) duplicateCount FROM DetailedSubject WHERE `shortName` = '" . $shortName . "'";
+		$query = "SELECT count(*) duplicateCount FROM DetailedSubject WHERE `shortName` = '" . str_replace( "'", "''", $shortName ) . "'";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		return $result['duplicateCount'];

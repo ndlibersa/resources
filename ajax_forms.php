@@ -3076,7 +3076,7 @@ switch ($_GET['action']) {
 
 			<table class='noBorder' style='width:200px; margin:10px;'>
 			<tr>
-			<td><input type='text' id='updateVal' value='<?php echo $instance->shortName; ?>' style='width:190px;'/></td>
+			<td><input type="text" id="updateVal" value="<?php echo $instance->shortName; ?>" style="width:190px;"/></td>
 			</tr>
 			</table>
 
@@ -3129,7 +3129,7 @@ switch ($_GET['action']) {
 
 			<table class='noBorder' style='width:200px; margin:10px;'>
 			<tr>
-			<td><input type='text' id='updateVal' value='<?php echo $instance->shortName; ?>' style='width:190px;'/></td>
+			<td><input type="text" id="updateVal" value="<?php echo $instance->shortName; ?>" style="width:190px;"/></td>
 			</tr>
 			</table>
 

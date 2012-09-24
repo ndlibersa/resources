@@ -2527,7 +2527,7 @@ switch ($_GET['action']) {
 		$detailedSubject = new DetailedSubject();
 		$detailedSubjectArray = $detailedSubject->allAsArray();
 
-		echo "<div class='adminRightHeader'>General Subject Setup</div>";
+		echo "<div class='adminRightHeader'>General Subject</div>";
 
 		if (count($generalSubjectArray) > 0){
 			?>
@@ -2562,7 +2562,7 @@ switch ($_GET['action']) {
 		<br /><br />
 		
 		<?php
-		echo "<div class='adminRightHeader'>Detailed Subject Setup</div>";		
+		echo "<div class='adminRightHeader'>Detailed Subject</div>";		
 		
 		if (count($detailedSubject) > 0){
 			?>
@@ -2598,7 +2598,7 @@ switch ($_GET['action']) {
 
 		<?php
 
-		echo "<div class='adminRightHeader'>General / Detail Subject Link</div>";
+		echo "<div class='adminRightHeader'>Subject Relationships</div>";
 
 		if (count($generalSubjectArray) > 0){
 			?>

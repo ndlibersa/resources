@@ -94,25 +94,24 @@ class GeneralSubject extends DatabaseObject {
 		if (isset($this->primaryKey)) {
 			// Update object
 			echo $query;
-			$query = "UPDATE Generalsubject SET shortName='" . $this->shortName . "' WHERE generalSubjectID=". $this->primaryKey;
+			$query = "UPDATE Generalsubject SET shortName='" . str_replace( "'", "''", $this->shortName ) . "' WHERE generalSubjectID=". $this->primaryKey;
 			$this->db->processQuery($query);
 		} else {
 			// Insert object
 			
-			$query = "INSERT INTO Generalsubject (`shortName`) VALUES ('" . $this->shortName . "')";
+			$query = "INSERT INTO Generalsubject (`shortName`) VALUES ('" . str_replace( "'", "''", $this->shortName ) . "')";
 			$this->primaryKey = $this->db->processQuery($query);
 
 			$query = "INSERT INTO GeneralDetailSubjectLink (`generalSubjectID`,`detailedSubjectID` ) VALUES ('" . $this->primaryKey . "', -1)";
 			$this->db->processQuery($query);
 			
-			//echo $query;
 		}	
 		
 	}
 
 	//returns number of General subjects that match what is passed. 		
 	public function duplicateCheck($shortName){
-		$query = "SELECT count(*) duplicateCount FROM GeneralSubject WHERE `shortName` = '" . $shortName . "'";
+		$query = "SELECT count(*) duplicateCount FROM GeneralSubject WHERE `shortName` = '" . str_replace( "'", "''", $shortName ) . "'";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		return $result['duplicateCount'];

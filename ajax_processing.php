@@ -1346,7 +1346,7 @@ switch ($_GET['action']) {
     case 'updateGeneralSubject':
  		$className = $_POST['className'];	
  		$updateID = $_POST['updateID'];
- 		$shortName = $_POST['shortName'];
+ 		$shortName = trim($_POST['shortName']);
 
 		if ($updateID != ''){
 			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
@@ -1355,7 +1355,6 @@ switch ($_GET['action']) {
 		}
 
 		$instance->shortName = $shortName;
-
 		// Check to see if the general subject name exists.  If not then save.
 		if ($instance->duplicateCheck($shortName) == 0)  {
 			try {
@@ -1372,7 +1371,7 @@ switch ($_GET['action']) {
     case 'updateDetailedSubject':
  		$className = $_POST['className'];
  		$updateID = $_POST['updateID'];
- 		$shortName = $_POST['shortName'];
+ 		$shortName = trim($_POST['shortName']);
 
 		if ($updateID != ''){
 			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));

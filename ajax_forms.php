@@ -220,6 +220,11 @@ switch ($_GET['action']) {
 					<td><input type='text' id='resourceURL' style='width:220px;' class='changeInput' value='<?php echo $resource->resourceURL; ?>' /><span id='span_error_resourceURL' class='smallDarkRedText'></span></td>
 					</tr>
 
+					<tr>
+					<td style='vertical-align:top;text-align:left;'><label for='resourceAltURL'>Alt URL:</label></td>
+					<td><input type='text' id='resourceAltURL' style='width:220px;' class='changeInput' value='<?php echo $resource->resourceAltURL; ?>' /><span id='span_error_resourceAltURL' class='smallDarkRedText'></span></td>
+					</tr>					
+					
 				</table>
 			</td>
 			</tr>
@@ -651,6 +656,11 @@ switch ($_GET['action']) {
 					<td><input type='text' id='resourceURL' name='resourceURL' value = '<?php echo $resource->resourceURL; ?>' style='width:260px;' class='changeInput'  /></td>
 					</tr>
 
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceAltURL'>Alt URL:</label></td>
+					<td><input type='text' id='resourceAltURL' name='resourceAltURL' value = '<?php echo $resource->resourceAltURL; ?>' style='width:260px;' class='changeInput'  /></td>
+					</tr>					
+					
 					</table>
 
 				</td>
@@ -1591,99 +1601,81 @@ switch ($_GET['action']) {
 			<td>
 				<table class='noBorder' style='width:570px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td>
-					<table>
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='authenticationTypeID'>Authentication Type:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationTypeID'>Authentication Type:</label></td>
 					<td>
-					<select name='authenticationTypeID' id='authenticationTypeID' style='width:100px;' class='changeSelect'>
-					<option value=''></option>
-					<?php
-					foreach ($authenticationTypeArray as $authenticationType){
-						if (!(trim(strval($authenticationType['authenticationTypeID'])) != trim(strval($resource->authenticationTypeID)))){
-							echo "<option value='" . $authenticationType['authenticationTypeID'] . "' selected>" . $authenticationType['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $authenticationType['authenticationTypeID'] . "'>" . $authenticationType['shortName'] . "</option>\n";
+						<select name='authenticationTypeID' id='authenticationTypeID' style='width:100px;' class='changeSelect'>
+						<option value=''></option>
+						<?php
+						foreach ($authenticationTypeArray as $authenticationType){
+							if (!(trim(strval($authenticationType['authenticationTypeID'])) != trim(strval($resource->authenticationTypeID)))){
+								echo "<option value='" . $authenticationType['authenticationTypeID'] . "' selected>" . $authenticationType['shortName'] . "</option>\n";
+							}else{
+								echo "<option value='" . $authenticationType['authenticationTypeID'] . "'>" . $authenticationType['shortName'] . "</option>\n";
+							}
 						}
-					}
-					?>
-					</select>
+						?>
+						</select>
 					</td>
-					</tr>
-
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='accessMethodID'>Access Method:</label></td>
-					<td>
-					<select name='accessMethodID' id='accessMethodID' style='width:100px;' class='changeSelect'>
-					<option value=''></option>
-					<?php
-					foreach ($accessMethodArray as $accessMethod){
-						if (!(trim(strval($accessMethod['accessMethodID'])) != trim(strval($resource->accessMethodID)))){
-							echo "<option value='" . $accessMethod['accessMethodID'] . "' selected>" . $accessMethod['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $accessMethod['accessMethodID'] . "'>" . $accessMethod['shortName'] . "</option>\n";
-						}
-					}
-					?>
-					</select>
-					</td>
-					</tr>
-
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='storageLocationID'>Storage Location:</label></td>
-					<td>
-					<select name='storageLocationID' id='storageLocationID' style='width:100px;' class='changeSelect'>
-					<option value=''></option>
-					<?php
-					foreach ($storageLocationArray as $storageLocation){
-						if (!(trim(strval($storageLocation['storageLocationID'])) != trim(strval($resource->storageLocationID)))){
-							echo "<option value='" . $storageLocation['storageLocationID'] . "' selected>" . $storageLocation['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $storageLocation['storageLocationID'] . "'>" . $storageLocation['shortName'] . "</option>\n";
-						}
-					}
-					?>
-					</select>
-					</td>
-					</tr>
-
-
-					</table>
-
-				</td>
-				<td>
-					<table>
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='authenticationUserName'>Username:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationUserName'>Username:</label></td>
 					<td><input type='text' id='authenticationUserName' name='authenticationUserName' value = '<?php echo $resource->authenticationUserName; ?>' style='width:95px;' class='changeInput'  /></td>
-					</tr>
-
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='authenticationPassword'>Password:</label></td>
-					<td><input type='text' id='authenticationPassword' name='authenticationPassword' value = '<?php echo $resource->authenticationPassword; ?>' style='width:95px;' class='changeInput'  /></td>
-					</tr>
-
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='userLimitID'>Simultaneous User Limit:</label></td>
-					<td>
-					<select name='userLimitID' id='userLimitID' style='width:100px;' class='changeSelect' >
-					<option value=''></option>
-					<?php
-					foreach ($userLimitArray as $userLimit){
-						if (!(trim(strval($userLimit['userLimitID'])) != trim(strval($resource->userLimitID)))){
-							echo "<option value='" . $userLimit['userLimitID'] . "' selected>" . $userLimit['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $userLimit['userLimitID'] . "'>" . $userLimit['shortName'] . "</option>\n";
-						}
-					}
-					?>
-					</select>
-
-					</td>
-					</tr>
-					</table>
-				</td>
 				</tr>
+				<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='accessMethodID'>Access Method:</label></td>
+					<td>
+						<select name='accessMethodID' id='accessMethodID' style='width:100px;' class='changeSelect'>
+						<option value=''></option>
+						<?php
+						foreach ($accessMethodArray as $accessMethod){
+							if (!(trim(strval($accessMethod['accessMethodID'])) != trim(strval($resource->accessMethodID)))){
+								echo "<option value='" . $accessMethod['accessMethodID'] . "' selected>" . $accessMethod['shortName'] . "</option>\n";
+							}else{
+								echo "<option value='" . $accessMethod['accessMethodID'] . "'>" . $accessMethod['shortName'] . "</option>\n";
+							}
+						}
+						?>
+						</select>
+					</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationPassword'>Password:</label></td>
+					<td><input type='text' id='authenticationPassword' name='authenticationPassword' value = '<?php echo $resource->authenticationPassword; ?>' style='width:95px;' class='changeInput'  /></td>
+				</tr>
+				<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='storageLocationID'>Storage Location:</label></td>
+					<td>
+						<select name='storageLocationID' id='storageLocationID' style='width:100px;' class='changeSelect'>
+						<option value=''></option>
+						<?php
+						foreach ($storageLocationArray as $storageLocation){
+							if (!(trim(strval($storageLocation['storageLocationID'])) != trim(strval($resource->storageLocationID)))){
+								echo "<option value='" . $storageLocation['storageLocationID'] . "' selected>" . $storageLocation['shortName'] . "</option>\n";
+							}else{
+								echo "<option value='" . $storageLocation['storageLocationID'] . "'>" . $storageLocation['shortName'] . "</option>\n";
+							}
+						}
+						?>
+						</select>
+					</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='userLimitID'>Simultaneous User Limit:</label></td>
+					<td>
+						<select name='userLimitID' id='userLimitID' style='width:100px;' class='changeSelect' >
+						<option value=''></option>
+						<?php
+						foreach ($userLimitArray as $userLimit){
+							if (!(trim(strval($userLimit['userLimitID'])) != trim(strval($resource->userLimitID)))){
+								echo "<option value='" . $userLimit['userLimitID'] . "' selected>" . $userLimit['shortName'] . "</option>\n";
+							}else{
+								echo "<option value='" . $userLimit['userLimitID'] . "'>" . $userLimit['shortName'] . "</option>\n";
+							}
+						}
+						?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='coverageText'>Coverage:</label></td>
+					<td colspan='3'>
+						<input type='text' id='coverageText' name='coverageText' value = '<?php echo $resource->coverageText; ?>' style='width:405px;' class='changeInput'  />
+					</td>
+				</tr>	
 				</table>
 			</td>
 			</tr>
@@ -2261,12 +2253,6 @@ switch ($_GET['action']) {
 		<?php
 
 		break;
-
-
-
-
-
-
 
 	case 'getAdminCurrencyUpdateForm':
 		$updateID = $_GET['updateID'];
@@ -2973,6 +2959,7 @@ switch ($_GET['action']) {
 				<select class='changeSelect loginID' style='width:145px;'>
 				<option value=''></option>
 				<?php
+				
 				foreach ($allUserArray as $ugUser){
 					$userObj = new User(new NamedArguments(array('primaryKey' => $ugUser['loginID'])));
 					$ddDisplayName = $userObj->getDDDisplayName;

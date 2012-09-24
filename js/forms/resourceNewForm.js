@@ -49,7 +49,13 @@
 	      }
 	});	
 
-
+	//do submit if enter is hit
+	$('#resourceAltURL').keyup(function(e) {
+	      if(e.keyCode == 13) {
+		submitResource('save');
+	      }
+	});	
+	
 	//do submit if enter is hit
 	$('#resourceFormatID').keyup(function(e) {
 	      if(e.keyCode == 13) {
@@ -340,7 +346,7 @@ function submitResource(status){
 			 type:       "POST",
 			 url:        "ajax_processing.php?action=submitNewResource",
 			 cache:      false,
-			 data:       { resourceID: $("#editResourceID").val(), resourceTypeID: $("input:radio[name='resourceTypeID']:checked").val(), resourceFormatID: $("input:radio[name='resourceFormatID']:checked").val(), acquisitionTypeID: $("input:radio[name='acquisitionTypeID']:checked").val(), titleText: $("#titleText").val(), descriptionText: $("#descriptionText").val(), providerText: $("#providerText").val(), organizationID: $("#organizationID").val(), resourceURL: $("#resourceURL").val(), noteText: $("#noteText").val(), orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList, resourceStatus: status },
+			 data:       { resourceID: $("#editResourceID").val(), resourceTypeID: $("input:radio[name='resourceTypeID']:checked").val(), resourceFormatID: $("input:radio[name='resourceFormatID']:checked").val(), acquisitionTypeID: $("input:radio[name='acquisitionTypeID']:checked").val(), titleText: $("#titleText").val(), descriptionText: $("#descriptionText").val(), providerText: $("#providerText").val(), organizationID: $("#organizationID").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), noteText: $("#noteText").val(), orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList, resourceStatus: status },
 			 success:    function(resourceID) {
 				//go to the new resource page if this was submitted
 				if (status == 'progress'){

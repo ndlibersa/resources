@@ -108,14 +108,20 @@ switch ($_GET['action']) {
 		$resource->storageLocationID		= '';
 		$resource->registeredIPAddresses 	= '';
 		$resource->providerText			 	= $_POST['providerText'];
-
+		$resource->coverageText 			= '';	
+		
 		if ($_POST['resourceURL'] != 'http://'){
 			$resource->resourceURL = $_POST['resourceURL'];
 		}else{
 			$resource->resourceURL = '';
 		}
 
-
+		if ($_POST['resourceAltURL'] != 'http://'){
+			$resource->resourceAltURL = $_POST['resourceAltURL'];
+		}else{
+			$resource->resourceAltURL = '';
+		}
+		
 		try {
 			$resource->save();
 			echo $resource->primaryKey;
@@ -225,7 +231,7 @@ switch ($_GET['action']) {
 		$resource->resourceFormatID 	= $_POST['resourceFormatID'];
 		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
-
+		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
 
 		//to determine status id
 		$status = new Status();
@@ -473,6 +479,7 @@ switch ($_GET['action']) {
 
 		$resource->authenticationTypeID 	= $_POST['authenticationTypeID'];
 		$resource->accessMethodID 			= $_POST['accessMethodID'];
+		$resource->coverageText 			= $_POST['coverageText'];			
 		$resource->authenticationUserName 	= $_POST['authenticationUserName'];
 		$resource->authenticationPassword	= $_POST['authenticationPassword'];
 		$resource->storageLocationID		= $_POST['storageLocationID'];

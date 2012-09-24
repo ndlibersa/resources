@@ -38,7 +38,13 @@ $(document).ready(function(){
 	      }
 	});
 
-
+	//do submit if enter is hit
+	$('#coverageText').keyup(function(e) {
+	      if(e.keyCode == 13) {
+		submitAccess();
+	      }
+	});	
+	
 	//the following are all to change the look of the inputs when they're clicked
 	$('.changeDefault').live('focus', function(e) {
 		if (this.value == this.defaultValue){
@@ -121,7 +127,7 @@ function submitAccess(){
 		 type:       "POST",
 		 url:        "ajax_processing.php?action=submitAccess",
 		 cache:      false,
-		 data:       { resourceID: $("#editResourceID").val(), authenticationTypeID: $("#authenticationTypeID").val(), accessMethodID: $("#accessMethodID").val(), authenticationUserName: $("#authenticationUserName").val(), authenticationPassword: $("#authenticationPassword").val(), storageLocationID: $("#storageLocationID").val(), userLimitID: $("#userLimitID").val(), administeringSites: administeringSitesList, authorizedSites: authorizedSitesList },
+		 data:       { resourceID: $("#editResourceID").val(), authenticationTypeID: $("#authenticationTypeID").val(), accessMethodID: $("#accessMethodID").val(), coverageText: $("#coverageText").val(), authenticationUserName: $("#authenticationUserName").val(), authenticationPassword: $("#authenticationPassword").val(), storageLocationID: $("#storageLocationID").val(), userLimitID: $("#userLimitID").val(), administeringSites: administeringSitesList, authorizedSites: authorizedSitesList },
 		 success:    function(html) {
 			if (html){
 				$("#span_errors").html(html);

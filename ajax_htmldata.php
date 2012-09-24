@@ -257,7 +257,14 @@ switch ($_GET['action']) {
 				</tr>
 			<?php
 			}
-
+			
+			if ($resource->resourceAltURL) { ?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'>Alt URL:</td>
+				<td style='width:345px;'><?php echo $resource->resourceAltURL; ?>&nbsp;&nbsp;<a href='<?php echo $resource->resourceAltURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Secondary Resource URL' title='Visit Secondary Resource URL' style='vertical-align:top;'></a></td>
+				</tr>
+			<?php
+			}
 
 			if ($resource->descriptionText){ ?>
 				<tr>
@@ -758,6 +765,13 @@ switch ($_GET['action']) {
 				</tr>
 			<?php } ?>
 
+			<?php if ($resource->coverageText) { ?>
+				<tr>
+				<td style='vertical-align:top;width:150px;'>Coverage:</td>
+				<td style='width:310px;'><?php echo $resource->coverageText; ?></td>
+				</tr>
+			<?php } ?>
+
 			<?php if ($accessMethod->shortName) { ?>
 				<tr>
 				<td style='vertical-align:top;width:150px;'>Access Method:</td>
@@ -766,7 +780,7 @@ switch ($_GET['action']) {
 			<?php
 			}
 
-			if ((count($administeringSiteArray) == 0) && (!$authenticationType->shortName) && (!$resource->authenticationUserName) && (!$resource->authenticationPassword) && (!$userLimit->shortName) && (!$resource->registeredIPAddressException) && (!$storageLocation->shortName) && (!$accessMethod->shortName)){
+			if ((count($administeringSiteArray) == 0) && (!$authenticationType->shortName) && (!$resource->coverageText) && (!$resource->authenticationUserName) && (!$resource->authenticationPassword) && (!$userLimit->shortName) && (!$resource->registeredIPAddressException) && (!$storageLocation->shortName) && (!$accessMethod->shortName)){
 				echo "<tr><td colspan='2'><i>No access information available.</i></td></tr>";
 			}
 

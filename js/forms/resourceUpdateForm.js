@@ -421,7 +421,7 @@ function submitProductForm(){
 			 type:       "POST",
 			 url:        "ajax_processing.php?action=submitProductUpdate",
 			 cache:      false,
-			 data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourceID: $("#parentResourceID").val(), parentResourceName: $("#parentResourceName").val(), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), isbnOrISSN: $("#isbnOrISSN").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList  },
+			 data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourceID: $("#parentResourceID").val(), parentResourceName: $("#parentResourceName").val(), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), isbnOrISSN: $("#isbnOrISSN").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList  },
 			 success:    function(html) {
 				if (html){
 					$("#span_errors").html(html);

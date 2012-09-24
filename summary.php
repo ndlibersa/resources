@@ -334,7 +334,14 @@ if ($resource->titleText){
 		<?php
 		}
 
-
+		if ($resource->resourceAltURL) { ?>
+			<tr>
+			<td style='vertical-align:top;width:150px;'>Alt URL:</td>
+			<td><?php echo $resource->resourceAltURL; ?></td>
+			</tr>
+		<?php
+		}
+		
 		if ($resource->descriptionText){ ?>
 			<tr>
 			<td style='vertical-align:top;width:150px;'>Description:</td>

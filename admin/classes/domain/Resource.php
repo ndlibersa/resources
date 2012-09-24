@@ -813,10 +813,18 @@ class Resource extends DatabaseObject {
 
   
   public static function setSearch($search) {
+	$config = new Configuration;
+
+	  if ($config->settings->defaultsort) {
+		$orderBy = $config->settings->defaultsort;
+	  } else {
+		$orderBy = "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc";
+	  }
+	
     $defaultSearchParameters = array(
-      "orderBy" => "R.createDate DESC, TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc",
-      "page" => 1,
-      "recordsPerPage" => 25,
+		"orderBy" => $orderBy,
+		"page" => 1,
+		"recordsPerPage" => 25,
     );
     foreach ($defaultSearchParameters as $key => $value) {
       if (!$search[$key]) {

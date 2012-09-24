@@ -247,7 +247,37 @@ $_SESSION['ref_script']=$currentPage;
 	</td>
 	</tr>
 
+	<tr>
+	<td class='searchRow'><label for='searchGeneralSubjectID'><b>General Subject</b></label>
+	<br />
+	<select name='search[generalSubjectID]' id='searchGeneralSubjectID' style='width:150px'>
+	<option value=''>All</option>
 
+	<?php
+
+		if ($search['generalSubjectID'] == "none"){
+			echo "<option value='none' selected>(none)</option>";
+		}else{
+			echo "<option value='none'>(none)</option>";
+		}
+
+
+		$display = array();
+		$generalSubject = new GeneralSubject();
+
+		foreach($generalSubject->allAsArray() as $display) {
+			if ($search['generalSubjectID'] == $display['generalSubjectID']){
+				echo "<option value='" . $display['generalSubjectID'] . "' selected>" . $display['shortName'] . "</option>";
+			}else{
+				echo "<option value='" . $display['generalSubjectID'] . "'>" . $display['shortName'] . "</option>";
+			}
+		}
+
+	?>
+	</select>
+	</td>
+	</tr>
+	
 	<tr>
 	<td class='searchRow'><label for='searchFirstLetter'><b>Starts with</b></label>
 	<br />

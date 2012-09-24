@@ -968,7 +968,18 @@ class Resource extends DatabaseObject {
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $search['resourceTypeID'])));
     	$searchDisplay[] = "Resource Type: " . $resourceType->shortName;
 		}
+		
+		
+		if ($search['generalSubjectID'] == 'none'){
+			$whereAdd[] = "((GDLINK.generalSubjectID IS NULL) OR (GDLINK.generalSubjectID = '0'))";
+			$searchDisplay[] = "Resource Type: none";
+		}else if ($search['generalSubjectID']){
+			$whereAdd[] = "GDLINK.generalSubjectID = '" . mysql_real_escape_string($search['generalSubjectID']) . "'";
+			$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $search['generalSubjectID'])));
+    	$searchDisplay[] = "General Subject: " . $generalSubject->shortName;
+		}		
 
+		
 		if ($search['noteTypeID'] == 'none'){
 			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
 			$searchDisplay[] = "Note Type: none";
@@ -1113,8 +1124,10 @@ class Resource extends DatabaseObject {
 									" . $orgJoinAdd . "
 									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
 									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
+									LEFT JOIN ResourceSubject RSUB ON R.resourceID = RSUB.resourceID
 									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
+									LEFT JOIN GeneralDetailSubjectLink GDLINK ON RSUB.generalDetailSubjectLinkID = GDLINK.generalDetailSubjectLinkID									
                   " . implode("\n", $additional_joins) . "
 								  " . $whereStatement . "
 								  " . $groupBy;
@@ -1133,7 +1146,7 @@ class Resource extends DatabaseObject {
 	//returns array based on search
 	public function search($whereAdd, $orderBy, $limit){
 		$query = $this->searchQuery($whereAdd, $orderBy, $limit, false);
-    
+
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$searchArray = array();
@@ -1258,7 +1271,9 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceRelationship RRC ON RRC.relatedResourceID = R.resourceID
 									LEFT JOIN ResourceRelationship RRP ON RRP.resourceID = R.resourceID
 									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
+									LEFT JOIN ResourceSubject RSUB ON R.resourceID = RSUB.resourceID
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
+									LEFT JOIN GeneralDetailSubjectLink GDLINK ON RSUB.generalDetailSubjectLinkID = GDLINK.generalDetailSubjectLinkID
 									LEFT JOIN ResourceFormat RF ON R.resourceFormatID = RF.resourceFormatID
 									LEFT JOIN ResourceType RT ON R.resourceTypeID = RT.resourceTypeID
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
@@ -1664,6 +1679,7 @@ class Resource extends DatabaseObject {
 		$this->removeResourceLicenseStatuses();
 		$this->removeResourceOrganizations();
 		$this->removeResourcePayments();
+		$this->removeAllSubjects();		
 
 
 		$instance = new Contact();
@@ -2116,9 +2132,87 @@ class Resource extends DatabaseObject {
 		$email->send();
 	}
 
+	//returns array of subject objects
+	public function getGeneralDetailSubjectLinkID(){
+			
+		$query = "SELECT 
+				  GDL.generalDetailSubjectLinkID
+				FROM
+				  Resource R
+				  INNER JOIN ResourceSubject RSUB ON (R.resourceID = RSUB.resourceID)
+				  INNER JOIN GeneralDetailSubjectLink GDL ON (RSUB.generalDetailSubjectLinkID = GDL.generalDetailSubjectLinkID)
+				  LEFT OUTER JOIN Generalsubject GS ON (GDL.generalSubjectID = GS.generalSubjectID)
+				  LEFT OUTER JOIN DetailedSubject DS ON (GDL.detailedSubjectID = DS.detailedSubjectID)			  
+				WHERE
+				  R.resourceID = '" . $this->resourceID . "'
+				ORDER BY
+				  GS.shortName,
+				  DS.shortName";
+		
+		 
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['generalDetailSubjectLinkID'])){
+			$object = new GeneralDetailSubjectLink(new NamedArguments(array('primaryKey' => $result['generalDetailSubjectLinkID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new GeneralDetailSubjectLink(new NamedArguments(array('primaryKey' => $row['generalDetailSubjectLinkID'])));
+				array_push($objects, $object);
+			}
+		}
+	
+		return $objects;
+	}	
+
+	//returns array of subject objects
+	public function getDetailedSubjects($resourceID, $generalSubjectID){
+			
+		$query = "SELECT 
+			  RSUB.resourceID,
+			  GDL.detailedSubjectID,
+			  DetailedSubject.shortName,
+			  GDL.generalSubjectID
+			FROM
+			  ResourceSubject RSUB
+			  INNER JOIN GeneralDetailSubjectLink GDL ON (RSUB.GeneralDetailSubjectLinkID = GDL.GeneralDetailSubjectLinkID)
+			  INNER JOIN DetailedSubject ON (GDL.detailedSubjectID = DetailedSubject.detailedSubjectID)
+			WHERE
+			  RSUB.resourceID = " . $resourceID . " AND GDL.generalSubjectID = " . $generalSubjectID . " ORDER BY DetailedSubject.shortName";
+
+		//echo $query . "<br>";  
+		 
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['detailedSubjectID'])){
+			$object = new DetailedSubject(new NamedArguments(array('primaryKey' => $result['detailedSubjectID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new DetailedSubject(new NamedArguments(array('primaryKey' => $row['detailedSubjectID'])));
+				array_push($objects, $object);
+			}
+		}
+
+		return $objects;
+	}	
 
 
+	//removes all resource subjects
+	public function removeAllSubjects(){
 
+		$query = "DELETE
+			FROM ResourceSubject
+			WHERE resourceID = '" . $this->resourceID . "'";
+
+		$result = $this->db->processQuery($query);
+	}	
 
 }
 

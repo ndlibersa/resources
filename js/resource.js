@@ -440,7 +440,23 @@ function bind_removes(){
    });
    
    
-   
+   $(".removeResourceSubjectRelationship").unbind('click').click(function () {
+
+   	  tabName = $(this).attr("tab");
+	  
+	  if (confirm("Do you really want to remove this Subject?") == true) {
+		  $.ajax({
+			 type:       "GET",
+			 url:        "ajax_processing.php",
+			 cache:      false,
+			 data:       "action=removeResourceSubjectRelationship&generalDetailSubjectID=" + $(this).attr("generalDetailSubjectID") + "&resourceID=" + $(this).attr("resourceID"),
+			 success:    function(html) {
+				eval("update" + tabName + "();");
+			 }
+
+		 });
+	  }			
+   });   
    
    $(".removeNote").unbind('click').click(function () {
    

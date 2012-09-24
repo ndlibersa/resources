@@ -3049,9 +3049,309 @@ switch ($_GET['action']) {
 
         break;
 
+	case 'getGeneralSubjectUpdateForm':
+		$className = $_GET['className'];
+		$updateID = $_GET['updateID'];
+
+		if ($updateID){
+			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
+		}else{
+			$instance = new $className();
+		}
 
 
+		?>
+		<div id='div_updateForm'>
 
+		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
+		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
+
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+
+		<span class='smallDarkRedText' id='span_errors'></span>
+
+		<table class="surroundBox" style="width:250px;">
+		<tr>
+		<td>
+
+			<table class='noBorder' style='width:200px; margin:10px;'>
+			<tr>
+			<td><input type='text' id='updateVal' value='<?php echo $instance->shortName; ?>' style='width:190px;'/></td>
+			</tr>
+			</table>
+
+		</td>
+		</tr>
+		</table>
+
+		<br />
+		<table class='noBorderTable' style='width:125px;'>
+			<tr>
+																	
+				<td style='text-align:left'><input type='button' value='submit' name='submitGeneralSubjectForm' id ='submitGeneralSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+			</tr>
+		</table>
+
+
+		</form>
+		</div>
+
+		<script type="text/javascript" src="js/forms/generalSubjectForm.js?random=<?php echo rand(); ?>"></script>
+		<?php
+
+		break;
+
+	case 'getDetailSubjectUpdateForm':
+		$className = $_GET['className'];
+		$updateID = $_GET['updateID'];
+
+		if ($updateID){
+			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
+		}else{
+			$instance = new $className();
+		}
+
+
+		?>
+		<div id='div_updateForm'>
+
+		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
+		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
+
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+
+		<span class='smallDarkRedText' id='span_errors'></span>
+
+		<table class="surroundBox" style="width:250px;">
+		<tr>
+		<td>
+
+			<table class='noBorder' style='width:200px; margin:10px;'>
+			<tr>
+			<td><input type='text' id='updateVal' value='<?php echo $instance->shortName; ?>' style='width:190px;'/></td>
+			</tr>
+			</table>
+
+		</td>
+		</tr>
+		</table>
+
+		<br />
+		<table class='noBorderTable' style='width:125px;'>
+			<tr>
+																	
+				<td style='text-align:left'><input type='button' value='submit' name='submitDetailedSubjectForm' id ='submitDetailedSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+			</tr>
+		</table>
+
+
+		</form>
+		</div>
+
+		<script type="text/javascript" src="js/forms/detailedSubjectForm.js?random=<?php echo rand(); ?>"></script>
+		<?php
+
+		break;
+
+		
+		
+    case 'getGeneralDetailSubjectForm':
+    	if (isset($_GET['generalSubjectID'])) $generalSubjectID = $_GET['generalSubjectID']; else $generalSubjectID = '';
+    	$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalSubjectID)));
+
+
+		//get all users for output in drop down
+		$allDetailedSubjectArray = array();
+		$detailedSubjectObj = new DetailedSubject();
+		$allDetailedSubjectArray = $detailedSubjectObj->allAsArray();
+
+		//get Detail Subjects already set up for this General subject in case it's an edit
+		$dsSubjectArray = $generalSubject->getDetailedSubjects();
+
+		?>
+		<div id='div_detailedSubjectForm'>
+		<form id='detailedSubjectForm'>
+		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>		
+
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($detailedSubjectID){ echo "Edit General / Detailed Subject Link"; } else { echo "Add General / Detailed Subject Link"; } ?></span></div>
+
+		<span class='smallDarkRedText' id='span_errors'></span>
+
+		<table class='noBorder' style='width:100%;'>
+		<tr style='vertical-align:top;'>
+		<td style='vertical-align:top;position:relative;'>
+
+
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>General Subject</b></label>&nbsp;&nbsp;</span>
+
+			<table class='surroundBox' style='width:275px;'>
+			<tr>
+			<td>
+
+				<table class='noBorder' style='width:235px; margin:15px 20px 10px 20px;'>
+				<tr>
+				<td style='vertical-align:top;text-align:left;'><label for='shortName'><b>Short Name:</b></label></td>
+				<td>
+				<input type='text' id='shortName' name='shortName' value = '<?php echo $generalSubject->shortName; ?>' style='width:110px' class='changeInput' /><span id='span_error_groupName' class='smallDarkRedText'></span>
+				</td>
+				</tr>
+
+				</table>
+			</td>
+			</tr>
+			</table>
+
+			<div style='height:10px;'>&nbsp;</div>
+
+			</td>
+			</tr>
+			<tr style='vertical-align:top;'>
+			<td>
+
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b>Detail Subjects</b></label>&nbsp;&nbsp;</span>
+
+			<table class='surroundBox' style='width:275px;'>
+			<tr>
+			<td>
+
+				<table class='noBorder smallPadding newdetailedSubjectTable' style='width:205px; margin:15px 35px 0px 35px;'>
+
+					<tr class='newdetailedSubjectTR'>
+						<td>
+							<select class='changeSelect detailedSubjectID' style='width:145px;'>
+								<option value=''></option>
+								<?php
+								
+								foreach ($allDetailedSubjectArray as $dSubject){
+									echo "<option value='" . $dSubject['detailedSubjectID'] . "'>" . $dSubject['shortName'] . "</option>\n";
+								}
+								?>
+							</select>
+						</td>
+
+				<td style='vertical-align:top;text-align:left;width:40px;'>
+				<a href='javascript:void();'><img src='images/add.gif' class='adddetailedSubject' alt='add detail subject' title='add detail subject'></a>
+				</td>
+				</tr>
+				</table>
+				<div class='smallDarkRedText' id='div_errordetailedSubject' style='margin:0px 35px 7px 35px;'></div>
+
+				<table class='noBorder smallPadding detailedSubjectTable' style='width:205px; margin:0px 35px 0px 35px;'>
+				<tr>
+				<td colspan='2'>
+					<hr style='width:200px;' />
+				</td>
+				</tr>
+
+				<?php
+
+				if (count($dsSubjectArray) > 0){
+					foreach ($dsSubjectArray as $dsSubject){
+					?>
+						<tr class='newdetailedSubject'>
+						<td>
+						<select class='changeSelect detailedSubjectID' style='width:145px;'>
+						<option value='<?php echo $dsSubject->detailedSubjectID ?>'><?php echo $dsSubject->shortName ?></option>
+						</select>
+						</td>
+
+						<td style='vertical-align:top;text-align:left;width:40px;'>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
+						</td>
+						</tr>
+					<?php
+					}
+				}
+				?>
+				</table>
+			</td>
+			</tr>
+			</table>
+		</td>
+		</tr>
+		</table>
+
+
+		<hr style='width:283px;margin-top:15px; margin-bottom:10px;' />
+
+		<table class='noBorderTable' style='width:125px;'>
+			<tr>
+				<td style='text-align:left'><input type='button' value='submit' name='submitDetailSubjectForm' id ='submitDetailSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+			</tr>
+		</table>
+
+		</form>
+		</div>
+
+		<script type="text/javascript" src="js/forms/generalDetailSubjectForm.js?random=<?php echo rand(); ?>"></script>
+
+		<?php
+
+        break;
+
+
+		
+	case 'getResourceSubjectForm':
+	    $resourceID = $_GET['resourceID'];
+		$generalSubject = new GeneralSubject();
+		$generalSubjectArray = $generalSubject->allAsArray();
+		
+	?>
+		<div id='div_updateForm'>
+		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
+
+	<?php
+		if (count($generalSubjectArray) > 0){
+			?>
+			<table class='linedDataTable' style='width:100%'>
+				<tr>
+				<th>General Subject Name</th>
+				<th>Detail Subject Name</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				</tr>
+				<?php
+
+				foreach($generalSubjectArray as $ug) {
+					$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $ug['generalSubjectID'])));
+
+					echo "<tr>";
+					echo "<td>" . $generalSubject->shortName . "</td>";
+					echo "<td></td>";
+					echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . -1 . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
+					
+					foreach ($generalSubject->getDetailedSubjects() as $detailedSubjects){
+						echo "<tr>";
+						echo "<td></td>";
+						echo "<td>";
+						echo $detailedSubjects->shortName . "</td>";
+						echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . $detailedSubjects->detailedSubjectID . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
+						echo "</tr>";						
+					}
+					//echo "<td><a href='javascript:deleteGeneralDetailSubject(\"GeneralSubject\", " . $generalSubject->generalSubjectID . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "</tr>";
+				}
+
+				?>
+			</table>
+			<?php
+
+		}else{
+			echo "(none found)<br />";
+		}
+		?>
+		
+		<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+		</div>
+
+		<script type="text/javascript" src="js/forms/resourceSubject.js?random=<?php echo rand(); ?>"></script>
+		
+		<?php
+
+		break;		
 
 
 

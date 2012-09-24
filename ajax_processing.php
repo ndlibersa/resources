@@ -774,8 +774,8 @@ switch ($_GET['action']) {
  		break;
 
 
-
-
+	
+		
      case 'updateCurrency':
  		$editCurrencyCode = $_POST['editCurrencyCode'];
  		$currencyCode = $_POST['currencyCode'];
@@ -1184,7 +1184,217 @@ switch ($_GET['action']) {
 
 		break;
 
+	case 'deleteGeneralSubject':
+		
+ 		$className = $_GET['class'];
+ 		$deleteID = $_GET['id'];
 
+		//since we're using MyISAM which doesn't support FKs, must verify that there are no records of children or they could disappear
+		$instance = new $className(new NamedArguments(array('primaryKey' => $deleteID)));
+		$numberOfChildren = $instance->getNumberOfChildren();
+
+		if ($numberOfChildren > 0){
+			//print out a friendly message...
+			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+		}else{
+			try {
+				$instance->deleteGeneralSubject();
+			} catch (Exception $e) {
+				//print out a friendly message...
+				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+			}
+		}
+
+
+		break;
+		
+		
+	case 'deleteDetailedSubject':
+
+ 		$className = $_GET['class'];
+ 		$deleteID = $_GET['id'];
+
+		//since we're using MyISAM which doesn't support FKs, must verify that there are no records of children or they could disappear
+		$instance = new $className(new NamedArguments(array('primaryKey' => $deleteID)));
+		$numberOfChildren = $instance->getNumberOfChildren();
+
+		if ($numberOfChildren > 0){
+			//print out a friendly message...
+			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+		}else{
+			try {
+				$instance->delete();
+			} catch (Exception $e) {
+				//print out a friendly message...
+				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+			}
+		}
+
+
+		break;
+
+
+	case 'submitDetailSubject':
+
+ 		$generalSubjectID = $_POST['generalSubjectID'];
+
+		if ($generalSubjectID!=''){
+			$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalSubjectID)));
+		}else{
+			$generalSubject = new GeneralSubject();
+		}
+
+		$generalSubject->shortName = $_POST['shortName'];
+
+		try {
+			$generalSubject->save();
+
+			$generalSubjectID=$generalSubject->primaryKey;
+
+			$detailSubjectArray = array();
+			$detailSubjectArray = explode(':::',$_POST['detailSubjectsList']);
+
+			//first remove all general / detail subject links, then we'll add them back
+			$generalSubject->removeAllGeneralSubjects();
+
+			// Add the general subject back
+			$generalDetailSubjectLink = new GeneralDetailSubjectLink();
+			$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
+			$generalDetailSubjectLink->detailedSubjectID = -1;
+			
+				try {
+					$generalDetailSubjectLink->save();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
+
+			// Add all the detail subjects back
+			foreach ($detailSubjectArray as $key => $value){
+			
+				if ($value){
+					$generalDetailSubjectLink = new GeneralDetailSubjectLink();
+					$generalDetailSubjectLink->detailedSubjectID = $value;
+					$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
+
+					try {
+						$generalDetailSubjectLink->save();
+					} catch (Exception $e) {
+						echo $e->getMessage();
+					}
+				}
+			}
+
+
+
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+
+		break;
+
+	case 'updateResourceSubject':
+
+		$resourceSubject = new ResourceSubject();
+
+		$resourceID = $_GET['resourceID'];
+		$generalSubjectID = $_GET['generalSubjectID'];
+		$detailSubjectID = $_GET['detailSubjectID'];
+
+		if (!isset($detailSubjectID)) {
+			$detailSubjectID = -1;
+		}
+
+		if (!isset($generalSubjectID)) {
+			$generalSubjectID = -1;
+		}
+		
+		$generalDetailSubjectLink = new GeneralDetailSubjectLink();
+		$generalDetailSubjectLinkID = $generalDetailSubjectLink->getGeneralDetailID($generalSubjectID, $detailSubjectID);
+		
+		$resourceSubject->resourceID = $resourceID;
+		$resourceSubject->generalDetailSubjectLinkID = $generalDetailSubjectLinkID;
+		
+		// Check to see if the subject has already been associated with the resouce.  If not then save.
+		if ($resourceSubject->duplicateCheck($resourceID, $generalDetailSubjectLinkID) == 0) {
+			try {
+				$resourceSubject->save();
+			} catch (Exception $e) {
+				echo $e->getMessage();
+			}
+		}
+
+		break;
+
+		
+		
+	case 'removeResourceSubjectRelationship':
+		$generalDetailSubjectID = $_GET['generalDetailSubjectID'];
+		$resourceID = $_GET['resourceID'];
+
+		$resourceSubject = new ResourceSubject();
+
+		try {
+
+			$resourceSubject->removeResourceSubject($resourceID, $generalDetailSubjectID);
+			echo "Subject successfully removed.";
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}		
+		
+		break;		
+
+    case 'updateGeneralSubject':
+ 		$className = $_POST['className'];	
+ 		$updateID = $_POST['updateID'];
+ 		$shortName = $_POST['shortName'];
+
+		if ($updateID != ''){
+			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
+		}else{
+			$instance = new $className();
+		}
+
+		$instance->shortName = $shortName;
+
+		// Check to see if the general subject name exists.  If not then save.
+		if ($instance->duplicateCheck($shortName) == 0)  {
+			try {
+				$instance->save();
+			} catch (Exception $e) {
+				echo $e->getMessage();
+			}
+		} else {
+			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";				
+		}		
+		
+ 		break;
+
+    case 'updateDetailedSubject':
+ 		$className = $_POST['className'];
+ 		$updateID = $_POST['updateID'];
+ 		$shortName = $_POST['shortName'];
+
+		if ($updateID != ''){
+			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
+		}else{
+			$instance = new $className();
+		}
+
+		$instance->shortName = $shortName;
+
+		// Check to see if the detailed subject name exists.  If not then save.
+		if ($instance->duplicateCheck($shortName) == 0) {
+			try {
+				$instance->save();
+			} catch (Exception $e) {
+				echo $e->getMessage();
+			}
+		} else {
+			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";		
+		}		
+
+		
+ 		break;	
 
 
 

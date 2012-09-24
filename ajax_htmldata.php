@@ -296,6 +296,98 @@ switch ($_GET['action']) {
 
 		<br />
 		<br />
+		
+		<?php
+
+		//get subjects for this tab
+ 		$sanitizedInstance = array();
+ 		$generalDetailSubjectIDArray = array();
+
+
+ 		foreach ($resource->getGeneralDetailSubjectLinkID() as $instance) {
+ 			foreach (array_keys($instance->attributeNames) as $attributeName) {
+ 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+ 			}
+		
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+ 			array_push($generalDetailSubjectIDArray, $sanitizedInstance);
+
+		}
+
+		if (count($generalDetailSubjectIDArray) > 0){
+
+		?>
+			<table class='linedFormTable' style='width:460px;max-width:460px;'>
+				<tr>
+				<th>Subjects</th>
+				<th>
+				</th>
+				<th>
+				</th>				
+				</tr>
+				<?php 
+					$generalSubjectID = 0;
+					foreach ($generalDetailSubjectIDArray as $generalDetailSubjectID){ 
+						$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalDetailSubjectID[generalSubjectID])));
+						$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $generalDetailSubjectID[detailedSubjectID])));					
+						
+				?>
+						<tr>
+							<td>
+								<?php if ($generalDetailSubjectID['generalSubjectID'] != $generalSubjectID) { 
+										echo $generalSubject->shortName; 
+											// Allow deleting of the General Subject if no Detail Subjects exist
+											if (in_array($generalDetailSubjectID['generalSubjectID'], $generalDetailSubjectIDArray[0], true) > 1) {
+												$canDelete = false;
+											} else {
+												$canDelete = true;
+											}
+										
+									} else {
+										echo "&nbsp;"; 
+										$canDelete = true;	
+									}
+								?>
+							</td>
+							
+							<td>
+								<?php echo $detailedSubject->shortName; ?>
+							</td>		
+							
+							<td style='width:50px;'>
+								<?php if ($user->canEdit() && $canDelete){ ?>
+
+
+									<a href='javascript:void(0);' tab='Product' class='removeResourceSubjectRelationship' generalDetailSubjectID='<?php echo $generalDetailSubjectID[generalDetailSubjectLinkID]; ?>' resourceID='<?php echo $resourceID; ?>'><img src='images/cross.gif' alt='remove subject' title='remove subject'></a>
+								<?php } ?>
+							</td>							
+							
+							
+
+						</tr>
+						
+				<?php
+						$generalSubjectID = $generalDetailSubjectID['generalSubjectID'];
+					}
+				?>
+
+	<?php } ?>
+			</table>
+		<?php
+
+		
+
+		if ($user->canEdit()){
+		?>
+			<a href='ajax_forms.php?action=getResourceSubjectForm&height=233&width=425&tab=Product&resourceID=<?php echo $resourceID; ?>&modal=true' class='thickbox'>add new subject</a>
+		<?php
+		}
+						
+
+		
+		?>
+		<br />
+		<br />
 
 		<?php
 
@@ -2381,6 +2473,169 @@ switch ($_GET['action']) {
 
 
 		echo "<a href='ajax_forms.php?action=getAdminUserGroupForm&userGroupID=&height=400&width=305&modal=true' class='thickbox'>add user group</a>";
+
+		break;
+
+
+	case 'getGeneralSubjectDisplay':
+		$className = $_GET['className'];
+
+
+		$instanceArray = array();
+		$obj = new $className();
+
+		$instanceArray = $obj->allAsArray();
+
+		echo "<div class='adminRightHeader'>" . preg_replace("/[A-Z]/", " \\0" , $className) . "</div>";
+
+		if (count($instanceArray) > 0){
+			?>
+			<table class='linedDataTable'>
+				<tr>
+				<th style='width:100%;'>Value</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				</tr>
+				<?php
+	
+				foreach($instanceArray as $instance) {
+					echo "<tr>";
+					echo "<td>" . $instance['shortName'] . "</td>";
+					echo "<td><a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . $className . "&updateID=" . $instance[lcfirst($className) . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td><a href='javascript:void(0);' class='removeData' cn='" . $className . "' id='" . $instance[lcfirst($className) . 'ID'] . "'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "</tr>";
+				}
+
+				?>
+			</table>
+			<?php
+
+		}else{
+			echo "(none found)<br />";
+		}
+
+		echo "<a href='ajax_forms.php?action=getAdminUpdateForm&className=" . $className . "&updateID=&height=128&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . "</a>";
+
+		break;
+
+
+	case 'getAdminSubjectDisplay':
+
+		$generalSubject = new GeneralSubject();
+		$generalSubjectArray = $generalSubject->allAsArray();
+
+		$detailedSubject = new DetailedSubject();
+		$detailedSubjectArray = $detailedSubject->allAsArray();
+
+		echo "<div class='adminRightHeader'>General Subject Setup</div>";
+
+		if (count($generalSubjectArray) > 0){
+			?>
+			<table class='linedDataTable'>
+				<tr>
+				<th style='width:100%;'>Value</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				</tr>
+				<?php
+					
+				foreach($generalSubjectArray as $instance) {
+					echo "<tr>";
+					echo "<td>" . $instance['shortName'] . "</td>";
+					echo "<td><a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . "GeneralSubject" . "&updateID=" . $instance[lcfirst("GeneralSubject") . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td><a href='javascript:deleteGeneralSubject(\"GeneralSubject\", " . $instance[lcfirst("GeneralSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "</tr>";
+				}
+
+				?>
+			</table>
+			<?php
+
+		}else{
+			echo "(none found)<br />";
+		}
+
+		echo "<a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . "GeneralSubject" . "&updateID=&height=145&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst("GeneralSubject"))) . "</a>";
+		
+		?>
+		
+		<br /><br />
+		
+		<?php
+		echo "<div class='adminRightHeader'>Detailed Subject Setup</div>";		
+		
+		if (count($detailedSubject) > 0){
+			?>
+			<table class='linedDataTable'>
+				<tr>
+				<th style='width:100%;'>Value</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				</tr>
+				<?php
+					
+				foreach($detailedSubjectArray as $instance) {
+					echo "<tr>";
+					echo "<td>" . $instance['shortName'] . "</td>";
+					echo "<td><a href='ajax_forms.php?action=getDetailSubjectUpdateForm&className=" . "DetailedSubject" . "&updateID=" . $instance[lcfirst("DetailedSubject") . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td><a href='javascript:deleteDetailedSubject(\"DetailedSubject\", " . $instance[lcfirst("DetailedSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "</tr>";
+				}
+
+				?>
+			</table>
+			<?php
+
+		}else{
+			echo "(none found)<br />";
+		}
+
+		echo "<a href='ajax_forms.php?action=getDetailSubjectUpdateForm&className=" . "DetailedSubject" . "&updateID=&height=145&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst("DetailedSubject"))) . "</a>";
+
+		?>		
+		
+		<br /><br />
+
+		<?php
+
+		echo "<div class='adminRightHeader'>General / Detail Subject Link</div>";
+
+		if (count($generalSubjectArray) > 0){
+			?>
+			<table class='linedDataTable' style='width:100%'>
+				<tr>
+				<th>General Subject Name</th>
+				<th>Detail Subject Name</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				</tr>
+				<?php
+
+				foreach($generalSubjectArray as $ug) {
+					$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $ug['generalSubjectID'])));
+
+					echo "<tr>";
+					echo "<td>" . $generalSubject->shortName . "</td>";
+					echo "<td>";
+					foreach ($generalSubject->getDetailedSubjects() as $detailedSubjects){
+						echo $detailedSubjects->shortName . "<br />";
+					}
+					echo "</td>";
+					echo "<td><a href='ajax_forms.php?action=getGeneralDetailSubjectForm&generalSubjectID=" . $generalSubject->generalSubjectID . "&height=400&width=305&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					//echo "<td><a href='javascript:deleteGeneralDetailSubject(\"GeneralSubject\", " . $generalSubject->generalSubjectID . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "</tr>";
+				}
+
+				?>
+			</table>
+			<?php
+
+		}else{
+			echo "(none found)<br />";
+		}
+
+
+		//echo "<a href='ajax_forms.php?action=getGeneralDetailSubjectForm&detailedSubjectID=&height=400&width=305&modal=true' class='thickbox'>add detail subject</a>";
 
 		break;
 

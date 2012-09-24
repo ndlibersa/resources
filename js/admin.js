@@ -36,6 +36,11 @@
 		  updateWorkflowTable();
 	 });
 
+	 $(".SubjectsAdminLink").click(function () {
+		  updateSubjectsTable();
+	 });	 
+
+	 
 	 $(".CurrencyLink").click(function () {
 		  updateCurrencyTable();
 	 });
@@ -59,6 +64,7 @@
 	$(".WorkflowAdminLink").parent().parent().removeClass('selected');
 	$(".AdminLink").parent().parent().removeClass('selected');
 	$(".CurrencyLink").parent().parent().removeClass('selected');
+	$(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 	$("#" + className).parent().parent().addClass('selected');
 
 	  $.ajax({
@@ -89,7 +95,7 @@
   $(".WorkflowAdminLink").parent().parent().removeClass('selected');
   $(".UserAdminLink").parent().parent().removeClass('selected');
   $(".CurrencyLink").parent().parent().addClass('selected');
-
+  $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
   
        $.ajax({
           type:       "GET",
@@ -116,7 +122,7 @@
   $(".WorkflowAdminLink").parent().parent().removeClass('selected');
   $(".CurrencyLink").parent().parent().removeClass('selected');
   $(".UserAdminLink").parent().parent().addClass('selected');
-
+  $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
   
        $.ajax({
           type:       "GET",
@@ -143,6 +149,7 @@
   $(".WorkflowAdminLink").parent().parent().removeClass('selected'); 
   $(".CurrencyLink").parent().parent().removeClass('selected'); 
   $(".AlertAdminLink").parent().parent().addClass('selected');
+  $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 
        $.ajax({
           type:       "GET",
@@ -170,7 +177,8 @@
   $(".AlertAdminLink").parent().parent().removeClass('selected');
   $(".CurrencyLink").parent().parent().removeClass('selected');
   $(".WorkflowAdminLink").parent().parent().addClass('selected');
-
+  $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+  
        $.ajax({
           type:       "GET",
           url:        "ajax_htmldata.php",
@@ -187,7 +195,30 @@
             
  }
 
+function updateSubjectsTable(){
 
+  $(".UserAdminLink").parent().parent().removeClass('selected'); 
+  $(".AdminLink").parent().parent().removeClass('selected'); 
+  $(".AlertAdminLink").parent().parent().removeClass('selected');
+  $(".CurrencyLink").parent().parent().removeClass('selected');
+  $(".WorkflowAdminLink").parent().parent().removeClass('selected');
+  $(".SubjectsAdminLink").parent().parent().addClass('selected');  
+
+       $.ajax({
+          type:       "GET",
+          url:        "ajax_htmldata.php",
+          cache:      false,
+          data:       "action=getAdminSubjectDisplay",
+          success:    function(html) { 
+          	$('#div_AdminContent').html(html);
+          	tb_reinit();
+          }
+	});
+
+   //make sure error is empty
+   $('#div_error').html("");      
+            
+ }
 
 
 
@@ -290,13 +321,6 @@
 
 
 
-
-
-
-
-
-
-
  function deleteData(className, deleteID){
  
  	if (confirm("Do you really want to delete this data?") == true) {
@@ -315,6 +339,89 @@
 				setTimeout("emptyError();",3000); 
 			}else{
 				updateTable(className);  
+				tb_reinit();
+			}
+			
+		  }
+	      });
+
+	}
+ }
+
+   function deleteGeneralSubject(className, deleteID){
+ 
+ 	if (confirm("Do you really want to remove this data?") == true) {
+	   
+	       $.ajax({
+		  type:       "GET",
+		  url:        "ajax_processing.php",
+		  cache:      false,
+		  data:       "action=deleteGeneralSubject&class=" + className + "&id=" + deleteID,
+		  success:    function(html) { 
+
+			if (html){		  			  	
+				showError(html);  
+
+				// close the div in 3 secs
+				setTimeout("emptyError();",3000); 
+			}else{
+				updateSubjectsTable();  
+				tb_reinit();
+			}
+			
+		  }
+	      });
+
+	}
+ }
+ 
+ 
+   function deleteDetailedSubject(className, deleteID){
+ 
+ 	if (confirm("Do you really want to remove this data?") == true) {
+	   
+	       $.ajax({
+		  type:       "GET",
+		  url:        "ajax_processing.php",
+		  cache:      false,
+		  data:       "action=deleteDetailedSubject&class=" + className + "&id=" + deleteID,
+		  success:    function(html) { 
+
+			if (html){		  			  	
+				showError(html);  
+
+				// close the div in 3 secs
+				setTimeout("emptyError();",3000); 
+			}else{
+				updateSubjectsTable();  
+				tb_reinit();
+			}
+			
+		  }
+	      });
+
+	}
+ }
+
+ 
+  function deleteGeneralDetailSubject(className, deleteID){
+ 
+ 	if (confirm("Do you really want to remove this data?") == true) {
+	   
+	       $.ajax({
+		  type:       "GET",
+		  url:        "ajax_processing.php",
+		  cache:      false,
+		  data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
+		  success:    function(html) { 
+
+			if (html){		  			  	
+				showError(html);  
+
+				// close the div in 3 secs
+				setTimeout("emptyError();",3000); 
+			}else{
+				updateSubjectsTable();  
 				tb_reinit();
 			}
 			

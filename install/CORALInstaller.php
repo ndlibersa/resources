@@ -28,7 +28,23 @@ class CORALInstaller {
     		<li>Add cataloging columns to the Resource table</li>
     		<li>Numerous indexes to improve search performance</li>
     	</ul>"
-    )
+    ),
+    "1.2" => array(
+      "privileges" => array("ALTER","CREATE"),
+      "description" => "<p>The 1.2 update to the CORAL Resources module includes a number of enhancements:</p>
+      <ul>
+        <li>Added coverage to the resource record.</li>
+        <li>Added an alternative URL to the resources record.</li>
+        <li>Add subject terms to the Resource record</li>
+        <li>Changed how the related products are displayed for the resource</li>		
+        <li>Add defaultSort to the configuration.ini.  If used this changes the default sort order for the resources</li>				
+      </ul> 
+      <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. No changes to the configuration file are required.  Database structure changes include:</p>
+    	<ul>
+    		<li>Create subjects tables GeneralSubject, DetailedSubject, GeneralDetailsubjectlink, and ResourceSubject. (subjects are configurable in the admin)</li>
+    		<li>Add coverageText, resourceAltURL columns to the Resource table</li>
+    	</ul>"
+    )	
   );
   
   public function __construct() {

@@ -3301,7 +3301,7 @@ switch ($_GET['action']) {
 		
 	?>
 		<div id='div_updateForm'>
-		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
+		<div class='formTitle' style='width:420px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
 
 	<?php
 		if (count($generalSubjectArray) > 0){
@@ -3331,7 +3331,6 @@ switch ($_GET['action']) {
 						echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . $detailedSubjects->detailedSubjectID . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
 						echo "</tr>";						
 					}
-					//echo "<td><a href='javascript:deleteGeneralDetailSubject(\"GeneralSubject\", " . $generalSubject->generalSubjectID . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					echo "</tr>";
 				}
 

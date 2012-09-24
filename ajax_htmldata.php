@@ -2622,7 +2622,6 @@ switch ($_GET['action']) {
 					}
 					echo "</td>";
 					echo "<td><a href='ajax_forms.php?action=getGeneralDetailSubjectForm&generalSubjectID=" . $generalSubject->generalSubjectID . "&height=400&width=305&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-					//echo "<td><a href='javascript:deleteGeneralDetailSubject(\"GeneralSubject\", " . $generalSubject->generalSubjectID . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					echo "</tr>";
 				}
 
@@ -2634,8 +2633,6 @@ switch ($_GET['action']) {
 			echo "(none found)<br />";
 		}
 
-
-		//echo "<a href='ajax_forms.php?action=getGeneralDetailSubjectForm&detailedSubjectID=&height=400&width=305&modal=true' class='thickbox'>add detail subject</a>";
 
 		break;
 

@@ -67,6 +67,21 @@ class DetailedSubject extends DatabaseObject {
 
 		return $result['duplicateCount'];
 	}	
+
+	//returns number of detail subjects that match what is passed. 	
+	public function inUse($id){
+		$query = "SELECT count(*) inUse 
+					FROM
+				  `ResourceSubject`
+					INNER JOIN `GeneralDetailsubjectlink` ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailsubjectlink`.`generalDetailSubjectLinkID`)
+					INNER JOIN `DetailedSubject` ON (`GeneralDetailsubjectlink`.`detailedSubjectID` = `DetailedSubject`.`detailedSubjectID`)
+					WHERE
+					`DetailedSubject`.`detailedSubjectID` = " . $id;
+		  
+		$result = $this->db->processQuery($query, 'assoc');
+
+		return $result['inUse'];
+	}	
 	
 }
 

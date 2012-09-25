@@ -1236,6 +1236,8 @@ switch ($_GET['action']) {
 
 	case 'submitDetailSubject':
 
+	
+	
  		$generalSubjectID = $_POST['generalSubjectID'];
 
 		if ($generalSubjectID!=''){
@@ -1243,8 +1245,9 @@ switch ($_GET['action']) {
 		}else{
 			$generalSubject = new GeneralSubject();
 		}
-
-		$generalSubject->shortName = $_POST['shortName'];
+							
+		// Update the General Subject if needed
+		$generalSubject->shortName = str_replace("'", "''", $_POST['shortName']);
 
 		try {
 			$generalSubject->save();
@@ -1254,37 +1257,34 @@ switch ($_GET['action']) {
 			$detailSubjectArray = array();
 			$detailSubjectArray = explode(':::',$_POST['detailSubjectsList']);
 
-			//first remove all general / detail subject links, then we'll add them back
-			$generalSubject->removeAllGeneralSubjects();
-
-			// Add the general subject back
-			$generalDetailSubjectLink = new GeneralDetailSubjectLink();
-			$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
-			$generalDetailSubjectLink->detailedSubjectID = -1;
+			$detailSubjectIDs = "(-1";
 			
-				try {
-					$generalDetailSubjectLink->save();
-				} catch (Exception $e) {
-					echo $e->getMessage();
-				}
-
-			// Add all the detail subjects back
+			// Update the GeneralDetailSubject Links
 			foreach ($detailSubjectArray as $key => $value){
-			
 				if ($value){
+				
 					$generalDetailSubjectLink = new GeneralDetailSubjectLink();
 					$generalDetailSubjectLink->detailedSubjectID = $value;
 					$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
-
-					try {
-						$generalDetailSubjectLink->save();
-					} catch (Exception $e) {
-						echo $e->getMessage();
+					
+					// Add any Detail Subject Links that are new
+					if ($generalDetailSubjectLink->duplicate() == 0 ) {
+						// Add the new link
+						try {
+							$generalDetailSubjectLink->save();
+						} catch (Exception $e) {
+							echo $e->getMessage();
+						}
 					}
+					// Build list of detailid's that are in use
+					$detailSubjectIDs = $detailSubjectIDs . ', ' . $value;
 				}
 			}
-
-
+			
+			$detailSubjectIDs = $detailSubjectIDs . ')';
+			$generalDetailSubjectLink = new GeneralDetailSubjectLink();
+			// Delete the links that are no longer in use.
+			$generalDetailSubjectLink->deleteNotInuse($generalSubjectID, $detailSubjectIDs);
 
 		} catch (Exception $e) {
 			echo $e->getMessage();

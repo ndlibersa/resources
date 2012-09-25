@@ -50,15 +50,6 @@ class GeneralSubject extends DatabaseObject {
 		return $objects;
 	}
 	
-	//deletes all the General Subject Links from the Linking table
-	public function removeAllGeneralSubjects(){
-
-		$query = "DELETE FROM GeneralDetailSubjectLink WHERE generalSubjectID = '" . $this->generalSubjectID . "'";
-
-		return $this->db->processQuery($query);
-		
-	}
-
 	//deletes the General Subject and the Linking data
 	public function deleteGeneralSubject(){
 

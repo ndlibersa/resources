@@ -1176,6 +1176,9 @@ class Resource extends DatabaseObject {
 	public function searchCount($whereAdd) {
     $query = $this->searchQuery($whereAdd, '', '', true);
     $result = $this->db->processQuery($query, 'assoc');
+	
+	//echo $query;
+	
     return $result['count'];
   }
 

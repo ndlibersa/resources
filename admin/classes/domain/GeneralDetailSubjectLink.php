@@ -31,7 +31,6 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 		$query = "SELECT * FROM GeneralDetailSubjectlink 
 					WHERE generalSubjectID = " . $generalSubjectID . 
 					" AND detailedSubjectID = " . $detailedSubjectID;
-		
 
 		try {
 			$result = $this->db->processQuery($query, 'assoc');
@@ -47,8 +46,26 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 		}
 
 	}
+	
+	
+	public function duplicate() {
+	
+		$query = "SELECT count(*) duplicateCount FROM GeneralDetailsubjectlink where generalSubjectID = " . $this->generalSubjectID . " AND detailedSubjectID = " . $this->detailedSubjectID;
+		$result = $this->db->processQuery($query, 'assoc');
+		return $result['duplicateCount'];
+		
+	}	
 
-
+	public function deleteNotInuse($generalSubjectID, $detailSubjectIDs) {
+	
+		$query = "delete FROM GeneralDetailsubjectlink where generalSubjectID = ". $generalSubjectID . " AND 
+			detailedSubjectID NOT in ". $detailSubjectIDs;
+			
+			$result = $this->db->processQuery($query, 'assoc');
+			return;
+		
+	}		
+	
 }
 
 ?>

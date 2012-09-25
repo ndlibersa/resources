@@ -3175,7 +3175,7 @@ switch ($_GET['action']) {
 		<form id='detailedSubjectForm'>
 		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>		
 
-		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($detailedSubjectID){ echo "Edit General / Detailed Subject Link"; } else { echo "Add General / Detailed Subject Link"; } ?></span></div>
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($detailedSubjectID){ echo "Edit General / Detailed Subject Link"; } else { echo "Add Subject Relationships"; } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -3258,7 +3258,14 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
+						<?php 
+							// Check to see if detail subject is in use.  If not allow removal.
+							$subjectObj = new DetailedSubject();
+							if ($subjectObj->inUse($dsSubject->detailedSubjectID) == 0)  { ?>
+								<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
+						<?php } else { ?>
+								&nbsp;
+						<?php }  ?>
 						</td>
 						</tr>
 					<?php

@@ -1195,7 +1195,11 @@ switch ($_GET['action']) {
 
 		if ($numberOfChildren > 0){
 			//print out a friendly message...
-			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+			//echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+			echo "<script>alert('";
+			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.\\nPlease make sure no general subjects or resources\\nare set up with this information.";
+			echo "');</script>";			
+
 		}else{
 			try {
 				$instance->deleteGeneralSubject();
@@ -1220,7 +1224,10 @@ switch ($_GET['action']) {
 
 		if ($numberOfChildren > 0){
 			//print out a friendly message...
-			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+			// echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+			echo "<script>alert('";
+			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.\\nPlease make sure no detailed subjects or resources\\nare set up with this information.";
+			echo "');</script>";			
 		}else{
 			try {
 				$instance->delete();
@@ -1235,8 +1242,6 @@ switch ($_GET['action']) {
 
 
 	case 'submitDetailSubject':
-
-	
 	
  		$generalSubjectID = $_POST['generalSubjectID'];
 

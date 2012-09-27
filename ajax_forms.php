@@ -3175,7 +3175,7 @@ switch ($_GET['action']) {
 		<form id='detailedSubjectForm'>
 		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>		
 
-		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($detailedSubjectID){ echo "Edit General / Detailed Subject Link"; } else { echo "Add Subject Relationships"; } ?></span></div>
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo "Add / Edit Subject Relationships"; ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -3308,7 +3308,7 @@ switch ($_GET['action']) {
 		
 	?>
 		<div id='div_updateForm'>
-		<div class='formTitle' style='width:420px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
+		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
 
 	<?php
 		if (count($generalSubjectArray) > 0){

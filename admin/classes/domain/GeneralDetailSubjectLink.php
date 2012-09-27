@@ -48,10 +48,11 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 	}
 	
 	
-	public function duplicate() {
+	public function duplicateCheck() {
 	
 		$query = "SELECT count(*) duplicateCount FROM GeneralDetailsubjectlink where generalSubjectID = " . $this->generalSubjectID . " AND detailedSubjectID = " . $this->detailedSubjectID;
 		$result = $this->db->processQuery($query, 'assoc');
+		
 		return $result['duplicateCount'];
 		
 	}	
@@ -62,7 +63,8 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 			detailedSubjectID NOT in ". $detailSubjectIDs;
 			
 			$result = $this->db->processQuery($query, 'assoc');
-			return;
+			
+		return;
 		
 	}		
 	

@@ -26,6 +26,7 @@ class ResourceSubject extends DatabaseObject {
 	//Delete subject links. 
 	public function removeResourceSubject($resourceID, $generalDetailSubjectLinkID){
 		$query = "DELETE FROM ResourceSubject WHERE resourceID = '" . $resourceID . "' AND generalDetailSubjectLinkID = '" . $generalDetailSubjectLinkID . "'";
+		
 		return $this->db->processQuery($query);
 	}	
 
@@ -36,7 +37,6 @@ class ResourceSubject extends DatabaseObject {
 
 		return $result['duplicateCount'];
 	}	
-
 	
 }
 

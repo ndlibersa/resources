@@ -1268,7 +1268,7 @@ switch ($_GET['action']) {
 					$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
 					
 					// Add any Detail Subject Links that are new
-					if ($generalDetailSubjectLink->duplicate() == 0 ) {
+					if ($generalDetailSubjectLink->duplicateCheck() == 0 ) {
 						// Add the new link
 						try {
 							$generalDetailSubjectLink->save();

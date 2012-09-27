@@ -23,33 +23,6 @@ class DetailedSubject extends DatabaseObject {
 
 	protected function overridePrimaryKeyName() {}
 	
-	//returns array of Detail Subject objects associated with the General Subject
-	public function getDetailedSubjects(){
-
-		$query = "SELECT DS.* FROM DetailedSubject DS, 
-				GeneralDetailSubjectlink GDSL 
-				WHERE GDSL.generalSubjectID = '" . $this->generalSubjectID . "' AND 
-				DS.detailedSubjectID = GDSL.detailedSubjectID 
-				ORDER BY DS.shortName";
-	
-		$result = $this->db->processQuery($query, 'assoc');
-
-		$objects = array();
-
-		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['detailedSubjectID'])){
-			$object = new DetailedSubject(new NamedArguments(array('primaryKey' => $result['detailedSubjectID'])));
-			array_push($objects, $object);
-		}else{
-			foreach ($result as $row) {
-				$object = new DetailedSubject(new NamedArguments(array('primaryKey' => $row['detailedSubjectID'])));
-				array_push($objects, $object);
-			}
-		}
-
-		return $objects;
-	}
-
 	//returns number of times this Detailed subject is in use. 
 	public function getNumberOfChildren(){
 

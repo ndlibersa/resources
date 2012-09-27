@@ -57,6 +57,7 @@ class GeneralSubject extends DatabaseObject {
 		$this->db->processQuery($query);
 
 		$query = "DELETE FROM GeneralSubject WHERE generalSubjectID = '" . $this->generalSubjectID . "'";
+		
 		return $this->db->processQuery($query);
 		
 	}
@@ -97,6 +98,8 @@ class GeneralSubject extends DatabaseObject {
 			$this->db->processQuery($query);
 			
 		}	
+		
+		return;
 		
 	}
 

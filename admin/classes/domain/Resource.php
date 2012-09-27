@@ -23,8 +23,6 @@ class Resource extends DatabaseObject {
 
 	protected function overridePrimaryKeyName() {}
 
-
-
 	//returns resource objects by title
 	public function getResourceByTitle($title){
 
@@ -2215,6 +2213,7 @@ class Resource extends DatabaseObject {
 			WHERE resourceID = '" . $this->resourceID . "'";
 
 		$result = $this->db->processQuery($query);
+		
 	}	
 
 }

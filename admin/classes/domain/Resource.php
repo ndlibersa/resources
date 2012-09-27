@@ -977,6 +977,14 @@ class Resource extends DatabaseObject {
     	$searchDisplay[] = "General Subject: " . $generalSubject->shortName;
 		}		
 
+		if ($search['detailedSubjectID'] == 'none'){
+			$whereAdd[] = "((GDLINK.detailedSubjectID IS NULL) OR (GDLINK.detailedSubjectID = '0'))";
+			$searchDisplay[] = "Resource Type: none";
+		}else if ($search['detailedSubjectID']){
+			$whereAdd[] = "GDLINK.detailedSubjectID = '" . mysql_real_escape_string($search['detailedSubjectID']) . "'";
+			$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $search['detailedSubjectID'])));
+    	$searchDisplay[] = "Detailed Subject: " . $detailedSubject->shortName;
+		}			
 		
 		if ($search['noteTypeID'] == 'none'){
 			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";

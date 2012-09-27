@@ -15,8 +15,8 @@ CREATE TABLE `_DATABASE_NAME_`.`DetailedSubject` (
   PRIMARY KEY (`detailedSubjectID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralDetailsubjectlink`;
-CREATE TABLE `_DATABASE_NAME_`.`GeneralDetailsubjectlink` (
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralDetailSubjectlink`;
+CREATE TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectlink` (
   `generalDetailSubjectLinkID` int(11) NOT NULL AUTO_INCREMENT,
   `generalSubjectID` int(11) DEFAULT NULL,
   `detailedSubjectID` int(11) DEFAULT NULL,
@@ -33,8 +33,16 @@ CREATE TABLE `_DATABASE_NAME_`.`ResourceSubject` (
 
 ALTER TABLE `_DATABASE_NAME_`.`GeneralSubject` ADD INDEX `generalSubjectID` ( `generalSubjectID` );
 ALTER TABLE `_DATABASE_NAME_`.`DetailedSubject` ADD INDEX `detailedSubjectID` ( `detailedSubjectID` );
-ALTER TABLE `_DATABASE_NAME_`.`GeneralDetailsubjectlink` ADD INDEX `generalDetailSubjectLinkID` ( `generalDetailSubjectLinkID` );
-ALTER TABLE `_DATABASE_NAME_`.`ResourceSubject` ADD INDEX `resourceSubjectID` ( `resourceSubjectID` ); 
+
+ALTER TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectlink` ADD INDEX `generalDetailSubjectLinkID` ( `generalDetailSubjectLinkID` ),
+ ADD INDEX `Index_All` (`generalSubjectID` ASC, `detailedSubjectID` ASC), 
+ ADD INDEX `Index_generalSubject` (`generalSubjectID` ASC), 
+ ADD INDEX `Index_detailedSubject` (`detailedSubjectID` ASC) ;
+ 
+ALTER TABLE `_DATABASE_NAME_`.`ResourceSubject` ADD INDEX `resourceSubjectID` ( `resourceSubjectID` ), 
+ ADD INDEX `Index_All` (`resourceID` ASC, `generalDetailSubjectLinkID` ASC), 
+ ADD INDEX `Index_ResourceID` (`resourceID` ASC), 
+ ADD INDEX `Index_GeneralDetailLink` (`generalDetailSubjectLinkID` ASC) ;
  
 
 

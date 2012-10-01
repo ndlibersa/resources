@@ -1673,7 +1673,7 @@ switch ($_GET['action']) {
 				<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='coverageText'>Coverage:</label></td>
 					<td colspan='3'>
-						<input type='text' id='coverageText' name='coverageText' value = '<?php echo $resource->coverageText; ?>' style='width:405px;' class='changeInput'  />
+						<input type='text' id='coverageText' name='coverageText' value = "<?php echo $resource->coverageText; ?>" style='width:405px;' class='changeInput'  />
 					</td>
 				</tr>	
 				</table>
@@ -3192,7 +3192,7 @@ switch ($_GET['action']) {
 
 				<table class='noBorder' style='width:235px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='shortName'><b>Short Name:</b></label></td>
+				<td>&nbsp;</td>
 				<td>
 				<input type='text' id='shortName' name='shortName' value = '<?php echo $generalSubject->shortName; ?>' style='width:110px' class='changeInput' /><span id='span_error_groupName' class='smallDarkRedText'></span>
 				</td>
@@ -3210,7 +3210,7 @@ switch ($_GET['action']) {
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b>Detail Subjects</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b>Detailed Subjects</b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -3261,10 +3261,10 @@ switch ($_GET['action']) {
 						<?php 
 							// Check to see if detail subject is in use.  If not allow removal.
 							$subjectObj = new DetailedSubject();
-							if ($subjectObj->inUse($dsSubject->detailedSubjectID) == 0)  { ?>
+							if ($subjectObj->inUse($dsSubject->detailedSubjectID, $generalSubject->generalSubjectID) == 0)  { ?>
 								<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
 						<?php } else { ?>
-								&nbsp;
+								<img src='images/do_not_enter.png' alt='subject in use' title='subject in use' />
 						<?php }  ?>
 						</td>
 						</tr>

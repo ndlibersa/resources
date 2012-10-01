@@ -2543,7 +2543,14 @@ switch ($_GET['action']) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
 					echo "<td><a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . "GeneralSubject" . "&updateID=" . $instance[lcfirst("GeneralSubject") . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-					echo "<td><a href='javascript:deleteGeneralSubject(\"GeneralSubject\", " . $instance[lcfirst("GeneralSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+						
+						$generalSubject = new GeneralSubject();
+						if ($generalSubject->inUse($instance[lcfirst("GeneralSubject") . 'ID']) == 0) {
+							echo "<td><a href='javascript:deleteGeneralSubject(\"GeneralSubject\", " . $instance[lcfirst("GeneralSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+						} else {
+							echo "<td><img src='images/do_not_enter.png' alt='subject in use' title='subject in use' /></td>";
+						}
+						
 					echo "</tr>";
 				}
 
@@ -2578,7 +2585,12 @@ switch ($_GET['action']) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
 					echo "<td><a href='ajax_forms.php?action=getDetailSubjectUpdateForm&className=" . "DetailedSubject" . "&updateID=" . $instance[lcfirst("DetailedSubject") . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-					echo "<td><a href='javascript:deleteDetailedSubject(\"DetailedSubject\", " . $instance[lcfirst("DetailedSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+						$detailedSubject = new DetailedSubject();
+						if ($detailedSubject->inUse($instance[lcfirst("DetailedSubject") . 'ID'], -1) == 0) {
+									echo "<td><a href='javascript:deleteDetailedSubject(\"DetailedSubject\", " . $instance[lcfirst("DetailedSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+						} else {
+							echo "<td><img src='images/do_not_enter.png' alt='subject in use' title='subject in use' /></td>";
+						}					
 					echo "</tr>";
 				}
 
@@ -2604,8 +2616,8 @@ switch ($_GET['action']) {
 			?>
 			<table class='linedDataTable' style='width:100%'>
 				<tr>
-				<th>General Subject Name</th>
-				<th>Detail Subject Name</th>
+				<th>General Subject</th>
+				<th>Detailed Subject</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 				</tr>

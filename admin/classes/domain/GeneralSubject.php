@@ -109,6 +109,25 @@ class GeneralSubject extends DatabaseObject {
 		$result = $this->db->processQuery($query, 'assoc');
 
 		return $result['duplicateCount'];
+	}	
+
+	//Checking to see if this id is in use with resources or detailed subjects. 	
+	public function inUse($id){
+		// Check Detailed subjects
+		$query = "SELECT count(*) inUse FROM `GeneralDetailsubjectlink` WHERE `GeneralDetailsubjectlink`.`generalSubjectID` = " . $id . " AND detailedSubjectID <> -1;";
+		$result = $this->db->processQuery($query, 'assoc');
+
+		// Check resources to see if in use
+		if ($result['inUse'] == 0) {
+			$query = "SELECT count(*) inUse FROM `ResourceSubject` 
+				INNER JOIN `GeneralDetailsubjectlink` 
+				ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailsubjectlink`.`generalDetailSubjectLinkID`)
+				WHERE `GeneralDetailsubjectlink`.`generalSubjectID` = " . $id ;
+				
+			$result = $this->db->processQuery($query, 'assoc');
+		}
+
+		return $result['inUse'];
 	}		
 	
 }

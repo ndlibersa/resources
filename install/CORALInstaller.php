@@ -236,7 +236,8 @@ class CORALInstaller {
           return $this->tableExists("CatalogingStatus");
         case "1.2":
           return $this->tableExists("ResourceSubject");
-	  }
+		  
+      }
     }
     return false;
   }

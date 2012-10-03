@@ -1,6 +1,6 @@
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.0
+** CORAL Resources Module v. 1.2
 **
 ** Copyright (c) 2010 University of Notre Dame
 **

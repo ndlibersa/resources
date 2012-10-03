@@ -41,7 +41,7 @@ class CORALInstaller {
       </ul> 
       <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. No changes to the configuration file are required.  Database structure changes include:</p>
     	<ul>
-    		<li>Create subjects tables: GeneralSubject, DetailedSubject, GeneralDetailsubjectlink, and ResourceSubject. (subjects are configurable in the admin)</li>
+    		<li>Create subjects tables: GeneralSubject, DetailedSubject, GeneralDetailSubjectLink, and ResourceSubject. (subjects are configurable in the admin)</li>
     		<li>Add coverageText, resourceAltURL columns to the Resource table.</li>
     	</ul>"
     )	

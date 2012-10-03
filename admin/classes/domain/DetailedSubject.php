@@ -46,12 +46,12 @@ class DetailedSubject extends DatabaseObject {
 
 		if ($generalSubjectID != -1) {	
 			$query = "SELECT count(*) inUse FROM `ResourceSubject`
-					  INNER JOIN `GeneralDetailsubjectlink` ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailsubjectlink`.`generalDetailSubjectLinkID`)
+					  INNER JOIN `GeneralDetailSubjectLink` ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailSubjectLink`.`generalDetailSubjectLinkID`)
 					WHERE
-					  `GeneralDetailsubjectlink`.`detailedSubjectID` = " . $detailedSubjectID .
-					" AND `GeneralDetailsubjectlink`.`generalSubjectID` = " . $generalSubjectID;
+					  `GeneralDetailSubjectLink`.`detailedSubjectID` = " . $detailedSubjectID .
+					" AND `GeneralDetailSubjectLink`.`generalSubjectID` = " . $generalSubjectID;
 		} else {
-			$query = "SELECT count(*) inUse FROM `GeneralDetailsubjectlink` WHERE `GeneralDetailsubjectlink`.`detailedSubjectID` = " . $detailedSubjectID;
+			$query = "SELECT count(*) inUse FROM `GeneralDetailSubjectLink` WHERE `GeneralDetailSubjectLink`.`detailedSubjectID` = " . $detailedSubjectID;
 		}
 		
 		$result = $this->db->processQuery($query, 'assoc');

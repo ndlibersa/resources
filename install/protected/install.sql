@@ -548,8 +548,8 @@ CREATE TABLE `_DATABASE_NAME_`.`DetailedSubject` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralDetailSubjectlink`;
-CREATE TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectlink` (
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralDetailSubjectLink`;
+CREATE TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectLink` (
   `generalDetailSubjectLinkID` int(11) NOT NULL AUTO_INCREMENT,
   `generalSubjectID` int(11) DEFAULT NULL,
   `detailedSubjectID` int(11) DEFAULT NULL,
@@ -632,7 +632,7 @@ ALTER TABLE `_DATABASE_NAME_`.`GeneralSubject` ADD INDEX `generalSubjectID` ( `g
 
 ALTER TABLE `_DATABASE_NAME_`.`DetailedSubject` ADD INDEX `detailedSubjectID` ( `detailedSubjectID` );
 
-ALTER TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectlink` ADD INDEX `generalDetailSubjectLinkID` ( `generalDetailSubjectLinkID` ),
+ALTER TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectLink` ADD INDEX `generalDetailSubjectLinkID` ( `generalDetailSubjectLinkID` ),
  ADD INDEX `Index_All` (`generalSubjectID` ASC, `detailedSubjectID` ASC), 
  ADD INDEX `Index_generalSubject` (`generalSubjectID` ASC), 
  ADD INDEX `Index_detailedSubject` (`detailedSubjectID` ASC) ;

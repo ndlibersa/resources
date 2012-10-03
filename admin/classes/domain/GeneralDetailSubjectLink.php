@@ -28,7 +28,7 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 	//returns the General Detail Subject Link ID when a general subject / detail subject is known.  
 	public function getGeneralDetailID($generalSubjectID, $detailedSubjectID) {
 
-		$query = "SELECT * FROM GeneralDetailSubjectlink 
+		$query = "SELECT * FROM GeneralDetailSubjectLink 
 					WHERE generalSubjectID = " . $generalSubjectID . 
 					" AND detailedSubjectID = " . $detailedSubjectID;
 
@@ -50,7 +50,7 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 	
 	public function duplicateCheck() {
 	
-		$query = "SELECT count(*) duplicateCount FROM GeneralDetailsubjectlink where generalSubjectID = " . $this->generalSubjectID . " AND detailedSubjectID = " . $this->detailedSubjectID;
+		$query = "SELECT count(*) duplicateCount FROM GeneralDetailSubjectLink where generalSubjectID = " . $this->generalSubjectID . " AND detailedSubjectID = " . $this->detailedSubjectID;
 		$result = $this->db->processQuery($query, 'assoc');
 		
 		return $result['duplicateCount'];
@@ -59,7 +59,7 @@ class GeneralDetailSubjectLink extends DatabaseObject {
 
 	public function deleteNotInuse($generalSubjectID, $detailSubjectIDs) {
 	
-		$query = "delete FROM GeneralDetailsubjectlink where generalSubjectID = ". $generalSubjectID . " AND 
+		$query = "delete FROM GeneralDetailSubjectLink where generalSubjectID = ". $generalSubjectID . " AND 
 			detailedSubjectID NOT in ". $detailSubjectIDs;
 			
 			$result = $this->db->processQuery($query, 'assoc');

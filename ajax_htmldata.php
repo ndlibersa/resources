@@ -2571,7 +2571,7 @@ switch ($_GET['action']) {
 		<?php
 		echo "<div class='adminRightHeader'>Detailed Subject</div>";		
 		
-		if (count($detailedSubject) > 0){
+		if (count($detailedSubjectArray) > 0){
 			?>
 			<table class='linedDataTable'>
 				<tr>

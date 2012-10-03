@@ -2150,7 +2150,7 @@ class Resource extends DatabaseObject {
 				  Resource R
 				  INNER JOIN ResourceSubject RSUB ON (R.resourceID = RSUB.resourceID)
 				  INNER JOIN GeneralDetailSubjectLink GDL ON (RSUB.generalDetailSubjectLinkID = GDL.generalDetailSubjectLinkID)
-				  LEFT OUTER JOIN Generalsubject GS ON (GDL.generalSubjectID = GS.generalSubjectID)
+				  LEFT OUTER JOIN GeneralSubject GS ON (GDL.generalSubjectID = GS.generalSubjectID)
 				  LEFT OUTER JOIN DetailedSubject DS ON (GDL.detailedSubjectID = DS.detailedSubjectID)			  
 				WHERE
 				  R.resourceID = '" . $this->resourceID . "'

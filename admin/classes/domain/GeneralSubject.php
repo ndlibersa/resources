@@ -27,7 +27,7 @@ class GeneralSubject extends DatabaseObject {
 	public function getDetailedSubjects(){
 
 		$query = "SELECT DS.* FROM DetailedSubject DS, 
-				GeneralDetailSubjectlink GDSL 
+				GeneralDetailSubjectLink GDSL 
 				WHERE GDSL.generalSubjectID = '" . $this->generalSubjectID . "' AND 
 				DS.detailedSubjectID = GDSL.detailedSubjectID 
 				ORDER BY DS.shortName";
@@ -86,12 +86,12 @@ class GeneralSubject extends DatabaseObject {
 		if (isset($this->primaryKey)) {
 			// Update object
 			echo $query;
-			$query = "UPDATE Generalsubject SET shortName='" . str_replace( "'", "''", $this->shortName ) . "' WHERE generalSubjectID=". $this->primaryKey;
+			$query = "UPDATE GeneralSubject SET shortName='" . str_replace( "'", "''", $this->shortName ) . "' WHERE generalSubjectID=". $this->primaryKey;
 			$this->db->processQuery($query);
 		} else {
 			// Insert object
 			
-			$query = "INSERT INTO Generalsubject (`shortName`) VALUES ('" . str_replace( "'", "''", $this->shortName ) . "')";
+			$query = "INSERT INTO GeneralSubject (`shortName`) VALUES ('" . str_replace( "'", "''", $this->shortName ) . "')";
 			$this->primaryKey = $this->db->processQuery($query);
 
 			$query = "INSERT INTO GeneralDetailSubjectLink (`generalSubjectID`,`detailedSubjectID` ) VALUES ('" . $this->primaryKey . "', -1)";
@@ -114,15 +114,15 @@ class GeneralSubject extends DatabaseObject {
 	//Checking to see if this id is in use with resources or detailed subjects. 	
 	public function inUse($id){
 		// Check Detailed subjects
-		$query = "SELECT count(*) inUse FROM `GeneralDetailsubjectlink` WHERE `GeneralDetailsubjectlink`.`generalSubjectID` = " . $id . " AND detailedSubjectID <> -1;";
+		$query = "SELECT count(*) inUse FROM `GeneralDetailSubjectLink` WHERE `GeneralDetailSubjectLink`.`generalSubjectID` = " . $id . " AND detailedSubjectID <> -1;";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		// Check resources to see if in use
 		if ($result['inUse'] == 0) {
 			$query = "SELECT count(*) inUse FROM `ResourceSubject` 
-				INNER JOIN `GeneralDetailsubjectlink` 
-				ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailsubjectlink`.`generalDetailSubjectLinkID`)
-				WHERE `GeneralDetailsubjectlink`.`generalSubjectID` = " . $id ;
+				INNER JOIN `GeneralDetailSubjectLink` 
+				ON (`ResourceSubject`.`generalDetailSubjectLinkID` = `GeneralDetailSubjectLink`.`generalDetailSubjectLinkID`)
+				WHERE `GeneralDetailSubjectLink`.`generalSubjectID` = " . $id ;
 				
 			$result = $this->db->processQuery($query, 'assoc');
 		}

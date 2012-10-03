@@ -978,7 +978,7 @@ class Resource extends DatabaseObject {
 		}		
 
 		if ($search['detailedSubjectID'] == 'none'){
-			$whereAdd[] = "((GDLINK.detailedSubjectID IS NULL) OR (GDLINK.detailedSubjectID = '0'))";
+			$whereAdd[] = "((GDLINK.detailedSubjectID IS NULL) OR (GDLINK.detailedSubjectID = '0') OR (GDLINK.detailedSubjectID = '-1'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['detailedSubjectID']){
 			$whereAdd[] = "GDLINK.detailedSubjectID = '" . mysql_real_escape_string($search['detailedSubjectID']) . "'";

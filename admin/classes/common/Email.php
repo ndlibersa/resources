@@ -80,12 +80,12 @@ class Email extends Object {
 				$this->to = $config->settings->feedbackEmailAddress;
 			}
 		}
-		
+
 		if ($config->settings->testMode == 'Y') {
       if ($config->settings->testModeEmailAddress) {
         $testEmail = $config->settings->testModeEmailAddress;
       } else {
-        $testEmail = $config->settings->feedbackEmailAddress
+        $testEmail = $config->settings->feedbackEmailAddress;
       }
 		  if ($testEmail) {
 		    $updatedMessage = "Original To: ".$this->to."\n\n".$this->message;

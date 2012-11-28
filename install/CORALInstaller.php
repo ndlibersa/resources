@@ -12,10 +12,12 @@ class CORALInstaller {
   
   protected $db;
   public $error;
+  protected $statusNotes;
   protected $config;
   protected $updates = array(
     "1.1" => array(
       "privileges" => array("ALTER","CREATE"),
+      "installedTablesCheck" => array("CatalogingStatus"),
       "description" => "<p>The 1.1 update to the CORAL Resources module includes a number of enhancements:</p>
       <ul>
         <li>Added a cataloging tab to resource records, allowing tracking of cataloging details and notes.</li>
@@ -31,6 +33,7 @@ class CORALInstaller {
     ),
     "1.2" => array(
       "privileges" => array("ALTER","CREATE"),
+      "installedTablesCheck" => array("ResourceSubject"),
       "description" => "<p>The 1.2 update to the CORAL Resources module includes a number of enhancements:</p>
       <ul>
         <li>Added coverage to the resource record.</li>
@@ -48,9 +51,13 @@ class CORALInstaller {
   );
   
   public function __construct() {
+    $this->statusNotes = array();
     if (is_file($this->configFilePath())) {
+      $this->statusNotes['config_file'] = "Configuration file found: ". $this->configFilePath();
       $this->config = new Configuration();
       $this->connect();
+    } else {
+      $this->statusNotes['config_file'] = "Configuration file not present: ". $this->configFilePath();
     }
   }
   
@@ -77,8 +84,11 @@ class CORALInstaller {
 		}
 		
 		if ($this->error) {
+      $this->statusNotes['database_connection'] = "Database connection failed: ".$this->error;
 		  $this->db = null;
-		}
+		} else {
+      $this->statusNotes['database_connection'] = "Database connection successful";
+    }
 	}
 	
 	public function query($sql) {
@@ -192,8 +202,9 @@ class CORALInstaller {
   }
   
   public function tableExists($table) {
-    foreach ($this->query("SHOW TABLES") as $row) {
-      if (strtolower($row[0]) == strtolower($table)) {
+    $query = "SELECT count(*) count FROM information_schema.`COLUMNS` WHERE table_schema = '" . $this->config->database->name . "' AND table_name='". $table ."'";
+    foreach ($this->query($query) as $row) {
+      if ($row['count'] > 0) {
         return true;
       }
     }
@@ -207,14 +218,21 @@ class CORALInstaller {
   
   public function installed() {
     if ($this->isDatabaseConfigValid()) {
-      foreach (array("Resource","Workflow") as $table) {
+      $installedTablesCheck = array("Resource","Workflow");
+      foreach ($installedTablesCheck as $table) {
         if (!$this->tableExists($table)) {
+          $this->statusNotes["installed"] = "Module not installed. Could not find table: ".$table;
           return false;
         }
       }
+      $this->statusNotes["installed"] = "Module already installed. Found tables: ".implode(", ", $installedTablesCheck);
       return true;
     }
     return false;
+  }
+
+  public function debuggingNotes() {
+    return "<h4>Installation Debugging:</h4><p>".implode('<br/>', $this->statusNotes)."</p>";
   }
   
   public function getNextUpdateVersion() {
@@ -226,17 +244,21 @@ class CORALInstaller {
   }
   
   public function isUpdateReady($version) {
-    return $this->getNextUpdateVersion() == $version;
+    return $this->installed() && $this->getNextUpdateVersion() == $version;
   }
   
   public function isUpdateInstalled($version) {
     if ($this->installed()) {
-      switch ($version) {
-        case "1.1":
-          return $this->tableExists("CatalogingStatus");
-        case "1.2":
-          return $this->tableExists("ResourceSubject");
-		  
+      $installedTablesCheck = $this->updates[$version]["installedTablesCheck"];
+      if ($installedTablesCheck) {
+        foreach ($installedTablesCheck as $table) {
+          if (!$this->tableExists($table)) {
+            $this->statusNotes["version_".$version] = "Version $version not installed. Could not find table: ".$table;
+            return false;
+          }
+        }
+        $this->statusNotes["version_".$version] = "Version $version already installed. Found tables: ".implode(", ", $installedTablesCheck);
+        return true;
       }
     }
     return false;
@@ -245,12 +267,21 @@ class CORALInstaller {
   public function getUpdate($version) {
     return $this->updates[$version];
   }
+
+  public function upToDate() {
+    if (!$this->installed() || $this->getNextUpdateVersion()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   
   public function header($title = 'CORAL Installation') {
     include('header.php');  
   }
   
   public function footer() {
+    $installer = $this;
     include('footer.php');  
   }
 }

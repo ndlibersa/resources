@@ -807,6 +807,6 @@ if ($step == "3"){
 <br />
 </center>
 
-
-</body>
-</html>
+<?php
+$installer->footer();
+?>

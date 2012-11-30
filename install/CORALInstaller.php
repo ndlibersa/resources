@@ -40,7 +40,7 @@ class CORALInstaller {
         <li>Added an alternative URL to the resources record.</li>
         <li>Add subject terms to the resource record.</li>
         <li>Changed how the related products are displayed for the resource.</li>		
-        <li>Added defaultSort to the configuration.ini.  If used this changes the default sort order for the resources.  Example: defaultsort=\"TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc\"</li>				
+        <li>Added defaultsort to the configuration.ini.  If used this changes the default sort order for the resources.  Example: defaultsort=\"TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) asc\"</li>				
       </ul> 
       <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. No changes to the configuration file are required.  Database structure changes include:</p>
     	<ul>

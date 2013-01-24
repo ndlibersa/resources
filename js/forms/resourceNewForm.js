@@ -109,7 +109,6 @@
 	 $("#providerText").autocomplete('ajax_processing.php?action=getOrganizationList', {
 		minChars: 2,
 		max: 20,
-		autoFill: true,
 		mustMatch: false,
 		width: 223,
 		delay: 10,

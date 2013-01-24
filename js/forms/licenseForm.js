@@ -37,7 +37,6 @@
 	 $(".licenseName").autocomplete('ajax_processing.php?action=getLicenseList', {
 		minChars: 2,
 		max: 20,
-		autoFill: true,
 		mustMatch: false,
 		width: 265,
 		delay: 10,
@@ -179,7 +178,6 @@
 			$('.newLicenseTable').children().children().children().children('.licenseName').autocomplete('ajax_processing.php?action=getLicenseList', {
 				minChars: 2,
 				max: 20,
-				autoFill: true,
 				mustMatch: false,
 				width: 265,
 				delay: 10,

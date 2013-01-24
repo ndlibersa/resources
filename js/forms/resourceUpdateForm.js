@@ -65,7 +65,6 @@
 	 $("#parentResourceName").autocomplete('ajax_processing.php?action=getResourceList', {
 		minChars: 2,
 		max: 20,
-		autoFill: true,
 		mustMatch: false,
 		width: 179,
 		delay: 10,
@@ -95,7 +94,6 @@
 	 $(".organizationName").autocomplete('ajax_processing.php?action=getOrganizationList', {
 		minChars: 2,
 		max: 20,
-		autoFill: true,
 		mustMatch: false,
 		width: 164,
 		delay: 10,
@@ -305,7 +303,6 @@
 			$('.newOrganizationTable').children().children().children().children('.organizationName').autocomplete('ajax_processing.php?action=getOrganizationList', {
 				minChars: 2,
 				max: 20,
-				autoFill: true,
 				mustMatch: false,
 				width: 164,
 				delay: 10,

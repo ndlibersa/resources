@@ -46,7 +46,6 @@ $(function(){
 	$("#search_organization").autocomplete('ajax_processing.php?action=getOrganizationList', {
 		minChars: 2,
 		max: 20,
-		autoFill: true,
 		mustMatch: true,
 		width: 142,
 		delay: 20,

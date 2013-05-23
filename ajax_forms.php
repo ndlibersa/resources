@@ -904,7 +904,8 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;'>
-						<input type='text' value = '<?php echo $resourceAlias['shortName']; ?>' style='width:125px;' class='changeInput aliasName' />
+						
+						<input type='text' value = '<?php echo htmlentities($resourceAlias['shortName'], ENT_QUOTES); ?>' style='width:125px;' class='changeInput aliasName' />
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:37px;'>

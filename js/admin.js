@@ -227,20 +227,19 @@ function updateSubjectsTable(){
 
 
  function submitData(){
- 
+
 	$.ajax({
           type:       "POST",
           url:        "ajax_processing.php?action=updateData",
           cache:      false,
-          data:       { className: $("#editClassName").val(), updateID: $("#editUpdateID").val(), shortName: $('#updateVal').val() },
-          success:    function(html) { 
+          data:       { className: $("#editClassName").val(), updateID: $("#editUpdateID").val(), shortName: $('#updateVal').val(), stats: $('#stats').attr('checked') },
+          success:    function(html) {
           	updateTable($("#editClassName").val());
           	window.parent.tb_remove();
           }
        });
 
  }
-
 
 
  function submitUserData(){

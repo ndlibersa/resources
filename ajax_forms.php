@@ -223,8 +223,8 @@ switch ($_GET['action']) {
 					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='resourceAltURL'>Alt URL:</label></td>
 					<td><input type='text' id='resourceAltURL' style='width:220px;' class='changeInput' value='<?php echo $resource->resourceAltURL; ?>' /><span id='span_error_resourceAltURL' class='smallDarkRedText'></span></td>
-					</tr>					
-					
+					</tr>
+
 				</table>
 			</td>
 			</tr>
@@ -659,8 +659,8 @@ switch ($_GET['action']) {
 					<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceAltURL'>Alt URL:</label></td>
 					<td><input type='text' id='resourceAltURL' name='resourceAltURL' value = '<?php echo $resource->resourceAltURL; ?>' style='width:260px;' class='changeInput'  /></td>
-					</tr>					
-					
+					</tr>
+
 					</table>
 
 				</td>
@@ -904,7 +904,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;'>
-						
+
 						<input type='text' value = '<?php echo htmlentities($resourceAlias['shortName'], ENT_QUOTES); ?>' style='width:125px;' class='changeInput aliasName' />
 						</td>
 
@@ -1676,7 +1676,7 @@ switch ($_GET['action']) {
 					<td colspan='3'>
 						<input type='text' id='coverageText' name='coverageText' value = "<?php echo $resource->coverageText; ?>" style='width:405px;' class='changeInput'  />
 					</td>
-				</tr>	
+				</tr>
 				</table>
 			</td>
 			</tr>
@@ -2114,7 +2114,7 @@ switch ($_GET['action']) {
 			</tr>
 
 			<tr>
-		
+
 			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b>Type:</b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 
@@ -2216,6 +2216,13 @@ switch ($_GET['action']) {
 			<tr>
 			<td><input type='text' id='updateVal' value='<?php echo $instance->shortName; ?>' style='width:190px;'/></td>
 			</tr>
+			<?php
+				if($className == 'ResourceType' && ($config->settings->usageModule == 'Y')){
+					if($instance->includeStats == 1){$stats = 'checked';}else{$stats='';}
+					echo "<tr><td><label for='stats'>Show stats button?</label>";
+					echo "<input type='checkbox' id='stats' ".$stats." /></td></tr>";
+				}
+			?>
 			</table>
 
 		</td>
@@ -2960,7 +2967,7 @@ switch ($_GET['action']) {
 				<select class='changeSelect loginID' style='width:145px;'>
 				<option value=''></option>
 				<?php
-				
+
 				foreach ($allUserArray as $ugUser){
 					$userObj = new User(new NamedArguments(array('primaryKey' => $ugUser['loginID'])));
 					$ddDisplayName = $userObj->getDDDisplayName;
@@ -3088,7 +3095,7 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-																	
+
 				<td style='text-align:left'><input type='button' value='submit' name='submitGeneralSubjectForm' id ='submitGeneralSubjectForm'></td>
 				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
@@ -3141,7 +3148,7 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-																	
+
 				<td style='text-align:left'><input type='button' value='submit' name='submitDetailedSubjectForm' id ='submitDetailedSubjectForm'></td>
 				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
@@ -3156,8 +3163,8 @@ switch ($_GET['action']) {
 
 		break;
 
-		
-		
+
+
     case 'getGeneralDetailSubjectForm':
     	if (isset($_GET['generalSubjectID'])) $generalSubjectID = $_GET['generalSubjectID']; else $generalSubjectID = '';
     	$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalSubjectID)));
@@ -3174,7 +3181,7 @@ switch ($_GET['action']) {
 		?>
 		<div id='div_detailedSubjectForm'>
 		<form id='detailedSubjectForm'>
-		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>		
+		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>
 
 		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo "Add / Edit Subject Relationships"; ?></span></div>
 
@@ -3224,7 +3231,7 @@ switch ($_GET['action']) {
 							<select class='changeSelect detailedSubjectID' style='width:145px;'>
 								<option value=''></option>
 								<?php
-								
+
 								foreach ($allDetailedSubjectArray as $dSubject){
 									echo "<option value='" . $dSubject['detailedSubjectID'] . "'>" . $dSubject['shortName'] . "</option>\n";
 								}
@@ -3259,7 +3266,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-						<?php 
+						<?php
 							// Check to see if detail subject is in use.  If not allow removal.
 							$subjectObj = new DetailedSubject();
 							if ($subjectObj->inUse($dsSubject->detailedSubjectID, $generalSubject->generalSubjectID) == 0)  { ?>
@@ -3301,12 +3308,12 @@ switch ($_GET['action']) {
         break;
 
 
-		
+
 	case 'getResourceSubjectForm':
 	    $resourceID = $_GET['resourceID'];
 		$generalSubject = new GeneralSubject();
 		$generalSubjectArray = $generalSubject->allAsArray();
-		
+
 	?>
 		<div id='div_updateForm'>
 		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
@@ -3330,14 +3337,14 @@ switch ($_GET['action']) {
 					echo "<td>" . $generalSubject->shortName . "</td>";
 					echo "<td></td>";
 					echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . -1 . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
-					
+
 					foreach ($generalSubject->getDetailedSubjects() as $detailedSubjects){
 						echo "<tr>";
 						echo "<td></td>";
 						echo "<td>";
 						echo $detailedSubjects->shortName . "</td>";
 						echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . $detailedSubjects->detailedSubjectID . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
-						echo "</tr>";						
+						echo "</tr>";
 					}
 					echo "</tr>";
 				}
@@ -3350,15 +3357,15 @@ switch ($_GET['action']) {
 			echo "(none found)<br />";
 		}
 		?>
-		
+
 		<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceSubject.js?random=<?php echo rand(); ?>"></script>
-		
+
 		<?php
 
-		break;		
+		break;
 
 
 

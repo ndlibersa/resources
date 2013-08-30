@@ -442,6 +442,7 @@ DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceType`;
 CREATE TABLE  `_DATABASE_NAME_`.`ResourceType` (
   `resourceTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
+  `includeStats` boolean default NULL,
   PRIMARY KEY  (`resourceTypeID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

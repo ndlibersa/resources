@@ -184,24 +184,24 @@ switch ($_GET['action']) {
 			if (($parentResource->titleText) || (count($childResourceArray) > 0)){ ?>
 				<tr>
 				<td style='vertical-align:top;width:115px;'>Related Products:
-					<?php if (count($childResourceArray) > 0) { ?>				
-						<br><span style='float: right;'>Child:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span>				
-					<?php } ?>				
+					<?php if (count($childResourceArray) > 0) { ?>
+						<br><span style='float: right;'>Child:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span>
+					<?php } ?>
 				</td>
 				<td style='width:345px;'>
 				<?php
 
 					if ($parentResource->titleText){
 						echo "<span style='float: left;'>" . $parentResource->titleText . "&nbsp;&nbsp;(Parent)&nbsp;&nbsp;<a href='resource.php?resourceID=" . $parentResource->resourceID . "' target='_BLANK'><img src='images/arrow-up-right.gif' alt='view resource' title='View " . $parentResource->titleText . "' style='vertical-align:top;'></a></span><br />";
-					} else { 
-						echo "<br />"; 
+					} else {
+						echo "<br />";
 					}
 
 				?>
 
-				<?php 
-			
-				if (count($childResourceArray) > 0) { ?>				
+				<?php
+
+				if (count($childResourceArray) > 0) { ?>
 					<?php
 					foreach ($childResourceArray as $childResource){
 						$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
@@ -213,7 +213,7 @@ switch ($_GET['action']) {
 					</td>
 				</tr>
 
-			<?php 
+			<?php
 				}
 			}
 
@@ -272,7 +272,7 @@ switch ($_GET['action']) {
 				</tr>
 			<?php
 			}
-			
+
 			if ($resource->resourceAltURL) { ?>
 				<tr>
 				<td style='vertical-align:top;width:115px;'>Alt URL:</td>
@@ -296,7 +296,7 @@ switch ($_GET['action']) {
 
 		<br />
 		<br />
-		
+
 		<?php
 
 		//get subjects for this tab
@@ -308,7 +308,7 @@ switch ($_GET['action']) {
  			foreach (array_keys($instance->attributeNames) as $attributeName) {
  				$sanitizedInstance[$attributeName] = $instance->$attributeName;
  			}
-		
+
 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
  			array_push($generalDetailSubjectIDArray, $sanitizedInstance);
 
@@ -323,49 +323,49 @@ switch ($_GET['action']) {
 				<th>
 				</th>
 				<th>
-				</th>				
+				</th>
 				</tr>
-				<?php 
+				<?php
 					$generalSubjectID = 0;
-					foreach ($generalDetailSubjectIDArray as $generalDetailSubjectID){ 
+					foreach ($generalDetailSubjectIDArray as $generalDetailSubjectID){
 						$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalDetailSubjectID[generalSubjectID])));
-						$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $generalDetailSubjectID[detailedSubjectID])));					
-						
+						$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $generalDetailSubjectID[detailedSubjectID])));
+
 				?>
 						<tr>
 							<td>
-								<?php if ($generalDetailSubjectID['generalSubjectID'] != $generalSubjectID) { 
-										echo $generalSubject->shortName; 
+								<?php if ($generalDetailSubjectID['generalSubjectID'] != $generalSubjectID) {
+										echo $generalSubject->shortName;
 											// Allow deleting of the General Subject if no Detail Subjects exist
 											if (in_array($generalDetailSubjectID['generalSubjectID'], $generalDetailSubjectIDArray[0], true) > 1) {
 												$canDelete = false;
 											} else {
 												$canDelete = true;
 											}
-										
+
 									} else {
-										echo "&nbsp;"; 
-										$canDelete = true;	
+										echo "&nbsp;";
+										$canDelete = true;
 									}
 								?>
 							</td>
-							
+
 							<td>
 								<?php echo $detailedSubject->shortName; ?>
-							</td>		
-							
+							</td>
+
 							<td style='width:50px;'>
 								<?php if ($user->canEdit() && $canDelete){ ?>
 
 
 									<a href='javascript:void(0);' tab='Product' class='removeResourceSubjectRelationship' generalDetailSubjectID='<?php echo $generalDetailSubjectID[generalDetailSubjectLinkID]; ?>' resourceID='<?php echo $resourceID; ?>'><img src='images/cross.gif' alt='remove subject' title='remove subject'></a>
 								<?php } ?>
-							</td>							
-							
-							
+							</td>
+
+
 
 						</tr>
-						
+
 				<?php
 						$generalSubjectID = $generalDetailSubjectID['generalSubjectID'];
 					}
@@ -375,16 +375,16 @@ switch ($_GET['action']) {
 			</table>
 		<?php
 
-		
+
 
 		if ($user->canEdit()){
 		?>
 			<a href='ajax_forms.php?action=getResourceSubjectForm&height=233&width=425&tab=Product&resourceID=<?php echo $resourceID; ?>&modal=true' class='thickbox'>add new subject</a>
 		<?php
 		}
-						
 
-		
+
+
 		?>
 		<br />
 		<br />
@@ -1595,18 +1595,18 @@ switch ($_GET['action']) {
 				if ($parentResource->titleText){
 					echo "<div class='rightPanelHeader'>Parent Record</div>";
 					echo "<div class='rightPanelLink'><a href='resource.php?resourceID=" . $parentResource->resourceID . "' target='_BLANK' class='helpfulLink'>" . $parentResource->titleText . "</a></div>";
-					echo "</br>";					
+					echo "</br>";
 				}
 
-				if ((count($childResourceArray) > 0)){ 				
+				if ((count($childResourceArray) > 0)){
 					echo "<div class='rightPanelHeader'>Child Record(s)</div>";
-				
+
 					foreach ($childResourceArray as $childResource){
 						$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
 						echo "<div class='rightPanelLink'><a href='resource.php?resourceID=" . $childResourceObj->resourceID . "' target='_BLANK' class='helpfulLink'>" . $childResourceObj->titleText . "</a></div>";
 					}
 				}
-				
+
 				?>
 			</div>
 
@@ -1642,6 +1642,25 @@ switch ($_GET['action']) {
 				}
 
 				?>
+
+			</div>
+
+		<?php
+		}
+		$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $resource->resourceTypeID)));
+		//echo $resourceType->shortName . " " . $resource->resourceTypeID;
+		if (($resourceType->includeStats ==  1) && ($config->settings->usageModule == 'Y')){
+		?>
+			<div style='background-color:white; width:219px; padding:7px;'>
+				<div class='rightPanelHeader'>Usage Statistics Module</div>
+
+				<?php
+			echo "<form method='post' action='/reports/report.php' target='_blank'>";
+			echo "<input type='hidden' name='reportID' value='1'>";
+			echo "<input type='hidden' name='prm_21' value='".$resource->titleText."'>";
+			echo "<input type='submit' value='Get Statistics'>";
+			echo "</form>";
+							?>
 
 			</div>
 
@@ -1907,13 +1926,13 @@ switch ($_GET['action']) {
 
 	case 'getSearchResources':
     Resource::setSearch($_POST['search']);
-    
+
     $queryDetails = Resource::getSearchDetails();
     $whereAdd = $queryDetails["where"];
     $page = $queryDetails["page"];
     $orderBy = $queryDetails["order"];
     $recordsPerPage = $queryDetails["perPage"];
-    
+
     //numbers to be displayed in records per page dropdown
 		$recordsPerPageDD = array(10,25,50,100);
 
@@ -2497,7 +2516,7 @@ switch ($_GET['action']) {
 				<th>&nbsp;</th>
 				</tr>
 				<?php
-	
+
 				foreach($instanceArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
@@ -2538,19 +2557,19 @@ switch ($_GET['action']) {
 				<th>&nbsp;</th>
 				</tr>
 				<?php
-					
+
 				foreach($generalSubjectArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
 					echo "<td><a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . "GeneralSubject" . "&updateID=" . $instance[lcfirst("GeneralSubject") . 'ID'] . "&height=128&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-						
+
 						$generalSubject = new GeneralSubject();
 						if ($generalSubject->inUse($instance[lcfirst("GeneralSubject") . 'ID']) == 0) {
 							echo "<td><a href='javascript:deleteGeneralSubject(\"GeneralSubject\", " . $instance[lcfirst("GeneralSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 						} else {
 							echo "<td><img src='images/do_not_enter.png' alt='subject in use' title='subject in use' /></td>";
 						}
-						
+
 					echo "</tr>";
 				}
 
@@ -2563,14 +2582,14 @@ switch ($_GET['action']) {
 		}
 
 		echo "<a href='ajax_forms.php?action=getGeneralSubjectUpdateForm&className=" . "GeneralSubject" . "&updateID=&height=145&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst("GeneralSubject"))) . "</a>";
-		
+
 		?>
-		
+
 		<br /><br />
-		
+
 		<?php
-		echo "<div class='adminRightHeader'>Detailed Subject</div>";		
-		
+		echo "<div class='adminRightHeader'>Detailed Subject</div>";
+
 		if (count($detailedSubjectArray) > 0){
 			?>
 			<table class='linedDataTable'>
@@ -2580,7 +2599,7 @@ switch ($_GET['action']) {
 				<th>&nbsp;</th>
 				</tr>
 				<?php
-					
+
 				foreach($detailedSubjectArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
@@ -2590,7 +2609,7 @@ switch ($_GET['action']) {
 									echo "<td><a href='javascript:deleteDetailedSubject(\"DetailedSubject\", " . $instance[lcfirst("DetailedSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 						} else {
 							echo "<td><img src='images/do_not_enter.png' alt='subject in use' title='subject in use' /></td>";
-						}					
+						}
 					echo "</tr>";
 				}
 
@@ -2604,8 +2623,8 @@ switch ($_GET['action']) {
 
 		echo "<a href='ajax_forms.php?action=getDetailSubjectUpdateForm&className=" . "DetailedSubject" . "&updateID=&height=145&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst("DetailedSubject"))) . "</a>";
 
-		?>		
-		
+		?>
+
 		<br /><br />
 
 		<?php

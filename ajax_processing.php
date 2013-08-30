@@ -108,8 +108,8 @@ switch ($_GET['action']) {
 		$resource->storageLocationID		= '';
 		$resource->registeredIPAddresses 	= '';
 		$resource->providerText			 	= $_POST['providerText'];
-		$resource->coverageText 			= '';	
-		
+		$resource->coverageText 			= '';
+
 		if ($_POST['resourceURL'] != 'http://'){
 			$resource->resourceURL = $_POST['resourceURL'];
 		}else{
@@ -121,7 +121,7 @@ switch ($_GET['action']) {
 		}else{
 			$resource->resourceAltURL = '';
 		}
-		
+
 		try {
 			$resource->save();
 			echo $resource->primaryKey;
@@ -479,7 +479,7 @@ switch ($_GET['action']) {
 
 		$resource->authenticationTypeID 	= $_POST['authenticationTypeID'];
 		$resource->accessMethodID 			= $_POST['accessMethodID'];
-		$resource->coverageText 			= $_POST['coverageText'];			
+		$resource->coverageText 			= $_POST['coverageText'];
 		$resource->authenticationUserName 	= $_POST['authenticationUserName'];
 		$resource->authenticationPassword	= $_POST['authenticationPassword'];
 		$resource->storageLocationID		= $_POST['storageLocationID'];
@@ -665,13 +665,13 @@ switch ($_GET['action']) {
 		$attachment = new Attachment();
 
 		$exists = 0;
-    
+
     if (!is_writable("attachments")) {
       echo 3;
       break;
     }
-    
-    
+
+
 		//first check that it doesn't have any offending characters
 		if ((strpos($uploadAttachment,"'") > 0) || (strpos($uploadAttachment,'"') > 0) || (strpos($uploadAttachment,"&") > 0) || (strpos($uploadAttachment,"<") > 0) || (strpos($uploadAttachment,">") > 0)){
 			echo "2";
@@ -756,6 +756,9 @@ switch ($_GET['action']) {
  		$className = $_POST['className'];
  		$updateID = $_POST['updateID'];
  		$shortName = $_POST['shortName'];
+ 		if($className=="ResourceType"){
+ 			$includeStats = $_POST['stats'];
+ 		}
 
 		if ($updateID != ''){
 			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
@@ -764,6 +767,15 @@ switch ($_GET['action']) {
 		}
 
 		$instance->shortName = $shortName;
+		if($className == "ResourceType"){
+			if($includeStats == 'true'){
+				$includeStats = 1;
+			}else{
+				$includeStats = 0;
+			}
+			$instance->includeStats = $includeStats;
+		}
+
 
 		try {
 			$instance->save();
@@ -774,8 +786,8 @@ switch ($_GET['action']) {
  		break;
 
 
-	
-		
+
+
      case 'updateCurrency':
  		$editCurrencyCode = $_POST['editCurrencyCode'];
  		$currencyCode = $_POST['currencyCode'];
@@ -1185,7 +1197,7 @@ switch ($_GET['action']) {
 		break;
 
 	case 'deleteGeneralSubject':
-		
+
  		$className = $_GET['class'];
  		$deleteID = $_GET['id'];
 
@@ -1199,8 +1211,8 @@ switch ($_GET['action']) {
 			}
 
 		break;
-		
-		
+
+
 	case 'deleteDetailedSubject':
 
  		$className = $_GET['class'];
@@ -1219,7 +1231,7 @@ switch ($_GET['action']) {
 
 
 	case 'submitDetailSubject':
-	
+
  		$generalSubjectID = $_POST['generalSubjectID'];
 
 		if ($generalSubjectID!=''){
@@ -1227,7 +1239,7 @@ switch ($_GET['action']) {
 		}else{
 			$generalSubject = new GeneralSubject();
 		}
-							
+
 		// Update the General Subject if needed
 		$generalSubject->shortName = str_replace("'", "''", $_POST['shortName']);
 
@@ -1240,15 +1252,15 @@ switch ($_GET['action']) {
 			$detailSubjectArray = explode(':::',$_POST['detailSubjectsList']);
 
 			$detailSubjectIDs = "(-1";
-			
+
 			// Update the GeneralDetailSubject Links
 			foreach ($detailSubjectArray as $key => $value){
 				if ($value){
-				
+
 					$generalDetailSubjectLink = new GeneralDetailSubjectLink();
 					$generalDetailSubjectLink->detailedSubjectID = $value;
 					$generalDetailSubjectLink->generalSubjectID = $generalSubjectID;
-					
+
 					// Add any Detail Subject Links that are new
 					if ($generalDetailSubjectLink->duplicateCheck() == 0 ) {
 						// Add the new link
@@ -1262,7 +1274,7 @@ switch ($_GET['action']) {
 					$detailSubjectIDs = $detailSubjectIDs . ', ' . $value;
 				}
 			}
-			
+
 			$detailSubjectIDs = $detailSubjectIDs . ')';
 			$generalDetailSubjectLink = new GeneralDetailSubjectLink();
 			// Delete the links that are no longer in use.
@@ -1289,13 +1301,13 @@ switch ($_GET['action']) {
 		if (!isset($generalSubjectID)) {
 			$generalSubjectID = -1;
 		}
-		
+
 		$generalDetailSubjectLink = new GeneralDetailSubjectLink();
 		$generalDetailSubjectLinkID = $generalDetailSubjectLink->getGeneralDetailID($generalSubjectID, $detailSubjectID);
-		
+
 		$resourceSubject->resourceID = $resourceID;
 		$resourceSubject->generalDetailSubjectLinkID = $generalDetailSubjectLinkID;
-		
+
 		// Check to see if the subject has already been associated with the resouce.  If not then save.
 		if ($resourceSubject->duplicateCheck($resourceID, $generalDetailSubjectLinkID) == 0) {
 			try {
@@ -1307,8 +1319,8 @@ switch ($_GET['action']) {
 
 		break;
 
-		
-		
+
+
 	case 'removeResourceSubjectRelationship':
 		$generalDetailSubjectID = $_GET['generalDetailSubjectID'];
 		$resourceID = $_GET['resourceID'];
@@ -1321,12 +1333,12 @@ switch ($_GET['action']) {
 			echo "Subject successfully removed.";
 		} catch (Exception $e) {
 			echo $e->getMessage();
-		}		
-		
-		break;		
+		}
+
+		break;
 
     case 'updateGeneralSubject':
- 		$className = $_POST['className'];	
+ 		$className = $_POST['className'];
  		$updateID = $_POST['updateID'];
  		$shortName = trim($_POST['shortName']);
 
@@ -1345,9 +1357,9 @@ switch ($_GET['action']) {
 				echo $e->getMessage();
 			}
 		} else {
-			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";				
-		}		
-		
+			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
+		}
+
  		break;
 
     case 'updateDetailedSubject':
@@ -1371,11 +1383,11 @@ switch ($_GET['action']) {
 				echo $e->getMessage();
 			}
 		} else {
-			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";		
-		}		
+			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
+		}
 
-		
- 		break;	
+
+ 		break;
 
 
 

@@ -131,7 +131,7 @@ class Resource extends DatabaseObject {
 	//returns array of ResourcePayment objects
 	public function getResourcePayments(){
 
-		$query = "SELECT * FROM ResourcePayment WHERE resourceID = '" . $this->resourceID . "'";
+		$query = "SELECT * FROM ResourcePayment WHERE resourceID = '" . $this->resourceID . "' ORDER BY fundName";
 
 		$result = $this->db->processQuery($query, 'assoc');
 

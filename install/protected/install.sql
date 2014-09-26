@@ -271,8 +271,8 @@ CREATE TABLE  `_DATABASE_NAME_`.`Resource` (
   `resourceFormatID` int(11) default NULL,
   `orderNumber` varchar(45) default NULL,
   `systemNumber` varchar(45) default NULL,
-  `subscriptionStartDate` date default NULL,
-  `subscriptionEndDate` date default NULL,
+  `currentStartDate` date default NULL,
+  `currentEndDate` date default NULL,
   `subscriptionAlertEnabledInd` int(10) unsigned default NULL,
   `userLimitID` int(11) default NULL,
   `resourceURL` varchar(2000) default NULL,
@@ -396,6 +396,12 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourcePayment` (
   `paymentAmount` int(10) unsigned default NULL,
   `orderTypeID` int(10) unsigned default NULL,
   `currencyCode` varchar(3) NOT NULL,
+  `year` varchar(20) default NULL,
+  `subscriptionStartDate` date default NULL,
+  `subscriptionEndDate` date default NULL,
+  `costDetailsID` int(11) default NULL,
+  `costNote` text,
+  `invoiceNum` varchar(20),
   PRIMARY KEY  (`resourcePaymentID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -567,6 +573,14 @@ CREATE TABLE `_DATABASE_NAME_`.`ResourceSubject` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CostDetails`;
+CREATE TABLE `_DATABASE_NAME_`.`CostDetails` (
+  `costDetailsID` int(11) NOT NULL AUTO_INCREMENT,
+  `shortName` varchar(200) NOT NULL,
+  PRIMARY KEY (`costDetailsID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
 ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_aliasTypeID`(`aliasTypeID`),
  ADD INDEX `shortName` ( `shortName` ),
@@ -589,7 +603,10 @@ ALTER TABLE `_DATABASE_NAME_`.`ResourceFormat` ADD INDEX `shortName` ( `shortNam
 
 ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_fundName`(`fundName`),
- ADD INDEX `Index_All`(`resourceID`, `fundName`); 
+ ADD INDEX `Index_year`(`year`),
+ ADD INDEX `Index_costDetailsID`(`costDetailsID`),
+ ADD INDEX `Index_invoiceNum`(`invoiceNum`),
+ ADD INDEX `Index_All`(`resourceID`, `fundName`, `year`, `costDetailsID`, `invoiceNum`); 
  
 
 ALTER TABLE `_DATABASE_NAME_`.`ResourceNote` ADD INDEX `Index_resourceID`(`resourceID`),
@@ -642,6 +659,10 @@ ALTER TABLE `_DATABASE_NAME_`.`ResourceSubject` ADD INDEX `resourceSubjectID` ( 
  ADD INDEX `Index_All` (`resourceID` ASC, `generalDetailSubjectLinkID` ASC), 
  ADD INDEX `Index_ResourceID` (`resourceID` ASC), 
  ADD INDEX `Index_GeneralDetailLink` (`generalDetailSubjectLinkID` ASC) ;
+ 
+ALTER TABLE `_DATABASE_NAME_`.`CostDetails` ADD INDEX `costDetailsID` ( `costDetailsID` ), 
+ ADD INDEX `Index_shortName` (`shortName`),
+ ADD INDEX `Index_All`(`costDetailsID`, `shortName`);
  
 INSERT INTO `_DATABASE_NAME_`.`AccessMethod` (shortName) values ('Standalone CD');
 INSERT INTO `_DATABASE_NAME_`.`AccessMethod` (shortName) values ('External Host');

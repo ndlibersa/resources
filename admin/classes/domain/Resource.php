@@ -1260,7 +1260,7 @@ class Resource extends DatabaseObject {
 						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
 						R.updateDate updateDate, S.shortName status,
 						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL, R.resourceAltURL,
-						R.subscriptionStartDate, R.subscriptionEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
+						R.currentStartDate, R.currentEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
 						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, R.authenticationUserName, 
 						R.authenticationPassword, R.coverageText, CT.shortName catalogingType, CS.shortName catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
 						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 

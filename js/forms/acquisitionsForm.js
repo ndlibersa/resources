@@ -205,7 +205,7 @@ function submitOrderForm(){
 			 type:       "POST",
 			 url:        "ajax_processing.php?action=submitAcquisitions",
 			 cache:      false,
-			 data:       { resourceID: $("#editResourceID").val(), acquisitionTypeID: $("#acquisitionTypeID").val(), orderNumber: $("#orderNumber").val(), systemNumber: $("#systemNumber").val(), subscriptionStartDate: $("#subscriptionStartDate").val(), subscriptionEndDate: $("#subscriptionEndDate").val(), subscriptionAlertEnabledInd: $("#subscriptionAlertEnabledInd:checked").val(), purchaseSites: purchaseSitesList, orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList },
+			 data:       { resourceID: $("#editResourceID").val(), acquisitionTypeID: $("#acquisitionTypeID").val(), orderNumber: $("#orderNumber").val(), systemNumber: $("#systemNumber").val(), currentStartDate: $("#currentStartDate").val(), currentEndDate: $("#currentEndDate").val(), subscriptionAlertEnabledInd: $("#subscriptionAlertEnabledInd:checked").val(), purchaseSites: purchaseSitesList, orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList },
 			 success:    function(html) {
 				if (html){
 					$("#span_errors").html(html);

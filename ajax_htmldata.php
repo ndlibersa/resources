@@ -584,17 +584,17 @@ switch ($_GET['action']) {
 				</tr>
 			<?php } ?>
 
-			<?php if (($resource->subscriptionStartDate) && ($resource->subscriptionStartDate != '0000-00-00')) { ?>
+			<?php if (($resource->currentStartDate) && ($resource->currentStartDate != '0000-00-00')) { ?>
 			<tr>
 			<td style='vertical-align:top;width:110px;'>Subscription Start:</td>
-			<td style='width:350px;'><?php echo format_date($resource->subscriptionStartDate); ?></td>
+			<td style='width:350px;'><?php echo format_date($resource->currentStartDate); ?></td>
 			</tr>
 			<?php } ?>
 
-			<?php if (($resource->subscriptionEndDate) && ($resource->subscriptionEndDate != '0000-00-00')) { ?>
+			<?php if (($resource->currentEndDate) && ($resource->currentEndDate != '0000-00-00')) { ?>
 			<tr>
 			<td style='vertical-align:top;width:110px;'>Subscription End:</td>
-			<td style='width:350px;'><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;
+			<td style='width:350px;'><?php echo format_date($resource->currentEndDate); ?>&nbsp;&nbsp;
 			<?php if ($resource->subscriptionAlertEnabledInd == "1") { echo "<i>Expiration Alert Enabled</i>"; } ?>
 			</td>
 			</tr>

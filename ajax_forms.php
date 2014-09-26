@@ -964,16 +964,16 @@ switch ($_GET['action']) {
 		$config = new Configuration();
 
 		//some dates get in as 0000-00-00
-		if (($resource->subscriptionStartDate == "0000-00-00") || ($resource->subscriptionStartDate == "")){
+		if (($resource->currentStartDate == "0000-00-00") || ($resource->currentStartDate == "")){
 			$startDate='';
 		}else{
-			$startDate=format_date($resource->subscriptionStartDate);
+			$startDate=format_date($resource->currentStartDate);
 		}
 
-		if (($resource->subscriptionEndDate == "0000-00-00") || ($resource->subscriptionEndDate == "")){
+		if (($resource->currentEndDate == "0000-00-00") || ($resource->currentEndDate == "")){
 			$endDate='';
 		}else{
-			$endDate=format_date($resource->subscriptionEndDate);
+			$endDate=format_date($resource->currentEndDate);
 		}
 
 		//get all purchase sites for output in checkboxes
@@ -1071,13 +1071,13 @@ switch ($_GET['action']) {
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionStartDate'>Subscription Start:</label></td>
-				<td><input class='date-pick' id='subscriptionStartDate' name='subscriptionStartDate' value = '<?php echo $startDate; ?>' style='width:75px;' /></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentStartDate'>Subscription Start:</label></td>
+				<td><input class='date-pick' id='currentStartDate' name='currentStartDate' value = '<?php echo $startDate; ?>' style='width:75px;' /></td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionEndDate'>Subscription End:</label></td>
-				<td><input class='date-pick' id='subscriptionEndDate' name='subscriptionEndDate' value = '<?php echo $endDate; ?>' style='width:75px;' />
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentEndDate'>Subscription End:</label></td>
+				<td><input class='date-pick' id='currentEndDate' name='currentEndDate' value = '<?php echo $endDate; ?>' style='width:75px;' />
 				</td>
 				</tr>
 

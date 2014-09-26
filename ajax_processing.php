@@ -348,14 +348,14 @@ switch ($_GET['action']) {
 		$resourceID = $_POST['resourceID'];
 		$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
-		//first set subscription start Date for proper saving
+		//first set current start Date for proper saving
 		if ((isset($_POST['currentStartDate'])) && ($_POST['currentStartDate'] != '')){
 			$resource->currentStartDate = date("Y-m-d", strtotime($_POST['currentStartDate']));
 		}else{
 			$resource->currentStartDate= 'null';
 		}
 
-		//first set subscription start Date for proper saving
+		//first set current start Date for proper saving
 		if ((isset($_POST['currentEndDate'])) && ($_POST['currentEndDate'] != '')){
 			$resource->currentEndDate = date("Y-m-d", strtotime($_POST['currentEndDate']));
 		}else{

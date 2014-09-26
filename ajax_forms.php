@@ -323,7 +323,7 @@ switch ($_GET['action']) {
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Initial Cost</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Cost</b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -1071,12 +1071,12 @@ switch ($_GET['action']) {
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentStartDate'>Subscription Start:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentStartDate'>Sub Start:</label></td>
 				<td><input class='date-pick' id='currentStartDate' name='currentStartDate' value = '<?php echo $startDate; ?>' style='width:75px;' /></td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentEndDate'>Subscription End:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentEndDate'>Current Sub End:</label></td>
 				<td><input class='date-pick' id='currentEndDate' name='currentEndDate' value = '<?php echo $endDate; ?>' style='width:75px;' />
 				</td>
 				</tr>
@@ -1102,7 +1102,7 @@ switch ($_GET['action']) {
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Initial Cost</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Cost</b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:340px;'>
 			<tr>

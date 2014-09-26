@@ -586,14 +586,14 @@ switch ($_GET['action']) {
 
 			<?php if (($resource->currentStartDate) && ($resource->currentStartDate != '0000-00-00')) { ?>
 			<tr>
-			<td style='vertical-align:top;width:110px;'>Subscription Start:</td>
+			<td style='vertical-align:top;width:110px;'>Sub Start:</td>
 			<td style='width:350px;'><?php echo format_date($resource->currentStartDate); ?></td>
 			</tr>
 			<?php } ?>
 
 			<?php if (($resource->currentEndDate) && ($resource->currentEndDate != '0000-00-00')) { ?>
 			<tr>
-			<td style='vertical-align:top;width:110px;'>Subscription End:</td>
+			<td style='vertical-align:top;width:110px;'>Current Sub End:</td>
 			<td style='width:350px;'><?php echo format_date($resource->currentEndDate); ?>&nbsp;&nbsp;
 			<?php if ($resource->subscriptionAlertEnabledInd == "1") { echo "<i>Expiration Alert Enabled</i>"; } ?>
 			</td>
@@ -605,7 +605,7 @@ switch ($_GET['action']) {
 
 			<table class='linedFormTable' style='width:460px;'>
 			<tr>
-			<th colspan='3'>Initial Cost</th>
+			<th colspan='3'>Cost</th>
 			</th>
 			</tr>
 

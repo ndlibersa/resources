@@ -229,7 +229,7 @@ if ($resource->titleText){
 		</tr>
 
 		<?php
-		if (($resource->updateDate) && ($resource->updateDate != '0000-00-00')){
+		if (normalize_date($resource->updateDate) != '0000-00-00'){
 		?>
 
 			<tr>

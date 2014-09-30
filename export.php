@@ -21,6 +21,7 @@
 session_start();
 
 include_once 'directory.php';
+include_once 'util.php';
 
 function escape_csv($value) {
   // replace \n with \r\n
@@ -108,11 +109,7 @@ echo array_to_csv_row($columnHeaders);
 
 foreach($resourceArray as $resource) {
 
-	if ($resource['updateDate'] == "0000-00-00"){
-		$updateDateFormatted="";
-	}else{
-		$updateDateFormatted=format_date($resource['updateDate']);
-	}
+	$updateDateFormatted=normalize_date($resource['updateDate']);
   $resourceValues = array(
 	  $resource['resourceID'],
     $resource['titleText'],

@@ -20,6 +20,7 @@
 
 include_once 'directory.php';
 include_once 'user.php';
+include_once 'util.php';
 
 switch ($_GET['action']) {
 
@@ -559,7 +560,7 @@ switch ($_GET['action']) {
     	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 
-		if (($resource->archiveDate) && ($resource->archiveDate != '0000-00-00')){
+		if (normalize_date($resource->archiveDate) != '') {
 			$archiveChecked = 'checked';
 		}else{
 			$archiveChecked = '';
@@ -962,18 +963,8 @@ switch ($_GET['action']) {
 		//used to get default currency
 		$config = new Configuration();
 
-		//some dates get in as 0000-00-00
-		if (($resource->currentStartDate == "0000-00-00") || ($resource->currentStartDate == "")){
-			$startDate='';
-		}else{
-			$startDate=format_date($resource->currentStartDate);
-		}
-
-		if (($resource->currentEndDate == "0000-00-00") || ($resource->currentEndDate == "")){
-			$endDate='';
-		}else{
-			$endDate=format_date($resource->currentEndDate);
-		}
+		$startDate=normalize_date($resource->currentStartDate);
+		$endDate=normalize_date($resource->currentEndDate);
 
 		//get all purchase sites for output in checkboxes
 		$purchaseSiteArray = array();
@@ -1317,18 +1308,8 @@ switch ($_GET['action']) {
 		//used to get default currency
 		$config = new Configuration();
 
-		//some dates get in as 0000-00-00
-		if (($resource->currentStartDate == "0000-00-00") || ($resource->currentStartDate == "")){
-			$startDate='';
-		}else{
-			$startDate=format_date($resource->currentStartDate);
-		}
-
-		if (($resource->currentEndDate == "0000-00-00") || ($resource->currentEndDate == "")){
-			$endDate='';
-		}else{
-			$endDate=format_date($resource->currentEndDate);
-		}
+		$startDate=normalize_date($resource->currentStartDate);
+		$endDate=normalize_date($resource->currentEndDate);
 
 		//get all purchase sites for output in checkboxes
 		$purchaseSiteArray = array();
@@ -2015,7 +1996,7 @@ switch ($_GET['action']) {
     	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
     	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
 
-		if (($contact->archiveDate) && ($contact->archiveDate != '0000-00-00')){
+		if (normalize_date($contact->archiveDate) != '') {
 			$invalidChecked = 'checked';
 		}else{
 			$invalidChecked = '';

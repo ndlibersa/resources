@@ -103,7 +103,7 @@ switch ($_GET['action']) {
 			</tr>
 
 			<?php
-			if (($resource->archiveDate) && ($resource->archiveDate != '0000-00-00')){
+			if (!is_null_date($resource->archiveDate)){
 			?>
 
 				<tr class='lightGrayBackground'>
@@ -153,7 +153,7 @@ switch ($_GET['action']) {
 			</tr>
 
 			<?php
-			if (($resource->updateDate) && ($resource->updateDate != '0000-00-00')){
+			if (!is_null_date($resource->updateDate)){
 			?>
 
 				<tr>
@@ -584,14 +584,14 @@ switch ($_GET['action']) {
 				</tr>
 			<?php } ?>
 
-			<?php if (($resource->subscriptionStartDate) && ($resource->subscriptionStartDate != '0000-00-00')) { ?>
+			<?php if (!is_null_date($resource->subscriptionStartDate)) { ?>
 			<tr>
 			<td style='vertical-align:top;width:110px;'>Subscription Start:</td>
 			<td style='width:350px;'><?php echo format_date($resource->subscriptionStartDate); ?></td>
 			</tr>
 			<?php } ?>
 
-			<?php if (($resource->subscriptionEndDate) && ($resource->subscriptionEndDate != '0000-00-00')) { ?>
+			<?php if (!is_null_date($resource->subscriptionEndDate)) { ?>
 			<tr>
 			<td style='vertical-align:top;width:110px;'>Subscription End:</td>
 			<td style='width:350px;'><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;
@@ -1058,7 +1058,7 @@ switch ($_GET['action']) {
 				<?php
 				}
 
-				if (($contact['archiveDate'] != '0000-00-00') && ($contact['archiveDate'])) { ?>
+				if (!is_null_date($contact['archiveDate'])) { ?>
 				<tr>
 				<td style='vertical-align:top;background-color:#ebebeb; width:110px;'>No longer valid:</td>
 				<td style='background-color:#ebebeb'><i><?php echo format_date($contact['archiveDate']); ?></i></td>
@@ -1430,7 +1430,7 @@ switch ($_GET['action']) {
 
 				$classAdd = "style='background-color: white;'";
 				//make the row gray if it is complete or not started
-				if ((($resourceStep->stepEndDate) && ($resourceStep->stepEndDate != "0000-00-00")) || (!$resourceStep->stepStartDate) || ($resource->statusID == $archiveStatusID) || ($resource->statusID == $completeStatusID)){
+				if ((!is_null_date($resourceStep->stepEndDate)) || (is_null_date($resourceStep->stepStartDate)) || ($resource->statusID == $archiveStatusID) || ($resource->statusID == $completeStatusID)){
 					 $classAdd = "class='complete'";
 				}
 

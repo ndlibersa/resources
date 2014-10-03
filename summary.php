@@ -229,7 +229,7 @@ if ($resource->titleText){
 		</tr>
 
 		<?php
-		if (($resource->updateDate) && ($resource->updateDate != '0000-00-00')){
+		if (!is_null_date($resource->updateDate)){
 		?>
 
 			<tr>
@@ -453,14 +453,14 @@ if ($resource->titleText){
 	<?php } ?>
 
 
-	<?php if (($resource->subscriptionStartDate) && ($resource->subscriptionStartDate != '0000-00-00')) { ?>
+	<?php if (!is_null_date($resource->subscriptionStartDate)) { ?>
 	<tr>
 	<td style='vertical-align:top;width:150px;'>Subscription Start:</td>
 	<td><?php echo format_date($resource->subscriptionStartDate); ?></td>
 	</tr>
 	<?php } ?>
 
-	<?php if (($resource->subscriptionEndDate) && ($resource->subscriptionEndDate != '0000-00-00')) { ?>
+	<?php if (!is_null_date($resource->subscriptionEndDate)) { ?>
 	<tr>
 	<td style='vertical-align:top;width:150px;'>Subscription End:</td>
 	<td><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;

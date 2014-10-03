@@ -113,6 +113,10 @@ function format_date($mysqlDate) {
 
 }
 
+function is_null_date($date) {
+    return (!$date || $date == "0000-00-00" || $date == "");
+}
+
 function resource_sidemenu($selected_link = '') {
   global $user;
   $links = array(

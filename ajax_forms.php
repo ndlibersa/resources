@@ -560,7 +560,7 @@ switch ($_GET['action']) {
     	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 
-		if (normalize_date($resource->archiveDate) != '') {
+		if (!is_null_date($resource->archiveDate)) {
 			$archiveChecked = 'checked';
 		}else{
 			$archiveChecked = '';
@@ -1996,7 +1996,7 @@ switch ($_GET['action']) {
     	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
     	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
 
-		if (normalize_date($contact->archiveDate) != '') {
+		if (!is_null_date($contact->archiveDate)) {
 			$invalidChecked = 'checked';
 		}else{
 			$invalidChecked = '';

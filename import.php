@@ -28,7 +28,7 @@ include 'templates/header.php';
 
 // CSV configuration
 $delimiter = ';';
-$required_columns = array('titleText' => 0, 'resourceURL' => 0, 'ISSN' => 0, 'providerText' => 0);
+$required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltUrl' => 0, 'isbnOrISSN' => 0, 'providerText' => 0);
 
 if ($_POST['submit']) {
   $uploaddir = 'attachments/';
@@ -38,36 +38,13 @@ if ($_POST['submit']) {
   
   // Let's analyze this file
   if (($handle = fopen($uploadfile, "r")) !== FALSE) {
-    $row = 1;
-    while (($data = fgetcsv($handle, 0, ';')) !== FALSE) {
-      if ($row == 1) {
-        $columns_ok = true;
-        foreach ($required_columns as $required_column => $value) {
-          if (false !== ($position = array_search($required_column, $data))) {
-          } else {
-            $columns_ok = false;
-          }
-        }
-        if ($columns_ok == false) {
-          $error = "One of the required columns has not been found";
-          break;
-        } 
-      } else {
-        // Let's insert data
-        $resource = new Resource(); 
-        $resource->createLoginID    = $loginID;
-        $resource->createDate       = date( 'Y-m-d' );
-        $resource->updateLoginID    = '';
-        $resource->updateDate       = '';
-        $resource->titleText        = $data[$required_columns['titleText']];
-        $resource->isbnOrISSN       = $data[$required_columns['ISSN']];
-        $resource->resourceURL      = $data[$required_columns['resourceURL']];
-        $resource->providerText     = $data[$required_columns['providerText']];
-        $resource->statusID         = 1;
-        
-        $resource->save();
-      }
-      $row++;  
+    if (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
+      $columns_ok = true;
+      foreach ($data as $key => $value) {
+        $available_columns[$value] = $key;
+      } 
+    } else {
+      $error = 'Unable to get columns headers from the file';
     }
   } else {
     $error = 'Unable to open the uploaded file';
@@ -80,6 +57,51 @@ if ($_POST['submit']) {
   if ($error) {
     print "<p>Error: $error.</p>";
   } else {
+
+    print "<p>Please choose columns from your CSV file:</p>";
+    print "<form action=\"import.php\" method=\"post\">";
+    foreach ($required_columns as $rkey => $rvalue) {
+      print "<label for=\"$rkey\">" . $rkey . "</label><select name=\"$rkey\">";
+      print '<option value=""></option>';
+      foreach ($available_columns as $akey => $avalue) {
+        print "<option value=\"$avalue\"";
+        if ($rkey == $akey) print ' selected="selected"';
+        print ">$akey</option>";
+      } 
+      print '</select><br />';
+    }
+    print "<input type=\"hidden\" name=\"uploadfile\" value=\"$uploadfile\" />";
+    print "<input type=\"submit\" name=\"matchsubmit\" id=\"matchsubmit\" /></form>";
+  }
+
+// Process
+} elseif ($_POST['matchsubmit']) {
+  $uploadfile = $_POST['uploadfile'];
+   // Let's analyze this file
+  if (($handle = fopen($uploadfile, "r")) !== FALSE) {
+    $row = 0;
+    while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
+      if ($row == 0) next;
+
+     // Let's insert data
+        
+        $resource = new Resource(); 
+        $resource->createLoginID    = $loginID;
+        $resource->createDate       = date( 'Y-m-d' );
+        $resource->updateLoginID    = '';
+        $resource->updateDate       = '';
+        $resource->titleText        = $data[$_POST['titleText']];
+        $resource->isbnOrISSN       = $data[$_POST['isbnOrISSN']];
+        $resource->resourceURL      = $data[$_POST['resourceURL']];
+        $resource->resourceAltURL   = $data[$_POST['resourceAltURL']];
+        $resource->providerText     = $data[$_POST['providerText']];
+        $resource->statusID         = 1;
+        
+        $resource->save();
+       
+        $row++;
+
+    }
     print "<p>" . ($row - 1) . " rows have been inserted";
   }
 } else {

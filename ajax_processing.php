@@ -236,13 +236,13 @@ switch ($_GET['action']) {
 		//to determine status id
 		$status = new Status();
 
-		if (((!$resource->archiveDate) || ($resource->archiveDate == '0000-00-00')) && ($_POST['archiveInd'] == "1")){
+		if ((is_null_date($resource->archiveDate)) && ($_POST['archiveInd'] == "1")){
 			$resource->archiveDate = date( 'Y-m-d' );
 			$resource->archiveLoginID = $loginID;
 			$resource->statusID = $status->getIDFromName('archive');
 		}else if ($_POST['archiveInd'] == "0"){
 			//if archive date is currently set and being removed, mark status as complete
-			if (($resource->archiveDate != '') && ($resource->archiveDate != '0000-00-00')){
+			if (!is_null_date($resource->archiveDate)){
 				$resource->statusID = $status->getIDFromName('complete');
 			}
 			$resource->archiveDate = '';
@@ -560,7 +560,7 @@ switch ($_GET['action']) {
 		$contact->emailAddress			= $_POST['emailAddress'];
 		$contact->noteText				= $_POST['noteText'];
 
-		if (((!$contact->archiveDate) || ($contact->archiveDate == '0000-00-00')) && ($_POST['archiveInd'] == "1")){
+		if ((is_null_date($contact->archiveDate)) && ($_POST['archiveInd'] == "1")){
 			$contact->archiveDate = date( 'Y-m-d H:i:s' );
 		}else if ($_POST['archiveInd'] == "0"){
 			$contact->archiveDate = '';

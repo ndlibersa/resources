@@ -49,6 +49,32 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
+  //returns resource objects by title
+	public function getResourceByIsbnOrISSN($isbnOrISSN){
+
+		$query = "SELECT *
+			FROM Resource
+			WHERE isbnOrISSN = '" . $isbnOrISSN . "'
+			ORDER BY 1";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['resourceID'])){
+			$object = new Resource(new NamedArguments(array('primaryKey' => $result['resourceID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Resource(new NamedArguments(array('primaryKey' => $row['resourceID'])));
+				array_push($objects, $object);
+			}
+		}
+
+		return $objects;
+	}
+
 
 
 	//returns array of related resource objects

@@ -80,12 +80,15 @@ if ($_POST['submit']) {
    // Let's analyze this file
   if (($handle = fopen($uploadfile, "r")) !== FALSE) {
     $row = 0;
+    $inserted = 0;
     while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
       if ($row == 0) next;
 
-     // Let's insert data
-        
-        $resource = new Resource(); 
+      // Deduping
+      $resource = new Resource(); 
+      if (count($resource->getResourceByIsbnOrISSN($data[$_POST['isbnOrISSN']])) == 0) {
+      
+        // Let's insert data
         $resource->createLoginID    = $loginID;
         $resource->createDate       = date( 'Y-m-d' );
         $resource->updateLoginID    = '';
@@ -96,13 +99,12 @@ if ($_POST['submit']) {
         $resource->resourceAltURL   = $data[$_POST['resourceAltURL']];
         $resource->providerText     = $data[$_POST['providerText']];
         $resource->statusID         = 1;
-        
         $resource->save();
-       
-        $row++;
-
+        $inserted++;
+      }
+      $row++;
     }
-    print "<p>" . ($row - 1) . " rows have been inserted";
+    print "<p>$row rows have been processed. $inserted rows have been inserted.";
   }
 } else {
 ?>

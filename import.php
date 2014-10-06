@@ -27,10 +27,10 @@ $pageTitle='Resources import';
 include 'templates/header.php';
 
 // CSV configuration
-$delimiter = ';';
 $required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltUrl' => 0, 'isbnOrISSN' => 0, 'providerText' => 0);
 
 if ($_POST['submit']) {
+  $delimiter = $_POST['delimiter'];
   $uploaddir = 'attachments/';
   $uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
   if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploadfile)) {  
@@ -70,6 +70,7 @@ if ($_POST['submit']) {
       } 
       print '</select><br />';
     }
+    print "<input type=\"hidden\" name=\"delimiter\" value=\"$delimiter\" />";
     print "<input type=\"hidden\" name=\"uploadfile\" value=\"$uploadfile\" />";
     print "<input type=\"submit\" name=\"matchsubmit\" id=\"matchsubmit\" /></form>";
   }
@@ -77,6 +78,7 @@ if ($_POST['submit']) {
 // Process
 } elseif ($_POST['matchsubmit']) {
 
+  $delimiter = $_POST['delimiter'];
   $deduping_config = explode(',', $config->settings->importISBNDedupingColumns); 
   $uploadfile = $_POST['uploadfile'];
    // Let's analyze this file
@@ -131,6 +133,12 @@ if ($_POST['submit']) {
 <form enctype="multipart/form-data" action="import.php" method="post" id="importForm">
   <label for="uploadFile">CSV File</label>
   <input type="file" name="uploadFile" id="uploadFile" />
+  <label for="CSV delimiter">CSV delimiter</label>
+  <select name="delimiter">
+    <option value=",">, (comma)</option>
+    <option value=";">; (semicolon)</option>
+    <option value="|">| (pipe)</option>
+  </select>
   <input type="submit" name="submit" value="Upload" />
 </form>
 

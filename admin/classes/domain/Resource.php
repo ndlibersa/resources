@@ -54,8 +54,16 @@ class Resource extends DatabaseObject {
 
 		$query = "SELECT *
 			FROM Resource
-			WHERE isbnOrISSN = '" . $isbnOrISSN . "'
-			ORDER BY 1";
+			WHERE isbnOrISSN = '" . $isbnOrISSN[0] . "'";
+
+    $i = 0;
+    foreach ($isbnOrISSN as $value) {
+      if ($i == 0) next; 
+      $query .= " OR isbnOrISSN = '$value'";
+      $i++;
+    }
+
+		$query .=	" ORDER BY 1";
 
 		$result = $this->db->processQuery($query, 'assoc');
 

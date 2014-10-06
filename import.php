@@ -76,37 +76,57 @@ if ($_POST['submit']) {
 
 // Process
 } elseif ($_POST['matchsubmit']) {
+
+  $deduping_config = explode(',', $config->settings->importISBNDedupingColumns); 
   $uploadfile = $_POST['uploadfile'];
    // Let's analyze this file
   if (($handle = fopen($uploadfile, "r")) !== FALSE) {
     $row = 0;
     $inserted = 0;
     while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
-      if ($row == 0) next;
+      // Getting column names again for deduping
+      if ($row == 0) {
+        print "<p>Deduping isbnOrISSN on the following columns: " ;
+        foreach ($data as $key => $value) {
+          if (in_array($value, $deduping_config)) {
+            $deduping_columns[] = $key;
+            print $value . " ";
+          }
+        } 
+        print "</p>";
+      } else {
 
-      // Deduping
-      $resource = new Resource(); 
-      if (count($resource->getResourceByIsbnOrISSN($data[$_POST['isbnOrISSN']])) == 0) {
-      
-        // Let's insert data
-        $resource->createLoginID    = $loginID;
-        $resource->createDate       = date( 'Y-m-d' );
-        $resource->updateLoginID    = '';
-        $resource->updateDate       = '';
-        $resource->titleText        = $data[$_POST['titleText']];
-        $resource->isbnOrISSN       = $data[$_POST['isbnOrISSN']];
-        $resource->resourceURL      = $data[$_POST['resourceURL']];
-        $resource->resourceAltURL   = $data[$_POST['resourceAltURL']];
-        $resource->providerText     = $data[$_POST['providerText']];
-        $resource->statusID         = 1;
-        $resource->save();
-        $inserted++;
+        // Deduping
+        unset($deduping_values);
+        $resource = new Resource(); 
+
+        foreach ($deduping_columns as $value) {
+          $deduping_values[] = $data[$value];
+        }
+        if (count($resource->getResourceByIsbnOrISSN($deduping_values)) == 0) {
+        
+          // Let's insert data
+          $resource->createLoginID    = $loginID;
+          $resource->createDate       = date( 'Y-m-d' );
+          $resource->updateLoginID    = '';
+          $resource->updateDate       = '';
+          $resource->titleText        = $data[$_POST['titleText']];
+          $resource->isbnOrISSN       = $data[$_POST['isbnOrISSN']];
+          $resource->resourceURL      = $data[$_POST['resourceURL']];
+          $resource->resourceAltURL   = $data[$_POST['resourceAltURL']];
+          $resource->providerText     = $data[$_POST['providerText']];
+          $resource->statusID         = 1;
+          $resource->save();
+          $inserted++;
+        } 
       }
       $row++;
     }
     print "<p>$row rows have been processed. $inserted rows have been inserted.";
   }
 } else {
+
+          
 ?>
 <form enctype="multipart/form-data" action="import.php" method="post" id="importForm">
   <label for="uploadFile">CSV File</label>

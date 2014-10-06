@@ -1081,3 +1081,34 @@ select option.changeSelect{
  border: solid 1px #a5acb2;  
  color: #526972;  
 } 
+
+#importPage {
+  text-align:left;
+}
+
+#importPage form {
+  width: auto;
+}
+
+#importPage fieldset {
+  border: 1px lightgray solid;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#importPage label {
+  display:inline-block;
+  margin-bottom: 10px;
+  width: 150px;
+  margin-right: 20px;
+  vertical-align: top;
+  text-align: right;
+}
+
+#importPage p, h1 {
+  margin-bottom: 10px;
+}
+
+#importPage h1, h2 {
+  color: #2c3c42;
+}

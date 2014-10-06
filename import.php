@@ -26,6 +26,8 @@ include_once 'directory.php';
 $pageTitle='Resources import';
 include 'templates/header.php';
 
+?><div id="importPage"><h1>CSV File import</h1><?php
+
 // CSV configuration
 $required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltUrl' => 0, 'isbnOrISSN' => 0, 'providerText' => 0);
 
@@ -34,7 +36,7 @@ if ($_POST['submit']) {
   $uploaddir = 'attachments/';
   $uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
   if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploadfile)) {  
-    print '<p>The file has been successfully uploaded</p>';
+    print '<p>The file has been successfully uploaded.</p>';
   
   // Let's analyze this file
   if (($handle = fopen($uploadfile, "r")) !== FALSE) {
@@ -88,6 +90,7 @@ if ($_POST['submit']) {
     while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
       // Getting column names again for deduping
       if ($row == 0) {
+        print "<h2>Settings</h2>";
         print "<p>Deduping isbnOrISSN on the following columns: " ;
         foreach ($data as $key => $value) {
           if (in_array($value, $deduping_config)) {
@@ -95,7 +98,7 @@ if ($_POST['submit']) {
             print $value . " ";
           }
         } 
-        print "</p>";
+        print ".</p>";
       } else {
 
         // Deduping
@@ -124,6 +127,7 @@ if ($_POST['submit']) {
       }
       $row++;
     }
+    print "<h2>Results</h2>";
     print "<p>$row rows have been processed. $inserted rows have been inserted.";
   }
 } else {
@@ -131,20 +135,28 @@ if ($_POST['submit']) {
           
 ?>
 <form enctype="multipart/form-data" action="import.php" method="post" id="importForm">
+  <fieldset>
+  <legend>File selection</legend>
   <label for="uploadFile">CSV File</label>
   <input type="file" name="uploadFile" id="uploadFile" />
+  </fieldset>
+  <fieldset>
+  <legend>Import options</legend>
   <label for="CSV delimiter">CSV delimiter</label>
   <select name="delimiter">
     <option value=",">, (comma)</option>
     <option value=";">; (semicolon)</option>
     <option value="|">| (pipe)</option>
   </select>
+  </fieldset>
   <input type="submit" name="submit" value="Upload" />
 </form>
 
 <?php
 }
-
+?>
+</div>
+<?php
 //print footer
 include 'templates/footer.php';
 ?>

@@ -560,7 +560,7 @@ switch ($_GET['action']) {
     	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 
-		if (!is_null_date($resource->archiveDate)){
+		if (($resource->archiveDate) && ($resource->archiveDate != '0000-00-00')){
 			$archiveChecked = 'checked';
 		}else{
 			$archiveChecked = '';
@@ -963,13 +963,14 @@ switch ($_GET['action']) {
 		//used to get default currency
 		$config = new Configuration();
 
-		if (is_null_date($resource->subscriptionStartDate)){
+		//some dates get in as 0000-00-00
+		if (($resource->subscriptionStartDate == "0000-00-00") || ($resource->subscriptionStartDate == "")){
 			$startDate='';
 		}else{
 			$startDate=format_date($resource->subscriptionStartDate);
 		}
 
-		if (is_null_date($resource->subscriptionEndDate)){
+		if (($resource->subscriptionEndDate == "0000-00-00") || ($resource->subscriptionEndDate == "")){
 			$endDate='';
 		}else{
 			$endDate=format_date($resource->subscriptionEndDate);
@@ -1798,7 +1799,7 @@ switch ($_GET['action']) {
     	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
     	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
 
-		if (!is_null_date($contact->archiveDate)){
+		if (($contact->archiveDate) && ($contact->archiveDate != '0000-00-00')){
 			$invalidChecked = 'checked';
 		}else{
 			$invalidChecked = '';

@@ -2,9 +2,9 @@
 
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.2
+** CORAL Resources Module v. 1.0
 **
-** Copyright (c) 2010-2014 University of Notre Dame
+** Copyright (c) 2010 University of Notre Dame
 **
 ** This file is part of CORAL.
 **
@@ -17,18 +17,13 @@
 **************************************************************************************************************************
 */
 
-session_start();
+class IsbnOrIssn extends DatabaseObject {
 
-include_once 'directory.php';
-include_once 'user.php';
+	protected function defineIsbnOrIssn() {}
 
-$config = new Configuration();
-$util = new Utility();
+	protected function overridePrimaryKeyName() {}
 
-$action = $_GET['action'];
-if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_htmldata/$action.php")){
-	echo "Data action " . $action . " not set up!";
+
 }
 
 ?>
-

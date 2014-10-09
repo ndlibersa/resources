@@ -20,6 +20,8 @@
 class Resource extends DatabaseObject {
 
 	protected function defineRelationships() {}
+  
+  protected function defineIsbnOrIssn() {}
 
 	protected function overridePrimaryKeyName() {}
 
@@ -53,13 +55,13 @@ class Resource extends DatabaseObject {
 	public function getResourceByIsbnOrISSN($isbnOrISSN){
 
 		$query = "SELECT *
-			FROM Resource
-			WHERE isbnOrISSN = '" . $isbnOrISSN[0] . "'";
+			FROM IsbnOrIssn
+			WHERE isbnOrIssn = '" . $isbnOrISSN[0] . "'";
 
     $i = 0;
     foreach ($isbnOrISSN as $value) {
       if ($i == 0) next; 
-      $query .= " OR isbnOrISSN = '$value'";
+      $query .= " OR isbnOrIssn = '$value'";
       $i++;
     }
 
@@ -83,7 +85,31 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
+  public function getIsbnOrIssn() {
+    $query = "SELECT *
+      FROM IsbnOrIssn
+      WHERE resourceID = '" . $this->resourceID . "'
+      ORDER BY 1";
 
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['isbnOrIssnID'])){
+			$object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $result['isbnOrIssnID'])));
+			array_push($objects, $object);
+		} else {
+      foreach ($result as $row) {
+				$object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $row['isbnOrIssnID'])));
+				array_push($objects, $object);
+			}
+
+    }
+
+		return $objects;
+
+  }
 
 	//returns array of related resource objects
 	public function getParentResource(){
@@ -918,7 +944,7 @@ class Resource extends DatabaseObject {
 	  }
 		if ($search['resourceISBNOrISSN']) {
 		  $resourceISBNOrISSN = mysql_real_escape_string(str_replace("-","",$search['resourceISBNOrISSN']));
-		  $whereAdd[] = "REPLACE(R.isbnOrISSN,'-','') = '" . $resourceISBNOrISSN . "'";
+		  $whereAdd[] = "REPLACE(I.isbnOrIssn,'-','') = '" . $resourceISBNOrISSN . "'";
 		  $searchDisplay[] = "ISSN/ISBN: " . $search['resourceISBNOrISSN'];
 		} 
 		if ($search['fund']) {
@@ -1085,7 +1111,6 @@ class Resource extends DatabaseObject {
 
 		$page = $search['page'];
 		$recordsPerPage = $search['recordsPerPage'];
-		
 		return array("where" => $whereAdd, "page" => $page, "order" => $orderBy, "perPage" => $recordsPerPage, "display" => $searchDisplay);
   }
 
@@ -1118,7 +1143,7 @@ class Resource extends DatabaseObject {
       $groupBy = "";
     } else {
       $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, S.shortName status,
-						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
+						GROUP_CONCAT(DISTINCT A.shortName, I.isbnOrIssn ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
       $groupBy = "GROUP BY R.resourceID";
     }
 
@@ -1144,7 +1169,9 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourceAdministeringSiteLink RADSL ON R.resourceID = RADSL.resourceID
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
-									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID");
+									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
+                  LEFT JOIN IsbnOrIssn I ON R.resourceID = I.resourceID
+                  ");
 
 		$additional_joins = array();
 
@@ -1179,7 +1206,6 @@ class Resource extends DatabaseObject {
 		if ($limit) {
   	  $query .= "\nLIMIT " . $limit;
 		}
-
 		return $query;
   }
 
@@ -1293,11 +1319,11 @@ class Resource extends DatabaseObject {
 		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, CONCAT_WS(' ', CU.firstName, CU.lastName) createName,
 						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
 						R.updateDate updateDate, S.shortName status,
-						RT.shortName resourceType, RF.shortName resourceFormat, R.isbnOrISSN, R.orderNumber, R.systemNumber, R.resourceURL, R.resourceAltURL,
+						RT.shortName resourceType, RF.shortName resourceFormat, R.orderNumber, R.systemNumber, R.resourceURL, R.resourceAltURL,
 						R.currentStartDate, R.currentEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
 						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, R.authenticationUserName, 
 						R.authenticationPassword, R.coverageText, CT.shortName catalogingType, CS.shortName catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
-						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, 
+						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, I.isbnOrIssn, 
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . "
 						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '; ') aliases,
@@ -1340,6 +1366,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN AccessMethod AM ON AM.accessMethodID = R.accessMethodID
 									LEFT JOIN StorageLocation SL ON SL.storageLocationID = R.storageLocationID
 									LEFT JOIN UserLimit UL ON UL.userLimitID = R.userLimitID
+                  LEFT JOIN IsbnOrIssn I ON I.resourceID = R.resourceID
 									" . $licJoinAdd . "
 								" . $whereStatement . "
 								GROUP BY R.resourceID
@@ -1723,6 +1750,7 @@ class Resource extends DatabaseObject {
 		$this->removeResourceOrganizations();
 		$this->removeResourcePayments();
 		$this->removeAllSubjects();		
+    $this->removeAllIsbnOrIssn();
 
 
 		$instance = new Contact();
@@ -2257,6 +2285,27 @@ class Resource extends DatabaseObject {
 		$result = $this->db->processQuery($query);
 		
 	}	
+
+  public function removeAllIsbnOrIssn() {
+    $query = "DELETE
+			FROM IsbnOrIssn
+			WHERE resourceID = '" . $this->resourceID . "'";
+
+		$result = $this->db->processQuery($query);
+
+  }
+
+  public function setIsbnOrIssn($isbnorissns) {
+    $this->removeAllIsbnOrIssn();
+    foreach ($isbnorissns as $isbnorissn) {
+      if (trim($isbnorissn) != '') {
+        $isbnOrIssn = new IsbnOrIssn();
+        $isbnOrIssn->resourceID = $this->resourceID;
+        $isbnOrIssn->isbnOrIssn = $isbnorissn;
+        $isbnOrIssn->save();
+      }
+    }
+  }
 
 }
 

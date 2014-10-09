@@ -4,16 +4,20 @@
 
 		$config=new Configuration();
 
-		//get parent resource
-		$resourceRelationship = new ResourceRelationship();
-		$resourceRelationship = $resource->getParentResource();
-		$parentResource = new Resource(new NamedArguments(array('primaryKey' => $resourceRelationship->relatedResourceID)));
-
+    //get parents resources
+    $sanitizedInstance = array();
+    $instance = new Resource();
+    $parentResourceArray = array();
+    foreach ($resource->getParentResources() as $instance) {
+      foreach (array_keys($instance->attributeNames) as $attributeName) {
+        $sanitizedInstance[$attributeName] = $instance->$attributeName;
+      }
+      $sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+      array_push($parentResourceArray, $sanitizedInstance);
+    }
 
 
 		//get children resources
-		$sanitizedInstance = array();
-		$instance = new Resource();
 		$childResourceArray = array();
 		foreach ($resource->getChildResources() as $instance) {
 			foreach (array_keys($instance->attributeNames) as $attributeName) {
@@ -39,17 +43,16 @@
 		}
 		echo "</div>";
 
-		if (($parentResource->titleText) || (count($childResourceArray) > 0)){
-
-		?>
+    if ((count($parentResourceArray) > 0) || (count($childResourceArray) > 0)){ ?>
 			<div style='background-color:white; width:219px; padding:7px;'>
 				<?php
-
-				if ($parentResource->titleText){
-					echo "<div class='rightPanelHeader'>Parent Record</div>";
-					echo "<div class='rightPanelLink'><a href='resource.php?resourceID=" . $parentResource->resourceID . "' target='_BLANK' class='helpfulLink'>" . $parentResource->titleText . "</a></div>";
-					echo "</br>";
-				}
+        if ((count($parentResourceArray) > 0)){
+          echo "<div class='rightPanelHeader'>Parent Record(s)</div>";
+          foreach ($parentResourceArray as $parentResource){
+            $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
+              echo "<div class='rightPanelLink'><a href='resource.php?resourceID=" . $parentResourceObj->resourceID . "' target='_BLANK' class='helpfulLink'>" . $parentResourceObj->titleText . "</a></div>";
+          }
+        }
 
 				if ((count($childResourceArray) > 0)){
 					echo "<div class='rightPanelHeader'>Child Record(s)</div>";

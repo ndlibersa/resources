@@ -9,11 +9,13 @@
 
 		$resource->titleText 			= $_POST['titleText'];
 		$resource->descriptionText 		= $_POST['descriptionText'];
-		$resource->isbnOrISSN 			= $_POST['isbnOrISSN'];
 		$resource->resourceFormatID 	= $_POST['resourceFormatID'];
 		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
+
+    $isbnarray = json_decode($_POST['isbnOrISSN']);
+    $resource->setIsbnOrIssn($isbnarray);
 
 		//to determine status id
 		$status = new Status();
@@ -45,19 +47,20 @@
 		//first remove the existing relationship then add it back
 		$resource->removeParentResources();
 
-		if (($_POST['parentResourceName']) && ($_POST['parentResourceID']) && ($_POST['parentResourceID'] != $resourceID)){
-			$resourceRelationship = new ResourceRelationship();
-			$resourceRelationship->resourceID = $resourceID;
-			$resourceRelationship->relatedResourceID = $_POST['parentResourceID'];
-			$resourceRelationship->relationshipTypeID = '1';  //hardcoded because we're only allowing parent relationships
-
-			try {
-				$resourceRelationship->save();
-
-			} catch (Exception $e) {
-				echo $e->getMessage();
-			}
-		}
+    if (($_POST['parentResourcesID'])){
+      $parentResourcesArray = json_decode($_POST['parentResourcesID']);
+      foreach($parentResourcesArray as $parentResource) {
+        $resourceRelationship = new ResourceRelationship();
+        $resourceRelationship->resourceID = $resourceID;
+        $resourceRelationship->relatedResourceID = $parentResource;
+        $resourceRelationship->relationshipTypeID = '1';  //hardcoded because we're only allowing parent relationships
+        try {
+          $resourceRelationship->save();
+        } catch (Exception $e) {
+          echo $e->getMessage();
+        }
+      }
+    }
 
 		//next, delete and then re-insert the aliases
 		$alias = new Alias();

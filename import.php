@@ -29,7 +29,7 @@ include 'templates/header.php';
 ?><div id="importPage"><h1>CSV File import</h1><?php
 
 // CSV configuration
-$required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltUrl' => 0, 'isbnOrISSN' => 0, 'providerText' => 0);
+$required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltUrl' => 0, 'providerText' => 0);
 
 if ($_POST['submit']) {
   $delimiter = $_POST['delimiter'];
@@ -91,7 +91,7 @@ if ($_POST['submit']) {
       // Getting column names again for deduping
       if ($row == 0) {
         print "<h2>Settings</h2>";
-        print "<p>Deduping isbnOrISSN on the following columns: " ;
+        print "<p>Importing and deduping isbnOrISSN on the following columns: " ;
         foreach ($data as $key => $value) {
           if (in_array($value, $deduping_config)) {
             $deduping_columns[] = $key;
@@ -116,19 +116,20 @@ if ($_POST['submit']) {
           $resource->updateLoginID    = '';
           $resource->updateDate       = '';
           $resource->titleText        = $data[$_POST['titleText']];
-          $resource->isbnOrISSN       = $data[$_POST['isbnOrISSN']];
           $resource->resourceURL      = $data[$_POST['resourceURL']];
           $resource->resourceAltURL   = $data[$_POST['resourceAltURL']];
           $resource->providerText     = $data[$_POST['providerText']];
           $resource->statusID         = 1;
+
           $resource->save();
+          $resource->setIsbnOrIssn($deduping_values); 
           $inserted++;
         } 
       }
       $row++;
     }
     print "<h2>Results</h2>";
-    print "<p>$row rows have been processed. $inserted rows have been inserted.";
+    print "<p>" . ($row - 1) ." rows have been processed. $inserted rows have been inserted.";
   }
 } else {
 

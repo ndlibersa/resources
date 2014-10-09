@@ -10,15 +10,19 @@
 			$updateUser = new User(new NamedArguments(array('primaryKey' => $resource->updateLoginID)));
 			$archiveUser = new User(new NamedArguments(array('primaryKey' => $resource->archiveLoginID)));
 
-			//get parent resource
-			//only returns one - ResourceRelationship object
-			$resourceRelationship = new ResourceRelationship();
-			$resourceRelationship = $resource->getParentResource();
-			$parentResource = new Resource(new NamedArguments(array('primaryKey' => $resourceRelationship->relatedResourceID)));
+      //get parents resources
+      $sanitizedInstance = array();
+      $instance = new Resource();
+      $parentResourceArray = array();
+      foreach ($resource->getParentResources() as $instance) {
+        foreach (array_keys($instance->attributeNames) as $attributeName) {
+          $sanitizedInstance[$attributeName] = $instance->$attributeName;
+        }
+        $sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+        array_push($parentResourceArray, $sanitizedInstance);
+      }
 
 			//get children resources
-			$sanitizedInstance = array();
-			$instance = new Resource();
 			$childResourceArray = array();
 			foreach ($resource->getChildResources() as $instance) {
 				foreach (array_keys($instance->attributeNames) as $attributeName) {
@@ -62,7 +66,8 @@
 			<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 			<span style='float:left; vertical-align:top; max-width:400px; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $acquisitionType->shortName . " " . $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>
 
-			<span style='float:right; vertical-align:top;'><?php if ($user->canEdit()){ ?><a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&resourceID=<?php echo $resource->resourceID; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit resource'></a><?php } ?>  <?php if ($user->isAdmin){ ?><a href='javascript:void(0);' class='removeResource' id='<?php echo $resourceID; ?>'><img src='images/cross.gif' alt='remove resource' title='remove resource'></a><?php } ?></span>
+      <span style='float:right; vertical-align:top;'><?php if ($user->canEdit()){ ?><a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&resourceID=<?php echo $resource->resourceID; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit resource'></a><?php } ?>  <?php if ($user->isAdmin){ ?><a href='javascript:void(0);' class='removeResource' id='<?php echo $resourceID; ?>'><img src='images/cross.gif' alt='remove resource' title='remove resource'></a> <a href='javascript:void(0);' class='removeResourceAndChildren' id='<?php echo $resourceID; ?>'><img src='images/deleteall.png' alt='remove resource and its children' title='remove resource and its children'></a><?php } ?></span>
+
 			</th>
 			</tr>
 
@@ -155,31 +160,26 @@
 
 
 
-			if (($parentResource->titleText) || (count($childResourceArray) > 0)){ ?>
+      if ((count($parentResourceArray) > 0) || (count($childResourceArray) > 0)){ ?>
 				<tr>
 				<td style='vertical-align:top;width:115px;'>Related Products:
-					<?php if (count($childResourceArray) > 0) { ?>
-						<br><span style='float: right;'>Child:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span>
-					<?php } ?>
 				</td>
 				<td style='width:345px;'>
 				<?php
 
-					if ($parentResource->titleText){
-						echo "<span style='float: left;'>" . $parentResource->titleText . "&nbsp;&nbsp;(Parent)&nbsp;&nbsp;<a href='resource.php?resourceID=" . $parentResource->resourceID . "' target='_BLANK'><img src='images/arrow-up-right.gif' alt='view resource' title='View " . $parentResource->titleText . "' style='vertical-align:top;'></a></span><br />";
-					} else {
-						echo "<br />";
-					}
-
-				?>
-
-				<?php
+        if (count($parentResourceArray) > 0) {
+           foreach ($parentResourceArray as $parentResource){
+              $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
+            echo $parentResourceObj->titleText . "&nbsp;&nbsp;(Parent)&nbsp;&nbsp;<a href='resource.php?resourceID=" . $parentResourceObj->resourceID . "' target='_BLANK'><img src='images/arrow-up-right.gif' alt='view resource' title='View " . $parentResourceObj->titleText . "' style='vertical-align:top;'></a><br />";
+            }
+         }
 
 				if (count($childResourceArray) > 0) { ?>
 					<?php
 					foreach ($childResourceArray as $childResource){
 						$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
-						echo "<span style='float: left;'>" . $childResourceObj->titleText . "<a href='resource.php?resourceID=" . $childResourceObj->resourceID . "' target='_BLANK'><img src='images/arrow-up-right.gif' alt='view resource' title='View " . $childResourceObj->titleText . "' style='vertical-align:top;'></a></span><br />";
+            echo $childResourceObj->titleText . "<a href='resource.php?resourceID=" . $childResourceObj->resourceID . "' target='_BLANK'><img src='images/arrow-up-right.gif' alt='view resource' title='View " . $childResourceObj->titleText . "' style='vertical-align:top;'></a><br />";
+
 					}
 
 
@@ -191,11 +191,16 @@
 				}
 			}
 
-			if ($resource->isbnOrISSN){
+      if ($isbnOrIssns = $resource->getIsbnOrIssn()) {
 			?>
 			<tr>
 			<td style='vertical-align:top;width:115px;'>ISSN / ISBN:</td>
-			<td style='width:345px;'><?php echo $resource->isbnOrISSN; ?></td>
+      <td style='width:345px;'>
+      <?php 
+        foreach ($isbnOrIssns as $isbnOrIssn) {
+          print $isbnOrIssn->isbnOrIssn . "<br />";
+        }
+      ?></td>
 			</tr>
 			<?php
 			}

@@ -180,6 +180,17 @@ CREATE TABLE  `_DATABASE_NAME_`.`ExternalLoginType` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IsbnOrIssn`;
+CREATE TABLE  `_DATABASE_NAME_`.`IsbnOrIssn` (
+  `isbnOrIssnID` int(11) NOT NULL auto_increment,
+  `resourceID` int(11) default NULL,
+  `isbnOrIssn` varchar(45) NOT NULL,
+  PRIMARY KEY  (`isbnOrIssnID`),
+  KEY `resourceID` (`resourceID`),
+  KEY `isbnOrIssn` (`isbnOrIssn`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`LicenseStatus`;
 CREATE TABLE  `_DATABASE_NAME_`.`LicenseStatus` (
@@ -264,7 +275,6 @@ CREATE TABLE  `_DATABASE_NAME_`.`Resource` (
   `workflowRestartDate` date default NULL,
   `workflowRestartLoginID` varchar(45) default NULL,
   `titleText` varchar(200) default NULL,
-  `isbnOrISSN` varchar(45) default NULL,
   `descriptionText` text,
   `statusID` int(11) default NULL,
   `resourceTypeID` int(11) default NULL,

@@ -109,6 +109,9 @@ if ($_POST['submit']) {
           $deduping_values[] = $data[$value];
         }
         if (count($resource->getResourceByIsbnOrISSN($deduping_values)) == 0) {
+
+          // Convert to UTF-8
+          $data = array_map(function($row) { return mb_convert_encoding($row, 'UTF-8'); }, $data);
         
           // Let's insert data
           $resource->createLoginID    = $loginID;

@@ -281,6 +281,14 @@ switch ($_GET['action']) {
 			<?php
 			}
 
+      if ($resource->mandatoryResource) {?>
+      <tr>
+			<td style='vertical-align:top;width:150px;'>Mandatory:</td>
+			<td><?php echo ($resource->mandatoryResource) ? 'Yes' : 'No'; ?></td>
+			</tr>
+    <?php } 
+
+
 			if ($resource->descriptionText){ ?>
 				<tr>
 				<td style='vertical-align:top;width:115px;'>Description:</td>

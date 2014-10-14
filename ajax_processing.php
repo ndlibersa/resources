@@ -232,6 +232,7 @@ switch ($_GET['action']) {
 		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
+		$resource->mandatoryResource	= $_POST['mandatoryResource'];
 
 		//to determine status id
 		$status = new Status();

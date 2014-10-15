@@ -17,6 +17,7 @@
 **************************************************************************************************************************
 */
 
+
 session_start();
 include_once 'directory.php';
 //print header
@@ -129,6 +130,7 @@ if ($_POST['submit']) {
             if ($config->settings->organizationsModule == 'Y'){
               
               $dbName = $config->settings->organizationsDatabaseName;
+<<<<<<< HEAD
               // Does the organization already exists?
               $query = "SELECT count(*) AS count FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($organizationName)) . "'";
               $result = $organization->db->processQuery($query, 'assoc');
@@ -177,6 +179,52 @@ if ($_POST['submit']) {
                 }
               }
             // If we do not use the Organizations module
+=======
+              $query = "SELECT name, organizationID FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($data[$_POST['organization']])) . "'";
+              $result = $organization->db->processQuery($query, 'assoc');
+
+              if ($result['name']) {
+                $organizationLink = new ResourceOrganizationLink();
+                $organizationLink->resourceID = $resource->resourceID;
+                $organizationLink->organizationID = $result['organizationID'];
+
+                // Get role
+                $organizationRoles = $organizationRole->getArray();
+                if (($roleID = array_search($data[$_POST['role']], $organizationRoles)) != 0) {
+                  $organizationLink->organizationRoleID = $roleID;
+                } else {
+                  // If role is not found, fallback to the first one.
+                  $organizationLink->organizationRoleID = '1';
+                }
+
+                $organizationLink->save();
+                $organizationsAttached++;
+
+              } else {
+                $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . mysql_escape_string($data[$_POST['organization']]) . "'";
+                $result = $organization->db->processQuery($query);
+
+                // Get role
+                $organizationLink = new ResourceOrganizationLink();
+                $organizationRoles = $organizationRole->getArray();
+                if (($roleID = array_search($data[$_POST['role']], $organizationRoles)) != 0) {
+                  $organizationLink->organizationRoleID = $roleID;
+                } else {
+                  // If role is not found, fallback to the first one.
+                  $organizationLink->organizationRoleID = '1';
+                }
+
+
+                $organizationLink->resourceID = $resource->resourceID;
+                $organizationLink->organizationID = $result;
+                $organizationLink->save();
+
+                $organizationsInserted++;
+
+              }
+
+
+>>>>>>> R16677: Add resources import from CSV file.
             } else {
               // Search if such organization already exists
               $organizationExists = $organization->alreadyExists($organizationName);

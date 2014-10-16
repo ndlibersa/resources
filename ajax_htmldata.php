@@ -472,6 +472,7 @@ switch ($_GET['action']) {
 
     	$orderType = new OrderType(new NamedArguments(array('primaryKey' => $resource->orderTypeID)));
 		$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource->acquisitionTypeID)));
+    	$costDetails = new CostDetails(new NamedArguments(array('primaryKey' => $resource->costDetailsID)));
 
 		//get purchase sites
 		$sanitizedInstance = array();
@@ -480,7 +481,6 @@ switch ($_GET['action']) {
 		foreach ($resource->getResourcePurchaseSites() as $instance) {
 			$purchaseSiteArray[]=$instance->shortName;
 		}
-
 
 		//get payments
 		$sanitizedInstance = array();
@@ -541,7 +541,6 @@ switch ($_GET['action']) {
 			<tr>
 			<th colspan='2' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Order</span>
-
 			<?php if ($user->canEdit()){ ?>
 				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='edit order information'></a></span>
 			<?php } ?>
@@ -601,22 +600,54 @@ switch ($_GET['action']) {
 			<?php } ?>
 
 			</table>
+			<?php if ($user->canEdit()){ ?>
+				<a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAlias'>edit acquisitions information</a>
+			<?php } ?>
+			<br />
+			<br />
 			<br />
 
 			<table class='linedFormTable' style='width:460px;'>
+			<?php $enhancedCostFlag = ($config->settings->enhancedCostHistory == 'Y') ? 1 : 0 ?>
 			<tr>
-			<th colspan='3'>Cost</th>
+			<th colspan=<?php echo ($enhancedCostFlag ? 10 : 5) ?> style='vertical-align:bottom;'>
+			<span style='float:left;vertical-align:bottom;'>Cost</span>
+			<?php if ($user->canEdit()){ ?>
+				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
+			<?php } ?>
+
 			</th>
 			</tr>
+<tr>
+<th style="background-color: #ffc">Year</th>
+<?php if ($enhancedCostFlag){ ?>
+	<th style="background-color: #ffc">Sub Start</th>
+	<th style="background-color: #ffc">Sub End</th>
+<?php } ?>
+<th style="background-color: #ffc">Fund</th>
+<th style="background-color: #ffc">Payment</th>
+<?php if ($enhancedCostFlag){ ?>
+	<th style="background-color: #ffc">%</th>
+<?php } ?>
+<th style="background-color: #ffc">Type</th>
+<?php if ($enhancedCostFlag){ ?>
+	<th style="background-color: #ffc">Details</th>
+<?php } ?>
+<th style="background-color: #ffc">Notes</th>
+<?php if ($enhancedCostFlag){ ?>
+	<th style="background-color: #ffc">Invoice</th>
+<?php } ?>
+</tr>
 
 			<?php
 			if (count($paymentArray) > 0){
 				foreach ($paymentArray as $payment){
-				if ($payment['fundName']){
-					$fund = $payment['fundName'];
-				}else{
-					$fund = "&nbsp;";
-				}
+				$year = $payment['year'] ? $payment['year'] : "&nbsp;";
+				$fundName = $payment['fundName'] ? $payment['fundName'] : "&nbsp;";
+				$costNote = $payment['costNote'] ? $payment['costNote'] : "&nbsp;";
+$pctChange = 50;
+				$costDetails = $payment['costDetails'] ? $payment['costDetails'] : "&nbsp;";
+				$invoice = $payment['year'] ? $payment['year'] : "&nbsp;";
 
 				if (integer_to_cost($payment['paymentAmount'])){
 					$cost = $payment['currencyCode'] . " " . integer_to_cost($payment['paymentAmount']);
@@ -624,26 +655,39 @@ switch ($_GET['action']) {
 					$cost = "&nbsp;";
 				}
 
-
 				?>
 				<tr>
+				<td><?php echo $year; ?></td>
+<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $subStart; ?></td>
+				<td><?php echo $subEnd; ?></td>
+<?php } ?>
 				<td><?php echo $fund; ?></td>
 				<td><?php echo $cost; ?></td>
+<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $pctChange; ?></td>
+<?php } ?>
 				<td><?php echo $payment['orderType']; ?></td>
+<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $costDetails; ?></td>
+<?php } ?>
+				<td><?php echo $costNote; ?></td>
+<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $invoice; ?></td>
+<?php } ?>
 				</tr>
 
 				<?php
 				}
 			}else{
-				echo "<tr><td colspan='3'><i>No payment information available.</i></td></tr>";
+				echo "<tr><td colspan='5'><i>No payment information available.</i></td></tr>";
 			}
 			?>
 
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAlias'>edit acquisitions information</a>
+				<a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAlias'>edit cost information</a>
 			<?php } ?>
-			<br />
 			<br />
 			<br />
 			<br />

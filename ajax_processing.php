@@ -170,27 +170,34 @@ switch ($_GET['action']) {
 				$resourceOrganizationLink->save();
 			}
 
-			$orderTypeArray = array();
-			$orderTypeArray = explode(':::',$_POST['orderTypes']);
-			$fundNameArray = array();
-			$fundNameArray = explode(':::',$_POST['fundNames']);
-			$paymentAmountArray = array();
-			$paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
-			$currencyCodeArray = array();
-			$currencyCodeArray = explode(':::',$_POST['currencyCodes']);
+			$yearArray          = array();  $yearArray          = explode(':::',$_POST['years']);
+			$subStartArray      = array();  $subStartArray      = explode(':::',$_POST['subStarts']);
+			$subEndArray        = array();  $subEndArray        = explode(':::',$_POST['subEnds']);
+			$fundNameArray      = array();  $fundNameArray      = explode(':::',$_POST['fundNames']);
+			$paymentAmountArray = array();  $paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
+			$currencyCodeArray  = array();  $currencyCodeArray  = explode(':::',$_POST['currencyCodes']);
+			$orderTypeArray     = array();  $orderTypeArray     = explode(':::',$_POST['orderTypes']);
+			$costDetailsArray   = array();  $costDetailsArray   = explode(':::',$_POST['costDetails']);
+			$costNoteArray      = array();  $costNoteArray      = explode(':::',$_POST['costNotes']);
+			$invoiceArray       = array();  $invoiceArray       = explode(':::',$_POST['invoices']);
 
 			//first remove all payment records, then we'll add them back
 			$resource->removeResourcePayments();
 
 			foreach ($orderTypeArray as $key => $value){
-				if (($value) && (($paymentAmountArray[$key]) || ($fundNameArray[$key]))){
+				if (($value) && ($paymentAmountArray[$key] || $yearArray[$key] || $fundNameArray[$key] || $costNoteArray[$key])){
 					$resourcePayment = new ResourcePayment();
-					$resourcePayment->resourceID = $resourceID;
-					$resourcePayment->orderTypeID = $value;
-					$resourcePayment->fundName = $fundNameArray[$key];
-					$resourcePayment->currencyCode = $currencyCodeArray[$key];
+					$resourcePayment->resourceID    = $resourceID;
+					$resourcePayment->year          = $yearArray[$key];
+                    $resourcePayment->subscriptionStartDate = $subStartArray[$key];
+                    $resourcePayment->subscriptionEndDate   = $subEndArray[$key];
+					$resourcePayment->fundName      = $fundNameArray[$key];
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
-
+					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
+					$resourcePayment->orderTypeID   = $value;
+					$resourcePayment->costDetails   = $costDetailsArray[$key];
+					$resourcePayment->costNote      = $costNoteArray[$key];
+					$resourcePayment->invoice       = $invoiceArray[$key];
 					try {
 						$resourcePayment->save();
 					} catch (Exception $e) {
@@ -355,7 +362,7 @@ switch ($_GET['action']) {
 			$resource->currentStartDate= 'null';
 		}
 
-		//first set current start Date for proper saving
+		//first set current end Date for proper saving
 		if ((isset($_POST['currentEndDate'])) && ($_POST['currentEndDate'] != '')){
 			$resource->currentEndDate = date("Y-m-d", strtotime($_POST['currentEndDate']));
 		}else{
@@ -366,8 +373,6 @@ switch ($_GET['action']) {
 		$resource->orderNumber 						= $_POST['orderNumber'];
 		$resource->systemNumber 					= $_POST['systemNumber'];
 		$resource->subscriptionAlertEnabledInd 		= $_POST['subscriptionAlertEnabledInd'];
-
-
 
 		try {
 			$resource->save();
@@ -391,24 +396,31 @@ switch ($_GET['action']) {
 			//first remove all payment records, then we'll add them back
 			$resource->removeResourcePayments();
 
-			$orderTypeArray = array();
-			$orderTypeArray = explode(':::',$_POST['orderTypes']);
-			$fundNameArray = array();
-			$fundNameArray = explode(':::',$_POST['fundNames']);
-			$paymentAmountArray = array();
-			$paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
-			$currencyCodeArray = array();
-			$currencyCodeArray = explode(':::',$_POST['currencyCodes']);
+			$yearArray          = array();  $yearArray          = explode(':::',$_POST['years']);
+			$subStartArray      = array();  $subStartArray      = explode(':::',$_POST['subStarts']);
+			$subEndArray        = array();  $subEndArray        = explode(':::',$_POST['subEnds']);
+			$fundNameArray      = array();  $fundNameArray      = explode(':::',$_POST['fundNames']);
+			$paymentAmountArray = array();  $paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
+			$currencyCodeArray  = array();  $currencyCodeArray  = explode(':::',$_POST['currencyCodes']);
+			$orderTypeArray     = array();  $orderTypeArray     = explode(':::',$_POST['orderTypes']);
+			$costDetailsArray   = array();  $costDetailsArray   = explode(':::',$_POST['costDetails']);
+			$costNoteArray      = array();  $costNoteArray      = explode(':::',$_POST['costNotes']);
+			$invoiceArray       = array();  $invoiceArray       = explode(':::',$_POST['invoices']);
 
 			foreach ($orderTypeArray as $key => $value){
-				if (($value) && (($paymentAmountArray[$key]) || ($fundNameArray[$key]))){
+				if (($value) && ($paymentAmountArray[$key] || $yearArray[$key] || $fundNameArray[$key] || $costNoteArray[$key])){
 					$resourcePayment = new ResourcePayment();
-					$resourcePayment->resourceID = $resourceID;
-					$resourcePayment->orderTypeID = $value;
-					$resourcePayment->fundName = $fundNameArray[$key];
-					$resourcePayment->currencyCode = $currencyCodeArray[$key];
+					$resourcePayment->resourceID    = $resourceID;
+					$resourcePayment->year          = $yearArray[$key];
+                    $resourcePayment->subscriptionStartDate = $subStartArray[$key];
+                    $resourcePayment->subscriptionEndDate   = $subEndArray[$key];
+					$resourcePayment->fundName      = $fundNameArray[$key];
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
-
+					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
+					$resourcePayment->orderTypeID   = $value;
+					$resourcePayment->costDetails   = $costDetailsArray[$key];
+					$resourcePayment->costNote      = $costNoteArray[$key];
+					$resourcePayment->invoice       = $invoiceArray[$key];
 					try {
 						$resourcePayment->save();
 					} catch (Exception $e) {
@@ -417,17 +429,11 @@ switch ($_GET['action']) {
 				}
 			}
 
-
-
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
 
-
 		break;
-
-
 
 
 	case 'submitLicenseUpdate':

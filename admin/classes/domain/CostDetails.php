@@ -2,7 +2,7 @@
 
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.2
+** CORAL Resources Module v. 1.0
 **
 ** Copyright (c) 2014 University of Notre Dame
 **
@@ -17,18 +17,26 @@
 **************************************************************************************************************************
 */
 
-include_once 'directory.php';
+class CostDetails extends DatabaseObject {
 
-function is_null_date($date) {
-    return (!$date || $date == "0000-00-00" || $date == "");
+	protected function defineRelationships() {}
+
+	protected function overridePrimaryKeyName() {}
+
+
+
+	//returns number of children for this particular contact role
+	public function getNumberOfChildren(){
+
+		$query = "SELECT count(*) childCount FROM ResourcePayment WHERE costDetailsID = '" . $this->costDetailsID . "';";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		return $result['childCount'];
+
+	}
+
+
 }
 
-function normalize_date($date) {
-    if (($date == "0000-00-00") || ($date == "")){
-        return "";
-    }else{
-        return format_date($date);
-    }
-}
-
-
+?>

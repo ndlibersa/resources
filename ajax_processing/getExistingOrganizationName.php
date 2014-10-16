@@ -18,5 +18,3 @@
 
 ?>
 
-
-	//used to verify resource name/title isn't already being used as it's added

@@ -21,8 +21,8 @@ include_once 'directory.php';
 include_once 'user.php';
 
 $action = $_GET['action'];
-if (!preg_match('^[A-Za-z]+$', $action) || !(include "ajax_forms/$action.php")){
-    echo "Action " . $action . " not set up!";
+if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_forms/$action.php")){
+    echo "Form action " . $action . " not set up!";
 }
 
 ?>

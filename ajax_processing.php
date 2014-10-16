@@ -23,8 +23,8 @@ include_once 'directory.php';
 include_once 'user.php';
 
 $action = $_GET['action'];
-if (!preg_match('^[A-Za-z]+$', $action) || !(include "ajax_processing/$action.php")){
-    echo "Action " . $action . " not set up!";
+if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_processing/$action.php")){
+    echo "Processing action " . $action . " not set up!";
 }
 
 ?>

@@ -26,8 +26,8 @@ $config = new Configuration();
 $util = new Utility();
 
 $action = $_GET['action'];
-if (!preg_match('^[A-Za-z]+$', $action) || !(include "ajax_htmldata/$action.php")){
-    echo "Action " . $action . " not set up!";
+if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_htmldata/$action.php")){
+    echo "Data action " . $action . " not set up!";
 }
 
 ?>

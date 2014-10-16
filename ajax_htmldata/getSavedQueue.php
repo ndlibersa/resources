@@ -1,0 +1,68 @@
+<?php
+
+		$resourceArray = array();
+		$resourceArray = $user->getResourcesInQueue('saved');
+
+		echo "<div class='adminRightHeader'>Saved Requests</div>";
+
+
+
+		if (count($resourceArray) == "0"){
+			echo "<i>No saved requests</i>";
+		}else{
+		?>
+
+			<table class='dataTable' style='width:570px;margin-bottom:5px;'>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Date Created</th>
+				<th>Acquisition Type</th>
+				<th>Status</th>
+				<th>&nbsp;</th>
+			</tr>
+
+		<?php
+			$i=0;
+			foreach ($resourceArray as $resource){
+
+				$i++;
+				if ($i % 2 == 0){
+					$classAdd="";
+				}else{
+					$classAdd="class='alt'";
+				}
+
+				$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource['acquisitionTypeID'])));
+				$status = new Status(new NamedArguments(array('primaryKey' => $resource['statusID'])));
+
+
+
+		?>
+				<tr id='tr_<?php echo $resource['resourceID']; ?>'>
+					<td <?php echo $classAdd; ?>><a href='ajax_forms.php?action=getNewResourceForm&height=483&width=775&resourceID=<?php echo $resource['resourceID']; ?>&modal=true' class='thickbox'><?php echo $resource['resourceID']; ?></a></td>
+					<td <?php echo $classAdd; ?>><a href='ajax_forms.php?action=getNewResourceForm&height=483&width=775&resourceID=<?php echo $resource['resourceID']; ?>&modal=true' class='thickbox'><?php echo $resource['titleText']; ?></a></td>
+					<td <?php echo $classAdd; ?>><?php echo $resource['createDate']; ?></td>
+					<td <?php echo $classAdd; ?>><?php echo $acquisitionType->shortName; ?></td>
+					<td <?php echo $classAdd; ?>><?php echo $status->shortName; ?></td>
+					<td <?php echo $classAdd; ?> style='text-align:right; width:40px;'>
+					<a href='ajax_forms.php?action=getNewResourceForm&height=483&width=775&resourceID=<?php echo $resource['resourceID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit request'></a>&nbsp;
+					<a href='javascript:void(0);' class='deleteRequest' id='<?php echo $resource['resourceID']; ?>'><img src='images/cross.gif' alt='remove request' title='remove request'></a>
+					</td>
+				</tr>
+
+
+
+			<?php
+			}
+
+			echo "</table>";
+
+		}
+
+
+?>
+
+
+
+

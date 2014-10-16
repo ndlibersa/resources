@@ -7,5 +7,3 @@
 
 ?>
 
-
-	//update main header title

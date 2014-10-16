@@ -1,6 +1,4 @@
 <?php
-
-
 		$resourceArray = array();
 		$resourceArray = $user->getOutstandingTasks();
 

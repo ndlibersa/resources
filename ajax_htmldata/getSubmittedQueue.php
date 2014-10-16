@@ -1,11 +1,8 @@
 <?php
-
 		$resourceArray = array();
 		$resourceArray = $user->getResourcesInQueue('progress');
 
 		echo "<div class='adminRightHeader'>Submitted Requests</div>";
-
-
 
 		if (count($resourceArray) == "0"){
 			echo "<i>No submitted requests</i>";
@@ -54,7 +51,5 @@
 
 		}
 
-
 ?>
-
 

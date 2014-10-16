@@ -4,6 +4,5 @@
 		$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 		echo count($resource->getAttachments());
-
 ?>
 

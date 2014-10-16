@@ -5,4 +5,3 @@
 		echo $resource->titleText;
 ?>
 
-

@@ -72,11 +72,5 @@
 		<a href='ajax_forms.php?action=getAttachmentForm&height=305&width=360&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAttachment'>add new attachment</a><br /><br />
 		<?php
 		}
-
-
 ?>
-
-
-
-
 

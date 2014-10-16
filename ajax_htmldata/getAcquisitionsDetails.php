@@ -68,8 +68,7 @@
 
 		//get licenses (already returned in array)
 		$licenseArray = $resource->getLicenseArray();
-
-		?>
+?>
 			<table class='linedFormTable' style='width:460px;'>
 			<tr>
 			<th colspan='2' style='vertical-align:bottom;'>
@@ -306,6 +305,4 @@
 		}
 
 ?>
-
-
 

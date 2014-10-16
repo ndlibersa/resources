@@ -10,8 +10,7 @@
 
 		//get Detail Subjects already set up for this General subject in case it's an edit
 		$dsSubjectArray = $generalSubject->getDetailedSubjects();
-
-		?>
+?>
 		<div id='div_detailedSubjectForm'>
 		<form id='detailedSubjectForm'>
 		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>
@@ -135,10 +134,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/generalDetailSubjectForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
 

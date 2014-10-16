@@ -42,9 +42,7 @@
 		$licenseStatusArray = array();
 		$licenseStatusObj = new LicenseStatus();
 		$licenseStatusArray = $licenseStatusObj->allAsArray();
-
-
-		?>
+?>
 		<div id='div_licenseForm'>
 		<form id='licenseForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -200,13 +198,4 @@
 		<?php }else{ ?>
 		<script type="text/javascript" src="js/forms/licenseStatusOnlyForm.js?random=<?php echo rand(); ?>"></script>
 		<?php } ?>
-
-		<?php
-
-        break;
-
-
-
-
-
 

@@ -70,8 +70,7 @@
 			$providerText = $resource->providerText;
 			$orgID = '';
 		}
-
-		?>
+?>
 		<div id='div_resourceSubmitForm'>
 		<form id='resourcePromptForm'>
 
@@ -438,13 +437,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceNewForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
-
-
 

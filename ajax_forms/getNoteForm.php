@@ -8,8 +8,7 @@
 		$noteTypeArray = array();
 		$noteTypeObj = new NoteType();
 		$noteTypeArray = $noteTypeObj->allAsArrayForDD();
-
-		?>
+?>
 		<div id='div_noteForm'>
 		<form id='noteForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -69,11 +68,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceNoteForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
 

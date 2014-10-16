@@ -57,11 +57,8 @@
 
 		//get organizations (already returned in an array)
 		$orgArray = $resource->getOrganizationArray();
+?>
 
-
-
-
-		?>
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -388,14 +385,4 @@
 
 
 		<script type="text/javascript" src="js/forms/resourceUpdateForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
-
-
-
 

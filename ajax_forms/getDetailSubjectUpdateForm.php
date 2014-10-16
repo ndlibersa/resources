@@ -7,9 +7,7 @@
 		}else{
 			$instance = new $className();
 		}
-
-
-		?>
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
@@ -47,9 +45,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/detailedSubjectForm.js?random=<?php echo rand(); ?>"></script>
-		<?php
-
-		break;
-
-
 

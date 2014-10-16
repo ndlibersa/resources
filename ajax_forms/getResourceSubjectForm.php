@@ -2,8 +2,7 @@
 	    $resourceID = $_GET['resourceID'];
 		$generalSubject = new GeneralSubject();
 		$generalSubjectArray = $generalSubject->allAsArray();
-
-	?>
+?>
 		<div id='div_updateForm'>
 		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
 
@@ -51,12 +50,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceSubject.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-		break;
-
-
-
-
 

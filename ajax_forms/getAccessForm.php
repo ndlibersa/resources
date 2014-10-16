@@ -51,12 +51,7 @@
 		foreach ($resource->getResourceAuthorizedSites() as $instance) {
 			$resourceAuthorizedSiteArray[] = $instance->authorizedSiteID;
 		}
-
-
-
-
-
-		?>
+?>
 		<div id='div_accessForm'>
 		<form id='accessForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -260,12 +255,4 @@
 
 
 		<script type="text/javascript" src="js/forms/accessForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
-
 

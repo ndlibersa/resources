@@ -21,8 +21,6 @@
 		$resource->systemNumber 					= $_POST['systemNumber'];
 		$resource->subscriptionAlertEnabledInd 		= $_POST['subscriptionAlertEnabledInd'];
 
-
-
 		try {
 			$resource->save();
 
@@ -72,14 +70,9 @@
 			}
 
 
-
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
 
-
 ?>
-
-
 

@@ -14,7 +14,6 @@
 
 		try {
 
-
 			//first remove all license links, then we'll add them back
 			$resource->removeResourceLicenses();
 
@@ -31,12 +30,9 @@
 				}
 			}
 
-
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
-
 
 ?>
 

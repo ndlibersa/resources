@@ -22,5 +22,5 @@
 			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
 		}
 
-
 ?>
+

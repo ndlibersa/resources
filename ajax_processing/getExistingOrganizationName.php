@@ -15,6 +15,5 @@
 		}
 
 		echo $exists;
-
 ?>
 

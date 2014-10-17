@@ -10,8 +10,7 @@
 
 		//get users already set up for this user group in case it's an edit
 		$ugUserArray = $userGroup->getUsers();
-
-		?>
+?>
 		<div id='div_userGroupForm'>
 		<form id='userGroupForm'>
 		<input type='hidden' name='editUserGroupID' id='editUserGroupID' value='<?php echo $userGroupID; ?>'>
@@ -155,8 +154,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/userGroupForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
 

@@ -13,10 +13,7 @@
 		}else{
 			$accountTab = '';
 		}
-
-		?>
-
-
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editLoginID' value='<?php echo $loginID; ?>'>
@@ -113,14 +110,4 @@
 
 
         </script>
-
-
-		<?php
-
-		break;
-
-
-
-
-
 

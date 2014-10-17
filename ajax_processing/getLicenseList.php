@@ -11,11 +11,5 @@
 		$resourceArray = $resource->licenseAutocomplete($q);
 
 		echo implode("\n", $resourceArray);
-
-		break;
-
-
-
-
-
+?>
 

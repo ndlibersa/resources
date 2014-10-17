@@ -6,9 +6,7 @@
 		}else{
 			$instance = new AlertEmailAddress();
 		}
-
-
-		?>
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editAlertEmailAddressID' value='<?php echo $alertEmailAddressID; ?>'>
@@ -57,16 +55,4 @@
 
 
         </script>
-
-
-		<?php
-
-		break;
-
-
-
-
-
-
-
 

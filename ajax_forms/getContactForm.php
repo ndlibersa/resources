@@ -3,7 +3,7 @@
     	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
     	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
 
-		if (!is_null_date($contact->archiveDate)) {
+		if (($contact->archiveDate) && ($contact->archiveDate != '0000-00-00')){
 			$invalidChecked = 'checked';
 		}else{
 			$invalidChecked = '';
@@ -21,8 +21,7 @@
 		$contactRoleArray = array();
 		$contactRoleObj = new ContactRole();
 		$contactRoleArray = $contactRoleObj->allAsArray();
-
-		?>
+?>
 		<div id='div_contactForm'>
 		<form id='contactForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -169,13 +168,4 @@
 
 
 		<script type="text/javascript" src="js/forms/contactForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
-
-
 

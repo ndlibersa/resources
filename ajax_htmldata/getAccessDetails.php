@@ -24,10 +24,7 @@
 		foreach ($resource->getResourceAuthorizedSites() as $instance) {
 			$authorizedSiteArray[]=$instance->shortName;
 		}
-
-
-
-		?>
+?>
 			<table class='linedFormTable' style='width:460px;'>
 			<tr>
 			<th colspan='2'>
@@ -186,7 +183,5 @@
 			}
 		}
 
-        break;
-
-
+?>
 

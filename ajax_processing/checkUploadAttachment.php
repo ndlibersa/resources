@@ -1,4 +1,5 @@
 <?php
+		//verify that the new attachment name doesn't have bad characters and the name isn't already being used
 		$uploadAttachment = $_GET['uploadAttachment'];
 		$attachment = new Attachment();
 
@@ -24,8 +25,4 @@
 			echo $exists;
 		}
 
-		break;
-
-
-
-	//performs attachment upload
+?>

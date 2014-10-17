@@ -23,6 +23,5 @@
 			echo $e->getMessage();
 		}
 
-        break;
-
+?>
 

@@ -1,8 +1,5 @@
 <?php
-
+		//used to populate the tabs in the queue
 		echo count($user->getOutstandingTasks());
+?>
 
-		break;
-
-
-	//used to populate the tabs in the queue

@@ -103,6 +103,5 @@
 
 		echo "<a href='ajax_forms.php?action=getAdminUserGroupForm&userGroupID=&height=400&width=305&modal=true' class='thickbox'>add user group</a>";
 
-		break;
-
+?>
 

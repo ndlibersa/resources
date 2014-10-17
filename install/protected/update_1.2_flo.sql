@@ -18,9 +18,7 @@ CREATE TABLE `_DATABASE_NAME_`.`CostDetails` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment`
-  DROP INDEX `Index_All`;
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment`
+  DROP INDEX `Index_All`,
   ADD INDEX `Index_year`(`year`),
   ADD INDEX `Index_costDetailsID`(`costDetailsID`),
   ADD INDEX `Index_invoiceNum`(`invoiceNum`),

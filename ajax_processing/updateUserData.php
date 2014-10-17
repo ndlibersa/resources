@@ -28,6 +28,4 @@
 			echo $e->getMessage();
 		}
 
- 		break;
-
-	//used for the parent resource list in the edit resource box
+?>

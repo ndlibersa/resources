@@ -37,8 +37,5 @@
 
 		echo "<a href='ajax_forms.php?action=getAdminCurrencyUpdateForm&updateID=&height=178&width=260&modal=true' class='thickbox'>add new currency</a>";
 
-		break;
-
-
-
+?>
 

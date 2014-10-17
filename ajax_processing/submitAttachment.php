@@ -24,10 +24,5 @@
 			echo $e->getMessage();
 		}
 
-        break;
+?>
 
-
-
-
-
-	//verify that the new attachment name doesn't have bad characters and the name isn't already being used

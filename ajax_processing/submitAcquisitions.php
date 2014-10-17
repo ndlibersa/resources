@@ -80,6 +80,5 @@
 			echo $e->getMessage();
 		}
 
-		break;
-
+?>
 

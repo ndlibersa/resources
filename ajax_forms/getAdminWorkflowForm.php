@@ -34,8 +34,7 @@
 
 		//used to determine ordering - default to empty
 		$key = '0';
-
-		?>
+?>
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
 		<input type='hidden' name='editWFID' id='editWFID' value='<?php echo $workflowID; ?>'>
@@ -272,13 +271,4 @@
 		<input type='hidden' id='finalKey' value='<?php echo $key; ?>' />
 
 		<script type="text/javascript" src="js/forms/workflowForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-		break;
-
-
-
-
-
 

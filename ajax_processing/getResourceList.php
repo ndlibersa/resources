@@ -1,4 +1,5 @@
 <?php
+        //used for the parent resource list in the edit resource box
 
 		if (isset($_GET['searchMode'])) $searchMode = $_GET['searchMode']; else $searchMode='';
 		if (isset($_GET['limit'])) $v = $_GET['limit']; else $limit='';
@@ -12,6 +13,5 @@
 
 		echo implode("\n", $resourceArray);
 
-		break;
-
+?>
 

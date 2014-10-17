@@ -8,8 +8,7 @@
 		$externalLoginTypeArray = array();
 		$externalLoginTypeObj = new ExternalLoginType();
 		$externalLoginTypeArray = $externalLoginTypeObj->allAsArray();
-
-		?>
+?>
 		<div id='div_accountForm'>
 		<form id='accountForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -95,11 +94,4 @@
 
 
 		<script type="text/javascript" src="js/forms/externalLoginForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
 

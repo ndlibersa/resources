@@ -124,18 +124,4 @@
 			echo "(none found)<br />";
 		}
 
-
-		break;
-
-
-
-	default:
-       echo "Action " . $action . " not set up!";
-       break;
-
-
-}
-
-
 ?>
-

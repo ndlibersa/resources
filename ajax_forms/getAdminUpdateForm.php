@@ -7,9 +7,7 @@
 		}else{
 			$instance = new $className();
 		}
-
-
-		?>
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
@@ -67,9 +65,4 @@
 
 
         </script>
-
-
-		<?php
-
-		break;
 

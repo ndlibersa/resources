@@ -1,4 +1,5 @@
 <?php
+        //determine if resource is valid
 		$resourceID = $_GET['resourceID'];
 		$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
@@ -7,10 +8,5 @@
 		}else{
 			echo "0";
 		}
-
-
-		break;
-
-
-
+?>
 

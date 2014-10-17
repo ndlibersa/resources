@@ -69,7 +69,7 @@
 		//get licenses (already returned in array)
 		$licenseArray = $resource->getLicenseArray();
 
-		?>
+?>
 			<table class='linedFormTable' style='width:460px;'>
 			<tr>
 			<th colspan='2' style='vertical-align:bottom;'>
@@ -151,26 +151,26 @@
 
 			</th>
 			</tr>
-<tr>
-<th style="background-color: #ffc">Year</th>
-<?php if ($enhancedCostFlag){ ?>
-	<th style="background-color: #ffc">Sub Start</th>
-	<th style="background-color: #ffc">Sub End</th>
-<?php } ?>
-<th style="background-color: #ffc">Fund</th>
-<th style="background-color: #ffc">Payment</th>
-<?php if ($enhancedCostFlag){ ?>
-	<th style="background-color: #ffc">%</th>
-<?php } ?>
-<th style="background-color: #ffc">Type</th>
-<?php if ($enhancedCostFlag){ ?>
-	<th style="background-color: #ffc">Details</th>
-<?php } ?>
-<th style="background-color: #ffc">Notes</th>
-<?php if ($enhancedCostFlag){ ?>
-	<th style="background-color: #ffc">Invoice</th>
-<?php } ?>
-</tr>
+            <tr>
+            <th style="background-color: #ffc">Year</th>
+            <?php if ($enhancedCostFlag){ ?>
+                <th style="background-color: #ffc">Sub Start</th>
+                <th style="background-color: #ffc">Sub End</th>
+            <?php } ?>
+            <th style="background-color: #ffc">Fund</th>
+            <th style="background-color: #ffc">Payment</th>
+            <?php if ($enhancedCostFlag){ ?>
+                <th style="background-color: #ffc">%</th>
+            <?php } ?>
+            <th style="background-color: #ffc">Type</th>
+            <?php if ($enhancedCostFlag){ ?>
+                <th style="background-color: #ffc">Details</th>
+            <?php } ?>
+            <th style="background-color: #ffc">Notes</th>
+            <?php if ($enhancedCostFlag){ ?>
+                <th style="background-color: #ffc">Invoice</th>
+            <?php } ?>
+            </tr>
 
 			<?php
 			if (count($paymentArray) > 0){
@@ -191,29 +191,30 @@ $pctChange = 50;
 				?>
 				<tr>
 				<td><?php echo $year; ?></td>
-<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $subStart; ?></td>
-				<td><?php echo $subEnd; ?></td>
-<?php } ?>
-				<td><?php echo $fund; ?></td>
-				<td><?php echo $cost; ?></td>
-<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $pctChange; ?></td>
-<?php } ?>
-				<td><?php echo $payment['orderType']; ?></td>
-<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $costDetails; ?></td>
-<?php } ?>
-				<td><?php echo $costNote; ?></td>
-<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $invoice; ?></td>
-<?php } ?>
+                <?php if ($enhancedCostFlag){ ?>
+                    <td><?php echo $subStart; ?></td>
+                    <td><?php echo $subEnd; ?></td>
+                <?php } ?>
+                <td><?php echo $fund; ?></td>
+                <td><?php echo $cost; ?></td>
+                <?php if ($enhancedCostFlag){ ?>
+                    <td><?php echo $pctChange; ?></td>
+                <?php } ?>
+                <td><?php echo $payment['orderType']; ?></td>
+                <?php if ($enhancedCostFlag){ ?>
+                    <td><?php echo $costDetails; ?></td>
+                <?php } ?>
+                <td><?php echo $costNote; ?></td>
+                <?php if ($enhancedCostFlag){ ?>
+                    <td><?php echo $invoice; ?></td>
+                <?php } ?>
 				</tr>
 
 				<?php
 				}
 			}else{
-				echo "<tr><td colspan='5'><i>No payment information available.</i></td></tr>";
+                $n = ($enhancedCostFlag ? 8 : 3);
+				echo "<tr><td colspan=" . $n . "><i>No payment information available.</i></td></tr>";
 			}
 			?>
 
@@ -349,8 +350,5 @@ $pctChange = 50;
 			}
 		}
 
-        break;
-
-
-
+?>
 

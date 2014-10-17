@@ -37,12 +37,5 @@
 
 		echo "<a href='ajax_forms.php?action=getAdminUpdateForm&className=" . $className . "&updateID=&height=128&width=260&modal=true' class='thickbox'>add new " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . "</a>";
 
-		break;
-
-
-
-
-
-
-
+?>
 

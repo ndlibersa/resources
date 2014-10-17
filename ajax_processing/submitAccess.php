@@ -10,8 +10,6 @@
 		$resource->storageLocationID		= $_POST['storageLocationID'];
 		$resource->userLimitID				= $_POST['userLimitID'];
 
-
-
 		try {
 			$resource->save();
 
@@ -49,16 +47,9 @@
 				}
 			}
 
-
-
-
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
 
-
-		break;
-
-
+?>
 

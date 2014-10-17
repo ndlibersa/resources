@@ -6,9 +6,7 @@
 		}else{
 			$instance = new Currency();
 		}
-
-
-		?>
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editCurrencyCode' value='<?php echo $updateID; ?>'>
@@ -66,16 +64,4 @@
 
 
         </script>
-
-
-		<?php
-
-		break;
-
-
-
-
-
-
-
 

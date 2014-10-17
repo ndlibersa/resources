@@ -1,4 +1,5 @@
 <?php
+        //performs attachment upload
 		$attachmentName = basename($_FILES['myfile']['name']);
 
 		$attachment = new Attachment();
@@ -30,6 +31,5 @@
 
 		}
 
-		break;
-
+?>
 

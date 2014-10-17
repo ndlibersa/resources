@@ -58,13 +58,5 @@
 			echo "(none found)<br /><a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=&height=275&width=315&modal=true' class='thickbox' id='addUser'>add new user</a>";
 		}
 
-		break;
-
-
-
-
-
-
-
-
+?>
 

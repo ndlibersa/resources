@@ -6,9 +6,7 @@
 		}else{
 			$instance = new AlertDaysInAdvance();
 		}
-
-
-		?>
+?>
 		<div id='div_updateForm'>
 
 		<input type='hidden' id='editAlertDaysInAdvanceID' value='<?php echo $alertDaysInAdvanceID; ?>'>
@@ -57,14 +55,4 @@
 
 
         </script>
-
-
-		<?php
-
-		break;
-
-
-
-
-
 

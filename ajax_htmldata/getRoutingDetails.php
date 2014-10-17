@@ -97,13 +97,5 @@
 			}
 		}
 
-		break;
+?>
 
-
-
-
-
-
-
-
-	//number of attachments, used to display on the tab so user knows whether to look on tab

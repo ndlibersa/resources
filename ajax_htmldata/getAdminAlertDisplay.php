@@ -70,7 +70,5 @@
 
 		echo "<a href='ajax_forms.php?action=getAdminAlertDaysForm&alertDaysInAdvanceID=&height=128&width=260&modal=true' class='thickbox'>add days</a>";
 
-		break;
-
-
+?>
 

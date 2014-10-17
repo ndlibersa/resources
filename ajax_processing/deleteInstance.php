@@ -18,9 +18,5 @@
 				echo "Unable to delete.  Please make sure no resources are set up with this information.";
 			}
 		}
-
-
-		break;
-
-
+?>
 

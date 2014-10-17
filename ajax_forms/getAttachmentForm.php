@@ -7,8 +7,7 @@
 		$attachmentTypeArray = array();
 		$attachmentTypeObj = new AttachmentType();
 		$attachmentTypeArray = $attachmentTypeObj->allAsArray();
-
-		?>
+?>
 		<div id='div_attachmentForm'>
 		<form id='attachmentForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
@@ -97,11 +96,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/attachmentForm.js?random=<?php echo rand(); ?>"></script>
-
-		<?php
-
-        break;
-
-
-
 

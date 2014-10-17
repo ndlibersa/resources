@@ -113,6 +113,14 @@ function format_date($mysqlDate) {
 
 }
 
+function normalize_date($date) {
+    if (($date == "0000-00-00") || ($date == "")){
+        return "";
+    }else{
+        return format_date($date);
+    }
+}
+
 function is_null_date($date) {
     return (!$date || $date == "0000-00-00" || $date == "");
 }

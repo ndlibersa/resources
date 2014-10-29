@@ -1,7 +1,7 @@
 <?php
- 		$className = $_POST['className'];
- 		$updateID = $_POST['updateID'];
- 		$shortName = trim($_POST['shortName']);
+		$className = $_POST['className'];
+		$updateID = $_POST['updateID'];
+		$shortName = trim($_POST['shortName']);
 
 		if ($updateID != ''){
 			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));

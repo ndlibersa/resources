@@ -1,7 +1,7 @@
 <?php
 
- 		$className = $_GET['class'];
- 		$deleteID = $_GET['id'];
+		$className = $_GET['class'];
+		$deleteID = $_GET['id'];
 
 		//since we're using MyISAM which doesn't support FKs, must verify that there are no records of children or they could disappear
 		$instance = new $className(new NamedArguments(array('primaryKey' => $deleteID)));
@@ -19,4 +19,3 @@
 			}
 		}
 ?>
-

@@ -12,4 +12,3 @@
 
 		echo implode("\n", $resourceArray);
 ?>
-

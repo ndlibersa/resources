@@ -10,16 +10,16 @@
 			$contact->contactID	= '';
 		}
 
-		$contact->lastUpdateDate		= date( 'Y-m-d H:i:s' );
-		$contact->resourceID	 		= $_POST['resourceID'];
-		$contact->name 					= $_POST['name'];
-		$contact->title 				= $_POST['title'];
-		$contact->addressText			= $_POST['addressText'];
-		$contact->phoneNumber			= $_POST['phoneNumber'];
-		$contact->altPhoneNumber		= $_POST['altPhoneNumber'];
-		$contact->faxNumber				= $_POST['faxNumber'];
-		$contact->emailAddress			= $_POST['emailAddress'];
-		$contact->noteText				= $_POST['noteText'];
+		$contact->lastUpdateDate = date( 'Y-m-d H:i:s' );
+		$contact->resourceID     = $_POST['resourceID'];
+		$contact->name           = $_POST['name'];
+		$contact->title          = $_POST['title'];
+		$contact->addressText    = $_POST['addressText'];
+		$contact->phoneNumber    = $_POST['phoneNumber'];
+		$contact->altPhoneNumber = $_POST['altPhoneNumber'];
+		$contact->faxNumber      = $_POST['faxNumber'];
+		$contact->emailAddress   = $_POST['emailAddress'];
+		$contact->noteText       = $_POST['noteText'];
 
 		if (((!$contact->archiveDate) || ($contact->archiveDate == '0000-00-00')) && ($_POST['archiveInd'] == "1")){
 			$contact->archiveDate = date( 'Y-m-d H:i:s' );
@@ -52,4 +52,3 @@
 		}
 
 ?>
-

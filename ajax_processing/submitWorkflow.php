@@ -1,6 +1,6 @@
 <?php
 
- 		$workflowID = $_POST['workflowID'];
+		$workflowID = $_POST['workflowID'];
 
 		if ($workflowID!=''){
 			$workflow = new Workflow(new NamedArguments(array('primaryKey' => $workflowID)));

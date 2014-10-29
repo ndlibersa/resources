@@ -1,6 +1,6 @@
 <?php
- 		$alertDaysInAdvanceID = $_POST['alertDaysInAdvanceID'];
- 		$daysInAdvanceNumber = $_POST['daysInAdvanceNumber'];
+		$alertDaysInAdvanceID = $_POST['alertDaysInAdvanceID'];
+		$daysInAdvanceNumber = $_POST['daysInAdvanceNumber'];
 
 		if ($alertDaysInAdvanceID != ''){
 			$instance = new AlertDaysInAdvance(new NamedArguments(array('primaryKey' => $alertDaysInAdvanceID)));
@@ -17,4 +17,3 @@
 		}
 
 ?>
-

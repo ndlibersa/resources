@@ -1,10 +1,10 @@
 <?php
- 		$className = $_POST['className'];
- 		$updateID = $_POST['updateID'];
- 		$shortName = $_POST['shortName'];
- 		if($className=="ResourceType"){
- 			$includeStats = $_POST['stats'];
- 		}
+		$className = $_POST['className'];
+		$updateID = $_POST['updateID'];
+		$shortName = $_POST['shortName'];
+		if($className=="ResourceType"){
+			$includeStats = $_POST['stats'];
+		}
 
 		if ($updateID != ''){
 			$instance = new $className(new NamedArguments(array('primaryKey' => $updateID)));
@@ -30,4 +30,3 @@
 		}
 
 ?>
-

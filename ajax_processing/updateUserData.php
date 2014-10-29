@@ -1,6 +1,6 @@
 <?php
 
- 		$orgloginID = $_POST['orgloginID'];
+		$orgloginID = $_POST['orgloginID'];
 
 		if ($orgloginID){
 			$user = new User(new NamedArguments(array('primaryKey' => $orgloginID)));

@@ -1,6 +1,6 @@
 <?php
 
- 		$userGroupID = $_POST['userGroupID'];
+		$userGroupID = $_POST['userGroupID'];
 
 		if ($userGroupID!=''){
 			$userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $userGroupID)));
@@ -43,4 +43,3 @@
 		}
 
 ?>
-

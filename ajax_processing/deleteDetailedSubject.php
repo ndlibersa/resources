@@ -1,7 +1,7 @@
 <?php
 
- 		$className = $_GET['class'];
- 		$deleteID = $_GET['id'];
+		$className = $_GET['class'];
+		$deleteID = $_GET['id'];
 
 		$instance = new $className(new NamedArguments(array('primaryKey' => $deleteID)));
 
@@ -13,4 +13,3 @@
 			}
 
 ?>
-

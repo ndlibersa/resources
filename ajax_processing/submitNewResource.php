@@ -119,8 +119,8 @@
 					$resourcePayment = new ResourcePayment();
 					$resourcePayment->resourceID    = $resourceID;
 					$resourcePayment->year          = $yearArray[$key];
-                    $resourcePayment->subscriptionStartDate = $subStartArray[$key];
-                    $resourcePayment->subscriptionEndDate   = $subEndArray[$key];
+					$resourcePayment->subscriptionStartDate = $subStartArray[$key];
+					$resourcePayment->subscriptionEndDate   = $subEndArray[$key];
 					$resourcePayment->fundName      = $fundNameArray[$key];
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
 					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
@@ -150,4 +150,3 @@
 		}
 
 ?>
-

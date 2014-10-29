@@ -1,11 +1,20 @@
 <?php
-    	$config = new Configuration();
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$config = new Configuration();
+	$enhancedCostFlag = ((isset($config->settings->enhancedCostHistory)) && (strtoupper($config->settings->enhancedCostHistory) == 'Y')) ? 1 : 0;
+	$enhancedCostFlag = (strtoupper($config->settings->enhancedCostHistory) == 'Y') ? 1 : 0;
+	if ($enhancedCostFlag){
+		$numCols = 10;
+		$tableWidth = 760;
+	}else{
+		$numCols = 4;
+		$tableWidth = 646;
+	}
 
-    	$orderType = new OrderType(new NamedArguments(array('primaryKey' => $resource->orderTypeID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+
+	$orderType = new OrderType(new NamedArguments(array('primaryKey' => $resource->orderTypeID)));
 		$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource->acquisitionTypeID)));
-    	$costDetails = new CostDetails(new NamedArguments(array('primaryKey' => $resource->costDetailsID)));
 
 		//get purchase sites
 		$sanitizedInstance = array();
@@ -32,6 +41,11 @@
 				$orderType = new OrderType(new NamedArguments(array('primaryKey' => $instance->orderTypeID)));
 				$sanitizedInstance['orderType'] = $orderType->shortName;
 
+				$costDetails = new CostDetails(new NamedArguments(array('primaryKey' => $instance->costDetailsID)));
+				$sanitizedInstance['costDetails'] = $costDetails->shortName;
+				if ($enhancedCostFlag){
+					$sanitizedInstance['amountChange'] = $instance->getPaymentAmountChangeFromPreviousYear();
+				}
 
 				array_push($paymentArray, $sanitizedInstance);
 
@@ -70,7 +84,7 @@
 		$licenseArray = $resource->getLicenseArray();
 
 ?>
-			<table class='linedFormTable' style='width:460px;'>
+			<table class='linedFormTable' style='width:<?php echo $tableWidth; ?>px;padding:0x;margin:0px;height:100%;'>
 			<tr>
 			<th colspan='2' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Order</span>
@@ -134,16 +148,15 @@
 
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAlias'>edit acquisitions information</a>
+				<a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit order information</a>
 			<?php } ?>
 			<br />
 			<br />
 			<br />
 
-			<table class='linedFormTable' style='width:460px;'>
-			<?php $enhancedCostFlag = ($config->settings->enhancedCostHistory == 'Y') ? 1 : 0 ?>
+			<table class='linedFormTable' style='width:<?php echo $tableWidth; ?>px;margin-bottom:5px;'>
 			<tr>
-			<th colspan=<?php echo ($enhancedCostFlag ? 10 : 5) ?> style='vertical-align:bottom;'>
+			<th colspan='<?php echo $numCols; ?>' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Cost</span>
 			<?php if ($user->canEdit()){ ?>
 				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
@@ -151,82 +164,80 @@
 
 			</th>
 			</tr>
-            <tr>
-            <th style="background-color: #ffc">Year</th>
-            <?php if ($enhancedCostFlag){ ?>
-                <th style="background-color: #ffc">Sub Start</th>
-                <th style="background-color: #ffc">Sub End</th>
-            <?php } ?>
-            <th style="background-color: #ffc">Fund</th>
-            <th style="background-color: #ffc">Payment</th>
-            <?php if ($enhancedCostFlag){ ?>
-                <th style="background-color: #ffc">%</th>
-            <?php } ?>
-            <th style="background-color: #ffc">Type</th>
-            <?php if ($enhancedCostFlag){ ?>
-                <th style="background-color: #ffc">Details</th>
-            <?php } ?>
-            <th style="background-color: #ffc">Notes</th>
-            <?php if ($enhancedCostFlag){ ?>
-                <th style="background-color: #ffc">Invoice</th>
-            <?php } ?>
-            </tr>
+			<tr>
+		<?php if ($enhancedCostFlag){ ?>
+			<th>Year</th>
+			<th>Sub Start</th>
+			<th>Sub End</th>
+		<?php } ?>
+			<th>Fund</th>
+			<th>Payment</th>
+		<?php if ($enhancedCostFlag){ ?>
+			<th style='text-align: right'>%</th>
+		<?php } ?>
+			<th>Type</th>
+		<?php if ($enhancedCostFlag){ ?>
+			<th>Details</th>
+		<?php } ?>
+			<th>Notes</th>
+		<?php if ($enhancedCostFlag){ ?>
+			<th>Invoice</th>
+		<?php } ?>
+			</tr>
 
 			<?php
 			if (count($paymentArray) > 0){
 				foreach ($paymentArray as $payment){
 				$year = $payment['year'] ? $payment['year'] : "&nbsp;";
+				$subStart = $payment['subscriptionStartDate'] ? normalize_date($payment['subscriptionStartDate']) : "&nbsp;";
+				$subEnd = $payment['subscriptionEndDate'] ? normalize_date($payment['subscriptionEndDate']) : "&nbsp;";
 				$fundName = $payment['fundName'] ? $payment['fundName'] : "&nbsp;";
-				$costNote = $payment['costNote'] ? $payment['costNote'] : "&nbsp;";
-$pctChange = 50;
-				$costDetails = $payment['costDetails'] ? $payment['costDetails'] : "&nbsp;";
-				$invoice = $payment['year'] ? $payment['year'] : "&nbsp;";
-
 				if (integer_to_cost($payment['paymentAmount'])){
 					$cost = $payment['currencyCode'] . " " . integer_to_cost($payment['paymentAmount']);
 				}else{
 					$cost = "&nbsp;";
 				}
+				$costDetails = $payment['costDetails'] ? $payment['costDetails'] : "&nbsp;";
+				$costNote = $payment['costNote'] ? $payment['costNote'] : "&nbsp;";
+				$invoiceNum = $payment['invoiceNum'] ? $payment['invoiceNum'] : "&nbsp;";
 
 				?>
 				<tr>
+			<?php if ($enhancedCostFlag){ ?>
 				<td><?php echo $year; ?></td>
-                <?php if ($enhancedCostFlag){ ?>
-                    <td><?php echo $subStart; ?></td>
-                    <td><?php echo $subEnd; ?></td>
-                <?php } ?>
-                <td><?php echo $fund; ?></td>
-                <td><?php echo $cost; ?></td>
-                <?php if ($enhancedCostFlag){ ?>
-                    <td><?php echo $pctChange; ?></td>
-                <?php } ?>
-                <td><?php echo $payment['orderType']; ?></td>
-                <?php if ($enhancedCostFlag){ ?>
-                    <td><?php echo $costDetails; ?></td>
-                <?php } ?>
-                <td><?php echo $costNote; ?></td>
-                <?php if ($enhancedCostFlag){ ?>
-                    <td><?php echo $invoice; ?></td>
-                <?php } ?>
+				<td><?php echo $subStart; ?></td>
+				<td><?php echo $subEnd; ?></td>
+			<?php } ?>
+				<td><?php echo $fundName; ?></td>
+				<td><?php echo $cost; ?></td>
+			<?php if ($enhancedCostFlag){ ?>
+				<td style='text-align: right'><?php echo $payment['amountChange']; ?></td>
+			<?php } ?>
+				<td><?php echo $payment['orderType']; ?></td>
+			<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $costDetails; ?></td>
+			<?php } ?>
+				<td><?php echo $costNote; ?></td>
+			<?php if ($enhancedCostFlag){ ?>
+				<td><?php echo $invoiceNum; ?></td>
+			<?php } ?>
 				</tr>
 
 				<?php
 				}
 			}else{
-                $n = ($enhancedCostFlag ? 8 : 3);
-				echo "<tr><td colspan=" . $n . "><i>No payment information available.</i></td></tr>";
+				echo "<tr><td colspan='" . $numCols . "'><i>No payment information available.</i></td></tr>";
 			}
 			?>
-
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAlias'>edit cost information</a>
+				<a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
 			<?php } ?>
 			<br />
 			<br />
 			<br />
 
-			<table class='linedFormTable' style='width:460px;'>
+			<table class='linedFormTable' style='width:<?php echo $tableWidth; ?>px;padding:0x;margin:0px;height:100%;'>
 			<tr>
 			<th colspan='2'>
 			<span style='float:left;vertical-align:bottom;'>License</span>
@@ -291,14 +302,14 @@ $pctChange = 50;
 		<?php
 
 		//get notes for this tab
- 		$sanitizedInstance = array();
- 		$noteArray = array();
- 		foreach ($resource->getNotes('Acquisitions') as $instance) {
- 			foreach (array_keys($instance->attributeNames) as $attributeName) {
- 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
- 			}
+		$sanitizedInstance = array();
+		$noteArray = array();
+		foreach ($resource->getNotes('Acquisitions') as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
 
- 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
 
 			$updateUser = new User(new NamedArguments(array('primaryKey' => $instance->updateLoginID)));
 
@@ -316,12 +327,12 @@ $pctChange = 50;
 				$sanitizedInstance['noteTypeName'] = $noteType->shortName;
 			}
 
- 			array_push($noteArray, $sanitizedInstance);
+			array_push($noteArray, $sanitizedInstance);
 		}
 
 		if (count($noteArray) > 0){
 		?>
-			<table class='linedFormTable' style='width:460px;max-width:460px;'>
+			<table class='linedFormTable' style='width:<?php echo $tableWidth; ?>px;padding:0x;margin:0px;height:100%;'>
 				<tr>
 				<th>Additional Notes</th>
 				<th>

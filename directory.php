@@ -125,6 +125,15 @@ function is_null_date($date) {
     return (!$date || $date == "0000-00-00" || $date == "");
 }
 
+function previous_year($year) {
+    return preg_replace_callback(
+        '/(19[0-9][0-9]|2[0-9][0-9][0-9])/',
+        function ($matches) { return $matches[0]-1; },
+        $year,
+        1
+    );
+}
+
 function resource_sidemenu($selected_link = '') {
   global $user;
   $links = array(

@@ -1,6 +1,6 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 		//used to get default currency
 		$config = new Configuration();
@@ -18,11 +18,6 @@
 		$acquisitionTypeObj = new AcquisitionType();
 		$acquisitionTypeArray = $acquisitionTypeObj->allAsArray();
 
-		//get all currency for output in drop down
-		$currencyArray = array();
-		$currencyObj = new Currency();
-		$currencyArray = $currencyObj->allAsArray();
-
 		//get purchase sites
 		$sanitizedInstance = array();
 		$instance = new PurchaseSite();
@@ -30,28 +25,6 @@
 		foreach ($resource->getResourcePurchaseSites() as $instance) {
 			$resourcePurchaseSiteArray[] = $instance->purchaseSiteID;
 		}
-
-		//get payments
-		$sanitizedInstance = array();
-		$instance = new ResourcePayment();
-		$paymentArray = array();
-		foreach ($resource->getResourcePayments() as $instance) {
-			foreach (array_keys($instance->attributeNames) as $attributeName) {
-				$sanitizedInstance[$attributeName] = $instance->$attributeName;
-			}
-			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
-			array_push($paymentArray, $sanitizedInstance);
-		}
-
-		//get all Order Types for output in drop down
-		$orderTypeArray = array();
-		$orderTypeObj = new OrderType();
-		$orderTypeArray = $orderTypeObj->allAsArray();
-
-		//get all Cost Details for output in drop down
-		$costDetailsArray = array();
-		$costDetailsObj = new CostDetails();
-		$costDetailsArray = $costDetailsObj->allAsArray();
 ?>
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
@@ -127,144 +100,7 @@
 
 
 		</td>
-		<td>
-
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Initial Cost</b></label>&nbsp;&nbsp;</span>
-
-			<table class='surroundBox' style='width:340px;'>
-			<tr>
-			<td>
-
-				<table class='noBorder smallPadding newPaymentTable' style='width:320px;margin:7px 15px 0px 15px;'>
-				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Fund:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan='2'>Price:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Type:</td>
-					<td>&nbsp;</td>
-				</tr>
-
-
-				<tr class='newPaymentTR'>
-
-				<td style='vertical-align:top;text-align:left;background:white;'>
-				<input type='text' value = '' style='width:70px;' class='changeDefaultWhite changeInput fundName' />
-				</td>
-
-				<td style='vertical-align:top;text-align:left;background:white;'>
-				<input type='text' value = '' style='width:50px;' class='changeDefaultWhite changeInput paymentAmount' />
-				</td>
-
-
-				<td style='vertical-align:top;text-align:left;'>
-					<select style='width:50px;' class='changeSelect currencyCode'>
-					<?php
-					foreach ($currencyArray as $currency){
-						if ($currency['currencyCode'] == $config->settings->defaultCurrency){
-							echo "<option value='" . $currency['currencyCode'] . "' selected class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-						}else{
-							echo "<option value='" . $currency['currencyCode'] . "' class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-						}
-					}
-					?>
-					</select>
-				</td>
-
-
-				<td style='vertical-align:top;text-align:left;'>
-					<select style='width:70px;' class='changeSelect orderTypeID'>
-					<option value='' selected></option>
-					<?php
-					foreach ($orderTypeArray as $orderType){
-						echo "<option value='" . $orderType['orderTypeID'] . "'>" . $orderType['shortName'] . "</option>\n";
-					}
-					?>
-					</select>
-				</td>
-
-				<td style='vertical-align:center;text-align:center;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
-				</td>
-				</tr>
-
-				</table>
-
-
-
-				<table class='noBorder smallPadding paymentTable' style='width:320px;margin:7px 15px;'>
-
-				<tr>
-				<td colspan='5'>
-				<div class='smallDarkRedText' id='div_errorPayment' style='margin:0px 20px 0px 26px;'></div>
-
-				<hr style='width:300px;margin:0px 0px 5px 5px;' />
-				</td>
-				</tr>
-
-				<?php
-				if (count($paymentArray) > 0){
-
-					foreach ($paymentArray as $payment){
-					?>
-						<tr>
-						<td style='vertical-align:top;text-align:left;'>
-						<input type='text' value = '<?php echo $payment['fundName']; ?>' style='width:70px;' class='changeInput fundName' />
-						</td>
-
-						<td style='vertical-align:top;text-align:left;'>
-						<input type='text' value = '<?php echo integer_to_cost($payment['paymentAmount']); ?>' style='width:50px;' class='changeInput paymentAmount' />
-						</td>
-
-						<td style='vertical-align:top;text-align:left;'>
-							<select style='width:50px;' class='changeSelect currencyCode'>
-							<?php
-							foreach ($currencyArray as $currency){
-								if ($currency['currencyCode'] == $payment['currencyCode']){
-									echo "<option value='" . $currency['currencyCode'] . "' selected class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-								}else{
-									echo "<option value='" . $currency['currencyCode'] . "' class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-								}
-							}
-							?>
-							</select>
-						</td>
-
-						<td style='vertical-align:top;text-align:left;'>
-						<select style='width:70px;' class='changeSelect orderTypeID'>
-						<option value=''></option>
-						<?php
-						foreach ($orderTypeArray as $orderType){
-							if (!(trim(strval($orderType['orderTypeID'])) != trim(strval($payment['orderTypeID'])))){
-								echo "<option value='" . $orderType['orderTypeID'] . "' selected class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
-							}else{
-								echo "<option value='" . $orderType['orderTypeID'] . "' class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
-							}
-						}
-						?>
-						</select>
-						</td>
-
-
-						<td style='vertical-align:top;text-align:center;width:37px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
-						</td>
-						</tr>
-
-					<?php
-					}
-
-				}
-
-				?>
-
-				</table>
-
-
-
-			</td>
-			</tr>
-			</table>
-
-		</td>
+		
 		</tr>
 		<tr>
 		<td>

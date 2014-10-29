@@ -1,58 +1,57 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
-		//get all authentication types for output in drop down
-		$authenticationTypeArray = array();
-		$authenticationTypeObj = new AuthenticationType();
-		$authenticationTypeArray = $authenticationTypeObj->allAsArray();
+	//get all authentication types for output in drop down
+	$authenticationTypeArray = array();
+	$authenticationTypeObj = new AuthenticationType();
+	$authenticationTypeArray = $authenticationTypeObj->allAsArray();
 
-		//get all access methods for output in drop down
-		$accessMethodArray = array();
-		$accessMethodObj = new AccessMethod();
-		$accessMethodArray = $accessMethodObj->allAsArray();
+	//get all access methods for output in drop down
+	$accessMethodArray = array();
+	$accessMethodObj = new AccessMethod();
+	$accessMethodArray = $accessMethodObj->allAsArray();
 
-		//get all user limits for output in drop down
-		//overridden for better sort
-		$userLimitArray = array();
-		$userLimitObj = new UserLimit();
-		$userLimitArray = $userLimitObj->allAsArray();
+	//get all user limits for output in drop down
+	//overridden for better sort
+	$userLimitArray = array();
+	$userLimitObj = new UserLimit();
+	$userLimitArray = $userLimitObj->allAsArray();
 
-		//get all storage locations for output in drop down
-		$storageLocationArray = array();
-		$storageLocationObj = new StorageLocation();
-		$storageLocationArray = $storageLocationObj->allAsArray();
+	//get all storage locations for output in drop down
+	$storageLocationArray = array();
+	$storageLocationObj = new StorageLocation();
+	$storageLocationArray = $storageLocationObj->allAsArray();
 
-		//get all administering sites for output in checkboxes
-		$administeringSiteArray = array();
-		$administeringSiteObj = new AdministeringSite();
-		$administeringSiteArray = $administeringSiteObj->allAsArray();
-
-
-		//get administering sites for this resource
-		$sanitizedInstance = array();
-		$instance = new AdministeringSite();
-		$resourceAdministeringSiteArray = array();
-		foreach ($resource->getResourceAdministeringSites() as $instance) {
-			$resourceAdministeringSiteArray[] = $instance->administeringSiteID;
-		}
+	//get all administering sites for output in checkboxes
+	$administeringSiteArray = array();
+	$administeringSiteObj = new AdministeringSite();
+	$administeringSiteArray = $administeringSiteObj->allAsArray();
 
 
-		//get all authorized sites for output in checkboxes
-		$authorizedSiteArray = array();
-		$authorizedSiteObj = new AuthorizedSite();
-		$authorizedSiteArray = $authorizedSiteObj->allAsArray();
+	//get administering sites for this resource
+	$sanitizedInstance = array();
+	$instance = new AdministeringSite();
+	$resourceAdministeringSiteArray = array();
+	foreach ($resource->getResourceAdministeringSites() as $instance) {
+		$resourceAdministeringSiteArray[] = $instance->administeringSiteID;
+	}
 
 
-		//get authorized sites for this resource
-		$sanitizedInstance = array();
-		$instance = new AuthorizedSite();
-		$resourceAuthorizedSiteArray = array();
-		foreach ($resource->getResourceAuthorizedSites() as $instance) {
-			$resourceAuthorizedSiteArray[] = $instance->authorizedSiteID;
-		}
+	//get all authorized sites for output in checkboxes
+	$authorizedSiteArray = array();
+	$authorizedSiteObj = new AuthorizedSite();
+	$authorizedSiteArray = $authorizedSiteObj->allAsArray();
+
+
+	//get authorized sites for this resource
+	$sanitizedInstance = array();
+	$instance = new AuthorizedSite();
+	$resourceAuthorizedSiteArray = array();
+	foreach ($resource->getResourceAuthorizedSites() as $instance) {
+		$resourceAuthorizedSiteArray[] = $instance->authorizedSiteID;
+	}
 ?>
->>>>>>> master
 		<div id='div_accessForm'>
 		<form id='accessForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>

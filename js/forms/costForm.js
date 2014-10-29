@@ -2,7 +2,7 @@
 **************************************************************************************************************************
 ** CORAL Resources Module v. 1.0
 **
-** Copyright (c) 2010 University of Notre Dame
+** Copyright (c) 2010-2014 University of Notre Dame
 **
 ** This file is part of CORAL.
 **

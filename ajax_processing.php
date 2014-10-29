@@ -24,7 +24,7 @@ include_once 'user.php';
 
 $action = $_GET['action'];
 if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_processing/$action.php")){
-    echo "Processing action " . $action . " not set up!";
+	echo "Processing action " . $action . " not set up!";
 }
 
 ?>

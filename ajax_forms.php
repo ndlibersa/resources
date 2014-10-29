@@ -22,7 +22,7 @@ include_once 'user.php';
 
 $action = $_GET['action'];
 if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_forms/$action.php")){
-    echo "Form action " . $action . " not set up!";
+	echo "Form action " . $action . " not set up!";
 }
 
 ?>

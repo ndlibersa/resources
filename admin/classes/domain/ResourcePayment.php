@@ -23,7 +23,29 @@ class ResourcePayment extends DatabaseObject {
 
 	protected function overridePrimaryKeyName() {}
 
-
+	//returns array of ResourcePayment objects
+	public function getPaymentAmountChangeFromPreviousYear(){
+		$id = $this->resourceID;
+		$year = $this->year;
+		$fundName = $this->fundName;
+		$currency = $this->currencyCode;
+		if ((isset($year)) && ($year != '') && (isset($fundName)) && ($fundName != '')){
+			$sql = "SELECT SUM(paymentAmount) AS total FROM ResourcePayment WHERE resourceID = '%s' AND year = '%s' AND fundName = '%s' AND currencyCode = '%s'";
+			$fundName = mysql_real_escape_string($fundName);
+			$currency = mysql_real_escape_string($currency);
+			$query = sprintf($sql, $id, mysql_real_escape_string(previous_year($year)), $fundName, $currency);
+			$result = $this->db->processQuery($query, 'assoc');
+			if ((isset($result['total'])) && ($result['total'] > 0)){
+				$prev_total = $result['total'];
+				$query = sprintf($sql, $id, mysql_real_escape_string($year), $fundName, $currency);
+				$result = $this->db->processQuery($query, 'assoc');
+				if (isset($result['total'])){
+					return sprintf('%+.1f', 100 * ( ($result['total'] - $prev_total) / $prev_total ));
+				}
+			}
+		}
+		return 'n/a';
+	}
 }
 
 ?>

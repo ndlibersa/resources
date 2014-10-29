@@ -1,13 +1,13 @@
 <?php
-    Resource::setSearch($_POST['search']);
+	Resource::setSearch($_POST['search']);
 
-    $queryDetails = Resource::getSearchDetails();
-    $whereAdd = $queryDetails["where"];
-    $page = $queryDetails["page"];
-    $orderBy = $queryDetails["order"];
-    $recordsPerPage = $queryDetails["perPage"];
+	$queryDetails = Resource::getSearchDetails();
+	$whereAdd = $queryDetails["where"];
+	$page = $queryDetails["page"];
+	$orderBy = $queryDetails["order"];
+	$recordsPerPage = $queryDetails["perPage"];
 
-    //numbers to be displayed in records per page dropdown
+	//numbers to be displayed in records per page dropdown
 		$recordsPerPageDD = array(10,25,50,100);
 
 		//determine starting rec - keeping this based on 0 to make the math easier, we'll add 1 to the display only

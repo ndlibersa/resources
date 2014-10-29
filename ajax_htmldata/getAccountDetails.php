@@ -1,6 +1,6 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 		$externalLoginArray = $resource->getExternalLoginArray();
 
@@ -31,7 +31,7 @@
 				}
 
 			?>
-				<table class='linedFormTable' style='width:460px;max-width:460px;'>
+				<table class='linedFormTable'>
 				<tr>
 				<th colspan='2' style='background:#f5f8fa;'>
 				<span style='float:left; vertical-align:bottom;'>

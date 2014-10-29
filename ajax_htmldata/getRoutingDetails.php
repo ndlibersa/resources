@@ -32,7 +32,7 @@
 				$classAdd = "style='background-color: white;'";
 				//make the row gray if it is complete or not started
 				if ((($resourceStep->stepEndDate) && ($resourceStep->stepEndDate != "0000-00-00")) || (!$resourceStep->stepStartDate) || ($resource->statusID == $archiveStatusID) || ($resource->statusID == $completeStatusID)){
-					 $classAdd = "class='complete'";
+					$classAdd = "class='complete'";
 				}
 
 

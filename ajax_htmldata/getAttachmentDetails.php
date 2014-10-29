@@ -1,28 +1,28 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 
- 		//get attachments
- 		$sanitizedInstance = array();
- 		$attachmentArray = array();
- 		foreach ($resource->getAttachments() as $instance) {
- 			foreach (array_keys($instance->attributeNames) as $attributeName) {
- 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
- 			}
+		//get attachments
+		$sanitizedInstance = array();
+		$attachmentArray = array();
+		foreach ($resource->getAttachments() as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
 
- 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
 
- 			$attachmentType = new AttachmentType(new NamedArguments(array('primaryKey' => $instance->attachmentTypeID)));
- 			$sanitizedInstance['attachmentTypeShortName'] = $attachmentType->shortName;
+			$attachmentType = new AttachmentType(new NamedArguments(array('primaryKey' => $instance->attachmentTypeID)));
+			$sanitizedInstance['attachmentTypeShortName'] = $attachmentType->shortName;
 
- 			array_push($attachmentArray, $sanitizedInstance);
+			array_push($attachmentArray, $sanitizedInstance);
 		}
 
 		if (count($attachmentArray) > 0){
 			foreach ($attachmentArray as $attachment){
 			?>
-				<table class='linedFormTable' style='width:460px;max-width:460px;'>
+				<table class='linedFormTable'>
 				<tr>
 				<th colspan='2'>
 					<span style='float:left; vertical-align:bottom;'>

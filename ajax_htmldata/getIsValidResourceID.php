@@ -1,5 +1,5 @@
 <?php
-        //determine if resource is valid
+	//determine if resource is valid
 		$resourceID = $_GET['resourceID'];
 		$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 

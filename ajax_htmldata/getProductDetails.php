@@ -53,7 +53,7 @@
 
 
 		?>
-		<table class='linedFormTable' style='width:460px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 			<span style='float:left; vertical-align:top; max-width:400px; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $acquisitionType->shortName . " " . $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>
@@ -270,24 +270,24 @@
 		<?php
 
 		//get subjects for this tab
- 		$sanitizedInstance = array();
- 		$generalDetailSubjectIDArray = array();
+		$sanitizedInstance = array();
+		$generalDetailSubjectIDArray = array();
 
 
- 		foreach ($resource->getGeneralDetailSubjectLinkID() as $instance) {
- 			foreach (array_keys($instance->attributeNames) as $attributeName) {
- 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
- 			}
+		foreach ($resource->getGeneralDetailSubjectLinkID() as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
 
 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
- 			array_push($generalDetailSubjectIDArray, $sanitizedInstance);
+			array_push($generalDetailSubjectIDArray, $sanitizedInstance);
 
 		}
 
 		if (count($generalDetailSubjectIDArray) > 0){
 
 		?>
-			<table class='linedFormTable' style='width:460px;max-width:460px;'>
+			<table class='linedFormTable'>
 				<tr>
 				<th>Subjects</th>
 				<th>
@@ -362,15 +362,15 @@
 		<?php
 
 		//get notes for this tab
- 		$sanitizedInstance = array();
- 		$noteArray = array();
+		$sanitizedInstance = array();
+		$noteArray = array();
 
- 		foreach ($resource->getNotes('Product') as $instance) {
- 			foreach (array_keys($instance->attributeNames) as $attributeName) {
- 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
- 			}
+		foreach ($resource->getNotes('Product') as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
 
- 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
 
 			$updateUser = new User(new NamedArguments(array('primaryKey' => $instance->updateLoginID)));
 
@@ -389,12 +389,12 @@
 				$sanitizedInstance['noteTypeName'] = $noteType->shortName;
 			}
 
- 			array_push($noteArray, $sanitizedInstance);
+			array_push($noteArray, $sanitizedInstance);
 		}
 
 		if (count($noteArray) > 0){
 		?>
-			<table class='linedFormTable' style='width:460px;max-width:460px;'>
+			<table class='linedFormTable'>
 				<tr>
 				<th>Additional Notes</th>
 				<th>

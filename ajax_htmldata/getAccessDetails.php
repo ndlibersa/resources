@@ -1,11 +1,11 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
-    	$userLimit = new UserLimit(new NamedArguments(array('primaryKey' => $resource->userLimitID)));
-    	$storageLocation = new StorageLocation(new NamedArguments(array('primaryKey' => $resource->storageLocationID)));
-    	$accessMethod = new AccessMethod(new NamedArguments(array('primaryKey' => $resource->accessMethodID)));
-    	$authenticationType = new AuthenticationType(new NamedArguments(array('primaryKey' => $resource->authenticationTypeID)));
+	$userLimit = new UserLimit(new NamedArguments(array('primaryKey' => $resource->userLimitID)));
+	$storageLocation = new StorageLocation(new NamedArguments(array('primaryKey' => $resource->storageLocationID)));
+	$accessMethod = new AccessMethod(new NamedArguments(array('primaryKey' => $resource->accessMethodID)));
+	$authenticationType = new AuthenticationType(new NamedArguments(array('primaryKey' => $resource->authenticationTypeID)));
 
 		//get administering sites
 		$sanitizedInstance = array();
@@ -25,7 +25,7 @@
 			$authorizedSiteArray[]=$instance->shortName;
 		}
 ?>
-			<table class='linedFormTable' style='width:460px;'>
+			<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'>
 			<span style='float:left;vertical-align:bottom;'>Access Information</span>
@@ -124,14 +124,14 @@
 
 
 		//get notes for this tab
- 		$sanitizedInstance = array();
- 		$noteArray = array();
- 		foreach ($resource->getNotes('Access') as $instance) {
- 			foreach (array_keys($instance->attributeNames) as $attributeName) {
- 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
- 			}
+		$sanitizedInstance = array();
+		$noteArray = array();
+		foreach ($resource->getNotes('Access') as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
 
- 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
 
 			$updateUser = new User(new NamedArguments(array('primaryKey' => $instance->updateLoginID)));
 
@@ -149,12 +149,12 @@
 				$sanitizedInstance['noteTypeName'] = $noteType->shortName;
 			}
 
- 			array_push($noteArray, $sanitizedInstance);
+			array_push($noteArray, $sanitizedInstance);
 		}
 
 		if (count($noteArray) > 0){
 		?>
-			<table class='linedFormTable' style='width:460px;max-width:460px;'>
+			<table class='linedFormTable'>
 				<tr>
 				<th>Additional Notes</th>
 				<th>

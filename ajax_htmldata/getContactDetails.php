@@ -1,9 +1,9 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	if (isset($_GET['archiveInd'])) $archiveInd = $_GET['archiveInd']; else $archiveInd='';
-    	if (isset($_GET['showArchivesInd'])) $showArchivesInd = $_GET['showArchivesInd']; else $showArchivesInd='';
+	$resourceID = $_GET['resourceID'];
+	if (isset($_GET['archiveInd'])) $archiveInd = $_GET['archiveInd']; else $archiveInd='';
+	if (isset($_GET['showArchivesInd'])) $showArchivesInd = $_GET['showArchivesInd']; else $showArchivesInd='';
 
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 		$util = new Utility();
 
@@ -11,22 +11,22 @@
 		$resContactFlag = 0;
 		$orgContactFlag = 0;
 
- 		//get contacts
- 		$sanitizedInstance = array();
- 		$contactArray = array();
- 		$contactObjArray = array();
+		//get contacts
+		$sanitizedInstance = array();
+		$contactArray = array();
+		$contactObjArray = array();
 
- 		if ((isset($archiveInd)) && ($archiveInd == "1")){
- 			//if we want archives to be displayed
- 			if ($showArchivesInd == "1"){
- 				if (count($resource->getArchivedContacts()) > 0){
- 					echo "<i><b>The following are archived contacts:</b></i>";
- 				}
- 				$contactArray = $resource->getArchivedContacts();
- 			}
- 		}else{
- 			$contactArray = $resource->getUnarchivedContacts();
- 		}
+		if ((isset($archiveInd)) && ($archiveInd == "1")){
+			//if we want archives to be displayed
+			if ($showArchivesInd == "1"){
+				if (count($resource->getArchivedContacts()) > 0){
+					echo "<i><b>The following are archived contacts:</b></i>";
+				}
+				$contactArray = $resource->getArchivedContacts();
+			}
+		}else{
+			$contactArray = $resource->getUnarchivedContacts();
+		}
 
 
 		if (count($contactArray) > 0){
@@ -53,7 +53,7 @@
 
 				?>
 
-				<table class='linedFormTable' style='width:460px;'>
+				<table class='linedFormTable'>
 				<tr>
 				<th style='background:#f5f8fa;'>
 					<?php echo $contact['contactRoles']; ?>

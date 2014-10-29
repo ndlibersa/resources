@@ -699,6 +699,7 @@ table.verticalFormTable td.outstanding {
 
 
 table.linedFormTable {	
+	width: 100%;
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -1029,3 +1030,4 @@ select option.changeSelect{
  border: solid 1px #a5acb2;  
  color: #526972;  
 } 
+

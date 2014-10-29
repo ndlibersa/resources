@@ -8,8 +8,6 @@
 			//first remove all payment records, then we'll add them back
 			$resource->removeResourcePayments();
 
-//ini_set('display_errors', 'On');
-//error_reporting(E_ALL|E_STRICT);
 			$yearArray          = array();  $yearArray          = explode(':::',$_POST['years']);
 			$subStartArray      = array();  $subStartArray      = explode(':::',$_POST['subStarts']);
 			$subEndArray        = array();  $subEndArray        = explode(':::',$_POST['subEnds']);
@@ -20,8 +18,6 @@
 			$costDetailsArray   = array();  $costDetailsArray   = explode(':::',$_POST['costDetails']);
 			$costNoteArray      = array();  $costNoteArray      = explode(':::',$_POST['costNotes']);
 			$invoiceArray       = array();  $invoiceArray       = explode(':::',$_POST['invoices']);
-//echo '<pre>$subStartArray = ';
-//var_dump($subStartArray);
 			foreach ($orderTypeArray as $key => $value){
 				if (($value) && ($paymentAmountArray[$key] || $yearArray[$key] || $fundNameArray[$key] || $costNoteArray[$key])){
 					$resourcePayment = new ResourcePayment();
@@ -32,9 +28,6 @@
 					$resourcePayment->subscriptionStartDate = $start;
 					$resourcePayment->subscriptionEndDate   = $end;
 					$resourcePayment->fundName      = $fundNameArray[$key];
-//echo '$subStartArray['.$key.']='.$start."\n";
-//echo '$subEndArray['.$key.']='.$end."\n";
-//echo '$fundNameArray['.$key.']='.$fundNameArray[$key]."\n";
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
 					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
 					$resourcePayment->orderTypeID   = $value;
@@ -43,13 +36,11 @@
 					$resourcePayment->invoiceNum    = $invoiceArray[$key];
 					try {
 						$resourcePayment->save();
-//echo '$resourcePayment->save() succeeded'."\n";
 					} catch (Exception $e) {
 						echo $e->getMessage();
 					}
 				}
 			}
-//echo '</pre>';
 
 		} catch (Exception $e) {
 			echo $e->getMessage();

@@ -1,11 +1,11 @@
 <?php
-		$updateID = $_GET['updateID'];
+	$updateID = $_GET['updateID'];
 
-		if ($updateID){
-			$instance = new Currency(new NamedArguments(array('primaryKey' => $updateID)));
-		}else{
-			$instance = new Currency();
-		}
+	if ($updateID){
+		$instance = new Currency(new NamedArguments(array('primaryKey' => $updateID)));
+	}else{
+		$instance = new Currency();
+	}
 ?>
 		<div id='div_updateForm'>
 
@@ -50,18 +50,18 @@
 				   if(e.keyCode == 13) {
 					   window.parent.submitCurrencyData();
 				   }
-        	});
+		});
 
 		   $('#shortName').keyup(function(e) {
 				   if(e.keyCode == 13) {
 					   window.parent.submitCurrencyData();
 				   }
-        	});
+		});
 
 		   $('#submitAddUpdate').click(function () {
 			       window.parent.submitCurrencyData();
 		   });
 
 
-        </script>
+	</script>
 

@@ -1,13 +1,12 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	if (isset($_GET['externalLoginID'])) $externalLoginID = $_GET['externalLoginID']; else $externalLoginID = '';
-    	$externalLogin = new ExternalLogin(new NamedArguments(array('primaryKey' => $externalLoginID)));
+	$resourceID = $_GET['resourceID'];
+	if (isset($_GET['externalLoginID'])) $externalLoginID = $_GET['externalLoginID']; else $externalLoginID = '';
+	$externalLogin = new ExternalLogin(new NamedArguments(array('primaryKey' => $externalLoginID)));
 
-
-		//get all contact roles for output in drop down
-		$externalLoginTypeArray = array();
-		$externalLoginTypeObj = new ExternalLoginType();
-		$externalLoginTypeArray = $externalLoginTypeObj->allAsArray();
+	//get all contact roles for output in drop down
+	$externalLoginTypeArray = array();
+	$externalLoginTypeObj = new ExternalLoginType();
+	$externalLoginTypeArray = $externalLoginTypeObj->allAsArray();
 ?>
 		<div id='div_accountForm'>
 		<form id='accountForm'>

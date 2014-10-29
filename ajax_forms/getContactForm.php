@@ -1,7 +1,7 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
-    	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
+	$resourceID = $_GET['resourceID'];
+	if (isset($_GET['contactID'])) $contactID = $_GET['contactID']; else $contactID = '';
+	$contact = new Contact(new NamedArguments(array('primaryKey' => $contactID)));
 
 		if (($contact->archiveDate) && ($contact->archiveDate != '0000-00-00')){
 			$invalidChecked = 'checked';

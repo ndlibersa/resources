@@ -1,6 +1,6 @@
 <?php
-    	if (isset($_GET['generalSubjectID'])) $generalSubjectID = $_GET['generalSubjectID']; else $generalSubjectID = '';
-    	$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalSubjectID)));
+	if (isset($_GET['generalSubjectID'])) $generalSubjectID = $_GET['generalSubjectID']; else $generalSubjectID = '';
+	$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $generalSubjectID)));
 
 
 		//get all users for output in drop down

@@ -56,7 +56,7 @@
 				   if(e.keyCode == 13) {
 					   window.parent.submitData();
 				   }
-        	});
+		});
 
 
 		   $('#submitAddUpdate').click(function () {
@@ -64,5 +64,5 @@
 		   });
 
 
-        </script>
+	</script>
 

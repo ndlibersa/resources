@@ -1,7 +1,7 @@
 <?php
-	    $resourceID = $_GET['resourceID'];
-		$generalSubject = new GeneralSubject();
-		$generalSubjectArray = $generalSubject->allAsArray();
+	$resourceID = $_GET['resourceID'];
+	$generalSubject = new GeneralSubject();
+	$generalSubjectArray = $generalSubject->allAsArray();
 ?>
 		<div id='div_updateForm'>
 		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>

@@ -1,7 +1,7 @@
 <?php
-    	$config = new Configuration();
-    	$resourceID = $_GET['resourceID'];
-    	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+	$config = new Configuration();
+	$resourceID = $_GET['resourceID'];
+	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 
 		//get license statuses

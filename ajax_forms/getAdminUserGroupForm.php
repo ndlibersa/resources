@@ -1,15 +1,14 @@
 <?php
-    	if (isset($_GET['userGroupID'])) $userGroupID = $_GET['userGroupID']; else $userGroupID = '';
-    	$userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $userGroupID)));
+	if (isset($_GET['userGroupID'])) $userGroupID = $_GET['userGroupID']; else $userGroupID = '';
+	$userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $userGroupID)));
 
+	//get all users for output in drop down
+	$allUserArray = array();
+	$userObj = new User();
+	$allUserArray = $userObj->allAsArray();
 
-		//get all users for output in drop down
-		$allUserArray = array();
-		$userObj = new User();
-		$allUserArray = $userObj->allAsArray();
-
-		//get users already set up for this user group in case it's an edit
-		$ugUserArray = $userGroup->getUsers();
+	//get users already set up for this user group in case it's an edit
+	$ugUserArray = $userGroup->getUsers();
 ?>
 		<div id='div_userGroupForm'>
 		<form id='userGroupForm'>

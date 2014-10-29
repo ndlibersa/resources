@@ -1,18 +1,18 @@
 <?php
-		if (isset($_GET['loginID'])) $loginID = $_GET['loginID']; else $loginID = '';
+	if (isset($_GET['loginID'])) $loginID = $_GET['loginID']; else $loginID = '';
 
-		$user = new User(new NamedArguments(array('primaryKey' => $loginID)));
+	$user = new User(new NamedArguments(array('primaryKey' => $loginID)));
 
-		//get all roles for output in drop down
-		$privilegeArray = array();
-		$privilegeObj = new Privilege();
-		$privilegeArray = $privilegeObj->allAsArray();
+	//get all roles for output in drop down
+	$privilegeArray = array();
+	$privilegeObj = new Privilege();
+	$privilegeArray = $privilegeObj->allAsArray();
 
-		if ($user->accountTabIndicator == '1') {
-			$accountTab = 'checked';
-		}else{
-			$accountTab = '';
-		}
+	if ($user->accountTabIndicator == '1') {
+		$accountTab = 'checked';
+	}else{
+		$accountTab = '';
+	}
 ?>
 		<div id='div_updateForm'>
 
@@ -78,36 +78,36 @@
 				   if(e.keyCode == 13) {
 					   window.parent.submitUserData();
 				   }
-        	});
+		});
 
 		   $('#firstName').keyup(function(e) {
 				   if(e.keyCode == 13) {
 					   window.parent.submitUserData();
 				   }
-        	});
+		});
 
 		   $('#lastName').keyup(function(e) {
 				   if(e.keyCode == 13) {
 					   window.parent.submitUserData();
 				   }
-        	});
+		});
 
 		   $('#emailAddress').keyup(function(e) {
 				   if(e.keyCode == 13) {
 					   window.parent.submitUserData();
 				   }
-        	});
+		});
 
 		   $('#privilegeID').keyup(function(e) {
 				   if(e.keyCode == 13) {
 					   window.parent.submitUserData();
 				   }
-        	});
+		});
 
 		   $('#submitAddUpdate').click(function () {
 			       window.parent.submitUserData();
 		   });
 
 
-        </script>
+	</script>
 

@@ -1,7 +1,7 @@
 <?php
-    	$resourceID = $_GET['resourceID'];
-    	if (isset($_GET['attachmentID'])) $attachmentID = $_GET['attachmentID']; else $attachmentID = '';
-    	$attachment = new Attachment(new NamedArguments(array('primaryKey' => $attachmentID)));
+	$resourceID = $_GET['resourceID'];
+	if (isset($_GET['attachmentID'])) $attachmentID = $_GET['attachmentID']; else $attachmentID = '';
+	$attachment = new Attachment(new NamedArguments(array('primaryKey' => $attachmentID)));
 
 		//get all attachment types for output in drop down
 		$attachmentTypeArray = array();

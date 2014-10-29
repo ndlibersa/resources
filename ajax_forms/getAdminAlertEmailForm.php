@@ -1,11 +1,11 @@
 <?php
-		$alertEmailAddressID = $_GET['alertEmailAddressID'];
+	$alertEmailAddressID = $_GET['alertEmailAddressID'];
 
-		if ($alertEmailAddressID){
-			$instance = new AlertEmailAddress(new NamedArguments(array('primaryKey' => $alertEmailAddressID)));
-		}else{
-			$instance = new AlertEmailAddress();
-		}
+	if ($alertEmailAddressID){
+		$instance = new AlertEmailAddress(new NamedArguments(array('primaryKey' => $alertEmailAddressID)));
+	}else{
+		$instance = new AlertEmailAddress();
+	}
 ?>
 		<div id='div_updateForm'>
 
@@ -46,7 +46,7 @@
 				   if(e.keyCode == 13) {
 					   window.parent.submitAdminAlertEmail();
 				   }
-        	});
+		});
 
 
 		   $('#submitAddUpdate').click(function () {
@@ -54,5 +54,5 @@
 		   });
 
 
-        </script>
+	</script>
 

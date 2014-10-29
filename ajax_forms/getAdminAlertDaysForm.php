@@ -1,11 +1,11 @@
 <?php
-		$alertDaysInAdvanceID = $_GET['alertDaysInAdvanceID'];
+	$alertDaysInAdvanceID = $_GET['alertDaysInAdvanceID'];
 
-		if ($alertDaysInAdvanceID){
-			$instance = new AlertDaysInAdvance(new NamedArguments(array('primaryKey' => $alertDaysInAdvanceID)));
-		}else{
-			$instance = new AlertDaysInAdvance();
-		}
+	if ($alertDaysInAdvanceID){
+		$instance = new AlertDaysInAdvance(new NamedArguments(array('primaryKey' => $alertDaysInAdvanceID)));
+	}else{
+		$instance = new AlertDaysInAdvance();
+	}
 ?>
 		<div id='div_updateForm'>
 
@@ -46,7 +46,7 @@
 				   if(e.keyCode == 13) {
 					   window.parent.submitAdminAlertDays();
 				   }
-        	});
+		});
 
 
 		   $('#submitAddUpdate').click(function () {
@@ -54,5 +54,5 @@
 		   });
 
 
-        </script>
+	</script>
 

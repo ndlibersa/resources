@@ -34,10 +34,10 @@
 		}
 
 		// Table geometry is different if enhanced cost history is enabled
-		$baseWidth = 355;
+		$baseWidth = 345;
 		$numCols = 6;
 		if ($enhancedCostFlag){
-			$baseWidth += 350;
+			$baseWidth += 388;
 			$numCols += 5; // year, sub start, sub end, cost details, invoice num
 		}
 ?>
@@ -45,7 +45,7 @@
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:<?php echo $baseWidth + 55 ?>px; margin-bottom:5px;'><span class='headerText'>Edit Cost Information</span></div>
+		<div class='formTitle' style='width:<?php echo $baseWidth + 46 ?>px; margin-bottom:5px;'><span class='headerText'>Edit Cost Information</span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -58,8 +58,8 @@
 			<td>
 				<table class='noBorder smallPadding newPaymentTable' style='margin:7px 15px 0 15px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Year</td>
 					<?php if ($enhancedCostFlag){ ?>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Year</td>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub Start</td>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub End</td>
 					<?php } ?>
@@ -78,7 +78,7 @@
 
 		<tr class='newPaymentTR'>
 		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:35px;' class='changeDefaultWhite changeInput year' />
+		<input type='text' value='' style='width:53px;' class='changeDefaultWhite changeInput year' />
 		</td>
 		<?php if ($enhancedCostFlag){ ?>
 		<td style='vertical-align:top;text-align:left;background:white;'>
@@ -106,7 +106,7 @@
 			</select>
 		</td>
 		<td style='vertical-align:top;text-align:left;'>
-			<select style='width:50px;' class='changeSelect orderTypeID'>
+			<select style='width:60px;' class='changeSelect orderTypeID'>
 			<option value='' selected></option>
 			<?php
 			foreach ($orderTypeArray as $orderType){
@@ -153,7 +153,7 @@ if (count($paymentArray) > 0){
 ?>
 		<tr>
 		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo $payment['year']; ?>' style='width:35px;' class='changeInput year' />
+		<input type='text' value='<?php echo $payment['year']; ?>' style='width:53px;' class='changeInput year' />
 		</td>
 		<?php if ($enhancedCostFlag){ ?>
 		<td style='vertical-align:top;text-align:left;'>
@@ -181,7 +181,7 @@ if (count($paymentArray) > 0){
 			</select>
 		</td>
 		<td style='vertical-align:top;text-align:left;'>
-		<select style='width:50px;' class='changeSelect orderTypeID'>
+		<select style='width:60px;' class='changeSelect orderTypeID'>
 		<option value=''></option>
 		<?php
 		foreach ($orderTypeArray as $orderType){

@@ -184,56 +184,6 @@ function submitOrderForm(){
 	      purchaseSitesList += $(this).val() + ":::";
 	}); 
 	
-	yearList ='';
-	$(".year").each(function(id) {
-	      yearList += $(this).val() + ":::";
-	}); 
-
-	subStartList ='';
-	$(".subscriptionStartDate").each(function(id) {
-	      subStartList += $(this).val() + ":::";
-	}); 
-
-	subEndList ='';
-	$(".subscriptionEndDate").each(function(id) {
-	      subEndList += $(this).val() + ":::";
-	}); 
-
-	fundNameList ='';
-	$(".fundName").each(function(id) {
-	      fundNameList += $(this).val() + ":::";
-	}); 
-
-	paymentAmountList ='';
-	$(".paymentAmount").each(function(id) {
-	      paymentAmountList += $(this).val() + ":::";
-	}); 
-
-	currencyCodeList ='';
-	$(".currencyCode").each(function(id) {
-	      currencyCodeList += $(this).val() + ":::";
-	}); 
-	
-	orderTypeList ='';
-	$(".orderTypeID").each(function(id) {
-	      orderTypeList += $(this).val() + ":::";
-	}); 
-
-	detailsList ='';
-	$(".costDetailsID").each(function(id) {
-	      detailsList += $(this).val() + ":::";
-	}); 
-
-	costNoteList ='';
-	$(".costNote").each(function(id) {
-	      costNoteList += $(this).val() + ":::";
-	}); 
-
-	invoiceList ='';
-	$(".invoice").each(function(id) {
-	      invoiceList += $(this).val() + ":::";
-	}); 
-
 	if (validateForm() === true) {
 		$('#submitOrder').attr("disabled", "disabled"); 
 		  $.ajax({
@@ -248,16 +198,6 @@ function submitOrderForm(){
                       currentEndDate: $("#currentEndDate").val(),
                       subscriptionAlertEnabledInd: $("#subscriptionAlertEnabledInd:checked").val(),
                       purchaseSites: purchaseSitesList,
-                      years: yearList,
-                      subStarts: subStartList,
-                      subEnds: subEndList,
-                      fundNames: fundNameList,
-                      paymentAmounts: paymentAmountList,
-                      currencyCodes: currencyCodeList,
-                      orderTypes: orderTypeList,
-                      costDetails: detailsList,
-                      costNotes: costNoteList,
-                      invoices: invoiceList
                     },
 			 success:   function(html) {
 				if (html){
@@ -286,32 +226,14 @@ function submitOrderForm(){
  function validateForm (){
  	myReturn=0;
 
-	var y = $('.newPaymentTable').children().children().children().children('.year').val();
-	var fName = $('.newPaymentTable').children().children().children().children('.fundName').val();
-	var typeID = $('.newPaymentTable').children().children().children().children('.orderTypeID').val();
-	var detailsID = $('.newPaymentTable').children().children().children().children('.costDetailsID').val();
-	var pAmount = $('.newPaymentTable').children().children().children().children('.paymentAmount').val();
-	var cNote = $('.newPaymentTable').children().children().children().children('.costNote').val();
+	var typeID = $('#acquisitionTypeID').val();
 
-	//also perform same checks on the current record in case add button wasn't clicked
-	if ((((pAmount == '') || (pAmount == null)) && ((fName == '') || (fName == null))) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - Either price or fund is required');
-		myReturn="1";		
-
-	}
-
-	if(((typeID == '') || (typeID == null)) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - order type is a required field');
+	if((typeID == '') || (typeID == null)){
+		$('#span_errors').html('Error - acquisition type is a required field');
 		myReturn="1";
+		alert("Fail 2");
 	}
 
-	
-	if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-		$('#div_errorPayment').html('Error - price is not numeric');
-		myReturn="1";		
-	}
- 	
- 	 
  	if (myReturn == "1"){
 		return false; 	
  	}else{

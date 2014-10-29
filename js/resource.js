@@ -34,7 +34,7 @@ $(document).ready(function(){
 	$(".showAcquisitions").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_acquisitions').show();
-		$('#div_fullRightPanel').show();
+		$('#div_fullRightPanel').hide();
 		updateAcquisitions();
 		return false;
 	});

@@ -30,11 +30,11 @@
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:740px; margin-bottom:5px;'><span class='headerText'>Edit Acquisitions Information</span></div>
+		<div class='formTitle' style='width:420px; margin-bottom:5px;'><span class='headerText'>Edit Acquisitions Information</span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
-		<table class='noBorder' style='width:735px;'>
+		<table class='noBorder' style='width:435px;'>
 		<tr style='vertical-align:top;'>
 		<td style='vertical-align:top; padding-right:35px;'>
 			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='orderInformation'><b>Order</b></label>&nbsp;&nbsp;</span>

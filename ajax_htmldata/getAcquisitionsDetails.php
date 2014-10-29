@@ -89,7 +89,7 @@
 			<th colspan='2' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Order</span>
 			<?php if ($user->canEdit()){ ?>
-				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='edit order information'></a></span>
+				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getOrderForm&height=400&width=480&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='edit order information'></a></span>
 			<?php } ?>
 
 			</th>
@@ -148,7 +148,7 @@
 
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getOrderForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit order information</a>
+				<a href='ajax_forms.php?action=getOrderForm&height=400&width=440&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit order information</a>
 			<?php } ?>
 			<br />
 			<br />
@@ -159,7 +159,7 @@
 			<th colspan='<?php echo $numCols; ?>' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Cost</span>
 			<?php if ($user->canEdit()){ ?>
-				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
+				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=400&width=440&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
 			<?php } ?>
 
 			</th>
@@ -231,7 +231,7 @@
 			?>
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getCostForm&height=462&width=783&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
+				<a href='ajax_forms.php?action=getCostForm&height=400&width=784&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
 			<?php } ?>
 			<br />
 			<br />

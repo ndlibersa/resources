@@ -26,4 +26,3 @@ if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_forms/$action.php")
 }
 
 ?>
-

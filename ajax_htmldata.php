@@ -31,4 +31,3 @@ if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_htmldata/$action.ph
 }
 
 ?>
-

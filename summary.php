@@ -229,7 +229,7 @@ if ($resource->titleText){
 		</tr>
 
 		<?php
-		if (normalize_date($resource->updateDate) != '0000-00-00'){
+		if (!is_null_date($resource->updateDate)){
 		?>
 
 			<tr>
@@ -453,14 +453,14 @@ if ($resource->titleText){
 	<?php } ?>
 
 
-	<?php if (($resource->currentStartDate) && ($resource->currentStartDate != '0000-00-00')) { ?>
+	<?php if (!is_null_date($resource->currentStartDate)) { ?>
 	<tr>
 	<td style='vertical-align:top;width:150px;'>Sub Start:</td>
 	<td><?php echo format_date($resource->currentStartDate); ?></td>
 	</tr>
 	<?php } ?>
 
-	<?php if (($resource->currentEndDate) && ($resource->currentEndDate != '0000-00-00')) { ?>
+	<?php if (!is_null_date($resource->currentEndDate)) { ?>
 	<tr>
 	<td style='vertical-align:top;width:150px;'>Current Sub End:</td>
 	<td><?php echo format_date($resource->currentEndDate); ?>&nbsp;&nbsp;

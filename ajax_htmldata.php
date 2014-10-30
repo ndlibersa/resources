@@ -2,7 +2,7 @@
 
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.2.flo
+** CORAL Resources Module v. 1.2
 **
 ** Copyright (c) 2010-2014 University of Notre Dame
 **

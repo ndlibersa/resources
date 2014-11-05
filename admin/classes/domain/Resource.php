@@ -959,6 +959,15 @@ class Resource extends DatabaseObject {
       $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
       $searchDisplay[] = "Routing Step: " . $search['stepName'];
     }
+
+
+    if ($search['parent'] != null) {
+      $parentadd = "(" . $search['parent'] . ".relationshipTypeID = 1";
+      $parentadd .= ")";
+      $whereAdd[] = $parentadd;
+    }
+
+
     
 		if ($search['statusID']) {
 		  $whereAdd[] = "R.statusID = '" . mysql_real_escape_string($search['statusID']) . "'";

@@ -211,65 +211,6 @@
 	});
 
 
-	$(".addPayment").live('click', function () {
-
-		var fName = $('.newPaymentTable').children().children().children().children('.fundName').val();
-		var typeID = $('.newPaymentTable').children().children().children().children('.orderTypeID').val();
-		var pAmount = $('.newPaymentTable').children().children().children().children('.paymentAmount').val();
-
-						
-		if (((pAmount == '') || (pAmount == null)) && ((fName == '') || (fName == null))){
-			$('#div_errorPayment').html('Error - Either price or fund is required');
-			return false;		
-		}else if((typeID == '') || (typeID == null)){
-			$('#div_errorPayment').html('Error - order type is a required field');
-			return false;
-		}else if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-			$('#div_errorPayment').html('Error - price is not numeric');
-			return false;		
-		}else{
-
-			//we're going to strip out the $ of the payment amount
-			pAmount = pAmount.replace('$','');
-		
-			$('#div_errorPayment').html();
-			
-			//first copy the new payment being added
-			var originalTR = $('.newPaymentTR').clone();
-
-			//next append to to the existing table
-			//it's too confusing to chain all of the children.
-			$('.newPaymentTR').appendTo('.paymentTable');
-
-			$('.newPaymentTR').children().children().children('.addPayment').attr({
-			  src: 'images/cross.gif',
-			  alt: 'remove this payment',
-			  title: 'remove this payment'
-			});
-			$('.newPaymentTR').children().children().children('.addPayment').addClass('remove');
-			$('.newPaymentTR').children().children('.paymentAmount').val(pAmount);			
-			$('.paymentTypeID').addClass('changeSelect');
-			$('.paymentTypeID').addClass('idleField');
-			$('.paymentTypeID').css("background-color","");
-			$('.paymentName').addClass('changeInput');
-			$('.paymentName').addClass('idleField');
-
-			
-			$('.addPayment').removeClass('addPayment');
-			$('.newPaymentTR').removeClass('newPaymentTR');
-
-			//next put the original clone back, we just need to reset the values
-			originalTR.appendTo('.newPaymentTable');
-			$('.newPaymentTable').children().children().children().children('.orderTypeID').val('');
-			$('.newPaymentTable').children().children().children().children('.fundName').val('');
-			$('.newPaymentTable').children().children().children().children('.paymentAmount').val('');
-			
-
-			return false;
-		}
-	});
-
-
 
  });
  
@@ -281,27 +222,20 @@
  	myReturn=0;
  	if (!validateRequired('titleText','<br />Title must be entered to continue.<br />')) myReturn="1";
 
-	var fName = $('.newPaymentTable').children().children().children().children('.fundName').val();
-	var typeID = $('.newPaymentTable').children().children().children().children('.orderTypeID').val();
-	var pAmount = $('.newPaymentTable').children().children().children().children('.paymentAmount').val();
+	var title = $('.newPaymentTable').children().children().children().children('.titleText').val();
+	var fmtID = $('.newPaymentTable').children().children().children().children('.resourceFormatID').val();
 
 	//also perform same checks on the current record in case add button wasn't clicked
-	if ((((pAmount == '') || (pAmount == null)) && ((fName == '') || (fName == null))) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - Either price or fund is required');
+	if (title == '' || title == null){
+		$('#span_error_title_text').html('The title must be entered to continue.');
 		myReturn="1";		
 	}
 	
-	if(((typeID == '') || (typeID == null)) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - order type is a required field');
-		myReturn="1";
-	}
-	
-	if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-		$('#div_errorPayment').html('Error - price is not numeric');
+	if (fmtID == '' || fmtID == null){
+		$('#span_error_format_id').html('The resource format is required.');
 		myReturn="1";		
 	}
- 	
- 	 
+	
  	if (myReturn == "1"){
 		return false; 	
  	}else{
@@ -376,7 +310,6 @@ function submitResource(status){
 //kill all binds done by jquery live
 function kill(){
 
-	$('.addPayment').die('click'); 
 	$('.remove').die('click');
 	$('.changeAutocomplete').die('blur');
 	$('.changeAutocomplete').die('focus');

@@ -244,7 +244,14 @@
 		}
 	});
 
-
+  
+  $(".addIsbn").live('click', function() {
+    var newIsbn = $('.isbnOrISSN_new').clone();
+    newIsbn.removeClass('isbnOrISSN_new');
+    newIsbn.appendTo('#existingIsbn');
+    $("#existingIsbn").append('<br />');
+    $('#newIsbn input').val('');
+  });
 
 
 	$(".addOrganization").live('click', function () {

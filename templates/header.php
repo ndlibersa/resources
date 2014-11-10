@@ -106,6 +106,7 @@ if($config->settings->authModule == 'Y'){ echo " - <a href='" . $coralURL . "aut
 --><a href='import.php'><span class="menubtn<?php if ($currentPage == 'import.php') { echo " active"; } ?>">Import</span></a>
 --><?php if ($user->isAdmin()) { ?><a href='admin.php'><span class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn">Admin</span></a><?php } ?>
 <?php } ?>
+
 </td>
 
 <td style='width:130px;height:19px;' align='right'>

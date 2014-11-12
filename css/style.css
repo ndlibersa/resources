@@ -49,12 +49,11 @@ width:100%;
   -moz-border-radius: 0;
   border-radius: 0px;
   border: none;
+  display: inline-block;
   font-family: Arial;
   color: #2c3c42;
   font-size: 13px;
-  padding: 2px;
-  padding-left:10px;
-  padding-right:10px;
+  padding: 3px 13px;
   text-decoration: none;
 }
 
@@ -80,12 +79,12 @@ width:100%;
 }
 
 .menubtn.active {
-  background: #d7e3ee;
-  background-image: -webkit-linear-gradient(top, #d7e3ee, #e7eef5);
-  background-image: -moz-linear-gradient(top, #d7e3ee, #e7eef5);
-  background-image: -ms-linear-gradient(top, #d7e3ee, #e7eef5);
-  background-image: -o-linear-gradient(top, #d7e3ee, #e7eef5);
-  background-image: linear-gradient(to bottom, #d7e3ee, #e7eef5);
+  background: #c7d3de;
+  background-image: -webkit-linear-gradient(top, #c7d3de, #e7eef5);
+  background-image: -moz-linear-gradient(top, #c7d3de, #e7eef5);
+  background-image: -ms-linear-gradient(top, #c7d3de, #e7eef5);
+  background-image: -o-linear-gradient(top, #c7d3de, #e7eef5);
+  background-image: linear-gradient(to bottom, #c7d3de, #e7eef5);
 }
 
 

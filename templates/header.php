@@ -95,10 +95,10 @@ $coralURL = $util->getCORALURL();
 <tr style='vertical-align:top'>
 <td style='width:870px;height:19px;'>
 
-<a href='index.php'><button class="menubtn<?php if ($currentPage == 'index.php') { echo " active"; } ?>" id="firstmenubtn">Home</button></a><?php if ($user->isAdmin() || $user->canEdit()){ ?>
-<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><button class="menubtn">New Resource</button></a><!--
---><a href='queue.php'><button class="menubtn<?php if ($currentPage == 'queue.php') { echo " active"; } ?>">My Queue</button></a><!--
---><?php if ($user->isAdmin()) { ?><a href='admin.php'><button class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn">Admin</button></a><?php } ?>
+<a href='index.php'><span class="menubtn<?php if ($currentPage == 'index.php') { echo " active"; } ?>" id="firstmenubtn">Home</span></a><?php if ($user->isAdmin() || $user->canEdit()){ ?>
+<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><span class="menubtn">New Resource</span></a><!--
+--><a href='queue.php'><span class="menubtn<?php if ($currentPage == 'queue.php') { echo " active"; } ?>">My Queue</span></a><!--
+--><?php if ($user->isAdmin()) { ?><a href='admin.php'><span class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn">Admin</span></a><?php } ?>
 <?php } ?>
 
 </td>

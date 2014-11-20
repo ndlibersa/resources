@@ -133,6 +133,7 @@
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
 			<td>
+<span id='span_error_resourceFormatID' class='smallDarkRedText'></span>
 
 				<table class='noBorder' style='width:310px; margin:5px 15px;'>
 				<?php
@@ -152,7 +153,7 @@
 						if (strtoupper($resourceFormat['shortName']) == 'ELECTRONIC') $checked = 'checked'; else $checked = '';
 					}
 
-					echo "<td><input type='radio' name='resourceFormatID' id='resourceFormatID' value='" . $resourceFormat['resourceFormatID'] . "' " . $checked . " />  " . $resourceFormat['shortName'] . "</td>\n";
+					echo "<td><input type='radio' name='resourceFormatID' id='resourceFormatID' value='" . $resourceFormat['resourceFormatID'] . "' " . $checked . " />  " . $resourceFormat['shortName'] . "</td>";
 
 					if(($i % 2)==0){
 						echo "</tr>\n";

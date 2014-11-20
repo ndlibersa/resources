@@ -220,23 +220,28 @@
  
  function validateNewResource (){
  	myReturn=0;
- 	if (!validateRequired('titleText','<br />Title must be entered to continue.<br />')) myReturn="1";
 
-	var title = $('.newPaymentTable').children().children().children().children('.titleText').val();
-	var fmtID = $('.newPaymentTable').children().children().children().children('.resourceFormatID').val();
+	var title = $('#titleText').val();
+	var fmtID = $('#resourceFormatID').val();
+	var typeID = $('#resourceTypeID').val();
 
 	//also perform same checks on the current record in case add button wasn't clicked
 	if (title == '' || title == null){
-		$('#span_error_title_text').html('The title must be entered to continue.');
-		myReturn="1";		
+		$('#span_error_titleText').html('A title must be entered to continue.');
+		myReturn=1;		
 	}
 	
 	if (fmtID == '' || fmtID == null){
-		$('#span_error_format_id').html('The resource format is required.');
-		myReturn="1";		
+		$('#span_error_resourceFormatID').html('The resource format is required.');
+		myReturn=1;		
 	}
 	
- 	if (myReturn == "1"){
+	if (typeID == '' || typeID == null){
+		$('#span_error_resourceTypeID').html('The resource type is required.');
+		myReturn=1;		
+	}
+	
+ 	if (myReturn == 1){
 		return false; 	
  	}else{
  		return true;

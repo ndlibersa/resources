@@ -41,15 +41,22 @@ if ($resource->titleText){
 	$createUser = new User(new NamedArguments(array('primaryKey' => $resource->createLoginID)));
 	$updateUser = new User(new NamedArguments(array('primaryKey' => $resource->updateLoginID)));
 
-	//get parent resource
-	//only returns one - ResourceRelationship object
-	$resourceRelationship = new ResourceRelationship();
-	$resourceRelationship = $resource->getParentResource();
-	$parentResource = new Resource(new NamedArguments(array('primaryKey' => $resourceRelationship->relatedResourceID)));
-
-	//get children resources
+	//get parents resources
 	$sanitizedInstance = array();
 	$instance = new Resource();
+	$parentResourceArray = array();
+  foreach ($resource->getParentResources() as $instance) {
+		foreach (array_keys($instance->attributeNames) as $attributeName) {
+			$sanitizedInstance[$attributeName] = $instance->$attributeName;
+		}
+
+		$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+		array_push($parentResourceArray, $sanitizedInstance);
+	}
+
+
+
+	//get children resources
 	$childResourceArray = array();
 	foreach ($resource->getChildResources() as $instance) {
 		foreach (array_keys($instance->attributeNames) as $attributeName) {
@@ -257,14 +264,15 @@ if ($resource->titleText){
 		<?php
 		}
 
-		if (($parentResource->titleText) || (count($childResourceArray) > 0)){ ?>
+		if ((count($parentResourceArray) > 0) || (count($childResourceArray) > 0)){ ?>
 			<tr>
 			<td style='vertical-align:top;width:150px;'>Related Products:</td>
 			<td>
 			<?php
 
-			if ($parentResource->titleText){
-				echo "<span style='float: left;'>" . $parentResource->titleText . "&nbsp;&nbsp;(Parent)</span>";
+      foreach ($parentResourceArray as $parentResource){
+				$parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
+				echo "<span style='float: left;'>" . $parentResourceObj->titleText . "&nbsp;&nbsp;(Parent)</span>";
 			}
 
 			foreach ($childResourceArray as $childResource){

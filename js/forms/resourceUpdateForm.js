@@ -62,7 +62,7 @@
 
 
 
-	 $("#parentResourceName").autocomplete('ajax_processing.php?action=getResourceList', {
+	 $("input[name='parentResourceName']").autocomplete('ajax_processing.php?action=getResourceList', {
 		minChars: 2,
 		max: 20,
 		mustMatch: false,
@@ -80,12 +80,14 @@
 
 
 	//once something has been selected, change the hidden input value
-	$("#parentResourceName").result(function(event, data, formatted) {
+	$("input[name='parentResourceName']").result(function(event, data, formatted) {
+    inputid = $(this).next();
+  
 		if (data[1] != $("#editResourceID").val()){
-			$("#parentResourceID").val(data[1]);
-			$('#span_error_parentResourceName').html('');
+			inputid.val(data[1]);
+			$(this).next().next().html('');
 		}else{
-			$('#span_error_parentResourceName').html('<br />Error - Parent cannot be the same as the child');
+			$(this).next().next().html('<br />Error - Parent cannot be the same as the child');
 		}
 	});
 
@@ -188,6 +190,13 @@
 	});
 
 
+  $(".removeParent").live('click', function () {
+	    $(this).parent().fadeTo(400, 0, function () { 
+		$(this).parent().remove();
+	    });
+	    return false;
+	});
+
 
 
 	$(".remove").live('click', function () {
@@ -251,6 +260,32 @@
     newIsbn.appendTo('#existingIsbn');
     $("#existingIsbn").append('<br />');
     $('#newIsbn input').val('');
+  });
+
+  $(".addParent").live('click', function() {
+
+    var parentID = $("#newParent .oneParent input[name='parentResourceID']'").val();
+    var parentName = $("#newParent .oneParent input[name='parentResourceName']'").val();
+
+    if (parentName == '') {
+      return false;
+    }
+
+    if (parentID == '' || parentID == null) {
+				$('#span_error_parentResourceName').html('Error - Parent is not found.  Please use the Autocomplete.');
+        return false;
+    }
+
+    var newParentValue = $('.parentResource_new').clone();
+    newParentValue.removeClass('parentResource_new');
+    newParentValue.attr('disabled', 'disabled');
+    var newParentStr = "<div class='oneParent'></div>";
+    var newParentObj = $(newParentStr);
+    var newParentEnd = "<a href='javascript:void();'><img src='images/cross.gif' alt='remove parent' title='remove parent' class='removeParent' /></a></div>";
+    newParentObj.append(newParentValue);
+    newParentObj.append(newParentEnd);
+    $('#existingParent').append(newParentObj);
+    $('#newParent input').val('');
   });
 
 
@@ -374,14 +409,6 @@
 
 	}
 
-	//check parent resource
-	//if there is no parent resource ID then this is an invalid name
-	if (($("#parentResourceID").val() == '') && ($("#parentResourceName").val() != '')){
-		$('#span_error_parentResourceName').html('<br />Error - Parent resource is not found.  Please use Autocomplete.');
-		myReturn="1";
-	}
-
- 	
  	if (myReturn == "1"){
 		return false; 	
  	}else{
@@ -426,12 +453,22 @@ function submitProductForm(){
         arrayisbn.push($(this).val());
     });
     isbnOrIssn = arrayisbn.join();
+
+    var arrayparents = Array();
+    var parents = '';
+    $("input[name='parentResourceID']").each(function() {
+        if ($(this).val() != null && $(this).val() != '') {
+          arrayparents.push($(this).val());
+        }
+    });
+
+
 		$('#submitProductChanges').attr("disabled", "disabled"); 
 		  $.ajax({
 			 type:       "POST",
 			 url:        "ajax_processing.php?action=submitProductUpdate",
 			 cache:      false,
-			 data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourceID: $("#parentResourceID").val(), parentResourceName: $("#parentResourceName").val(), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn) },
+			 data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourceID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn) },
 			 success:    function(html) {
 				if (html){
 					$("#span_errors").html(html);

@@ -111,34 +111,23 @@ class Resource extends DatabaseObject {
 
   }
 
-	//returns array of related resource objects
-	public function getParentResource(){
-
-		$query = "SELECT *
-			FROM ResourceRelationship
-			WHERE resourceID = '" . $this->resourceID . "'
-			AND relationshipTypeID = '1'
-			ORDER BY 1";
-
-		$result = $this->db->processQuery($query, 'assoc');
-
-		$objects = array();
-
-		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['resourceID'])){
-			$object = new ResourceRelationship(new NamedArguments(array('primaryKey' => $result['resourceRelationshipID'])));
-		}
-
-		return $object;
+	//returns array of parent resource objects
+	public function getParentResources(){
+    return $this->getRelatedResources('resourceID');
 	}
 
 
-	//returns array of related resource objects
+	//returns array of child resource objects
 	public function getChildResources(){
+    return $this->getRelatedResources('relatedResourceID');
+	}
+  
+  // return array of related resource objects
+  private function getRelatedResources($key) {
 
-		$query = "SELECT *
+    $query = "SELECT *
 			FROM ResourceRelationship
-			WHERE relatedResourceID = '" . $this->resourceID . "'
+			WHERE $key = '" . $this->resourceID . "'
 			AND relationshipTypeID = '1'
 			ORDER BY 1";
 
@@ -147,7 +136,7 @@ class Resource extends DatabaseObject {
 		$objects = array();
 
 		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['relatedResourceID'])){
+		if (isset($result[$key])){
 			$object = new ResourceRelationship(new NamedArguments(array('primaryKey' => $result['resourceRelationshipID'])));
 			array_push($objects, $object);
 		}else{
@@ -158,9 +147,8 @@ class Resource extends DatabaseObject {
 		}
 
 		return $objects;
-	}
 
-
+  }
 
 	//returns array of purchase site objects
 	public function getResourcePurchaseSites(){

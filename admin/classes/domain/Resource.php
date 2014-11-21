@@ -54,14 +54,13 @@ class Resource extends DatabaseObject {
   //returns resource objects by title
 	public function getResourceByIsbnOrISSN($isbnOrISSN){
 
-		$query = "SELECT *
-			FROM IsbnOrIssn
-			WHERE isbnOrIssn = '" . $isbnOrISSN[0] . "'";
+		$query = "SELECT DISTINCT(resourceID)
+			FROM IsbnOrIssn";
 
     $i = 0;
     foreach ($isbnOrISSN as $value) {
-      if ($i == 0) next; 
-      $query .= " OR isbnOrIssn = '$value'";
+      $query .= ($i == 0) ? " WHERE " : " OR ";
+      $query .= "isbnOrIssn = '$value'";
       $i++;
     }
 

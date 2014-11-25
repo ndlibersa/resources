@@ -239,7 +239,7 @@
 			?>
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getCostForm&height=400&width=784&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
+				<a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
 			<?php } ?>
 			<br />
 			<br />

@@ -5,6 +5,12 @@
 	if ($enhancedCostFlag){
 		$numCols = 10;
 		$tableWidth = 760;
+                ?>
+		<!-- Hide the helpful links, etc. -->
+        	<script>
+			$('#div_fullRightPanel').hide(); 
+		</script>
+                <?php
 	}else{
 		$numCols = 4;
 		$tableWidth = 646;

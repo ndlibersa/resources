@@ -5,6 +5,7 @@
 	if ($enhancedCostFlag){
 		$numCols = 10;
 		$tableWidth = 760;
+		$formWidth = 784;
                 ?>
 		<!-- Hide the helpful links, etc. -->
         	<script>
@@ -14,6 +15,7 @@
 	}else{
 		$numCols = 4;
 		$tableWidth = 646;
+		$formWidth = 564;
 	}
 
 	$resourceID = $_GET['resourceID'];
@@ -165,7 +167,7 @@
 			<th colspan='<?php echo $numCols; ?>' style='vertical-align:bottom;'>
 			<span style='float:left;vertical-align:bottom;'>Cost</span>
 			<?php if ($user->canEdit()){ ?>
-				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=400&width=784&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
+				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
 			<?php } ?>
 
 			</th>

@@ -151,10 +151,10 @@ if (count($paymentArray) > 0){
 	foreach ($paymentArray as $payment){
 ?>
 		<tr>
+		<?php if ($enhancedCostFlag){ ?>
 		<td style='vertical-align:top;text-align:left;'>
 		<input type='text' value='<?php echo $payment['year']; ?>' style='width:53px;' class='changeInput year' />
 		</td>
-		<?php if ($enhancedCostFlag){ ?>
 		<td style='vertical-align:top;text-align:left;'>
 		<input type='text' value='<?php echo normalize_date($payment['subscriptionStartDate']); ?>' style='width:60px;' class='date-pick changeInput subscriptionStartDate' /></td>
 		<td style='vertical-align:top;text-align:left;'>

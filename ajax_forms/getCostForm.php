@@ -77,10 +77,9 @@
 				</tr>
 
 		<tr class='newPaymentTR'>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:53px;' class='changeDefaultWhite changeInput year' />
-		</td>
 		<?php if ($enhancedCostFlag){ ?>
+		<td style='vertical-align:top;text-align:left;background:white;'>
+		<input type='text' value='' style='width:53px;' class='changeDefaultWhite changeInput year' /></td>
 		<td style='vertical-align:top;text-align:left;background:white;'>
 		<input type='text' value='' style='width:60px;' class='date-pick changeDefaultWhite changeInput subscriptionStartDate' /></td>
 		<td style='vertical-align:top;text-align:left;background:white;'>

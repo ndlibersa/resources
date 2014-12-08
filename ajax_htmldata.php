@@ -84,6 +84,10 @@ switch ($_GET['action']) {
 
 		?>
 		<table class='linedFormTable' style='width:460px;'>
+                        <tr>
+                                <th width="115"></th>
+                                <th></th>
+                        </tr>
 			<tr>
 			<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 			<span style='float:left; vertical-align:top; max-width:400px; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $acquisitionType->shortName . " " . $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>

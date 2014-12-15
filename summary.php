@@ -347,7 +347,14 @@ if ($resource->titleText){
 			<td style='vertical-align:top;width:150px;'>Description:</td>
 			<td><?php echo nl2br($resource->descriptionText); ?></td>
 			</tr>
-		<?php } ?>
+		<?php } 
+
+    if ($resource->mandatoryResource) {?>
+      <tr>
+			<td style='vertical-align:top;width:150px;'>Mandatory:</td>
+			<td><?php echo ($resource->mandatoryResource) ? 'Yes' : 'No'; ?></td>
+			</tr>
+    <?php } ?>
 
 
 	</table>

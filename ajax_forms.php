@@ -722,6 +722,18 @@ switch ($_GET['action']) {
 					</td>
 					</tr>
 
+          <tr>
+          <td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='mandatoryResource'>Mandatory:</label></td>
+
+					<td>
+					<select name='mandatoryResource' id='mandatoryResource' style='width:100px;' class='changeSelect' >
+            <option value='0'>No</option>
+            <option value='1'<?php if ($resource->mandatoryResource) echo ' selected="selected"'; ?>'>Yes</option>
+          </select>
+          </td>
+
+          </tr>
+
 					<tr>
 					<td style='text-align:left'><label for='archiveInd'><b>Archived:</b></label></td>
 					<td>

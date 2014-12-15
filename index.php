@@ -571,7 +571,15 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
-
+  <tr>
+	<td class='searchRow'><label for='searchMandatory'><b>Mandatory Resource?</b></label>
+  <select name='search[mandatory]' id='searchMandatory' style='width:150px'>
+  <option value=''>All</option>
+  <option value='1'>Yes</option>
+  <option value='0'>No</option>
+  </select>
+  </td>
+  </tr>
 
 	</table>
 	</div>

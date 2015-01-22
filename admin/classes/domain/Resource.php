@@ -1734,14 +1734,28 @@ class Resource extends DatabaseObject {
 	//removes this resource and its children
 	public function removeResourceAndChildren(){
 
-    // get children
+    // for each children
     foreach ($this->getChildResources() as $instance) {
+      $removeChild = true;
       $child = new Resource(new NamedArguments(array('primaryKey' => $instance->resourceID)));
-      $child->removeResource();
+
+      // get parents of this children
+      $parents = $child->getParentResources();
+
+      // If the child ressource belongs to another parent than the one we're removing
+      foreach ($parents as $pinstance) {
+        $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pinstance->relatedResourceID)));
+        if ($parentResourceObj->resourceID != $this->resourceID) {
+          // We do not delete this child.
+          $removeChild = false;
+        }
+      }
+      if ($removeChild == true) {
+        $child->removeResource();
+      }
     }
-
+    // Finally, we remove the parent
     $this->removeResource();
-
 	}
 
 

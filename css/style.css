@@ -975,6 +975,9 @@ table.noMargin { border:0px;margin:0px; padding:0px;text-align:center; }
 table.noMargin tr { border:0px;margin:0px; padding:0px; vertical-align:center; }
 table.noMargin td { border:0px;margin:0px; padding:0px; }
 
+table.newPaymentTable td { padding:2px;}
+table.paymentTable td { padding:2px;}
+
 
 .formText {font-weight:bold;}
 

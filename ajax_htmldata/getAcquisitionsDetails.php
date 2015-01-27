@@ -3,9 +3,9 @@
 	$enhancedCostFlag = ((isset($config->settings->enhancedCostHistory)) && (strtoupper($config->settings->enhancedCostHistory) == 'Y')) ? 1 : 0;
 	$enhancedCostFlag = (strtoupper($config->settings->enhancedCostHistory) == 'Y') ? 1 : 0;
 	if ($enhancedCostFlag){
-		$numCols = 9;
+		$numCols = 12;
 		$tableWidth = 760;
-		$formWidth = 784;
+		$formWidth = 1084;
                 ?>
 		<!-- Hide the helpful links, etc. -->
         	<script>
@@ -180,6 +180,11 @@
 			<th>Sub End</th>
 		<?php } ?>
 			<th>Fund</th>
+		<?php if ($enhancedCostFlag){ ?>
+            <th>Tax Excl.</th>
+            <th>Tax Rate</th>
+            <th>Tax Incl.</th>
+		<?php } ?>
 			<th>Payment</th>
 		<?php if ($enhancedCostFlag && 0){ ?>
 			<th style='text-align: right'>%</th>
@@ -210,11 +215,14 @@
 				$subStart = $payment['subscriptionStartDate'] ? normalize_date($payment['subscriptionStartDate']) : "&nbsp;";
 				$subEnd = $payment['subscriptionEndDate'] ? normalize_date($payment['subscriptionEndDate']) : "&nbsp;";
 				$fundName = $payment['fundName'] ? $payment['fundName'] : "&nbsp;";
-				if (integer_to_cost($payment['paymentAmount'])){
-					$cost = $payment['currencyCode'] . " " . integer_to_cost($payment['paymentAmount']);
-				}else{
-					$cost = "&nbsp;";
-				}
+                $taxRate = $payment['taxRate'] ? $payment['taxRate'] . '&nbsp;%' : "&nbsp;";
+                foreach (Array('priceTaxExcluded', 'priceTaxIncluded', 'paymentAmount') as $amount) { 
+                  if (integer_to_cost($payment[$amount])){
+                    $cost[$amount] = $payment['currencyCode'] . " " . integer_to_cost($payment[$amount]);
+                  }else{
+                    $cost[$amount] = "&nbsp;";
+                  }
+                }
 				$costDetails = $payment['costDetails'] ? $payment['costDetails'] : "&nbsp;";
 				$costNote = $payment['costNote'] ? $payment['costNote'] : "&nbsp;";
 				$invoiceNum = $payment['invoiceNum'] ? $payment['invoiceNum'] : "&nbsp;";
@@ -227,10 +235,15 @@
 				<td <?php echo $classAdd;?>><?php echo $subEnd; ?></td>
 			<?php } ?>
 				<td <?php echo $classAdd;?>><?php echo $fundName; ?></td>
-				<td <?php echo $classAdd;?>><?php echo $cost; ?></td>
 			<?php if ($enhancedCostFlag && 0){ ?>
 				<td <?php echo $classAdd;?> style='text-align: right'><?php echo $payment['amountChange']; ?></td>
-			<?php } ?>
+            <?php } ?>
+            <?php if ($enhancedCostFlag){ ?>
+				<td <?php echo $classAdd;?>><?php echo $cost['priceTaxExcluded']; ?></td>
+                <td <?php echo $classAdd;?>><?php echo $taxRate; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $cost['priceTaxIncluded']; ?></td>
+            <?php } ?>
+				<td <?php echo $classAdd;?>><?php echo $cost['paymentAmount']; ?></td>
 				<td <?php echo $classAdd;?>><?php echo $payment['orderType']; ?></td>
 			<?php if ($enhancedCostFlag){ ?>
 				<td <?php echo $classAdd;?>><?php echo $costDetails; ?></td>

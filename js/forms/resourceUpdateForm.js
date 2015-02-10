@@ -262,6 +262,8 @@
     $('#newIsbn input').val('');
   });
 
+  });
+
   $(".addParent").live('click', function() {
 
     var parentID = $("#newParent .oneParent input[name='parentResourceID']'").val();
@@ -468,7 +470,8 @@ function submitProductForm(){
 			 type:       "POST",
 			 url:        "ajax_processing.php?action=submitProductUpdate",
 			 cache:      false,
-			 data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourceID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn) },
+       data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn) },
+
 			 success:    function(html) {
 				if (html){
 					$("#span_errors").html(html);

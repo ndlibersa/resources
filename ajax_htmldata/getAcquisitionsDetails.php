@@ -3,7 +3,7 @@
 	$enhancedCostFlag = ((isset($config->settings->enhancedCostHistory)) && (strtoupper($config->settings->enhancedCostHistory) == 'Y')) ? 1 : 0;
 	$enhancedCostFlag = (strtoupper($config->settings->enhancedCostHistory) == 'Y') ? 1 : 0;
 	if ($enhancedCostFlag){
-		$numCols = 10;
+		$numCols = 9;
 		$tableWidth = 760;
 		$formWidth = 784;
                 ?>
@@ -51,7 +51,7 @@
 
 				$costDetails = new CostDetails(new NamedArguments(array('primaryKey' => $instance->costDetailsID)));
 				$sanitizedInstance['costDetails'] = $costDetails->shortName;
-				if ($enhancedCostFlag){
+				if ($enhancedCostFlag && 0){
 					$sanitizedInstance['amountChange'] = $instance->getPaymentAmountChangeFromPreviousYear();
 				}
 
@@ -162,12 +162,13 @@
 			<br />
 			<br />
 
-			<table class='linedFormTable' style='width:<?php echo $tableWidth; ?>px;margin-bottom:5px;'>
+			<table class='linedFormTable formTable' style='width:<?php echo $tableWidth; ?>px;margin-bottom:5px;'>
+<thead>
 			<tr>
 			<th colspan='<?php echo $numCols; ?>' style='vertical-align:bottom;'>
-			<span style='float:left;vertical-align:bottom;'>Cost</span>
+			<span style='float:left;vertical-align:bottom;'>Cost History</span>
 			<?php if ($user->canEdit()){ ?>
-				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost information'></a></span>
+				<span style='float:right;vertical-align:bottom;'><a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editCost'><img src='images/edit.gif' alt='edit' title='edit cost history'></a></span>
 			<?php } ?>
 
 			</th>
@@ -180,7 +181,7 @@
 		<?php } ?>
 			<th>Fund</th>
 			<th>Payment</th>
-		<?php if ($enhancedCostFlag){ ?>
+		<?php if ($enhancedCostFlag && 0){ ?>
 			<th style='text-align: right'>%</th>
 		<?php } ?>
 			<th>Type</th>
@@ -192,10 +193,19 @@
 			<th>Invoice</th>
 		<?php } ?>
 			</tr>
+</thead>
 
+<tbody>
 			<?php
 			if (count($paymentArray) > 0){
+				$i=0;
 				foreach ($paymentArray as $payment){
+				$i++;
+				if ($i % 2 == 0){
+					$classAdd="class='alt'";
+				}else{
+					$classAdd="";
+				}
 				$year = $payment['year'] ? $payment['year'] : "&nbsp;";
 				$subStart = $payment['subscriptionStartDate'] ? normalize_date($payment['subscriptionStartDate']) : "&nbsp;";
 				$subEnd = $payment['subscriptionEndDate'] ? normalize_date($payment['subscriptionEndDate']) : "&nbsp;";
@@ -212,22 +222,22 @@
 				?>
 				<tr>
 			<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $year; ?></td>
-				<td><?php echo $subStart; ?></td>
-				<td><?php echo $subEnd; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $year; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $subStart; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $subEnd; ?></td>
 			<?php } ?>
-				<td><?php echo $fundName; ?></td>
-				<td><?php echo $cost; ?></td>
-			<?php if ($enhancedCostFlag){ ?>
-				<td style='text-align: right'><?php echo $payment['amountChange']; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $fundName; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $cost; ?></td>
+			<?php if ($enhancedCostFlag && 0){ ?>
+				<td <?php echo $classAdd;?> style='text-align: right'><?php echo $payment['amountChange']; ?></td>
 			<?php } ?>
-				<td><?php echo $payment['orderType']; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $payment['orderType']; ?></td>
 			<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $costDetails; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $costDetails; ?></td>
 			<?php } ?>
-				<td><?php echo $costNote; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $costNote; ?></td>
 			<?php if ($enhancedCostFlag){ ?>
-				<td><?php echo $invoiceNum; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $invoiceNum; ?></td>
 			<?php } ?>
 				</tr>
 
@@ -237,9 +247,10 @@
 				echo "<tr><td colspan='" . $numCols . "'><i>No payment information available.</i></td></tr>";
 			}
 			?>
+</tbody>
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost information</a>
+				<a href='ajax_forms.php?action=getCostForm&height=400&width=<?php echo $formWidth; ?>&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'>edit cost history</a>
 			<?php } ?>
 			<br />
 			<br />

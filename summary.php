@@ -474,7 +474,7 @@ if ($resource->titleText){
 
 	<table class='linedFormTable'>
 	<tr>
-	<th colspan='3'>Cost</th>
+	<th colspan='3'>Cost History</th>
 	</th>
 	</tr>
 

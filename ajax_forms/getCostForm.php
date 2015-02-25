@@ -52,7 +52,7 @@
 		<table class='noBorder' style='width:<?php echo $baseWidth + 45 ?>px;'>
 		<tr style='vertical-align:top;'>
 		<td>
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Cost</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Cost History</b></label>&nbsp;&nbsp;</span>
 			<table class='surroundBox' style='width:<?php echo $baseWidth - 65; ?>px;'>
 			<tr>
 			<td>

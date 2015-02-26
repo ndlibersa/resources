@@ -272,12 +272,12 @@ if ($resource->titleText){
 
       foreach ($parentResourceArray as $parentResource){
 				$parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
-				echo "<span style='float: left;'>" . $parentResourceObj->titleText . "&nbsp;&nbsp;(Parent)</span>";
+				echo $parentResourceObj->titleText . "&nbsp;&nbsp;(Parent)<br/>";
 			}
 
 			foreach ($childResourceArray as $childResource){
 				$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
-				echo "<span style='float: left;'>" . $childResourceObj->titleText . "&nbsp;&nbsp;(child)</span>";
+				echo $childResourceObj->titleText . "&nbsp;&nbsp;<br />";
 			}
 
 

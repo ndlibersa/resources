@@ -97,7 +97,7 @@ foreach ($resource->getResourceLicenseStatuses() as $instance) {
 $licenseArray = $resource->getLicenseArray();
 
 ?>
-<table class='linedFormTable' style='width:460px;'>
+<table class='linedFormTable'>
   <tr>
     <th colspan='2' style='vertical-align:bottom;'>
       <span style='float:left;vertical-align:bottom;'>Cataloging</span>
@@ -204,7 +204,7 @@ array_push($noteArray, $sanitizedInstance);
 
 if (count($noteArray) > 0){
 ?>
-<table class='linedFormTable' style='width:460px;max-width:460px;'>
+<table class='linedFormTable'>
 	<tr>
 	<th>Additional Notes</th>
 	<th>

@@ -188,7 +188,7 @@ if ($resource->titleText){
 
 
 	<div class='printContent'>
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 		<tr>
 		<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 		<span style='float:left; vertical-align:top; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>
@@ -389,7 +389,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'>Additional Product Notes</th>
 			</tr>
@@ -408,7 +408,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2' style='vertical-align:bottom;'>
 	<span style='float:left;vertical-align:bottom;'>Order</span>
@@ -453,17 +453,17 @@ if ($resource->titleText){
 	<?php } ?>
 
 
-	<?php if (!is_null_date($resource->subscriptionStartDate)) { ?>
+	<?php if (!is_null_date($resource->currentStartDate)) { ?>
 	<tr>
-	<td style='vertical-align:top;width:150px;'>Subscription Start:</td>
-	<td><?php echo format_date($resource->subscriptionStartDate); ?></td>
+	<td style='vertical-align:top;width:150px;'>Sub Start:</td>
+	<td><?php echo format_date($resource->currentStartDate); ?></td>
 	</tr>
 	<?php } ?>
 
-	<?php if (!is_null_date($resource->subscriptionEndDate)) { ?>
+	<?php if (!is_null_date($resource->currentEndDate)) { ?>
 	<tr>
-	<td style='vertical-align:top;width:150px;'>Subscription End:</td>
-	<td><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;
+	<td style='vertical-align:top;width:150px;'>Current Sub End:</td>
+	<td><?php echo format_date($resource->currentEndDate); ?>&nbsp;&nbsp;
 	<?php if ($resource->subscriptionAlertEnabledInd == "1") { echo "<i>Expiration Alert Enabled</i>"; } ?>
 	</td>
 	</tr>
@@ -472,9 +472,9 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
-	<th colspan='3'>Initial Cost</th>
+	<th colspan='3'>Cost History</th>
 	</th>
 	</tr>
 
@@ -497,7 +497,7 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'>License</span>
@@ -577,7 +577,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'>Additional Acquisitions Notes</th>
 			</th>&nbsp;
@@ -598,7 +598,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'>Access Information</span>
@@ -702,7 +702,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'>Additional Access Notes</th>
 			</tr>
@@ -717,7 +717,7 @@ if ($resource->titleText){
 	}
 	?>
 
-  <table class='linedFormTable' style='width:510px;'>
+  <table class='linedFormTable'>
     <tr>
       <th colspan='2' style='vertical-align:bottom;'>
         <span style='float:left;vertical-align:bottom;'>Cataloging</span>
@@ -815,7 +815,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'>Additional Cataloging Notes</th>
 			</tr>

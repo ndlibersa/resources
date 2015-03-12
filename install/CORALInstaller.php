@@ -47,7 +47,7 @@ class CORALInstaller {
     		<li>Create subjects tables: GeneralSubject, DetailedSubject, GeneralDetailSubjectLink, and ResourceSubject. (subjects are configurable in the admin)</li>
     		<li>Add coverageText, resourceAltURL columns to the Resource table.</li>
     	</ul>"
-    )	
+    ),	
     "1.3" => array(
       "privileges" => array("ALTER","CREATE"),
       "installedTablesCheck" => array("CostDetails"),

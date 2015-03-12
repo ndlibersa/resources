@@ -1,3 +1,7 @@
+1.3 The 1.3 update to the CORAL Resources module includes the following enhancements:
+
+	-Added cost history
+
 1.2 The 1.2 update to the CORAL Resources module includes a number of enhancements:
 
 	-Added coverage to the resource record.

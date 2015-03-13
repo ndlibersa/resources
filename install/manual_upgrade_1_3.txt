@@ -1,0 +1,20 @@
+Manual Installation Coral Upgrade from 1.2 to 1.3
+
+Update the resources module codebase
+
+	-When performing upgrades your configuration file (/admin/configuration.ini) 
+	should always be backed up first so that when you check out the new code you are sure to not overwrite it. 
+	-Check out the new code through GitHub https://github.com/ndlibersa/resources/
+	-If needed manually copy and overwrite all the files into the exiting resources directory.
+	-Do not replace the existing directory.  This will cause you to lose any settings, documents, etc. That you may have.  Copying the new files over the existing files and replacing them will ensure you get the changes needed but not removing additional files.
+	-Ensure that your your configuration file (/admin/configuration.ini) is still correct.
+	
+Update the database schema
+
+    -Open SQL file in /coral/resources/install/protected/update_1.3.sql and replace 
+	_DATABASE_NAME_ with your database schema name
+    -Run SQL file
+
+Update /admin/configuration.ini
+
+	-Add a line reading "enhancedCostHistory=Y" within the [settings] section in /admin/configuration.ini if you wish to use the new cost history features

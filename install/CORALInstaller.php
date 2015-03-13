@@ -51,16 +51,14 @@ class CORALInstaller {
     "1.3" => array(
       "privileges" => array("ALTER","CREATE"),
       "installedTablesCheck" => array("CostDetails"),
-      "description" => "<p>The 1.3 update to the CORAL Resources module includes a number of enhancements:</p>
-      <ul>
-        <li>Added cost history tracking</li>
-      </ul> 
-      <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. To turn on enhanced cost history, a small change must be made in the configuration file. Database structure changes include:</p>
+      "description" => "<p>The 1.3 update to the CORAL Resources module includes new cost history features that enable the tracking of cost information throughout the lifetime of a subscription.</p>
+      <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. Database structure changes include:</p>
     	<ul>
     		<li>Create the CostDetails table</li>
 		<li>Rename subscriptionStartDate and subscriptionEndDate columns in the Resource table to currentStartDate and currentEndDate, respectively</li>
 		<li>Add year, subscriptionStartDate, subscriptionEndDate, costDetailsID, costNote, and invoiceNum columns to the ResourcePayment table</li>
-    	</ul>"
+    	</ul>
+      <p>After upgrading, you must change the <b>enhancedCostHistory</b> setting in the configuration file in order to turn on the new cost history features."
     )	
   );
   

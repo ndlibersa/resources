@@ -58,9 +58,15 @@ class Resource extends DatabaseObject {
 			FROM IsbnOrIssn";
 
     $i = 0;
+
+    if (!is_array($isbnOrISSN)) {
+      $value = $isbnOrISSN;
+      $isbnOrISSN = array($value);
+    }
+
     foreach ($isbnOrISSN as $value) {
       $query .= ($i == 0) ? " WHERE " : " OR ";
-      $query .= "isbnOrIssn = '$value'";
+      $query .= "isbnOrIssn = '" . $this->db->escapeString($value) . "'";
       $i++;
     }
 

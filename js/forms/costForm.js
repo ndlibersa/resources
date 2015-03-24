@@ -153,8 +153,25 @@ $(function(){
 			$('.newPaymentTable').children().children().children().children('.costNote').val('');
 			$('.newPaymentTable').children().children().children().children('.invoiceNum').val('');
 			
-			//make sure we have all the date pickers
+
+			// Remove all date pickers
+			$('.dp-choose-date').remove();
+
+			// HACK: clear the internal ID
+			$('.date-pick').each(function() {
+				this._dpId = 0;
+			});
+
+			// HACK: clear the cache (may not be necessary)
+			var els = $.event._dpCache || [];
+			for (var i in els) {
+				$(els[i].ele)._dpDestroy();
+			}
+			$.event._dpCache = [];
+
+			// Re-add all date pickers
 			$('.date-pick').datePicker({startDate:'01/01/1996'});
+
 			return false;
 		}
 	});

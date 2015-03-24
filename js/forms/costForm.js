@@ -153,7 +153,8 @@ $(function(){
 			$('.newPaymentTable').children().children().children().children('.costNote').val('');
 			$('.newPaymentTable').children().children().children().children('.invoiceNum').val('');
 			
-
+			//make sure we have all the date pickers
+			$('.date-pick').datePicker({startDate:'01/01/1996'});
 			return false;
 		}
 	});

@@ -7,7 +7,7 @@ Update the resources module codebase
 	-Check out the new code through GitHub https://github.com/ndlibersa/resources/
 	-If needed manually copy and overwrite all the files into the exiting resources directory.
 	-Do not replace the existing directory.  This will cause you to lose any settings, documents, etc. That you may have.  Copying the new files over the existing files and replacing them will ensure you get the changes needed but not removing additional files.
-	-Ensure that your your configuration file (/admin/configuration.ini) is still correct.
+	-Ensure that your configuration file (/admin/configuration.ini) is still correct.
 	
 Update the database schema
 

@@ -162,4 +162,24 @@ function debug($value) {
   echo '<pre>'.print_r($value, true).'</pre>';
 }
 
+    // Verify the language of the browser
+
+    $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+
+    switch ($http_lang) {
+        case 'fr': 
+            $language = "fr_FR.utf8"; 
+        break;	
+        case 'en': 
+            $language = "en_US.utf8"; 
+        break;			
+        default: 
+            $language = "en_US.utf8"; 
+        break;
+    }
+    putenv("LC_ALL=$language");
+	setlocale(LC_ALL, $language);
+	bindtextdomain("messages", "./locale");
+	textdomain("messages");
+
 ?>

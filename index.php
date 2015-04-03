@@ -23,7 +23,7 @@ session_start();
 include_once 'directory.php';
 
 //print header
-$pageTitle='Home';
+$pageTitle=_('Home');
 include 'templates/header.php';
 
 //used for creating a "sticky form" for back buttons

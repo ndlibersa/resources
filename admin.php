@@ -48,48 +48,48 @@ if ($user->isAdmin()){
 		<tr>
 		<td style='width:170px;vertical-align:top;'>
 			<table class='adminMenuTable' style='width:170px;'>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='UserAdminLink'>Users</a></div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='WorkflowAdminLink'>Workflow / User Group</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AccessMethod' class='AdminLink'>Access Method</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ExternalLoginType' class='AdminLink'>Account Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AcquisitionType' class='AdminLink'>Acquisition Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AdministeringSite' class='AdminLink'>Administering Site</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='UserAdminLink'><?= _("Users");?></a></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='WorkflowAdminLink'><?= _("Workflow / User Group");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AccessMethod' class='AdminLink'><?= _("Access Method");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ExternalLoginType' class='AdminLink'><?= _("Account Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AcquisitionType' class='AdminLink'><?= _("Acquisition Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AdministeringSite' class='AdminLink'><?= _("Administering Site");?></div></td></tr>
 				<?php if ($config->settings->enableAlerts == 'Y'){ ?>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='AlertAdminLink'>Alert Settings</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='AlertAdminLink'><?= _("Alert Settings");?></div></td></tr>
 				<?php } ?>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AliasType' class='AdminLink'>Alias Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AttachmentType' class='AdminLink'>Attachment Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthenticationType' class='AdminLink'>Authentication Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthorizedSite' class='AdminLink'>Authorized Site</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingStatus' class='AdminLink'>Cataloging Status</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingType' class='AdminLink'>CatalogingType</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ContactRole' class='AdminLink'>Contact Role</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='CurrencyLink'>Currency</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'>License Status</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='NoteType' class='AdminLink'>Note Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrderType' class='AdminLink'>Order Type</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AliasType' class='AdminLink'><?= _("Alias Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AttachmentType' class='AdminLink'><?= _("Attachment Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthenticationType' class='AdminLink'><?= _("Authentication Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthorizedSite' class='AdminLink'><?= _("Authorized Site");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingStatus' class='AdminLink'><?= _("Cataloging Status");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingType' class='AdminLink'><?= _("Cataloging Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ContactRole' class='AdminLink'><?= _("Contact Role");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='CurrencyLink'><?= _("Currency");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'><?= _("License Status");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='NoteType' class='AdminLink'><?= _("Note Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrderType' class='AdminLink'><?= _("Order Type");?></div></td></tr>
 				<?php
 
 				//For Organizations links
 				//if the org module is not installed, display provider list for updates
 				if ($config->settings->organizationsModule == 'N'){ ?>
 
-					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrganizationRole' class='AdminLink'>Organization Role</div></td></tr>
-					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='Organization' class='AdminLink'>Organizations</div></td></tr>
+					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrganizationRole' class='AdminLink'><?= _("Organization Role");?></div></td></tr>
+					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='Organization' class='AdminLink'><?= _("Organizations");?></div></td></tr>
 
 				<?php } ?>
 
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='PurchaseSite' class='AdminLink'>Purchasing Site</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceFormat' class='AdminLink'>Resource Format</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceType' class='AdminLink'>Resource Type</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='StorageLocation' class='AdminLink'>Storage Location</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='SubjectsAdminLink'>Subjects</div></td></tr>				
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='UserLimit' class='AdminLink'>User Limit</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='PurchaseSite' class='AdminLink'><?= _("Purchasing Site");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceFormat' class='AdminLink'><?= _("Resource Format");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceType' class='AdminLink'><?= _("Resource Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='StorageLocation' class='AdminLink'><?= _("Storage Location");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='SubjectsAdminLink'><?= _("Subjects");?></div></td></tr>				
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='UserLimit' class='AdminLink'><?= _("User Limit");?></div></td></tr>
 			</table>
 		</td>
 		<td class='adminRightPanel' style='width:530px;margin:0;'>
 			<div style='margin-top:5px;' id='div_AdminContent'>
-			<img src = "images/circle.gif" />Loading...
+			<img src = "images/circle.gif" /><?= _("Loading...");?>
 			</div>
 			<div style='margin-top:5px;' class='smallDarkRedText' id='div_error'></div>
 
@@ -112,7 +112,7 @@ if ($user->isAdmin()){
 
 //end else for admin
 }else{
-	echo "You do not have permissions to access this screen.";
+	echo _("You do not have permissions to access this screen.");
 }
 
 include 'templates/footer.php';

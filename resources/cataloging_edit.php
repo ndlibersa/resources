@@ -12,7 +12,7 @@ $catalogingType = new CatalogingType();
 <form id='catalogingForm' method="post" action="resources/cataloging_update.php">
 <input type='hidden' name='resourceID' id='resourceID' value='<?php echo $resourceID; ?>'>
 
-<div class='formTitle' style='width:715px; margin-bottom:5px;'><span class='headerText'>Edit Cataloging</span></div>
+<div class='formTitle' style='width:715px; margin-bottom:5px;'><span class='headerText'><?= _("Edit Cataloging");?></span></div>
 
 <span class='smallDarkRedText' id='span_errors'></span>
 
@@ -21,7 +21,7 @@ $catalogingType = new CatalogingType();
 <td style='vertical-align:top;' colspan='2'>
 
 
-<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b>Record Set</b></label>&nbsp;&nbsp;</span>
+<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b><?= _("Record Set");?></b></label>&nbsp;&nbsp;</span>
 
 <table class='surroundBox' style='width:710px;'>
 <tr>
@@ -99,8 +99,8 @@ $catalogingType = new CatalogingType();
 
 <table class='noBorderTable' style='width:125px;'>
 <tr>
-	<td style='text-align:left'><input type='submit' value='submit' name='submitCatalogingChanges' id ='submitCatalogingChanges'></td>
-	<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+	<td style='text-align:left'><input type='submit' value='<?= _("submit");?>' name='submitCatalogingChanges' id ='submitCatalogingChanges'></td>
+	<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 </tr>
 </table>
 

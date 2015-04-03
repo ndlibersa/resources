@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-03 14:47+0100\n"
-"PO-Revision-Date: 2015-04-03 14:47+0100\n"
+"POT-Creation-Date: 2015-04-03 17:18+0100\n"
+"PO-Revision-Date: 2015-04-03 17:18+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,6 +14,146 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: admin.php:51
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: admin.php:52
+msgid "Workflow / User Group"
+msgstr "Flux de travail / Group utilisateur"
+
+#: admin.php:53
+msgid "Access Method"
+msgstr "Mèthode d'accès"
+
+#: admin.php:54
+msgid "Account Type"
+msgstr "Type d'account"
+
+#: admin.php:55 index.php:100
+msgid "Acquisition Type"
+msgstr "Type d'acquisition"
+
+#: admin.php:56 index.php:466
+msgid "Administering Site"
+msgstr "Administration du site"
+
+#: admin.php:58
+msgid "Alert Settings"
+msgstr "Configuration des alertes"
+
+#: admin.php:60
+msgid "Alias Type"
+msgstr "Type d'alias"
+
+#: admin.php:61
+msgid "Attachment Type"
+msgstr "Type de fixation"
+
+#: admin.php:62 index.php:496
+msgid "Authentication Type"
+msgstr "Type d'accès"
+
+#: admin.php:63 index.php:434
+msgid "Authorized Site"
+msgstr "Site autorisé"
+
+#: admin.php:64 index.php:526
+msgid "Cataloging Status"
+msgstr "Statut de catalogue "
+
+#: admin.php:65
+msgid "Cataloging Type"
+msgstr "Type de catalogue "
+
+#: admin.php:66
+msgid "Contact Role"
+msgstr "Contact Rôle"
+
+#: admin.php:67
+msgid "Currency"
+msgstr "Concurrence"
+
+#: admin.php:68
+msgid "License Status"
+msgstr "Statut de la licence"
+
+#: admin.php:69 index.php:344
+msgid "Note Type"
+msgstr "Type de note"
+
+#: admin.php:70
+msgid "Order Type"
+msgstr "Type d'ordre"
+
+#: admin.php:77
+msgid "Organization Role"
+msgstr "Rôle dans l'organisation"
+
+#: admin.php:78
+msgid "Organizations"
+msgstr "Organisation"
+
+#: admin.php:82
+msgid "Purchasing Site"
+msgstr "Site d'achat"
+
+#: admin.php:83 index.php:186
+msgid "Resource Format"
+msgstr "Format de la ressource"
+
+#: admin.php:84 index.php:210
+msgid "Resource Type"
+msgstr "Type de ressource"
+
+#: admin.php:85
+msgid "Storage Location"
+msgstr "Lieu de stockage"
+
+#: admin.php:86
+msgid "Subjects"
+msgstr "Sujets"
+
+#: admin.php:87
+msgid "User Limit"
+msgstr "Limit d'utilisateurs"
+
+#: admin.php:92
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: admin.php:115
+msgid "You do not have permissions to access this screen."
+msgstr "Vous n'avez pas la permission d'accèder dans cette page."
+
+#: admin/classes/common/DBService.php:39
+msgid "There was a problem with the database: "
+msgstr "Il y avait un problème avec la base de données: "
+
+#: admin/classes/common/LdapPerson.php:34
+msgid "Could not connect to "
+msgstr "Ne pouvait pas se connecter à "
+
+#: admin/classes/common/Object.php:63 admin/classes/common/Object.php:72
+msgid "Cannot set value for undefined key ("
+msgstr "Ne peut pas asigner une clé indefini ("
+
+#: admin/classes/common/Utility.php:121
+msgid "Error: unexpected fgets() fail"
+msgstr "Erreur: inattendu échoue fgets()"
+
+#: admin/classes/common/Utility.php:133
+msgid "Edit DDW facet/term selections at: "
+msgstr "Modifier selections DDW facet/term à: "
+
+#: admin/classes/common/Utility.php:148
+msgid "Email template file not found: "
+msgstr "Le fichier template pour l'email est introuvable: "
+
+#: index.php:26 templates/header.php:98
+msgid "Home"
+msgstr "Accueil"
 
 #: index.php:58
 msgid "Search"
@@ -36,10 +176,6 @@ msgstr "Valider!"
 msgid "Fund"
 msgstr "Fonds"
 
-#: index.php:100
-msgid "Acquisition Type"
-msgstr "Type d'acquisition"
-
 #: index.php:103 index.php:126 index.php:157 index.php:189 index.php:213
 #: index.php:254 index.php:285 index.php:347 index.php:405 index.php:437
 #: index.php:469 index.php:499 index.php:529 index.php:556
@@ -48,19 +184,11 @@ msgstr "Tous"
 
 #: index.php:123
 msgid "Status"
-msgstr "Stat"
+msgstr "Statut"
 
 #: index.php:154
 msgid "Creator"
 msgstr "Créateur"
-
-#: index.php:186
-msgid "Resource Format"
-msgstr "Format de la ressource"
-
-#: index.php:210
-msgid "Resource Type"
-msgstr "Type de ressource"
 
 #: index.php:218 index.php:220 index.php:259 index.php:261 index.php:290
 #: index.php:292 index.php:351 index.php:353 index.php:409 index.php:411
@@ -89,10 +217,6 @@ msgstr "Commence avec"
 msgid "more options..."
 msgstr "plus des options..."
 
-#: index.php:344
-msgid "Note Type"
-msgstr "Type de note"
-
 #: index.php:374
 msgid "Note (contains)"
 msgstr "Note (contains)"
@@ -109,22 +233,6 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: index.php:434
-msgid "Authorized Site"
-msgstr "Site autorisé"
-
-#: index.php:466
-msgid "Administering Site"
-msgstr "Administration du site"
-
-#: index.php:496
-msgid "Authentication Type"
-msgstr "Type d'accès"
-
-#: index.php:526
-msgid "Cataloging Status"
-msgstr "Stat de catalogue "
-
 #: index.php:553
 msgid "Routing Step"
 msgstr "Etape de routage"
@@ -136,6 +244,98 @@ msgstr "Fait!"
 #: resource.php:54
 msgid "New resource added"
 msgstr "Nouvelle ressource ajouté"
+
+#: resources/cataloging.php:103
+msgid "Cataloging"
+msgstr "Catalogage"
+
+#: resources/cataloging.php:106
+msgid "edit order information"
+msgstr "modifier l'order de l'information"
+
+#: resources/cataloging.php:114
+msgid "Identifier:"
+msgstr "Identifiant:"
+
+#: resources/cataloging.php:120
+msgid "Source URL:"
+msgstr "Source URL: "
+
+#: resources/cataloging.php:121
+msgid "Visit Source URL"
+msgstr "Source URL de visite"
+
+#: resources/cataloging.php:128
+msgid "Cataloging Type:"
+msgstr "Type de catalogage:"
+
+#: resources/cataloging.php:136
+msgid "Cataloging Status:"
+msgstr "Stat de catalogage:"
+
+#: resources/cataloging.php:142
+msgid "# Records Available:"
+msgstr "# Enregistrements disponibles"
+
+#: resources/cataloging.php:148
+msgid "# Records Loaded:"
+msgstr "# Enregistrements chargées"
+
+#: resources/cataloging.php:153
+msgid "OCLC Holdings:"
+msgstr "OCLC Holdings:"
+
+#: resources/cataloging.php:154
+msgid "Yes"
+msgstr "Oui"
+
+#: resources/cataloging.php:154
+msgid "No"
+msgstr "Non"
+
+#: resources/cataloging.php:159
+msgid "No cataloging information available."
+msgstr "Le catalogue d'information n'est pas disponible."
+
+#: resources/cataloging.php:165
+msgid "edit cataloging details"
+msgstr "modifier les détails du catalogage"
+
+#: resources/cataloging.php:209
+msgid "Additional Notes"
+msgstr "Notes additionales"
+
+#: resources/cataloging.php:212 resources/cataloging.php:231
+msgid "add new note"
+msgstr "ajouter une note"
+
+#: resources/cataloging.php:220
+msgid "edit note"
+msgstr "modifier une note"
+
+#: resources/cataloging.php:220
+msgid "remove note"
+msgstr "effacer une note"
+
+#: resources/cataloging.php:223
+msgid " by "
+msgstr " par "
+
+#: resources/cataloging_edit.php:15
+msgid "Edit Cataloging"
+msgstr "Modifier le catalogage"
+
+#: resources/cataloging_edit.php:24
+msgid "Record Set"
+msgstr "jeu d'enregistrement"
+
+#: resources/cataloging_edit.php:102
+msgid "submit"
+msgstr "Confirmer"
+
+#: resources/cataloging_edit.php:103
+msgid "cancel"
+msgstr "Annuler"
 
 #: setuser.php:44
 msgid ""
@@ -152,10 +352,6 @@ msgstr "Bonjour, "
 #: templates/header.php:87
 msgid "logout"
 msgstr "Se decconecter"
-
-#: templates/header.php:98
-msgid "Home"
-msgstr "Accueil"
 
 #: templates/header.php:99
 msgid "New Resource"
@@ -176,6 +372,10 @@ msgid ""
 msgstr ""
 "L'accès (login) ne marche pas. Vérifiez le fichier .htaccess et "
 "remoteAuthVariableName specifié en /admin/configuration.ini"
+
+#, fuzzy
+#~ msgid "CatalogingType"
+#~ msgstr "Stat de catalogue "
 
 #~ msgid "Valider!"
 #~ msgstr "Chercher"

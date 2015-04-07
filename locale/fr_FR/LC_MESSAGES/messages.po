@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-07 14:30+0100\n"
-"PO-Revision-Date: 2015-04-07 14:31+0100\n"
+"POT-Creation-Date: 2015-04-07 16:59+0100\n"
+"PO-Revision-Date: 2015-04-07 17:00+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin.php:51
+#: admin.php:51 ajax_htmldata.php:2175 ajax_htmldata.php:2468
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -31,7 +31,9 @@ msgstr "Mèthode d'accès"
 msgid "Account Type"
 msgstr "Type d'account"
 
-#: admin.php:55 ajax_forms.php:279 index.php:100
+#: admin.php:55 ajax_forms.php:279 ajax_htmldata.php:1700
+#: ajax_htmldata.php:1769 ajax_htmldata.php:1831 ajax_htmldata.php:2046
+#: ajax_htmldata.php:2410 index.php:100
 msgid "Acquisition Type"
 msgstr "Type d'acquisition"
 
@@ -39,7 +41,7 @@ msgstr "Type d'acquisition"
 msgid "Administering Site"
 msgstr "Administration du site"
 
-#: admin.php:58
+#: admin.php:58 ajax_htmldata.php:2328
 msgid "Alert Settings"
 msgstr "Configuration des alertes"
 
@@ -71,7 +73,7 @@ msgstr "Type de catalogue "
 msgid "Contact Role"
 msgstr "Contact Rôle"
 
-#: admin.php:67
+#: admin.php:67 ajax_htmldata.php:2234
 msgid "Currency"
 msgstr "Concurrence"
 
@@ -99,11 +101,11 @@ msgstr "Organisation"
 msgid "Purchasing Site"
 msgstr "Site d'achat"
 
-#: admin.php:83 index.php:186
+#: admin.php:83 ajax_htmldata.php:2411 index.php:186
 msgid "Resource Format"
 msgstr "Format de la ressource"
 
-#: admin.php:84 ajax_forms.php:466 index.php:210
+#: admin.php:84 ajax_forms.php:466 ajax_htmldata.php:2412 index.php:210
 msgid "Resource Type"
 msgstr "Type de ressource"
 
@@ -111,7 +113,7 @@ msgstr "Type de ressource"
 msgid "Storage Location"
 msgstr "Lieu de stockage"
 
-#: admin.php:86
+#: admin.php:86 ajax_htmldata.php:326
 msgid "Subjects"
 msgstr "Sujets"
 
@@ -163,7 +165,7 @@ msgstr "Ajouter une note"
 msgid "Note Type:"
 msgstr "Type de note:"
 
-#: ajax_forms.php:77 ajax_forms.php:1934
+#: ajax_forms.php:77 ajax_forms.php:1934 ajax_htmldata.php:1297
 msgid "Notes:"
 msgstr "Notes:"
 
@@ -208,7 +210,7 @@ msgstr "Produit"
 msgid "Name:"
 msgstr "Nom:"
 
-#: ajax_forms.php:209 ajax_forms.php:650
+#: ajax_forms.php:209 ajax_forms.php:650 ajax_htmldata.php:290
 msgid "Description:"
 msgstr "Description:"
 
@@ -220,7 +222,7 @@ msgstr "Fournisseur:"
 msgid "Format"
 msgstr "Format"
 
-#: ajax_forms.php:326 ajax_forms.php:1104
+#: ajax_forms.php:326 ajax_forms.php:1104 ajax_htmldata.php:612
 msgid "Initial Cost"
 msgstr "Coût Initial"
 
@@ -234,6 +236,7 @@ msgstr "Prix:"
 
 #: ajax_forms.php:337 ajax_forms.php:707 ajax_forms.php:848
 #: ajax_forms.php:1114 ajax_forms.php:2117 ajax_forms.php:2702
+#: ajax_htmldata.php:1367
 msgid "Type:"
 msgstr "Type:"
 
@@ -273,7 +276,7 @@ msgstr "Parent:"
 msgid "Format:"
 msgstr "Format:"
 
-#: ajax_forms.php:726 ajax_forms.php:1888
+#: ajax_forms.php:726 ajax_forms.php:1888 ajax_htmldata.php:115
 msgid "Archived:"
 msgstr "Archivé:"
 
@@ -281,7 +284,7 @@ msgstr "Archivé:"
 msgid "Role:"
 msgstr "Rôle:"
 
-#: ajax_forms.php:756
+#: ajax_forms.php:756 ajax_htmldata.php:1058 ajax_htmldata.php:1249
 msgid "Organization:"
 msgstr "Organisation:"
 
@@ -325,27 +328,27 @@ msgstr "effacer cet alias"
 msgid "Edit Acquisitions Information"
 msgstr "modifier l'information des acquisitions"
 
-#: ajax_forms.php:1038
+#: ajax_forms.php:1038 ajax_htmldata.php:547
 msgid "Order"
 msgstr "Ordre"
 
-#: ajax_forms.php:1045 ajax_forms.php:2671
+#: ajax_forms.php:1045 ajax_forms.php:2671 ajax_htmldata.php:558
 msgid "Acquisition Type:"
 msgstr "Type d'acquisition:"
 
-#: ajax_forms.php:1063
+#: ajax_forms.php:1063 ajax_htmldata.php:565
 msgid "Order Number:"
 msgstr "Numero d'ordre:"
 
-#: ajax_forms.php:1068
+#: ajax_forms.php:1068 ajax_htmldata.php:572
 msgid "System Number:"
 msgstr "Nombre de système:"
 
-#: ajax_forms.php:1073
+#: ajax_forms.php:1073 ajax_htmldata.php:593
 msgid "Subscription Start:"
 msgstr "Début d'abonnement:"
 
-#: ajax_forms.php:1078
+#: ajax_forms.php:1078 ajax_htmldata.php:600
 msgid "Subscription End:"
 msgstr "Fin d'abonnement:"
 
@@ -381,7 +384,7 @@ msgstr " licence"
 msgid "Licensing Status"
 msgstr "Statut des licences"
 
-#: ajax_forms.php:1450
+#: ajax_forms.php:1450 ajax_htmldata.php:105 ajax_htmldata.php:666
 msgid "Status:"
 msgstr "Statut:"
 
@@ -389,11 +392,16 @@ msgstr "Statut:"
 msgid "History:"
 msgstr "Historie:"
 
-#: ajax_forms.php:1480 resources/cataloging.php:223
+#: ajax_forms.php:1480 ajax_htmldata.php:124 ajax_htmldata.php:126
+#: ajax_htmldata.php:149 ajax_htmldata.php:151 ajax_htmldata.php:173
+#: ajax_htmldata.php:175 ajax_htmldata.php:447 ajax_htmldata.php:672
+#: ajax_htmldata.php:766 ajax_htmldata.php:1451 ajax_htmldata.php:1453
+#: ajax_htmldata.php:1480 ajax_htmldata.php:1482 ajax_htmldata.php:1486
+#: ajax_htmldata.php:1488 resources/cataloging.php:223
 msgid " by "
 msgstr " par "
 
-#: ajax_forms.php:1483
+#: ajax_forms.php:1483 ajax_htmldata.php:675
 msgid "No license status information available."
 msgstr "L'information de statut de la licence n'est pas disponible."
 
@@ -405,7 +413,7 @@ msgstr "Modifier l'accès"
 msgid "Access"
 msgstr "Acèss"
 
-#: ajax_forms.php:1604
+#: ajax_forms.php:1604 ajax_htmldata.php:843
 msgid "Authentication Type:"
 msgstr "Type d'accès:"
 
@@ -413,23 +421,23 @@ msgstr "Type d'accès:"
 msgid "Username:"
 msgstr "Nom d'utilisateur:"
 
-#: ajax_forms.php:1623
+#: ajax_forms.php:1623 ajax_htmldata.php:888
 msgid "Access Method:"
 msgstr "Mèthode d'accès:"
 
-#: ajax_forms.php:1638 ajax_forms.php:2043
+#: ajax_forms.php:1638 ajax_forms.php:2043 ajax_htmldata.php:1273
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: ajax_forms.php:1642
+#: ajax_forms.php:1642 ajax_htmldata.php:874
 msgid "Storage Location:"
 msgstr "Lieu de stockage:"
 
-#: ajax_forms.php:1657
+#: ajax_forms.php:1657 ajax_htmldata.php:858
 msgid "Simultaneous User Limit:"
 msgstr "Limite d'utilisateurs similtanées"
 
-#: ajax_forms.php:1674
+#: ajax_forms.php:1674 ajax_htmldata.php:881
 msgid "Coverage:"
 msgstr "Coverture:"
 
@@ -449,19 +457,19 @@ msgstr "Modifierl le contact"
 msgid "Add Contact"
 msgstr "Ajouter un contact"
 
-#: ajax_forms.php:1846
+#: ajax_forms.php:1846 ajax_htmldata.php:1075
 msgid "Title:"
 msgstr "Titre:"
 
-#: ajax_forms.php:1853
+#: ajax_forms.php:1853 ajax_htmldata.php:1108
 msgid "Phone:"
 msgstr "Téléphone:"
 
-#: ajax_forms.php:1860
+#: ajax_forms.php:1860 ajax_htmldata.php:1116
 msgid "Alt Phone:"
 msgstr "Alt Téléphone:"
 
-#: ajax_forms.php:1881
+#: ajax_forms.php:1881 ajax_htmldata.php:1083
 msgid "Address:"
 msgstr "Adresse:"
 
@@ -481,7 +489,7 @@ msgstr "Ajouter une compte"
 msgid "Login Type:"
 msgstr "Type d'acèss (login):"
 
-#: ajax_forms.php:2029
+#: ajax_forms.php:2029 ajax_htmldata.php:1289
 msgid "Registered Email:"
 msgstr "Email enregistré:"
 
@@ -501,7 +509,7 @@ msgstr "Fichier:"
 msgid "replace with new file"
 msgstr "remplacer avec un nouveau fichier"
 
-#: ajax_forms.php:2158
+#: ajax_forms.php:2158 ajax_htmldata.php:1375
 msgid "Details:"
 msgstr "Détails:"
 
@@ -525,11 +533,12 @@ msgstr "Modifier la Concurrence"
 msgid "Add Currency"
 msgstr "Ajouter Concurrence"
 
-#: ajax_forms.php:2289
+#: ajax_forms.php:2289 ajax_htmldata.php:2240
 msgid "Code"
 msgstr "Code"
 
-#: ajax_forms.php:2292
+#: ajax_forms.php:2292 ajax_htmldata.php:1698 ajax_htmldata.php:1767
+#: ajax_htmldata.php:1830 ajax_htmldata.php:2043 ajax_htmldata.php:2241
 msgid "Name"
 msgstr "Nom"
 
@@ -541,27 +550,28 @@ msgstr "Modifierl l'utilisateur"
 msgid "Add New User"
 msgstr "Ajouter un nouveau utilisateur"
 
-#: ajax_forms.php:2379
+#: ajax_forms.php:2379 ajax_htmldata.php:2178
 msgid "Login ID"
 msgstr "Identifiant d'accès"
 
-#: ajax_forms.php:2380
+#: ajax_forms.php:2380 ajax_htmldata.php:2179
 msgid "First Name"
 msgstr "Prènom"
 
-#: ajax_forms.php:2381
+#: ajax_forms.php:2381 ajax_htmldata.php:2180
 msgid "Last Name"
 msgstr "Nom"
 
-#: ajax_forms.php:2382
+#: ajax_forms.php:2382 ajax_htmldata.php:2183 ajax_htmldata.php:2334
+#: ajax_htmldata.php:2467
 msgid "Email Address"
 msgstr "Adresse email"
 
-#: ajax_forms.php:2383
+#: ajax_forms.php:2383 ajax_htmldata.php:2181
 msgid "Privilege"
 msgstr "Privilège"
 
-#: ajax_forms.php:2401
+#: ajax_forms.php:2401 ajax_htmldata.php:2182
 msgid "View Accounts"
 msgstr "Montrer les comptes"
 
@@ -645,7 +655,8 @@ msgstr "Supprimer un utilisateur du groupe"
 msgid "Add / Edit Subject Relationships"
 msgstr "Ajouter / Modifier la relation des objets"
 
-#: ajax_forms.php:3194 index.php:251
+#: ajax_forms.php:3194 ajax_htmldata.php:2553 ajax_htmldata.php:2642
+#: index.php:251
 msgid "General Subject"
 msgstr "Sujet général"
 
@@ -661,7 +672,7 @@ msgstr "Ajouter detail d'objet"
 msgid "remove detailed subject"
 msgstr "Supprimer objet détaillé"
 
-#: ajax_forms.php:3274
+#: ajax_forms.php:3274 ajax_htmldata.php:2615
 msgid "subject in use"
 msgstr "Objet en utilisation"
 
@@ -681,17 +692,626 @@ msgstr "Détail du nom d'objet"
 msgid "add"
 msgstr "ajouter"
 
-#: ajax_forms.php:3356
+#: ajax_forms.php:3356 ajax_htmldata.php:2214 ajax_htmldata.php:2261
+#: ajax_htmldata.php:2305 ajax_htmldata.php:2353 ajax_htmldata.php:2383
+#: ajax_htmldata.php:2443 ajax_htmldata.php:2494 ajax_htmldata.php:2537
+#: ajax_htmldata.php:2585 ajax_htmldata.php:2625 ajax_htmldata.php:2668
 msgid "(none found)"
 msgstr "(non trouvé)"
 
-#: ajax_forms.php:3374
+#: ajax_forms.php:3374 ajax_htmldata.php:2677
 msgid "Action "
 msgstr "Action"
 
-#: ajax_forms.php:3374
+#: ajax_forms.php:3374 ajax_htmldata.php:2677
 msgid " not set up!"
 msgstr " ne pas etabli!"
+
+#: ajax_htmldata.php:95 ajax_htmldata.php:444 ajax_htmldata.php:550
+#: ajax_htmldata.php:660 ajax_htmldata.php:763 ajax_htmldata.php:821
+#: ajax_htmldata.php:956 ajax_htmldata.php:1043 ajax_htmldata.php:1237
+#: ajax_htmldata.php:1355 ajax_htmldata.php:1729 ajax_htmldata.php:2203
+#: ajax_htmldata.php:2251 ajax_htmldata.php:2295 ajax_htmldata.php:2343
+#: ajax_htmldata.php:2373 ajax_htmldata.php:2433 ajax_htmldata.php:2484
+#: ajax_htmldata.php:2527 ajax_htmldata.php:2568 ajax_htmldata.php:2610
+#: ajax_htmldata.php:2659
+#, fuzzy
+msgid "edit"
+msgstr "modifier une note"
+
+#: ajax_htmldata.php:95 ajax_htmldata.php:660 ajax_htmldata.php:821
+#, fuzzy
+msgid "edit resource"
+msgstr "Modifier la ressource"
+
+#: ajax_htmldata.php:95
+#, fuzzy
+msgid "remove resource"
+msgstr "effacer une note"
+
+#: ajax_htmldata.php:100
+#, fuzzy
+msgid "Record ID:"
+msgstr "ID d'enregistrement"
+
+#: ajax_htmldata.php:140
+#, fuzzy
+msgid "Created:"
+msgstr "Créateur"
+
+#: ajax_htmldata.php:165
+#, fuzzy
+msgid "Last Update:"
+msgstr "Nom"
+
+#: ajax_htmldata.php:190
+msgid "Related Products:"
+msgstr ""
+
+#: ajax_htmldata.php:192
+msgid "Child:"
+msgstr ""
+
+#: ajax_htmldata.php:199
+#, fuzzy
+msgid "(Parent)"
+msgstr "Parent:"
+
+#: ajax_htmldata.php:199 ajax_htmldata.php:212
+#, fuzzy
+msgid "view resource"
+msgstr "Nouvelle ressource"
+
+#: ajax_htmldata.php:199 ajax_htmldata.php:212 ajax_htmldata.php:260
+msgid "View "
+msgstr ""
+
+#: ajax_htmldata.php:236
+#, fuzzy
+msgid "Aliases:"
+msgstr "Des alias:"
+
+#: ajax_htmldata.php:253
+#, fuzzy
+msgid "Organizations:"
+msgstr "Organisation"
+
+#: ajax_htmldata.php:274
+#, fuzzy
+msgid "Resource URL:"
+msgstr "Source URL: "
+
+#: ajax_htmldata.php:275
+#, fuzzy
+msgid "Visit Resource URL"
+msgstr "Source URL de visite"
+
+#: ajax_htmldata.php:283
+#, fuzzy
+msgid "Visit Secondary Resource URL"
+msgstr "Source URL de visite"
+
+#: ajax_htmldata.php:298
+#, fuzzy
+msgid "edit product details"
+msgstr "modifier les détails du catalogage"
+
+#: ajax_htmldata.php:365
+#, fuzzy
+msgid "remove subject"
+msgstr "Supprimer objet détaillé"
+
+#: ajax_htmldata.php:386
+#, fuzzy
+msgid "add new subject"
+msgstr "Ajouter detail d'objet"
+
+#: ajax_htmldata.php:433 ajax_htmldata.php:752 ajax_htmldata.php:945
+#: resources/cataloging.php:209
+msgid "Additional Notes"
+msgstr "Notes additionales"
+
+#: ajax_htmldata.php:436 ajax_htmldata.php:455 ajax_htmldata.php:755
+#: ajax_htmldata.php:774 ajax_htmldata.php:948 ajax_htmldata.php:967
+#: resources/cataloging.php:212 resources/cataloging.php:231
+msgid "add new note"
+msgstr "ajouter une note"
+
+#: ajax_htmldata.php:444 ajax_htmldata.php:763 ajax_htmldata.php:956
+#: resources/cataloging.php:220
+msgid "edit note"
+msgstr "modifier une note"
+
+#: ajax_htmldata.php:444 ajax_htmldata.php:763 ajax_htmldata.php:956
+#: ajax_htmldata.php:1044 resources/cataloging.php:220
+msgid "remove note"
+msgstr "effacer une note"
+
+#: ajax_htmldata.php:550 resources/cataloging.php:106
+msgid "edit order information"
+msgstr "modifier l'order de l'information"
+
+#: ajax_htmldata.php:586
+#, fuzzy
+msgid "Purchasing Sites:"
+msgstr "Site d'achat"
+
+#: ajax_htmldata.php:602
+msgid "Expiration Alert Enabled"
+msgstr ""
+
+#: ajax_htmldata.php:642
+#, fuzzy
+msgid "No payment information available."
+msgstr "Le catalogue d'information n'est pas disponible."
+
+#: ajax_htmldata.php:648
+#, fuzzy
+msgid "edit acquisitions information"
+msgstr "modifier l'information des acquisitions"
+
+#: ajax_htmldata.php:658
+#, fuzzy
+msgid "License"
+msgstr " licence"
+
+#: ajax_htmldata.php:672
+msgid " on "
+msgstr ""
+
+#: ajax_htmldata.php:685
+#, fuzzy
+msgid "Licenses:"
+msgstr "Modifier les licences"
+
+#: ajax_htmldata.php:691
+#, fuzzy
+msgid "View License"
+msgstr "Modifier les licences"
+
+#: ajax_htmldata.php:694
+#, fuzzy
+msgid "No associated licenses available."
+msgstr "Le catalogue d'information n'est pas disponible."
+
+#: ajax_htmldata.php:708
+#, fuzzy
+msgid "edit license and status"
+msgstr "Statut de la licence"
+
+#: ajax_htmldata.php:710
+#, fuzzy
+msgid "edit license status"
+msgstr "Statut de la licence"
+
+#: ajax_htmldata.php:817
+#, fuzzy
+msgid "Access Information"
+msgstr "modifier l'information des acquisitions"
+
+#: ajax_htmldata.php:829
+#, fuzzy
+msgid "Administering Sites:"
+msgstr "Administration du site"
+
+#: ajax_htmldata.php:836
+#, fuzzy
+msgid "Authorized Sites:"
+msgstr "Site autorisé"
+
+#: ajax_htmldata.php:851
+#, fuzzy
+msgid "Username / Password:"
+msgstr "Mot de passe:"
+
+#: ajax_htmldata.php:866
+#, fuzzy
+msgid "Registered IP Address:"
+msgstr "Email enregistré:"
+
+#: ajax_htmldata.php:895
+#, fuzzy
+msgid "No access information available."
+msgstr "L'information de statut de la licence n'est pas disponible."
+
+#: ajax_htmldata.php:902
+#, fuzzy
+msgid "edit access information"
+msgstr "modifier l'order de l'information"
+
+#: ajax_htmldata.php:998
+msgid "The following are archived contacts:"
+msgstr ""
+
+#: ajax_htmldata.php:1010 ajax_htmldata.php:1207
+#, fuzzy
+msgid "Resource Specific:"
+msgstr "Type de ressource"
+
+#: ajax_htmldata.php:1014
+msgid "No Resource Specific Contacts"
+msgstr ""
+
+#: ajax_htmldata.php:1018 ajax_htmldata.php:1162 ajax_htmldata.php:1172
+#, fuzzy
+msgid "add contact"
+msgstr "Ajouter un contact"
+
+#: ajax_htmldata.php:1023 ajax_htmldata.php:1220
+msgid "Inherited:"
+msgstr ""
+
+#: ajax_htmldata.php:1043
+#, fuzzy
+msgid "edit contact"
+msgstr "Modifierl le contact"
+
+#: ajax_htmldata.php:1044
+#, fuzzy
+msgid "remove contact"
+msgstr "effacer une note"
+
+#: ajax_htmldata.php:1059
+msgid "Visit Contact in Organizations Module"
+msgstr ""
+
+#: ajax_htmldata.php:1067
+msgid "No longer valid:"
+msgstr ""
+
+#: ajax_htmldata.php:1091
+#, fuzzy
+msgid "Location:"
+msgstr "Lieu de stockage:"
+
+#: ajax_htmldata.php:1148 ajax_htmldata.php:1281
+#, fuzzy
+msgid "Last Updated:"
+msgstr "Nom"
+
+#: ajax_htmldata.php:1170
+#, fuzzy
+msgid "No contacts available"
+msgstr "# Enregistrements disponibles"
+
+#: ajax_htmldata.php:1180
+msgid " archived contact(s) available. "
+msgstr ""
+
+#: ajax_htmldata.php:1180
+msgid "show archived contacts"
+msgstr ""
+
+#: ajax_htmldata.php:1184
+msgid "hide archived contacts"
+msgstr ""
+
+#: ajax_htmldata.php:1211
+msgid "No Resource Specific Accounts"
+msgstr ""
+
+#: ajax_htmldata.php:1215 ajax_htmldata.php:1312
+#, fuzzy
+msgid "add new account"
+msgstr "ajouter une note"
+
+#: ajax_htmldata.php:1237
+#, fuzzy
+msgid "edit account"
+msgstr "Modifier la compte"
+
+#: ajax_htmldata.php:1237
+#, fuzzy
+msgid "remove account"
+msgstr "effacer une note"
+
+#: ajax_htmldata.php:1250
+msgid "Visit Account in Organizations Module"
+msgstr ""
+
+#: ajax_htmldata.php:1257
+#, fuzzy
+msgid "Login URL:"
+msgstr "Type d'acèss (login):"
+
+#: ajax_htmldata.php:1258
+#, fuzzy
+msgid "Visit Login URL"
+msgstr "Source URL de visite"
+
+#: ajax_htmldata.php:1265
+#, fuzzy
+msgid "User Name:"
+msgstr "Nom d'utilisateur:"
+
+#: ajax_htmldata.php:1307
+#, fuzzy
+msgid "No accounts available"
+msgstr "# Enregistrements disponibles"
+
+#: ajax_htmldata.php:1350
+#, fuzzy
+msgid "view attachment"
+msgstr "Modifier la fixation"
+
+#: ajax_htmldata.php:1355
+#, fuzzy
+msgid "edit attachment"
+msgstr "Modifier la fixation"
+
+#: ajax_htmldata.php:1355
+#, fuzzy
+msgid "remove this attachment"
+msgstr "effacer ce payment"
+
+#: ajax_htmldata.php:1387
+#, fuzzy
+msgid "No attachments available"
+msgstr "Le catalogue d'information n'est pas disponible."
+
+#: ajax_htmldata.php:1392
+#, fuzzy
+msgid "add new attachment"
+msgstr "Ajouter fixation"
+
+#: ajax_htmldata.php:1416
+msgid ""
+"No workflow steps have been set up for this resource's combination of "
+"Acquisition Type and Resource Format."
+msgstr ""
+
+#: ajax_htmldata.php:1416
+msgid ""
+"If you think this is in error, please contact your workflow administrator."
+msgstr ""
+
+#: ajax_htmldata.php:1418
+msgid "Not entered into workflow."
+msgstr ""
+
+#: ajax_htmldata.php:1424
+msgid "Step"
+msgstr ""
+
+#: ajax_htmldata.php:1425
+#, fuzzy
+msgid "Group"
+msgstr "Group d'utilisateur"
+
+#: ajax_htmldata.php:1426 ajax_htmldata.php:1833
+#, fuzzy
+msgid "Start Date"
+msgstr "Commence avec"
+
+#: ajax_htmldata.php:1427
+msgid "Complete"
+msgstr ""
+
+#: ajax_htmldata.php:1458
+msgid "mark complete"
+msgstr ""
+
+#: ajax_htmldata.php:1480 ajax_htmldata.php:1482
+#, fuzzy
+msgid "Workflow completed on "
+msgstr "Étapes du Flux de travail"
+
+#: ajax_htmldata.php:1486 ajax_htmldata.php:1488
+#, fuzzy
+msgid "Workflow restarted on "
+msgstr "Étapes du Flux de travail"
+
+#: ajax_htmldata.php:1498
+#, fuzzy
+msgid "restart workflow"
+msgstr "Modifier le flux de travail"
+
+#: ajax_htmldata.php:1499
+msgid "mark entire workflow complete"
+msgstr ""
+
+#: ajax_htmldata.php:1587
+msgid "Print View"
+msgstr ""
+
+#: ajax_htmldata.php:1589
+#, fuzzy
+msgid "Catalog View"
+msgstr "Catalogage"
+
+#: ajax_htmldata.php:1600
+#, fuzzy
+msgid "Parent Record"
+msgstr "Parent étape"
+
+#: ajax_htmldata.php:1606
+#, fuzzy
+msgid "Child Record(s)"
+msgstr "Licences entregistrées"
+
+#: ajax_htmldata.php:1625
+#, fuzzy
+msgid "Organizations Module"
+msgstr "Rôle dans l'organisation"
+
+#: ajax_htmldata.php:1641
+#, fuzzy
+msgid "Licensing Module"
+msgstr "Statut des licences"
+
+#: ajax_htmldata.php:1659
+msgid "Usage Statistics Module"
+msgstr ""
+
+#: ajax_htmldata.php:1665
+msgid "Get Statistics"
+msgstr ""
+
+#: ajax_htmldata.php:1686
+#, fuzzy
+msgid "Saved Requests"
+msgstr "Modifier ressource enregistré"
+
+#: ajax_htmldata.php:1691
+msgid "No saved requests"
+msgstr ""
+
+#: ajax_htmldata.php:1697 ajax_htmldata.php:1766 ajax_htmldata.php:1829
+#: ajax_htmldata.php:2042
+msgid "ID"
+msgstr ""
+
+#: ajax_htmldata.php:1699 ajax_htmldata.php:1768 ajax_htmldata.php:2045
+#, fuzzy
+msgid "Date Created"
+msgstr "Date de création entre"
+
+#: ajax_htmldata.php:1701 ajax_htmldata.php:1770 ajax_htmldata.php:2047
+#: index.php:123
+msgid "Status"
+msgstr "Statut"
+
+#: ajax_htmldata.php:1729
+msgid "edit request"
+msgstr ""
+
+#: ajax_htmldata.php:1730
+#, fuzzy
+msgid "remove request"
+msgstr "supprimer "
+
+#: ajax_htmldata.php:1755
+msgid "Submitted Requests"
+msgstr ""
+
+#: ajax_htmldata.php:1760
+msgid "No submitted requests"
+msgstr ""
+
+#: ajax_htmldata.php:1817
+msgid "Outstanding Tasks"
+msgstr ""
+
+#: ajax_htmldata.php:1822
+msgid "No outstanding requests"
+msgstr ""
+
+#: ajax_htmldata.php:1832 index.php:553
+msgid "Routing Step"
+msgstr "Etape de routage"
+
+#: ajax_htmldata.php:1968
+msgid "Sorry, no requests fit your query"
+msgstr ""
+
+#: ajax_htmldata.php:1982
+msgid " to "
+msgstr ""
+
+#: ajax_htmldata.php:1982
+msgid " of "
+msgstr ""
+
+#: ajax_htmldata.php:1982
+#, fuzzy
+msgid " Resource Records"
+msgstr "Format de la ressource"
+
+#: ajax_htmldata.php:2028
+msgid "next page"
+msgstr ""
+
+#: ajax_htmldata.php:2044 index.php:154
+msgid "Creator"
+msgstr "Créateur"
+
+#: ajax_htmldata.php:2091
+msgid "previous page"
+msgstr ""
+
+#: ajax_htmldata.php:2142
+msgid "records per page"
+msgstr ""
+
+#: ajax_htmldata.php:2203
+#, fuzzy
+msgid "edit user"
+msgstr "Modifierl l'utilisateur"
+
+#: ajax_htmldata.php:2204 ajax_htmldata.php:2252 ajax_htmldata.php:2296
+#: ajax_htmldata.php:2344 ajax_htmldata.php:2374 ajax_htmldata.php:2434
+#: ajax_htmldata.php:2485 ajax_htmldata.php:2528 ajax_htmldata.php:2572
+#: ajax_htmldata.php:2613
+#, fuzzy
+msgid "remove"
+msgstr "supprimer "
+
+#: ajax_htmldata.php:2210 ajax_htmldata.php:2214
+#, fuzzy
+msgid "add new user"
+msgstr "Ajouter un utilisateur"
+
+#: ajax_htmldata.php:2264
+#, fuzzy
+msgid "add new currency"
+msgstr "Ajouter Concurrence"
+
+#: ajax_htmldata.php:2286 ajax_htmldata.php:2518 ajax_htmldata.php:2559
+#: ajax_htmldata.php:2601
+msgid "Value"
+msgstr ""
+
+#: ajax_htmldata.php:2308 ajax_htmldata.php:2540 ajax_htmldata.php:2628
+#, fuzzy
+msgid "add new "
+msgstr "ajouter une note"
+
+#: ajax_htmldata.php:2356
+#, fuzzy
+msgid "add email address"
+msgstr "Ajouter alerte d'adresse email"
+
+#: ajax_htmldata.php:2364
+msgid "Days in advance of expiration"
+msgstr ""
+
+#: ajax_htmldata.php:2389
+#, fuzzy
+msgid "add days"
+msgstr "ajouter alias"
+
+#: ajax_htmldata.php:2404
+#, fuzzy
+msgid "Workflow Setup"
+msgstr "Étapes du Flux de travail"
+
+#: ajax_htmldata.php:2450
+msgid "You must set up at least one user group before you can add workflows"
+msgstr ""
+
+#: ajax_htmldata.php:2460
+#, fuzzy
+msgid "User Group Setup"
+msgstr "Group d'utilisateur"
+
+#: ajax_htmldata.php:2466
+#, fuzzy
+msgid "Group Name"
+msgstr "Nom du groupe"
+
+#: ajax_htmldata.php:2498
+#, fuzzy
+msgid "add user group"
+msgstr "Ajouter groupé d'utilisateur"
+
+#: ajax_htmldata.php:2595 ajax_htmldata.php:2643 index.php:282
+msgid "Detailed Subject"
+msgstr "Sujet détaillé"
+
+#: ajax_htmldata.php:2636
+#, fuzzy
+msgid "Subject Relationships"
+msgstr "Ajouter / Modifier la relation des objets"
 
 #: index.php:26 templates/header.php:98
 msgid "Home"
@@ -724,14 +1344,6 @@ msgstr "Fonds"
 msgid "All"
 msgstr "Tous"
 
-#: index.php:123
-msgid "Status"
-msgstr "Statut"
-
-#: index.php:154
-msgid "Creator"
-msgstr "Créateur"
-
 #: index.php:218 index.php:220 index.php:259 index.php:261 index.php:290
 #: index.php:292 index.php:351 index.php:353 index.php:409 index.php:411
 #: index.php:441 index.php:443 index.php:473 index.php:475 index.php:503
@@ -742,10 +1354,6 @@ msgstr "(aucun)"
 #: index.php:242
 msgid "Record ID"
 msgstr "ID d'enregistrement"
-
-#: index.php:282
-msgid "Detailed Subject"
-msgstr "Sujet détaillé"
 
 #: index.php:313
 msgid "Starts with"
@@ -771,10 +1379,6 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: index.php:553
-msgid "Routing Step"
-msgstr "Etape de routage"
-
 #: resource.php:54
 msgid "Success!"
 msgstr "Fait!"
@@ -786,10 +1390,6 @@ msgstr "Nouvelle ressource ajouté"
 #: resources/cataloging.php:103
 msgid "Cataloging"
 msgstr "Catalogage"
-
-#: resources/cataloging.php:106
-msgid "edit order information"
-msgstr "modifier l'order de l'information"
 
 #: resources/cataloging.php:114
 msgid "Identifier:"
@@ -838,22 +1438,6 @@ msgstr "Le catalogue d'information n'est pas disponible."
 #: resources/cataloging.php:165
 msgid "edit cataloging details"
 msgstr "modifier les détails du catalogage"
-
-#: resources/cataloging.php:209
-msgid "Additional Notes"
-msgstr "Notes additionales"
-
-#: resources/cataloging.php:212 resources/cataloging.php:231
-msgid "add new note"
-msgstr "ajouter une note"
-
-#: resources/cataloging.php:220
-msgid "edit note"
-msgstr "modifier une note"
-
-#: resources/cataloging.php:220
-msgid "remove note"
-msgstr "effacer une note"
 
 #: resources/cataloging_edit.php:15
 msgid "Edit Cataloging"

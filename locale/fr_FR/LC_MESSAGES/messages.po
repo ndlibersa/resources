@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-03 17:18+0100\n"
-"PO-Revision-Date: 2015-04-03 17:18+0100\n"
+"POT-Creation-Date: 2015-04-07 14:30+0100\n"
+"PO-Revision-Date: 2015-04-07 14:31+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -31,7 +31,7 @@ msgstr "Mèthode d'accès"
 msgid "Account Type"
 msgstr "Type d'account"
 
-#: admin.php:55 index.php:100
+#: admin.php:55 ajax_forms.php:279 index.php:100
 msgid "Acquisition Type"
 msgstr "Type d'acquisition"
 
@@ -91,7 +91,7 @@ msgstr "Type d'ordre"
 msgid "Organization Role"
 msgstr "Rôle dans l'organisation"
 
-#: admin.php:78
+#: admin.php:78 ajax_forms.php:747
 msgid "Organizations"
 msgstr "Organisation"
 
@@ -103,7 +103,7 @@ msgstr "Site d'achat"
 msgid "Resource Format"
 msgstr "Format de la ressource"
 
-#: admin.php:84 index.php:210
+#: admin.php:84 ajax_forms.php:466 index.php:210
 msgid "Resource Type"
 msgstr "Type de ressource"
 
@@ -150,6 +150,548 @@ msgstr "Modifier selections DDW facet/term à: "
 #: admin/classes/common/Utility.php:148
 msgid "Email template file not found: "
 msgstr "Le fichier template pour l'email est introuvable: "
+
+#: ajax_forms.php:47
+msgid "Edit Note"
+msgstr "Modifier une note"
+
+#: ajax_forms.php:47
+msgid "Add Note"
+msgstr "Ajouter une note"
+
+#: ajax_forms.php:57
+msgid "Note Type:"
+msgstr "Type de note:"
+
+#: ajax_forms.php:77 ajax_forms.php:1934
+msgid "Notes:"
+msgstr "Notes:"
+
+#: ajax_forms.php:90 ajax_forms.php:538 ajax_forms.php:941 ajax_forms.php:1296
+#: ajax_forms.php:1505 ajax_forms.php:1780 ajax_forms.php:1957
+#: ajax_forms.php:2064 ajax_forms.php:2171 ajax_forms.php:2234
+#: ajax_forms.php:2303 ajax_forms.php:2413 ajax_forms.php:2506
+#: ajax_forms.php:2578 ajax_forms.php:2879 ajax_forms.php:3045
+#: ajax_forms.php:3098 ajax_forms.php:3151 ajax_forms.php:3295
+#: resources/cataloging_edit.php:102
+msgid "submit"
+msgstr "Confirmer"
+
+#: ajax_forms.php:91 ajax_forms.php:539 ajax_forms.php:942 ajax_forms.php:1297
+#: ajax_forms.php:1506 ajax_forms.php:1781 ajax_forms.php:1958
+#: ajax_forms.php:2065 ajax_forms.php:2172 ajax_forms.php:2235
+#: ajax_forms.php:2304 ajax_forms.php:2414 ajax_forms.php:2507
+#: ajax_forms.php:2579 ajax_forms.php:2880 ajax_forms.php:3046
+#: ajax_forms.php:3099 ajax_forms.php:3152 ajax_forms.php:3296
+#: resources/cataloging_edit.php:103
+msgid "cancel"
+msgstr "Annuler"
+
+#: ajax_forms.php:188
+msgid "Edit Saved Resource"
+msgstr "Modifier ressource enregistré"
+
+#: ajax_forms.php:188
+msgid "Add New Resource"
+msgstr "Ajouter une nouvelle ressource"
+
+#: ajax_forms.php:189
+msgid "* required fields"
+msgstr "* champs obligatoires"
+
+#: ajax_forms.php:195 ajax_forms.php:635
+msgid "Product"
+msgstr "Produit"
+
+#: ajax_forms.php:204 ajax_forms.php:645 ajax_forms.php:1839
+#: ajax_forms.php:2109 ajax_forms.php:2736
+msgid "Name:"
+msgstr "Nom:"
+
+#: ajax_forms.php:209 ajax_forms.php:650
+msgid "Description:"
+msgstr "Description:"
+
+#: ajax_forms.php:214
+msgid "Provider:"
+msgstr "Fournisseur:"
+
+#: ajax_forms.php:235
+msgid "Format"
+msgstr "Format"
+
+#: ajax_forms.php:326 ajax_forms.php:1104
+msgid "Initial Cost"
+msgstr "Coût Initial"
+
+#: ajax_forms.php:335 ajax_forms.php:1112
+msgid "Fund:"
+msgstr "Fond:"
+
+#: ajax_forms.php:336 ajax_forms.php:1113
+msgid "Price:"
+msgstr "Prix:"
+
+#: ajax_forms.php:337 ajax_forms.php:707 ajax_forms.php:848
+#: ajax_forms.php:1114 ajax_forms.php:2117 ajax_forms.php:2702
+msgid "Type:"
+msgstr "Type:"
+
+#: ajax_forms.php:382 ajax_forms.php:1157
+msgid "add this payment"
+msgstr "ajouter ce payment"
+
+#: ajax_forms.php:382 ajax_forms.php:1157
+msgid "add payment"
+msgstr "ajouter un payment"
+
+#: ajax_forms.php:446 ajax_forms.php:1220
+msgid "remove this payment"
+msgstr "effacer ce payment"
+
+#: ajax_forms.php:512
+msgid "Notes"
+msgstr "Notes"
+
+#: ajax_forms.php:521
+msgid "Include any additional information"
+msgstr "Inclure quelque information additional"
+
+#: ajax_forms.php:537
+msgid "save"
+msgstr "Enregistrer"
+
+#: ajax_forms.php:626
+msgid "Edit Resource"
+msgstr "Modifier la ressource"
+
+#: ajax_forms.php:672
+msgid "Parent:"
+msgstr "Parent:"
+
+#: ajax_forms.php:688 ajax_forms.php:2687
+msgid "Format:"
+msgstr "Format:"
+
+#: ajax_forms.php:726 ajax_forms.php:1888
+msgid "Archived:"
+msgstr "Archivé:"
+
+#: ajax_forms.php:755
+msgid "Role:"
+msgstr "Rôle:"
+
+#: ajax_forms.php:756
+msgid "Organization:"
+msgstr "Organisation:"
+
+#: ajax_forms.php:778
+msgid "add organization"
+msgstr "Ajouter une organisation"
+
+#: ajax_forms.php:818
+msgid "remove organization"
+msgstr "Supprimer une organisation"
+
+#: ajax_forms.php:818 ajax_forms.php:1417
+msgid "remove "
+msgstr "supprimer "
+
+#: ajax_forms.php:818
+msgid " organization"
+msgstr " organisation"
+
+#: ajax_forms.php:840
+msgid "Aliases"
+msgstr "Des alias:"
+
+#: ajax_forms.php:849
+msgid "Alias:"
+msgstr "Alias:"
+
+#: ajax_forms.php:871
+msgid "add this alias"
+msgstr "ajouter cet alias"
+
+#: ajax_forms.php:871
+msgid "add alias"
+msgstr "ajouter alias"
+
+#: ajax_forms.php:912
+msgid "remove this alias"
+msgstr "effacer cet alias"
+
+#: ajax_forms.php:1029
+msgid "Edit Acquisitions Information"
+msgstr "modifier l'information des acquisitions"
+
+#: ajax_forms.php:1038
+msgid "Order"
+msgstr "Ordre"
+
+#: ajax_forms.php:1045 ajax_forms.php:2671
+msgid "Acquisition Type:"
+msgstr "Type d'acquisition:"
+
+#: ajax_forms.php:1063
+msgid "Order Number:"
+msgstr "Numero d'ordre:"
+
+#: ajax_forms.php:1068
+msgid "System Number:"
+msgstr "Nombre de système:"
+
+#: ajax_forms.php:1073
+msgid "Subscription Start:"
+msgstr "Début d'abonnement:"
+
+#: ajax_forms.php:1078
+msgid "Subscription End:"
+msgstr "Fin d'abonnement:"
+
+#: ajax_forms.php:1088
+msgid "Enable Alert"
+msgstr "Activer l'alerte"
+
+#: ajax_forms.php:1247
+msgid "Purchasing Site(s)"
+msgstr "Site d'achat(s)"
+
+#: ajax_forms.php:1364
+msgid "Edit Licenses"
+msgstr "Modifier les licences"
+
+#: ajax_forms.php:1374
+msgid "License Records"
+msgstr "Licences entregistrées"
+
+#: ajax_forms.php:1390
+msgid "add license"
+msgstr "ajouter une licence"
+
+#: ajax_forms.php:1417
+msgid "remove license link"
+msgstr "supprimer lien de la licence"
+
+#: ajax_forms.php:1417
+msgid " license"
+msgstr " licence"
+
+#: ajax_forms.php:1442
+msgid "Licensing Status"
+msgstr "Statut des licences"
+
+#: ajax_forms.php:1450
+msgid "Status:"
+msgstr "Statut:"
+
+#: ajax_forms.php:1474
+msgid "History:"
+msgstr "Historie:"
+
+#: ajax_forms.php:1480 resources/cataloging.php:223
+msgid " by "
+msgstr " par "
+
+#: ajax_forms.php:1483
+msgid "No license status information available."
+msgstr "L'information de statut de la licence n'est pas disponible."
+
+#: ajax_forms.php:1588
+msgid "Edit Access"
+msgstr "Modifier l'accès"
+
+#: ajax_forms.php:1597
+msgid "Access"
+msgstr "Acèss"
+
+#: ajax_forms.php:1604
+msgid "Authentication Type:"
+msgstr "Type d'accès:"
+
+#: ajax_forms.php:1619 ajax_forms.php:2036
+msgid "Username:"
+msgstr "Nom d'utilisateur:"
+
+#: ajax_forms.php:1623
+msgid "Access Method:"
+msgstr "Mèthode d'accès:"
+
+#: ajax_forms.php:1638 ajax_forms.php:2043
+msgid "Password:"
+msgstr "Mot de passe:"
+
+#: ajax_forms.php:1642
+msgid "Storage Location:"
+msgstr "Lieu de stockage:"
+
+#: ajax_forms.php:1657
+msgid "Simultaneous User Limit:"
+msgstr "Limite d'utilisateurs similtanées"
+
+#: ajax_forms.php:1674
+msgid "Coverage:"
+msgstr "Coverture:"
+
+#: ajax_forms.php:1692
+msgid "Authorized Site(s)"
+msgstr "Site(s) autorisé(s)"
+
+#: ajax_forms.php:1737
+msgid "Administering Site(s)"
+msgstr "Administration du site(s)"
+
+#: ajax_forms.php:1826
+msgid "Edit Contact"
+msgstr "Modifierl le contact"
+
+#: ajax_forms.php:1826
+msgid "Add Contact"
+msgstr "Ajouter un contact"
+
+#: ajax_forms.php:1846
+msgid "Title:"
+msgstr "Titre:"
+
+#: ajax_forms.php:1853
+msgid "Phone:"
+msgstr "Téléphone:"
+
+#: ajax_forms.php:1860
+msgid "Alt Phone:"
+msgstr "Alt Téléphone:"
+
+#: ajax_forms.php:1881
+msgid "Address:"
+msgstr "Adresse:"
+
+#: ajax_forms.php:1898
+msgid "Role(s):"
+msgstr "Rôle(s)"
+
+#: ajax_forms.php:1995
+msgid "Edit Account"
+msgstr "Modifier la compte"
+
+#: ajax_forms.php:1995
+msgid "Add Account"
+msgstr "Ajouter une compte"
+
+#: ajax_forms.php:2005
+msgid "Login Type:"
+msgstr "Type d'acèss (login):"
+
+#: ajax_forms.php:2029
+msgid "Registered Email:"
+msgstr "Email enregistré:"
+
+#: ajax_forms.php:2098
+msgid "Edit Attachment"
+msgstr "Modifier la fixation"
+
+#: ajax_forms.php:2098
+msgid "Add Attachment"
+msgstr "Ajouter fixation"
+
+#: ajax_forms.php:2137
+msgid "File:"
+msgstr "Fichier:"
+
+#: ajax_forms.php:2143
+msgid "replace with new file"
+msgstr "remplacer avec un nouveau fichier"
+
+#: ajax_forms.php:2158
+msgid "Details:"
+msgstr "Détails:"
+
+#: ajax_forms.php:2206 ajax_forms.php:3076 ajax_forms.php:3129
+msgid "Edit "
+msgstr "Modifier"
+
+#: ajax_forms.php:2206 ajax_forms.php:3076 ajax_forms.php:3129
+msgid "Add "
+msgstr "Ajouter"
+
+#: ajax_forms.php:2221
+msgid "Show stats button?"
+msgstr "Montrer les boutons de statistiques?"
+
+#: ajax_forms.php:2279
+msgid "Edit Currency"
+msgstr "Modifier la Concurrence"
+
+#: ajax_forms.php:2279
+msgid "Add Currency"
+msgstr "Ajouter Concurrence"
+
+#: ajax_forms.php:2289
+msgid "Code"
+msgstr "Code"
+
+#: ajax_forms.php:2292
+msgid "Name"
+msgstr "Nom"
+
+#: ajax_forms.php:2368
+msgid "Edit User"
+msgstr "Modifierl l'utilisateur"
+
+#: ajax_forms.php:2368
+msgid "Add New User"
+msgstr "Ajouter un nouveau utilisateur"
+
+#: ajax_forms.php:2379
+msgid "Login ID"
+msgstr "Identifiant d'accès"
+
+#: ajax_forms.php:2380
+msgid "First Name"
+msgstr "Prènom"
+
+#: ajax_forms.php:2381
+msgid "Last Name"
+msgstr "Nom"
+
+#: ajax_forms.php:2382
+msgid "Email Address"
+msgstr "Adresse email"
+
+#: ajax_forms.php:2383
+msgid "Privilege"
+msgstr "Privilège"
+
+#: ajax_forms.php:2401
+msgid "View Accounts"
+msgstr "Montrer les comptes"
+
+#: ajax_forms.php:2486
+msgid "Edit Alert Email Address"
+msgstr "Modifier l'alerte d'adresse email"
+
+#: ajax_forms.php:2486
+msgid "Add Alert Email Address"
+msgstr "Ajouter alerte d'adresse email"
+
+#: ajax_forms.php:2558
+msgid "Edit Alert Days In Advance"
+msgstr "Modifier l'alerte jours à l'avance"
+
+#: ajax_forms.php:2558
+msgid "Add Alert Days In Advance"
+msgstr "Ajouter alerte jours à l'avance"
+
+#: ajax_forms.php:2655
+msgid "Edit Workflow"
+msgstr "Modifier le flux de travail"
+
+#: ajax_forms.php:2664
+msgid "Resource Entry Requirements"
+msgstr "Conditions d'entrée des ressources"
+
+#: ajax_forms.php:2727
+msgid "Workflow Steps"
+msgstr "Étapes du Flux de travail"
+
+#: ajax_forms.php:2737
+msgid "Approval/Notification Group:"
+msgstr "Approbation/Notification de Groupe"
+
+#: ajax_forms.php:2738
+msgid "Parent Step"
+msgstr "Parent étape"
+
+#: ajax_forms.php:2768
+msgid "add step"
+msgstr "ajouter une étape"
+
+#: ajax_forms.php:2851
+msgid "remove this step"
+msgstr "effacer cet étape"
+
+#: ajax_forms.php:2915
+msgid "Edit User Group"
+msgstr "Modifier le groupe d'utilisateur"
+
+#: ajax_forms.php:2915
+msgid "Add User Group"
+msgstr "Ajouter groupé d'utilisateur"
+
+#: ajax_forms.php:2924
+msgid "User Group"
+msgstr "Group d'utilisateur"
+
+#: ajax_forms.php:2932
+msgid "Group Name:"
+msgstr "Nom du groupe"
+
+#: ajax_forms.php:2939
+msgid "Email Address:"
+msgstr "Adresse email"
+
+#: ajax_forms.php:2956
+msgid "Assigned Users"
+msgstr "Utilisateurs asignés"
+
+#: ajax_forms.php:2980
+msgid "add user"
+msgstr "Ajouter un utilisateur"
+
+#: ajax_forms.php:3019
+msgid "remove user from group"
+msgstr "Supprimer un utilisateur du groupe"
+
+#: ajax_forms.php:3185
+msgid "Add / Edit Subject Relationships"
+msgstr "Ajouter / Modifier la relation des objets"
+
+#: ajax_forms.php:3194 index.php:251
+msgid "General Subject"
+msgstr "Sujet général"
+
+#: ajax_forms.php:3220
+msgid "Detailed Subjects"
+msgstr "Objet détaillé"
+
+#: ajax_forms.php:3242
+msgid "add detail subject"
+msgstr "Ajouter detail d'objet"
+
+#: ajax_forms.php:3272
+msgid "remove detailed subject"
+msgstr "Supprimer objet détaillé"
+
+#: ajax_forms.php:3274
+msgid "subject in use"
+msgstr "Objet en utilisation"
+
+#: ajax_forms.php:3318
+msgid "Add General / Detail Subject Link"
+msgstr "Ajouter général / détail lien d'objet"
+
+#: ajax_forms.php:3325
+msgid "General Subject Name"
+msgstr "Nom général d'objet"
+
+#: ajax_forms.php:3326
+msgid "Detail Subject Name"
+msgstr "Détail du nom d'objet"
+
+#: ajax_forms.php:3338 ajax_forms.php:3345
+msgid "add"
+msgstr "ajouter"
+
+#: ajax_forms.php:3356
+msgid "(none found)"
+msgstr "(non trouvé)"
+
+#: ajax_forms.php:3374
+msgid "Action "
+msgstr "Action"
+
+#: ajax_forms.php:3374
+msgid " not set up!"
+msgstr " ne pas etabli!"
 
 #: index.php:26 templates/header.php:98
 msgid "Home"
@@ -200,10 +742,6 @@ msgstr "(aucun)"
 #: index.php:242
 msgid "Record ID"
 msgstr "ID d'enregistrement"
-
-#: index.php:251
-msgid "General Subject"
-msgstr "Sujet général"
 
 #: index.php:282
 msgid "Detailed Subject"
@@ -317,25 +855,25 @@ msgstr "modifier une note"
 msgid "remove note"
 msgstr "effacer une note"
 
-#: resources/cataloging.php:223
-msgid " by "
-msgstr " par "
-
 #: resources/cataloging_edit.php:15
 msgid "Edit Cataloging"
 msgstr "Modifier le catalogage"
 
 #: resources/cataloging_edit.php:24
 msgid "Record Set"
-msgstr "jeu d'enregistrement"
+msgstr "Jeu d'enregistrement"
 
-#: resources/cataloging_edit.php:102
-msgid "submit"
-msgstr "Confirmer"
+#: resources/cataloging_edit.php:68
+msgid "# Records Available"
+msgstr "# Enregistrements disponibles"
 
-#: resources/cataloging_edit.php:103
-msgid "cancel"
-msgstr "Annuler"
+#: resources/cataloging_edit.php:75
+msgid "# Records Loaded"
+msgstr "# Enregistrements chargées"
+
+#: resources/cataloging_edit.php:82
+msgid "OCLC Holdings"
+msgstr "OCLC Holdings"
 
 #: setuser.php:44
 msgid ""
@@ -351,7 +889,7 @@ msgstr "Bonjour, "
 
 #: templates/header.php:87
 msgid "logout"
-msgstr "Se decconecter"
+msgstr "Se déconnecter"
 
 #: templates/header.php:99
 msgid "New Resource"

@@ -44,7 +44,7 @@ switch ($_GET['action']) {
 		<input type='hidden' name='editResourceNoteID' id='editResourceNoteID' value='<?php echo $resourceNoteID; ?>'>
 		<input type='hidden' name='tab' id='tab' value='<?php echo $tabName; ?>'>
 
-		<div class='formTitle' style='width:395px;'><span class='headerText' style='margin-left:7px;'><?php if ($resourceNoteID){ echo "Edit Note"; } else { echo "Add Note"; } ?></span></div>
+		<div class='formTitle' style='width:395px;'><span class='headerText' style='margin-left:7px;'><?php if ($resourceNoteID){ echo _("Edit Note"); } else { echo _("Add Note"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -54,7 +54,7 @@ switch ($_GET['action']) {
 
 			<table class='noBorder' style='width:360px; margin:10px 15px;'>
 			<tr>
-			<td style='vertical-align:top;text-align:left;border:0px;'><label for='noteTypeID'><b>Note Type:</b></label></td>
+			<td style='vertical-align:top;text-align:left;border:0px;'><label for='noteTypeID'><b><?= _("Note Type:");?></b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 
 			<select name='noteTypeID' id='noteTypeID'>
@@ -74,7 +74,7 @@ switch ($_GET['action']) {
 			</tr>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='noteText'><b>Notes:</b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='noteText'><b><?= _("Notes:");?></b></label></td>
 			<td><textarea rows='5' id='noteText' name='noteText' style='width:270px'><?php echo $resourceNote->noteText; ?></textarea><span class='smallDarkRedText' id='span_error_noteText'></span></td>
 			</td>
 			</tr>
@@ -87,8 +87,8 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitResourceNoteForm' id ='submitResourceNoteForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitResourceNoteForm' id ='submitResourceNoteForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove()"></td>
 			</tr>
 		</table>
 
@@ -185,14 +185,14 @@ switch ($_GET['action']) {
 
 		<input type='hidden' id='organizationID' value='<?php echo $orgID; ?>' />
 		<input type='hidden' id='editResourceID' value='<?php echo $resourceID; ?>' />
-		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo "Edit Saved Resource"; }else{ echo "Add New Resource"; } ?></span></div>
-		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields</div>
+		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo _("Edit Saved Resource"); }else{ echo _("Add New Resource"); } ?></span></div>
+		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;<?= _("* required fields");?></div>
 
 		<table class='noBorder'>
 		<tr style='vertical-align:top;'>
 		<td style='vertical-align:top; padding-right:35px;'>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Product</b>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b><?= _("Product");?></b>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -201,17 +201,17 @@ switch ($_GET['action']) {
 				<table class='noBorder' style='width:310px; margin:5px 15px;'>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='titleText'>Name:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='titleText'><?= _("Name:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value="<?php echo $resource->titleText; ?>" /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='descriptionText'>Description:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><?= _("Description:");?></label></td>
 					<td><textarea rows='3' id='descriptionText' style='width:223px'><?php echo $resource->descriptionText; ?></textarea></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='providerText'>Provider:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='providerText'><?= _("Provider:");?></label></td>
 					<td><input type='text' id='providerText' style='width:220px;' class='changeInput' value='<?php echo $providerText; ?>' /><span id='span_error_providerText' class='smallDarkRedText'></span></td>
 					</tr>
 
@@ -232,7 +232,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Format</b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Format");?></b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -276,7 +276,7 @@ switch ($_GET['action']) {
 			</table>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Acquisition Type</b>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b><?= _("Acquisition Type");?></b>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -323,7 +323,7 @@ switch ($_GET['action']) {
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Initial Cost</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Initial Cost");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -332,9 +332,9 @@ switch ($_GET['action']) {
 
 				<table class='noBorder smallPadding newPaymentTable' style='width:320px;margin:7px 15px 0px 15px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Fund:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan='2'>Price:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Type:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?= _("Fund:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan='2'><?= _("Price:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?= _("Type:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -379,7 +379,7 @@ switch ($_GET['action']) {
 
 
 				<td style='vertical-align:center;text-align:left;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='<?= _("add this payment");?>' title='<?= _("add payment");?>'></a>
 				</td>
 				</tr>
 
@@ -443,7 +443,7 @@ switch ($_GET['action']) {
 
 
 						<td style='vertical-align:top;text-align:center;width:37px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove this payment");?>' title='<?= _("remove this payment");?>' class='remove' /></a>
 						</td>
 						</tr>
 
@@ -463,7 +463,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceTypeID'><b>Resource Type</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceTypeID'><b><?= _("Resource Type");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -509,7 +509,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Notes</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Notes");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -518,7 +518,7 @@ switch ($_GET['action']) {
 				<table class='noBorder smallPadding' style='width:320px; margin:7px 15px;'>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><span class='smallGreyText'>Include any additional information</span><br />
+					<td style='vertical-align:top;text-align:left;'><span class='smallGreyText'><?= _("Include any additional information");?></span><br />
 					<textarea rows='5' id='noteText' name='noteText' style='width:310px'><?php echo $resourceNote->noteText; ?></textarea></td>
 					</tr>
 				</table>
@@ -534,9 +534,9 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='save' class='submitResource' id ='save'></td>
-				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
-				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("save");?>' class='submitResource' id ='save'></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' class='submitResource' id ='progress'></td>
+				<td style='text-align:left'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove()"></td>
 			</tr>
 		</table>
 
@@ -623,7 +623,7 @@ switch ($_GET['action']) {
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:715px; margin-bottom:5px;position:relative;'><span class='headerText'>Edit Resource</span></div>
+		<div class='formTitle' style='width:715px; margin-bottom:5px;position:relative;'><span class='headerText'><?= _("Edit Resource");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -632,7 +632,7 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top;position:relative;' colspan='2'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Product</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Product");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:710px;'>
 			<tr>
@@ -642,12 +642,12 @@ switch ($_GET['action']) {
 				<td style='width:360px;'>
 					<table>
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Name:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?= _("Name:");?></label></td>
 					<td><input type='text' id='titleText' name='titleText' value = "<?php echo $resource->titleText; ?>" style='width:260px;' class='changeInput' /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'>Description:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'><?= _("Description:");?></label></td>
 					<td><textarea rows='4' id='descriptionText' name='descriptionText' style='width:260px' class='changeInput' ><?php echo $resource->descriptionText; ?></textarea></td>
 					</tr>
 
@@ -669,7 +669,7 @@ switch ($_GET['action']) {
 
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Parent:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?= _("Parent:");?></label></td>
 					<td>
 
 					<input type='text' id='parentResourceName' name='parentResourceName' value = '<?php echo $parentResource->titleText; ?>' style='width:180px;' class='changeInput' /><span id='span_error_parentResourceName' class='smallDarkRedText'></span></td>
@@ -685,7 +685,7 @@ switch ($_GET['action']) {
 
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'>Format:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?= _("Format:");?></label></td>
 					<td>
 					<select name='resourceFormatID' id='resourceFormatID' style='width:100px;' class='changeSelect'>
 					<option value=''></option>
@@ -704,7 +704,7 @@ switch ($_GET['action']) {
 
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'>Type:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'><?= _("Type:");?></label></td>
 					<td>
 					<select name='resourceTypeID' id='resourceTypeID' style='width:100px;' class='changeSelect' >
 					<option value=''></option>
@@ -723,7 +723,7 @@ switch ($_GET['action']) {
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='archiveInd'><b>Archived:</b></label></td>
+					<td style='text-align:left'><label for='archiveInd'><b><?= _("Archived:");?></b></label></td>
 					<td>
 					<input type='checkbox' id='archiveInd' name='archiveInd' <?php echo $archiveChecked; ?> />
 					</td>
@@ -744,7 +744,7 @@ switch ($_GET['action']) {
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Organizations</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Organizations");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:380px;'>
 			<tr>
@@ -752,8 +752,8 @@ switch ($_GET['action']) {
 
 				<table class='noBorder smallPadding newOrganizationTable' style='width:330px;  margin:15px 20px 0px 20px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>Role:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'>Organization:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'><?= _("Role:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'><?= _("Organization:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -775,7 +775,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addOrganization' alt='add organization' title='add organization'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addOrganization' alt='<?= _("add organization");?>' title='<?= _("add organization");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -815,7 +815,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove organization' title='remove <?php echo $resourceOrganization['shortName']; ?> organization' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove organization");?>' title='<?= _("remove "). $resourceOrganization['shortName']. _(" organization");?>' class='remove' /></a>
 						</td>
 
 						</tr>
@@ -837,7 +837,7 @@ switch ($_GET['action']) {
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Aliases</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?= _("Aliases");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:300px;'>
 			<tr>
@@ -845,8 +845,8 @@ switch ($_GET['action']) {
 
 				<table class='noBorder smallPadding newAliasTable' style='width:260px; margin:15px 20px 0px 20px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:98px;'>Type:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:125px;'>Alias:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:98px;'><?= _("Type:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:125px;'><?= _("Alias:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -868,7 +868,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:center;text-align:left;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addAlias' alt='add this alias' title='add alias'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addAlias' alt='<?= _("add this alias");?>' title='<?= _("add alias");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -909,7 +909,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:37px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this alias' title='remove this alias' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove this alias");?>' title='<?= _("remove this alias");?>' class='remove' /></a>
 						</td>
 						</tr>
 
@@ -938,8 +938,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitProductChanges' id ='submitProductChanges'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitProductChanges' id ='submitProductChanges'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -1026,7 +1026,7 @@ switch ($_GET['action']) {
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:740px; margin-bottom:5px;'><span class='headerText'>Edit Acquisitions Information</span></div>
+		<div class='formTitle' style='width:740px; margin-bottom:5px;'><span class='headerText'><?= _("Edit Acquisitions Information");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -1035,14 +1035,14 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top; padding-right:35px;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='orderInformation'><b>Order</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='orderInformation'><b><?= _("Order");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
 			<td>
 				<table class='noBorder' style='width:310px; margin:15px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='acquisitionTypeID'>Acquisition Type:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='acquisitionTypeID'><?= _("Acquisition Type:");?></label></td>
 				<td>
 				<select name='acquisitionTypeID' id='acquisitionTypeID' style='width:100px;' class='changeSelect'>
 				<option value=''></option>
@@ -1060,22 +1060,22 @@ switch ($_GET['action']) {
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='orderNumber'>Order Number:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='orderNumber'><?= _("Order Number:");?></label></td>
 				<td><input type='text' id='orderNumber' name='orderNumber' value = '<?php echo $resource->orderNumber; ?>' style='width:95px;' class='changeInput' /></td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='systemNumber'>System Number:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='systemNumber'><?= _("System Number:");?></label></td>
 				<td><input type='text' id='systemNumber' name='systemNumber' value = '<?php echo $resource->systemNumber; ?>' style='width:95px;' class='changeInput' /></td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionStartDate'>Subscription Start:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionStartDate'><?= _("Subscription Start:");?></label></td>
 				<td><input class='date-pick' id='subscriptionStartDate' name='subscriptionStartDate' value = '<?php echo $startDate; ?>' style='width:75px;' /></td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionEndDate'>Subscription End:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='subscriptionEndDate'><?= _("Subscription End:");?></label></td>
 				<td><input class='date-pick' id='subscriptionEndDate' name='subscriptionEndDate' value = '<?php echo $endDate; ?>' style='width:75px;' />
 				</td>
 				</tr>
@@ -1085,7 +1085,7 @@ switch ($_GET['action']) {
 				<td style='vertical-align:top;text-align:left;font-weight:bold'>&nbsp;</td>
 				<td>
 				<div class="checkboxes" style='text-align:left;'>
-					<label><input id='subscriptionAlertEnabledInd' type='checkbox' style='text-align:bottom' value='1' <?php if($resource->subscriptionAlertEnabledInd == 1) { echo "checked"; } ?> />&nbsp;<span>Enable Alert</span></label>
+					<label><input id='subscriptionAlertEnabledInd' type='checkbox' style='text-align:bottom' value='1' <?php if($resource->subscriptionAlertEnabledInd == 1) { echo "checked"; } ?> />&nbsp;<span><?= _("Enable Alert");?></span></label>
 				</div>
 				</td>
 				</tr>
@@ -1101,7 +1101,7 @@ switch ($_GET['action']) {
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Initial Cost</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b><?= _("Initial Cost");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:340px;'>
 			<tr>
@@ -1109,9 +1109,9 @@ switch ($_GET['action']) {
 
 				<table class='noBorder smallPadding newPaymentTable' style='width:320px;margin:7px 15px 0px 15px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Fund:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan='2'>Price:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Type:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?= _("Fund:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan='2'><?= _("Price:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?= _("Type:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -1154,7 +1154,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:center;text-align:center;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='<?= _("add this payment");?>' title='<?= _("add payment");?>'></a>
 				</td>
 				</tr>
 
@@ -1217,7 +1217,7 @@ switch ($_GET['action']) {
 
 
 						<td style='vertical-align:top;text-align:center;width:37px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove this payment");?>' title='<?= _("remove this payment");?>' class='remove' /></a>
 						</td>
 						</tr>
 
@@ -1244,7 +1244,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='sitePurchaserID'><b>Purchasing Site(s)</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='sitePurchaserID'><b><?= _("Purchasing Site(s)");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -1293,8 +1293,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitOrder' id ='submitOrder'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitOrder' id ='submitOrder'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -1361,7 +1361,7 @@ switch ($_GET['action']) {
 		<form id='licenseForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:360px; margin-bottom:5px;'><span class='headerText'>Edit Licenses</span></div>
+		<div class='formTitle' style='width:360px; margin-bottom:5px;'><span class='headerText'><?= _("Edit Licenses");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -1371,7 +1371,7 @@ switch ($_GET['action']) {
 
 
 			<?php if ($config->settings->licensingModule == 'Y'){ ?>
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseRecords'><b>License Records</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseRecords'><b><?= _("License Records");?></b></label>&nbsp;&nbsp;</span>
 
 
 			<table class='surroundBox' style='width:350px;'>
@@ -1387,7 +1387,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();' class='addLicense'><img src='images/add.gif' class='addLicense' alt='add license' title='add license'></a>
+				<a href='javascript:void();' class='addLicense'><img src='images/add.gif' class='addLicense' alt='<?= _("add license");?>' title='<?= _("add license");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -1414,7 +1414,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove license link' title='remove <?php echo $license['license']; ?> license' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove license link");?>' title='<?= _("remove "). $license['license'] . _(" license");?>' class='remove' /></a>
 						</td>
 
 						</tr>
@@ -1439,7 +1439,7 @@ switch ($_GET['action']) {
 
 			<?php } ?>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseStatus'><b>Licensing Status</b></label></span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseStatus'><b><?= _("Licensing Status");?></b></label></span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -1447,7 +1447,7 @@ switch ($_GET['action']) {
 
 				<table class='noBorder smallPadding' style='width:310px; margin:15px 20px 0px 20px'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;width:60px;'>Status:</td>
+				<td style='vertical-align:top;text-align:left;width:60px;'><?= _("Status:");?></td>
 				<td style='vertical-align:top;text-align:left;'>
 				<select class='changeSelect' id='licenseStatusID'>
 				<option value=''></option>
@@ -1471,16 +1471,16 @@ switch ($_GET['action']) {
 
 				<table class='noBorder' style='width:310px; margin:5px 15px;'>
 				<tr>
-				<td style='vertical-align:top;width:60px;'>History:</td>
+				<td style='vertical-align:top;width:60px;'><?= _("History:");?></td>
 				<td>
 
 				<?php
 				if (count($resourceLicenseStatusArray) > 0){
 					foreach ($resourceLicenseStatusArray as $licenseStatus){
-						echo $licenseStatus['licenseStatus'] . " - <i>" . format_date($licenseStatus['licenseStatusChangeDate']) . " by " . $licenseStatus['changeName'] . "</i><br />";
+						echo $licenseStatus['licenseStatus'] . " - <i>" . format_date($licenseStatus['licenseStatusChangeDate']) . _(" by ") . $licenseStatus['changeName'] . "</i><br />";
 					}
 				}else{
-					echo "<i>No license status information available.</i>";
+					echo "<i>"._("No license status information available.")."</i>";
 				}
 
 				?>
@@ -1502,8 +1502,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitLicense' id ='submitLicense'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitLicense' id ='submitLicense'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -1585,7 +1585,7 @@ switch ($_GET['action']) {
 		<form id='accessForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:617px; margin-bottom:5px;'><span class='headerText'>Edit Access</span></div>
+		<div class='formTitle' style='width:617px; margin-bottom:5px;'><span class='headerText'><?= _("Edit Access");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -1594,14 +1594,14 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top;' colspan='2'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b>Access</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b><?= _("Access");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:610px;'>
 			<tr>
 			<td>
 				<table class='noBorder' style='width:570px; margin:15px 20px 10px 20px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationTypeID'>Authentication Type:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationTypeID'><?= _("Authentication Type:");?></label></td>
 					<td>
 						<select name='authenticationTypeID' id='authenticationTypeID' style='width:100px;' class='changeSelect'>
 						<option value=''></option>
@@ -1616,11 +1616,11 @@ switch ($_GET['action']) {
 						?>
 						</select>
 					</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationUserName'>Username:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationUserName'><?= _("Username:");?></label></td>
 					<td><input type='text' id='authenticationUserName' name='authenticationUserName' value = '<?php echo $resource->authenticationUserName; ?>' style='width:95px;' class='changeInput'  /></td>
 				</tr>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='accessMethodID'>Access Method:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='accessMethodID'><?= _("Access Method:");?></label></td>
 					<td>
 						<select name='accessMethodID' id='accessMethodID' style='width:100px;' class='changeSelect'>
 						<option value=''></option>
@@ -1635,11 +1635,11 @@ switch ($_GET['action']) {
 						?>
 						</select>
 					</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationPassword'>Password:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='authenticationPassword'><?= _("Password:");?></label></td>
 					<td><input type='text' id='authenticationPassword' name='authenticationPassword' value = '<?php echo $resource->authenticationPassword; ?>' style='width:95px;' class='changeInput'  /></td>
 				</tr>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='storageLocationID'>Storage Location:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='storageLocationID'><?= _("Storage Location:");?></label></td>
 					<td>
 						<select name='storageLocationID' id='storageLocationID' style='width:100px;' class='changeSelect'>
 						<option value=''></option>
@@ -1654,7 +1654,7 @@ switch ($_GET['action']) {
 						?>
 						</select>
 					</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='userLimitID'>Simultaneous User Limit:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='userLimitID'><?= _("Simultaneous User Limit:");?></label></td>
 					<td>
 						<select name='userLimitID' id='userLimitID' style='width:100px;' class='changeSelect' >
 						<option value=''></option>
@@ -1671,7 +1671,7 @@ switch ($_GET['action']) {
 					</td>
 				</tr>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='coverageText'>Coverage:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;white-space: nowrap;'><label for='coverageText'><?= _("Coverage:");?></label></td>
 					<td colspan='3'>
 						<input type='text' id='coverageText' name='coverageText' value = "<?php echo $resource->coverageText; ?>" style='width:405px;' class='changeInput'  />
 					</td>
@@ -1689,7 +1689,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='authorizedSiteID'><b>Authorized Site(s)</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='authorizedSiteID'><b><?= _("Authorized Site(s)");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:295px;'>
 			<tr>
@@ -1734,7 +1734,7 @@ switch ($_GET['action']) {
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='authorizedSiteID'><b>Administering Site(s)</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='authorizedSiteID'><b><?= _("Administering Site(s)");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:295px;'>
 			<tr>
@@ -1777,8 +1777,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitAccessChanges' id ='submitAccessChanges'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitAccessChanges' id ='submitAccessChanges'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -1823,7 +1823,7 @@ switch ($_GET['action']) {
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 		<input type='hidden' name='editContactID' id='editContactID' value='<?php echo $contactID; ?>'>
 
-		<div class='formTitle' style='width:603px;'><span class='headerText' style='margin-left:7px;'><?php if ($contactID){ echo "Edit Contact"; } else { echo "Add Contact"; } ?></span></div>
+		<div class='formTitle' style='width:603px;'><span class='headerText' style='margin-left:7px;'><?php if ($contactID){ echo _("Edit Contact"); } else { echo _("Add Contact"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -1836,28 +1836,28 @@ switch ($_GET['action']) {
 
 				<table class='noBorder'>
 					<tr>
-					<td style='text-align:left'><label for='contactName'><b>Name:</b></label></td>
+					<td style='text-align:left'><label for='contactName'><b><?= _("Name:");?></b></label></td>
 					<td>
 					<input type='text' id='contactName' name='contactName' value = '<?php echo $contact->name; ?>' style='width:150px' class='changeInput' /><span id='span_error_contactName' class='smallDarkRedText'>
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='contactTitle'><b>Title:</b></label></td>
+					<td style='text-align:left'><label for='contactTitle'><b><?= _("Title:");?></b></label></td>
 					<td>
 					<input type='text' id='contactTitle' name='contactTitle' value = '<?php echo $contact->title; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='phoneNumber'><b>Phone:</b></label></td>
+					<td style='text-align:left'><label for='phoneNumber'><b><?= _("Phone:");?></b></label></td>
 					<td>
 					<input type='text' id='phoneNumber' name='phoneNumber' value = '<?php echo $contact->phoneNumber; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='altPhoneNumber'><b>Alt Phone:</b></label></td>
+					<td style='text-align:left'><label for='altPhoneNumber'><b><?= _("Alt Phone:");?></b></label></td>
 					<td>
 					<input type='text' id='altPhoneNumber' name='altPhoneNumber' value = '<?php echo $contact->altPhoneNumber; ?>' style='width:150px' class='changeInput' />
 					</td>
@@ -1878,14 +1878,14 @@ switch ($_GET['action']) {
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='addressText'><b>Address:</b></label></td>
+					<td style='text-align:left'><label for='addressText'><b><?= _("Address:");?></b></label></td>
 					<td>
 					<textarea rows='3' id='addressText' style='width:150px'><?php echo $contact->addressText; ?></textarea>
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='invalidInd'><b>Archived:</b></label></td>
+					<td style='text-align:left'><label for='invalidInd'><b><?= _("Archived:");?></b></label></td>
 					<td>
 					<input type='checkbox' id='invalidInd' name='invalidInd' <?php echo $invalidChecked; ?> />
 					</td>
@@ -1895,7 +1895,7 @@ switch ($_GET['action']) {
 			<td>
 				<table class='noBorder'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='orgRoles'><b>Role(s):</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='orgRoles'><b><?= _("Role(s):");?></b></label></td>
 				<td>
 
 					<table>
@@ -1931,7 +1931,7 @@ switch ($_GET['action']) {
 
 
 				<tr>
-				<td style='text-align:left'><label for='addressText'><b>Notes:</b></label></td>
+				<td style='text-align:left'><label for='addressText'><b><?= _("Notes:");?></b></label></td>
 				<td>
 				<textarea rows='3' id='noteText' style='width:220px'><?php echo $contact->noteText; ?></textarea>
 				</td>
@@ -1954,8 +1954,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitContactForm' id ='submitContactForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitContactForm' id ='submitContactForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -1992,7 +1992,7 @@ switch ($_GET['action']) {
 		<input type='hidden' name='editExternalLoginID' id='editExternalLoginID' value='<?php echo $externalLoginID; ?>'>
 
 
-		<div class='formTitle' style='width:385px;'><span class='headerText' style='margin-left:7px;'><?php if ($externalLoginID){ echo "Edit Account"; } else { echo "Add Account"; } ?></span></div>
+		<div class='formTitle' style='width:385px;'><span class='headerText' style='margin-left:7px;'><?php if ($externalLoginID){ echo _("Edit Account"); } else { echo _("Add Account"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2002,7 +2002,7 @@ switch ($_GET['action']) {
 
 			<table class='noBorder' style='width:350px; margin:10px 15px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='externalLoginTypeID'><b>Login Type:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='externalLoginTypeID'><b><?= _("Login Type:");?></b></label></td>
 				<td>
 				<select name='externalLoginTypeID' id='externalLoginTypeID' class='changeSelect'>
 				<?php
@@ -2026,21 +2026,21 @@ switch ($_GET['action']) {
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b>Registered Email:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b><?= _("Registered Email:");?></b></label></td>
 				<td>
 				<input type='text' id='emailAddress' name='emailAddress' value = '<?php echo $externalLogin->emailAddress; ?>' style='width:200px' class='changeInput' />
 				</td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='username'><b>Username:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='username'><b><?= _("Username:");?></b></label></td>
 				<td>
 				<input type='text' id='username' name='username' value = '<?php echo $externalLogin->username; ?>' style='width:200px' class='changeInput' />
 				</td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='password'><b>Password:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='password'><b><?= _("Password:");?></b></label></td>
 				<td>
 				<input type='text' id='password' name='password' value = '<?php echo $externalLogin->password; ?>' style='width:200px' class='changeInput' />
 				</td>
@@ -2061,8 +2061,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitExternalLoginForm' id ='submitExternalLoginForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitExternalLoginForm' id ='submitExternalLoginForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -2095,7 +2095,7 @@ switch ($_GET['action']) {
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 		<input type='hidden' name='editAttachmentID' id='editAttachmentID' value='<?php echo $attachmentID; ?>'>
 
-		<div class='formTitle' style='width:345px;'><span class='headerText' style='margin-left:7px;'><?php if ($attachmentID){ echo "Edit Attachment"; } else { echo "Add Attachment"; } ?></span></div>
+		<div class='formTitle' style='width:345px;'><span class='headerText' style='margin-left:7px;'><?php if ($attachmentID){ echo _("Edit Attachment"); } else { echo _("Add Attachment"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2106,7 +2106,7 @@ switch ($_GET['action']) {
 			<table class='noBorder' style='width:310px; margin:10px 15px;'>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b>Name:</b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b><?= _("Name:");?></b></label></td>
 			<td>
 			<input type='text' class='changeInput' id='shortName' name='shortName' value = '<?php echo $attachment->shortName; ?>' style='width:230px' /><span id='span_error_shortName' class='smallDarkRedText'></span>
 			</td>
@@ -2114,7 +2114,7 @@ switch ($_GET['action']) {
 
 			<tr>
 
-			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b>Type:</b></label></td>
+			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b><?= _("Type:");?></b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 
 			<select name='attachmentTypeID' id='attachmentTypeID'>
@@ -2134,13 +2134,13 @@ switch ($_GET['action']) {
 			</tr>
 
 			<tr>
-			<td style='text-align:left;vertical-align:top;'><label for="uploadAttachment"><b>File:</b></label></td>
+			<td style='text-align:left;vertical-align:top;'><label for="uploadAttachment"><b><?= _("File:");?></b></label></td>
 			<td>
 			<?php
 
 			//if editing
 			if ($attachmentID){
-				echo "<div id='div_uploadFile'>" . $attachment->attachmentURL . "<br /><a href='javascript:replaceFile();'>replace with new file</a>";
+				echo "<div id='div_uploadFile'>" . $attachment->attachmentURL . "<br /><a href='javascript:replaceFile();'>"._("replace with new file")."</a>";
 				echo "<input type='hidden' id='upload_button' name='upload_button' value='" . $attachment->attachmentURL . "'></div>";
 
 			//if adding
@@ -2155,7 +2155,7 @@ switch ($_GET['action']) {
 			</tr>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><b>Details:</b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><b><?= _("Details:");?></b></label></td>
 			<td><textarea rows='5' class='changeInput' id='descriptionText' name='descriptionText' style='width:230px'><?php echo $attachment->descriptionText; ?></textarea></td>
 			</td>
 			</tr>
@@ -2168,8 +2168,8 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitAttachmentForm' id ='submitAttachmentForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitAttachmentForm' id ='submitAttachmentForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove()"></td>
 			</tr>
 		</table>
 
@@ -2203,7 +2203,7 @@ switch ($_GET['action']) {
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
 		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit ") . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo _("Add ") . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2218,7 +2218,7 @@ switch ($_GET['action']) {
 			<?php
 				if($className == 'ResourceType' && ($config->settings->usageModule == 'Y')){
 					if($instance->includeStats == 1){$stats = 'checked';}else{$stats='';}
-					echo "<tr><td><label for='stats'>Show stats button?</label>";
+					echo "<tr><td><label for='stats'>"._("Show stats button?")."</label>";
 					echo "<input type='checkbox' id='stats' ".$stats." /></td></tr>";
 				}
 			?>
@@ -2231,8 +2231,8 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -2276,7 +2276,7 @@ switch ($_GET['action']) {
 
 		<input type='hidden' id='editCurrencyCode' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Currency"; } else { echo "Add Currency"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit Currency"); } else { echo _("Add Currency"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2286,10 +2286,10 @@ switch ($_GET['action']) {
 
 			<table class='noBorder' style='width:200px; margin:10px;'>
 			<tr>
-			<td>Code</td><td><input type='text' id='currencyCode' value='<?php echo $instance->currencyCode; ?>' style='width:150px;'/></td>
+			<td><?= _("Code");?></td><td><input type='text' id='currencyCode' value='<?php echo $instance->currencyCode; ?>' style='width:150px;'/></td>
 			</tr>
 			<tr>
-			<td>Name</td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
+			<td><?= _("Name");?></td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
 			</tr>
 			</table>
 
@@ -2300,8 +2300,8 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -2365,7 +2365,7 @@ switch ($_GET['action']) {
 
 		<input type='hidden' id='editLoginID' value='<?php echo $loginID; ?>'>
 
-		<div class='formTitle' style='width:295px;'><span class='headerText' style='margin-left:7px;'><?php if ($loginID){ echo "Edit User"; } else { echo "Add New User"; } ?></span></div>
+		<div class='formTitle' style='width:295px;'><span class='headerText' style='margin-left:7px;'><?php if ($loginID){ echo _("Edit User"); } else { echo _("Add New User"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2376,11 +2376,11 @@ switch ($_GET['action']) {
 			<table class='noBorder' style='width:260px; margin:10px;'>
 
 
-				<tr><td><label for='loginID'><b>Login ID</b></label</td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
-				<tr><td><label for='firstName'><b>First Name</b></label</td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='lastName'><b>Last Name</b></label</td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='emailAddress'><b>Email Address</b></label</td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='privilegeID'><b>Privilege</b></label</td>
+				<tr><td><label for='loginID'><b><?= _("Login ID");?></b></label</td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
+				<tr><td><label for='firstName'><b><?= _("First Name");?></b></label</td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='lastName'><b><?= _("Last Name");?></b></label</td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='emailAddress'><b><?= _("Email Address");?></b></label</td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='privilegeID'><b><?= _("Privilege");?></b></label</td>
 				<td>
 				<select id='privilegeID' style='width:155px'>
 				<?php
@@ -2398,7 +2398,7 @@ switch ($_GET['action']) {
 				</td>
 				</tr>
 
-				<tr><td><label for='accountTab'><b>View Accounts</b></label</td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
+				<tr><td><label for='accountTab'><b><?= _("View Accounts");?></b></label</td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
 
 
 			</table>
@@ -2410,8 +2410,8 @@ switch ($_GET['action']) {
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -2483,7 +2483,7 @@ switch ($_GET['action']) {
 
 		<input type='hidden' id='editAlertEmailAddressID' value='<?php echo $alertEmailAddressID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertEmailAddressID){ echo "Edit Alert Email Address"; } else { echo "Add Alert Email Address"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertEmailAddressID){ echo _("Edit Alert Email Address"); } else { echo _("Add Alert Email Address"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2503,8 +2503,8 @@ switch ($_GET['action']) {
 		<div class='smallDarkRedText' id='div_form_error'>&nbsp;</div>
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -2555,7 +2555,7 @@ switch ($_GET['action']) {
 
 		<input type='hidden' id='editAlertDaysInAdvanceID' value='<?php echo $alertDaysInAdvanceID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertDaysInAdvanceID){ echo "Edit Alert Days In Advance"; } else { echo "Add Alert Days In Advance"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertDaysInAdvanceID){ echo _("Edit Alert Days In Advance"); } else { echo _("Add Alert Days In Advance"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2575,8 +2575,8 @@ switch ($_GET['action']) {
 		<div class='smallDarkRedText' id='div_form_error'>&nbsp;</div>
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -2652,7 +2652,7 @@ switch ($_GET['action']) {
 		<form id='resourceForm'>
 		<input type='hidden' name='editWFID' id='editWFID' value='<?php echo $workflowID; ?>'>
 
-		<div class='formTitle' style='width:705px; margin-bottom:5px;position:relative;'><span class='headerText'>Edit Workflow</span></div>
+		<div class='formTitle' style='width:705px; margin-bottom:5px;position:relative;'><span class='headerText'><?= _("Edit Workflow");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2661,14 +2661,14 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>Resource Entry Requirements</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?= _("Resource Entry Requirements");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:700px;'>
 			<tr>
 			<td>
 				<table class='noBorder' style='width:660px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='acquisitionTypeID'>Acquisition Type:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='acquisitionTypeID'><?= _("Acquisition Type:");?></label></td>
 				<td>
 				<select name='acquisitionTypeID' id='acquisitionTypeID' style='width:100px;' class='changeSelect' >
 				<?php
@@ -2684,7 +2684,7 @@ switch ($_GET['action']) {
 				</td>
 
 
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'>Format:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?= _("Format:");?></label></td>
 				<td>
 				<select name='resourceFormatID' id='resourceFormatID' style='width:100px;' class='changeSelect'>
 				<?php
@@ -2699,7 +2699,7 @@ switch ($_GET['action']) {
 				</select>
 				</td>
 
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'>Type:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'><?= _("Type:");?></label></td>
 				<td>
 				<select name='resourceTypeID' id='resourceTypeID' style='width:100px;' class='changeSelect' >
 				<option value=''></option>
@@ -2724,7 +2724,7 @@ switch ($_GET['action']) {
 			<div style='height:20px;'>&nbsp;</div>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='workflowSteps'><b>Workflow Steps</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='workflowSteps'><b><?= _("Workflow Steps");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:700px;'>
 			<tr>
@@ -2733,9 +2733,9 @@ switch ($_GET['action']) {
 				<table class='noBorder noMargin newStepTable' style='width:660px;  margin:15px 20px 0px 20px;'>
 				<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;width:48px;'>&nbsp;</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:218px;'>Name:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:175px;'>Approval/Notification Group:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:110px;'>Parent Step</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:218px;'><?= _("Name:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:175px;'><?= _("Approval/Notification Group:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:110px;'><?= _("Parent Step");?></td>
 					<td style='vertical-align:top;text-align:center;width:40px;'>&nbsp;</td>
 				</tr>
 
@@ -2765,7 +2765,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:top;text-align:center;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addStep' alt='add step' title='add step'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addStep' alt='<?= _("add step");?>' title='<?= _("add step");?>'></a>
 				</td>
 
 				</tr>
@@ -2848,7 +2848,7 @@ switch ($_GET['action']) {
 
 
 						<td style='vertical-align:top;text-align:center;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this step' title='remove this step' class='removeStep' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove this step");?>' title='<?= _("remove this step");?>' class='removeStep' /></a>
 						</td>
 
 						</tr>
@@ -2876,8 +2876,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitWorkflowForm' id ='submitWorkflowForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitWorkflowForm' id ='submitWorkflowForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -2912,7 +2912,7 @@ switch ($_GET['action']) {
 		<form id='userGroupForm'>
 		<input type='hidden' name='editUserGroupID' id='editUserGroupID' value='<?php echo $userGroupID; ?>'>
 
-		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($userGroupID){ echo "Edit User Group"; } else { echo "Add User Group"; } ?></span></div>
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php if ($userGroupID){ echo _("Edit User Group"); } else { echo _("Add User Group"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -2921,7 +2921,7 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>User Group</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?= _("User Group");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -2929,14 +2929,14 @@ switch ($_GET['action']) {
 
 				<table class='noBorder' style='width:235px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='groupName'><b>Group Name:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='groupName'><b><?= _("Group Name:");?></b></label></td>
 				<td>
 				<input type='text' id='groupName' name='groupName' value = '<?php echo $userGroup->groupName; ?>' style='width:110px' class='changeInput' /><span id='span_error_groupName' class='smallDarkRedText'></span>
 				</td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b>Email Address:</b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b><?= _("Email Address:");?></b></label></td>
 				<td>
 				<input type='text' id='emailAddress' name='emailAddress' value = '<?php echo $userGroup->emailAddress; ?>' style='width:110px' class='changeInput' />
 				</td>
@@ -2953,7 +2953,7 @@ switch ($_GET['action']) {
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='loginID'><b>Assigned Users</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='loginID'><b><?= _("Assigned Users");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -2977,7 +2977,7 @@ switch ($_GET['action']) {
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addUser' alt='add user' title='add user'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addUser' alt='<?= _("add user");?>' title='<?= _("add user");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -3016,7 +3016,7 @@ switch ($_GET['action']) {
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove user from group' title='remove user from group' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove user from group");?>' title='<?= _("remove user from group");?>' class='remove' /></a>
 						</td>
 						</tr>
 					<?php
@@ -3042,8 +3042,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitUserGroupForm' id ='submitUserGroupForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitUserGroupForm' id ='submitUserGroupForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -3073,7 +3073,7 @@ switch ($_GET['action']) {
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
 		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit ") . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo _("Add ") . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -3095,8 +3095,8 @@ switch ($_GET['action']) {
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
 
-				<td style='text-align:left'><input type='button' value='submit' name='submitGeneralSubjectForm' id ='submitGeneralSubjectForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitGeneralSubjectForm' id ='submitGeneralSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -3126,7 +3126,7 @@ switch ($_GET['action']) {
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
 		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit ") . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo _("Add ") . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -3148,8 +3148,8 @@ switch ($_GET['action']) {
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
 
-				<td style='text-align:left'><input type='button' value='submit' name='submitDetailedSubjectForm' id ='submitDetailedSubjectForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitDetailedSubjectForm' id ='submitDetailedSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 
@@ -3182,7 +3182,7 @@ switch ($_GET['action']) {
 		<form id='detailedSubjectForm'>
 		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>
 
-		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo "Add / Edit Subject Relationships"; ?></span></div>
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?= _("Add / Edit Subject Relationships"); ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -3191,7 +3191,7 @@ switch ($_GET['action']) {
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>General Subject</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?= _("General Subject");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -3217,7 +3217,7 @@ switch ($_GET['action']) {
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b>Detailed Subjects</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b><?= _("Detailed Subjects");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -3239,7 +3239,7 @@ switch ($_GET['action']) {
 						</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='adddetailedSubject' alt='add detail subject' title='add detail subject'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='adddetailedSubject' alt='<?= _("add detail subject");?>' title='<?= _("add detail subject");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -3269,9 +3269,9 @@ switch ($_GET['action']) {
 							// Check to see if detail subject is in use.  If not allow removal.
 							$subjectObj = new DetailedSubject();
 							if ($subjectObj->inUse($dsSubject->detailedSubjectID, $generalSubject->generalSubjectID) == 0)  { ?>
-								<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
+								<a href='javascript:void();'><img src='images/cross.gif' alt='<?= _("remove detailed subject");?>' title='<?= _("remove detailed subject");?>' class='remove' /></a>
 						<?php } else { ?>
-								<img src='images/do_not_enter.png' alt='subject in use' title='subject in use' />
+								<img src='images/do_not_enter.png' alt='<?= _("subject in use");?>' title='<?= _("subject in use");?>' />
 						<?php }  ?>
 						</td>
 						</tr>
@@ -3292,8 +3292,8 @@ switch ($_GET['action']) {
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitDetailSubjectForm' id ='submitDetailSubjectForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitDetailSubjectForm' id ='submitDetailSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 
@@ -3315,15 +3315,15 @@ switch ($_GET['action']) {
 
 	?>
 		<div id='div_updateForm'>
-		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span>Add General / Detail Subject Link</div>
+		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span><?= _("Add General / Detail Subject Link");?></div>
 
 	<?php
 		if (count($generalSubjectArray) > 0){
 			?>
 			<table class='linedDataTable' style='width:100%'>
 				<tr>
-				<th>General Subject Name</th>
-				<th>Detail Subject Name</th>
+				<th><?= _("General Subject Name");?></th>
+				<th><?= _("Detail Subject Name");?></th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 				</tr>
@@ -3335,14 +3335,14 @@ switch ($_GET['action']) {
 					echo "<tr>";
 					echo "<td>" . $generalSubject->shortName . "</td>";
 					echo "<td></td>";
-					echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . -1 . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
+					echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . -1 . "'><img src='images/add.gif' alt='"._("add")."' title='"._("add")."'></a></td>";
 
 					foreach ($generalSubject->getDetailedSubjects() as $detailedSubjects){
 						echo "<tr>";
 						echo "<td></td>";
 						echo "<td>";
 						echo $detailedSubjects->shortName . "</td>";
-						echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . $detailedSubjects->detailedSubjectID . "'><img src='images/add.gif' alt='add' title='add'></a></td>";
+						echo "<td><a href='javascript:void(0);' class='resourcesSubjectLink' resourceID='" . $resourceID . " 'generalSubjectID='" . $ug['generalSubjectID'] . " 'detailSubjectID='" . $detailedSubjects->detailedSubjectID . "'><img src='images/add.gif' alt='"._("add")."' title='"._("add")."'></a></td>";
 						echo "</tr>";
 					}
 					echo "</tr>";
@@ -3353,7 +3353,7 @@ switch ($_GET['action']) {
 			<?php
 
 		}else{
-			echo "(none found)<br />";
+			echo _("(none found)")."<br />";
 		}
 		?>
 
@@ -3371,7 +3371,7 @@ switch ($_GET['action']) {
 
 
 	default:
-       echo "Action " . $action . " not set up!";
+       echo _("Action ") . $action . _(" not set up!");
        break;
 
 

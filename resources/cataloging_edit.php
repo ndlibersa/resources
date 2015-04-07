@@ -65,21 +65,21 @@ $catalogingType = new CatalogingType();
 		<table>
     
       <tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsAvailable', '# Records Available'); ?></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsAvailable', _('# Records Available')); ?></td>
   		<td>
   		  <?php echo Html::text_field('numberRecordsAvailable', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 
   		<tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsLoaded', '# Records Loaded'); ?></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsLoaded', _('# Records Loaded')); ?></td>
   		<td>
   		  <?php echo Html::text_field('numberRecordsLoaded', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('hasOclcHoldings', 'OCLC Holdings'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('hasOclcHoldings', _('OCLC Holdings')); ?></td>
 		<td><input type='checkbox' value="1" id='hasOclcHoldings' name='hasOclcHoldings' <?php if ($resource->hasOclcHoldings) { echo 'checked'; } ?> /></td>
 		</tr>
 		</table>

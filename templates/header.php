@@ -103,7 +103,7 @@ $coralURL = $util->getCORALURL();
 
 </td>
 
-<td style='width:130px;height:19px;' align='right'>
+<td style='width:258px;height:19px;' align='right'>
 <?php
 
 //only show the 'Change Module' if there are other modules installed or if there is an index to the main CORAL page
@@ -111,10 +111,10 @@ $coralURL = $util->getCORALURL();
 if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->licensingModule == 'Y') || ($config->settings->organizationsModule == 'Y') || ($config->settings->cancellationModule == 'Y') || ($config->settings->usageModule == 'Y')) {
 
 	?>
-
+    
 	<div style='text-align:left;'>
 		<ul class="tabs">
-		<li style="background: url('images/change/coral-change.gif') no-repeat right;">&nbsp;
+		<li style="background: url('images/change/coral-change.gif') no-repeat right; position: absolute;">&nbsp;
 			<ul class="coraldropdown">
 				<?php if (file_exists($util->getCORALPath() . "index.php")) {?>
 				<li><a href="<?php echo $coralURL; ?>" target='_blank'><img src='images/change/coral-main.gif'></a></li>
@@ -142,8 +142,42 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
 			</ul>
 		</li>
 		</ul>
-
+		<select name="lang" id="lang" class="dropDownLang">
+           <?php
+            $fr="<option value='fr' selected='selected'>Français</option><option value='en'>English</option>";
+            $en="<option value='fr'>Français</option><option value='en' selected='selected'>English</option>";
+            if(isset($_COOKIE["lang"])){
+                if($_COOKIE["lang"]=='fr'){
+                    echo $fr;
+                }else{
+                    echo $en;
+                }
+            }else{
+                $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+                if($defLang=='fr'){
+                    echo $fr;
+                }else{
+                    echo $en;
+                }
+            }
+            ?>
+            
+        </select>
 	</div>
+	<script>
+        $("#lang").change(function() {
+            setLanguage($("#lang").val());
+            location.reload();
+        });
+        
+        function setLanguage(lang) {
+			var wl = window.location, now = new Date(), time = now.getTime();
+            var cookievalid=86400000; // 1 jour (1000*60*60*24)
+            time += cookievalid;
+			now.setTime(time);
+			document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now.toGMTString();
+	    }
+    </script>
 	<?php
 
 } else {

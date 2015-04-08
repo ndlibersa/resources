@@ -61,7 +61,7 @@ switch ($_GET['action']) {
 
 		try {
 			$resourceNote->delete();
-			echo "Note successfully deleted.";
+			echo _("Note successfully deleted.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -334,7 +334,7 @@ switch ($_GET['action']) {
 
 		try {
 			$resource->removeResource();
-			echo "Resource successfully deleted.";
+			echo _("Resource successfully deleted.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -715,10 +715,10 @@ switch ($_GET['action']) {
 				//set to web rwx, everyone else rw
 				//this way we can edit the attachment directly on the server
 				chmod ($target_path, 0766);
-				echo "success uploading!";
+				echo _("success uploading!");
 			} else {
 			  header('HTTP/1.1 500 Internal Server Error');
-			  echo "<div id=\"error\">There was a problem saving your file to $target_path.  Please ensure your attachments directory is writable.</div>";
+			  echo "<div id='error'>"._("There was a problem saving your file to ").$target_path.  _("Please ensure your attachments directory is writable.")."</div>";
 			}
 
 		}
@@ -737,13 +737,13 @@ switch ($_GET['action']) {
 
 		if ($numberOfChildren > 0){
 			//print out a friendly message...
-			echo "Unable to delete  - this " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " is in use.  Please make sure no resources are set up with this information.";
+			echo _("Unable to delete  - this ") . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . _(" is in use.  Please make sure no resources are set up with this information.");
 		}else{
 			try {
 				$instance->delete();
 			} catch (Exception $e) {
 				//print out a friendly message...
-				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+				echo _("Unable to delete.  Please make sure no resources are set up with this information.");
 			}
 		}
 
@@ -886,7 +886,7 @@ switch ($_GET['action']) {
 
 		try {
 			$user->save();
-			echo "User successfully saved.";
+			echo _("User successfully saved.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -1207,7 +1207,7 @@ switch ($_GET['action']) {
 				$instance->deleteGeneralSubject();
 			} catch (Exception $e) {
 				//print out a friendly message...
-				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+				echo _("Unable to delete.  Please make sure no resources are set up with this information.");
 			}
 
 		break;
@@ -1224,7 +1224,7 @@ switch ($_GET['action']) {
 				$instance->delete();
 			} catch (Exception $e) {
 				//print out a friendly message...
-				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+				echo _("Unable to delete.  Please make sure no resources are set up with this information.");
 			}
 
 		break;
@@ -1357,7 +1357,7 @@ switch ($_GET['action']) {
 				echo $e->getMessage();
 			}
 		} else {
-			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
+			echo _("A duplicate ") . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . _(" exists.");
 		}
 
  		break;
@@ -1383,7 +1383,7 @@ switch ($_GET['action']) {
 				echo $e->getMessage();
 			}
 		} else {
-			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
+			echo _("A duplicate ") . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . _(" exists.");
 		}
 
 
@@ -1396,7 +1396,7 @@ switch ($_GET['action']) {
 
 
 	default:
-       echo "Action " . $action . " not set up!";
+       echo _("Action ") . $action . _(" not set up!");
        break;
 
 

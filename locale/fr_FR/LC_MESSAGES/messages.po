@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-08 11:01+0100\n"
-"PO-Revision-Date: 2015-04-08 11:01+0100\n"
+"POT-Creation-Date: 2015-04-08 12:08+0100\n"
+"PO-Revision-Date: 2015-04-08 12:08+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -121,7 +121,7 @@ msgstr "Sujets"
 msgid "User Limit"
 msgstr "Limit d'utilisateurs"
 
-#: admin.php:92
+#: admin.php:92 queue.php:59
 msgid "Loading..."
 msgstr "Chargement..."
 
@@ -699,11 +699,11 @@ msgstr "ajouter"
 msgid "(none found)"
 msgstr "(non trouvé)"
 
-#: ajax_forms.php:3374 ajax_htmldata.php:2677
+#: ajax_forms.php:3374 ajax_htmldata.php:2677 ajax_processing.php:1399
 msgid "Action "
 msgstr "Action"
 
-#: ajax_forms.php:3374 ajax_htmldata.php:2677
+#: ajax_forms.php:3374 ajax_htmldata.php:2677 ajax_processing.php:1399
 msgid " not set up!"
 msgstr " ne pas etabli!"
 
@@ -1090,7 +1090,7 @@ msgstr "Module des statistiques d'utilisation"
 msgid "Get Statistics"
 msgstr "Obtenir les statistiques"
 
-#: ajax_htmldata.php:1686
+#: ajax_htmldata.php:1686 queue.php:52
 msgid "Saved Requests"
 msgstr "Rêquetes enregistrées"
 
@@ -1120,15 +1120,15 @@ msgstr "modifier la requête"
 msgid "remove request"
 msgstr "supprimer la requête"
 
-#: ajax_htmldata.php:1755
+#: ajax_htmldata.php:1755 queue.php:53
 msgid "Submitted Requests"
-msgstr "Requêtes Enregistrées"
+msgstr "Requêtes soumises"
 
 #: ajax_htmldata.php:1760
 msgid "No submitted requests"
 msgstr "Pas des requêtes soumises"
 
-#: ajax_htmldata.php:1817
+#: ajax_htmldata.php:1817 queue.php:51
 msgid "Outstanding Tasks"
 msgstr "Tâches en suspens"
 
@@ -1150,7 +1150,7 @@ msgstr "En montrant "
 
 #: ajax_htmldata.php:1982
 msgid " to "
-msgstr " par "
+msgstr " sur "
 
 #: ajax_htmldata.php:1982
 msgid " of "
@@ -1246,6 +1246,59 @@ msgstr "Sujet détaillé"
 msgid "Subject Relationships"
 msgstr "Relation des sujets"
 
+#: ajax_processing.php:64
+msgid "Note successfully deleted."
+msgstr "La note a été supprimé avec succès."
+
+#: ajax_processing.php:337
+msgid "Resource successfully deleted."
+msgstr "La ressource a été supprimé avec succès"
+
+#: ajax_processing.php:718
+msgid "success uploading!"
+msgstr "Téléchargement correcte!"
+
+#: ajax_processing.php:721
+msgid "There was a problem saving your file to "
+msgstr "Il y avait un problème pour enregistrer votre fichier sur "
+
+#: ajax_processing.php:721
+msgid "Please ensure your attachments directory is writable."
+msgstr ""
+"S'il vous plaît, verifiez que votre dossier de attachement a des droits "
+"d'écriture."
+
+#: ajax_processing.php:740
+msgid "Unable to delete  - this "
+msgstr "N'est pas possible supprimer - "
+
+#: ajax_processing.php:740
+msgid ""
+" is in use.  Please make sure no resources are set up with this information."
+msgstr ""
+"est en utilisation. S'il vous plaît, assurez-vous  qu'aucune ressource est "
+"configurée avec cet information."
+
+#: ajax_processing.php:746 ajax_processing.php:1210 ajax_processing.php:1227
+msgid ""
+"Unable to delete.  Please make sure no resources are set up with this "
+"information."
+msgstr ""
+"N'est pas possible supprimer. S'il vous plaît, assurez-vous  qu'aucune "
+"ressource est configurée avec cet information."
+
+#: ajax_processing.php:889
+msgid "User successfully saved."
+msgstr "Utilisateur enregistré avec succès"
+
+#: ajax_processing.php:1360 ajax_processing.php:1386
+msgid "A duplicate "
+msgstr "Il y a un doublon "
+
+#: ajax_processing.php:1360 ajax_processing.php:1386
+msgid " exists."
+msgstr " existant."
+
 #: index.php:26 templates/header.php:98
 msgid "Home"
 msgstr "Accueil"
@@ -1311,6 +1364,10 @@ msgstr "et"
 #: index.php:402
 msgid "Purchase Site"
 msgstr "Site d'achat"
+
+#: queue.php:22 queue.php:40 templates/header.php:100
+msgid "My Queue"
+msgstr "Ma liste"
 
 #: resource.php:54
 msgid "Success!"
@@ -1392,6 +1449,14 @@ msgstr "# Enregistrements chargées"
 msgid "OCLC Holdings"
 msgstr "OCLC Holdings"
 
+#: sendAlerts.php:76
+msgid "No Resources found fitting alert day criteria"
+msgstr "Pas des ressources trouvées selon les critères d'alerte du jour"
+
+#: sendAlerts.php:81
+msgid "Alerts not enabled in configuration.ini file"
+msgstr "Les Alertes ne sont pas activées dans le fichier configuration.ini"
+
 #: setuser.php:44
 msgid ""
 "LDAP Connection is not working or has timed out.  Please check configuration."
@@ -1399,6 +1464,21 @@ msgid ""
 msgstr ""
 "La connexion LDAP ne marche pas ou a expiré. S'il vous plaît vérifiez la "
 "configuration du configuration.ini."
+
+#: templates/header.php:58
+msgid ""
+"JavaScript must be enabled in order for you to use CORAL. However, it seems "
+"JavaScript is either disabled or not supported by your browser. To use "
+"CORAL, enable JavaScript by changing your browser options, then "
+msgstr ""
+"JavaScript doit être activé pour utiliser CORAL. Cependant, on semble qui "
+"JavaScript est desactivé ou n'est pas supporté par votre navigateur. Pour "
+"utiliser CORAL, activez JavaScript en modifiant la configuration de votre "
+"navigateur, après "
+
+#: templates/header.php:58
+msgid "try again"
+msgstr "réessayez"
 
 #: templates/header.php:77
 msgid "Hello, "
@@ -1411,10 +1491,6 @@ msgstr "Se déconnecter"
 #: templates/header.php:99
 msgid "New Resource"
 msgstr "Nouvelle ressource"
-
-#: templates/header.php:100
-msgid "My Queue"
-msgstr "Ma liste"
 
 #: templates/header.php:101
 msgid "Admin"

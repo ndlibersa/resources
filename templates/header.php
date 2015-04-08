@@ -103,7 +103,7 @@ $coralURL = $util->getCORALURL();
 
 </td>
 
-<td style='width:258px;height:19px;' align='right'>
+<td style='width:248px;height:19px;' align='right'>
 <?php
 
 //only show the 'Change Module' if there are other modules installed or if there is an index to the main CORAL page
@@ -114,7 +114,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
     
 	<div style='text-align:left;'>
 		<ul class="tabs">
-		<li style="background: url('images/change/coral-change.gif') no-repeat right; position: absolute;">&nbsp;
+		<li class="changeMod"><?= _("Change Module");?>&nbsp;▼
 			<ul class="coraldropdown">
 				<?php if (file_exists($util->getCORALPath() . "index.php")) {?>
 				<li><a href="<?php echo $coralURL; ?>" target='_blank'><img src='images/change/coral-main.gif'></a></li>

@@ -1080,18 +1080,29 @@ select option.changeSelect{
  border: solid 1px #a5acb2;  
  color: #526972;  
 } 
+/* Change Module */
+.changeMod{
+    position: absolute;
+    background: #e4f5fc; /* Old browsers */
+    background: linear-gradient(to bottom, #c8d8e9 3%,#e2f0ff 52%,#c7cefc 100%); /* W3C */  
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
 
 /* Change language */
 .dropDownLang{
     float:right; 
     position:absolute; 
     margin-left:135px; 
-    margin-top:-4px;
+    margin-top:-22px;
     color: #3D545D;
     background: #e4f5fc; /* Old browsers */
     background: linear-gradient(to bottom, #c8d8e9 3%,#e2f0ff 52%,#c7cefc 100%); /* W3C */
     border: none;
     border-radius: 5px;
     font-weight: bolder;
-    height:22px;
+    height:20px;
+    cursor: pointer;
 }

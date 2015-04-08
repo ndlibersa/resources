@@ -175,7 +175,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
             var cookievalid=86400000; // 1 jour (1000*60*60*24)
             time += cookievalid;
 			now.setTime(time);
-			document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now.toGMTString();
+			document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now;
 	    }
     </script>
 	<?php

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-07 16:59+0100\n"
-"PO-Revision-Date: 2015-04-07 17:00+0100\n"
+"POT-Creation-Date: 2015-04-08 11:01+0100\n"
+"PO-Revision-Date: 2015-04-08 11:01+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr "Utilisateurs"
 
 #: admin.php:52
 msgid "Workflow / User Group"
-msgstr "Flux de travail / Group utilisateur"
+msgstr "Workflow / Groupe d'utilisateur"
 
 #: admin.php:53
 msgid "Access Method"
@@ -451,7 +451,7 @@ msgstr "Administration du site(s)"
 
 #: ajax_forms.php:1826
 msgid "Edit Contact"
-msgstr "Modifierl le contact"
+msgstr "Modifier le contact"
 
 #: ajax_forms.php:1826
 msgid "Add Contact"
@@ -544,7 +544,7 @@ msgstr "Nom"
 
 #: ajax_forms.php:2368
 msgid "Edit User"
-msgstr "Modifierl l'utilisateur"
+msgstr "Modifier l'utilisateur"
 
 #: ajax_forms.php:2368
 msgid "Add New User"
@@ -593,7 +593,7 @@ msgstr "Ajouter alerte jours à l'avance"
 
 #: ajax_forms.php:2655
 msgid "Edit Workflow"
-msgstr "Modifier le flux de travail"
+msgstr "Modifier le workflow"
 
 #: ajax_forms.php:2664
 msgid "Resource Entry Requirements"
@@ -601,7 +601,7 @@ msgstr "Conditions d'entrée des ressources"
 
 #: ajax_forms.php:2727
 msgid "Workflow Steps"
-msgstr "Étapes du Flux de travail"
+msgstr "Étapes du Workflow"
 
 #: ajax_forms.php:2737
 msgid "Approval/Notification Group:"
@@ -625,11 +625,11 @@ msgstr "Modifier le groupe d'utilisateur"
 
 #: ajax_forms.php:2915
 msgid "Add User Group"
-msgstr "Ajouter groupé d'utilisateur"
+msgstr "Ajouter une groupe d'utilisateur"
 
 #: ajax_forms.php:2924
 msgid "User Group"
-msgstr "Group d'utilisateur"
+msgstr "Groupe d'utilisateur"
 
 #: ajax_forms.php:2932
 msgid "Group Name:"
@@ -653,7 +653,7 @@ msgstr "Supprimer un utilisateur du groupe"
 
 #: ajax_forms.php:3185
 msgid "Add / Edit Subject Relationships"
-msgstr "Ajouter / Modifier la relation des objets"
+msgstr "Ajouter / Modifier la relation des sujets"
 
 #: ajax_forms.php:3194 ajax_htmldata.php:2553 ajax_htmldata.php:2642
 #: index.php:251
@@ -662,31 +662,31 @@ msgstr "Sujet général"
 
 #: ajax_forms.php:3220
 msgid "Detailed Subjects"
-msgstr "Objet détaillé"
+msgstr "Sujet détaillé"
 
 #: ajax_forms.php:3242
 msgid "add detail subject"
-msgstr "Ajouter detail d'objet"
+msgstr "Ajouter detail du sujet"
 
 #: ajax_forms.php:3272
 msgid "remove detailed subject"
-msgstr "Supprimer objet détaillé"
+msgstr "Supprimer le sujet détaillé"
 
 #: ajax_forms.php:3274 ajax_htmldata.php:2615
 msgid "subject in use"
-msgstr "Objet en utilisation"
+msgstr "Sujet en utilisation"
 
 #: ajax_forms.php:3318
 msgid "Add General / Detail Subject Link"
-msgstr "Ajouter général / détail lien d'objet"
+msgstr "Ajouter général / détail lien du sujet"
 
 #: ajax_forms.php:3325
 msgid "General Subject Name"
-msgstr "Nom général d'objet"
+msgstr "Nom général du sujet"
 
 #: ajax_forms.php:3326
 msgid "Detail Subject Name"
-msgstr "Détail du nom d'objet"
+msgstr "Détail du nom de sujet"
 
 #: ajax_forms.php:3338 ajax_forms.php:3345
 msgid "add"
@@ -715,96 +715,80 @@ msgstr " ne pas etabli!"
 #: ajax_htmldata.php:2373 ajax_htmldata.php:2433 ajax_htmldata.php:2484
 #: ajax_htmldata.php:2527 ajax_htmldata.php:2568 ajax_htmldata.php:2610
 #: ajax_htmldata.php:2659
-#, fuzzy
 msgid "edit"
-msgstr "modifier une note"
+msgstr "modifier"
 
 #: ajax_htmldata.php:95 ajax_htmldata.php:660 ajax_htmldata.php:821
-#, fuzzy
 msgid "edit resource"
 msgstr "Modifier la ressource"
 
 #: ajax_htmldata.php:95
-#, fuzzy
 msgid "remove resource"
-msgstr "effacer une note"
+msgstr "Supprimer la ressource"
 
 #: ajax_htmldata.php:100
-#, fuzzy
 msgid "Record ID:"
-msgstr "ID d'enregistrement"
+msgstr "ID d'enregistrement:"
 
 #: ajax_htmldata.php:140
-#, fuzzy
 msgid "Created:"
-msgstr "Créateur"
+msgstr "Créé:"
 
 #: ajax_htmldata.php:165
-#, fuzzy
 msgid "Last Update:"
-msgstr "Nom"
+msgstr "Dernière mise à jour:"
 
 #: ajax_htmldata.php:190
 msgid "Related Products:"
-msgstr ""
+msgstr "Produits connexes:"
 
 #: ajax_htmldata.php:192
 msgid "Child:"
-msgstr ""
+msgstr "Enfant:"
 
 #: ajax_htmldata.php:199
-#, fuzzy
 msgid "(Parent)"
-msgstr "Parent:"
+msgstr "(Parent)"
 
 #: ajax_htmldata.php:199 ajax_htmldata.php:212
-#, fuzzy
 msgid "view resource"
-msgstr "Nouvelle ressource"
+msgstr "Voir la ressource"
 
 #: ajax_htmldata.php:199 ajax_htmldata.php:212 ajax_htmldata.php:260
 msgid "View "
-msgstr ""
+msgstr "Voir"
 
 #: ajax_htmldata.php:236
-#, fuzzy
 msgid "Aliases:"
-msgstr "Des alias:"
+msgstr "Aliases:"
 
 #: ajax_htmldata.php:253
-#, fuzzy
 msgid "Organizations:"
-msgstr "Organisation"
+msgstr "Organisations:"
 
 #: ajax_htmldata.php:274
-#, fuzzy
 msgid "Resource URL:"
-msgstr "Source URL: "
+msgstr "Ressource URL: "
 
 #: ajax_htmldata.php:275
-#, fuzzy
 msgid "Visit Resource URL"
-msgstr "Source URL de visite"
+msgstr "Ressource URL de visite"
 
 #: ajax_htmldata.php:283
-#, fuzzy
 msgid "Visit Secondary Resource URL"
-msgstr "Source URL de visite"
+msgstr "Ressource URL secondaire de visite"
 
 #: ajax_htmldata.php:298
-#, fuzzy
 msgid "edit product details"
-msgstr "modifier les détails du catalogage"
+msgstr "modifier les détails du produit"
 
 #: ajax_htmldata.php:365
-#, fuzzy
 msgid "remove subject"
-msgstr "Supprimer objet détaillé"
+msgstr "Supprimer le sujet"
 
 #: ajax_htmldata.php:386
-#, fuzzy
 msgid "add new subject"
-msgstr "Ajouter detail d'objet"
+msgstr "Ajouter nouveau sujet"
 
 #: ajax_htmldata.php:433 ajax_htmldata.php:752 ajax_htmldata.php:945
 #: resources/cataloging.php:209
@@ -832,339 +816,296 @@ msgid "edit order information"
 msgstr "modifier l'order de l'information"
 
 #: ajax_htmldata.php:586
-#, fuzzy
 msgid "Purchasing Sites:"
-msgstr "Site d'achat"
+msgstr "Site d'achats:"
 
 #: ajax_htmldata.php:602
 msgid "Expiration Alert Enabled"
-msgstr ""
+msgstr "Alerte d'expiration activé"
 
 #: ajax_htmldata.php:642
-#, fuzzy
 msgid "No payment information available."
-msgstr "Le catalogue d'information n'est pas disponible."
+msgstr "L'information du payment n'est pas disponible."
 
 #: ajax_htmldata.php:648
-#, fuzzy
 msgid "edit acquisitions information"
 msgstr "modifier l'information des acquisitions"
 
 #: ajax_htmldata.php:658
-#, fuzzy
 msgid "License"
-msgstr " licence"
+msgstr "Llicence"
 
 #: ajax_htmldata.php:672
 msgid " on "
-msgstr ""
+msgstr " sur "
 
 #: ajax_htmldata.php:685
-#, fuzzy
 msgid "Licenses:"
-msgstr "Modifier les licences"
+msgstr "Licences:"
 
 #: ajax_htmldata.php:691
-#, fuzzy
 msgid "View License"
-msgstr "Modifier les licences"
+msgstr "Voir la licence"
 
 #: ajax_htmldata.php:694
-#, fuzzy
 msgid "No associated licenses available."
-msgstr "Le catalogue d'information n'est pas disponible."
+msgstr "Pas des licences associées disponibles."
 
 #: ajax_htmldata.php:708
-#, fuzzy
 msgid "edit license and status"
-msgstr "Statut de la licence"
+msgstr "Modifier la licence et le statut"
 
 #: ajax_htmldata.php:710
-#, fuzzy
 msgid "edit license status"
-msgstr "Statut de la licence"
+msgstr "Modifier le statut de la licence"
 
 #: ajax_htmldata.php:817
-#, fuzzy
 msgid "Access Information"
-msgstr "modifier l'information des acquisitions"
+msgstr "Infromation d'accès"
 
 #: ajax_htmldata.php:829
-#, fuzzy
 msgid "Administering Sites:"
-msgstr "Administration du site"
+msgstr "Administration des sites:"
 
 #: ajax_htmldata.php:836
-#, fuzzy
 msgid "Authorized Sites:"
-msgstr "Site autorisé"
+msgstr "Sites autorisés:"
 
 #: ajax_htmldata.php:851
-#, fuzzy
 msgid "Username / Password:"
-msgstr "Mot de passe:"
+msgstr "Nom d'utilisateur / Mot de passe:"
 
 #: ajax_htmldata.php:866
-#, fuzzy
 msgid "Registered IP Address:"
-msgstr "Email enregistré:"
+msgstr "Adresse IP enregistré:"
 
 #: ajax_htmldata.php:895
-#, fuzzy
 msgid "No access information available."
-msgstr "L'information de statut de la licence n'est pas disponible."
+msgstr "Pas d'information d'accès disponible."
 
 #: ajax_htmldata.php:902
-#, fuzzy
 msgid "edit access information"
-msgstr "modifier l'order de l'information"
+msgstr "modifier l'accès à l'information"
 
 #: ajax_htmldata.php:998
 msgid "The following are archived contacts:"
-msgstr ""
+msgstr "Les suivantes contacts sont archivées: "
 
 #: ajax_htmldata.php:1010 ajax_htmldata.php:1207
-#, fuzzy
 msgid "Resource Specific:"
-msgstr "Type de ressource"
+msgstr "Ressource spécifique:"
 
 #: ajax_htmldata.php:1014
 msgid "No Resource Specific Contacts"
-msgstr ""
+msgstr "Il n'y a pas une ressource spécifique par les contacts"
 
 #: ajax_htmldata.php:1018 ajax_htmldata.php:1162 ajax_htmldata.php:1172
-#, fuzzy
 msgid "add contact"
 msgstr "Ajouter un contact"
 
 #: ajax_htmldata.php:1023 ajax_htmldata.php:1220
 msgid "Inherited:"
-msgstr ""
+msgstr "Hérité:"
 
 #: ajax_htmldata.php:1043
-#, fuzzy
 msgid "edit contact"
-msgstr "Modifierl le contact"
+msgstr "Modifier le contact"
 
 #: ajax_htmldata.php:1044
-#, fuzzy
 msgid "remove contact"
-msgstr "effacer une note"
+msgstr "Supprimer le contact"
 
 #: ajax_htmldata.php:1059
 msgid "Visit Contact in Organizations Module"
-msgstr ""
+msgstr "Visitez contact dans le module Organisations"
 
 #: ajax_htmldata.php:1067
 msgid "No longer valid:"
-msgstr ""
+msgstr "N'est plus valide:"
 
 #: ajax_htmldata.php:1091
-#, fuzzy
 msgid "Location:"
-msgstr "Lieu de stockage:"
+msgstr "Emplacement:"
 
 #: ajax_htmldata.php:1148 ajax_htmldata.php:1281
-#, fuzzy
 msgid "Last Updated:"
-msgstr "Nom"
+msgstr "Dernière mise à jour:"
 
 #: ajax_htmldata.php:1170
-#, fuzzy
 msgid "No contacts available"
-msgstr "# Enregistrements disponibles"
+msgstr "Pas de contacts disponibles"
 
 #: ajax_htmldata.php:1180
 msgid " archived contact(s) available. "
-msgstr ""
+msgstr " contact(s) archivée(s) disponible(s)."
 
 #: ajax_htmldata.php:1180
 msgid "show archived contacts"
-msgstr ""
+msgstr "montrer les contacts archivées"
 
 #: ajax_htmldata.php:1184
 msgid "hide archived contacts"
-msgstr ""
+msgstr "cacher les contacts archivées"
 
 #: ajax_htmldata.php:1211
 msgid "No Resource Specific Accounts"
-msgstr ""
+msgstr "Il n'y a pas une ressource spécifié par les comptes"
 
 #: ajax_htmldata.php:1215 ajax_htmldata.php:1312
-#, fuzzy
 msgid "add new account"
-msgstr "ajouter une note"
+msgstr "ajouter une nouvelle compte"
 
 #: ajax_htmldata.php:1237
-#, fuzzy
 msgid "edit account"
 msgstr "Modifier la compte"
 
 #: ajax_htmldata.php:1237
-#, fuzzy
 msgid "remove account"
-msgstr "effacer une note"
+msgstr "Supprimer une compte"
 
 #: ajax_htmldata.php:1250
 msgid "Visit Account in Organizations Module"
-msgstr ""
+msgstr "Visitez Comptes sur le module Organisations"
 
 #: ajax_htmldata.php:1257
-#, fuzzy
 msgid "Login URL:"
-msgstr "Type d'acèss (login):"
+msgstr "URL d'accès(login):"
 
 #: ajax_htmldata.php:1258
-#, fuzzy
 msgid "Visit Login URL"
-msgstr "Source URL de visite"
+msgstr "Source URL d'accès(login)"
 
 #: ajax_htmldata.php:1265
-#, fuzzy
 msgid "User Name:"
 msgstr "Nom d'utilisateur:"
 
 #: ajax_htmldata.php:1307
-#, fuzzy
 msgid "No accounts available"
-msgstr "# Enregistrements disponibles"
+msgstr "Pas des comptes disponibles"
 
 #: ajax_htmldata.php:1350
-#, fuzzy
 msgid "view attachment"
-msgstr "Modifier la fixation"
+msgstr "Voir la fixation"
 
 #: ajax_htmldata.php:1355
-#, fuzzy
 msgid "edit attachment"
 msgstr "Modifier la fixation"
 
 #: ajax_htmldata.php:1355
-#, fuzzy
 msgid "remove this attachment"
-msgstr "effacer ce payment"
+msgstr "suopprimer cette fixation"
 
 #: ajax_htmldata.php:1387
-#, fuzzy
 msgid "No attachments available"
-msgstr "Le catalogue d'information n'est pas disponible."
+msgstr "Pas des fixations disponibles."
 
 #: ajax_htmldata.php:1392
-#, fuzzy
 msgid "add new attachment"
-msgstr "Ajouter fixation"
+msgstr "Ajouter une nouvelle fixation"
 
 #: ajax_htmldata.php:1416
 msgid ""
 "No workflow steps have been set up for this resource's combination of "
 "Acquisition Type and Resource Format."
 msgstr ""
+"Pas d'étapes de workflow ont été mis en place pour la combinaison de Type "
+"d'Acquisition et le Format de Ressource."
 
 #: ajax_htmldata.php:1416
 msgid ""
 "If you think this is in error, please contact your workflow administrator."
 msgstr ""
+"Si vous pensez qui cet un erreur, s'il vous plaît contactez à "
+"l'administrateur de workflow"
 
 #: ajax_htmldata.php:1418
 msgid "Not entered into workflow."
-msgstr ""
+msgstr "N'a pas entré dans le workflow"
 
 #: ajax_htmldata.php:1424
 msgid "Step"
-msgstr ""
+msgstr "Étape"
 
 #: ajax_htmldata.php:1425
-#, fuzzy
 msgid "Group"
-msgstr "Group d'utilisateur"
+msgstr "Groupe"
 
 #: ajax_htmldata.php:1426 ajax_htmldata.php:1833
-#, fuzzy
 msgid "Start Date"
-msgstr "Commence avec"
+msgstr "Date de début"
 
 #: ajax_htmldata.php:1427
 msgid "Complete"
-msgstr ""
+msgstr "Complète"
 
 #: ajax_htmldata.php:1458
 msgid "mark complete"
-msgstr ""
+msgstr "marquer comme complète"
 
 #: ajax_htmldata.php:1480 ajax_htmldata.php:1482
-#, fuzzy
 msgid "Workflow completed on "
-msgstr "Étapes du Flux de travail"
+msgstr "Workflow completé le "
 
 #: ajax_htmldata.php:1486 ajax_htmldata.php:1488
-#, fuzzy
 msgid "Workflow restarted on "
-msgstr "Étapes du Flux de travail"
+msgstr "Workflow redémarré le "
 
 #: ajax_htmldata.php:1498
-#, fuzzy
 msgid "restart workflow"
-msgstr "Modifier le flux de travail"
+msgstr "Redémarrer le workflow"
 
 #: ajax_htmldata.php:1499
 msgid "mark entire workflow complete"
-msgstr ""
+msgstr "marquer tout le workflow comme complète"
 
 #: ajax_htmldata.php:1587
 msgid "Print View"
-msgstr ""
+msgstr "Imprimer ***"
 
 #: ajax_htmldata.php:1589
-#, fuzzy
 msgid "Catalog View"
-msgstr "Catalogage"
+msgstr "Voir le Catalogue"
 
 #: ajax_htmldata.php:1600
-#, fuzzy
 msgid "Parent Record"
-msgstr "Parent étape"
+msgstr "Registre du parent"
 
 #: ajax_htmldata.php:1606
-#, fuzzy
 msgid "Child Record(s)"
-msgstr "Licences entregistrées"
+msgstr "Registre(s) enfant(s)"
 
 #: ajax_htmldata.php:1625
-#, fuzzy
 msgid "Organizations Module"
-msgstr "Rôle dans l'organisation"
+msgstr "Module d'organisations"
 
 #: ajax_htmldata.php:1641
-#, fuzzy
 msgid "Licensing Module"
-msgstr "Statut des licences"
+msgstr "Module des licences"
 
 #: ajax_htmldata.php:1659
 msgid "Usage Statistics Module"
-msgstr ""
+msgstr "Module des statistiques d'utilisation"
 
 #: ajax_htmldata.php:1665
 msgid "Get Statistics"
-msgstr ""
+msgstr "Obtenir les statistiques"
 
 #: ajax_htmldata.php:1686
-#, fuzzy
 msgid "Saved Requests"
-msgstr "Modifier ressource enregistré"
+msgstr "Rêquetes enregistrées"
 
 #: ajax_htmldata.php:1691
 msgid "No saved requests"
-msgstr ""
+msgstr "Pas des requêtes enregistrées"
 
 #: ajax_htmldata.php:1697 ajax_htmldata.php:1766 ajax_htmldata.php:1829
 #: ajax_htmldata.php:2042
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #: ajax_htmldata.php:1699 ajax_htmldata.php:1768 ajax_htmldata.php:2045
-#, fuzzy
 msgid "Date Created"
-msgstr "Date de création entre"
+msgstr "Date de création"
 
 #: ajax_htmldata.php:1701 ajax_htmldata.php:1770 ajax_htmldata.php:2047
 #: index.php:123
@@ -1173,28 +1114,27 @@ msgstr "Statut"
 
 #: ajax_htmldata.php:1729
 msgid "edit request"
-msgstr ""
+msgstr "modifier la requête"
 
 #: ajax_htmldata.php:1730
-#, fuzzy
 msgid "remove request"
-msgstr "supprimer "
+msgstr "supprimer la requête"
 
 #: ajax_htmldata.php:1755
 msgid "Submitted Requests"
-msgstr ""
+msgstr "Requêtes Enregistrées"
 
 #: ajax_htmldata.php:1760
 msgid "No submitted requests"
-msgstr ""
+msgstr "Pas des requêtes soumises"
 
 #: ajax_htmldata.php:1817
 msgid "Outstanding Tasks"
-msgstr ""
+msgstr "Tâches en suspens"
 
 #: ajax_htmldata.php:1822
 msgid "No outstanding requests"
-msgstr ""
+msgstr "Pas des requêtes en suspens"
 
 #: ajax_htmldata.php:1832 index.php:553
 msgid "Routing Step"
@@ -1202,24 +1142,27 @@ msgstr "Etape de routage"
 
 #: ajax_htmldata.php:1968
 msgid "Sorry, no requests fit your query"
-msgstr ""
+msgstr "Désolé, il n'y a pas des résultats par votre requête"
+
+#: ajax_htmldata.php:1982
+msgid "Displaying "
+msgstr "En montrant "
 
 #: ajax_htmldata.php:1982
 msgid " to "
-msgstr ""
+msgstr " par "
 
 #: ajax_htmldata.php:1982
 msgid " of "
-msgstr ""
+msgstr " de "
 
 #: ajax_htmldata.php:1982
-#, fuzzy
 msgid " Resource Records"
-msgstr "Format de la ressource"
+msgstr " Resources enregistrées"
 
 #: ajax_htmldata.php:2028
 msgid "next page"
-msgstr ""
+msgstr "page suivante"
 
 #: ajax_htmldata.php:2044 index.php:154
 msgid "Creator"
@@ -1227,91 +1170,81 @@ msgstr "Créateur"
 
 #: ajax_htmldata.php:2091
 msgid "previous page"
-msgstr ""
+msgstr "page précédente"
 
 #: ajax_htmldata.php:2142
 msgid "records per page"
-msgstr ""
+msgstr "resultats par page"
 
 #: ajax_htmldata.php:2203
-#, fuzzy
 msgid "edit user"
-msgstr "Modifierl l'utilisateur"
+msgstr "Modifier l'utilisateur"
 
 #: ajax_htmldata.php:2204 ajax_htmldata.php:2252 ajax_htmldata.php:2296
 #: ajax_htmldata.php:2344 ajax_htmldata.php:2374 ajax_htmldata.php:2434
 #: ajax_htmldata.php:2485 ajax_htmldata.php:2528 ajax_htmldata.php:2572
 #: ajax_htmldata.php:2613
-#, fuzzy
 msgid "remove"
-msgstr "supprimer "
+msgstr "supprimer"
 
 #: ajax_htmldata.php:2210 ajax_htmldata.php:2214
-#, fuzzy
 msgid "add new user"
-msgstr "Ajouter un utilisateur"
+msgstr "Ajouter un nouveau utilisateur"
 
 #: ajax_htmldata.php:2264
-#, fuzzy
 msgid "add new currency"
-msgstr "Ajouter Concurrence"
+msgstr "Ajouter une vouvelle concurrence"
 
 #: ajax_htmldata.php:2286 ajax_htmldata.php:2518 ajax_htmldata.php:2559
 #: ajax_htmldata.php:2601
 msgid "Value"
-msgstr ""
+msgstr "Valeur"
 
 #: ajax_htmldata.php:2308 ajax_htmldata.php:2540 ajax_htmldata.php:2628
-#, fuzzy
 msgid "add new "
-msgstr "ajouter une note"
+msgstr "ajouter un nouveau  "
 
 #: ajax_htmldata.php:2356
-#, fuzzy
 msgid "add email address"
-msgstr "Ajouter alerte d'adresse email"
+msgstr "Ajouter une nouvelle adresse email"
 
 #: ajax_htmldata.php:2364
 msgid "Days in advance of expiration"
-msgstr ""
+msgstr "Jours à l'avance de expiration"
 
 #: ajax_htmldata.php:2389
-#, fuzzy
 msgid "add days"
-msgstr "ajouter alias"
+msgstr "ajouter jours"
 
 #: ajax_htmldata.php:2404
-#, fuzzy
 msgid "Workflow Setup"
-msgstr "Étapes du Flux de travail"
+msgstr "Configuration du workflow"
 
 #: ajax_htmldata.php:2450
 msgid "You must set up at least one user group before you can add workflows"
 msgstr ""
+"Vous devez configurer au moins une groupe, après vous pouvez ajouter "
+"workflows"
 
 #: ajax_htmldata.php:2460
-#, fuzzy
 msgid "User Group Setup"
-msgstr "Group d'utilisateur"
+msgstr "Configuration de groupe d'utilisateur"
 
 #: ajax_htmldata.php:2466
-#, fuzzy
 msgid "Group Name"
 msgstr "Nom du groupe"
 
 #: ajax_htmldata.php:2498
-#, fuzzy
 msgid "add user group"
-msgstr "Ajouter groupé d'utilisateur"
+msgstr "Ajouter groupe d'utilisateur"
 
 #: ajax_htmldata.php:2595 ajax_htmldata.php:2643 index.php:282
 msgid "Detailed Subject"
 msgstr "Sujet détaillé"
 
 #: ajax_htmldata.php:2636
-#, fuzzy
 msgid "Subject Relationships"
-msgstr "Ajouter / Modifier la relation des objets"
+msgstr "Relation des sujets"
 
 #: index.php:26 templates/header.php:98
 msgid "Home"

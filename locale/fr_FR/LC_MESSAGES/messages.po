@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "POT-Creation-Date: 2015-04-08 16:23+0100\n"
-"PO-Revision-Date: 2015-04-09 12:02+0100\n"
+"PO-Revision-Date: 2015-04-09 15:50+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -752,11 +752,11 @@ msgstr "(Parent)"
 
 #: ajax_htmldata.php:199 ajax_htmldata.php:212
 msgid "view resource"
-msgstr "Voir la ressource"
+msgstr "Regarder la ressource"
 
 #: ajax_htmldata.php:199 ajax_htmldata.php:212 ajax_htmldata.php:260
 msgid "View "
-msgstr "Voir"
+msgstr "Regarder "
 
 #: ajax_htmldata.php:236
 msgid "Aliases:"
@@ -845,7 +845,7 @@ msgstr "Licences:"
 
 #: ajax_htmldata.php:691
 msgid "View License"
-msgstr "Voir la licence"
+msgstr "Regarder la licence"
 
 #: ajax_htmldata.php:694
 msgid "No associated licenses available."
@@ -985,7 +985,7 @@ msgstr "Pas des comptes disponibles"
 
 #: ajax_htmldata.php:1350
 msgid "view attachment"
-msgstr "Voir la fixation"
+msgstr "Regarder la fixation"
 
 #: ajax_htmldata.php:1355
 msgid "edit attachment"
@@ -1064,7 +1064,7 @@ msgstr "Imprimer ***"
 
 #: ajax_htmldata.php:1589
 msgid "Catalog View"
-msgstr "Voir le Catalogue"
+msgstr "Regarder le Catalogue"
 
 #: ajax_htmldata.php:1600
 msgid "Parent Record"
@@ -1158,7 +1158,7 @@ msgstr " de "
 
 #: ajax_htmldata.php:1982
 msgid " Resource Records"
-msgstr " resources enregistrées"
+msgstr " ressources enregistrées"
 
 #: ajax_htmldata.php:2028
 msgid "next page"
@@ -1276,7 +1276,7 @@ msgstr "N'est pas possible supprimer - "
 msgid ""
 " is in use.  Please make sure no resources are set up with this information."
 msgstr ""
-"est en utilisation. S'il vous plaît, assurez-vous  qu'aucune ressource est "
+" est en utilisation. S'il vous plaît, assurez-vous  qu'aucune ressource est "
 "configurée avec cet information."
 
 #: ajax_processing.php:746 ajax_processing.php:1210 ajax_processing.php:1227
@@ -1284,7 +1284,7 @@ msgid ""
 "Unable to delete.  Please make sure no resources are set up with this "
 "information."
 msgstr ""
-"N'est pas possible supprimer. S'il vous plaît, assurez-vous  qu'aucune "
+"N'est pas possible supprimer. S'il vous plaît, assurez-vous qu'aucune "
 "ressource est configurée avec cet information."
 
 #: ajax_processing.php:889

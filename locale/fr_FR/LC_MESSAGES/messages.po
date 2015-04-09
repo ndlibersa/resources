@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "POT-Creation-Date: 2015-04-08 16:23+0100\n"
-"PO-Revision-Date: 2015-04-08 16:23+0100\n"
+"PO-Revision-Date: 2015-04-09 12:02+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -467,7 +467,7 @@ msgstr "Téléphone:"
 
 #: ajax_forms.php:1860 ajax_htmldata.php:1116
 msgid "Alt Phone:"
-msgstr "Alt Téléphone:"
+msgstr "Téléphone Alt:"
 
 #: ajax_forms.php:1881 ajax_htmldata.php:1083
 msgid "Address:"
@@ -487,7 +487,7 @@ msgstr "Ajouter une compte"
 
 #: ajax_forms.php:2005
 msgid "Login Type:"
-msgstr "Type d'acèss (login):"
+msgstr "Type de connexion:"
 
 #: ajax_forms.php:2029 ajax_htmldata.php:1289
 msgid "Registered Email:"
@@ -552,7 +552,7 @@ msgstr "Ajouter un nouveau utilisateur"
 
 #: ajax_forms.php:2379 ajax_htmldata.php:2178
 msgid "Login ID"
-msgstr "Identifiant d'accès"
+msgstr "Identifiant de connexion"
 
 #: ajax_forms.php:2380 ajax_htmldata.php:2179
 msgid "First Name"
@@ -969,11 +969,11 @@ msgstr "Visitez Comptes sur le module Organisations"
 
 #: ajax_htmldata.php:1257
 msgid "Login URL:"
-msgstr "URL d'accès(login):"
+msgstr "URL de connexion:"
 
 #: ajax_htmldata.php:1258
 msgid "Visit Login URL"
-msgstr "Source URL d'accès(login)"
+msgstr "Source URL de connexion"
 
 #: ajax_htmldata.php:1265
 msgid "User Name:"
@@ -1505,7 +1505,7 @@ msgid ""
 "Login is not working.  Check the .htaccess file and the "
 "remoteAuthVariableName specified in /admin/configuration.ini"
 msgstr ""
-"L'accès (login) ne marche pas. Vérifiez le fichier .htaccess et "
+"La connexion ne marche pas. Vérifiez le fichier .htaccess et "
 "remoteAuthVariableName specifié en /admin/configuration.ini"
 
 #, fuzzy

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-08 16:23+0100\n"
-"PO-Revision-Date: 2015-04-09 15:50+0100\n"
+"POT-Creation-Date: 2015-04-15 13:57+0100\n"
+"PO-Revision-Date: 2015-04-15 13:57+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -127,7 +127,7 @@ msgstr "Chargement..."
 
 #: admin.php:115
 msgid "You do not have permissions to access this screen."
-msgstr "Vous n'avez pas la permission d'accèder dans cette page."
+msgstr "Vous n'avez pas la permission d'accéder dans cette page."
 
 #: admin/classes/common/DBService.php:39
 msgid "There was a problem with the database: "
@@ -1499,6 +1499,14 @@ msgstr "Administrateur"
 #: templates/header.php:117
 msgid "Change Module"
 msgstr "Changer le module"
+
+#: templates/header.php:147 templates/header.php:148
+msgid "French"
+msgstr "Français"
+
+#: templates/header.php:147 templates/header.php:148
+msgid "English"
+msgstr "Anglais"
 
 #: user.php:101
 msgid ""

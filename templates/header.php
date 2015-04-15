@@ -144,8 +144,8 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
 		</ul>
 		<select name="lang" id="lang" class="dropDownLang">
            <?php
-            $fr="<option value='fr' selected='selected'>Français</option><option value='en'>English</option>";
-            $en="<option value='fr'>Français</option><option value='en' selected='selected'>English</option>";
+            $fr="<option value='fr' selected='selected'>"._("French")."</option><option value='en'>"._("English")."</option>";
+            $en="<option value='fr'>"._("French")."</option><option value='en' selected='selected'>"._("English")."</option>";
             if(isset($_COOKIE["lang"])){
                 if($_COOKIE["lang"]=='fr'){
                     echo $fr;

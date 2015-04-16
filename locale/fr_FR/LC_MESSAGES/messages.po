@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-15 13:57+0100\n"
-"PO-Revision-Date: 2015-04-15 13:57+0100\n"
+"POT-Creation-Date: 2015-04-16 17:23+0100\n"
+"PO-Revision-Date: 2015-04-16 17:24+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -210,7 +210,7 @@ msgstr "Produit"
 msgid "Name:"
 msgstr "Nom:"
 
-#: ajax_forms.php:209 ajax_forms.php:650 ajax_htmldata.php:290
+#: ajax_forms.php:209 ajax_forms.php:650 ajax_htmldata.php:290 summary.php:347
 msgid "Description:"
 msgstr "Description:"
 
@@ -223,6 +223,7 @@ msgid "Format"
 msgstr "Format"
 
 #: ajax_forms.php:326 ajax_forms.php:1104 ajax_htmldata.php:612
+#: summary.php:477
 msgid "Initial Cost"
 msgstr "Coût Initial"
 
@@ -328,27 +329,28 @@ msgstr "effacer cet alias"
 msgid "Edit Acquisitions Information"
 msgstr "modifier l'information des acquisitions"
 
-#: ajax_forms.php:1038 ajax_htmldata.php:547
+#: ajax_forms.php:1038 ajax_htmldata.php:547 summary.php:414
 msgid "Order"
 msgstr "Ordre"
 
 #: ajax_forms.php:1045 ajax_forms.php:2671 ajax_htmldata.php:558
+#: summary.php:421
 msgid "Acquisition Type:"
 msgstr "Type d'acquisition:"
 
-#: ajax_forms.php:1063 ajax_htmldata.php:565
+#: ajax_forms.php:1063 ajax_htmldata.php:565 summary.php:428
 msgid "Order Number:"
 msgstr "Numero d'ordre:"
 
-#: ajax_forms.php:1068 ajax_htmldata.php:572
+#: ajax_forms.php:1068 ajax_htmldata.php:572 summary.php:435
 msgid "System Number:"
 msgstr "Nombre de système:"
 
-#: ajax_forms.php:1073 ajax_htmldata.php:593
+#: ajax_forms.php:1073 ajax_htmldata.php:593 summary.php:458
 msgid "Subscription Start:"
 msgstr "Début d'abonnement:"
 
-#: ajax_forms.php:1078 ajax_htmldata.php:600
+#: ajax_forms.php:1078 ajax_htmldata.php:600 summary.php:465
 msgid "Subscription End:"
 msgstr "Fin d'abonnement:"
 
@@ -385,6 +387,7 @@ msgid "Licensing Status"
 msgstr "Statut des licences"
 
 #: ajax_forms.php:1450 ajax_htmldata.php:105 ajax_htmldata.php:666
+#: summary.php:205 summary.php:508
 msgid "Status:"
 msgstr "Statut:"
 
@@ -397,11 +400,13 @@ msgstr "Historie:"
 #: ajax_htmldata.php:175 ajax_htmldata.php:447 ajax_htmldata.php:672
 #: ajax_htmldata.php:766 ajax_htmldata.php:1451 ajax_htmldata.php:1453
 #: ajax_htmldata.php:1480 ajax_htmldata.php:1482 ajax_htmldata.php:1486
-#: ajax_htmldata.php:1488 resources/cataloging.php:223
+#: ajax_htmldata.php:1488 resources/cataloging.php:223 summary.php:219
+#: summary.php:245 summary.php:399 summary.php:514 summary.php:590
+#: summary.php:712 summary.php:825
 msgid " by "
 msgstr " par "
 
-#: ajax_forms.php:1483 ajax_htmldata.php:675
+#: ajax_forms.php:1483 ajax_htmldata.php:675 summary.php:517
 msgid "No license status information available."
 msgstr "L'information de statut de la licence n'est pas disponible."
 
@@ -413,7 +418,7 @@ msgstr "Modifier l'accès"
 msgid "Access"
 msgstr "Acèss"
 
-#: ajax_forms.php:1604 ajax_htmldata.php:843
+#: ajax_forms.php:1604 ajax_htmldata.php:843 summary.php:625
 msgid "Authentication Type:"
 msgstr "Type d'accès:"
 
@@ -421,7 +426,7 @@ msgstr "Type d'accès:"
 msgid "Username:"
 msgstr "Nom d'utilisateur:"
 
-#: ajax_forms.php:1623 ajax_htmldata.php:888
+#: ajax_forms.php:1623 ajax_htmldata.php:888 summary.php:662
 msgid "Access Method:"
 msgstr "Mèthode d'accès:"
 
@@ -429,11 +434,11 @@ msgstr "Mèthode d'accès:"
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: ajax_forms.php:1642 ajax_htmldata.php:874
+#: ajax_forms.php:1642 ajax_htmldata.php:874 summary.php:655
 msgid "Storage Location:"
 msgstr "Lieu de stockage:"
 
-#: ajax_forms.php:1657 ajax_htmldata.php:858
+#: ajax_forms.php:1657 ajax_htmldata.php:858 summary.php:639
 msgid "Simultaneous User Limit:"
 msgstr "Limite d'utilisateurs similtanées"
 
@@ -726,19 +731,19 @@ msgstr "Modifier la ressource"
 msgid "remove resource"
 msgstr "Supprimer la ressource"
 
-#: ajax_htmldata.php:100
+#: ajax_htmldata.php:100 summary.php:199
 msgid "Record ID:"
 msgstr "ID d'enregistrement:"
 
-#: ajax_htmldata.php:140
+#: ajax_htmldata.php:140 summary.php:211
 msgid "Created:"
 msgstr "Créé:"
 
-#: ajax_htmldata.php:165
+#: ajax_htmldata.php:165 summary.php:237
 msgid "Last Update:"
 msgstr "Dernière mise à jour:"
 
-#: ajax_htmldata.php:190
+#: ajax_htmldata.php:190 summary.php:262
 msgid "Related Products:"
 msgstr "Produits connexes:"
 
@@ -746,7 +751,7 @@ msgstr "Produits connexes:"
 msgid "Child:"
 msgstr "Enfant:"
 
-#: ajax_htmldata.php:199
+#: ajax_htmldata.php:199 summary.php:267
 msgid "(Parent)"
 msgstr "(Parent)"
 
@@ -758,15 +763,15 @@ msgstr "Regarder la ressource"
 msgid "View "
 msgstr "Regarder "
 
-#: ajax_htmldata.php:236
+#: ajax_htmldata.php:236 summary.php:293
 msgid "Aliases:"
 msgstr "Aliases:"
 
-#: ajax_htmldata.php:253
+#: ajax_htmldata.php:253 summary.php:310
 msgid "Organizations:"
 msgstr "Organisations:"
 
-#: ajax_htmldata.php:274
+#: ajax_htmldata.php:274 summary.php:331
 msgid "Resource URL:"
 msgstr "Ressource URL: "
 
@@ -819,11 +824,11 @@ msgstr "modifier l'order de l'information"
 msgid "Purchasing Sites:"
 msgstr "Site d'achats:"
 
-#: ajax_htmldata.php:602
+#: ajax_htmldata.php:602 summary.php:467
 msgid "Expiration Alert Enabled"
 msgstr "Alerte d'expiration activé"
 
-#: ajax_htmldata.php:642
+#: ajax_htmldata.php:642 summary.php:493
 msgid "No payment information available."
 msgstr "L'information du payment n'est pas disponible."
 
@@ -831,15 +836,15 @@ msgstr "L'information du payment n'est pas disponible."
 msgid "edit acquisitions information"
 msgstr "modifier l'information des acquisitions"
 
-#: ajax_htmldata.php:658
+#: ajax_htmldata.php:658 summary.php:503
 msgid "License"
-msgstr "Llicence"
+msgstr "Licence"
 
-#: ajax_htmldata.php:672
+#: ajax_htmldata.php:672 summary.php:514
 msgid " on "
 msgstr " sur "
 
-#: ajax_htmldata.php:685
+#: ajax_htmldata.php:685 summary.php:525
 msgid "Licenses:"
 msgstr "Licences:"
 
@@ -847,7 +852,7 @@ msgstr "Licences:"
 msgid "View License"
 msgstr "Regarder la licence"
 
-#: ajax_htmldata.php:694
+#: ajax_htmldata.php:694 summary.php:534
 msgid "No associated licenses available."
 msgstr "Pas des licences associées disponibles."
 
@@ -859,27 +864,27 @@ msgstr "Modifier la licence et le statut"
 msgid "edit license status"
 msgstr "Modifier le statut de la licence"
 
-#: ajax_htmldata.php:817
+#: ajax_htmldata.php:817 summary.php:604
 msgid "Access Information"
-msgstr "Infromation d'accès"
+msgstr "Information d'accès"
 
-#: ajax_htmldata.php:829
+#: ajax_htmldata.php:829 summary.php:618
 msgid "Administering Sites:"
 msgstr "Administration des sites:"
 
-#: ajax_htmldata.php:836
+#: ajax_htmldata.php:836 summary.php:450
 msgid "Authorized Sites:"
 msgstr "Sites autorisés:"
 
-#: ajax_htmldata.php:851
+#: ajax_htmldata.php:851 summary.php:632
 msgid "Username / Password:"
 msgstr "Nom d'utilisateur / Mot de passe:"
 
-#: ajax_htmldata.php:866
+#: ajax_htmldata.php:866 summary.php:647
 msgid "Registered IP Address:"
 msgstr "Adresse IP enregistré:"
 
-#: ajax_htmldata.php:895
+#: ajax_htmldata.php:895 summary.php:612
 msgid "No access information available."
 msgstr "Pas d'information d'accès disponible."
 
@@ -1377,11 +1382,11 @@ msgstr "Fait!"
 msgid "New resource added"
 msgstr "Nouvelle ressource ajouté"
 
-#: resources/cataloging.php:103
+#: resources/cataloging.php:103 summary.php:723
 msgid "Cataloging"
 msgstr "Catalogage"
 
-#: resources/cataloging.php:114
+#: resources/cataloging.php:114 summary.php:729
 msgid "Identifier:"
 msgstr "Identifiant:"
 
@@ -1393,35 +1398,35 @@ msgstr "Source URL: "
 msgid "Visit Source URL"
 msgstr "Source URL de visite"
 
-#: resources/cataloging.php:128
+#: resources/cataloging.php:128 summary.php:743
 msgid "Cataloging Type:"
 msgstr "Type de catalogage:"
 
-#: resources/cataloging.php:136
+#: resources/cataloging.php:136 summary.php:751
 msgid "Cataloging Status:"
-msgstr "Stat de catalogage:"
+msgstr "Statut de catalogage:"
 
-#: resources/cataloging.php:142
+#: resources/cataloging.php:142 summary.php:757
 msgid "# Records Available:"
 msgstr "# Enregistrements disponibles"
 
-#: resources/cataloging.php:148
+#: resources/cataloging.php:148 summary.php:763
 msgid "# Records Loaded:"
 msgstr "# Enregistrements chargées"
 
-#: resources/cataloging.php:153
+#: resources/cataloging.php:153 summary.php:769
 msgid "OCLC Holdings:"
 msgstr "OCLC Holdings:"
 
-#: resources/cataloging.php:154
+#: resources/cataloging.php:154 summary.php:770
 msgid "Yes"
 msgstr "Oui"
 
-#: resources/cataloging.php:154
+#: resources/cataloging.php:154 summary.php:770
 msgid "No"
 msgstr "Non"
 
-#: resources/cataloging.php:159
+#: resources/cataloging.php:159 summary.php:776
 msgid "No cataloging information available."
 msgstr "Le catalogue d'information n'est pas disponible."
 
@@ -1464,6 +1469,46 @@ msgid ""
 msgstr ""
 "La connexion LDAP ne marche pas ou a expiré. S'il vous plaît vérifiez la "
 "configuration du configuration.ini."
+
+#: summary.php:34
+msgid " Summary"
+msgstr " Resumé"
+
+#: summary.php:272
+msgid "(child)"
+msgstr "(enfant)"
+
+#: summary.php:284
+msgid "ISSN / ISBN:"
+msgstr "ISSN / ISBN:"
+
+#: summary.php:339
+msgid "Alt URL:"
+msgstr "URL Alt:"
+
+#: summary.php:394
+msgid "Additional Product Notes"
+msgstr "Notes additionales du produit"
+
+#: summary.php:443
+msgid "Purchasing Site:"
+msgstr "Site d'achat:"
+
+#: summary.php:582
+msgid "Additional Acquisitions Notes"
+msgstr "Notes additionales d'acquisition"
+
+#: summary.php:707
+msgid "Additional Access Notes"
+msgstr "Notes additionales de connexion:"
+
+#: summary.php:735
+msgid "URL:"
+msgstr "URL:"
+
+#: summary.php:820
+msgid "Additional Cataloging Notes"
+msgstr "Notes additionales du catalogue"
 
 #: templates/header.php:58
 msgid ""

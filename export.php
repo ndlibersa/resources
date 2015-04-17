@@ -21,6 +21,7 @@
 session_start();
 
 include_once 'directory.php';
+include_once 'util.php';
 
 function escape_csv($value) {
   // replace \n with \r\n
@@ -72,12 +73,12 @@ $columnHeaders = array(
   "Parent Record",
   "Child Record",
   "Acquisition Type",
-  "Initial Cost",
+  "Cost",
   "Order Number",
   "System Number",
   "Purchasing Sites",
-  "Subscription Start",
-  "Subscription End",
+  "Sub Start",
+  "Current Sub End",
   "Subscription Alert Enabled",
   "License Names",
   "License Status",
@@ -108,11 +109,7 @@ echo array_to_csv_row($columnHeaders);
 
 foreach($resourceArray as $resource) {
 
-	if ($resource['updateDate'] == "0000-00-00"){
-		$updateDateFormatted="";
-	}else{
-		$updateDateFormatted=format_date($resource['updateDate']);
-	}
+	$updateDateFormatted=normalize_date($resource['updateDate']);
   $resourceValues = array(
 	  $resource['resourceID'],
     $resource['titleText'],
@@ -135,8 +132,8 @@ foreach($resourceArray as $resource) {
     $resource['orderNumber'],
     $resource['systemNumber'],
     $resource['purchasingSites'],
-    $resource['subscriptionStartDate'],
-    $resource['subscriptionEndDate'],
+    $resource['currentStartDate'],
+    $resource['currentEndDate'],
     ($resource['subscriptionAlertEnabledInd'] ? 'Y' : 'N'),
     $resource['licenseNames'],
     $resource['licenseStatuses'],

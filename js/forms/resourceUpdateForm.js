@@ -85,7 +85,7 @@
 			$("#parentResourceID").val(data[1]);
 			$('#span_error_parentResourceName').html('');
 		}else{
-			$('#span_error_parentResourceName').html('<br />Error - Parent cannot be the same as the child');
+			$('#span_error_parentResourceName').html("<br />"+_("Error - Parent cannot be the same as the child"));
 		}
 	});
 
@@ -205,7 +205,7 @@
 		var aName = $('.newAliasTable').children().children().children().children('.aliasName').val();
 						
 		if ((aName == '') || (aName == null) || (typeID == '') || (typeID == null)){
-			$('#div_errorAlias').html('Error - Both fields are required');
+			$('#div_errorAlias').html(_("Error - Both fields are required"));
 			return false;
 			
 		}else{
@@ -220,8 +220,8 @@
 
 			$('.newAliasTR').children().children().children('.addAlias').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this alias',
-			  title: 'remove this alias'
+			  alt: _("remove this alias"),
+			  title: _("remove this alias")
 			});
 			$('.newAliasTR').children().children().children('.addAlias').addClass('remove');
 			$('.aliasTypeID').addClass('changeSelect');
@@ -255,9 +255,9 @@
 						
 		if ((orgID == '') || (orgID == null) || (typeID == '') || (typeID == null)){
 			if ((orgName== '') || (orgName == null) || (typeID == '') || (typeID == null)){
-				$('#div_errorOrganization').html('Error - Both fields are required');
+				$('#div_errorOrganization').html(_("Error - Both fields are required"));
 			}else{
-				$('#div_errorOrganization').html('Error - Organization is not found.  Please use the Autocomplete.');
+				$('#div_errorOrganization').html(_("Error - Organization is not found.  Please use the Autocomplete."));
 			}
 			
 			return false;
@@ -274,8 +274,8 @@
 
 			$('.newOrganizationTR').children().children().children('.addOrganization').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this organization',
-			  title: 'remove this organization'
+			  alt: _("remove this organization"),
+			  title: _("remove this organization")
 			});
 			$('.newOrganizationTR').children().children().children('.addOrganization').addClass('remove');
 			$('.organizationRoleID').addClass('changeSelect');
@@ -337,7 +337,7 @@
 
  function validateForm (){
  	myReturn=0;
- 	if (!validateRequired('titleText','<br />Name must be entered to continue.')) myReturn="1";
+ 	if (!validateRequired('titleText',"<br />"+_("Name must be entered to continue."))) myReturn="1";
 
 
 	//for verifying org and aliases
@@ -351,9 +351,9 @@
 	//check organizations fields
 	if (((orgID == '') || (orgID == null) || (roleID == '') || (roleID == null)) && ((roleID != '') || (orgID != ''))){
 		if ((orgName== '') || (orgName == null) || (typeID == '') || (typeID == null)){
-			$('#div_errorOrganization').html('Error - Both fields are required');
+			$('#div_errorOrganization').html(_("Error - Both fields are required"));
 		}else{
-			$('#div_errorOrganization').html('Error - Organization is not found.  Please use Autocomplete.');
+			$('#div_errorOrganization').html(_("Error - Organization is not found.  Please use Autocomplete."));
 		}
 
 		myReturn="1";
@@ -362,7 +362,7 @@
 
 	//check aliases
 	if (((aName == '') || (aName == null) || (typeID == '') || (typeID == null)) && ((aName != '') || (typeID != ''))){
-		$('#div_errorAlias').html('Error - Both fields are required');
+		$('#div_errorAlias').html(_("Error - Both fields are required"));
 		myReturn="1";
 
 	}
@@ -370,7 +370,7 @@
 	//check parent resource
 	//if there is no parent resource ID then this is an invalid name
 	if (($("#parentResourceID").val() == '') && ($("#parentResourceName").val() != '')){
-		$('#span_error_parentResourceName').html('<br />Error - Parent resource is not found.  Please use Autocomplete.');
+		$('#span_error_parentResourceName').html("<br />"+_("Error - Parent resource is not found.  Please use Autocomplete."));
 		myReturn="1";
 	}
 

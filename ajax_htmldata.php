@@ -2200,7 +2200,7 @@ switch ($_GET['action']) {
 					echo "<td>" . $instance['priv'] . "</td>";
 					echo "<td>" . $accountTab . "</td>";
 					echo "<td>" . $instance['emailAddress'] . "</td>";
-					echo "<td><a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $instance['loginID'] . "&height=275&width=315&modal=true' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit user")."'></a></td>";
+					echo "<td><a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $instance['loginID'] . "&height=275&width=315&modal=true' class='thickbox'><img src='images/edit.gif' alt=\""._("edit")."\" title=\""._("edit user")."\"></a></td>";
 					echo "<td><a href='javascript:deleteUser(\"" . $instance['loginID'] . "\")'><img src='images/cross.gif' alt='"._("remove")."' title='"._("remove")."'></a></td>";
 					echo "</tr>";
 				}
@@ -2571,7 +2571,7 @@ switch ($_GET['action']) {
 						if ($generalSubject->inUse($instance[lcfirst("GeneralSubject") . 'ID']) == 0) {
 							echo "<td><a href='javascript:deleteGeneralSubject(\"GeneralSubject\", " . $instance[lcfirst("GeneralSubject") . 'ID'] . ");'><img src='images/cross.gif' alt='"._("remove")."' title='"._("remove")."'></a></td>";
 						} else {
-							echo "<td><img src='images/do_not_enter.png' alt='subject in use' title='subject in use' /></td>";
+							echo "<td><img src='images/do_not_enter.png' alt='"._("subject in use")."' title='"._("subject in use")."' /></td>";
 						}
 
 					echo "</tr>";

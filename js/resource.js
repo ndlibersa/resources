@@ -113,7 +113,7 @@ var showArchivedContacts = 0;
 
 function updateProduct(){
 
-  $("#icon_product").html("<img src='images/littlecircle.gif'>");
+  $("#icon_product").html("<img src='images/littlecircle.gif' />");
   
   $.ajax({
 	 type:       "GET",
@@ -124,7 +124,7 @@ function updateProduct(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_product").html("<img src='images/butterflyfishicon.jpg'>");
+		$("#icon_product").html("<img src='images/butterflyfishicon.jpg' />");
 	 }
 
 
@@ -135,7 +135,7 @@ function updateProduct(){
 
 
 function updateAcquisitions(){
-  $("#icon_acquisitions").html("<img src='images/littlecircle.gif'>");
+  $("#icon_acquisitions").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
 	 type:       "GET",
@@ -146,7 +146,7 @@ function updateAcquisitions(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_acquisitions").html("<img src='images/acquisitions.gif'>");
+		$("#icon_acquisitions").html("<img src='images/acquisitions.gif' />");
 	 }
 
 
@@ -156,7 +156,7 @@ function updateAcquisitions(){
 
 
 function updateAccess(){
-  $("#icon_access").html("<img src='images/littlecircle.gif'>");
+  $("#icon_access").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
 	 type:       "GET",
@@ -167,7 +167,7 @@ function updateAccess(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_access").html("<img src='images/key.gif'>");
+		$("#icon_access").html("<img src='images/key.gif' />");
 	 }
 
 
@@ -179,7 +179,7 @@ function updateAccess(){
 
 
 function updateContacts(){
-  $("#icon_contacts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_contacts").html("<img src='images/littlecircle.gif' />");
   
   $.ajax({
 	 type:       "GET",
@@ -190,7 +190,7 @@ function updateContacts(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_contacts").html("<img src='images/contacts.gif'>");
+		$("#icon_contacts").html("<img src='images/contacts.gif' />");
 	 }
 
 
@@ -206,7 +206,7 @@ function updateArchivedContacts(showArchivedPassed){
   }
 
   
-  $("#div_archivedContactDetails").append("<img src='images/circle.gif'>  Refreshing Contents...");
+  $("#div_archivedContactDetails").append("<img src='images/circle.gif' />  "+_("Refreshing Contents..."));
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -225,7 +225,7 @@ function updateArchivedContacts(showArchivedPassed){
 
 
 function updateAccounts(){
-  $("#icon_accounts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -235,7 +235,7 @@ function updateAccounts(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_accounts").html("<img src='images/lock.gif'>");
+		$("#icon_accounts").html("<img src='images/lock.gif' />");
 	 }
 
 
@@ -245,7 +245,7 @@ function updateAccounts(){
 
 
 function updateAttachments(){
-  $("#icon_attachments").html("<img src='images/littlecircle.gif'>");
+  $("#icon_attachments").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -255,7 +255,7 @@ function updateAttachments(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_attachments").html("<img src='images/attachment.gif'>");
+		$("#icon_attachments").html("<img src='images/attachment.gif' />");
 	 }
 
 
@@ -272,9 +272,9 @@ function updateAttachmentsNumber(){
 	 data:       "action=getAttachmentsNumber&resourceID=" + $("#resourceID").val(),
 	 success:    function(remaining) {
 		if (remaining == "1"){
-			$(".span_AttachmentNumber").html("(" + remaining + " record)");
+			$(".span_AttachmentNumber").html("(" + remaining + _(" record)"));
 		}else{
-			$(".span_AttachmentNumber").html("(" + remaining + " records)");
+			$(".span_AttachmentNumber").html("(" + remaining + _(" records)"));
 		}
 	 }
  });
@@ -282,7 +282,7 @@ function updateAttachmentsNumber(){
  
 
 function updateRouting(){
-  $("#icon_routing").html("<img src='images/littlecircle.gif'>");
+  $("#icon_routing").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -292,7 +292,7 @@ function updateRouting(){
 		$(".div_mainContent").html(html);
 		tb_reinit();
 		bind_routing();
-		$("#icon_routing").html("<img src='images/routing.gif'>");
+		$("#icon_routing").html("<img src='images/routing.gif' />");
 	 }
 
 
@@ -301,7 +301,7 @@ function updateRouting(){
 } 
 
 function updateCataloging(){
-  $("#icon_accounts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "resources/cataloging.php",
@@ -311,7 +311,7 @@ function updateCataloging(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_cataloging").html("<img src='images/cataloging.gif'>");
+		$("#icon_cataloging").html("<img src='images/cataloging.gif' />");
 	 }
 
   });
@@ -320,7 +320,7 @@ function updateCataloging(){
 
 
 function updateRightPanel(){
-  $("#div_rightPanel").append("<img src='images/circle.gif'>  Refreshing Contents...");
+  $("#div_rightPanel").append("<img src='images/circle.gif'>  "+_("Refreshing Contents..."));
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -366,7 +366,7 @@ function bind_removes(){
 
 
    $(".removeContact").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this contact?") == true) {
+	  if (confirm(_("Do you really want to delete this contact?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -384,7 +384,7 @@ function bind_removes(){
    });
 
    $(".removeAccount").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this account?") == true) {
+	  if (confirm(_("Do you really want to delete this account?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -402,7 +402,7 @@ function bind_removes(){
 
 
    $(".removeAttachment").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this attachment?") == true) {
+	  if (confirm(_("Do you really want to delete this attachment?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -422,7 +422,7 @@ function bind_removes(){
 
 
    $(".removeResource").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this resource?") == true) {
+	  if (confirm(_("Do you really want to delete this resource?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -444,7 +444,7 @@ function bind_removes(){
 
    	  tabName = $(this).attr("tab");
 	  
-	  if (confirm("Do you really want to remove this Subject?") == true) {
+	  if (confirm(_("Do you really want to remove this Subject?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -462,7 +462,7 @@ function bind_removes(){
    
    	  tabName = $(this).attr("tab");
 
-	  if (confirm("Do you really want to delete this note?") == true) {
+	  if (confirm(_("Do you really want to delete this note?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -505,7 +505,7 @@ function bind_routing(){
 
 
    $(".restartWorkflow").unbind('click').click(function () {
-	  if (confirm("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?") == true) {
+	  if (confirm(_("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -522,7 +522,7 @@ function bind_routing(){
 
 
    $(".markResourceComplete").unbind('click').click(function () {
-	  if (confirm("Do you really want to mark this resource complete?  This action cannot be undone.") == true) {   
+	  if (confirm(_("Do you really want to mark this resource complete?  This action cannot be undone.")) == true) {   
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",

@@ -52,6 +52,19 @@ $coralURL = $util->getCORALURL();
 <script type="text/javascript" src="js/plugins/date.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.datePicker.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="js/plugins/Gettext.js"></script>
+<?php
+   if(isset($_COOKIE["lang"])){
+        if($_COOKIE["lang"]=='fr'){
+            echo "<link rel='gettext' type='application/x-po' href='./locale/fr_FR/LC_MESSAGES/messages.po'>";
+        }
+    }else{
+        $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+        if($defLang=='fr'){
+            echo "<link rel='gettext' type='application/x-po' href='./locale/fr_FR/LC_MESSAGES/messages.po'>";
+        }
+    } 
+?>
 <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
@@ -172,7 +185,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
         
         function setLanguage(lang) {
 			var wl = window.location, now = new Date(), time = now.getTime();
-            var cookievalid=86400000; // 1 jour (1000*60*60*24)
+            var cookievalid=86400000; // 1 day (1000*60*60*24)
             time += cookievalid;
 			now.setTime(time);
 			document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now;

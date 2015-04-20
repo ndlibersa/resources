@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-16 17:23+0100\n"
-"PO-Revision-Date: 2015-04-16 17:24+0100\n"
+"POT-Creation-Date: 2015-04-20 17:23+0100\n"
+"PO-Revision-Date: 2015-04-20 17:23+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: /var/www/Coral/resources/plugins\n"
 
 #: admin.php:51 ajax_htmldata.php:2175 ajax_htmldata.php:2468
 msgid "Users"
@@ -51,7 +52,7 @@ msgstr "Type d'alias"
 
 #: admin.php:61
 msgid "Attachment Type"
-msgstr "Type de fixation"
+msgstr "Type de pièce jointe"
 
 #: admin.php:62 index.php:496
 msgid "Authentication Type"
@@ -249,7 +250,9 @@ msgstr "ajouter ce payment"
 msgid "add payment"
 msgstr "ajouter un payment"
 
-#: ajax_forms.php:446 ajax_forms.php:1220
+#: ajax_forms.php:446 ajax_forms.php:1220 js/forms/acquisitionsForm.js:142
+#: js/forms/acquisitionsForm.js:143 js/forms/resourceNewForm.js:246
+#: js/forms/resourceNewForm.js:247
 msgid "remove this payment"
 msgstr "effacer ce payment"
 
@@ -321,7 +324,8 @@ msgstr "ajouter cet alias"
 msgid "add alias"
 msgstr "ajouter alias"
 
-#: ajax_forms.php:912
+#: ajax_forms.php:912 js/forms/resourceUpdateForm.js:223
+#: js/forms/resourceUpdateForm.js:224
 msgid "remove this alias"
 msgstr "effacer cet alias"
 
@@ -500,11 +504,11 @@ msgstr "Email enregistré:"
 
 #: ajax_forms.php:2098
 msgid "Edit Attachment"
-msgstr "Modifier la fixation"
+msgstr "Modifier la pièce jointe"
 
 #: ajax_forms.php:2098
 msgid "Add Attachment"
-msgstr "Ajouter fixation"
+msgstr "Ajouter pièce jointe"
 
 #: ajax_forms.php:2137
 msgid "File:"
@@ -620,7 +624,8 @@ msgstr "Parent étape"
 msgid "add step"
 msgstr "ajouter une étape"
 
-#: ajax_forms.php:2851
+#: ajax_forms.php:2851 js/forms/workflowForm.js:201
+#: js/forms/workflowForm.js:202
 msgid "remove this step"
 msgstr "effacer cet étape"
 
@@ -652,7 +657,8 @@ msgstr "Utilisateurs asignés"
 msgid "add user"
 msgstr "Ajouter un utilisateur"
 
-#: ajax_forms.php:3019
+#: ajax_forms.php:3019 js/forms/generalDetailSubjectForm.js:135
+#: js/forms/userGroupForm.js:117
 msgid "remove user from group"
 msgstr "Supprimer un utilisateur du groupe"
 
@@ -671,13 +677,13 @@ msgstr "Sujet détaillé"
 
 #: ajax_forms.php:3242
 msgid "add detail subject"
-msgstr "Ajouter detail du sujet"
+msgstr "Ajouter sujet détaillé"
 
 #: ajax_forms.php:3272
 msgid "remove detailed subject"
 msgstr "Supprimer le sujet détaillé"
 
-#: ajax_forms.php:3274 ajax_htmldata.php:2615
+#: ajax_forms.php:3274 ajax_htmldata.php:2574 ajax_htmldata.php:2615
 msgid "subject in use"
 msgstr "Sujet en utilisation"
 
@@ -990,23 +996,23 @@ msgstr "Pas des comptes disponibles"
 
 #: ajax_htmldata.php:1350
 msgid "view attachment"
-msgstr "Regarder la fixation"
+msgstr "Regarder la pièce jointe"
 
 #: ajax_htmldata.php:1355
 msgid "edit attachment"
-msgstr "Modifier la fixation"
+msgstr "Modifier la pièce jointe"
 
 #: ajax_htmldata.php:1355
 msgid "remove this attachment"
-msgstr "suopprimer cette fixation"
+msgstr "Supprimer cette pièce jointe"
 
 #: ajax_htmldata.php:1387
 msgid "No attachments available"
-msgstr "Pas des fixations disponibles."
+msgstr "Pas des pièces jointes disponibles."
 
 #: ajax_htmldata.php:1392
 msgid "add new attachment"
-msgstr "Ajouter une nouvelle fixation"
+msgstr "Ajouter une nouvelle pièce jointe"
 
 #: ajax_htmldata.php:1416
 msgid ""
@@ -1198,7 +1204,7 @@ msgstr "Ajouter un nouveau utilisateur"
 
 #: ajax_htmldata.php:2264
 msgid "add new currency"
-msgstr "Ajouter une vouvelle concurrence"
+msgstr "Ajouter une nouvelle concurrence"
 
 #: ajax_htmldata.php:2286 ajax_htmldata.php:2518 ajax_htmldata.php:2559
 #: ajax_htmldata.php:2601
@@ -1233,7 +1239,7 @@ msgstr ""
 
 #: ajax_htmldata.php:2460
 msgid "User Group Setup"
-msgstr "Configuration de groupe d'utilisateur"
+msgstr "Configuration du groupe d'utilisateur"
 
 #: ajax_htmldata.php:2466
 msgid "Group Name"
@@ -1270,7 +1276,7 @@ msgstr "Il y avait un problème pour enregistrer votre fichier sur "
 #: ajax_processing.php:721
 msgid "Please ensure your attachments directory is writable."
 msgstr ""
-"S'il vous plaît, verifiez que votre dossier de attachement a des droits "
+"S'il vous plaît, verifiez que votre dossier des pièces jointes a des droits "
 "d'écriture."
 
 #: ajax_processing.php:740
@@ -1304,7 +1310,7 @@ msgstr "Il y a un doublon "
 msgid " exists."
 msgstr " existant."
 
-#: index.php:26 templates/header.php:98
+#: index.php:26 templates/header.php:111
 msgid "Home"
 msgstr "Accueil"
 
@@ -1350,7 +1356,7 @@ msgstr "ID d'enregistrement"
 msgid "Starts with"
 msgstr "Commence avec"
 
-#: index.php:339
+#: index.php:339 js/index.js:278
 msgid "more options..."
 msgstr "plus des options..."
 
@@ -1370,7 +1376,7 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: queue.php:22 queue.php:40 templates/header.php:100
+#: queue.php:22 queue.php:40 templates/header.php:113
 msgid "My Queue"
 msgstr "Ma liste"
 
@@ -1510,7 +1516,7 @@ msgstr "URL:"
 msgid "Additional Cataloging Notes"
 msgstr "Notes additionales du catalogue"
 
-#: templates/header.php:58
+#: templates/header.php:71
 msgid ""
 "JavaScript must be enabled in order for you to use CORAL. However, it seems "
 "JavaScript is either disabled or not supported by your browser. To use "
@@ -1521,35 +1527,35 @@ msgstr ""
 "utiliser CORAL, activez JavaScript en modifiant la configuration de votre "
 "navigateur, après "
 
-#: templates/header.php:58
+#: templates/header.php:71
 msgid "try again"
 msgstr "réessayez"
 
-#: templates/header.php:77
+#: templates/header.php:90
 msgid "Hello, "
 msgstr "Bonjour, "
 
-#: templates/header.php:87
+#: templates/header.php:100
 msgid "logout"
 msgstr "Se déconnecter"
 
-#: templates/header.php:99
+#: templates/header.php:112
 msgid "New Resource"
 msgstr "Nouvelle ressource"
 
-#: templates/header.php:101
+#: templates/header.php:114
 msgid "Admin"
 msgstr "Administrateur"
 
-#: templates/header.php:117
+#: templates/header.php:130
 msgid "Change Module"
 msgstr "Changer le module"
 
-#: templates/header.php:147 templates/header.php:148
+#: templates/header.php:160 templates/header.php:161
 msgid "French"
 msgstr "Français"
 
-#: templates/header.php:147 templates/header.php:148
+#: templates/header.php:160 templates/header.php:161
 msgid "English"
 msgstr "Anglais"
 
@@ -1560,6 +1566,249 @@ msgid ""
 msgstr ""
 "La connexion ne marche pas. Vérifiez le fichier .htaccess et "
 "remoteAuthVariableName specifié en /admin/configuration.ini"
+
+#: js/admin.js:301
+msgid "Number of days must be a number"
+msgstr "Le nombre de jours doit être un nombre"
+
+#: js/admin.js:304
+msgid "Number of days should be between 1 and 365"
+msgstr "Le nombre de jours doit être entre 1 et 365"
+
+#: js/admin.js:325
+msgid "Do you really want to delete this data?"
+msgstr "Voulez-vous vraiment supprimer cette donnée?"
+
+#: js/admin.js:352 js/admin.js:380 js/admin.js:408 js/admin.js:497
+msgid "Do you really want to remove this data?"
+msgstr "Voulez-vous vraiment enlever cette donnée?"
+
+#: js/admin.js:438
+msgid "Do you really want to delete this user?"
+msgstr "Voulez-vous vraiment supprimer cet utilisateur?"
+
+#: js/admin.js:468
+msgid "Do you really want to remove this alert setting?"
+msgstr "Voulez-vous vraiment effacer cette configuration d'alerte?"
+
+#: js/admin.js:527
+msgid "Do you really want to delete this currency?"
+msgstr "Voulez-vous vraiment supprimer cette devise?"
+
+#: js/common.js:113
+msgid "No match!"
+msgstr "Pas des coincidences!"
+
+#: js/common.js:113
+msgid "Selected: "
+msgstr "Sélectionné: "
+
+#: js/forms/acquisitionsForm.js:118
+msgid "Error - Either amount or fund is required"
+msgstr "Erreur, les deux cantitées ou fonds sont réquises"
+
+#: js/forms/acquisitionsForm.js:121 js/forms/acquisitionsForm.js:248
+#: js/forms/resourceNewForm.js:225 js/forms/resourceNewForm.js:295
+msgid "Error - order type is a required field"
+msgstr "Erreur - le type d'ordre est un champ réquise"
+
+#: js/forms/acquisitionsForm.js:124 js/forms/acquisitionsForm.js:254
+#: js/forms/resourceNewForm.js:228 js/forms/resourceNewForm.js:300
+msgid "Error - price is not numeric"
+msgstr "Erreur: le price n'est pas numérique"
+
+#: js/forms/acquisitionsForm.js:242 js/forms/resourceNewForm.js:222
+#: js/forms/resourceNewForm.js:290
+msgid "Error - Either price or fund is required"
+msgstr "Erreur, les deux prices ou fonds sont réquises"
+
+#: js/forms/attachmentForm.js:94
+msgid "File name is already being used..."
+msgstr "Le nom du fichier est en use..."
+
+#: js/forms/attachmentForm.js:98
+msgid ""
+"File name may not contain special characters - ampersand, single quote, "
+"double quote or less than/greater than characters"
+msgstr ""
+"Le nom du fichier ne peut pas contenir des caractères spéciaux -  "
+"esperluètte, apostrophe, guillemet ou moins que / plus que."
+
+#: js/forms/attachmentForm.js:102
+msgid "The attachments directory is not writable."
+msgstr "Le dossier des pièces jointes n'a pas des droits d'écriture."
+
+#: js/forms/attachmentForm.js:124 js/forms/attachmentForm.js:146
+msgid " successfully uploaded."
+msgstr " téléchargé avec succès."
+
+#: js/forms/attachmentForm.js:159 js/forms/resourceUpdateForm.js:340
+msgid "Name must be entered to continue."
+msgstr "Le nom doit être écrit avant de continuer."
+
+#: js/forms/attachmentForm.js:160
+msgid "Attachment Type must be selected to continue."
+msgstr "Le type de pièce jointe doit être sélectionné avant de continuer."
+
+#: js/forms/attachmentForm.js:178
+msgid "A file must be uploaded"
+msgstr "Le fichier doit être téléchargé"
+
+#: js/forms/contactForm.js:179
+msgid "Please choose at least one role."
+msgstr "S'il vous plaît, choisissez au moins un rôle."
+
+#: js/forms/detailedSubjectForm.js:60 js/forms/generalSubjectForm.js:59
+msgid "Error - Please enter a value"
+msgstr "Erreur - S'il vous plaît, tappez un valeur"
+
+#: js/forms/generalDetailSubjectForm.js:87
+msgid "Error - Detailed Subject is required"
+msgstr "Erreur - Le sujet détaillé est nécessaire"
+
+#: js/forms/generalDetailSubjectForm.js:108
+#: js/forms/generalDetailSubjectForm.js:109
+msgid "Error - Detail Subject Already Added"
+msgstr "Erreur - Le sujet détaillé est déjà ajouté"
+
+#: js/forms/generalDetailSubjectForm.js:136 js/forms/userGroupForm.js:118
+msgid "remove from group"
+msgstr "Supprimer du groupe"
+
+#: js/forms/generalDetailSubjectForm.js:181
+msgid "Short Name must be entered to continue."
+msgstr "Un petit nom doit être tappé pour continuer."
+
+#: js/forms/licenseForm.js:140 js/forms/licenseForm.js:256
+msgid "Error - Please choose a valid license"
+msgstr "Erreur - S'il vous plaît, choisissez une licence valide"
+
+#: js/forms/licenseForm.js:155 js/forms/licenseForm.js:156
+msgid "remove this license"
+msgstr "Effacer cette licence"
+
+#: js/forms/resourceNewForm.js:99
+msgid "Warning: this name already exists."
+msgstr "Attention: le nom est déjà existant."
+
+#: js/forms/resourceNewForm.js:282
+msgid "Title must be entered to continue."
+msgstr "Le titre doit être écrit avant de continuer."
+
+#: js/forms/resourceNoteForm.js:34
+msgid "Note must be entered to continue."
+msgstr "Le nom de la note doit être écrit avant de continuer."
+
+#: js/forms/resourceUpdateForm.js:88
+msgid "Error - Parent cannot be the same as the child"
+msgstr "Erreur - Le père ne peut pas être pareil comme l'enfant"
+
+#: js/forms/resourceUpdateForm.js:208 js/forms/resourceUpdateForm.js:258
+#: js/forms/resourceUpdateForm.js:354 js/forms/resourceUpdateForm.js:365
+msgid "Error - Both fields are required"
+msgstr "Erreur, Les deux champs sont exigés"
+
+#: js/forms/resourceUpdateForm.js:260
+msgid "Error - Organization is not found.  Please use the Autocomplete."
+msgstr ""
+"Erreur - L'organisation n'est pas trouvé. S'il vous plaît, utilisez "
+"l'autocomplete."
+
+#: js/forms/resourceUpdateForm.js:277 js/forms/resourceUpdateForm.js:278
+msgid "remove this organization"
+msgstr "Supprimer cette organisation"
+
+#: js/forms/resourceUpdateForm.js:356
+msgid "Error - Organization is not found.  Please use Autocomplete."
+msgstr ""
+"Erreur - L'organisation n'est pas trouvé. S'il vous plaît, utilisez "
+"l'autocomplete."
+
+#: js/forms/resourceUpdateForm.js:373
+msgid "Error - Parent resource is not found.  Please use Autocomplete."
+msgstr ""
+"Erreur - Le ressource père n'est pas trouvé. S'il vous plaît, utilisez "
+"l'autocomplete."
+
+#: js/forms/userGroupForm.js:101
+msgid "Error - User is required"
+msgstr "Erreur, un utilisateur est nécessaire pour cette action"
+
+#: js/forms/userGroupForm.js:163
+msgid "Group name must be entered to continue."
+msgstr "Le nom du groupe doit être écrit avant de continuer."
+
+#: js/forms/workflowForm.js:185
+msgid "Error - Step name is required"
+msgstr "Erreur, Le nom de l'étape est nécessaire"
+
+#: js/forms/workflowForm.js:373
+msgid "Please add at least one step to this workflow."
+msgstr "S'il vous plaît, ajoutez au moins une étape à ce workflow."
+
+#: js/forms/workflowForm.js:379
+msgid ""
+"Please click the Add button to the first step before submitting this "
+"workflow."
+msgstr ""
+"S'il vous plaît, cliquez sur le button Ajouter pour cette étape avant de "
+"valider ce workflow."
+
+#: js/index.js:154
+msgid "Processing..."
+msgstr "En traitement..."
+
+#: js/resource.js:209 js/resource.js:323
+msgid "Refreshing Contents..."
+msgstr "Rechargements des contenus..."
+
+#: js/resource.js:275
+msgid " record)"
+msgstr " registre)"
+
+#: js/resource.js:277
+msgid " records)"
+msgstr " registres)"
+
+#: js/resource.js:369
+msgid "Do you really want to delete this contact?"
+msgstr "Voulez-vous vraiment supprimer cette contact?"
+
+#: js/resource.js:387
+msgid "Do you really want to delete this account?"
+msgstr "Voulez-vous vraiment supprimer cette compte?"
+
+#: js/resource.js:405
+msgid "Do you really want to delete this attachment?"
+msgstr "Voulez-vous vraiment supprimer cette pièce jointe?"
+
+#: js/resource.js:425
+msgid "Do you really want to delete this resource?"
+msgstr "Voulez-vous vraiment supprimer ce ressource?"
+
+#: js/resource.js:447
+msgid "Do you really want to remove this Subject?"
+msgstr "Voulez-vous vraiment enlever ce sujet?"
+
+#: js/resource.js:465
+msgid "Do you really want to delete this note?"
+msgstr "Voulez-vous vraiment supprimer cette note?"
+
+#: js/resource.js:508
+msgid ""
+"Warning!  You are about to remove any steps that have been started and "
+"completed.  Are you sure you wish to continue?"
+msgstr ""
+"Attention! Vous êtes sur le point d'effacer quelques étapes qui ont été "
+"commencés et complétés. Etes-vous sûrs que vous voulez continuer?"
+
+#: js/resource.js:525
+msgid ""
+"Do you really want to mark this resource complete?  This action cannot be "
+"undone."
+msgstr ""
+"Êtes-vous sûrs de marquer ce ressource comme complète? Cette action ne peut "
+"pas être annulée."
 
 #, fuzzy
 #~ msgid "CatalogingType"

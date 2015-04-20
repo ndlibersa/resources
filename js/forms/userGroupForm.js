@@ -98,7 +98,7 @@ $(document).ready(function(){
 		var loginID = $('.newUserTable').children().children().children().children('.loginID').val();
 						
 		if ((loginID == '') || (loginID == null)){
-			$('#div_errorUser').html('Error - User is required');
+			$('#div_errorUser').html(_("Error - User is required"));
 			return false;
 			
 		}else{
@@ -114,8 +114,8 @@ $(document).ready(function(){
 
 			$('.newUserTR').children().children().children('.addUser').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove user from group',
-			  title: 'remove from group'
+			  alt: _("remove user from group"),
+			  title: _("remove from group")
 			});
 			
 			$('.newUserTR').children().children().children('.addUser').addClass('remove');
@@ -160,7 +160,7 @@ $(document).ready(function(){
 
  function validateUserGroup(){
  	myReturn=0;
- 	if (!validateRequired('groupName','<br />Group name must be entered to continue.<br />')) myReturn="1";
+ 	if (!validateRequired('groupName',"<br />"+_("Group name must be entered to continue.")+"<br />")) myReturn="1";
 	
  	 
  	if (myReturn == "1"){

@@ -17,39 +17,11 @@
 **************************************************************************************************************************
 */
 
-class Organization extends DatabaseObject {
+class IsbnOrIssn extends DatabaseObject {
 
-	protected function defineRelationships() {}
+	protected function defineIsbnOrIssn() {}
 
 	protected function overridePrimaryKeyName() {}
-
-
-
-
-	//returns number of children for this particular contact role
-	public function getNumberOfChildren(){
-
-		$query = "SELECT count(*) childCount FROM ResourceOrganizationLink WHERE organizationID = '" . $this->organizationID . "';";
-
-		$result = $this->db->processQuery($query, 'assoc');
-
-		return $result['childCount'];
-
-	}
-
-  public function alreadyExists($shortName) {
-		$query = "SELECT count(*) orgcount FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
-		$result = $this->db->processQuery($query, 'assoc');
-		return $result['orgcount'];
-  }
-
-  public function getOrganizationIDByName($shortName) {
-    $query = "SELECT organizationID FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
-		$result = $this->db->processQuery($query, 'assoc');
-		return $result['organizationID'];
-  }
-
-
 
 
 }

@@ -20,10 +20,17 @@
 		$resourceTypeObj = new ResourceType();
 		$resourceTypeArray = $resourceTypeObj->allAsArray();
 
-		//only returns one - ResourceRelationship object
-		$resourceRelationship = new ResourceRelationship();
-		$resourceRelationship = $resource->getParentResource();
-		$parentResource = new Resource(new NamedArguments(array('primaryKey' => $resourceRelationship->relatedResourceID)));
+    //get parents resources
+    $sanitizedInstance = array();
+    $instance = new Resource();
+    $parentResourceArray = array();
+    foreach ($resource->getParentResources() as $instance) {
+      foreach (array_keys($instance->attributeNames) as $attributeName) {
+        $sanitizedInstance[$attributeName] = $instance->$attributeName;
+      }
+      $sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+      array_push($parentResourceArray, $sanitizedInstance);
+    }
 
 		//get all alias types for output in drop down
 		$aliasTypeArray = array();
@@ -108,18 +115,54 @@
 
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Parent:</label></td>
+          <td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Parents:</label></td>
 					<td>
 
-					<input type='text' id='parentResourceName' name='parentResourceName' value = '<?php echo $parentResource->titleText; ?>' style='width:180px;' class='changeInput' /><span id='span_error_parentResourceName' class='smallDarkRedText'></span></td>
-					<input type='hidden' id='parentResourceID' name='parentResourceID' value = '<?php echo $resourceRelationship->relatedResourceID; ?>' />
-
+           <span id="newParent">
+           <div class="oneParent">
+           <input type='text' class='parentResource parentResource_new' name='parentResourceName' value='' style='width:140px;' class='changeInput'  /><input type='hidden' class='parentResource parentResource_new' name='parentResourceID' value='' /><span id='span_error_parentResourceName' class='smallDarkRedText'></span>
+           <a href='#'><img src='images/add.gif' class='addParent' alt='add Parent resource' title='add Parent Resource'></a><br />
+          </div>
+           </span>
+           <hr />
+          <span id="existingParent"> 
+          <?php
+           $i = 1;
+           foreach ($parentResourceArray as $parentResource) {
+$parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
+             ?>
+              <div class="oneParent">
+              <input type='text' name='parentResourceName' disabled='disabled' value = '<?php echo $parentResourceObj->titleText; ?>' style='width:180px;' class='changeInput'  />
+              <input type='hidden' name='parentResourceID' value = '<?php echo $parentResourceObj->resourceID; ?>' />
+              <a href='javascript:void();'><img src='images/cross.gif' alt='remove parent' title='remove parent' class='removeParent' /></a>
+            </div>
+<?php
+             $i++;
+           }
+          ?>
+          </span> 
 					</td>
 					</tr>
 
 					<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='isbnOrISSN'>ISSN / ISBN:</label></td>
-					<td><input type='text' id='isbnOrISSN' name='isbnOrISSN' value = '<?php echo $resource->isbnOrISSN; ?>' style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span></td>
+<td>
+          <span id="newIsbn">
+           <input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
+           <a href='javascript:void();'><img src='images/add.gif' class='addIsbn' alt='add Isbn' title='add Isbn'></a><br />
+           <hr /><br />
+           </span>
+           <span id="existingIsbn">
+          <?php
+           $isbnOrIssns = $resource->getIsbnOrIssn();
+           $i = 1;
+           foreach ($isbnOrIssns as $isbnOrIssn) {
+             ?><input type='text' class='isbnOrISSN' name='isbnOrISSN' value = '<?php echo $isbnOrIssn->isbnOrIssn; ?>' style='width:97px;' class='changeInput'  /><br /><?php
+             $i++;
+           }
+          ?>
+          </span>
+          </td>
 					</tr>
 
 

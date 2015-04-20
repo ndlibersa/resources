@@ -84,7 +84,9 @@ $coralURL = $util->getCORALURL();
 
 ?>
 </span>
-<br /><?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>logout</a>"; } ?>
+<br />
+<?php
+if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>logout</a>"; } ?>
 <?php if ($config->settings->testMode == 'Y') { ?>
   <br><span style="color:red;font-size:90%;">(Test)</span>
 <?php } ?>
@@ -98,6 +100,7 @@ $coralURL = $util->getCORALURL();
 <a href='index.php'><span class="menubtn<?php if ($currentPage == 'index.php') { echo " active"; } ?>" id="firstmenubtn">Home</span></a><?php if ($user->isAdmin() || $user->canEdit()){ ?>
 <a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><span class="menubtn">New Resource</span></a><!--
 --><a href='queue.php'><span class="menubtn<?php if ($currentPage == 'queue.php') { echo " active"; } ?>">My Queue</span></a><!--
+--><a href='import.php'><span class="menubtn<?php if ($currentPage == 'import.php') { echo " active"; } ?>">Import</span></a><!--
 --><?php if ($user->isAdmin()) { ?><a href='admin.php'><span class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn">Admin</span></a><?php } ?>
 <?php } ?>
 

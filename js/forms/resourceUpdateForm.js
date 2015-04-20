@@ -373,12 +373,6 @@
 	});
 
 
-
-  	 
- });
-
-
-
  function validateForm (){
  	myReturn=0;
  	if (!validateRequired('titleText','<br />Name must be entered to continue.')) myReturn="1";

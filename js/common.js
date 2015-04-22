@@ -14,17 +14,17 @@
 **
 **************************************************************************************************************************
 */
-function getCookie(clave){
+function getCookie(keyCo){
     var valCookie= ""; 
-    var buscar= clave + "="; 
+    var search= keyCo + "="; 
     if(document.cookie.length > 0) { 
-        pos=document.cookie.indexOf(buscar); 
+        pos=document.cookie.indexOf(search); 
         if (pos != -1) {
-            pos += buscar.length; 
-            fin= document.cookie.indexOf(";", pos); 
-            if (fin == -1) 
-                fin= document.cookie.length; 
-            valCookie= unescape(document.cookie.substring(pos,fin)) 
+            pos += search.length; 
+            end= document.cookie.indexOf(";", pos); 
+            if (end == -1) 
+                end= document.cookie.length; 
+            valCookie= unescape(document.cookie.substring(pos,end)) 
         }
     } 
     return valCookie; 

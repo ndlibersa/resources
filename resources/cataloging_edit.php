@@ -33,13 +33,13 @@ $catalogingType = new CatalogingType();
 	<td style="width:400px;">
 		<table>
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('recordSetIdentifier', 'Identifier'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('recordSetIdentifier', _('Identifier')); ?></td>
 		<td><?php echo Html::text_field('recordSetIdentifier', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
 
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('bibSourceURL', 'Source URL'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('bibSourceURL', _('Source URL')); ?></td>
 		<td><?php echo Html::text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>

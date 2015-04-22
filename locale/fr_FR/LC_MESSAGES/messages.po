@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-20 17:23+0100\n"
-"PO-Revision-Date: 2015-04-20 17:23+0100\n"
+"POT-Creation-Date: 2015-04-22 10:29+0100\n"
+"PO-Revision-Date: 2015-04-22 10:29+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -244,17 +244,17 @@ msgstr "Type:"
 
 #: ajax_forms.php:382 ajax_forms.php:1157
 msgid "add this payment"
-msgstr "ajouter ce payment"
+msgstr "Ajouter ce payment"
 
 #: ajax_forms.php:382 ajax_forms.php:1157
 msgid "add payment"
-msgstr "ajouter un payment"
+msgstr "Ajouter un payment"
 
 #: ajax_forms.php:446 ajax_forms.php:1220 js/forms/acquisitionsForm.js:142
 #: js/forms/acquisitionsForm.js:143 js/forms/resourceNewForm.js:246
 #: js/forms/resourceNewForm.js:247
 msgid "remove this payment"
-msgstr "effacer ce payment"
+msgstr "Effacer ce payment"
 
 #: ajax_forms.php:512
 msgid "Notes"
@@ -302,7 +302,7 @@ msgstr "Supprimer une organisation"
 
 #: ajax_forms.php:818 ajax_forms.php:1417
 msgid "remove "
-msgstr "supprimer "
+msgstr "Supprimer "
 
 #: ajax_forms.php:818
 msgid " organization"
@@ -318,20 +318,20 @@ msgstr "Alias:"
 
 #: ajax_forms.php:871
 msgid "add this alias"
-msgstr "ajouter cet alias"
+msgstr "Ajouter cet alias"
 
 #: ajax_forms.php:871
 msgid "add alias"
-msgstr "ajouter alias"
+msgstr "Ajouter alias"
 
 #: ajax_forms.php:912 js/forms/resourceUpdateForm.js:223
 #: js/forms/resourceUpdateForm.js:224
 msgid "remove this alias"
-msgstr "effacer cet alias"
+msgstr "Effacer cet alias"
 
 #: ajax_forms.php:1029
 msgid "Edit Acquisitions Information"
-msgstr "modifier l'information des acquisitions"
+msgstr "Modifier l'information des acquisitions"
 
 #: ajax_forms.php:1038 ajax_htmldata.php:547 summary.php:414
 msgid "Order"
@@ -376,11 +376,11 @@ msgstr "Licences entregistrées"
 
 #: ajax_forms.php:1390
 msgid "add license"
-msgstr "ajouter une licence"
+msgstr "Ajouter une licence"
 
 #: ajax_forms.php:1417
 msgid "remove license link"
-msgstr "supprimer lien de la licence"
+msgstr "Supprimer le lien de la licence"
 
 #: ajax_forms.php:1417
 msgid " license"
@@ -622,12 +622,12 @@ msgstr "Parent étape"
 
 #: ajax_forms.php:2768
 msgid "add step"
-msgstr "ajouter une étape"
+msgstr "Ajouter une étape"
 
 #: ajax_forms.php:2851 js/forms/workflowForm.js:201
 #: js/forms/workflowForm.js:202
 msgid "remove this step"
-msgstr "effacer cet étape"
+msgstr "Effacer cet étape"
 
 #: ajax_forms.php:2915
 msgid "Edit User Group"
@@ -701,7 +701,7 @@ msgstr "Détail du nom de sujet"
 
 #: ajax_forms.php:3338 ajax_forms.php:3345
 msgid "add"
-msgstr "ajouter"
+msgstr "Ajouter"
 
 #: ajax_forms.php:3356 ajax_htmldata.php:2214 ajax_htmldata.php:2261
 #: ajax_htmldata.php:2305 ajax_htmldata.php:2353 ajax_htmldata.php:2383
@@ -727,7 +727,7 @@ msgstr " ne pas etabli!"
 #: ajax_htmldata.php:2527 ajax_htmldata.php:2568 ajax_htmldata.php:2610
 #: ajax_htmldata.php:2659
 msgid "edit"
-msgstr "modifier"
+msgstr "Modifier"
 
 #: ajax_htmldata.php:95 ajax_htmldata.php:660 ajax_htmldata.php:821
 msgid "edit resource"
@@ -791,7 +791,7 @@ msgstr "Ressource URL secondaire de visite"
 
 #: ajax_htmldata.php:298
 msgid "edit product details"
-msgstr "modifier les détails du produit"
+msgstr "Modifier les détails du produit"
 
 #: ajax_htmldata.php:365
 msgid "remove subject"
@@ -815,7 +815,7 @@ msgstr "ajouter une note"
 #: ajax_htmldata.php:444 ajax_htmldata.php:763 ajax_htmldata.php:956
 #: resources/cataloging.php:220
 msgid "edit note"
-msgstr "modifier une note"
+msgstr "Modifier une note"
 
 #: ajax_htmldata.php:444 ajax_htmldata.php:763 ajax_htmldata.php:956
 #: ajax_htmldata.php:1044 resources/cataloging.php:220
@@ -824,7 +824,7 @@ msgstr "effacer une note"
 
 #: ajax_htmldata.php:550 resources/cataloging.php:106
 msgid "edit order information"
-msgstr "modifier l'order de l'information"
+msgstr "Modifier l'order de l'information"
 
 #: ajax_htmldata.php:586
 msgid "Purchasing Sites:"
@@ -840,7 +840,7 @@ msgstr "L'information du payment n'est pas disponible."
 
 #: ajax_htmldata.php:648
 msgid "edit acquisitions information"
-msgstr "modifier l'information des acquisitions"
+msgstr "Modifier l'information des acquisitions"
 
 #: ajax_htmldata.php:658 summary.php:503
 msgid "License"
@@ -896,7 +896,7 @@ msgstr "Pas d'information d'accès disponible."
 
 #: ajax_htmldata.php:902
 msgid "edit access information"
-msgstr "modifier l'accès à l'information"
+msgstr "Modifier l'accès à l'information"
 
 #: ajax_htmldata.php:998
 msgid "The following are archived contacts:"
@@ -952,11 +952,11 @@ msgstr " contact(s) archivée(s) disponible(s)."
 
 #: ajax_htmldata.php:1180
 msgid "show archived contacts"
-msgstr "montrer les contacts archivées"
+msgstr "Montrer les contacts archivées"
 
 #: ajax_htmldata.php:1184
 msgid "hide archived contacts"
-msgstr "cacher les contacts archivées"
+msgstr "Cacher les contacts archivées"
 
 #: ajax_htmldata.php:1211
 msgid "No Resource Specific Accounts"
@@ -964,7 +964,7 @@ msgstr "Il n'y a pas une ressource spécifié par les comptes"
 
 #: ajax_htmldata.php:1215 ajax_htmldata.php:1312
 msgid "add new account"
-msgstr "ajouter une nouvelle compte"
+msgstr "Ajouter une nouvelle compte"
 
 #: ajax_htmldata.php:1237
 msgid "edit account"
@@ -1051,7 +1051,7 @@ msgstr "Complète"
 
 #: ajax_htmldata.php:1458
 msgid "mark complete"
-msgstr "marquer comme complète"
+msgstr "Marquer comme complète"
 
 #: ajax_htmldata.php:1480 ajax_htmldata.php:1482
 msgid "Workflow completed on "
@@ -1067,7 +1067,7 @@ msgstr "Redémarrer le workflow"
 
 #: ajax_htmldata.php:1499
 msgid "mark entire workflow complete"
-msgstr "marquer tout le workflow comme complète"
+msgstr "Marquer tout le workflow comme complète"
 
 #: ajax_htmldata.php:1587
 msgid "Print View"
@@ -1125,11 +1125,11 @@ msgstr "Statut"
 
 #: ajax_htmldata.php:1729
 msgid "edit request"
-msgstr "modifier la requête"
+msgstr "Modifier la requête"
 
 #: ajax_htmldata.php:1730
 msgid "remove request"
-msgstr "supprimer la requête"
+msgstr "Supprimer la requête"
 
 #: ajax_htmldata.php:1755 queue.php:53
 msgid "Submitted Requests"
@@ -1173,7 +1173,7 @@ msgstr " ressources enregistrées"
 
 #: ajax_htmldata.php:2028
 msgid "next page"
-msgstr "page suivante"
+msgstr "Page suivante"
 
 #: ajax_htmldata.php:2044 index.php:154
 msgid "Creator"
@@ -1181,7 +1181,7 @@ msgstr "Créateur"
 
 #: ajax_htmldata.php:2091
 msgid "previous page"
-msgstr "page précédente"
+msgstr "Page précédente"
 
 #: ajax_htmldata.php:2142
 msgid "records per page"
@@ -1196,7 +1196,7 @@ msgstr "Modifier l'utilisateur"
 #: ajax_htmldata.php:2485 ajax_htmldata.php:2528 ajax_htmldata.php:2572
 #: ajax_htmldata.php:2613
 msgid "remove"
-msgstr "supprimer"
+msgstr "Supprimer"
 
 #: ajax_htmldata.php:2210 ajax_htmldata.php:2214
 msgid "add new user"
@@ -1213,7 +1213,7 @@ msgstr "Valeur"
 
 #: ajax_htmldata.php:2308 ajax_htmldata.php:2540 ajax_htmldata.php:2628
 msgid "add new "
-msgstr "ajouter un nouveau  "
+msgstr "Ajouter un nouveau  "
 
 #: ajax_htmldata.php:2356
 msgid "add email address"
@@ -1225,7 +1225,7 @@ msgstr "Jours à l'avance de expiration"
 
 #: ajax_htmldata.php:2389
 msgid "add days"
-msgstr "ajouter jours"
+msgstr "Ajouter jours"
 
 #: ajax_htmldata.php:2404
 msgid "Workflow Setup"
@@ -1438,7 +1438,7 @@ msgstr "Le catalogue d'information n'est pas disponible."
 
 #: resources/cataloging.php:165
 msgid "edit cataloging details"
-msgstr "modifier les détails du catalogage"
+msgstr "Modifier les détails du catalogage"
 
 #: resources/cataloging_edit.php:15
 msgid "Edit Cataloging"
@@ -1447,6 +1447,14 @@ msgstr "Modifier le catalogage"
 #: resources/cataloging_edit.php:24
 msgid "Record Set"
 msgstr "Jeu d'enregistrement"
+
+#: resources/cataloging_edit.php:36
+msgid "Identifier"
+msgstr "Identifiant"
+
+#: resources/cataloging_edit.php:42
+msgid "Source URL"
+msgstr "Source URL:"
 
 #: resources/cataloging_edit.php:68
 msgid "# Records Available"
@@ -1758,17 +1766,25 @@ msgstr ""
 msgid "Processing..."
 msgstr "En traitement..."
 
-#: js/resource.js:209 js/resource.js:323
-msgid "Refreshing Contents..."
-msgstr "Rechargements des contenus..."
+#: js/queue.js:55 js/queue.js:89 js/queue.js:123 js/queue.js:155
+msgid "Refreshing..."
+msgstr "Rechargement..."
 
-#: js/resource.js:275
+#: js/queue.js:153
+msgid "Do you really want to delete this request?"
+msgstr "Voulez-vous vraiment supprimer cete rêquete?"
+
+#: js/queue.js:193 js/queue.js:214 js/queue.js:235 js/resource.js:275
 msgid " record)"
 msgstr " registre)"
 
-#: js/resource.js:277
+#: js/queue.js:195 js/queue.js:216 js/queue.js:237 js/resource.js:277
 msgid " records)"
 msgstr " registres)"
+
+#: js/resource.js:209 js/resource.js:323
+msgid "Refreshing Contents..."
+msgstr "Rechargements des contenus..."
 
 #: js/resource.js:369
 msgid "Do you really want to delete this contact?"

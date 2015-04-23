@@ -49,8 +49,6 @@ $coralURL = $util->getCORALURL();
 <script type="text/javascript" src="js/plugins/jquery.js"></script>
 <script type="text/javascript" src="js/plugins/ajaxupload.3.5.js"></script>
 <script type="text/javascript" src="js/plugins/thickbox.js"></script>
-<script type="text/javascript" src="js/plugins/date.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.datePicker.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.autocomplete.js"></script>
 <script type="text/javascript" src="js/plugins/Gettext.js"></script>
 <?php
@@ -65,6 +63,9 @@ $coralURL = $util->getCORALURL();
         }
     } 
 ?>
+<script type="text/javascript" src="js/plugins/translate.js"></script>
+<script type="text/javascript" src="js/plugins/date.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.datePicker.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-22 10:29+0100\n"
-"PO-Revision-Date: 2015-04-22 10:29+0100\n"
+"POT-Creation-Date: 2015-04-23 12:01+0100\n"
+"PO-Revision-Date: 2015-04-23 12:04+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -1310,7 +1310,7 @@ msgstr "Il y a un doublon "
 msgid " exists."
 msgstr " existant."
 
-#: index.php:26 templates/header.php:111
+#: index.php:26 templates/header.php:112
 msgid "Home"
 msgstr "Accueil"
 
@@ -1376,7 +1376,7 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: queue.php:22 queue.php:40 templates/header.php:113
+#: queue.php:22 queue.php:40 templates/header.php:114
 msgid "My Queue"
 msgstr "Ma liste"
 
@@ -1524,7 +1524,7 @@ msgstr "URL:"
 msgid "Additional Cataloging Notes"
 msgstr "Notes additionales du catalogue"
 
-#: templates/header.php:71
+#: templates/header.php:72
 msgid ""
 "JavaScript must be enabled in order for you to use CORAL. However, it seems "
 "JavaScript is either disabled or not supported by your browser. To use "
@@ -1535,35 +1535,35 @@ msgstr ""
 "utiliser CORAL, activez JavaScript en modifiant la configuration de votre "
 "navigateur, après "
 
-#: templates/header.php:71
+#: templates/header.php:72
 msgid "try again"
 msgstr "réessayez"
 
-#: templates/header.php:90
+#: templates/header.php:91
 msgid "Hello, "
 msgstr "Bonjour, "
 
-#: templates/header.php:100
+#: templates/header.php:101
 msgid "logout"
 msgstr "Se déconnecter"
 
-#: templates/header.php:112
+#: templates/header.php:113
 msgid "New Resource"
 msgstr "Nouvelle ressource"
 
-#: templates/header.php:114
+#: templates/header.php:115
 msgid "Admin"
 msgstr "Administrateur"
 
-#: templates/header.php:130
+#: templates/header.php:131
 msgid "Change Module"
 msgstr "Changer le module"
 
-#: templates/header.php:160 templates/header.php:161
+#: templates/header.php:161 templates/header.php:162
 msgid "French"
 msgstr "Français"
 
-#: templates/header.php:160 templates/header.php:161
+#: templates/header.php:161 templates/header.php:162
 msgid "English"
 msgstr "Anglais"
 
@@ -1603,11 +1603,11 @@ msgstr "Voulez-vous vraiment effacer cette configuration d'alerte?"
 msgid "Do you really want to delete this currency?"
 msgstr "Voulez-vous vraiment supprimer cette devise?"
 
-#: js/common.js:113
+#: js/common.js:73
 msgid "No match!"
 msgstr "Pas des coincidences!"
 
-#: js/common.js:113
+#: js/common.js:73
 msgid "Selected: "
 msgstr "Sélectionné: "
 
@@ -1765,6 +1765,178 @@ msgstr ""
 #: js/index.js:154
 msgid "Processing..."
 msgstr "En traitement..."
+
+#: js/plugins/date.js:30
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: js/plugins/date.js:30
+msgid "Monday"
+msgstr "Lundi"
+
+#: js/plugins/date.js:30
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: js/plugins/date.js:30
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: js/plugins/date.js:30
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: js/plugins/date.js:30
+msgid "Friday"
+msgstr "Vendredi"
+
+#: js/plugins/date.js:30
+msgid "Saturday"
+msgstr "Samedi"
+
+#: js/plugins/date.js:42
+msgid "Sun"
+msgstr "Dim"
+
+#: js/plugins/date.js:42
+msgid "Mon"
+msgstr "Lun"
+
+#: js/plugins/date.js:42
+msgid "Tue"
+msgstr "Mar"
+
+#: js/plugins/date.js:42
+msgid "Wed"
+msgstr "Mer"
+
+#: js/plugins/date.js:42
+msgid "Thu"
+msgstr "Jeu"
+
+#: js/plugins/date.js:42
+msgid "Fri"
+msgstr "Ven"
+
+#: js/plugins/date.js:42
+msgid "Sat"
+msgstr "Sam"
+
+#: js/plugins/date.js:54
+msgid "January"
+msgstr "Janvier"
+
+#: js/plugins/date.js:54
+msgid "February"
+msgstr "Février"
+
+#: js/plugins/date.js:54
+msgid "March"
+msgstr "Mars"
+
+#: js/plugins/date.js:54
+msgid "April"
+msgstr "Avril"
+
+#: js/plugins/date.js:54 js/plugins/date.js:66
+msgid "May"
+msgstr "Mai"
+
+#: js/plugins/date.js:54
+msgid "June"
+msgstr "Juin"
+
+#: js/plugins/date.js:54
+msgid "July"
+msgstr "Juillet"
+
+#: js/plugins/date.js:54
+msgid "August"
+msgstr "Août"
+
+#: js/plugins/date.js:54
+msgid "September"
+msgstr "Septembre"
+
+#: js/plugins/date.js:54
+msgid "October"
+msgstr "Octobre"
+
+#: js/plugins/date.js:54
+msgid "November"
+msgstr "Novembre"
+
+#: js/plugins/date.js:54
+msgid "December"
+msgstr "Décembre"
+
+#: js/plugins/date.js:66
+msgid "Jan"
+msgstr "Jan"
+
+#: js/plugins/date.js:66
+msgid "Feb"
+msgstr "Fév"
+
+#: js/plugins/date.js:66
+msgid "Mar"
+msgstr "Mar"
+
+#: js/plugins/date.js:66
+msgid "Apr"
+msgstr "Avr"
+
+#: js/plugins/date.js:66
+msgid "Jun"
+msgstr "Jui"
+
+#: js/plugins/date.js:66
+msgid "Jul"
+msgstr "Juil"
+
+#: js/plugins/date.js:66
+msgid "Aug"
+msgstr "Aoû"
+
+#: js/plugins/date.js:66
+msgid "Sep"
+msgstr "Sep"
+
+#: js/plugins/date.js:66
+msgid "Oct"
+msgstr "Oct"
+
+#: js/plugins/date.js:66
+msgid "Nov"
+msgstr "Nov"
+
+#: js/plugins/date.js:66
+msgid "Dec"
+msgstr "Déc"
+
+#: js/plugins/jquery.datePicker.js:1129
+msgid "Previous year"
+msgstr "Année précédente"
+
+#: js/plugins/jquery.datePicker.js:1130
+msgid "Previous month"
+msgstr "Mois précédent"
+
+#: js/plugins/jquery.datePicker.js:1131
+msgid "Next year"
+msgstr "Année suivante"
+
+#: js/plugins/jquery.datePicker.js:1132
+msgid "Next month"
+msgstr "Mois suivant"
+
+#: js/plugins/jquery.datePicker.js:1133
+msgid "Close"
+msgstr "Fermer"
+
+#: js/plugins/jquery.datePicker.js:1134
+msgid "Choose date"
+msgstr "Choissir la date"
 
 #: js/queue.js:55 js/queue.js:89 js/queue.js:123 js/queue.js:155
 msgid "Refreshing..."

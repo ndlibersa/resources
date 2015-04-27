@@ -138,13 +138,13 @@ $licenseArray = $resource->getLicenseArray();
   	</tr>
   	<?php } ?>
   	<?php if ($resource->numberRecordsAvailable) { ?>
-  	<tr title="Number of Records Available">
+  	<tr title="<?= _("Number of Records Available");?>">
     	<td style='vertical-align:top;width:130px;'><?= _("# Records Available:");?></td>
     	<td style='width:350px;'><?php echo $resource->numberRecordsAvailable ?></td>
   	</tr>
   	<?php } ?>
   	<?php if ($resource->numberRecordsLoaded) { ?>
-  	<tr title="Number of Records Loaded">
+  	<tr title="<?= _("Number of Records Loaded");?>">
     	<td style='vertical-align:top;width:130px;'><?= _("# Records Loaded:");?></td>
     	<td style='width:350px;'><?php echo $resource->numberRecordsLoaded ?></td>
   	</tr>

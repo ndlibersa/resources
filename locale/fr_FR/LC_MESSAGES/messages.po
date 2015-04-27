@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-04-23 12:01+0100\n"
-"PO-Revision-Date: 2015-04-23 12:04+0100\n"
+"POT-Creation-Date: 2015-04-27 15:49+0100\n"
+"PO-Revision-Date: 2015-04-27 15:49+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -1412,9 +1412,17 @@ msgstr "Type de catalogage:"
 msgid "Cataloging Status:"
 msgstr "Statut de catalogage:"
 
+#: resources/cataloging.php:141
+msgid "Number of Records Available"
+msgstr "Nombre des enregistrements disponibles"
+
 #: resources/cataloging.php:142 summary.php:757
 msgid "# Records Available:"
 msgstr "# Enregistrements disponibles"
+
+#: resources/cataloging.php:147
+msgid "Number of Records Loaded"
+msgstr "Nombre des enregistrements chargées"
 
 #: resources/cataloging.php:148 summary.php:763
 msgid "# Records Loaded:"

@@ -37,6 +37,18 @@ class Organization extends DatabaseObject {
 
 	}
 
+  public function alreadyExists($shortName) {
+		$query = "SELECT count(*) orgcount FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
+		$result = $this->db->processQuery($query, 'assoc');
+		return $result['orgcount'];
+  }
+
+  public function getOrganizationIDByName($shortName) {
+    $query = "SELECT organizationID FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
+		$result = $this->db->processQuery($query, 'assoc');
+		return $result['organizationID'];
+  }
+
 
 
 

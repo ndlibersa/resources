@@ -41,15 +41,22 @@ if ($resource->titleText){
 	$createUser = new User(new NamedArguments(array('primaryKey' => $resource->createLoginID)));
 	$updateUser = new User(new NamedArguments(array('primaryKey' => $resource->updateLoginID)));
 
-	//get parent resource
-	//only returns one - ResourceRelationship object
-	$resourceRelationship = new ResourceRelationship();
-	$resourceRelationship = $resource->getParentResource();
-	$parentResource = new Resource(new NamedArguments(array('primaryKey' => $resourceRelationship->relatedResourceID)));
-
-	//get children resources
+	//get parents resources
 	$sanitizedInstance = array();
 	$instance = new Resource();
+	$parentResourceArray = array();
+  foreach ($resource->getParentResources() as $instance) {
+		foreach (array_keys($instance->attributeNames) as $attributeName) {
+			$sanitizedInstance[$attributeName] = $instance->$attributeName;
+		}
+
+		$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+		array_push($parentResourceArray, $sanitizedInstance);
+	}
+
+
+
+	//get children resources
 	$childResourceArray = array();
 	foreach ($resource->getChildResources() as $instance) {
 		foreach (array_keys($instance->attributeNames) as $attributeName) {
@@ -188,7 +195,7 @@ if ($resource->titleText){
 
 
 	<div class='printContent'>
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 		<tr>
 		<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 		<span style='float:left; vertical-align:top; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>
@@ -257,19 +264,20 @@ if ($resource->titleText){
 		<?php
 		}
 
-		if (($parentResource->titleText) || (count($childResourceArray) > 0)){ ?>
+		if ((count($parentResourceArray) > 0) || (count($childResourceArray) > 0)){ ?>
 			<tr>
 			<td style='vertical-align:top;width:150px;'><?= _("Related Products:");?></td>
 			<td>
 			<?php
 
-			if ($parentResource->titleText){
-				echo "<span style='float: left;'>" . $parentResource->titleText . "&nbsp;&nbsp;"._("(Parent)")."</span>";
+      foreach ($parentResourceArray as $parentResource){
+				$parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
+				echo $parentResourceObj->titleText . "&nbsp;&nbsp;"._("(Parent)")."<br/>";
 			}
 
 			foreach ($childResourceArray as $childResource){
 				$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
-				echo "<span style='float: left;'>" . $childResourceObj->titleText . "&nbsp;&nbsp;"._("(child)")."</span>";
+				echo $childResourceObj->titleText . "&nbsp;&nbsp;<br />";
 			}
 
 
@@ -389,7 +397,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'><?= _("Additional Product Notes");?></th>
 			</tr>
@@ -408,7 +416,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2' style='vertical-align:bottom;'>
 	<span style='float:left;vertical-align:bottom;'><?= _("Order");?></span>
@@ -453,17 +461,17 @@ if ($resource->titleText){
 	<?php } ?>
 
 
-	<?php if (!is_null_date($resource->subscriptionStartDate)) { ?>
+	<?php if (!is_null_date($resource->currentStartDate)) { ?>
 	<tr>
-	<td style='vertical-align:top;width:150px;'><?= _("Subscription Start:");?></td>
-	<td><?php echo format_date($resource->subscriptionStartDate); ?></td>
+	<td style='vertical-align:top;width:150px;'><?= _("Sub Start:");?></td>
+	<td><?php echo format_date($resource->currentStartDate); ?></td>
 	</tr>
 	<?php } ?>
 
-	<?php if (!is_null_date($resource->subscriptionEndDate)) { ?>
+	<?php if (!is_null_date($resource->currentEndDate)) { ?>
 	<tr>
-	<td style='vertical-align:top;width:150px;'><?= _("Subscription End:");?></td>
-	<td><?php echo format_date($resource->subscriptionEndDate); ?>&nbsp;&nbsp;
+	<td style='vertical-align:top;width:150px;'><?= _("Current Sub End:");?></td>
+	<td><?php echo format_date($resource->currentEndDate); ?>&nbsp;&nbsp;
 	<?php if ($resource->subscriptionAlertEnabledInd == "1") { echo "<i>"._("Expiration Alert Enabled")."</i>"; } ?>
 	</td>
 	</tr>
@@ -472,9 +480,9 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
-	<th colspan='3'><?= _("Initial Cost");?></th>
+	<th colspan='3'><?= _("Cost History");?></th>
 	</th>
 	</tr>
 
@@ -497,7 +505,7 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'><?= _("License");?></span>
@@ -577,7 +585,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'><?= _("Additional Acquisitions Notes");?></th>
 			</th>&nbsp;
@@ -598,7 +606,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable' style='width:510px;'>
+	<table class='linedFormTable'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'><?= _("Access Information");?></span>
@@ -702,7 +710,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'><?= _("Additional Access Notes");?></th>
 			</tr>
@@ -717,7 +725,7 @@ if ($resource->titleText){
 	}
 	?>
 
-  <table class='linedFormTable' style='width:510px;'>
+  <table class='linedFormTable'>
     <tr>
       <th colspan='2' style='vertical-align:bottom;'>
         <span style='float:left;vertical-align:bottom;'><?= _("Cataloging");?></span>
@@ -815,7 +823,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable' style='width:510px;'>
+		<table class='linedFormTable'>
 			<tr>
 			<th colspan='2'><?= _("Additional Cataloging Notes");?></th>
 			</tr>

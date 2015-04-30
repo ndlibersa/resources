@@ -19,7 +19,7 @@
 
 include_once 'directory.php';
 
-$pageTitle='Administration';
+$pageTitle=_('Administration');
 include 'templates/header.php';
 
 //set referring page
@@ -37,7 +37,7 @@ if ($user->isAdmin()){
 		<table style='width:100%; margin:0 0 11px 0;padding:0;'>
 		<tr style='vertical-align:top'>
 		<td>
-		<span class="headerText">Administration</span>
+		<span class="headerText"><?= _("Administration");?></span>
 		<br />
 		</td>
 		</tr>
@@ -62,8 +62,11 @@ if ($user->isAdmin()){
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthenticationType' class='AdminLink'><?= _("Authentication Type");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='AuthorizedSite' class='AdminLink'><?= _("Authorized Site");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingStatus' class='AdminLink'><?= _("Cataloging Status");?></div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingType' class='AdminLink'><?= _("Cataloging Type");?></div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CatalogingType' class='AdminLink'><?= _("CatalogingType");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ContactRole' class='AdminLink'><?= _("Contact Role");?></div></td></tr>
+				<?php if ($config->settings->enhancedCostHistory == 'Y'){ ?>
+					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CostDetails' class='AdminLink'><?= _("Cost Details");?></div></td></tr>
+				<?php } ?>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='CurrencyLink'><?= _("Currency");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'><?= _("License Status");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='NoteType' class='AdminLink'><?= _("Note Type");?></div></td></tr>

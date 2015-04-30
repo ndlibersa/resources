@@ -23,6 +23,15 @@ class ResourceRelationship extends DatabaseObject {
 
 	protected function overridePrimaryKeyName() {}
 
+  public function exists() {
+    $query = "SELECT COUNT(*) AS count FROM ResourceRelationship WHERE resourceID = " . $this->resourceID;
+    $query .= " AND relatedResourceID = " . $this->relatedResourceID;
+    $query .= " AND relationshipTypeID = " . $this->relationshipTypeID;
+
+    $result = $this->db->processQuery($query, 'assoc');
+    return $result['count'];
+  }
+
 
 }
 

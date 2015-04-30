@@ -571,6 +571,15 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
+  <tr>
+    <td class='searchRow'><label for='searchParents'><b>Relationship</b></label>
+    <select name='search[parent]' id='searchParents' style='width:150px'>
+      <option value=''>All</option>
+      <option value='RRC'>Parent</option>
+      <option value='RRP'>Child</option>
+    </select>
+  </td>
+  </tr>
 
 
 	</table>

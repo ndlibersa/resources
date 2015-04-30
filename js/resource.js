@@ -439,6 +439,23 @@ function bind_removes(){
 	  }			
    });
    
+    $(".removeResourceAndChildren").unbind('click').click(function () {
+	  if (confirm("Do you really want to delete this resource and all its children?") == true) {
+		  $.ajax({
+			 type:       "GET",
+			 url:        "ajax_processing.php",
+			 cache:      false,
+			 data:       "action=deleteResourceAndChildren&resourceID=" + $(this).attr("id"),
+			 success:    function(html) { 
+				 //post return message to index
+				postwith('index.php',{message:html});
+			 }
+
+
+
+		 });
+	  }			
+   });
    
    $(".removeResourceSubjectRelationship").unbind('click').click(function () {
 

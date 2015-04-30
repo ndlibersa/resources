@@ -113,8 +113,25 @@ function format_date($mysqlDate) {
 
 }
 
+function normalize_date($date) {
+    if (($date == "0000-00-00") || ($date == "")){
+        return "";
+    }else{
+        return format_date($date);
+    }
+}
+
 function is_null_date($date) {
     return (!$date || $date == "0000-00-00" || $date == "");
+}
+
+function previous_year($year) {
+    return preg_replace_callback(
+        '/(19[0-9][0-9]|2[0-9][0-9][0-9])/',
+        function ($matches) { return $matches[0]-1; },
+        $year,
+        1
+    );
 }
 
 function resource_sidemenu($selected_link = '') {
@@ -162,26 +179,26 @@ function debug($value) {
   echo '<pre>'.print_r($value, true).'</pre>';
 }
 
-    // Verify the language of the browser
-    if(isset($_COOKIE["lang"])){
-        $http_lang = $_COOKIE["lang"];
-        //var_dump($language);
-    }else{
-        $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
-    }
-    switch ($http_lang) {
-        case 'fr': 
-            $language = "fr_FR.utf8"; 
-        break;	
-        case 'en': 
-            $language = "en_US.utf8"; 
-        break;			
-        default: 
-            $language = "en_US.utf8"; 
-        break;
-    }
-    putenv("LC_ALL=$language");
-	setlocale(LC_ALL, $language);
-	bindtextdomain("messages", "./locale");
-	textdomain("messages");
+// Verify the language of the browser
+if(isset($_COOKIE["lang"])){
+    $http_lang = $_COOKIE["lang"];
+}else{
+    $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+}
+switch ($http_lang) {
+    case 'fr': 
+        $language = "fr_FR.utf8"; 
+    break;	
+    case 'en': 
+        $language = "en_US.utf8"; 
+    break;			
+    default: 
+        $language = "en_US.utf8"; 
+    break;
+}
+putenv("LC_ALL=$language");
+setlocale(LC_ALL, $language);
+bindtextdomain("messages", "./locale");
+textdomain("messages");
+
 ?>

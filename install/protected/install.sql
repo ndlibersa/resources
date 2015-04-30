@@ -600,14 +600,13 @@ ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`)
 ALTER TABLE `_DATABASE_NAME_`.`Resource` ADD INDEX `Index_createDate`(`createDate`),
  ADD INDEX `Index_createLoginID`(`createLoginID`),
  ADD INDEX `Index_titleText`(`titleText`),
- ADD INDEX `Index_isbnOrISSN`(`isbnOrISSN`),
  ADD INDEX `Index_statusID`(`statusID`),
  ADD INDEX `Index_resourceTypeID`(`resourceTypeID`),
  ADD INDEX `Index_resourceFormatID`(`resourceFormatID`),
  ADD INDEX `Index_acquisitionTypeID`(`authenticationTypeID`),
  ADD INDEX `catalogingTypeID` ( `catalogingTypeID` ),
  ADD INDEX `catalogingStatusID` ( `catalogingStatusID` ),
- ADD INDEX `Index_All`(`createDate`, `createLoginID`, `titleText`, `isbnOrISSN`, `statusID`, `resourceTypeID`, `resourceFormatID`, `acquisitionTypeID`);
+ ADD INDEX `Index_All`(`createDate`, `createLoginID`, `titleText`, `statusID`, `resourceTypeID`, `resourceFormatID`, `acquisitionTypeID`);
  
 ALTER TABLE `_DATABASE_NAME_`.`ResourceFormat` ADD INDEX `shortName` ( `shortName` );
 

@@ -18,3 +18,6 @@ Update the database schema
 Update /admin/configuration.ini
 
 	-Add a line reading "enhancedCostHistory=Y" within the [settings] section in /admin/configuration.ini if you wish to use the new cost history features
+  -Add a line reading importISBNDedupingColumns="column1,column2[...]" within the [settings] section in /admin/configuration.ini if you wish to use the new import tool.
+   Those are columns names from the imported CSV file which will be used for matching against already existing Isbn's in Coral.
+   Example: importISBNDedupingColumns="ISSN,EISSN,PrintISSN,OnlineISSN,Print ISSN,Online ISSN,ISBN,EISBN"

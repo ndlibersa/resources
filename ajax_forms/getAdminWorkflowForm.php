@@ -39,7 +39,7 @@
 		<form id='resourceForm'>
 		<input type='hidden' name='editWFID' id='editWFID' value='<?php echo $workflowID; ?>'>
 
-		<div class='formTitle' style='width:705px; margin-bottom:5px;position:relative;'><span class='headerText'>Edit Workflow</span></div>
+		<div class='formTitle' style='width:705px; margin-bottom:5px;position:relative;'><span class='headerText'><?= _("Edit Workflow");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -48,14 +48,14 @@
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>Resource Entry Requirements</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?= _("Resource Entry Requirements");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:700px;'>
 			<tr>
 			<td>
 				<table class='noBorder' style='width:660px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='acquisitionTypeID'>Acquisition Type:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='acquisitionTypeID'><?= _("Acquisition Type:");?></label></td>
 				<td>
 				<select name='acquisitionTypeID' id='acquisitionTypeID' style='width:100px;' class='changeSelect' >
 				<?php
@@ -71,7 +71,7 @@
 				</td>
 
 
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'>Format:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?= _("Format:");?></label></td>
 				<td>
 				<select name='resourceFormatID' id='resourceFormatID' style='width:100px;' class='changeSelect'>
 				<?php
@@ -86,7 +86,7 @@
 				</select>
 				</td>
 
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'>Type:</label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'><?= _("Type:");?></label></td>
 				<td>
 				<select name='resourceTypeID' id='resourceTypeID' style='width:100px;' class='changeSelect' >
 				<option value=''></option>
@@ -111,7 +111,7 @@
 			<div style='height:20px;'>&nbsp;</div>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='workflowSteps'><b>Workflow Steps</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='workflowSteps'><b><?= _("Workflow Steps");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:700px;'>
 			<tr>
@@ -120,9 +120,9 @@
 				<table class='noBorder noMargin newStepTable' style='width:660px;  margin:15px 20px 0px 20px;'>
 				<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;width:48px;'>&nbsp;</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:218px;'>Name:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:175px;'>Approval/Notification Group:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:110px;'>Parent Step</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:218px;'><?= _("Name:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:175px;'><?= _("Approval/Notification Group:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:110px;'><?= _("Parent Step");?></td>
 					<td style='vertical-align:top;text-align:center;width:40px;'>&nbsp;</td>
 				</tr>
 
@@ -152,7 +152,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:center;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addStep' alt='add step' title='add step'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addStep' alt="<?= _("add step");?>" title="<?= _("add step");?>"></a>
 				</td>
 
 				</tr>
@@ -235,7 +235,7 @@
 
 
 						<td style='vertical-align:top;text-align:center;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this step' title='remove this step' class='removeStep' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt="<?= _("remove this step");?>" title="<?= _("remove this step");?>" class='removeStep' /></a>
 						</td>
 
 						</tr>
@@ -263,8 +263,8 @@
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitWorkflowForm' id ='submitWorkflowForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitWorkflowForm' id ='submitWorkflowForm'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

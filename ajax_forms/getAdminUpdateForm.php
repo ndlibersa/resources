@@ -13,7 +13,7 @@
 		<input type='hidden' id='editClassName' value='<?php echo $className; ?>'>
 		<input type='hidden' id='editUpdateID' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit " . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo "Add " . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit ") . preg_replace("/[A-Z]/", " \\0" , $className); } else { echo _("Add ") . preg_replace("/[A-Z]/", " \\0" , $className); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -28,7 +28,7 @@
 			<?php
 				if($className == 'ResourceType' && ($config->settings->usageModule == 'Y')){
 					if($instance->includeStats == 1){$stats = 'checked';}else{$stats='';}
-					echo "<tr><td><label for='stats'>Show stats button?</label>";
+					echo "<tr><td><label for='stats'>"._("Show stats button?")."</label>";
 					echo "<input type='checkbox' id='stats' ".$stats." /></td></tr>";
 				}
 			?>
@@ -41,8 +41,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 

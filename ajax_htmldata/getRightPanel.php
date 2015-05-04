@@ -37,9 +37,9 @@
 		$licenseArray = $resource->getLicenseArray();
 
 		echo "<div style='background-color:white; width:219px; padding:7px;'>";
-		echo "<div class='rightPanelLink'><a href='summary.php?resourceID=" . $resource->resourceID . "' target='_blank' class='helpfulLink'>Print View</a></div>";
+		echo "<div class='rightPanelLink'><a href='summary.php?resourceID=" . $resource->resourceID . "' target='_blank' class='helpfulLink'>"._("Print View")."</a></div>";
 		if (($resource->systemNumber) && ($config->settings->catalogURL != '')) {
-			echo "<div class='rightPanelLink'><a href='" . $config->settings->catalogURL . $resource->systemNumber . "' target='_blank'>Catalog View</a></div>";
+			echo "<div class='rightPanelLink'><a href='" . $config->settings->catalogURL . $resource->systemNumber . "' target='_blank'>"._("Catalog View")."</a></div>";
 		}
 		echo "</div>";
 
@@ -47,7 +47,7 @@
 			<div style='background-color:white; width:219px; padding:7px;'>
 				<?php
         if ((count($parentResourceArray) > 0)){
-          echo "<div class='rightPanelHeader'>Parent Record(s)</div>";
+          echo "<div class='rightPanelHeader'>"._("Parent Record(s)")."</div>";
           foreach ($parentResourceArray as $parentResource){
             $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $parentResource['relatedResourceID'])));
               echo "<div class='rightPanelLink'><a href='resource.php?resourceID=" . $parentResourceObj->resourceID . "' target='_BLANK' class='helpfulLink'>" . $parentResourceObj->titleText . "</a></div>";
@@ -55,7 +55,7 @@
         }
 
 				if ((count($childResourceArray) > 0)){
-					echo "<div class='rightPanelHeader'>Child Record(s)</div>";
+					echo "<div class='rightPanelHeader'>"._("Child Record(s)")."</div>";
 
 					foreach ($childResourceArray as $childResource){
 						$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
@@ -74,7 +74,7 @@
 		?>
 
 			<div style='background-color:white; width:219px; padding:7px;'>
-				<div class='rightPanelHeader'>Organizations Module</div>
+				<div class='rightPanelHeader'><?php echo _("Organizations Module");?></div>
 
 				<?php
 				foreach ($orgArray as $organization){
@@ -90,7 +90,7 @@
 
 		?>
 			<div style='background-color:white; width:219px; padding:7px;'>
-				<div class='rightPanelHeader'>Licensing Module</div>
+				<div class='rightPanelHeader'><?php echo _("Licensing Module");?></div>
 
 				<?php
 				foreach ($licenseArray as $license){
@@ -108,13 +108,13 @@
 		if (($resourceType->includeStats ==  1) && ($config->settings->usageModule == 'Y')){
 		?>
 			<div style='background-color:white; width:219px; padding:7px;'>
-				<div class='rightPanelHeader'>Usage Statistics Module</div>
+				<div class='rightPanelHeader'><?php echo _("Usage Statistics Module");?></div>
 
 				<?php
 			echo "<form method='post' action='/reports/report.php' target='_blank'>";
 			echo "<input type='hidden' name='reportID' value='1'>";
 			echo "<input type='hidden' name='prm_21' value='".$resource->titleText."'>";
-			echo "<input type='submit' value='Get Statistics'>";
+			echo "<input type='submit' value='"._("Get Statistics")."'>";
 			echo "</form>";
 							?>
 

@@ -100,10 +100,10 @@ $licenseArray = $resource->getLicenseArray();
 <table class='linedFormTable'>
   <tr>
     <th colspan='2' style='vertical-align:bottom;'>
-      <span style='float:left;vertical-align:bottom;'><?= _("Cataloging");?></span>
+      <span style='float:left;vertical-align:bottom;'><?php echo _("Cataloging");?></span>
 
       <?php if ($user->canEdit()){ ?>
-      	<span style='float:right;vertical-align:bottom;'><a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='<?= _("edit order information");?>'></a></span>
+      	<span style='float:right;vertical-align:bottom;'><a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='<?php echo _("edit order information");?>'></a></span>
       <?php } ?>
 
     </th>
@@ -111,21 +111,21 @@ $licenseArray = $resource->getLicenseArray();
   <?php if ($resource->hasCatalogingInformation()) { ?>
     <?php if ($resource->recordSetIdentifier) { ?>
   	<tr>
-    	<td style='vertical-align:top;width:130px;'><?= _("Identifier:");?></td>
+    	<td style='vertical-align:top;width:130px;'><?php echo _("Identifier:");?></td>
     	<td style='width:350px;'><?php echo $resource->recordSetIdentifier ?></td>
   	</tr>
   	<?php } ?>
   	<?php if ($resource->bibSourceURL) { ?>
   	<tr>
-    	<td style='vertical-align:top;width:130px;'><?= _("Source URL:");?></td>
-    	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='<?= _("Visit Source URL");?>' style='vertical-align:top;'></a><?php } ?></td>
+    	<td style='vertical-align:top;width:130px;'><?php echo _("Source URL:");?></td>
+    	<td style='width:350px;'><?php echo $resource->bibSourceURL ?><?php if ($resource->bibSourceURL) { ?> &nbsp;&nbsp;<a href='<?php echo $resource->bibSourceURL; ?>' target='_blank'><img src='images/arrow-up-right.gif' alt='Visit Source URL' title='<?php echo _("Visit Source URL");?>' style='vertical-align:top;'></a><?php } ?></td>
   	</tr>
   	<?php } ?>
   	<?php if ($resource->catalogingTypeID) { 
       $catalogingType = new CatalogingType(new NamedArguments(array('primaryKey' => $resource->catalogingTypeID)));
       ?>
   	<tr>
-    	<td style='vertical-align:top;width:130px;'><?= _("Cataloging Type:");?></td>
+    	<td style='vertical-align:top;width:130px;'><?php echo _("Cataloging Type:");?></td>
     	<td style='width:350px;'><?php echo $catalogingType->shortName ?></td>
   	</tr>
   	<?php } ?>
@@ -133,36 +133,36 @@ $licenseArray = $resource->getLicenseArray();
       $catalogingStatus = new CatalogingStatus(new NamedArguments(array('primaryKey' => $resource->catalogingStatusID)));
       ?>
   	<tr>
-    	<td style='vertical-align:top;width:130px;'><?= _("Cataloging Status:");?></td>
+    	<td style='vertical-align:top;width:130px;'><?php echo _("Cataloging Status:");?></td>
     	<td style='width:350px;'><?php echo $catalogingStatus->shortName ?></td>
   	</tr>
   	<?php } ?>
   	<?php if ($resource->numberRecordsAvailable) { ?>
-  	<tr title="<?= _("Number of Records Available");?>">
-    	<td style='vertical-align:top;width:130px;'><?= _("# Records Available:");?></td>
+  	<tr title="<?php echo _("Number of Records Available");?>">
+    	<td style='vertical-align:top;width:130px;'><?php echo _("# Records Available:");?></td>
     	<td style='width:350px;'><?php echo $resource->numberRecordsAvailable ?></td>
   	</tr>
   	<?php } ?>
   	<?php if ($resource->numberRecordsLoaded) { ?>
-  	<tr title="<?= _("Number of Records Loaded");?>">
-    	<td style='vertical-align:top;width:130px;'><?= _("# Records Loaded:");?></td>
+  	<tr title="<?php echo _("Number of Records Loaded");?>">
+    	<td style='vertical-align:top;width:130px;'><?php echo _("# Records Loaded:");?></td>
     	<td style='width:350px;'><?php echo $resource->numberRecordsLoaded ?></td>
   	</tr>
   	<?php } ?>
   	<tr>
-    	<td style='vertical-align:top;width:130px;'><?= _("OCLC Holdings:");?></td>
+    	<td style='vertical-align:top;width:130px;'><?php echo _("OCLC Holdings:");?></td>
     	<td style='width:350px;'><?php echo $resource->hasOclcHoldings ? _('Yes') : _('No') ?></td>
   	</tr>
   <?php } else { ?>
     <tr>
       <td colspan="2">
-        <em><?= _("No cataloging information available.");?></em>
+        <em><?php echo _("No cataloging information available.");?></em>
       </td>
     </tr>
   <?php } ?>
 </table>
 <?php if ($user->canEdit()){ ?>
-<a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'><?= _("edit cataloging details");?></a><br />
+<a href='resources/cataloging_edit.php?height=300&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'><?php echo _("edit cataloging details");?></a><br />
 <?php } ?>
 
 <br />
@@ -206,10 +206,10 @@ if (count($noteArray) > 0){
 ?>
 <table class='linedFormTable'>
 	<tr>
-	<th><?= _("Additional Notes");?></th>
+	<th><?php echo _("Additional Notes");?></th>
 	<th>
 	<?php if ($user->canEdit()){?>
-		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'><?= _("add new note");?></a>
+		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'><?php echo _("add new note");?></a>
 	<?php } ?>
 	</th>
 	</tr>
@@ -217,7 +217,7 @@ if (count($noteArray) > 0){
 		<tr>
 		<td style='width:130px;'><?php echo $resourceNote['noteTypeName']; ?><br />
 		<?php if ($user->canEdit()){?>
-		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=<?php echo $resourceNote['resourceNoteID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='<?= _("edit note");?>'></a>  <a href='javascript:void(0);' class='removeNote' id='<?php echo $resourceNote['resourceNoteID']; ?>' tab='Cataloging'><img src='images/cross.gif' alt='remove note' title='<?= _("remove note");?>'></a>
+		<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=<?php echo $resourceNote['resourceNoteID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='<?php echo _("edit note");?>'></a>  <a href='javascript:void(0);' class='removeNote' id='<?php echo $resourceNote['resourceNoteID']; ?>' tab='Cataloging'><img src='images/cross.gif' alt='remove note' title='<?php echo _("remove note");?>'></a>
 		<?php } ?>
 		</td>
 		<td><?php echo nl2br($resourceNote['noteText']); ?><br /><i><?php echo format_date($resourceNote['updateDate']) . _(" by ") . $resourceNote['updateUser']; ?></i></td>
@@ -228,7 +228,7 @@ if (count($noteArray) > 0){
 }else{
 if ($user->canEdit()){
 ?>
-	<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'><?= _("add new note");?></a>
+	<a href='ajax_forms.php?action=getNoteForm&height=233&width=410&tab=Cataloging&resourceID=<?php echo $resourceID; ?>&resourceNoteID=&modal=true' class='thickbox'><?php echo _("add new note");?></a>
 <?php
 }
 }

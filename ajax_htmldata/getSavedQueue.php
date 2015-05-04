@@ -3,22 +3,22 @@
 		$resourceArray = array();
 		$resourceArray = $user->getResourcesInQueue('saved');
 
-		echo "<div class='adminRightHeader'>Saved Requests</div>";
+		echo "<div class='adminRightHeader'>"._("Saved Requests")."</div>";
 
 
 
 		if (count($resourceArray) == "0"){
-			echo "<i>No saved requests</i>";
+			echo "<i>"._("No saved requests")."</i>";
 		}else{
 		?>
 
 			<table class='dataTable' style='width:570px;margin-bottom:5px;'>
 			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Date Created</th>
-				<th>Acquisition Type</th>
-				<th>Status</th>
+				<th><?php echo _("ID");?></th>
+				<th><?php echo _("Name");?></th>
+				<th><?php echo _("Date Created");?></th>
+				<th><?php echo _("Acquisition Type");?></th>
+				<th><?php echo _("Status");?></th>
 				<th>&nbsp;</th>
 			</tr>
 
@@ -46,8 +46,8 @@
 					<td <?php echo $classAdd; ?>><?php echo $acquisitionType->shortName; ?></td>
 					<td <?php echo $classAdd; ?>><?php echo $status->shortName; ?></td>
 					<td <?php echo $classAdd; ?> style='text-align:right; width:40px;'>
-					<a href='ajax_forms.php?action=getNewResourceForm&height=483&width=775&resourceID=<?php echo $resource['resourceID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit request'></a>&nbsp;
-					<a href='javascript:void(0);' class='deleteRequest' id='<?php echo $resource['resourceID']; ?>'><img src='images/cross.gif' alt='remove request' title='remove request'></a>
+					<a href='ajax_forms.php?action=getNewResourceForm&height=483&width=775&resourceID=<?php echo $resource['resourceID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit request");?>'></a>&nbsp;
+					<a href='javascript:void(0);' class='deleteRequest' id='<?php echo $resource['resourceID']; ?>'><img src='images/cross.gif' alt='<?php echo _("remove request");?>' title='<?php echo _("remove request");?>'></a>
 					</td>
 				</tr>
 

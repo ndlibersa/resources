@@ -29,11 +29,11 @@
 			<table class='noBorder' style='width:260px; margin:10px;'>
 
 
-				<tr><td><label for='loginID'><b><?= _("Login ID");?></b></label</td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
-				<tr><td><label for='firstName'><b><?= _("First Name");?></b></label</td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='lastName'><b><?= _("Last Name");?></b></label</td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='emailAddress'><b><?= _("Email Address");?></b></label</td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='privilegeID'><b><?= _("Privilege");?></b></label</td>
+				<tr><td><label for='loginID'><b><?php echo _("Login ID");?></b></label</td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
+				<tr><td><label for='firstName'><b><?php echo _("First Name");?></b></label</td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='lastName'><b><?php echo _("Last Name");?></b></label</td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='emailAddress'><b><?php echo _("Email Address");?></b></label</td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='privilegeID'><b><?php echo _("Privilege");?></b></label</td>
 				<td>
 				<select id='privilegeID' style='width:155px'>
 				<?php
@@ -51,7 +51,7 @@
 				</td>
 				</tr>
 
-				<tr><td><label for='accountTab'><b><?= _("View Accounts");?></b></label</td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
+				<tr><td><label for='accountTab'><b><?php echo _("View Accounts");?></b></label</td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
 
 
 			</table>
@@ -63,8 +63,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 

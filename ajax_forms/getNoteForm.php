@@ -15,7 +15,7 @@
 		<input type='hidden' name='editResourceNoteID' id='editResourceNoteID' value='<?php echo $resourceNoteID; ?>'>
 		<input type='hidden' name='tab' id='tab' value='<?php echo $tabName; ?>'>
 
-		<div class='formTitle' style='width:395px;'><span class='headerText' style='margin-left:7px;'><?php if ($resourceNoteID){ echo "Edit Note"; } else { echo "Add Note"; } ?></span></div>
+		<div class='formTitle' style='width:395px;'><span class='headerText' style='margin-left:7px;'><?php if ($resourceNoteID){ echo _("Edit Note"); } else { echo _("Add Note"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -25,7 +25,7 @@
 
 			<table class='noBorder' style='width:360px; margin:10px 15px;'>
 			<tr>
-			<td style='vertical-align:top;text-align:left;border:0px;'><label for='noteTypeID'><b>Note Type:</b></label></td>
+			<td style='vertical-align:top;text-align:left;border:0px;'><label for='noteTypeID'><b><?php echo _("Note Type:");?></b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 
 			<select name='noteTypeID' id='noteTypeID'>
@@ -45,7 +45,7 @@
 			</tr>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='noteText'><b>Notes:</b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='noteText'><b><?php echo _("Notes:");?></b></label></td>
 			<td><textarea rows='5' id='noteText' name='noteText' style='width:270px'><?php echo $resourceNote->noteText; ?></textarea><span class='smallDarkRedText' id='span_error_noteText'></span></td>
 			</td>
 			</tr>
@@ -58,8 +58,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitResourceNoteForm' id ='submitResourceNoteForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitResourceNoteForm' id ='submitResourceNoteForm'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()"></td>
 			</tr>
 		</table>
 

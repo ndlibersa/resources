@@ -24,7 +24,7 @@
 			<table class='noBorder' style='width:310px; margin:10px 15px;'>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b><?= _("Name:");?></b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b><?php echo _("Name:");?></b></label></td>
 			<td>
 			<input type='text' class='changeInput' id='shortName' name='shortName' value = '<?php echo $attachment->shortName; ?>' style='width:230px' /><span id='span_error_shortName' class='smallDarkRedText'></span>
 			</td>
@@ -32,7 +32,7 @@
 
 			<tr>
 
-			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b><?= _("Type:");?></b></label></td>
+			<td style='vertical-align:top;text-align:left;border:0px;'><label for='attachmentTypeID'><b><?php echo _("Type:");?></b></label></td>
 			<td style='vertical-align:top;text-align:left;border:0px;'>
 
 			<select name='attachmentTypeID' id='attachmentTypeID'>
@@ -52,7 +52,7 @@
 			</tr>
 
 			<tr>
-			<td style='text-align:left;vertical-align:top;'><label for="uploadAttachment"><b><?= _("File:");?></b></label></td>
+			<td style='text-align:left;vertical-align:top;'><label for="uploadAttachment"><b><?php echo _("File:");?></b></label></td>
 			<td>
 			<?php
 
@@ -73,7 +73,7 @@
 			</tr>
 
 			<tr>
-			<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><b><?= _("Details:");?></b></label></td>
+			<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><b><?php echo _("Details:");?></b></label></td>
 			<td><textarea rows='5' class='changeInput' id='descriptionText' name='descriptionText' style='width:230px'><?php echo $attachment->descriptionText; ?></textarea></td>
 			</td>
 			</tr>
@@ -86,8 +86,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitAttachmentForm' id ='submitAttachmentForm'></td>
-				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitAttachmentForm' id ='submitAttachmentForm'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()"></td>
 			</tr>
 		</table>
 

@@ -21,7 +21,6 @@ if ($step == "3"){
 	$database_username = trim($_POST['database_username']);
 	$database_password = trim($_POST['database_password']);
 	$database_name = trim($_POST['database_name']);
-    $database_lang = trim($_POST['lang_db']);
 
 	if (!$database_host) $errorMessage[] = 'Host name is required';
 	if (!$database_name) $errorMessage[] = 'Database name is required';
@@ -60,7 +59,6 @@ if ($step == "3"){
 						//make sure SQL file exists
 						$test_sql_file = "protected/test_create.sql";
                         $sql_file = "protected/install.sql";
-                        $sql_data = "protected/data/data_".$database_lang.".sql";
                         
                         // Assign the charset to specials chars
                         mysql_query("SET NAMES 'utf8'");
@@ -120,33 +118,6 @@ if ($step == "3"){
 
 							}
 						}
-                        
-                        // Insert data according the language selected
-                        if (count($errorMessage) == 0){
-							if (!file_exists($sql_data)) {
-								$errorMessage[] = "Could not open sql file: " . $sql_data . ".  If this file does not exist you must download new install files.";
-							}else{
-								//run the file - checking for errors at each SQL execution
-								$f = fopen($sql_data,"r");
-								$sqlFile = fread($f,filesize($sql_data));
-								$sqlArray = explode(';',$sqlFile);
-
-								//Process the sql file by statements
-								foreach ($sqlArray as $stmt) {
-								   if (strlen(trim($stmt))>3){
-										//replace the DATABASE_NAME parameter with what was actually input
-										$stmt = str_replace("_DATABASE_NAME_", $database_name, $stmt);
-
-										$result = mysql_query($stmt);
-										if (!$result){
-											$errorMessage[] = mysql_error() . "<br /><br />For statement: " . $stmt;
-											 break;
-										}
-									}
-								}
-
-							}
-						} // end if(count($errorMessage) == 0)
                         
 					}
 				}
@@ -533,15 +504,6 @@ if ($step == "3"){
 				<td>
 					<input type="password" name="database_password" size="30" value="<?php echo $database_password?>">
 				</td>
-			</tr>
-			<tr>
-			    <td>&nbsp;Data language</td>
-			    <td>
-			        <select name="lang_db" id="lang_db">
-			            <option value="en">English</option>
-			            <option value="fr">French</option>
-			        </select>
-			    </td>
 			</tr>
 			<tr>
 				<td colspan=2>&nbsp;</td>

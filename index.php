@@ -55,8 +55,8 @@ $_SESSION['ref_script']=$currentPage;
     
 	<table class='noBorder'>
 	<tr><td style='text-align:left;width:75px;' align='left'>
-	<span style='font-size:130%;font-weight:bold;'><?= _("Search");?></span><br />
-	<a href='javascript:void(0)' class='newSearch'><?= _("new search");?></a>
+	<span style='font-size:130%;font-weight:bold;'><?php echo _("Search");?></span><br />
+	<a href='javascript:void(0)' class='newSearch'><?php echo _("new search");?></a>
 	</td>
 	<td><div id='div_feedback'>&nbsp;</div>
 	</td></tr>
@@ -65,11 +65,11 @@ $_SESSION['ref_script']=$currentPage;
 	<table class='borderedFormTable' style="width:150px">
 
 	<tr>
-	<td class='searchRow'><label for='searchName'><b><?= _("Name (contains)");?></b></label>
+	<td class='searchRow'><label for='searchName'><b><?php echo _("Name (contains)");?></b></label>
 	<br />
 	<?php echo Html::text_search_field_tag('name', $search['name']); ?>
 	<br />
-	<div id='div_searchName' style='<?php if (!$search['name']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchName' value='<?= _("go!");?>' class='searchButton' /></div>
+	<div id='div_searchName' style='<?php if (!$search['name']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchName' value='<?php echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -80,27 +80,27 @@ $_SESSION['ref_script']=$currentPage;
 	<br />
 	<?php echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
 	<br />
-	<div id='div_searchISBNOrISSN' style='<?php if (!$search['resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='<?= _("go!");?>' class='searchButton' /></div>
+	<div id='div_searchISBNOrISSN' style='<?php if (!$search['resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='<?php echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
 
 
 
 	<tr>
-	<td class='searchRow'><label for='searchFund'><b><?= _("Fund");?></b></label>
+	<td class='searchRow'><label for='searchFund'><b><?php echo _("Fund");?></b></label>
 	<br />
 	<?php echo Html::text_search_field_tag('fund', $search['fund']); ?><br />
-	<div id='div_searchFund' style='<?php if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='<?= _("go!");?>' class='searchButton' /></div>
+	<div id='div_searchFund' style='<?php if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='<?php echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
 
 
 
 	<tr>
-	<td class='searchRow'><label for='searchAcquisitionTypeID'><b><?= _("Acquisition Type");?></b></label>
+	<td class='searchRow'><label for='searchAcquisitionTypeID'><b><?php echo _("Acquisition Type");?></b></label>
 	<br />
 	<select name='search[acquisitionTypeID]' id='searchAcquisitionTypeID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		$display = array();
@@ -120,10 +120,10 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 	<tr>
-	<td class='searchRow'><label for='searchStatusID'><b><?= _("Status");?></b></label>
+	<td class='searchRow'><label for='searchStatusID'><b><?php echo _("Status");?></b></label>
 	<br />
 	<select name='search[statusID]' id='searchStatusID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		$display = array();
@@ -151,10 +151,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchCreatorLoginID'><b><?= _("Creator");?></b></label>
+	<td class='searchRow'><label for='searchCreatorLoginID'><b><?php echo _("Creator");?></b></label>
 	<br />
 	<select name='search[creatorLoginID]' id='searchCreatorLoginID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 
 	<?php
 
@@ -183,10 +183,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceFormatID'><b><?= _("Resource Format");?></b></label>
+	<td class='searchRow'><label for='searchResourceFormatID'><b><?php echo _("Resource Format");?></b></label>
 	<br />
 	<select name='search[resourceFormatID]' id='searchResourceFormatID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		$display = array();
@@ -207,10 +207,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceTypeID'><b><?= _("Resource Type");?></b></label>
+	<td class='searchRow'><label for='searchResourceTypeID'><b><?php echo _("Resource Type");?></b></label>
 	<br />
 	<select name='search[resourceTypeID]' id='searchResourceTypeID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 
 	<?php
 
@@ -239,19 +239,19 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceID'><b><?= _("Record ID");?></b></label>
+	<td class='searchRow'><label for='searchResourceID'><b><?php echo _("Record ID");?></b></label>
 	<br />
 	<?php echo Html::text_search_field_tag('resourceID', ''); ?>
 	<br />
-	<div id='div_searchID' style='<?php if (!$search['resourceID']) echo "display:none;"; ?>margin-left:123px;'><input type='button' value='<?= _("go!");?>' id='searchResourceIDButton' /></div>
+	<div id='div_searchID' style='<?php if (!$search['resourceID']) echo "display:none;"; ?>margin-left:123px;'><input type='button' value='<?php echo _("go!");?>' id='searchResourceIDButton' /></div>
 	</td>
 	</tr>
 
 	<tr>
-	<td class='searchRow'><label for='searchGeneralSubjectID'><b><?= _("General Subject");?></b></label>
+	<td class='searchRow'><label for='searchGeneralSubjectID'><b><?php echo _("General Subject");?></b></label>
 	<br />
 	<select name='search[generalSubjectID]' id='searchGeneralSubjectID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 
 	<?php
 
@@ -279,10 +279,10 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 	<tr>
-	<td class='searchRow'><label for='searchDetailedSubjectID'><b><?= _("Detailed Subject");?></b></label>
+	<td class='searchRow'><label for='searchDetailedSubjectID'><b><?php echo _("Detailed Subject");?></b></label>
 	<br />
 	<select name='search[detailedSubjectID]' id='searchDetailedSubjectID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 
 	<?php
 
@@ -310,7 +310,7 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 	
 	<tr>
-	<td class='searchRow'><label for='searchFirstLetter'><b><?= _("Starts with");?></b></label>
+	<td class='searchRow'><label for='searchFirstLetter'><b><?php echo _("Starts with");?></b></label>
 	<br />
 	<?php
 	$resource = new Resource();
@@ -336,15 +336,15 @@ $_SESSION['ref_script']=$currentPage;
 
 	</table>
 
-	<div id='hideShowOptions'><a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'><?= _("more options...");?></a></div>
+	<div id='hideShowOptions'><a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'><?php echo _("more options...");?></a></div>
 	<div id='div_additionalSearch' style='display:none;'>
 	<table class='borderedFormTable' style="width:150px">
 
 	<tr>
-	<td class='searchRow'><label for='searchNoteTypeID'><b><?= _("Note Type");?></b></label>
+	<td class='searchRow'><label for='searchNoteTypeID'><b><?php echo _("Note Type");?></b></label>
 	<br />
 	<select name='search[noteTypeID]' id='searchNoteTypeID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		if ($search['noteTypeID'] == "none") {
@@ -371,11 +371,11 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceNote'><b><?= _("Note (contains)");?></b></label>
+	<td class='searchRow'><label for='searchResourceNote'><b><?php echo _("Note (contains)");?></b></label>
 	<br />
 	<?php echo Html::text_search_field_tag('resourceNote', $search['resourceNote']); ?>
 	<br />
-	<div id='div_searchResourceNote' style='<?php if (!$search['resourceNote']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceNote' value='<?= _("go!");?>' class='searchButton' /></div>
+	<div id='div_searchResourceNote' style='<?php if (!$search['resourceNote']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceNote' value='<?php echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
 
@@ -383,26 +383,26 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='createDate'><b><?= _("Date Created Between");?></b></label><br />
+	<td class='searchRow'><label for='createDate'><b><?php echo _("Date Created Between");?></b></label><br />
 	  <?php echo Html::text_search_field_tag('createDateStart', $search['createDateStart'], array('class' => 'date-pick', 'width' => '65px')); ?>
-	&nbsp;&nbsp;<b><?= _("and");?></b>
+	&nbsp;&nbsp;<b><?php echo _("and");?></b>
 	</td>
 	</tr>
 	<tr>
 	<td style="border-top:0px;padding-top:0px;">
 	  <?php echo Html::text_search_field_tag('createDateEnd', $search['createDateEnd'], array('class' => 'date-pick', 'width' => '65px')); ?>
 	<br />
-	<div id='div_searchCreateDate' style='display:none;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='searchButton' value='<?= _("go!");?>' /></div>
+	<div id='div_searchCreateDate' style='display:none;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='searchButton' value='<?php echo _("go!");?>' /></div>
 	</td>
 	</tr>
 
 
 
 	<tr>
-	<td class='searchRow'><label for='searchPurchaseSiteID'><b><?= _("Purchase Site");?></b></label>
+	<td class='searchRow'><label for='searchPurchaseSiteID'><b><?php echo _("Purchase Site");?></b></label>
 	<br />
 	<select name='search[purchaseSiteID]' id='searchPurchaseSiteID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		if ($search['purchaseSiteID'] == "none"){
@@ -431,10 +431,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchAuthorizedSiteID'><b><?= _("Authorized Site");?></b></label>
+	<td class='searchRow'><label for='searchAuthorizedSiteID'><b><?php echo _("Authorized Site");?></b></label>
 	<br />
 	<select name='search[authorizedSiteID]' id='searchAuthorizedSiteID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		if ($search['authorizedSiteID'] == "none") {
@@ -463,10 +463,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchAdministeringSiteID'><b><?= _("Administering Site");?></b></label>
+	<td class='searchRow'><label for='searchAdministeringSiteID'><b><?php echo _("Administering Site");?></b></label>
 	<br />
 	<select name='search[administeringSiteID]' id='searchAdministeringSiteID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		if ($search['administeringSiteID'] == "none") {
@@ -493,10 +493,10 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchAuthenticationTypeID'><b><?= _("Authentication Type");?></b></label>
+	<td class='searchRow'><label for='searchAuthenticationTypeID'><b><?php echo _("Authentication Type");?></b></label>
 	<br />
 	<select name='search[authenticationTypeID]' id='searchAuthenticationTypeID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 
 		if ($search['authenticationTypeID'] == "none") {
@@ -523,10 +523,10 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 	
 	<tr>
-	<td class='searchRow'><label for='searchCatalogingStatusID'><b><?= _("Cataloging Status");?></b></label>
+	<td class='searchRow'><label for='searchCatalogingStatusID'><b><?php echo _("Cataloging Status");?></b></label>
 	<br />
 	<select name='search[catalogingStatusID]' id='searchCatalogingStatusID' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 	  if ($search['catalogingStatusID'] == "none") {
 			echo "<option value='none' selected>"._("(none)")."</option>";
@@ -550,10 +550,10 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
   
   <tr>
-	<td class='searchRow'><label for='searchStepName'><b><?= _("Routing Step");?></b></label>
+	<td class='searchRow'><label for='searchStepName'><b><?php echo _("Routing Step");?></b></label>
 	<br />
 	<select name='search[stepName]' id='searchStepName' style='width:150px'>
-	<option value=''><?= _("All");?></option>
+	<option value=''><?php echo _("All");?></option>
 	<?php
 	  $step = new Step();
     $stepNames = $step->allStepNames();

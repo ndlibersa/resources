@@ -23,7 +23,7 @@
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?= _("User Group");?></b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?php echo _("User Group");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -31,14 +31,14 @@
 
 				<table class='noBorder' style='width:235px; margin:15px 20px 10px 20px;'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='groupName'><b><?= _("Group Name:");?></b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='groupName'><b><?php echo _("Group Name:");?></b></label></td>
 				<td>
 				<input type='text' id='groupName' name='groupName' value = '<?php echo $userGroup->groupName; ?>' style='width:110px' class='changeInput' /><span id='span_error_groupName' class='smallDarkRedText'></span>
 				</td>
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b><?= _("Email Address:");?></b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='emailAddress'><b><?php echo _("Email Address:");?></b></label></td>
 				<td>
 				<input type='text' id='emailAddress' name='emailAddress' value = '<?php echo $userGroup->emailAddress; ?>' style='width:110px' class='changeInput' />
 				</td>
@@ -55,7 +55,7 @@
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='loginID'><b><?= _("Assigned Users");?></b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='loginID'><b><?php echo _("Assigned Users");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -79,7 +79,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addUser' alt="<?= _("add user");?>" title="<?= _("add user");?>"></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addUser' alt="<?php echo _("add user");?>" title="<?php echo _("add user");?>"></a>
 				</td>
 				</tr>
 				</table>
@@ -118,7 +118,7 @@
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt="<?= _("remove user from group");?>" title="<?= _("remove user from group");?>" class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt="<?php echo _("remove user from group");?>" title="<?php echo _("remove user from group");?>" class='remove' /></a>
 						</td>
 						</tr>
 					<?php
@@ -144,8 +144,8 @@
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitUserGroupForm' id ='submitUserGroupForm'></td>
-				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitUserGroupForm' id ='submitUserGroupForm'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

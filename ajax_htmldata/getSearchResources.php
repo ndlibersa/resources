@@ -35,7 +35,7 @@
 		$resourceArray = $resourceObj->search($whereAdd, $orderBy, $limit);
 
 		if (count($resourceArray) == 0){
-			echo "<br /><br /><i>Sorry, no requests fit your query</i>";
+			echo "<br /><br /><i>"._("Sorry, no requests fit your query")."</i>";
 			$i=0;
 		}else{
 			//maximum number of pages to display on screen at one time
@@ -49,7 +49,7 @@
 			}
 
 			//div for displaying record count
-			echo "<span style='float:left; font-weight:bold; width:650px;'>Displaying " . $displayStartingRecNumber . " to " . $displayEndingRecNumber . " of " . $totalRecords . " Resource Records</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
+			echo "<span style='float:left; font-weight:bold; width:650px;'>"._("Displaying ") . $displayStartingRecNumber . _(" to ") . $displayEndingRecNumber . _(" of ") . $totalRecords . _(" Resource Records")."</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
 
 
 			//print out page selectors as long as there are more records than the number that should be displayed
@@ -61,7 +61,7 @@
 					echo "<span class='smallerText'><<</span>&nbsp;";
 				}else{
 					$prevPage = $page - 1;
-					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><<</a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='"._("previous page")."' title='"._("previous page")."'><<</a>&nbsp;";
 				}
 
 
@@ -95,7 +95,7 @@
 				if ($nextPage >= $maxPages){
 					echo "<span class='smallerText'>>></span>&nbsp;";
 				}else{
-					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'>>></a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='"._("next page")."' title='"._("next page")."'>>></a>&nbsp;";
 				}
 
 				echo "</div>";
@@ -109,12 +109,12 @@
 			?>
 			<table class='dataTable' style='width:727px'>
 			<tr>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>ID</td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>Name</td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>Creator</td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>Date Created</td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>Acquisition Type</td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td>Status</td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("ID");?></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Name");?></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Creator");?></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Date Created");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Acquisition Type");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			</tr>
 
 			<?php
@@ -158,7 +158,7 @@
 					echo "<span class='smallerText'><<</span>&nbsp;";
 				}else{
 					$prevPage = $page - 1;
-					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><<</a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='"._("previous page")."' title='"._("previous page")."'><<</a>&nbsp;";
 				}
 
 
@@ -192,7 +192,7 @@
 				if ($nextPage >= $maxPages){
 					echo "<span class='smallerText'>>></span>&nbsp;";
 				}else{
-					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'>>></a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='"._("next page")."' title='"._("next page")."'>>></a>&nbsp;";
 				}
 			}
 			?>
@@ -209,7 +209,7 @@
 				}
 				?>
 			</select>
-			<span class='smallText'>records per page</span>
+			<span class='smallText'><?php echo _("records per page");?></span>
 			</td>
 			</tr>
 			</table>

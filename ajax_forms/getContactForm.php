@@ -40,56 +40,56 @@
 
 				<table class='noBorder'>
 					<tr>
-					<td style='text-align:left'><label for='contactName'><b><?= _("Name:");?></b></label></td>
+					<td style='text-align:left'><label for='contactName'><b><?php echo _("Name:");?></b></label></td>
 					<td>
 					<input type='text' id='contactName' name='contactName' value = '<?php echo $contact->name; ?>' style='width:150px' class='changeInput' /><span id='span_error_contactName' class='smallDarkRedText'>
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='contactTitle'><b><?= _("Title:");?></b></label></td>
+					<td style='text-align:left'><label for='contactTitle'><b><?php echo _("Title:");?></b></label></td>
 					<td>
 					<input type='text' id='contactTitle' name='contactTitle' value = '<?php echo $contact->title; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='phoneNumber'><b><?= _("Phone:");?></b></label></td>
+					<td style='text-align:left'><label for='phoneNumber'><b><?php echo _("Phone:");?></b></label></td>
 					<td>
 					<input type='text' id='phoneNumber' name='phoneNumber' value = '<?php echo $contact->phoneNumber; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='altPhoneNumber'><b><?= _("Alt Phone:");?></b></label></td>
+					<td style='text-align:left'><label for='altPhoneNumber'><b><?php echo _("Alt Phone:");?></b></label></td>
 					<td>
 					<input type='text' id='altPhoneNumber' name='altPhoneNumber' value = '<?php echo $contact->altPhoneNumber; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='faxNumber'><b><?= _("Fax:");?></b></label></td>
+					<td style='text-align:left'><label for='faxNumber'><b><?php echo _("Fax:");?></b></label></td>
 					<td>
 					<input type='text' id='faxNumber' name='faxNumber' value = '<?php echo $contact->faxNumber; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='emailAddress'><b><?= _("Email:");?></b></label></td>
+					<td style='text-align:left'><label for='emailAddress'><b><?php echo _("Email:");?></b></label></td>
 					<td>
 					<input type='text' id='emailAddress' name='emailAddress' value = '<?php echo $contact->emailAddress; ?>' style='width:150px' class='changeInput' />
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='addressText'><b><?= _("Address:");?></b></label></td>
+					<td style='text-align:left'><label for='addressText'><b><?php echo _("Address:");?></b></label></td>
 					<td>
 					<textarea rows='3' id='addressText' style='width:150px'><?php echo $contact->addressText; ?></textarea>
 					</td>
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='invalidInd'><b><?= _("Archived:");?></b></label></td>
+					<td style='text-align:left'><label for='invalidInd'><b><?php echo _("Archived:");?></b></label></td>
 					<td>
 					<input type='checkbox' id='invalidInd' name='invalidInd' <?php echo $invalidChecked; ?> />
 					</td>
@@ -99,7 +99,7 @@
 			<td>
 				<table class='noBorder'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;'><label for='orgRoles'><b><?= _("Role(s):");?></b></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='orgRoles'><b><?php echo _("Role(s):");?></b></label></td>
 				<td>
 
 					<table>
@@ -135,7 +135,7 @@
 
 
 				<tr>
-				<td style='text-align:left'><label for='addressText'><b><?= _("Notes:");?></b></label></td>
+				<td style='text-align:left'><label for='addressText'><b><?php echo _("Notes:");?></b></label></td>
 				<td>
 				<textarea rows='3' id='noteText' style='width:220px'><?php echo $contact->noteText; ?></textarea>
 				</td>
@@ -158,8 +158,8 @@
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?= _("submit");?>' name='submitContactForm' id ='submitContactForm'></td>
-				<td style='text-align:right'><input type='button' value='<?= _("cancel");?>' onclick="tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitContactForm' id ='submitContactForm'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove();"></td>
 			</tr>
 		</table>
 

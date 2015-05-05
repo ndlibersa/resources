@@ -21,7 +21,7 @@ include_once 'directory.php';
 //print header
 $pageTitle=_('Resources import');
 include 'templates/header.php';
-?><div id="importPage"><h1>CSV File import</h1><?php
+?><div id="importPage"><h1><?php echo _("CSV File import");?></h1><?php
 // CSV configuration
 $required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltURL' => 0, 'parentResource' => 0, 'organization' => 0, 'role' => 0);
 if ($_POST['submit']) {

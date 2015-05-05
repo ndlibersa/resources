@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-05-05 12:01+0100\n"
-"PO-Revision-Date: 2015-05-05 12:01+0100\n"
+"POT-Creation-Date: 2015-05-05 12:42+0100\n"
+"PO-Revision-Date: 2015-05-05 12:42+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -714,7 +714,7 @@ msgstr "Notes"
 
 #: ajax_forms/getNewResourceForm.php:278
 msgid "Include any additional information"
-msgstr "Inclure quelque information additional"
+msgstr "Inclure quelque information supplémentaire"
 
 #: ajax_forms/getNewResourceForm.php:294
 msgid "save"
@@ -1535,6 +1535,10 @@ msgstr ""
 #: import.php:22
 msgid "Resources import"
 msgstr "Importer des ressources"
+
+#: import.php:24
+msgid "CSV File import"
+msgstr "Importation d'un fichier CSV"
 
 #: import.php:32
 msgid "The file has been successfully uploaded."

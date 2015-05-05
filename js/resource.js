@@ -440,7 +440,7 @@ function bind_removes(){
    });
    
     $(".removeResourceAndChildren").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this resource and all its children?") == true) {
+	  if (confirm(_("Do you really want to delete this resource and all its children?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",

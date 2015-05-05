@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-05-05 11:18+0100\n"
-"PO-Revision-Date: 2015-05-05 11:18+0100\n"
+"POT-Creation-Date: 2015-05-05 12:01+0100\n"
+"PO-Revision-Date: 2015-05-05 12:01+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -2350,6 +2350,10 @@ msgstr "Voulez-vous vraiment supprimer cette pièce jointe?"
 #: js/resource.js:425
 msgid "Do you really want to delete this resource?"
 msgstr "Voulez-vous vraiment supprimer ce ressource?"
+
+#: js/resource.js:443
+msgid "Do you really want to delete this resource and all its children?"
+msgstr "Voulez-vous vraiment supprimer ce ressource et tous ses fils?"
 
 #: js/resource.js:464
 msgid "Do you really want to remove this Subject?"

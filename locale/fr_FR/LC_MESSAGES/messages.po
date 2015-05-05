@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-05-05 12:42+0100\n"
-"PO-Revision-Date: 2015-05-05 12:42+0100\n"
+"POT-Creation-Date: 2015-05-05 16:52+0100\n"
+"PO-Revision-Date: 2015-05-05 16:52+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -946,7 +946,7 @@ msgstr "Notes additionales"
 #: ajax_htmldata/getProductDetails.php:430 resources/cataloging.php:212
 #: resources/cataloging.php:231
 msgid "add new note"
-msgstr "ajouter une note"
+msgstr "Ajouter une note"
 
 #: ajax_htmldata/getAccessDetails.php:170
 #: ajax_htmldata/getAcquisitionsDetails.php:367
@@ -1252,7 +1252,7 @@ msgstr "Supprimer la ressource"
 
 #: ajax_htmldata/getProductDetails.php:69
 msgid "remove resource and its children"
-msgstr "Enlever ce ressource et ses fils"
+msgstr "Supprimer ce ressource et ses fils"
 
 #: ajax_htmldata/getProductDetails.php:75 summary.php:206
 msgid "Record ID:"

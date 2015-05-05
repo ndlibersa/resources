@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-05-04 17:16+0100\n"
-"PO-Revision-Date: 2015-05-04 17:17+0100\n"
+"POT-Creation-Date: 2015-05-05 11:18+0100\n"
+"PO-Revision-Date: 2015-05-05 11:18+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -20,7 +20,8 @@ msgstr ""
 msgid "Administration"
 msgstr "Administration"
 
-#: admin.php:51 ajax_htmldata/getAdminWorkflowDisplay.php:74
+#: admin.php:51 ajax_htmldata/getAdminUserDisplay.php:19
+#: ajax_htmldata/getAdminWorkflowDisplay.php:74
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -100,44 +101,44 @@ msgstr "Type de note"
 msgid "Order Type"
 msgstr "Type d'ordre"
 
-#: admin.php:80
+#: admin.php:81
 msgid "Organization Role"
 msgstr "Rôle dans l'organisation"
 
-#: admin.php:81
+#: admin.php:82
 msgid "Organizations"
 msgstr "Organisation"
 
-#: admin.php:85
+#: admin.php:86
 msgid "Purchasing Site"
 msgstr "Site d'achat"
 
-#: admin.php:86 ajax_htmldata/getAdminWorkflowDisplay.php:17 index.php:186
+#: admin.php:87 ajax_htmldata/getAdminWorkflowDisplay.php:17 index.php:186
 msgid "Resource Format"
 msgstr "Format de la ressource"
 
-#: admin.php:87 ajax_forms/getNewResourceForm.php:223
+#: admin.php:88 ajax_forms/getNewResourceForm.php:223
 #: ajax_htmldata/getAdminWorkflowDisplay.php:18 index.php:210
 msgid "Resource Type"
 msgstr "Type de ressource"
 
-#: admin.php:88
+#: admin.php:89
 msgid "Storage Location"
 msgstr "Lieu de stockage"
 
-#: admin.php:89 ajax_htmldata/getProductDetails.php:301
+#: admin.php:90 ajax_htmldata/getProductDetails.php:301
 msgid "Subjects"
 msgstr "Sujets"
 
-#: admin.php:90
+#: admin.php:91
 msgid "User Limit"
 msgstr "Limit d'utilisateurs"
 
-#: admin.php:95 queue.php:59
+#: admin.php:96 queue.php:59
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: admin.php:118
+#: admin.php:119
 msgid "You do not have permissions to access this screen."
 msgstr "Vous n'avez pas la permission d'accéder dans cette page."
 
@@ -1011,7 +1012,7 @@ msgstr "Pas des comptes disponibles"
 #: ajax_htmldata/getAcquisitionsDetails.php:100
 #: ajax_htmldata/getAcquisitionsDetails.php:159 resources/cataloging.php:106
 msgid "edit order information"
-msgstr "Modifier l'order de l'information"
+msgstr "Modifier l'information de l'ordre "
 
 #: ajax_htmldata/getAcquisitionsDetails.php:127
 msgid "catalog view"
@@ -1706,7 +1707,7 @@ msgstr "ID d'enregistrement"
 msgid "Starts with"
 msgstr "Commence avec"
 
-#: index.php:339 js/index.js:278
+#: index.php:339 js/index.js:236
 msgid "more options..."
 msgstr "plus des options..."
 
@@ -1752,7 +1753,7 @@ msgstr "Identifiant:"
 
 #: resources/cataloging.php:120
 msgid "Source URL:"
-msgstr "Source URL: "
+msgstr "Source URL:"
 
 #: resources/cataloging.php:121
 msgid "Visit Source URL"
@@ -1816,7 +1817,7 @@ msgstr "Identifiant"
 
 #: resources/cataloging_edit.php:42
 msgid "Source URL"
-msgstr "Source URL:"
+msgstr "Source URL"
 
 #: resources/cataloging_edit.php:68
 msgid "# Records Available"
@@ -2138,7 +2139,7 @@ msgstr ""
 "S'il vous plaît, cliquez sur le button Ajouter pour cette étape avant de "
 "valider ce workflow."
 
-#: js/index.js:154
+#: js/index.js:112
 msgid "Processing..."
 msgstr "En traitement..."
 
@@ -2373,6 +2374,9 @@ msgid ""
 msgstr ""
 "Êtes-vous sûrs de marquer ce ressource comme complète? Cette action ne peut "
 "pas être annulée."
+
+#~ msgid "Administering Site: "
+#~ msgstr "Administration du site: "
 
 #~ msgid "Provider:  "
 #~ msgstr "Fournisseur:  "

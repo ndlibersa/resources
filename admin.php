@@ -71,6 +71,7 @@ if ($user->isAdmin()){
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'><?php echo _("License Status");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='NoteType' class='AdminLink'><?php echo _("Note Type");?></div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrderType' class='AdminLink'><?php echo _("Order Type");?></div></td></tr>
+
 				<?php
 
 				//For Organizations links

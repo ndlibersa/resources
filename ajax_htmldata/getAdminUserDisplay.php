@@ -16,7 +16,7 @@
 
 		if (count($instanceArray) > 0){
 			?>
-			<div class="adminRightHeader">Users</div>
+			<div class="adminRightHeader"><?php echo _("Users");?></div>
 			<table class='linedDataTable' style='width:570px;margin-bottom:5px;'>
 				<tr>
 				<th><?php echo _("Login ID");?></td>

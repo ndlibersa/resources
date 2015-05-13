@@ -1,4 +1,4 @@
-Manual how change charset in the database to utf8 from v1.3
+How to change the charset in the database to utf8 from v1.3
 
     -Open SQL file in /coral/resources/install/protected/update_latin1-to-utf8.sql and replace _DATABASE_NAME_ with your database schema name
     -Run SQL file

@@ -180,24 +180,14 @@ function debug($value) {
 }
 
 // Verify the language of the browser
+global $http_lang;
 if(isset($_COOKIE["lang"])){
     $http_lang = $_COOKIE["lang"];
 }else{
-    $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+    $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
 }
-switch ($http_lang) {
-    case 'fr': 
-        $language = "fr_FR.utf8"; 
-    break;	
-    case 'en': 
-        $language = "en_US.utf8"; 
-    break;			
-    default: 
-        $language = "en_US.utf8"; 
-    break;
-}
-putenv("LC_ALL=$language");
-setlocale(LC_ALL, $language);
+putenv("LC_ALL=$http_lang");
+setlocale(LC_ALL, $http_lang.".utf8");
 bindtextdomain("messages", "./locale");
 textdomain("messages");
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2015-05-05 17:21+0100\n"
-"PO-Revision-Date: 2015-05-05 17:21+0100\n"
+"POT-Creation-Date: 2015-05-13 10:56+0100\n"
+"PO-Revision-Date: 2015-05-13 10:57+0100\n"
 "Last-Translator: Cesar <hernandez.antonio.cesar19@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,6 +15,26 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: /var/www/Coral/resources/plugins\n"
+
+#: LangCodes.php:9
+msgid "French, FR"
+msgstr "Français, FR"
+
+#: LangCodes.php:10
+msgid "English, US"
+msgstr "Anglais, US"
+
+#: LangCodes.php:11
+msgid "Spanish, ES"
+msgstr "Espagnol, ES"
+
+#: LangCodes.php:12
+msgid "Spanish, MX"
+msgstr "Espagnol, MX"
+
+#: LangCodes.php:13
+msgid "Italian, IT"
+msgstr "Italien, IT"
 
 #: admin.php:22 admin.php:40
 msgid "Administration"
@@ -1669,7 +1689,7 @@ msgstr "(pipe)"
 msgid "Upload"
 msgstr "Télécharger"
 
-#: index.php:26 templates/header.php:113
+#: index.php:26 templates/header.php:114
 msgid "Home"
 msgstr "Accueil"
 
@@ -1731,7 +1751,7 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: queue.php:22 queue.php:40 templates/header.php:115
+#: queue.php:22 queue.php:40 templates/header.php:116
 msgid "My Queue"
 msgstr "Ma liste"
 
@@ -1887,7 +1907,7 @@ msgstr "Notes additionales de connexion:"
 msgid "Additional Cataloging Notes"
 msgstr "Notes additionales du catalogue"
 
-#: templates/header.php:72
+#: templates/header.php:73
 msgid ""
 "JavaScript must be enabled in order for you to use CORAL. However, it seems "
 "JavaScript is either disabled or not supported by your browser. To use "
@@ -1898,45 +1918,41 @@ msgstr ""
 "utiliser CORAL, activez JavaScript en modifiant la configuration de votre "
 "navigateur, après "
 
-#: templates/header.php:72
+#: templates/header.php:73
 msgid "try again"
 msgstr "réessayez"
 
-#: templates/header.php:91
+#: templates/header.php:92
 msgid "Hello, "
 msgstr "Bonjour, "
 
-#: templates/header.php:102
+#: templates/header.php:103
 msgid "logout"
 msgstr "Se déconnecter"
 
-#: templates/header.php:104
+#: templates/header.php:105
 msgid "(Test)"
 msgstr "(Test)"
 
-#: templates/header.php:114
+#: templates/header.php:115
 msgid "New Resource"
 msgstr "Nouvelle ressource"
 
-#: templates/header.php:115
+#: templates/header.php:116
 msgid "Import"
 msgstr "Importer"
 
-#: templates/header.php:116
+#: templates/header.php:117
 msgid "Admin"
 msgstr "Administrateur"
 
-#: templates/header.php:132
+#: templates/header.php:133
 msgid "Change Module"
 msgstr "Changer le module"
 
-#: templates/header.php:162 templates/header.php:163
-msgid "French"
-msgstr "Français"
-
-#: templates/header.php:162 templates/header.php:163
-msgid "English"
-msgstr "Anglais"
+#: templates/header.php:176
+msgid "Invalid translation route!"
+msgstr "Le chemin aux traductions n'est pas valide!"
 
 #: user.php:101
 msgid ""

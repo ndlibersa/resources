@@ -16,25 +16,13 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: /var/www/Coral/resources/plugins\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: LangCodes.php:9
-msgid "French, FR"
-msgstr "Français, FR"
+#: LangCodes.php:17
+msgid "French"
+msgstr "Français"
 
-#: LangCodes.php:10
-msgid "English, US"
-msgstr "Anglais, US"
-
-#: LangCodes.php:11
-msgid "Spanish, ES"
-msgstr "Espagnol, ES"
-
-#: LangCodes.php:12
-msgid "Spanish, MX"
-msgstr "Espagnol, MX"
-
-#: LangCodes.php:13
-msgid "Italian, IT"
-msgstr "Italien, IT"
+#: LangCodes.php:18
+msgid "English"
+msgstr "Anglais"
 
 #: admin.php:22 admin.php:40
 msgid "Administration"
@@ -1687,7 +1675,7 @@ msgstr "(pipe)"
 msgid "Upload"
 msgstr "Télécharger"
 
-#: index.php:26 templates/header.php:114
+#: index.php:26 templates/header.php:115
 msgid "Home"
 msgstr "Accueil"
 
@@ -1749,7 +1737,7 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'acquisition"
 
-#: queue.php:22 queue.php:40 templates/header.php:116
+#: queue.php:22 queue.php:40 templates/header.php:117
 msgid "My Queue"
 msgstr "Ma queue"
 
@@ -1905,7 +1893,7 @@ msgstr "Notes additionnelles de connexion:"
 msgid "Additional Cataloging Notes"
 msgstr "Notes additionnelles du catalogue"
 
-#: templates/header.php:73
+#: templates/header.php:74
 msgid ""
 "JavaScript must be enabled in order for you to use CORAL. However, it seems "
 "JavaScript is either disabled or not supported by your browser. To use "
@@ -1915,39 +1903,39 @@ msgstr ""
 "n'est pas supporté par votre navigateur. Pour utiliser CORAL, activez "
 "JavaScript en modifiant la configuration de votre navigateur, puis"
 
-#: templates/header.php:73
+#: templates/header.php:74
 msgid "try again"
 msgstr "réessayez"
 
-#: templates/header.php:92
+#: templates/header.php:93
 msgid "Hello, "
 msgstr "Bonjour, "
 
-#: templates/header.php:103
+#: templates/header.php:104
 msgid "logout"
 msgstr "Se déconnecter"
 
-#: templates/header.php:105
+#: templates/header.php:106
 msgid "(Test)"
 msgstr "(Test)"
 
-#: templates/header.php:115
+#: templates/header.php:116
 msgid "New Resource"
 msgstr "Nouvelle ressource"
 
-#: templates/header.php:116
+#: templates/header.php:117
 msgid "Import"
 msgstr "Importer"
 
-#: templates/header.php:117
+#: templates/header.php:118
 msgid "Admin"
 msgstr "Administrer"
 
-#: templates/header.php:133
+#: templates/header.php:134
 msgid "Change Module"
 msgstr "Changer le module"
 
-#: templates/header.php:176
+#: templates/header.php:177
 msgid "Invalid translation route!"
 msgstr "Le chemin des traductions n'est pas valide!"
 
@@ -2389,6 +2377,15 @@ msgid ""
 msgstr ""
 "Êtes-vous sûrs de marquer cette ressource comme complète? Cette action ne "
 "peut pas être annulée."
+
+#~ msgid "Spanish, ES"
+#~ msgstr "Espagnol, ES"
+
+#~ msgid "Spanish, MX"
+#~ msgstr "Espagnol, MX"
+
+#~ msgid "Italian, IT"
+#~ msgstr "Italien, IT"
 
 #~ msgid "Administering Site: "
 #~ msgstr "Administration du site: "

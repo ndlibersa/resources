@@ -179,12 +179,17 @@ function debug($value) {
   echo '<pre>'.print_r($value, true).'</pre>';
 }
 
+// Include file of language codes
+include_once 'LangCodes.php';
+$lang_name = new LangCodes();
+
 // Verify the language of the browser
 global $http_lang;
 if(isset($_COOKIE["lang"])){
     $http_lang = $_COOKIE["lang"];
-}else{
-    $http_lang = str_replace('-','_',substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5));
+}else{        
+    $codeL = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+    $http_lang = $lang_name->getLanguage($codeL);
 }
 putenv("LC_ALL=$http_lang");
 setlocale(LC_ALL, $http_lang.".utf8");

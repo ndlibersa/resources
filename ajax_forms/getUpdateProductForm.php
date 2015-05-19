@@ -149,7 +149,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 <td>
           <span id="newIsbn">
            <input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
-           <a href='javascript:void();'><img src='images/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
+           <a href='javascript:void(0);'><img src='images/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
            <hr /><br />
            </span>
            <span id="existingIsbn">

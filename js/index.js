@@ -153,7 +153,11 @@ function searchValidResource(){
  
  
 function setOrder(column, direction){
-  $("#searchOrderBy").val(column + " " + direction)
+  if(column == 'R.titleText'){
+   $('#searchOrderBy').val("TRIM(LEADING 'THE ' FROM (TRIM(LEADING 'EL ' FROM (TRIM(LEADING 'L\\\'' FROM (TRIM(LEADING 'LA ' FROM (TRIM(LEADING 'LE ' FROM (TRIM(LEADING 'LES ' FROM (TRIM(LEADING 'DER ' FROM (TRIM(LEADING 'DIE ' FROM (TRIM(LEADING 'DAS ' FROM UPPER(R.titleText)))))))))))))))))) " + direction);
+  }else{
+    $("#searchOrderBy").val(column + " " +direction + ", TRIM(LEADING 'THE ' FROM (TRIM(LEADING 'EL ' FROM (TRIM(LEADING 'L\\\'' FROM (TRIM(LEADING 'LA ' FROM (TRIM(LEADING 'LE ' FROM (TRIM(LEADING 'LES ' FROM (TRIM(LEADING 'DER ' FROM (TRIM(LEADING 'DIE ' FROM (TRIM(LEADING 'DAS ' FROM UPPER(R.titleText)))))))))))))))))) asc");
+  }
   updateSearch();
 }
  

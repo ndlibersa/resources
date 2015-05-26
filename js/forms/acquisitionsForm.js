@@ -226,7 +226,6 @@ function submitOrderForm(){
 	if((typeID == '') || (typeID == null)){
 		$('#span_errors').html(_("Error - acquisition type is a required field"));
 		myReturn="1";
-		alert("Fail 2");
 	}
  	if (myReturn == "1"){
 		return false; 	

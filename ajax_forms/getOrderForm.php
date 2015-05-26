@@ -76,7 +76,7 @@
 				</tr>
 
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentEndDate'><?php _("Current Sub End:");?></label></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold'><label for='currentEndDate'><?php echo _("Current Sub End:");?></label></td>
 				<td><input class='date-pick' id='currentEndDate' name='currentEndDate' value = '<?php echo $endDate; ?>' style='width:75px;' />
 				</td>
 				</tr>

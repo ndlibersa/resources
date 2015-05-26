@@ -3,7 +3,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AccessMethod` (
   `accessMethodID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`accessMethodID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AcquisitionType`;
@@ -12,7 +12,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AcquisitionType` (
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`acquisitionTypeID`),
   UNIQUE KEY `acquisitionTypeID` (`acquisitionTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AdministeringSite`;
@@ -20,7 +20,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AdministeringSite` (
   `administeringSiteID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`administeringSiteID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AlertDaysInAdvance`;
@@ -28,7 +28,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AlertDaysInAdvance` (
   `alertDaysInAdvanceID` int(11) NOT NULL auto_increment,
   `daysInAdvanceNumber` int(11) default NULL,
   PRIMARY KEY  (`alertDaysInAdvanceID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AlertEmailAddress`;
@@ -36,7 +36,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AlertEmailAddress` (
   `alertEmailAddressID` int(11) NOT NULL auto_increment,
   `emailAddress` varchar(200) default NULL,
   PRIMARY KEY  (`alertEmailAddressID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -47,7 +47,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Alias` (
   `aliasTypeID` int(11) default NULL,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`aliasID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AliasType`;
@@ -56,7 +56,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AliasType` (
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`aliasTypeID`),
   UNIQUE KEY `aliasTypeID` (`aliasTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Attachment`;
@@ -68,7 +68,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Attachment` (
   `descriptionText` text,
   `attachmentURL` varchar(200) default NULL,
   PRIMARY KEY  (`attachmentID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AttachmentType`;
@@ -76,7 +76,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AttachmentType` (
   `attachmentTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`attachmentTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -85,7 +85,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`AuthenticationType` (
   `authenticationTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  USING BTREE (`authenticationTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AuthorizedSite`;
@@ -93,21 +93,21 @@ CREATE TABLE  `_DATABASE_NAME_`.`AuthorizedSite` (
   `authorizedSiteID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`authorizedSiteID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CatalogingType`;
 CREATE TABLE  `_DATABASE_NAME_`.`CatalogingType` (
   `catalogingTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`catalogingTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CatalogingStatus`;
 CREATE TABLE  `_DATABASE_NAME_`.`CatalogingStatus` (
   `catalogingStatusID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`catalogingStatusID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Contact`;
 CREATE TABLE  `_DATABASE_NAME_`.`Contact` (
@@ -125,7 +125,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Contact` (
   `noteText` text,
   PRIMARY KEY  (`contactID`),
   UNIQUE KEY `contactID` (`contactID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -134,7 +134,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ContactRole` (
   `contactRoleID` int(11) NOT NULL auto_increment,
   `shortName` varchar(50) default NULL,
   PRIMARY KEY  (`contactRoleID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ContactRoleProfile`;
@@ -142,7 +142,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ContactRoleProfile` (
   `contactID` int(10) unsigned NOT NULL,
   `contactRoleID` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`contactID`,`contactRoleID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Currency`;
@@ -151,7 +151,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Currency` (
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`currencyCode`),
   UNIQUE KEY `currencyCode` (`currencyCode`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ExternalLogin`;
@@ -167,7 +167,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ExternalLogin` (
   `noteText` text,
   PRIMARY KEY  (`externalLoginID`),
   UNIQUE KEY `externalLoginID` (`externalLoginID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -177,7 +177,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ExternalLoginType` (
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`externalLoginTypeID`),
   UNIQUE KEY `externalLoginTypeID` (`externalLoginTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IsbnOrIssn`;
@@ -188,7 +188,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`IsbnOrIssn` (
   PRIMARY KEY  (`isbnOrIssnID`),
   KEY `resourceID` (`resourceID`),
   KEY `isbnOrIssn` (`isbnOrIssn`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -198,7 +198,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`LicenseStatus` (
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`licenseStatusID`),
   UNIQUE KEY `licenseStatusID` (`licenseStatusID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -207,7 +207,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`NoteType` (
   `noteTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`noteTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`OrderType`;
@@ -215,7 +215,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`OrderType` (
   `orderTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`orderTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -224,7 +224,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Organization` (
   `organizationID` int(10) unsigned NOT NULL auto_increment,
   `shortName` tinytext NOT NULL,
   PRIMARY KEY  USING BTREE (`organizationID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`OrganizationRole`;
@@ -233,7 +233,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`OrganizationRole` (
   `shortName` varchar(50) default NULL,
   PRIMARY KEY  (`organizationRoleID`),
   UNIQUE KEY `organizationRoleID` (`organizationRoleID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -242,7 +242,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Privilege` (
   `privilegeID` int(10) unsigned NOT NULL auto_increment,
   `shortName` varchar(50) default NULL,
   PRIMARY KEY  USING BTREE (`privilegeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -251,7 +251,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`PurchaseSite` (
   `purchaseSiteID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`purchaseSiteID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -260,7 +260,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`RelationshipType` (
   `relationshipTypeID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`relationshipTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Resource`;
@@ -304,7 +304,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Resource` (
   `coverageText` VARCHAR(1000) NULL DEFAULT NULL,
   `resourceAltURL` VARCHAR(2000) NULL DEFAULT NULL,
   PRIMARY KEY  (`resourceID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -314,7 +314,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceAdministeringSiteLink` (
   `resourceID` int(11) default NULL,
   `administeringSiteID` int(11) default NULL,
   PRIMARY KEY  (`resourceAdministeringSiteLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -327,7 +327,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceAlert` (
   `sendDate` date default NULL,
   `alertText` text,
   PRIMARY KEY  (`resourceAlertID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -337,7 +337,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceAuthorizedSiteLink` (
   `resourceID` int(11) default NULL,
   `authorizedSiteID` int(11) default NULL,
   PRIMARY KEY  (`resourceAuthorizedSiteLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -347,7 +347,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceFormat` (
   `resourceFormatID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  USING BTREE (`resourceFormatID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -357,7 +357,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceLicenseLink` (
   `resourceID` int(11) default NULL,
   `licenseID` int(11) default NULL,
   PRIMARY KEY  (`resourceLicenseLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -369,7 +369,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceLicenseStatus` (
   `licenseStatusChangeDate` datetime default NULL,
   `licenseStatusChangeLoginID` varchar(45) default NULL,
   PRIMARY KEY  (`resourceLicenseStatusID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -383,7 +383,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceNote` (
   `updateLoginID` varchar(45) default NULL,
   `noteText` text,
   PRIMARY KEY  (`resourceNoteID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceOrganizationLink`;
@@ -393,7 +393,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceOrganizationLink` (
   `organizationID` int(11) default NULL,
   `organizationRoleID` int(11) default NULL,
   PRIMARY KEY  (`resourceOrganizationLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -413,7 +413,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourcePayment` (
   `costNote` text,
   `invoiceNum` varchar(20),
   PRIMARY KEY  (`resourcePaymentID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -423,7 +423,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourcePurchaseSiteLink` (
   `resourceID` int(11) default NULL,
   `purchaseSiteID` int(11) default NULL,
   PRIMARY KEY  (`resourcePurchaseSiteLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -434,7 +434,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceRelationship` (
   `relatedResourceID` int(11) default NULL,
   `relationshipTypeID` int(11) default NULL,
   PRIMARY KEY  (`resourceRelationshipID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -451,7 +451,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceStep` (
   `userGroupID` int(11) default NULL,
   `displayOrderSequence` int(10) unsigned default NULL,
   PRIMARY KEY  (`resourceStepID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceType`;
@@ -460,7 +460,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceType` (
   `shortName` varchar(200) default NULL,
   `includeStats` boolean default NULL,
   PRIMARY KEY  (`resourceTypeID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -470,7 +470,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Status` (
   `statusID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`statusID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -483,7 +483,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Step` (
   `workflowID` int(11) default NULL,
   `displayOrderSequence` int(10) unsigned default NULL,
   PRIMARY KEY  (`stepID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`StorageLocation`;
@@ -491,7 +491,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`StorageLocation` (
   `storageLocationID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`storageLocationID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -504,7 +504,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`User` (
   `accountTabIndicator` int(1) unsigned default '0',
   `emailAddress` varchar(200) default NULL,
   PRIMARY KEY  (`loginID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
@@ -515,7 +515,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`UserGroup` (
   `emailAddress` varchar(200) default NULL,
   `emailText` varchar(2000) default NULL,
   PRIMARY KEY  (`userGroupID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -525,7 +525,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`UserGroupLink` (
   `loginID` varchar(200) default NULL,
   `userGroupID` int(11) default NULL,
   PRIMARY KEY  (`userGroupLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -535,7 +535,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`UserLimit` (
   `userLimitID` int(11) NOT NULL auto_increment,
   `shortName` varchar(45) default NULL,
   PRIMARY KEY  (`userLimitID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Workflow`;
@@ -546,7 +546,7 @@ CREATE TABLE  `_DATABASE_NAME_`.`Workflow` (
   `resourceTypeIDValue` varchar(45) default NULL,
   `acquisitionTypeIDValue` varchar(45) default NULL,
   PRIMARY KEY  (`workflowID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralSubject`;
@@ -554,7 +554,7 @@ CREATE TABLE `_DATABASE_NAME_`.`GeneralSubject` (
   `generalSubjectID` int(11) NOT NULL AUTO_INCREMENT,
   `shortName` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`generalSubjectID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`DetailedSubject`;
@@ -562,7 +562,7 @@ CREATE TABLE `_DATABASE_NAME_`.`DetailedSubject` (
   `detailedSubjectID` int(11) NOT NULL AUTO_INCREMENT,
   `shortName` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`detailedSubjectID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`GeneralDetailSubjectLink`;
@@ -571,7 +571,7 @@ CREATE TABLE `_DATABASE_NAME_`.`GeneralDetailSubjectLink` (
   `generalSubjectID` int(11) DEFAULT NULL,
   `detailedSubjectID` int(11) DEFAULT NULL,
   PRIMARY KEY (`generalDetailSubjectLinkID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceSubject`;
@@ -580,7 +580,7 @@ CREATE TABLE `_DATABASE_NAME_`.`ResourceSubject` (
   `resourceID` int(11) DEFAULT NULL,
   `generalDetailSubjectLinkID` int(11) DEFAULT NULL,
   PRIMARY KEY (`resourceSubjectID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`CostDetails`;
@@ -588,7 +588,7 @@ CREATE TABLE `_DATABASE_NAME_`.`CostDetails` (
   `costDetailsID` int(11) NOT NULL AUTO_INCREMENT,
   `shortName` varchar(200) NOT NULL,
   PRIMARY KEY (`costDetailsID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`),
@@ -668,11 +668,11 @@ ALTER TABLE `_DATABASE_NAME_`.`ResourceSubject` ADD INDEX `resourceSubjectID` ( 
  ADD INDEX `Index_All` (`resourceID` ASC, `generalDetailSubjectLinkID` ASC), 
  ADD INDEX `Index_ResourceID` (`resourceID` ASC), 
  ADD INDEX `Index_GeneralDetailLink` (`generalDetailSubjectLinkID` ASC) ;
- 
+
 ALTER TABLE `_DATABASE_NAME_`.`CostDetails` ADD INDEX `costDetailsID` ( `costDetailsID` ), 
  ADD INDEX `Index_shortName` (`shortName`),
  ADD INDEX `Index_All`(`costDetailsID`, `shortName`);
- 
+
 INSERT INTO `_DATABASE_NAME_`.`AccessMethod` (shortName) values ('Standalone CD');
 INSERT INTO `_DATABASE_NAME_`.`AccessMethod` (shortName) values ('External Host');
 INSERT INTO `_DATABASE_NAME_`.`AccessMethod` (shortName) values ('Local Host');
@@ -1312,6 +1312,3 @@ INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID
 VALUES (5, NULL, 'Licensing', 2, 2, 1);
 INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (6, NULL, 'Activation', 1, 2, 2);
-
-
-

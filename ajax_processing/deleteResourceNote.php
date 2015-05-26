@@ -4,7 +4,7 @@
 
 		try {
 			$resourceNote->delete();
-			echo "Note successfully deleted.";
+			echo _("Note successfully deleted.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}

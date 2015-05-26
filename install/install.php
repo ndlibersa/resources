@@ -52,14 +52,17 @@ if ($step == "3"){
 					$errorMessage[] = "Please verify your database user has access to select from the information_schema MySQL metadata database.";
 				}else{
 					if ($row['count'] > 0){
-						$errorMessage[] = "The Resource tables already exist.  If you intend to upgrade, please run upgrade.php instead.  If you would like to perform a fresh install you will need to manually drop all of the Resource tables in this schema first.";
+						$errorMessage[] = "The Resource tables already exist.  If you intend to upgrade, please run update.php instead.  If you would like to perform a fresh install you will need to manually drop all of the Resource tables in this schema first.";
 					}else{
 
 						//passed db host, name check, can open/run file now
 						//make sure SQL file exists
 						$test_sql_file = "protected/test_create.sql";
-						$sql_file = "protected/install.sql";
-
+                        $sql_file = "protected/install.sql";
+                        
+                        // Assign the charset to specials chars
+                        mysql_query("SET NAMES 'utf8'");
+                        
 						if (!file_exists($test_sql_file)) {
 							$errorMessage[] = "Could not open sql file: " . $test_sql_file . ".  If this file does not exist you must download new install files.";
 						}else{
@@ -115,6 +118,7 @@ if ($step == "3"){
 
 							}
 						}
+                        
 					}
 				}
 			}

@@ -1126,12 +1126,12 @@
 	};
 	// localisable text
 	$.dpText = {
-		TEXT_PREV_YEAR		:	'Previous year',
-		TEXT_PREV_MONTH		:	'Previous month',
-		TEXT_NEXT_YEAR		:	'Next year',
-		TEXT_NEXT_MONTH		:	'Next month',
-		TEXT_CLOSE			:	'Close',
-		TEXT_CHOOSE_DATE	:	'Choose date',
+		TEXT_PREV_YEAR		:	_("Previous year"),
+		TEXT_PREV_MONTH		:	_("Previous month"),
+		TEXT_NEXT_YEAR		:	_("Next year"),
+		TEXT_NEXT_MONTH		:	_("Next month"),
+		TEXT_CLOSE			:	_("Close"),
+		TEXT_CHOOSE_DATE	:	_("Choose date"),
 		HEADER_FORMAT		:	'mmmm yyyy'
 	};
 	// version

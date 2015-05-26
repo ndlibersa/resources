@@ -15,7 +15,6 @@
 **************************************************************************************************************************
 */
 
-
 $(document).ready(function(){
 
   updateSearch($('#searchPage').val());      
@@ -110,7 +109,7 @@ $(document).ready(function(){
  });
  
 function updateSearch(pageNumber) {
-  $("#div_feedback").html("<img src='images/circle.gif'>  <span style='font-size:90%'>Processing...</span>");
+  $("#div_feedback").html("<img src='images/circle.gif'>  <span style='font-size:90%'>"+_("Processing...")+"</span>");
   if (!pageNumber) {
     pageNumber = 1;
   }
@@ -238,5 +237,5 @@ function setNumberOfRecords(recordsPerPageNumber){
   
   $("#hideOptions").click(function () {
   	$("#div_additionalSearch").css({'display':'none'}); 
-  	$("#hideShowOptions").html("<a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'>more options...</a>");
+  	$("#hideShowOptions").html("<a href='javascript:void(0);' name='showMoreOptions' id='showMoreOptions'>"+_("more options...")+"</a>");
   });

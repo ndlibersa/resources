@@ -5,7 +5,7 @@
 
     try {
       $resource->removeResourceAndChildren();
-      echo "Resource successfully deleted.";
+      echo _("Resource successfully deleted.");
     } catch (Exception $e) {
       echo $e->getMessage();
     }

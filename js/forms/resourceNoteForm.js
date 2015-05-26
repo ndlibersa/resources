@@ -31,7 +31,7 @@
  
  function validateForm (){
  	myReturn=0;
- 	if (!validateRequired('noteText','<br />Note must be entered to continue.')) myReturn="1";
+ 	if (!validateRequired('noteText',"<br />"+_("Note must be entered to continue."))) myReturn="1";
  	
  
  	if (myReturn == "1"){

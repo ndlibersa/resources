@@ -91,15 +91,15 @@ function checkUploadAttachment (file, extension){
 		  exists = "";
 			if (response == "1"){
 				exists = "1";
-				$("#div_file_message").html("  <font color='red'>File name is already being used...</font>");
+				$("#div_file_message").html("  <font color='red'>"+_("File name is already being used...")+"</font>");
 				return false;
 			} else if (response == "2"){
 				exists = "2";
-				$("#div_file_message").html("  <font color='red'>File name may not contain special characters - ampersand, single quote, double quote or less than/greater than characters</font>");
+				$("#div_file_message").html("  <font color='red'>"+_("File name may not contain special characters - ampersand, single quote, double quote or less than/greater than characters")+"</font>");
 				return false;				
 			} else if (response == "3"){
 				exists = "3";
-				$("#div_file_message").html("  <font color='red'>The attachments directory is not writable.</font>");
+				$("#div_file_message").html("  <font color='red'>"+_("The attachments directory is not writable.")+"</font>");
 				return false;
 			}
 			
@@ -121,7 +121,7 @@ new AjaxUpload('upload_button',
           if (errorMessage.size() > 0) {
             $("#div_file_message").html("<font color='red'>" + errorMessage.html() + "</font>");
           } else {
-            $("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + " successfully uploaded.");
+            $("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + _(" successfully uploaded."));
 				}
       }
 		}
@@ -143,7 +143,7 @@ new AjaxUpload('upload_button',
 					fileName=data;
 
 					if (exists == ""){
-						$("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + " successfully uploaded.");
+						$("#div_file_message").html("<img src='images/paperclip.gif'>" + fileName + _(" successfully uploaded."));
 						$("#div_uploadFile").html("<br />");
 
 					}
@@ -156,8 +156,8 @@ new AjaxUpload('upload_button',
 
  function validateForm (){
  	myReturn=0;
- 	if (!validateRequired('shortName','<br />Name must be entered to continue.')) myReturn="1";
- 	if (!validateRequired('attachmentTypeID','<br />Attachment Type must be selected to continue.')) myReturn="1";
+ 	if (!validateRequired('shortName',"<br />"+_("Name must be entered to continue."))) myReturn="1";
+ 	if (!validateRequired('attachmentTypeID',"<br />"+_("Attachment Type must be selected to continue."))) myReturn="1";
  	
  
  	if (myReturn == "1"){
@@ -175,7 +175,7 @@ new AjaxUpload('upload_button',
 function submitAttachment(){
 
 	if (fileName == ''){
-		$("#div_file_message").html("A file must be uploaded");
+		$("#div_file_message").html(_("A file must be uploaded"));
 	}else{
 		if (validateForm() === true) {
 			$('#submitAttachment').attr("disabled", "disabled"); 

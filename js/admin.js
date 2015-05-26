@@ -298,10 +298,10 @@ function updateSubjectsTable(){
  	numberOfDays = $('#daysInAdvanceNumber').val();
  	
  	if (parseInt(numberOfDays) != numberOfDays-0){
- 		$('#div_form_error').html("Number of days must be a number");
+ 		$('#div_form_error').html(_("Number of days must be a number"));
  		return false;
  	}else if ((numberOfDays < 1) || (numberOfDays > 365)){
- 		$('#div_form_error').html("Number of days should be between 1 and 365");
+ 		$('#div_form_error').html(_("Number of days should be between 1 and 365"));
  		return false;
  	}else{
  		$('#div_form_error').html("&nbsp;");
@@ -322,7 +322,7 @@ function updateSubjectsTable(){
 
  function deleteData(className, deleteID){
  
- 	if (confirm("Do you really want to delete this data?") == true) {
+ 	if (confirm(_("Do you really want to delete this data?")) == true) {
 
 	       $.ajax({
 		  type:       "GET",
@@ -349,7 +349,7 @@ function updateSubjectsTable(){
 
    function deleteGeneralSubject(className, deleteID){
  
- 	if (confirm("Do you really want to remove this data?") == true) {
+ 	if (confirm(_("Do you really want to remove this data?")) == true) {
 	   
 	       $.ajax({
 		  type:       "GET",
@@ -377,7 +377,7 @@ function updateSubjectsTable(){
  
    function deleteDetailedSubject(className, deleteID){
  
- 	if (confirm("Do you really want to remove this data?") == true) {
+ 	if (confirm(_("Do you really want to remove this data?")) == true) {
 	   
 	       $.ajax({
 		  type:       "GET",
@@ -405,7 +405,7 @@ function updateSubjectsTable(){
  
   function deleteGeneralDetailSubject(className, deleteID){
  
- 	if (confirm("Do you really want to remove this data?") == true) {
+ 	if (confirm(_("Do you really want to remove this data?")) == true) {
 	   
 	       $.ajax({
 		  type:       "GET",
@@ -435,7 +435,7 @@ function updateSubjectsTable(){
 
  function deleteUser(deleteId){
  
- 	if (confirm("Do you really want to delete this user?") == true) {
+ 	if (confirm(_("Do you really want to delete this user?")) == true) {
 
 	       $('#span_User_response').html('<img src = "images/circle.gif">&nbsp;&nbsp;Processing...');
 	       $.ajax({
@@ -465,7 +465,7 @@ function updateSubjectsTable(){
 
  function deleteAlert(className, deleteID){
  
- 	if (confirm("Do you really want to remove this alert setting?") == true) {
+ 	if (confirm(_("Do you really want to remove this alert setting?")) == true) {
 	   
 	       $.ajax({
 		  type:       "GET",
@@ -494,7 +494,7 @@ function updateSubjectsTable(){
 
  function deleteWorkflow(className, deleteID){
  
- 	if (confirm("Do you really want to remove this data?") == true) {
+ 	if (confirm(_("Do you really want to remove this data?")) == true) {
 	   
 	       $.ajax({
 		  type:       "GET",
@@ -524,7 +524,7 @@ function updateSubjectsTable(){
 
  function deleteCurrency(className, deleteID){
  
- 	if (confirm("Do you really want to delete this currency?") == true) {
+ 	if (confirm(_("Do you really want to delete this currency?")) == true) {
 
 	       $.ajax({
 		  type:       "GET",

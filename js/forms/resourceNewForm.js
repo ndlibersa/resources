@@ -96,7 +96,7 @@
 				if (exists == "0"){
 					$("#span_error_titleText").html("");
 				}else{
-				  	$("#span_error_titleText").html("<br />Warning: this name already exists.");
+				  	$("#span_error_titleText").html("<br />"+_("Warning: this name already exists."));
 				}
 			 }
 		  });
@@ -209,9 +209,6 @@
 	    });
 	    return false;
 	});
-
-
-
  });
  
 
@@ -227,18 +224,18 @@
 
 	//also perform same checks on the current record in case add button wasn't clicked
 	if (title == '' || title == null){
-		$('#span_error_titleText').html('A title must be entered to continue.');
+		$('#span_error_titleText').html(_("A title must be entered to continue."));
 		myReturn=1;		
 	}
 	
 	if (fmtID == '' || fmtID == null){
-		$('#span_error_resourceFormatID').html('The resource format is required.');
+		$('#span_error_resourceFormatID').html(_("The resource format is required."));
 		myReturn=1;		
 	}
 	
 	if (typeID == '' || typeID == null){
-		$('#span_error_resourceTypeID').html('The resource type is required.');
-		myReturn=1;		
+		$('#span_error_resourceTypeID').html(_("The resource type is required."));
+		myReturn=1;
 	}
 	
  	if (myReturn == 1){

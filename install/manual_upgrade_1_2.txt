@@ -14,7 +14,7 @@ Update /admin/configuration.ini
 
 	-No changes are required to be made in the /admin/configuration.ini
 	-defaultsort was added and can be used to change the default sort order of resources.
-
+    
 Update the module
 
     -Run /coral/resources/install/update.php to apply the upgrade

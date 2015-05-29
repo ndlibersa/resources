@@ -37,7 +37,7 @@ if ($_POST["submit"]) {
 			foreach ($statements as $statement) {
 			   if (strlen(trim($statement))>3){
 					//replace the DATABASE_NAME parameter with what was actually input
-					$statement = str_replace("_DATABASE_NAME_", $installer->getDatabaseName(), $statement);
+					//$statement = str_replace("_DATABASE_NAME_", $installer->getDatabaseName(), $statement);
 
 					$result = mysql_query($statement);
 					if (!$result){

@@ -1,51 +1,39 @@
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AlertDaysInAdvance`;
-CREATE TABLE  `_DATABASE_NAME_`.`AlertDaysInAdvance` (
+DROP TABLE IF EXISTS `AlertDaysInAdvance`;
+CREATE TABLE  `AlertDaysInAdvance` (
   `alertDaysInAdvanceID` int(11) NOT NULL auto_increment,
   `daysInAdvanceNumber` int(11) default NULL,
   PRIMARY KEY  (`alertDaysInAdvanceID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`AlertEmailAddress`;
-CREATE TABLE  `_DATABASE_NAME_`.`AlertEmailAddress` (
+DROP TABLE IF EXISTS `AlertEmailAddress`;
+CREATE TABLE  `AlertEmailAddress` (
   `alertEmailAddressID` int(11) NOT NULL auto_increment,
   `emailAddress` varchar(200) default NULL,
   PRIMARY KEY  (`alertEmailAddressID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-ALTER TABLE `_DATABASE_NAME_`.`Contact` DROP COLUMN `state`,
+ALTER TABLE `Contact` DROP COLUMN `state`,
  DROP COLUMN `country`,
  ADD COLUMN `addressText` VARCHAR(300) AFTER `title`;
- 
- 
- 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Country`;
 
+DROP TABLE IF EXISTS `Country`;
 
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Currency`;
-CREATE TABLE  `_DATABASE_NAME_`.`Currency` (
+DROP TABLE IF EXISTS `Currency`;
+CREATE TABLE  `Currency` (
   `currencyCode` varchar(3) NOT NULL,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY  (`currencyCode`),
   UNIQUE KEY `currencyCode` (`currencyCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
-
-ALTER TABLE `_DATABASE_NAME_`.`Resource` ADD COLUMN `archiveDate` DATE AFTER `updateLoginID`,
+ALTER TABLE `Resource` ADD COLUMN `archiveDate` DATE AFTER `updateLoginID`,
  ADD COLUMN `archiveLoginID` VARCHAR(45) AFTER `archiveDate`,
  ADD COLUMN `workflowRestartDate` DATE AFTER `archiveLoginID`,
  ADD COLUMN `workflowRestartLoginID` VARCHAR(45) AFTER `workflowRestartDate`,
  ADD COLUMN `providerText` VARCHAR(200) AFTER `accessMethodID`;
- 
- 
- 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceAlert`;
-CREATE TABLE  `_DATABASE_NAME_`.`ResourceAlert` (
+
+DROP TABLE IF EXISTS `ResourceAlert`;
+CREATE TABLE  `ResourceAlert` (
   `resourceAlertID` int(11) NOT NULL auto_increment,
   `resourceID` int(11) default NULL,
   `loginID` varchar(45) default NULL,
@@ -54,17 +42,12 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceAlert` (
   PRIMARY KEY  (`resourceAlertID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+ALTER TABLE `ResourcePayment` ADD COLUMN `currencyCode` VARCHAR(3) AFTER `orderTypeID`;
 
+DROP TABLE IF EXISTS `State`;
 
-ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment` ADD COLUMN `currencyCode` VARCHAR(3) AFTER `orderTypeID`;
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`State`;
-
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`ResourceStep`;
-CREATE TABLE  `_DATABASE_NAME_`.`ResourceStep` (
+DROP TABLE IF EXISTS `ResourceStep`;
+CREATE TABLE  `ResourceStep` (
   `resourceStepID` int(11) NOT NULL auto_increment,
   `resourceID` int(11) default NULL,
   `stepID` int(11) default NULL,
@@ -78,11 +61,8 @@ CREATE TABLE  `_DATABASE_NAME_`.`ResourceStep` (
   PRIMARY KEY  (`resourceStepID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Step`;
-CREATE TABLE  `_DATABASE_NAME_`.`Step` (
+DROP TABLE IF EXISTS `Step`;
+CREATE TABLE  `Step` (
   `stepID` int(11) NOT NULL auto_increment,
   `priorStepID` int(11) default NULL,
   `stepName` varchar(200) default NULL,
@@ -92,15 +72,10 @@ CREATE TABLE  `_DATABASE_NAME_`.`Step` (
   PRIMARY KEY  (`stepID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+ALTER TABLE `User` ADD COLUMN `emailAddress` VARCHAR(200) AFTER `accountTabIndicator`;
 
-ALTER TABLE `_DATABASE_NAME_`.`User` ADD COLUMN `emailAddress` VARCHAR(200) AFTER `accountTabIndicator`;
-
-
-
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`UserGroup`;
-CREATE TABLE  `_DATABASE_NAME_`.`UserGroup` (
+DROP TABLE IF EXISTS `UserGroup`;
+CREATE TABLE  `UserGroup` (
   `userGroupID` int(11) NOT NULL auto_increment,
   `groupName` varchar(200) default NULL,
   `emailAddress` varchar(200) default NULL,
@@ -108,22 +83,16 @@ CREATE TABLE  `_DATABASE_NAME_`.`UserGroup` (
   PRIMARY KEY  (`userGroupID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`UserGroupLink`;
-CREATE TABLE  `_DATABASE_NAME_`.`UserGroupLink` (
+DROP TABLE IF EXISTS `UserGroupLink`;
+CREATE TABLE  `UserGroupLink` (
   `userGroupLinkID` int(11) NOT NULL auto_increment,
   `loginID` varchar(200) default NULL,
   `userGroupID` int(11) default NULL,
   PRIMARY KEY  (`userGroupLinkID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-
-
-
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Workflow`;
-CREATE TABLE  `_DATABASE_NAME_`.`Workflow` (
+DROP TABLE IF EXISTS `Workflow`;
+CREATE TABLE  `Workflow` (
   `workflowID` int(11) NOT NULL auto_increment,
   `workflowName` varchar(200) default NULL,
   `resourceFormatIDValue` varchar(45) default NULL,
@@ -132,16 +101,11 @@ CREATE TABLE  `_DATABASE_NAME_`.`Workflow` (
   PRIMARY KEY  (`workflowID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-
-
-
-ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `Alias` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_aliasTypeID`(`aliasTypeID`),
  ADD INDEX `Index_All`(`resourceID`, `aliasTypeID`);
  
- 
-ALTER TABLE `_DATABASE_NAME_`.`Resource` ADD INDEX `Index_createDate`(`createDate`),
+ALTER TABLE `Resource` ADD INDEX `Index_createDate`(`createDate`),
  ADD INDEX `Index_createLoginID`(`createLoginID`),
  ADD INDEX `Index_titleText`(`titleText`),
  ADD INDEX `Index_isbnOrISSN`(`isbnOrISSN`),
@@ -151,107 +115,73 @@ ALTER TABLE `_DATABASE_NAME_`.`Resource` ADD INDEX `Index_createDate`(`createDat
  ADD INDEX `Index_acquisitionTypeID`(`authenticationTypeID`),
  ADD INDEX `Index_All`(`createDate`, `createLoginID`, `titleText`, `isbnOrISSN`, `statusID`, `resourceTypeID`, `resourceFormatID`, `acquisitionTypeID`);
  
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_fundName`(`fundName`),
  ADD INDEX `Index_All`(`resourceID`, `fundName`); 
  
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourceNote` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourceNote` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_noteTypeID`(`noteTypeID`),
  ADD INDEX `Index_All`(`resourceID`, `noteTypeID`);
  
-
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourceOrganizationLink` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourceOrganizationLink` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_organizationID`(`organizationID`),
  ADD INDEX `Index_All`(`resourceID`, `organizationID`);
 
-
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourcePurchaseSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourcePurchaseSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_purchaseSiteID`(`purchaseSiteID`),
  ADD INDEX `Index_All`(`resourceID`, `purchaseSiteID`);
 
-ALTER TABLE `_DATABASE_NAME_`.`ResourceAdministeringSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourceAdministeringSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_administeringSiteID`(`administeringSiteID`),
  ADD INDEX `Index_All`(`resourceID`, `administeringSiteID`);
  
-
-ALTER TABLE `_DATABASE_NAME_`.`ResourceAuthorizedSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourceAuthorizedSiteLink` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_authorizedSiteID`(`authorizedSiteID`),
  ADD INDEX `Index_All`(`resourceID`, `authorizedSiteID`); 
  
- 
-
- 
-ALTER TABLE `_DATABASE_NAME_`.`ResourceRelationship` ADD INDEX `Index_resourceID`(`resourceID`),
+ALTER TABLE `ResourceRelationship` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_relatedResourceID`(`relatedResourceID`),
  ADD INDEX `Index_All`(`resourceID`, `relatedResourceID`);
- 
- 
+
+INSERT INTO `Currency` (currencyCode, shortName) values ('USD', 'United States Dollar');
+INSERT INTO `Currency` (currencyCode, shortName) values ('EUR', 'Euro');
+INSERT INTO `Currency` (currencyCode, shortName) values ('GBP', 'Great Britain (UK) Pound');
+INSERT INTO `Currency` (currencyCode, shortName) values ('CAD', 'Canadian Dollar');
+INSERT INTO `Currency` (currencyCode, shortName) values ('ARS', 'Argentine Peso');
+INSERT INTO `Currency` (currencyCode, shortName) values ('AUD', 'Australian Dollar');
+INSERT INTO `Currency` (currencyCode, shortName) values ('SEK', 'Swedish Krona');
+
+INSERT INTO `NoteType` (shortName) values ('Initial Note');
+
+DELETE FROM `Status`;
+INSERT INTO `Status` (shortName) values ('In Progress');
+INSERT INTO `Status` (shortName) values ('Completed');
+INSERT INTO `Status` (shortName) values ('Saved');
+INSERT INTO `Status` (shortName) values ('Archived');
 
 
-
-
-
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('USD', 'United States Dollar');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('EUR', 'Euro');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('GBP', 'Great Britain (UK) Pound');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('CAD', 'Canadian Dollar');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('ARS', 'Argentine Peso');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('AUD', 'Australian Dollar');
-INSERT INTO `_DATABASE_NAME_`.`Currency` (currencyCode, shortName) values ('SEK', 'Swedish Krona');
-
-
-INSERT INTO `_DATABASE_NAME_`.`NoteType` (shortName) values ('Initial Note');
-
-
-DELETE FROM `_DATABASE_NAME_`.`Status`;
-INSERT INTO `_DATABASE_NAME_`.`Status` (shortName) values ('In Progress');
-INSERT INTO `_DATABASE_NAME_`.`Status` (shortName) values ('Completed');
-INSERT INTO `_DATABASE_NAME_`.`Status` (shortName) values ('Saved');
-INSERT INTO `_DATABASE_NAME_`.`Status` (shortName) values ('Archived');
-
-
-
-
-INSERT INTO `_DATABASE_NAME_`.`Workflow` (workflowID, resourceFormatIDValue, resourceTypeIDValue, acquisitionTypeIDValue)
+INSERT INTO `Workflow` (workflowID, resourceFormatIDValue, resourceTypeIDValue, acquisitionTypeIDValue)
 VALUES (1, '2', '','1');
 
-INSERT INTO `_DATABASE_NAME_`.`Workflow` (workflowID, resourceFormatIDValue, resourceTypeIDValue, acquisitionTypeIDValue)
+INSERT INTO `Workflow` (workflowID, resourceFormatIDValue, resourceTypeIDValue, acquisitionTypeIDValue)
 VALUES (2, '2', '','2');
 
+INSERT INTO `UserGroup` (userGroupID, groupName) VALUES (1, 'Access');
+INSERT INTO `UserGroup` (userGroupID, groupName) VALUES (2, 'Licensing');
+INSERT INTO `UserGroup` (userGroupID, groupName) VALUES (3, 'Funding Approval');
+INSERT INTO `UserGroup` (userGroupID, groupName) VALUES (4, 'Acquisitions');
+INSERT INTO `UserGroup` (userGroupID, groupName) VALUES (5, 'Receipt');
 
-
-INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (1, 'Access');
-INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (2, 'Licensing');
-INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (3, 'Funding Approval');
-INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (4, 'Acquisitions');
-INSERT INTO `_DATABASE_NAME_`.`UserGroup` (userGroupID, groupName) VALUES (5, 'Receipt');
-
-
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (1, NULL, 'Funding Approval', 3, 1, 1);
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (2, NULL, 'Licensing', 2, 1, 2);
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (3, 2, 'Order Processing', 4, 1, 3);
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (4, 3, 'Activation', 1, 1, 4);
 
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (5, NULL, 'Licensing', 2, 2, 1);
-INSERT INTO `_DATABASE_NAME_`.`Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
+INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (6, NULL, 'Activation', 1, 2, 2);
-
-
-
-
-
-
-
-
- 
- 
- 

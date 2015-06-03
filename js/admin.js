@@ -226,22 +226,31 @@ function updateSubjectsTable(){
 
 
 
- function submitData(){
+function submitData(){
+    if (validateAdminForms() === true) {
+        $.ajax({
+              type:       "POST",
+              url:        "ajax_processing.php?action=updateData",
+              cache:      false,
+              data:       { className: $("#editClassName").val(), updateID: $("#editUpdateID").val(), shortName: $('#updateVal').val(), stats: $('#stats').attr('checked') },
+              success:    function(html) {
+                updateTable($("#editClassName").val());
+                window.parent.tb_remove();
+              }
+           });
+    }
+}
 
-	$.ajax({
-          type:       "POST",
-          url:        "ajax_processing.php?action=updateData",
-          cache:      false,
-          data:       { className: $("#editClassName").val(), updateID: $("#editUpdateID").val(), shortName: $('#updateVal').val(), stats: $('#stats').attr('checked') },
-          success:    function(html) {
-          	updateTable($("#editClassName").val());
-          	window.parent.tb_remove();
-          }
-       });
-
- }
-
-
+// Validate admin forms
+function validateAdminForms() {
+    if ($("#updateVal").val() == ''){
+        $("#span_errors").html('Error - Please enter a value');
+        $("#updateVal").focus();
+        return false;
+    }else{
+        return true;
+    }
+}
  function submitUserData(){
 	$.ajax({
           type:       "POST",
@@ -261,19 +270,34 @@ function updateSubjectsTable(){
 
 
  function submitCurrencyData(){
-	$.ajax({
-          type:       "POST",
-          url:        "ajax_processing.php?action=updateCurrency",
-          cache:      false,
-          data:       { editCurrencyCode: $('#editCurrencyCode').val(), currencyCode: $('#currencyCode').val(), shortName: $('#shortName').val() },
-          success:    function(html) { 
-		  updateCurrencyTable();
-		  window.parent.tb_remove();
-          }
-       });
-
+     if(validateCurrency() === true){
+        $.ajax({
+              type:       "POST",
+              url:        "ajax_processing.php?action=updateCurrency",
+              cache:      false,
+              data:       { editCurrencyCode: $('#editCurrencyCode').val(), currencyCode: $('#currencyCode').val(), shortName: $('#shortName').val() },
+              success:    function(html) { 
+              updateCurrencyTable();
+              window.parent.tb_remove();
+              }
+           });
+     }
  }
 
+// Validate currency form
+function validateCurrency() {
+    if ($("#currencyCode").val() == ''){
+        $("#span_errors").html('Error - Please enter the currency code');
+        $("#currencyCode").focus();
+        return false;
+    }else if($("#shortName").val() == ''){
+        $("#span_errors").html('Error - Please enter a short name for the currency');
+        $("#shortName").focus();
+        return false;
+    }else{
+        return true;
+    }	
+}
 
  function submitAdminAlertEmail(){
 	$.ajax({

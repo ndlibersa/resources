@@ -35,7 +35,7 @@ class DBService extends Object {
 	}
 
 	protected function checkForError() {
-		if ($this->error = mysql_error($this->db)) {
+		if ($this->error = mysqli_error($this->db)) {
 			throw new Exception("There was a problem with the database: " . $this->error);
 		}
 	}
@@ -44,44 +44,45 @@ class DBService extends Object {
 		$host = $this->config->database->host;
 		$username = $this->config->database->username;
 		$password = $this->config->database->password;
-		$this->db = mysql_connect($host, $username, $password);
-		$this->checkForError();
-		mysql_set_charset('utf8', $this->db);
-
 		$databaseName = $this->config->database->name;
-		mysql_select_db($databaseName, $this->db);
+		$this->db = mysqli_connect($host, $username, $password, $databaseName);
 		$this->checkForError();
+		mysqli_set_charset($this->db, 'utf8');
 	}
 
 	protected function disconnect() {
-		//mysql_close($this->db);
+		//mysqli_close($this->db);
 	}
 
 	public function escapeString($value) {
-		return mysql_real_escape_string($value, $this->db);
+		return mysqli_real_escape_string($this->db, $value);
+	}
+
+	public function getDatabase() {
+		return $this->db;
 	}
 
 	public function processQuery($sql, $type = NULL) {
     	//echo $sql. "\n\n";
-		$result = mysql_query($sql, $this->db);
+		$result = mysqli_query($this->db, $sql);
 		$this->checkForError();
 		$data = array();
 
-		if (is_resource($result)) {
-			$resultType = MYSQL_NUM;
+		if ($result instanceof mysqli_result) {
+			$resultType = MYSQLI_NUM;
 			if ($type == 'assoc') {
-				$resultType = MYSQL_ASSOC;
+				$resultType = MYSQLI_ASSOC;
 			}
-			while ($row = mysql_fetch_array($result, $resultType)) {
-				if (mysql_affected_rows($this->db) > 1) {
+			while ($row = mysqli_fetch_array($result, $resultType)) {
+				if (mysqli_affected_rows($this->db) > 1) {
 					array_push($data, $row);
 				} else {
 					$data = $row;
 				}
 			}
-			mysql_free_result($result);
+			mysqli_free_result($result);
 		} else if ($result) {
-			$data = mysql_insert_id($this->db);
+			$data = mysqli_insert_id($this->db);
 		}
 
 		return $data;

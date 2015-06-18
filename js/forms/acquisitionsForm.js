@@ -118,15 +118,15 @@
 		var detailsID = $('.newPaymentTable').children().children().children().children('.costDetailsID').val();
 		var pAmount   = $('.newPaymentTable').children().children().children().children('.paymentAmount').val();
 		var cNote     = $('.newPaymentTable').children().children().children().children('.costNote').val();
-						
+        
 		if ((pAmount == '' || pAmount == null) && (fName == '' || fName == null)){
-			$('#div_errorPayment').html('Error - Either amount or fund is required');
+			$('#div_errorPayment').html(_("Error - Either amount or fund is required"));
 			return false;		
 		}else if((typeID == '') || (typeID == null)){
-			$('#div_errorPayment').html('Error - order type is a required field');
+			$('#div_errorPayment').html(_("Error - order type is a required field"));
 			return false;
 		}else if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-			$('#div_errorPayment').html('Error - price is not numeric');
+			$('#div_errorPayment').html(_("Error - price is not numeric"));
 			return false;		
 		}else{
 
@@ -144,8 +144,8 @@
 
 			$('.newPaymentTR').children().children().children('.addPayment').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this payment',
-			  title: 'remove this payment'
+			  alt: _("remove this payment"),
+			  title: _("remove this payment")
 			});
 			$('.newPaymentTR').children().children().children('.addPayment').addClass('remove').css("text-align","center");
 			$('.newPaymentTR').children().children('.paymentAmount').val(pAmount);
@@ -217,23 +217,17 @@ function submitOrderForm(){
 	 }
 
 }
-
-
-
-
-
  
  function validateForm (){
  	myReturn=0;
-
+     
 	var typeID = $('#acquisitionTypeID').val();
 
 	if((typeID == '') || (typeID == null)){
-		$('#span_errors').html('Error - acquisition type is a required field');
+		$('#span_errors').html(_("Error - acquisition type is a required field"));
 		myReturn="1";
 		alert("Fail 2");
 	}
-
  	if (myReturn == "1"){
 		return false; 	
  	}else{

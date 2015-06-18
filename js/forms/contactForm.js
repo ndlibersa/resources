@@ -176,7 +176,7 @@ function submitContact(){
 	}); 
 	
  	if (contactRolesList == ''){
- 	    $("#span_error_contactRole").html('Please choose at least one role.');
+ 	    $("#span_error_contactRole").html(_("Please choose at least one role."));
  	    myReturn="1";
  	} else {
  	    $("#span_error_contactRole").html('');

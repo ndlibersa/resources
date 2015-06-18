@@ -73,12 +73,12 @@ if ($config->settings->enableAlerts == 'Y'){
 
 		}
 	}else{
-		echo "No Resources found fitting alert day criteria";
+		echo _("No Resources found fitting alert day criteria");
 	}
 
 
 }else{
-	echo "Alerts not enabled in configuration.ini file";
+	echo _("Alerts not enabled in configuration.ini file");
 }
 
 

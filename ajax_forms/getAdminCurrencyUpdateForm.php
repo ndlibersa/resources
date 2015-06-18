@@ -11,7 +11,7 @@
 
 		<input type='hidden' id='editCurrencyCode' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Currency"; } else { echo "Add Currency"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit Currency"); } else { echo _("Add Currency"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -21,10 +21,10 @@
 
 			<table class='noBorder' style='width:200px; margin:10px;'>
 			<tr>
-			<td>Code</td><td><input type='text' id='currencyCode' value='<?php echo $instance->currencyCode; ?>' style='width:150px;'/></td>
+			<td><?php echo _("Code");?></td><td><input type='text' id='currencyCode' value='<?php echo $instance->currencyCode; ?>' style='width:150px;'/></td>
 			</tr>
 			<tr>
-			<td>Name</td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
+			<td><?php echo _("Name");?></td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
 			</tr>
 			</table>
 
@@ -35,8 +35,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 

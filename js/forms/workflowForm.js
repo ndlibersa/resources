@@ -182,7 +182,8 @@
 		var sName = $('.newStepTable').children().children().children().children('.stepName').val();
 		
 		if ((sName == '') || (sName == null)){
-			$('#div_errorStep').html('Error - Step name is required');
+			$('#div_errorStep').html(_("Error - Step name is required"));
+            $('.newStepTable').children().children().children().children('.stepName').focus();
 			return false;			
 		}else{
 
@@ -197,8 +198,8 @@
 
 			$('.newStepTR').children().children().children('.addStep').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this step',
-			  title: 'remove this step'
+			  alt: _("remove this step"),
+			  title: _("remove this step")
 			});
 			$('.newStepTR').children().children().children('.addStep').addClass('removeStep').css("text-align","center");
 			$('.stepName').addClass('changeInput');
@@ -338,15 +339,15 @@ function setArrows(){
 			}else{
 				//first gets down arrow only
 				if (thisKey == 1){
-					$('.seqOrder[key="1"]').html("<img src='images/transparent.gif' style='width:20px;height:20px;' />&nbsp;<a href='javascript:void(0);' class='moveArrow' direction='down'><img src='images/arrow_down.gif'></a>");
+					$('.seqOrder[key="1"]').html("<img src='images/transparent.gif' style='width:20px;height:20px;' />&nbsp;<a href='javascript:void(0);' class='moveArrow' direction='down'><img src='images/arrow_down.gif' /></a>");
 
 				//if this is the last one it gets up arrow only
 				}else if (thisKey == lastKey){
-					$(".seqOrder[key='" + thisKey + "']").html("<a href='javascript:void(0);' class='moveArrow' direction='up'><img src='images/arrow_up.gif'></a>&nbsp;<img src='images/transparent.gif' style='width:20px;height:20px;' />");
+					$(".seqOrder[key='" + thisKey + "']").html("<a href='javascript:void(0);' class='moveArrow' direction='up'><img src='images/arrow_up.gif' /></a>&nbsp;<img src='images/transparent.gif' style='width:20px;height:20px;' />");
 
 				//otherwise display both arrows
 				}else{
-					$(".seqOrder[key='" + thisKey + "']").html("<a href='javascript:void(0);' class='moveArrow' direction='up'><img src='images/arrow_up.gif'></a>&nbsp;<a href='javascript:void(0);' class='moveArrow' direction='down'><img src='images/arrow_down.gif'></a>");
+					$(".seqOrder[key='" + thisKey + "']").html("<a href='javascript:void(0);' class='moveArrow' direction='up'><img src='images/arrow_up.gif' /></a>&nbsp;<a href='javascript:void(0);' class='moveArrow' direction='down'><img src='images/arrow_down.gif' /></a>");
 
 
 				}
@@ -369,13 +370,13 @@ function setArrows(){
  	
  	//if no steps are added
  	if (stepNameList == ':::'){
- 		$("#span_errors").html('Please add at least one step to this workflow.');
+ 		$("#span_errors").html(_("Please add at least one step to this workflow."));
  		myReturn = 1;
  	}
  	
  	
  	if (stepNameList.indexOf(':::') != '0'){
- 		$("#span_errors").html('Please click the Add button to the first step before submitting this workflow.');
+ 		$("#span_errors").html(_("Please click the Add button to the first step before submitting this workflow."));
  		myReturn = 1;
  	} 		
  	

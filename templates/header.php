@@ -23,6 +23,10 @@ include_once 'user.php';
 $util = new Utility();
 $config = new Configuration();
 
+// Include file of language codes
+include_once 'LangCodes.php';
+$lang_name = new LangCodes();
+
 //get the current page to determine which menu button should be depressed
 $currentPage = $_SERVER["SCRIPT_NAME"];
 $parts = Explode('/', $currentPage);
@@ -49,13 +53,24 @@ $coralURL = $util->getCORALURL();
 <script type="text/javascript" src="js/plugins/jquery.js"></script>
 <script type="text/javascript" src="js/plugins/ajaxupload.3.5.js"></script>
 <script type="text/javascript" src="js/plugins/thickbox.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="js/plugins/Gettext.js"></script>
+<?php
+   // Add translation for the JavaScript files
+    global $http_lang;
+    if(isset($_COOKIE["lang"])){
+        if($_COOKIE["lang"]==$http_lang && $_COOKIE["lang"] != "en_US"){
+            echo "<link rel='gettext' type='application/x-po' href='./locale/".$http_lang."/LC_MESSAGES/messages.po' />";
+        }
+    }
+?>
+<script type="text/javascript" src="js/plugins/translate.js"></script>
 <script type="text/javascript" src="js/plugins/date.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.datePicker.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.autocomplete.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
-<noscript><font face=arial>JavaScript must be enabled in order for you to use CORAL. However, it seems JavaScript is either disabled or not supported by your browser. To use CORAL, enable JavaScript by changing your browser options, then <a href="">try again</a>. </font></noscript>
+<noscript><font face='arial'><?php echo _("JavaScript must be enabled in order for you to use CORAL. However, it seems JavaScript is either disabled or not supported by your browser. To use CORAL, enable JavaScript by changing your browser options, then ");?><a href=""><?php echo _("try again");?></a>. </font></noscript>
 
 <div class="wrapper">
 <center>
@@ -74,7 +89,7 @@ $coralURL = $util->getCORALURL();
 <div style='margin-top:1px;'>
 <span class='smallText' style='color:#526972;'>
 <?php
-	echo "Hello, ";
+	echo _("Hello, ");
 	//user may not have their first name / last name set up
 	if ($user->lastName){
 		echo $user->firstName . " " . $user->lastName;
@@ -85,10 +100,9 @@ $coralURL = $util->getCORALURL();
 ?>
 </span>
 <br />
-<?php
-if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>logout</a>"; } ?>
+<?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>"._("logout")."</a>"; } ?>
 <?php if ($config->settings->testMode == 'Y') { ?>
-  <br><span style="color:red;font-size:90%;">(Test)</span>
+  <br><span style="color:red;font-size:90%;"><?php echo _("(Test)");?></span>
 <?php } ?>
 </div>
 </td>
@@ -97,16 +111,15 @@ if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?
 <tr style='vertical-align:top'>
 <td style='width:870px;height:19px;'>
 
-<a href='index.php'><span class="menubtn<?php if ($currentPage == 'index.php') { echo " active"; } ?>" id="firstmenubtn">Home</span></a><?php if ($user->isAdmin() || $user->canEdit()){ ?>
-<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><span class="menubtn">New Resource</span></a><!--
---><a href='queue.php'><span class="menubtn<?php if ($currentPage == 'queue.php') { echo " active"; } ?>">My Queue</span></a><!--
---><a href='import.php'><span class="menubtn<?php if ($currentPage == 'import.php') { echo " active"; } ?>">Import</span></a><!--
---><?php if ($user->isAdmin()) { ?><a href='admin.php'><span class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn">Admin</span></a><?php } ?>
+<a href='index.php'><span class="menubtn<?php if ($currentPage == 'index.php') { echo " active"; } ?>" id="firstmenubtn"><?php echo _("Home");?></span></a><?php if ($user->isAdmin() || $user->canEdit()){ ?>
+<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><span class="menubtn"><?php echo _("New Resource");?></span></a><!--
+--><a href='queue.php'><span class="menubtn<?php if ($currentPage == 'queue.php') { echo " active"; } ?>"><?php echo _("My Queue");?></span></a><a href='import.php'><span class="menubtn<?php if ($currentPage == 'import.php') { echo " active"; } ?>"><?php echo _("Import");?></span></a><!--
+--><?php if ($user->isAdmin()) { ?><a href='admin.php'><span class="menubtn<?php if ($currentPage == 'admin.php') { echo " active"; } ?>" id="lastmenubtn"><?php echo _("Admin");?></span></a><?php } ?>
 <?php } ?>
 
 </td>
 
-<td style='width:130px;height:19px;' align='right'>
+<td style='width:288px;height:19px;' align='right'>
 <?php
 
 //only show the 'Change Module' if there are other modules installed or if there is an index to the main CORAL page
@@ -114,10 +127,10 @@ if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?
 if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->licensingModule == 'Y') || ($config->settings->organizationsModule == 'Y') || ($config->settings->cancellationModule == 'Y') || ($config->settings->usageModule == 'Y')) {
 
 	?>
-
+    
 	<div style='text-align:left;'>
 		<ul class="tabs">
-		<li style="background: url('images/change/coral-change.gif') no-repeat right;">&nbsp;
+		<li class="changeMod"><?php echo _("Change Module");?>&nbsp;▼
 			<ul class="coraldropdown">
 				<?php if (file_exists($util->getCORALPath() . "index.php")) {?>
 				<li><a href="<?php echo $coralURL; ?>" target='_blank'><img src='images/change/coral-main.gif'></a></li>
@@ -145,8 +158,61 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
 			</ul>
 		</li>
 		</ul>
-
+		<select name="lang" id="lang" class="dropDownLang">
+           <?php
+            // Get all translations on the 'locale' folder
+            $route='locale';
+            $lang[]="en_US"; // add default language
+            if (is_dir($route)) { 
+                if ($dh = opendir($route)) { 
+                    while (($file = readdir($dh)) !== false) {
+                        if (is_dir("$route/$file") && $file!="." && $file!=".."){
+                            $lang[]=$file;
+                        } 
+                    } 
+                    closedir($dh); 
+                } 
+            }else {
+                echo "<br>"._("Invalid translation route!"); 
+            }
+            // Get language of navigator
+            $defLang = str_replace('-','_',substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5));
+            
+            // Show an ordered list
+            sort($lang); 
+            for($i=0; $i<count($lang); $i++){
+                if(isset($_COOKIE["lang"])){
+                    if($_COOKIE["lang"]==$lang[$i]){
+                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getLanguage($lang[$i])."</option>";
+                    }else{
+                        echo "<option value='".$lang[$i]."'>".$lang_name->getLanguage($lang[$i])."</option>";
+                    }
+                }else{
+                    if($defLang==$lang[$i]){
+                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getLanguage($lang[$i])."</option>";
+                    }else{
+                        echo "<option value='".$lang[$i]."'>".$lang_name->getLanguage($lang[$i])."</option>";
+                    }
+                }
+            }
+            ?>
+            
+        </select>
 	</div>
+	<script>
+        $("#lang").change(function() {
+            setLanguage($("#lang").val());
+            location.reload();
+        });
+        
+        function setLanguage(lang) {
+			var wl = window.location, now = new Date(), time = now.getTime();
+            var cookievalid=86400000; // 1 day (1000*60*60*24)
+            time += cookievalid;
+			now.setTime(time);
+			document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now;
+	    }
+    </script>
 	<?php
 
 } else {

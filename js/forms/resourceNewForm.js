@@ -16,13 +16,15 @@
 */
 
  $(document).ready(function(){
-
-
+ 	
 	 $(".submitResource").click(function () {
 		submitResource($(this).attr("id"));
 	 });
 
-
+	 $("#search").click(function(){
+	 	console.debug("testLog _ searchclick ok");
+	 	searchGokb();
+	 });
 
 	//do submit if enter is hit
 	$('#titleText').keyup(function(e) {
@@ -253,6 +255,7 @@
 
 
 function submitResource(status){
+	alert("test");
 
 	orderTypeList ='';
 	$(".orderTypeID").each(function(id) {
@@ -309,7 +312,28 @@ function submitResource(status){
 }
 
 
-
+function searchGokb(){
+	var name = $('#titleText').val();
+	var issn = $('#ISSNText').val();
+	var publisher = $('#providerText').val();
+	
+	if (name != '' && name != null){
+		console.debug("name non vide");
+		$.ajax({
+			 type:       "POST",
+			 url:        "ajax_forms.php?action=getKBSearchResults",
+		/*	 url:        "ajax_processing.php?action=searchResourceFromGokb",*/
+			 cache:      false,
+			 data:       {name:$('#titleText').val() },
+			 success:    function() {
+				
+			 	console.debug("search success");
+			 	
+			 }
+		});	
+	}
+	
+}
 
 
 //kill all binds done by jquery live

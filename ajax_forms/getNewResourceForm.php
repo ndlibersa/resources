@@ -82,15 +82,15 @@
 		<input type='hidden' id='organizationID' value='<?php echo $orgID; ?>' />
 		<input type='hidden' id='editResourceID' value='<?php echo $resourceID; ?>' />
 		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo "Edit Saved Resource"; }else{ echo "Add New Resource"; } ?></span></div>
-		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields</div>
+		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields<span class="smallBlueText" >  <img src= 'images/loupe.png'/> search fields</span> </div>
 
 		<table class='noBorder'>
 		<tr style='vertical-align:top;'>
-		<td style='vertical-align:top; padding-right:35px;'>
+		<td style='vertical-align:top; padding-right:15px;'>
 
 			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Product</b>&nbsp;&nbsp;</span>
 
-			<table class='surroundBox' style='width:350px;'>
+			<table class='surroundBox' style='width:370px;'>
 			<tr>
 			<td>
 
@@ -99,6 +99,7 @@
 					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='titleText'>Name:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value="<?php echo $resource->titleText; ?>" /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
+					<td ><img src= 'images/loupe.png'/></td/>
 					</tr>
 
 					<tr>
@@ -107,8 +108,15 @@
 					</tr>
 
 					<tr>
+					<td style="vertical-align:top;text-align:left;"><label for="ISSNText">ISSN:</label></td>
+					<td><input type="text" id="ISSNText" style="width:220px;" class="changeInput ac_input idleField" value="" autocomplete="off"><span id="span_error_providerText" class="smallDarkRedText"></span></td>
+					<td ><img src= 'images/loupe.png'/></td/>
+					</tr>
+
+					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='providerText'>Provider:</label></td>
 					<td><input type='text' id='providerText' style='width:220px;' class='changeInput' value='<?php echo $providerText; ?>' /><span id='span_error_providerText' class='smallDarkRedText'></span></td>
+					<td ><img src= 'images/loupe.png'/></td/>
 					</tr>
 
 					<tr>
@@ -130,7 +138,7 @@
 
 			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Format</b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
-			<table class='surroundBox' style='width:350px;'>
+			<table class='surroundBox' style='width:370px;'>
 			<tr>
 			<td>
 <span id='span_error_resourceFormatID' class='smallDarkRedText'></span>
@@ -175,7 +183,7 @@
 
 			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Acquisition Type</b>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
-			<table class='surroundBox' style='width:350px;'>
+			<table class='surroundBox' style='width:370px;'>
 			<tr>
 			<td>
 
@@ -291,6 +299,7 @@
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
+				<td style="text-align:left"><input type="button" value="search on GOKb" class="searchGokb" id="search" ></td>
 				<td style='text-align:left'><input type='button' value='save' class='submitResource' id ='save'></td>
 				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
 				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>

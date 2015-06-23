@@ -28,7 +28,7 @@
 
 		$resource->titleText 			= $_POST['titleText'];
 		$resource->descriptionText 		= $_POST['descriptionText'];
-		$resource->isbnOrISSN	 		= '';
+		$resource->isbnOrISSN	 		= ''; //$_POST['ISSNText'];
 		$resource->statusID		 		= $statusID;
 		$resource->orderNumber	 		= '';
 		$resource->systemNumber 		= '';

@@ -28,7 +28,7 @@ $status = new Status(new NamedArguments(array('primaryKey' => $resource->statusI
 $config = new Configuration();
 
 //set this to turn off displaying the title header in header.php
-$pageTitle=$resource->titleText;;
+$pageTitle=$resource->titleText;
 include 'templates/header.php';
 
 

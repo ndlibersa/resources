@@ -78,18 +78,22 @@ class GOKbTools {
      * @param string    $name       the name searched
      * @param string    $issn       the type of searched resource
      * @param string    $publisher  the type of searched resource
+     * @param int       $searchType type of search ( 0 = search packages + issues, 5 results per type;
+     *                                               <0 = all results of packages;
+     *                                               >0 = all results of titles;)
      * @return array                multidimensionnal array :  $res[0] = array packages, [1]= array titles
      *                              each array is like [GOKb_identifer => name]
      */
-    public function searchOnGokb($name, $issn, $publisher){
+    public function searchOnGokb($name, $issn, $publisher, $searchType){
+        echo 'DEBUG_ search param = name: '.$name.' issn: '.$issn.' pub: '.$publisher.' type: '.$searchType.'<br/>';
 
         // query construction for packages
-        if ((!empty($name)) && (empty($issn)) && (empty($publisher))){
+        if ((!empty($name)) && (empty($issn)) && (empty($publisher)) && ($searchType <= 0)){
             $query = 'select distinct * where {';
             $query .= '?s a <http://purl.org/dc/dcmitype/Collection> .';
             $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
             $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY DESC(?o)';
-
+            if($searchType == 0) $query .= 'LIMIT 5';
             //send the request and get results
             $tmp = $this->sendSparqlQuery($query);
             $res = $tmp->{"results"}->{"result"};
@@ -105,47 +109,47 @@ class GOKbTools {
         $titles = array();
 
         // query construction for titles
+        if($searchType >= 0) {
+            if (!empty($issn)){ //search by issn (or eissn) only
+                $query = 'select distinct * where {';
+                $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
+                $query .= '?s  <http://www.w3.org/2002/07/owl#sameAs> "'.$issn.'" .';
+                $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .}';
+            } else if (!empty($publisher)){ 
+                $query = 'select distinct ?title ?name where{';
+                $query .= '?title a <http://www.w3.org/2002/07/owl#Work>.';
+                $query .= '?title <http://www.w3.org/2004/02/skos/core#prefLabel> ?name .';
+                $query .= '?title <http://purl.org/dc/terms/publisher> ?orgID .';
+                $query .= '{select distinct ?orgID where {';
+                $query .= '?orgID a <http://xmlns.com/foaf/0.1/Organization> .';
+                $query .= '?orgID <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .';
+                $query .= 'FILTER regex (?label, "'.$publisher.'", "i")} GROUP BY (?orgID)}';
+                if (!empty($name)) {$query .= ' FILTER regex(?name, "'.$name.'", "i")';}
+                $query .= '}';
 
-        if (!empty($issn)){ //search by issn (or eissn) only
-            $query = 'select distinct * where {';
-            $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
-            $query .= '?s  <http://www.w3.org/2002/07/owl#sameAs> "'.$issn.'" .';
-            $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .}';
-        } else if (!empty($publisher)){ 
-            $query = 'select ?title ?name where{';
-            $query .= '?title a <http://www.w3.org/2002/07/owl#Work>.';
-            $query .= '?title <http://www.w3.org/2004/02/skos/core#prefLabel> ?name .';
-            $query .= '?title <http://purl.org/dc/terms/publisher> ?orgID .';
-            $query .= '{select ?orgID where {';
-            $query .= '?orgID a <http://xmlns.com/foaf/0.1/Organization> .';
-            $query .= '?orgID <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .';
-            $query .= 'FILTER regex (?label, "'.$publisher.'", "i")} GROUP BY (?orgID)}';
-            if (!empty($name)) {$query .= ' FILTER regex(?name, "'.$name.'", "i")';}
-            $query .= '}';
+            } else { //search by name only
+                $query = 'select distinct * where {';
+                $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
+                $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
+                $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY ASC(?o)';
 
-        } else { //search by name only
-            $query = 'select distinct * where {';
-            $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
-            $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
-            $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY DESC(?o)';
+            }
+            if($searchType == 0) $query .= 'LIMIT 5';
+            //send the request and get results
+            $tmp = $this->sendSparqlQuery($query);
+            $res = $tmp->{"results"}->{"result"};
+
+            foreach ($res as $a => $b ) {
+                $uri = $b->{'binding'}->{'uri'};
+                $id = $this->UriToGokbId($uri);
+                $prefLabel = $b->{'binding'}[1]->{'literal'};
+                $titles["$id"] = $prefLabel;
+            }
 
         }
 
-        //send the request and get results
-        $tmp = $this->sendSparqlQuery($query);
-        $res = $tmp->{"results"}->{"result"};
 
-        foreach ($res as $a => $b ) {
-            $uri = $b->{'binding'}->{'uri'};
-            $id = $this->UriToGokbId($uri);
-            $prefLabel = $b->{'binding'}[1]->{'literal'};
-            $titles["$id"] = $prefLabel;
-        }
-
-
-
-
-       
+           
 
 
 
@@ -251,9 +255,9 @@ class GOKbTools {
     public function displayRecord($xml){
         $string = "";
         if (count($xml->children()) > 0) {
-            $string = "<table style='border-style:solid; border-width: 2px;'>";
+            $string = "<table style='border-style:solid; border-width: 1px;'>";
             foreach ($xml->children() as $tag => $child) {
-                $string .= '<tr> <td style="text-align: right;">'.$tag.'</td>';
+                $string .= '<tr > <td style="text-align: right;">'.$tag.'</td>';
                 $string .= '<td>'.$this->displayRecord($child).'</td>';
                 $string .= '</tr>';
             }

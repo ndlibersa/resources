@@ -1,32 +1,30 @@
 <div id='div_KBsearchResults'>
-		<div class='formTitle' style='width:745px;'>
-			<span class='headerText'>Add new resource - Search results</span>
-		</div>
+	<div class='formTitle' style='width:745px;'>
+		<span class='headerText'>Add new resource - Search results</span>
+	</div>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."resources/admin/classes/domain/GOKbTools.php";
 
 $tool = GOKbTools::getInstance();
 
-$results = $tool->searchOnGokb($_POST['name'], $_POST['issn'], $_POST['publisher']);
+$results = $tool->searchOnGokb($_POST['name'], $_POST['issn'], $_POST['publisher'], $_POST['type']);
 $nb_packages = count($results[0]);
 $nb_titles = count($results[1]);
-
-//echo "DEBUG _ nb pack = ".$nb_packages."   _   nb_titles = ".$nb_titles."<br/>";
 
 
 if ($nb_packages > 0){
 	echo "<div id='div_packagesResults'>";
-	echo "<h3> Packages </h3> <span class='results infos'>".$nb_packages." results </span><a class='moreResults thickbox'>View all packages results</a><br/>";
+	echo "<h3> Packages </h3> <span class='results infos'>".$nb_packages." results </span><a class='moreResults'";
+	echo 'onclick=allResults("'.$_POST['name'].'","'.$_POST['publisher'].'",-1);';
+	echo ">View all packages results</a><br/>";
 
-	$p = array_slice($results[0], 0, 5, true);
 	echo '<table>';
-	foreach ($p as $key => $value) {
-		//	echo '<form method=get action="details.php">';
-		echo '<tr><form><td>';
+	foreach ($results[0] as $key => $value) {
+		echo "<tr><td>";
 		echo ' - '.$value;
-		echo '<input type="hidden" name="type" value="package"/> <input type="hidden" name="id" value="'.$key.'"/></td>';
-		echo '<td>  <button type=submit>Details</button></td><td></td>';
-		echo '</tr></form>';
+		echo '<td>  <button class=thickbox onclick=getDetails("package","'.$key.'");>Details</button></td>';
+		echo '<td> <button class=thickbox onclick=select("package","'.$key.'");>Select</button></td>';
+		echo "</tr>";
 	}
 	echo '</table>';
 	echo "</div>";
@@ -36,18 +34,18 @@ if ($nb_packages > 0){
 
 if ($nb_titles > 0){
 echo "<div id='div_titlesResults'>";
-echo "<h3> Issues </h3> <span class='results infos'>".$nb_titles." results</span><a class='moreResults thickbox' >View all packages results</a><br/>";
+echo '<h3> Issues </h3> <span class="results infos">'.$nb_titles.' results</span><a class="moreResults"';
+echo 'onclick=allResults("'.$_POST['name'].'","'.$_POST['publisher'].'",1);';
+echo '>View all issues results</a><br/>';
 
-$t=array_slice($results[1], 0,5,true);
 
 echo '<table>';
-	foreach ($t as $key => $value) {
-		//	echo '<form method=get action="details.php">';
-		echo '<tr><form><td>';
+	foreach ($results[1] as $key => $value) {
+		echo "<tr><td>";
 		echo ' - '.$value;
-		echo '<input type="hidden" name="type" value="package"/> <input type="hidden" name="id" value="'.$key.'"/></td>';
-		echo '<td>  <button type=submit>Details</button></td><td></td>';
-		echo '</tr></form>';
+		echo '<td> <button class=thickbox onclick=getDetails("title","'.$key.'");>Details</button></td>';
+		echo '<td> <button class=thickbox onclick=select("title","'.$key.'");>Select</button></td>';
+		echo "</tr>";
 	}
 	echo '</table>';
 
@@ -57,5 +55,13 @@ echo "</div>";
 }
 
 ?>
+<a id="backToNewResourceForm" class="thickbox" href="ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true">
+<span>Back</span>
 
+</a>
+
+<input type='button' value='cancel' onclick="tb_remove()">
 </div>
+
+<script type="text/javascript" src="js/KBSearch.js"></script>
+<script type="text/javascript" src="js/plugins/thickbox.js"></script>

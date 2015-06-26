@@ -299,7 +299,7 @@
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
-				<td style="text-align:left"><input type="button" value="search on GOKb" class="searchGokb" id="search" ></td>
+				<td style="text-align:left"><input type="button" value="search on GOKb" class="searchGokb" id="search"></td>
 				<td style='text-align:left'><input type='button' value='save' class='submitResource' id ='save'></td>
 				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
 				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>
@@ -311,4 +311,5 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceNewForm.js?random=<?php echo rand(); ?>"></script>
+
 

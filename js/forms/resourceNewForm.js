@@ -313,26 +313,22 @@ function submitResource(status){
 
 
 function searchGokb(){
-	var name = $('#titleText').val();
-	var issn = $('#ISSNText').val();
-	var publisher = $('#providerText').val();
-	
+	var name=$('#titleText').val()
 	if (name != '' && name != null){
 		console.debug("name non vide");
 		$.ajax({
 			 type:       "POST",
-			 url:        "ajax_forms.php?action=getKBSearchResults",
+			 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
 		/*	 url:        "ajax_processing.php?action=searchResourceFromGokb",*/
 			 cache:      false,
-			 data:       {name:$('#titleText').val() },
-			 success:    function() {
-				
-			 	console.debug("search success");
+			 data:       {name:$('#titleText').val(), issn:$('#ISSNText').val(), publisher:$('#providerText').val()},
+			 success:    function(res) {
+			 	document.getElementById("TB_ajaxContent").innerHTML = "";
+			 	$('#TB_ajaxContent').append(res);
 			 	
 			 }
 		});	
 	}
-	
 }
 
 

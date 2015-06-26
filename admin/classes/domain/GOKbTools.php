@@ -50,7 +50,6 @@ class GOKbTools {
      * Return the unique instance of class (design pattern singleton)
      */
     public static function getInstance(){
-        echo 'DEBUG_ getInstance()<br/>';
         if (is_null(self::$instance)){
             self::$instance = new GOKbTools();
         } 
@@ -63,7 +62,6 @@ class GOKbTools {
      */
     private function __construct()
     {
-        echo 'DEBUG_ constructeur tool _ START<br/>';
         $this->titleClient = new Client(OAI_HOST.'titles');
         $this->packageClient = new Client(OAI_HOST.'packages');
         $this->titleEndpoint = new Endpoint($this->titleClient);
@@ -72,55 +70,89 @@ class GOKbTools {
 
         $this->httpClient = (class_exists('GuzzleHttp\Client')) ? new GuzzleAdapter() : new CurlAdapter();
 
-        echo 'DEBUG_ constructeur tools _ END<br/>';
     }
 
-// -------------------------------------------------------------------------
-
-    /**
-     * Build and send a search query, return an array 
-     * @param string    $name   the name searched
-     * @param string    $type   the type of searched resource
-     * @return array            an array with all results [GOKb_identifer => name]
+// ------------------------------------------------------------------------- 
+/**
+     * Build and send search queries, return an array of array.
+     * @param string    $name       the name searched
+     * @param string    $issn       the type of searched resource
+     * @param string    $publisher  the type of searched resource
+     * @return array                multidimensionnal array :  $res[0] = array packages, [1]= array titles
+     *                              each array is like [GOKb_identifer => name]
      */
-    public function searchByName($name, $type){ //voir comment avoir une unique fonction de génération de requete (prefix etc...), 
-        switch ($type) {
-            case 'title':
-                $prefix = '<http://www.w3.org/2002/07/owl#Work>';
-                break;
-            case 'package':
-                $prefix = '<http://purl.org/dc/dcmitype/Collection>';
-                break;
-            default:
-                break;
+    public function searchOnGokb($name, $issn, $publisher){
+
+        // query construction for packages
+        if ((!empty($name)) && (empty($issn)) && (empty($publisher))){
+            $query = 'select distinct * where {';
+            $query .= '?s a <http://purl.org/dc/dcmitype/Collection> .';
+            $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
+            $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY DESC(?o)';
+
+            //send the request and get results
+            $tmp = $this->sendSparqlQuery($query);
+            $res = $tmp->{"results"}->{"result"};
+
+            foreach ($res as $a => $b ) {
+                $uri = $b->{'binding'}->{'uri'};
+                $id = $this->UriToGokbId($uri);
+                $prefLabel = $b->{'binding'}[1]->{'literal'};
+                $packages["$id"] = $prefLabel;
+            }
         }
 
-        //query construction
-        $query = 'select distinct * where {'.
-        $query .= '?s a '.$prefix.' .';
-        $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
-        $query .= 'FILTER regex(?o, "'.$name.'", "i")} LIMIT 100';
+        $titles = array();
+
+        // query construction for titles
+
+        if (!empty($issn)){ //search by issn (or eissn) only
+            $query = 'select distinct * where {';
+            $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
+            $query .= '?s  <http://www.w3.org/2002/07/owl#sameAs> "'.$issn.'" .';
+            $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .}';
+        } else if (!empty($publisher)){ 
+            $query = 'select ?title ?name where{';
+            $query .= '?title a <http://www.w3.org/2002/07/owl#Work>.';
+            $query .= '?title <http://www.w3.org/2004/02/skos/core#prefLabel> ?name .';
+            $query .= '?title <http://purl.org/dc/terms/publisher> ?orgID .';
+            $query .= '{select ?orgID where {';
+            $query .= '?orgID a <http://xmlns.com/foaf/0.1/Organization> .';
+            $query .= '?orgID <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .';
+            $query .= 'FILTER regex (?label, "'.$publisher.'", "i")} GROUP BY (?orgID)}';
+            if (!empty($name)) {$query .= ' FILTER regex(?name, "'.$name.'", "i")';}
+            $query .= '}';
+
+        } else { //search by name only
+            $query = 'select distinct * where {';
+            $query .= '?s a <http://www.w3.org/2002/07/owl#Work> .';
+            $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
+            $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY DESC(?o)';
+
+        }
 
         //send the request and get results
-        $results = $this->sendSparqlQuery($query);
-        $res = $results->{"results"}->{"result"};
-        
-        $tmp = array();
+        $tmp = $this->sendSparqlQuery($query);
+        $res = $tmp->{"results"}->{"result"};
+
         foreach ($res as $a => $b ) {
             $uri = $b->{'binding'}->{'uri'};
             $id = $this->UriToGokbId($uri);
             $prefLabel = $b->{'binding'}[1]->{'literal'};
-            $tmp["$id"] = $prefLabel;
+            $titles["$id"] = $prefLabel;
         }
 
-        return $tmp;
+
+
+
+       
+
+
+
+        $results = array($packages, $titles);
+        return $results;
 
     }
-
-// ------------------------------------------------------------------------- 
-
- 
-
 // ------------------------------------------------------------------------- 
 
     /**
@@ -244,6 +276,7 @@ class GOKbTools {
         }
         return $string;
     }
+// -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 

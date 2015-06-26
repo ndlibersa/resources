@@ -5,8 +5,10 @@ Update the resources module codebase
 	-When performing upgrades your configuration file (/admin/configuration.ini) 
 	should always be backed up first so that when you check out the new code you are sure to not overwrite it. 
 	-Check out the new code through GitHub https://github.com/ndlibersa/resources/
-	-If needed manually copy and overwrite all the files into the exiting resources directory.
-	-Do not replace the existing directory.  This will cause you to lose any settings, documents, etc. That you may have.  Copying the new files over the existing files and replacing them will ensure you get the changes needed but not removing additional files.
+	-If needed manually copy and overwrite all the files into the existing resources directory.
+	-Do not replace the existing directory.  This will cause you to lose any settings, documents, etc. that
+	you may have.  Copying the new files over the existing files and replacing them will ensure you get the
+	changes needed without removing additional files.
 	-Ensure that your configuration file (/admin/configuration.ini) is still correct.
 	
 Update the database schema
@@ -17,7 +19,10 @@ Update the database schema
 
 Update /admin/configuration.ini
 
-	-Add a line reading "enhancedCostHistory=Y" within the [settings] section in /admin/configuration.ini if you wish to use the new cost history features
-  -Add a line reading importISBNDedupingColumns="column1,column2[...]" within the [settings] section in /admin/configuration.ini if you wish to use the new import tool.
-   Those are columns names from the imported CSV file which will be used for matching against already existing Isbn's in Coral.
-   Example: importISBNDedupingColumns="ISSN,EISSN,PrintISSN,OnlineISSN,Print ISSN,Online ISSN,ISBN,EISBN"
+	-Add a line reading "enhancedCostHistory=Y" within the [settings] section in /admin/configuration.ini if
+	you wish to use the new cost history features.
+	-Add a line reading importISBNDedupingColumns="column1,column2[...]" within the [settings] section in
+	/admin/configuration.ini if you wish to use the new import tool.
+		-Those are columns names from the imported CSV file which will be used for matching against already
+		existing ISBNs in Coral.
+		-Example: importISBNDedupingColumns="ISSN,EISSN,PrintISSN,OnlineISSN,Print ISSN,Online ISSN,ISBN,EISBN"

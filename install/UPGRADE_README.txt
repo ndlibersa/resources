@@ -1,6 +1,10 @@
 1.3 The 1.3 update to the CORAL Resources module includes the following enhancements:
 
-	-Added cost history
+	-Cost history tracking
+	-Ability to import resources and organizations from a CSV file
+	-A resource can have more than one parent
+	-A resource can have more than one ISBN/ISSN
+	-Option to display a "Get Statistics" button on a resource page if using the Reports module
 
 1.2 The 1.2 update to the CORAL Resources module includes a number of enhancements:
 

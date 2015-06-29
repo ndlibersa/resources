@@ -859,7 +859,7 @@ class Resource extends DatabaseObject {
 
 		//if name is passed in also search alias, organizations and organization aliases
 		if ($search['name']) {
-			$nameQueryString = mysqli_real_escape_string($this->db->getDatabase(), strtoupper($search['name']));
+			$nameQueryString = mysqli_real_escape_string($resource->db->getDatabase(), strtoupper($search['name']));
 			$nameQueryString = preg_replace("/ +/", "%", $nameQueryString);
 		  $nameQueryString = "'%" . $nameQueryString . "%'";
 
@@ -879,16 +879,16 @@ class Resource extends DatabaseObject {
 
 		//get where statements together (and escape single quotes)
 		if ($search['resourceID']) {
-		  $whereAdd[] = "R.resourceID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['resourceID']) . "'";
+		  $whereAdd[] = "R.resourceID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['resourceID']) . "'";
 		  $searchDisplay[] = "Resource ID: " . $search['resourceID'];
 	  }
 		if ($search['resourceISBNOrISSN']) {
-		  $resourceISBNOrISSN = mysqli_real_escape_string($this->db->getDatabase(), str_replace("-","",$search['resourceISBNOrISSN']));
+		  $resourceISBNOrISSN = mysqli_real_escape_string($resource->db->getDatabase(), str_replace("-","",$search['resourceISBNOrISSN']));
 		  $whereAdd[] = "REPLACE(R.isbnOrISSN,'-','') = '" . $resourceISBNOrISSN . "'";
 		  $searchDisplay[] = "ISSN/ISBN: " . $search['resourceISBNOrISSN'];
 		}
 		if ($search['fund']) {
-		  $fund = mysqli_real_escape_string($this->db->getDatabase(), str_replace("-","",$search['fund']));
+		  $fund = mysqli_real_escape_string($resource->db->getDatabase(), str_replace("-","",$search['fund']));
 		  $whereAdd[] = "REPLACE(RPAY.fundName,'-','') = '" . $fund . "'";
 		  $searchDisplay[] = "Fund: " . $search['fund'];
 	  }
@@ -896,18 +896,18 @@ class Resource extends DatabaseObject {
     if ($search['stepName']) {
       $status = new Status();
       $completedStatusID = $status->getIDFromName('complete');
-      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
+      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
       $searchDisplay[] = "Routing Step: " . $search['stepName'];
     }
 
 		if ($search['statusID']) {
-		  $whereAdd[] = "R.statusID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['statusID']) . "'";
+		  $whereAdd[] = "R.statusID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['statusID']) . "'";
 		  $status = new Status(new NamedArguments(array('primaryKey' => $search['statusID'])));
     	$searchDisplay[] = "Status: " . $status->shortName;
 	  }
 
 		if ($search['creatorLoginID']) {
-		  $whereAdd[] = "R.createLoginID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['creatorLoginID']) . "'";
+		  $whereAdd[] = "R.createLoginID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['creatorLoginID']) . "'";
 
 		  $createUser = new User(new NamedArguments(array('primaryKey' => $search['creatorLoginID'])));
     	if ($createUser->firstName){
@@ -919,25 +919,25 @@ class Resource extends DatabaseObject {
 	  }
 
 		if ($search['resourceFormatID']) {
-		  $whereAdd[] = "R.resourceFormatID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['resourceFormatID']) . "'";
+		  $whereAdd[] = "R.resourceFormatID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['resourceFormatID']) . "'";
 		  $resourceFormat = new ResourceFormat(new NamedArguments(array('primaryKey' => $search['resourceFormatID'])));
     	$searchDisplay[] = "Resource Format: " . $resourceFormat->shortName;
 	  }
 
 		if ($search['acquisitionTypeID']) {
-		  $whereAdd[] = "R.acquisitionTypeID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['acquisitionTypeID']) . "'";
+		  $whereAdd[] = "R.acquisitionTypeID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['acquisitionTypeID']) . "'";
 		  $acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $search['acquisitionTypeID'])));
     	$searchDisplay[] = "Acquisition Type: " . $acquisitionType->shortName;
 	  }
 
 
 		if ($search['resourceNote']) {
-		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . mysqli_real_escape_string($this->db->getDatabase(), $search['resourceNote']) . "%')";
+		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . mysqli_real_escape_string($resource->db->getDatabase(), $search['resourceNote']) . "%')";
 		  $searchDisplay[] = "Note contains: " . $search['resourceNote'];
 	  }
 
 		if ($search['createDateStart']) {
-		  $whereAdd[] = "R.createDate >= STR_TO_DATE('" . mysqli_real_escape_string($this->db->getDatabase(), $search['createDateStart']) . "','%m/%d/%Y')";
+		  $whereAdd[] = "R.createDate >= STR_TO_DATE('" . mysqli_real_escape_string($resource->db->getDatabase(), $search['createDateStart']) . "','%m/%d/%Y')";
 		  if (!$search['createDateEnd']) {
 		    $searchDisplay[] = "Created on or after: " . $search['createDateStart'];
 	    } else {
@@ -946,14 +946,14 @@ class Resource extends DatabaseObject {
 	  }
 
 		if ($search['createDateEnd']) {
-		  $whereAdd[] = "R.createDate <= STR_TO_DATE('" . mysqli_real_escape_string($this->db->getDatabase(), $search['createDateEnd']) . "','%m/%d/%Y')";
+		  $whereAdd[] = "R.createDate <= STR_TO_DATE('" . mysqli_real_escape_string($resource->db->getDatabase(), $search['createDateEnd']) . "','%m/%d/%Y')";
 		  if (!$search['createDateStart']) {
 		    $searchDisplay[] = "Created on or before: " . $search['createDateEnd'];
 	    }
 	  }
 
 		if ($search['startWith']) {
-		  $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . mysqli_real_escape_string($this->db->getDatabase(), $search['startWith']) . "%')";
+		  $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . mysqli_real_escape_string($resource->db->getDatabase(), $search['startWith']) . "%')";
 		  $searchDisplay[] = "Starts with: " . $search['startWith'];
 	  }
 
@@ -962,7 +962,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['resourceTypeID']){
-			$whereAdd[] = "R.resourceTypeID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['resourceTypeID']) . "'";
+			$whereAdd[] = "R.resourceTypeID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['resourceTypeID']) . "'";
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $search['resourceTypeID'])));
     	$searchDisplay[] = "Resource Type: " . $resourceType->shortName;
 		}
@@ -972,7 +972,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((GDLINK.generalSubjectID IS NULL) OR (GDLINK.generalSubjectID = '0'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['generalSubjectID']){
-			$whereAdd[] = "GDLINK.generalSubjectID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['generalSubjectID']) . "'";
+			$whereAdd[] = "GDLINK.generalSubjectID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['generalSubjectID']) . "'";
 			$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $search['generalSubjectID'])));
     	$searchDisplay[] = "General Subject: " . $generalSubject->shortName;
 		}
@@ -981,7 +981,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((GDLINK.detailedSubjectID IS NULL) OR (GDLINK.detailedSubjectID = '0') OR (GDLINK.detailedSubjectID = '-1'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['detailedSubjectID']){
-			$whereAdd[] = "GDLINK.detailedSubjectID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['detailedSubjectID']) . "'";
+			$whereAdd[] = "GDLINK.detailedSubjectID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['detailedSubjectID']) . "'";
 			$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $search['detailedSubjectID'])));
     	$searchDisplay[] = "Detailed Subject: " . $detailedSubject->shortName;
 		}
@@ -990,7 +990,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
 			$searchDisplay[] = "Note Type: none";
 		}else if ($search['noteTypeID']){
-			$whereAdd[] = "RN.noteTypeID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['noteTypeID']) . "'";
+			$whereAdd[] = "RN.noteTypeID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['noteTypeID']) . "'";
 			$noteType = new NoteType(new NamedArguments(array('primaryKey' => $search['noteTypeID'])));
     	$searchDisplay[] = "Note Type: " . $noteType->shortName;
 		}
@@ -1000,7 +1000,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RPSL.purchaseSiteID IS NULL";
 			$searchDisplay[] = "Purchase Site: none";
 		}else if ($search['purchaseSiteID']){
-			$whereAdd[] = "RPSL.purchaseSiteID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['purchaseSiteID']) . "'";
+			$whereAdd[] = "RPSL.purchaseSiteID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['purchaseSiteID']) . "'";
 			$purchaseSite = new PurchaseSite(new NamedArguments(array('primaryKey' => $search['purchaseSiteID'])));
     	$searchDisplay[] = "Purchase Site: " . $purchaseSite->shortName;
 		}
@@ -1010,7 +1010,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RAUSL.authorizedSiteID IS NULL";
 			$searchDisplay[] = "Authorized Site: none";
 		}else if ($search['authorizedSiteID']){
-			$whereAdd[] = "RAUSL.authorizedSiteID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['authorizedSiteID']) . "'";
+			$whereAdd[] = "RAUSL.authorizedSiteID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['authorizedSiteID']) . "'";
 			$authorizedSite = new AuthorizedSite(new NamedArguments(array('primaryKey' => $search['authorizedSiteID'])));
     	$searchDisplay[] = "Authorized Site: " . $authorizedSite->shortName;
 		}
@@ -1020,7 +1020,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RADSL.administeringSiteID IS NULL";
 			$searchDisplay[] = "Administering Site: none";
 		}else if ($search['administeringSiteID']){
-			$whereAdd[] = "RADSL.administeringSiteID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['administeringSiteID']) . "'";
+			$whereAdd[] = "RADSL.administeringSiteID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['administeringSiteID']) . "'";
 			$administeringSite = new AdministeringSite(new NamedArguments(array('primaryKey' => $search['administeringSiteID'])));
     	$searchDisplay[] = "Administering Site: " . $administeringSite->shortName;
 		}
@@ -1030,7 +1030,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "R.authenticationTypeID IS NULL";
 			$searchDisplay[] = "Authentication Type: none";
 		}else if ($search['authenticationTypeID']){
-			$whereAdd[] = "R.authenticationTypeID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['authenticationTypeID']) . "'";
+			$whereAdd[] = "R.authenticationTypeID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['authenticationTypeID']) . "'";
 			$authenticationType = new AuthenticationType(new NamedArguments(array('primaryKey' => $search['authenticationTypeID'])));
 			$searchDisplay[] = "Authentication Type: " . $authenticationType->shortName;
 		}
@@ -1039,7 +1039,7 @@ class Resource extends DatabaseObject {
 		  $whereAdd[] = "(R.catalogingStatusID IS NULL)";
 		  $searchDisplay[] = "Cataloging Status: none";
 		} else if ($search['catalogingStatusID']) {
-			$whereAdd[] = "R.catalogingStatusID = '" . mysqli_real_escape_string($this->db->getDatabase(), $search['catalogingStatusID']) . "'";
+			$whereAdd[] = "R.catalogingStatusID = '" . mysqli_real_escape_string($resource->db->getDatabase(), $search['catalogingStatusID']) . "'";
 			$catalogingStatus = new CatalogingStatus(new NamedArguments(array('primaryKey' => $search['catalogingStatusID'])));
 		  $searchDisplay[] = "Cataloging Status: " . $catalogingStatus->shortName;
 	  }

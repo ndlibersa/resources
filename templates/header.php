@@ -45,6 +45,9 @@ $coralURL = $util->getCORALURL();
 <link rel="stylesheet" href="css/datePicker.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/jquery.autocomplete.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/jquery.tooltip.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="css/gokb.search.css" type="text/css" media="screen" />
+
 <link rel="SHORTCUT ICON" href="images/butterflyfishfavicon.ico" />
 <script type="text/javascript" src="js/plugins/jquery.js"></script>
 <script type="text/javascript" src="js/plugins/ajaxupload.3.5.js"></script>

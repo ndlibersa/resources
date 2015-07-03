@@ -304,6 +304,9 @@
 				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
 				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>
 			</tr>
+			<tr>
+				<span id='span_error_search' class='smallDarkRedText'></span>
+			</tr>
 		</table>
 
 

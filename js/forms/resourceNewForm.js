@@ -22,7 +22,6 @@
 	 });
 
 	 $("#search").click(function(){
-	 	console.debug("testLog _ searchclick ok");
 	 	searchGokb();
 	 });
 
@@ -255,7 +254,6 @@
 
 
 function submitResource(status){
-	alert("test");
 
 	orderTypeList ='';
 	$(".orderTypeID").each(function(id) {
@@ -313,19 +311,35 @@ function submitResource(status){
 
 
 function searchGokb(){
-	$.ajax({
-		 type:       "POST",
-		 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
-		 cache:      false,
-		 data:       {name:$('#titleText').val(), issn:$('#ISSNText').val(), publisher:$('#providerText').val(), type:0},
-		 success:    function(res) {
-		 	document.getElementById("TB_ajaxContent").innerHTML = "";
-		 	$('#TB_ajaxContent').append(res);
-		 	
-		 }
-	});	
+	if (validateSearchFields() === true){
+		$.ajax({
+			 type:       "POST",
+			 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
+			 cache:      false,
+			 data:       {name:$('#titleText').val(), issn:$('#ISSNText').val(), publisher:$('#providerText').val(), type:0},
+			 success:    function(res) {
+			 	document.getElementById("TB_ajaxContent").innerHTML = "";
+			 	$('#TB_ajaxContent').append(res);
+			 	
+			 }
+		});
+	}
+	else {
+		$("#span_error_search").html("At least one search field is required to search");
+	}
 }
 
+function validateSearchFields(){
+	var name = $('#titleText').val();
+	var publisher = $('#providerText').val();
+	var issn = $('#ISSNText').val();
+
+	if (((name != null) && (name != '')) || ((publisher != '') && (publisher != null)) || ((issn != null) && (issn != ''))){
+		return true;
+	} else {
+		return false;
+	}
+}
 
 //kill all binds done by jquery live
 function kill(){

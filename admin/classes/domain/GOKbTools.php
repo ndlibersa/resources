@@ -41,6 +41,9 @@ class GOKbTools {
      */
     private $httpClient;
 
+
+
+
     /**
      * @var GOKbTools (Pattern Singleton)
      */
@@ -85,7 +88,6 @@ class GOKbTools {
      *                              each array is like [GOKb_identifer => name]
      */
     public function searchOnGokb($name, $issn, $publisher, $searchType){
-        echo 'DEBUG_ search param = name: '.$name.' issn: '.$issn.' pub: '.$publisher.' type: '.$searchType.'<br/>';
 
         // query construction for packages
         if ((!empty($name)) && (empty($issn)) && (empty($publisher)) && ($searchType <= 0)){
@@ -94,6 +96,7 @@ class GOKbTools {
             $query .= '?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o .';
             $query .= 'FILTER regex(?o, "'.$name.'", "i")} ORDER BY DESC(?o)';
             if($searchType == 0) $query .= 'LIMIT 5';
+            
             //send the request and get results
             $tmp = $this->sendSparqlQuery($query);
             $res = $tmp->{"results"}->{"result"};
@@ -135,6 +138,7 @@ class GOKbTools {
 
             }
             if($searchType == 0) $query .= 'LIMIT 5';
+            
             //send the request and get results
             $tmp = $this->sendSparqlQuery($query);
             $res = $tmp->{"results"}->{"result"};
@@ -147,11 +151,6 @@ class GOKbTools {
             }
 
         }
-
-
-           
-
-
 
         $results = array($packages, $titles);
         return $results;
@@ -226,7 +225,6 @@ class GOKbTools {
      */
     public function getDetails($type, $gokbID)
     {
-        echo 'DEBUG_ getDetails('.$type.','.$gokbID.')<br/>';
         switch ($type) {
             case 'title':
                 $record = $this->titleEndpoint->getRecord($gokbID, 'gokb');
@@ -235,6 +233,7 @@ class GOKbTools {
                 $record = $this->packageEndpoint->getRecord($gokbID, 'gokb');
                 break;
             default:
+                return null;
                 break;
         }
 
@@ -248,18 +247,20 @@ class GOKbTools {
     /**
      * Extract and display the results included in an xml document
      *          _ Recursive function _
-     * @param /SimpleXMLElement     XML document to treat
-     * @return string               content 
+     * @param $xml  /SimpleXMLElement    XML document to treat
+     * @return      string               content 
      */
 
     public function displayRecord($xml){
         $string = "";
-        if (count($xml->children()) > 0) {
-            $string = "<table style='border-style:solid; border-width: 1px;'>";
+        if ((count($xml->children()) > 0) && ($xml->getName() != 'TIPPs')) {
+            $string = "<table>";
             foreach ($xml->children() as $tag => $child) {
-                $string .= '<tr > <td style="text-align: right;">'.$tag.'</td>';
-                $string .= '<td>'.$this->displayRecord($child).'</td>';
-                $string .= '</tr>';
+                if ($tag != 'TIPPs'){
+                    $string .= '<tr > <td style="text-align: right;">'.$tag.'</td>';
+                    $string .= '<td>'.$this->displayRecord($child).'</td>';
+                    $string .= '</tr>';
+                }
             }
             $string .='</table>';
         }
@@ -272,20 +273,71 @@ class GOKbTools {
                 }
 
                 $string .= '</td>';
-            } elseif ($xml != "") {
+            } elseif ($xml->getName() == 'TIPPs') {
+                $string = "";
+            }
+            elseif ($xml != "") {
                 $string = $xml;
             } else {
-                $string = "<span style='color:red;font-style: italic;'>Empty</span>";
+                $string = "<span class='smallDarkRedText'>Empty</span>"; //italic ?
             }
         }
         return $string;
     }
+
 // -------------------------------------------------------------------------
+    /**
+    * Extract and display TIPPs from record
+    * @param $record        /SimpleXMLElement   results of getRecord request
+    * @param $recordType    string              type of resource
+    * @return               string              HTML content to display
+    */
+    function displayRecordTipps($record, $recordType){
+        $string = "";
+        $tipps=$record->{'TIPPs'};
+        
+        if ($recordType == 'package') $type = 'title';
+        else $type = 'package';
+
+        $string .= "<table> ";
+        
+        foreach ($tipps->children() as $child) {
+            $resource = $child->{$type};
+            $resourceAttr = $resource->attributes();
+         
+            $string .= "<tr class=invisible> <td> <input type=hidden name=gokbID value=".$this->UriToGokbId("$type".'s/'.$resourceAttr[0])."/><td/> <td> ";
+            $string .= $this->getResourceName($resource). "</td> </tr>";
+        }
+
+        $string .= "</table>";
+        
+           return $string;
+    }
 // -------------------------------------------------------------------------
+    /**
+    * Return resource name extract from XML metadata
+    * @param $record    /SimpleXMLElement   results of getRecord request
+    * @return           string              name of the resource
+    */
+    function getResourceName($record){
+        return $record->{'name'};
+    }
 // -------------------------------------------------------------------------
+    /**
+    * Return the number of TIPPs of the resource, extract from XML metadata
+    * @param $record    /SimpleXMLElement   results of getRecord request
+    * @return           int                 number of TIPPs
+    */
+    function getNbTipps($record){
+        $tipps = $record->{'TIPPs'};
+        $tmp = $tipps->attributes();
+        return $tmp[0];
+    }
+
+// -------------------------------------------------------------------------
+
 
 }
-
-
+ 
 
 ?>

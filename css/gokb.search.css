@@ -116,11 +116,29 @@
 	font-weight: bold;
 }
 
+#detailsTab{
+	margin: 10px;
+}
+
+#detailsTab tr{
+	height: 10%;
+}
+
+.detailsTab_val{
+	padding-left: 5px;
+}
+
+.detailsTab_tag{
+	font-weight: bold;
+	padding-right: 10px;
+	text-align: right;
+}
+
 /*******************************************
  ****	 	   getPagination.php		****
  *******************************************/
 #pageIterator {
-	margin-top: 10px;
+	margin: 10px;
 	text-align: center;
 	font-weight: normal;
 	color: #000;
@@ -129,6 +147,7 @@
 #pageIterator ul li{
 	display: inline;
 	border: 1px solid black;
+	margin-left: 5px;
 	padding: 5px;
 }
 
@@ -161,6 +180,6 @@
 	display: none;
 }
 
-.search_nav_button{ //both
+.search_nav_button{ 
 	margin-top: 5px;
 }

@@ -254,11 +254,11 @@ class GOKbTools {
     public function displayRecord($xml){
         $string = "";
         if ((count($xml->children()) > 0) && ($xml->getName() != 'TIPPs')) {
-            $string = "<table>";
+            $string = "<table id='detailsTab'>";
             foreach ($xml->children() as $tag => $child) {
                 if ($tag != 'TIPPs'){
-                    $string .= '<tr > <td style="text-align: right;">'.$tag.'</td>';
-                    $string .= '<td>'.$this->displayRecord($child).'</td>';
+                    $string .= '<tr> <td class="detailsTab_tag">'.$tag.'</td>';
+                    $string .= '<td class="class="detailsTab_val">'.$this->displayRecord($child).'</td>';
                     $string .= '</tr>';
                 }
             }
@@ -279,7 +279,7 @@ class GOKbTools {
             elseif ($xml != "") {
                 $string = $xml;
             } else {
-                $string = "<span class='smallDarkRedText'>Empty</span>"; //italic ?
+                $string = "<span class='smallDarkRedText'>Empty</span>";
             }
         }
         return $string;

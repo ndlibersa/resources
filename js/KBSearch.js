@@ -52,12 +52,13 @@ function iterator(page){
 	
 	var lines = document.getElementById(divId).getElementsByTagName("tr");
 	var nbTipps = lines.length;
-	var nbPages = Math.ceil(nbTipps/10);
+	//var nbPages = Math.ceil(nbTipps/10);
+	var nbPages = pagination.length - 4;
 	
 	//updating current page
 	document.getElementById('currentPage').value = page;
-	pagination[old+1].className = "";
-	pagination[page+1].className = "active";
+	//pagination[old+2].className = "";
+	
 
 
 	var itStart= page*10;
@@ -81,7 +82,7 @@ function iterator(page){
 	console.debug("disable lines "+disableStart+" to "+disableStop);
 	for (var i = disableStart; i < disableStop; i++) {
 		lines[i].className="invisible";
-	};
+	}
 
 	//display current page
 	console.debug("display lines "+itStart+" to "+stop);
@@ -89,11 +90,37 @@ function iterator(page){
 		lines[i].className="";
 	}
 
-	//Display up to 15 pages number, if there are more --> truncate
-	if (nbPages > 15){
-
+	//Display up to 13 pages number, if there are more --> truncate
+	if (nbPages > 13){
+		//case 1: current page is at the beginning
+		if (page < 7){
+			document.getElementById("beginning").className = "invisible";
+			document.getElementById("end").className = "";
+			for (var i=0; i<nbPages; i++){
+				if (i<13) pagination[i+2].className = '';
+				else pagination[i+2].className ='invisible';
+			}
+		}
+		//case 2: current page is at the end
+		else if(page >nbPages-6) {
+			document.getElementById("beginning").className = "";
+			document.getElementById("end").className = "invisible";
+			for (var i = 0; i<nbPages; i++) {
+				if(i>nbPages-14) pagination[i+2].className = "";
+				else pagination[i+2].className='invisible';
+			}
+		}
+		//case 3: current page is in the middle
+		else {
+			document.getElementById("beginning").className = "";
+			document.getElementById("end").className = "";
+			for (var i = 0; i<nbPages; i++) {
+				if((i >= page-6) && (i <= page+6)) pagination[i+2].className = "";
+				else pagination[i+2].className='invisible';
+			}
+		}
 	}
-
+	pagination[page+2].className = "active";
 
 }
 

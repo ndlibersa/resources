@@ -82,10 +82,9 @@ if ($isPaginated) {
 
 ?>
 	<div class="search_nav_button">
-		<a id="backToNewResourceForm" class="thickbox" href="ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true">
-		<span class='linkStyle'>Back</span></a>
 
-		<input type='button' value='cancel' onclick="tb_remove();">
+		<span id="span_back"><input type=button value='Back' onclick="goBack();"/></span>
+		<input type='button' value='Cancel' onclick="tb_remove();">
 	</div>
 </div>
 <script type="text/javascript" src="js/KBSearch.js"></script>

@@ -45,8 +45,7 @@ $nbTipps = $tool->getNbTipps($record);
 	</div>
 
 	<div class="search_nav_button">
-		<a id="backToNewResourceForm" class="thickbox" href="ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true">
-		<span class='linkStyle'>Back</span></a>
+		<span id="span_back"><input type=button value='Back' onclick="goBack();"/></span>
 
 		<input type='button' value='cancel' onclick="tb_remove();">
 	</div>

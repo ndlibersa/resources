@@ -22,7 +22,7 @@
 	 });
 
 	 $("#search").click(function(){
-	 	searchGokb();
+	 	searchGokb($('#titleText').val(), $('#ISSNText').val(), $('#providerText').val() );
 	 });
 
 	//do submit if enter is hit
@@ -310,19 +310,21 @@ function submitResource(status){
 }
 
 
-function searchGokb(){
+function searchGokb(s_name, s_issn, s_pub){
 	if (validateSearchFields() === true){
 		$.ajax({
 			 type:       "POST",
 			 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
 			 cache:      false,
-			 data:       {name:$('#titleText').val(), issn:$('#ISSNText').val(), publisher:$('#providerText').val(), type:0},
+			 data:       {name:s_name, issn:s_issn, publisher:s_pub, type:0},
 			 success:    function(res) {
 			 	document.getElementById("TB_ajaxContent").innerHTML = "";
 			 	$('#TB_ajaxContent').append(res);
 			 	
 			 }
 		});
+		window.history.pushState(null,null,null);
+		window.history.pushState({funcName:'searchGokbBack', param:[s_name, s_pub]}, 'test', null);
 	}
 	else {
 		$("#span_error_search").html("At least one search field is required to search");

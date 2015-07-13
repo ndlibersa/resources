@@ -14,7 +14,7 @@
 		?>
 
 
-			<table class='dataTable' style='width:646px;padding:0x;margin:0px;height:100%;'>
+			<table class='dataTable' style='width:646px;padding:0px;margin:0px;height:100%;'>
 			<tr>
 				<th style='width:45px;'>ID</th>
 				<th style='width:300px;'>Name</th>
@@ -43,7 +43,7 @@
 				$status = new Status(new NamedArguments(array('primaryKey' => $resource['statusID'])));
 
 		?>
-				<tr id='tr_<?php echo $resource['resourceID']; ?>' style='padding:0x;margin:0px;height:100%;'>
+				<tr id='tr_<?php echo $resource['resourceID']; ?>' style='padding:0px;margin:0px;height:100%;'>
 					<td <?php echo $classAdd; ?>><a href='resource.php?resourceID=<?php echo $resource['resourceID']; ?>'><?php echo $resource['resourceID']; ?></a></td>
 					<td <?php echo $classAdd; ?>><a href='resource.php?resourceID=<?php echo $resource['resourceID']; ?>'><?php echo $resource['titleText']; ?></a></td>
 					<td <?php echo $classAdd; ?>><?php echo $acquisitionType->shortName; ?></td>

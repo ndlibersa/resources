@@ -35,32 +35,32 @@ class ResourceStep extends DatabaseObject {
 		$this->endLoginID = $_SESSION['loginID'];
 		$this->save;
 
-		//if there are next steps, start them
-		$nextStepArray = $this->getNextSteps();
-
-		if (count($nextStepArray) > 0){
-			foreach ($nextStepArray as $nextResourceStep){
-
-				$nextResourceStep->startStep();
-
-			}
-
-
-		}else{
-
-			//check if it just means that this branch is complete and there are still other steps open
-			if ($this->getNumberOfOpenSteps() == 0){
-
-				//otherwise if there are no more steps then we can mark the resource complete
-				$resource = new Resource(new NamedArguments(array('primaryKey' => $this->resourceID)));
-				$resource->completeWorkflow();
-
-			}
-		}
-
+        $this->startNextStepsOrComplete();
 
 	}
 
+    public function startNextStepsOrComplete(){
+        //if there are next steps, start them
+        $nextStepArray = $this->getNextSteps();
+
+        if (count($nextStepArray) > 0){
+            foreach ($nextStepArray as $nextResourceStep){
+
+                $nextResourceStep->startStep();
+
+            }
+        }
+
+        //check if this branch is complete or if there are still other steps open
+        if ($this->getNumberOfOpenSteps() == 0){
+
+            //if there are no more steps then we can mark the resource complete
+            $resource = new Resource(new NamedArguments(array('primaryKey' => $this->resourceID)));
+            $resource->completeWorkflow();
+
+        }
+
+    }
 
 	public function startStep(){
 
@@ -71,9 +71,16 @@ class ResourceStep extends DatabaseObject {
 		//send notifications
 		$this->sendApprovalNotification();
 
-
 	}
 
+    public function restartReassignedStep(){
+        //restart step
+        $this->stepStartDate = date( 'Y-m-d' );
+        $this->save;
+
+        //send notification to new step user group
+        $this->sendReassignedStepNotification();
+    }
 
 	//returns array of resource step objects
 	public function getNextSteps(){
@@ -100,9 +107,6 @@ class ResourceStep extends DatabaseObject {
 
 		return $objects;
 	}
-
-
-
 
 	//returns prior resource step object (resource step can only have one prior step)
 	public function getPriorStep(){
@@ -158,7 +162,13 @@ class ResourceStep extends DatabaseObject {
 			if (($this->priorStepID) && ($this->priorStepID != '0')){
 				$priorResourceStep = $this->getPriorStep();
 				$priorStepName = $priorResourceStep->stepName;
-				$messageType='ResourceQueue';
+                if ($priorResourceStep){
+                    $priorStepName = $priorResourceStep->stepName;
+                    $messageType='ResourceQueue';
+                }else{
+                    $messageType='DeletedPriorStep';
+                }
+
 			}else{
 				$messageType='NewResource';
 				$priorStepName = '';
@@ -177,6 +187,29 @@ class ResourceStep extends DatabaseObject {
 
 
 	}
+
+    //sends email to the reassigned user group
+    public function sendReassignedStepNotification(){
+
+        $util = new Utility();
+
+        $userGroup = new UserGroup(new NamedArguments(array('primaryKey' => $this->userGroupID)));
+        $resource = new Resource(new NamedArguments(array('primaryKey' => $this->resourceID)));
+
+        //only send if there is an email address set up for this group
+        if ($userGroup->emailAddress){
+
+            //formulate emil to be sent
+            $email = new Email();
+            $email->message = $util->createMessageFromTemplate('ReassignedStep', $this->resourceID, $resource->titleText, $this->stepName, '','');
+            $email->to 			= $userGroup->emailAddress;
+            $email->subject		= "CORAL Alert: " . $resource->titleText;
+
+            $email->send();
+        }
+
+
+    }
 
 }
 

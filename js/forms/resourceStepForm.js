@@ -97,7 +97,11 @@ $(document).ready(function(){
 });
 
 function validateStep (){
-    //needs work
+    //don't submit the form if it has the same usergroup.
+    if ($("#userGroupID").val() == $("#currentGroupID").val()){
+        return false;
+    };
+
     return true;
 }
 
@@ -115,6 +119,7 @@ function updateResourceStep(){
                     $("#span_errors").html(html);
                 }else{
                     tb_remove();
+                    window.parent.updateRouting();
                     //eval("window.parent.update" + $("#tab").val() + "();");
                     return false;
                 }
@@ -123,11 +128,10 @@ function updateResourceStep(){
 
 
         });
+
+    }else{
         tb_remove();
-
-        updateRouting();
-        return false;
-
+        return true;
     }
 
 }

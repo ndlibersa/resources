@@ -33,7 +33,7 @@ class ResourceStep extends DatabaseObject {
 		//mark this step complete
 		$this->stepEndDate = date( 'Y-m-d' );
 		$this->endLoginID = $_SESSION['loginID'];
-		$this->save;
+		$this->save();
 
         $this->startNextStepsOrComplete();
 
@@ -66,7 +66,7 @@ class ResourceStep extends DatabaseObject {
 
 		//start this step
 		$this->stepStartDate = date( 'Y-m-d' );
-		$this->save;
+		$this->save();
 
 		//send notifications
 		$this->sendApprovalNotification();
@@ -74,12 +74,13 @@ class ResourceStep extends DatabaseObject {
 	}
 
     public function restartReassignedStep(){
-        //restart step
-        $this->stepStartDate = date( 'Y-m-d' );
-        $this->save;
+        //restart step if it's active
+		if (!is_null($this->stepStartDate)){
+			$this->stepStartDate = date( 'Y-m-d' );
 
-        //send notification to new step user group
-        $this->sendReassignedStepNotification();
+			$this->sendReassignedStepNotification();
+		}
+        $this->save();
     }
 
 	//returns array of resource step objects

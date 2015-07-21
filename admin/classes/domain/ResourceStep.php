@@ -149,6 +149,33 @@ class ResourceStep extends DatabaseObject {
 
 
 
+	//returns an array of later open step objects
+	public function getLaterOpenSteps(){
+		$query = "SELECT * FROM ResourceStep
+					WHERE resourceID = '" . $this->resourceID . "'
+					AND displayOrderSequence > " . $this->displayOrderSequence . "
+					AND (stepEndDate IS NULL OR stepEndDate = '0000-00-00')
+					ORDER BY resourceStepID";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['resourceStepID'])){
+			$object = new ResourceStep(new NamedArguments(array('primaryKey' => $result['resourceStepID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new ResourceStep(new NamedArguments(array('primaryKey' => $row['resourceStepID'])));
+				array_push($objects, $object);
+			}
+		}
+
+		return $objects;
+	}
+
+
 
 	//sends email to the approval user group for this step
 	public function sendApprovalNotification(){

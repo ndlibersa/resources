@@ -113,7 +113,7 @@ function updateResourceStep(){
             type:       "POST",
             url:        "ajax_processing.php?action=updateResourceStep",
             cache:      false,
-            data:       { resourceStepID: $("#editRSID").val(), userGroupID: $("#userGroupID").val(), applyToAll: $('#applyToAll').val(), orderNum: $('#orderNum').val() },
+            data:       { resourceStepID: $("#editRSID").val(), userGroupID: $("#userGroupID").val(), applyToAll: $('#applyToAll').is(':checked'), orderNum: $('#orderNum').val() },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

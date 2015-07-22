@@ -45,33 +45,33 @@
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:<?php echo $baseWidth + 46 ?>px; margin-bottom:5px;'><span class='headerText'>Edit Cost Information</span></div>
+		<div class='formTitle' style='width:<?php echo $baseWidth + 46 ?>px; margin-bottom:5px;'><span class='headerText'><?php echo _("Edit Cost Information");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
 		<table class='noBorder' style='width:<?php echo $baseWidth + 45 ?>px;'>
 		<tr style='vertical-align:top;'>
 		<td>
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Cost History</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b><?php echo _("Cost History");?></b></label>&nbsp;&nbsp;</span>
 			<table class='surroundBox' style='width:<?php echo $baseWidth - 65; ?>px;'>
 			<tr>
 			<td>
 				<table class='noBorder smallPadding newPaymentTable' style='margin:7px 15px 0 15px;'>
 				<tr>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Year</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub Start</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub End</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Year");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Sub Start");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Sub End");?></td>
 					<?php } ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Fund</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan=2>Payment</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Type</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Fund");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan=2><?php echo _("Payment");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Type");?></td>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Cost Details</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Cost Details");?></td>
 					<?php } ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Note</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Note");?></td>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Invoice</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo _("Invoice");?></td>
 					<?php } ?>
 					<td>&nbsp;</td>
 				</tr>
@@ -135,7 +135,7 @@
 			</td>
 		<?php } ?>
 		<td style='vertical-align:center;text-align:center;width:37px;'>
-		<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
+		<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt="<?php echo _("add this payment");?>" title="<?php echo _("add payment");?>"></a>
 		</td>
 		</tr>
 		<tr>
@@ -219,7 +219,7 @@ if (count($paymentArray) > 0){
 			</td>
 		<?php } ?>
 		<td style='vertical-align:top;text-align:center;width:37px;'>
-			<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
+			<a href='javascript:void();'><img src='images/cross.gif' alt='<?php echo _("remove this payment");?>' title='<?php echo _("remove this payment");?>' class='remove' /></a>
 		</td>
 		</tr>
 
@@ -249,8 +249,8 @@ if (count($paymentArray) > 0){
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitCost' id ='submitCost'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitCost' id ='submitCost'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

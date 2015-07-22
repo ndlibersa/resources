@@ -7,7 +7,7 @@
 		try {
 
 			$resourceSubject->removeResourceSubject($resourceID, $generalDetailSubjectID);
-			echo "Subject successfully removed.";
+			echo _("Subject successfully removed.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}

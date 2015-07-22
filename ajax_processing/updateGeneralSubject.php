@@ -18,7 +18,7 @@
 				echo $e->getMessage();
 			}
 		} else {
-			echo "A duplicate " . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . " exists.";
+			echo _("A duplicate ") . strtolower(preg_replace("/[A-Z]/", " \\0" , lcfirst($className))) . _(" exists.");
 		}
 
 ?>

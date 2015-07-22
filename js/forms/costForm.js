@@ -105,13 +105,13 @@ $(function(){
 		var cNote     = $('.newPaymentTable').children().children().children().children('.costNote').val();
 						
 		if ((pAmount == '' || pAmount == null) && (fName == '' || fName == null)){
-			$('#div_errorPayment').html('Error - Either amount or fund is required');
+			$('#div_errorPayment').html(_("Error - Either amount or fund is required"));
 			return false;		
 		}else if((typeID == '') || (typeID == null)){
-			$('#div_errorPayment').html('Error - order type is a required field');
+			$('#div_errorPayment').html(_("Error - order type is a required field"));
 			return false;
 		}else if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-			$('#div_errorPayment').html('Error - price is not numeric');
+			$('#div_errorPayment').html(_("Error - price is not numeric"));
 			return false;		
 		}else{
 
@@ -129,8 +129,8 @@ $(function(){
 
 			$('.newPaymentTR').children().children().children('.addPayment').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this payment',
-			  title: 'remove this payment'
+			  alt: _("remove this payment"),
+			  title: _("remove this payment")
 			});
 			$('.newPaymentTR').children().children().children('.addPayment').addClass('remove').css("text-align","center");
 			$('.newPaymentTR').children().children('.paymentAmount').val(pAmount);
@@ -280,19 +280,19 @@ function submitCostForm(){
 
 	//also perform same checks on the current record in case add button wasn't clicked
 	if ((((pAmount == '') || (pAmount == null)) && ((fName == '') || (fName == null))) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - Either price or fund is required');
+		$('#div_errorPayment').html(_("Error - Either price or fund is required"));
 		myReturn="1";		
 
 	}
 
 	if(((typeID == '') || (typeID == null)) && ((pAmount != '') || (fName != ''))){
-		$('#div_errorPayment').html('Error - order type is a required field');
+		$('#div_errorPayment').html(_("Error - order type is a required field"));
 		myReturn="1";
 	}
 
 	
 	if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false)){
-		$('#div_errorPayment').html('Error - price is not numeric');
+		$('#div_errorPayment').html(_("Error - price is not numeric"));
 		myReturn="1";		
 	}
  	

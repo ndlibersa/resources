@@ -56,6 +56,14 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(".showIssues").click(function () {
+	    $('.resource_tab_content').hide();
+		$('#div_issues').show();
+		$('#div_fullRightPanel').show();
+		updateIssues();
+		return false;
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -216,6 +224,27 @@ function updateArchivedContacts(showArchivedPassed){
 		$("#div_archivedContactDetails").html(html);
 		bind_removes();
 		tb_reinit();
+	 }
+
+
+  });
+
+}
+
+function updateIssues(){
+//  $("#icon_issues").html("<img src='images/issues_bw.gif'>");
+  
+  $.ajax({
+	 type:       "GET",
+	 url:        "ajax_htmldata.php",
+	 cache:      false,
+	 data:       "action=getIssues&resourceID=" + $("#resourceID").val(),
+	 success:    function(html) {
+	 	console.log(html);
+		$(".div_mainContent").html(html);
+		bind_removes();
+		tb_reinit();
+ //		$("#icon_issues").html("<img src='images/issues_bw.gif'>");
 	 }
 
 

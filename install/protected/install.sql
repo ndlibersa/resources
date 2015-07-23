@@ -594,7 +594,7 @@ CREATE TABLE `_DATABASE_NAME_`.`CostDetails` (
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Issue`;
 CREATE TABLE `_DATABASE_NAME_`.`Issue` (
   `issueID` int(11) NOT NULL AUTO_INCREMENT,
-  `creatorID` int(11) NOT NULL,
+  `creatorID` varchar(20) NOT NULL,
   `subjectText` varchar(80) NOT NULL,
   `bodyText` text NOT NULL,
   `reminderInterval` int(11) NOT NULL,

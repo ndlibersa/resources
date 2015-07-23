@@ -748,9 +748,37 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
+	//returns array of notes objects
+	public function getIssues(){
 
+		$query = "SELECT I.* FROM Issue I";
+		
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
 
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+
+			foreach (array_keys($result) as $attributeName) {
+				$resultArray[$attributeName] = $result[$attributeName];
+			}
+
+			array_push($objects, $resultArray);
+
+		}else{
+			foreach ($result as $row) {
+				$resultArray = array();
+				foreach (array_keys($row) as $attributeName) {
+					$resultArray[$attributeName] = $row[$attributeName];
+				}
+
+				array_push($objects, $resultArray);
+			}
+		}
+
+		return $objects;
+	}
 
 
 	//returns array of the initial note object

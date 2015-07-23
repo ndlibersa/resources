@@ -2,7 +2,20 @@
 	$resourceID = $_GET['resourceID'];
 
 	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
-	echo '<div>issues!</div>';
+
+	$util = new Utility();
+
+	//$issueArray = $resource->getUnarchivedContacts();
+	$issueArray = $resource->getIssues();
+
+
+	echo "<pre>";
+	//foreach($issueArray as $issue) {
+		print_r($issueArray);
+	//}
+	echo "</pre>";
+
+
 /*
 		$util = new Utility();
 

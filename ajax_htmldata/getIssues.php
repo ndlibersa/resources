@@ -5,15 +5,31 @@
 
 	$util = new Utility();
 
-	//$issueArray = $resource->getUnarchivedContacts();
-	$issueArray = $resource->getIssues();
+?>
 
+	<table class='linedFormTable'>
+		<tr>
+			<th style='background:#f5f8fa;'>Issues/Problems</th>
+		</tr>
+		<tr>
+			<td><a href="">report new issue</a></td>
+		</tr>
+		<tr>
+			<td>
+				<a href="">view open issue</a> 
+				<a href=""><img src="images/xls.gif" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="">view archived issues</a> 
+				<a href=""><img src="images/xls.gif" /></a>
+			</td>
+		</tr>
+	</table>
 
-	echo "<pre>";
-	//foreach($issueArray as $issue) {
-		print_r($issueArray);
-	//}
-	echo "</pre>";
+<?php
+	
 
 
 /*

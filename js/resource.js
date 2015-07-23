@@ -232,7 +232,6 @@ function updateArchivedContacts(showArchivedPassed){
 }
 
 function updateIssues(){
-//  $("#icon_issues").html("<img src='images/issues_bw.gif'>");
   
   $.ajax({
 	 type:       "GET",
@@ -244,7 +243,6 @@ function updateIssues(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
- //		$("#icon_issues").html("<img src='images/issues_bw.gif'>");
 	 }
 
 

@@ -39,8 +39,8 @@ class OrganizationRole extends DatabaseObject {
 			$query = "SELECT * FROM " . $dbName . ".OrganizationRole ORDER BY shortName;";
 
 
-			if ($orgResult = mysql_query($query)){
-				while ($orgRoleRow = mysql_fetch_assoc($orgResult)){
+			if ($orgResult = mysqli_query($this->db->getDatabase(), $query)){
+				while ($orgRoleRow = mysqli_fetch_assoc($orgResult)){
 					$orgRoleArray[$orgRoleRow['organizationRoleID']] = $orgRoleRow['shortName'];
 				}
 			}
@@ -53,8 +53,8 @@ class OrganizationRole extends DatabaseObject {
 			$query = "SELECT * FROM OrganizationRole ORDER BY shortName;";
 
 
-			if ($orgResult = mysql_query($query)){
-				while ($orgRoleRow = mysql_fetch_assoc($orgResult)){
+			if ($orgResult = mysqli_query($this->db->getDatabase(), $query)){
+				while ($orgRoleRow = mysqli_fetch_assoc($orgResult)){
 					$orgRoleArray[$orgRoleRow['organizationRoleID']] = $orgRoleRow['shortName'];
 				}
 			}

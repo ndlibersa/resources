@@ -14,17 +14,17 @@ $update = $installer->getUpdate($version);
 if ($_POST["submit"]) {
   $database_username = trim($_POST['database_username']);
 	$database_password = trim($_POST['database_password']);
-  
+
   if ($database_username) {
     $installer->connect($database_username, $database_password);
     if ($installer->error) {
       $installer->addErrorMessage($installer->error);
     }
   }
-  
+
   if ($installer->hasPermissions($update["privileges"])) {
     $sql_file = "protected/update_$version.sql";
-    
+
     if (!file_exists($sql_file)) {
 			$installer->addErrorMessage("Could not open sql file: " . $sql_file . ".  If this file does not exist you must download new install files.");
 		} else {
@@ -37,14 +37,14 @@ if ($_POST["submit"]) {
 			foreach ($statements as $statement) {
 			   if (strlen(trim($statement))>3){
 
-					$result = mysql_query($statement);
+					$result = mysqli_query($installer->getDatabase(), $statement);
 					if (!$result){
-						$installer->addErrorMessage(mysql_error() . "<br /><br />For statement: " . $statement);
+						$installer->addErrorMessage(mysqli_error($installer->getDatabase()) . "<br /><br />For statement: " . $statement);
 						break;
 					}
 				}
 			}
-      
+
       if (!$installer->hasErrorMessages()) {
         $installer->addMessage("Update $version was successfully applied.");
         header('Location: index.php');
@@ -72,7 +72,7 @@ $installer->header("CORAL Resources Update $version");
   <?php } else { ?>
     <p>To run this update, please enter the username and password for a MySQL user with the following privileges: <?php echo implode(", ", $update["privileges"]); ?></p>
     <p>This update will use the host and schema specified in your configuration file.</p>
-    
+
     <table width="100%" border="0" cellspacing="0" cellpadding="2">
 			<tr>
 				<td>&nbsp;Database Username</td>

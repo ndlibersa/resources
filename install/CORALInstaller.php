@@ -82,17 +82,17 @@ class CORALInstaller {
 		if ($password === null) {
 		  $password = $this->config->database->password;
 	  }
-		$this->db = @mysql_connect($host, $username, $password);
+		$this->db = @mysqli_connect($host, $username, $password);
 		if (!$this->db) {
 		  
-		  $this->error = mysql_error();
+		  $this->error = mysqli_error($this->db);
 		  if (!$this->error) {
 		    $this->error = "Access denied for user '$username'";
 		  }
 	  } else {
   		$databaseName = $this->config->database->name;
-  		mysql_select_db($databaseName, $this->db);
-  		$this->error = mysql_error($this->db);
+  		mysqli_select_db($this->db, $databaseName);
+  		$this->error = mysqli_error($this->db);
 		}
 		
 		if ($this->error) {
@@ -104,24 +104,24 @@ class CORALInstaller {
 	}
 	
 	public function query($sql) {
-		$result = mysql_query($sql, $this->db);
+		$result = mysqli_query($this->db, $sql);
 		
 		$this->checkForError();
 		$data = array();
 
-		if (is_resource($result)) {
-			while ($row = mysql_fetch_array($result)) {
+		if ($result instanceof mysqli_result) {
+			while ($row = mysqli_fetch_array($result)) {
 				array_push($data, $row);
 			}
 		} else if ($result) {
-			$data = mysql_insert_id($this->db);
+			$data = mysqli_insert_id($this->db);
 		}
 
 		return $data;
 	}
 	
 	protected function checkForError() {
-		if ($this->error = mysql_error($this->db)) {
+		if ($this->error = mysqli_error($this->db)) {
 			throw new Exception("There was a problem with the database: " . $this->error);
 		}
 	}

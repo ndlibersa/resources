@@ -591,6 +591,50 @@ CREATE TABLE `_DATABASE_NAME_`.`CostDetails` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Issue`;
+CREATE TABLE `_DATABASE_NAME_`.`Issue` (
+  `issueID` int(11) NOT NULL AUTO_INCREMENT,
+  `creatorID` int(11) NOT NULL,
+  `subjectText` varchar(80) NOT NULL,
+  `bodyText` text NOT NULL,
+  `reminderInterval` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateClosed` datetime NOT NULL,
+  `resolutionText` text NOT NULL,
+  PRIMARY KEY (`issueID`),
+  KEY `creatorID` (`creatorID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueRelationship`;
+CREATE TABLE `_DATABASE_NAME_`.`IssueRelationship` (
+  `issueRelationshipID` int(11) NOT NULL AUTO_INCREMENT,
+  `issueID` int(11) NOT NULL,
+  `entityID` int(11) NOT NULL,
+  `entityTypeID` int(11) NOT NULL,
+  PRIMARY KEY (`issueRelationshipID`),
+  KEY `issueID` (`issueID`,`entityID`,`entityTypeID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueEntityType`;
+CREATE TABLE `_DATABASE_NAME_`.`IssueEntityType` (
+  `entityTypeID` int(11) NOT NULL AUTO_INCREMENT,
+  `entityName` varchar(80) NOT NULL,
+  PRIMARY KEY (`entityTypeID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueContact`;
+CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
+  `issueContactID` int(11) NOT NULL AUTO_INCREMENT,
+  `issueID` int(11) NOT NULL,
+  `contactID` int(11) NOT NULL,
+  `isPrimary` tinyint(1) NOT NULL,
+  PRIMARY KEY (`issueContactID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
 ALTER TABLE `_DATABASE_NAME_`.`Alias` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_aliasTypeID`(`aliasTypeID`),
  ADD INDEX `shortName` ( `shortName` ),

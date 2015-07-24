@@ -758,6 +758,7 @@ class Resource extends DatabaseObject {
 		$objects = array();
 
 		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+/*
 		if (isset($result['issueID'])){
 
 			foreach (array_keys($result) as $attributeName) {
@@ -776,7 +777,17 @@ class Resource extends DatabaseObject {
 				array_push($objects, $resultArray);
 			}
 		}
-
+*/
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
+				array_push($objects, $object);
+			}
+		}
 		return $objects;
 	}
 

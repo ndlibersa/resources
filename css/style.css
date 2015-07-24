@@ -980,7 +980,7 @@ div.issueList .issue {
 	width: 85%;
 }
 
-div.issueList a.issueCloseBtn {
+div.issueList a.closeBtn {
 	float: right;
 }
 

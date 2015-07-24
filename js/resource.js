@@ -64,6 +64,11 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(".issuesBtn").live("click", function(e) {
+		e.preventDefault();
+		getIssues($(this));
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -239,7 +244,6 @@ function updateIssues(){
 	 cache:      false,
 	 data:       "action=getIssues&resourceID=" + $("#resourceID").val(),
 	 success:    function(html) {
-	 	console.log(html);
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
@@ -248,6 +252,20 @@ function updateIssues(){
 
   });
 
+}
+
+function getIssues(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".issueList").html(html).slideToggle(250);
+			console.log(html);
+		}
+	});
+	
 }
 
 
@@ -364,8 +382,6 @@ function updateRightPanel(){
 } 
 
 
-
-
 function updateTitle(){
   $.ajax({
 	 type:       "GET",
@@ -380,12 +396,6 @@ function updateTitle(){
   });
 
 } 
-
-
-
-
-
-
 
 
 function bind_removes(){

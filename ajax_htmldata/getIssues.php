@@ -4,6 +4,8 @@
 	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 	$util = new Utility();
+	$getIssuesFormData = "action=getIssuesForm&resourceID=".$resourceID;
+
 
 ?>
 
@@ -16,14 +18,16 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="">view open issue</a> 
+				<a href="<?php echo $getIssuesFormData; ?>" class="issuesBtn" id="openIssuesBtn">view open issue</a> 
 				<a href=""><img src="images/xls.gif" /></a>
+				<div class="issueList" id="openIssues" style="display:none;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<a href="">view archived issues</a> 
+				<a href="<?php echo $getIssuesFormData."&archived=1"; ?>" class="issuesBtn" id="archivedIssuesBtn">view archived issues</a> 
 				<a href=""><img src="images/xls.gif" /></a>
+				<div class="issueList" id="archivedIssues" style="display:none;"></div>
 			</td>
 		</tr>
 	</table>

@@ -751,7 +751,10 @@ class Resource extends DatabaseObject {
 	//returns array of notes objects
 	public function getIssues(){
 
-		$query = "SELECT I.* FROM Issue I";
+		$query = "SELECT i.* 
+				  FROM Issue i
+				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
+				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
 		
 		$result = $this->db->processQuery($query, 'assoc');
 

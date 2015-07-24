@@ -7,11 +7,10 @@
 	$util = new Utility();
 	
 	$issues = $resource->getIssues();
-
 	
 	foreach($issues as $issue) {
 		$contacts = $issue->getContacts();
-
+		$associatedEntities = $issue->getAssociatedEntities();
 		echo "
 		<div class=\"issue\">
 		  	<a class=\"closeBtn\" href=\"\">close</a>
@@ -31,11 +30,17 @@
 		}
 
 
-		echo  	"</dd> 
-
+		echo "	</dd> 
 		  		<dt>Applies to:</dt> 
-		  		<dd></dd> 
-
+		  		<dd>";
+		if ($associatedEntities) {
+			$temp ='';
+			foreach ($associatedEntities as $entity) {
+				$temp .= " {$entity->attributes['titleText']},";
+			}
+			echo rtrim($temp,',');
+		}
+		echo "	</dd> 
 		  		<dt>Subject:</dt> 
 		  		<dd>{$issue->attributes['subjectText']}</dd> 
 		  		

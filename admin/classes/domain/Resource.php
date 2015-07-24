@@ -748,53 +748,6 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
-	//returns array of notes objects
-	public function getIssues(){
-
-		$query = "SELECT i.* 
-				  FROM Issue i
-				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
-				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
-		
-		$result = $this->db->processQuery($query, 'assoc');
-
-		$objects = array();
-
-		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-/*
-		if (isset($result['issueID'])){
-
-			foreach (array_keys($result) as $attributeName) {
-				$resultArray[$attributeName] = $result[$attributeName];
-			}
-
-			array_push($objects, $resultArray);
-
-		}else{
-			foreach ($result as $row) {
-				$resultArray = array();
-				foreach (array_keys($row) as $attributeName) {
-					$resultArray[$attributeName] = $row[$attributeName];
-				}
-
-				array_push($objects, $resultArray);
-			}
-		}
-*/
-		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['issueID'])){
-			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
-			array_push($objects, $object);
-		}else{
-			foreach ($result as $row) {
-				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
-				array_push($objects, $object);
-			}
-		}
-		return $objects;
-	}
-
-
 	//returns array of the initial note object
 	public function getInitialNote(){
 		$noteType = new NoteType();
@@ -818,11 +771,28 @@ class Resource extends DatabaseObject {
 
 	}
 
+	public function getIssues(){
+		$query = "SELECT i.* 
+				  FROM Issue i
+				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
+				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
+		
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
 
-
-
-
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
 
 	//returns array of attachments objects
 	public function getAttachments(){

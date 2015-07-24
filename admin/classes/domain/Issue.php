@@ -28,7 +28,22 @@ class Issue extends DatabaseObject {
 		return $objects;
 	}
 
-	public function getAssociatedEntities() {
+	public function getAssociatedOrganization() {
+		$query = "SELECT r.resourceID 
+				  FROM IssueRelationship ir
+				  LEFT JOIN Resource r ON (r.resourceID=ir.entityID AND ir.entityTypeID=1)
+				  WHERE ir.issueID={$this->issueID}";
+		$result = $this->db->processQuery($query, 'assoc');
+		$objects = array();
+
+		if (isset($result['organizationID'])){
+			$object = new Organization(new NamedArguments(array('primaryKey' => $result['organizationID'])));
+			array_push($objects, $object);
+		}
+		return $objects;
+	}
+
+	public function getAssociatedResources() {
 		$query = "SELECT r.resourceID 
 				  FROM IssueRelationship ir
 				  LEFT JOIN Resource r ON (r.resourceID=ir.entityID AND ir.entityTypeID=2)
@@ -40,7 +55,7 @@ class Issue extends DatabaseObject {
 		if (isset($result['resourceID'])){
 			$object = new Resource(new NamedArguments(array('primaryKey' => $result['resourceID'])));
 			array_push($objects, $object);
-		}else{
+		} else{
 			foreach ($result as $row) {
 				$object = new Resource(new NamedArguments(array('primaryKey' => $row['resourceID'])));
 				array_push($objects, $object);
@@ -48,7 +63,6 @@ class Issue extends DatabaseObject {
 		}
 		return $objects;
 	}
-
 }
 
 ?>

@@ -5,12 +5,19 @@
 	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 	$util = new Utility();
-	
 	$issues = $resource->getIssues();
-	
+
+	$organizationArray = $resource->getOrganizationArray();
+
 	foreach($issues as $issue) {
 		$contacts = $issue->getContacts();
-		$associatedEntities = $issue->getAssociatedEntities();
+		if (count($organizationArray) > 0) {
+			foreach ($organizationArray as $orgData) {
+				$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
+//				$organizationIssues[$orgData['organizationID']] = $organization->getIssues();
+			}
+		}
+
 		echo "
 		<div class=\"issue\">
 		  	<a class=\"closeBtn\" href=\"\">close</a>

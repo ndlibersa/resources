@@ -48,9 +48,30 @@ class Organization extends DatabaseObject {
 		$result = $this->db->processQuery($query, 'assoc');
 		return $result['organizationID'];
   }
+/*
+	public function getIssues(){
+		$query = "SELECT i.* 
+				  FROM Issue i
+				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
+				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
+		
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
 
-
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
+*/
 
 }
 

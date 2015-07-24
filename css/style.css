@@ -966,6 +966,47 @@ table.borderedHeadTable tr {
 	vertical-align:middle;
 }
 
+table.issueTable tr th {
+	background:#f5f8fa;
+}
+
+div.issueList {
+	display: none;
+	width: 85%;
+	padding: 0 10px 5px 25px;
+}
+
+div.issueList .issue {
+	width: 85%;
+}
+
+div.issueList a.issueCloseBtn {
+	float: right;
+}
+
+div.issueList dl {
+	margin-top: 15px;
+}
+
+div.issueList dl dt {
+	margin-top: 5px; 
+	font-weight: bold;
+	display: inline;
+}
+
+div.issueList dl dd {
+	display: inline;
+}
+
+div.issueList dl dd:after { 
+	content:"\A"; white-space:pre; 
+}
+
+div.issueList dl dt.block {
+	display: block;
+}
+
+
 
 
 table.noBorder td { border:0; }

@@ -9,9 +9,9 @@
 
 ?>
 
-	<table class='linedFormTable'>
+	<table class='linedFormTable issueTable'>
 		<tr>
-			<th style='background:#f5f8fa;'>Issues/Problems</th>
+			<th>Issues/Problems</th>
 		</tr>
 		<tr>
 			<td><a href="">report new issue</a></td>
@@ -27,7 +27,7 @@
 			<td>
 				<a href="<?php echo $getIssuesFormData."&archived=1"; ?>" class="issuesBtn" id="archivedIssuesBtn">view archived issues</a> 
 				<a href=""><img src="images/xls.gif" /></a>
-				<div class="issueList" id="archivedIssues" style="display:none;"></div>
+				<div class="issueList" id="archivedIssues"></div>
 			</td>
 		</tr>
 	</table>

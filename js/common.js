@@ -70,7 +70,7 @@ $(function(){
 
 
 	 function log(event, data, formatted) {
-		$("<li>").html( !data ? "No match!" : "Selected: " + formatted).html("#result");
+		$("<li>").html( !data ? _("No match!") : _("Selected: ") + formatted).html("#result");
 
 	 }
 

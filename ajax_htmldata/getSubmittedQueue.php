@@ -2,20 +2,20 @@
 		$resourceArray = array();
 		$resourceArray = $user->getResourcesInQueue('progress');
 
-		echo "<div class='adminRightHeader'>Submitted Requests</div>";
+		echo "<div class='adminRightHeader'>"._("Submitted Requests")."</div>";
 
 		if (count($resourceArray) == "0"){
-			echo "<i>No submitted requests</i>";
+			echo "<i>"._("No submitted requests")."</i>";
 		}else{
 		?>
 
 			<table class='dataTable' style='width:570px;margin-bottom:5px;'>
 			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Date Created</th>
-				<th>Acquisition Type</th>
-				<th>Status</th>
+				<th><?php echo _("ID");?></th>
+				<th><?php echo _("Name");?></th>
+				<th><?php echo _("Date Created");?></th>
+				<th><?php echo _("Acquisition Type");?></th>
+				<th><?php echo _("Status");?></th>
 			</tr>
 
 		<?php

@@ -11,7 +11,7 @@
 
 		<input type='hidden' id='editAlertDaysInAdvanceID' value='<?php echo $alertDaysInAdvanceID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertDaysInAdvanceID){ echo "Edit Alert Days In Advance"; } else { echo "Add Alert Days In Advance"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($alertDaysInAdvanceID){ echo _("Edit Alert Days In Advance"); } else { echo _("Add Alert Days In Advance"); } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -31,8 +31,8 @@
 		<div class='smallDarkRedText' id='div_form_error'>&nbsp;</div>
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 

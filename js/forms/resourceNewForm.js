@@ -314,7 +314,7 @@ function searchGokb(s_name, s_issn, s_pub){
 	if (validateSearchFields() === true){
 		$.ajax({
 			 type:       "POST",
-			 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
+			 url:        "ajax_htmldata.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
 			 cache:      false,
 			 data:       {name:s_name, issn:s_issn, publisher:s_pub, type:0},
 			 success:    function(res) {

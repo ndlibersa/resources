@@ -2,35 +2,39 @@
 <script type="text/javascript" src="js/KBSearch.js"></script>
 
 
-<div id='resourceDetails'>
-	<div class='formTitle' style='width:745px;'>
-		<span class='headerText'>Resource details</span>
-	</div>
 
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."resources/admin/classes/domain/GOKbTools.php";
-include_once $_SERVER['DOCUMENT_ROOT']."resources/ajax_htmldata/getPagination.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."resources/admin/classes/domain/GOKbTools.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."resources/ajax_htmldata/getPagination.php";
 
-$tool = GOKbTools::getInstance();
-$record = $tool->getDetails($_POST['type'], $_POST['id']);
-$nbTipps = $tool->getNbTipps($record);
+	$tool = GOKbTools::getInstance();
+	$record = $tool->getDetails($_POST['type'], $_POST['id']);
+	$nbTipps = $tool->getNbTipps($record);
 
- ?>
+?>
 
-	<div id="resourceName">
-		<span id="resName">
-			<?php echo $tool->getResourceName($record);?>
-		</span>
-		<span id="resType">
-			(<?php echo $_POST['type'];?>)
+ <div id='resourceDetails'>
+	<div class='formTitle' style='width:745px;'>
+		<span class='headerText'>
+			<?php echo ucfirst($_POST['type']); ?>
+			details for
+			<?php echo  $tool->getResourceName($record);?>
 		</span>
 	</div>
 
 	<div id="detailsTabs">
 	    <ul>
 	        <li id='globalDetails' class='selected' onclick="loadDetailsContent(0);">Details</li> 
-	        <li id='tippsDetails' onclick="loadDetailsContent(1); iterator(0);">TIPPs (<?php echo $nbTipps;?>)</li> 
+	        <li id='tippsDetails' onclick="loadDetailsContent(1); iterator(0);">
+	        	<?php 
+	        		if ($_POST['type'] == 'package'){
+	        			echo "Titles ";
+	        		} else {
+	        			echo "Available in ";
+	        		}
+	        		echo "(".$nbTipps.")";?>
+	        </li> 
 	    </ul>
 	</div>
 

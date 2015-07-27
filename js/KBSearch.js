@@ -11,7 +11,7 @@ function allResults(s_name, s_pub, s_type){
 	
 	$.ajax({
 		 type:       "POST",
-		 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
+		 url:        "ajax_htmldata.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
 		 cache:      false,
 		 data:       {name:s_name, issn:'', publisher:s_pub, type:s_type, paginate:true},
 		 success:    function(res) {
@@ -46,11 +46,33 @@ function getDetails(s_type, s_gokbID){
 }
 
 /*******************************************************************************************************/
+function select(s_type, s_gokbID){
+	console.debug("fonction select("+s_type+","+s_gokbID+")");
+	$.ajax({
+		type: 		"POST",
+		url: 		"ajax_processing.php?action=importFromGOKb&height=503&width=775&resourceID=&modal=true",
+		cache: 		false,
+		data: 		{type:s_type, id:s_gokbID},
+		success: 	function(res){
+			console.debug("SELECT: ajax ok");
+			 document.getElementById("TB_ajaxContent").innerHTML = "";
+			 	$('#TB_ajaxContent').append(res);
+		}
 
+
+	});
+
+	//TODO history
+
+
+
+}
+
+/*******************************************************************************************************/
 /**
 * Manage the details tabs (global detail or TIPPs)
 * @param: 	element_nb 	int 	index of selected tab
-*
+* 
 * @return: nothing but display the right content
 */
 function loadDetailsContent(element_nb){
@@ -184,7 +206,7 @@ function searchGokbBack(s_name,s_pub){
 	console.debug("appel à searchGokbBack");
 	$.ajax({
 		 type:       "POST",
-		 url:        "ajax_forms.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
+		 url:        "ajax_htmldata.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
 		 cache:      false,
 		 data:       {name:s_name, issn:"", publisher:s_pub, type:0},
 		 success:    function(res) {

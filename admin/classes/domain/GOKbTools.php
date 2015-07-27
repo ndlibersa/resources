@@ -225,20 +225,9 @@ class GOKbTools {
      */
     public function getDetails($type, $gokbID)
     {
-        switch ($type) {
-            case 'title':
-                $record = $this->titleEndpoint->getRecord($gokbID, 'gokb');
-                break;
-            case 'package':
-                $record = $this->packageEndpoint->getRecord($gokbID, 'gokb');
-                break;
-            default:
-                return null;
-                break;
-        }
-
-
-        $rec = $record->{'GetRecord'}->{'record'}->{'metadata'}->{'gokb'}->{$type};
+        $record = $this->getRecord($type, $gokbID);
+        $rec = $record->{'metadata'}->{'gokb'}->{$type};
+        
         return $rec;
     }
 
@@ -336,7 +325,23 @@ class GOKbTools {
 
 // -------------------------------------------------------------------------
 
+    function getRecord($type, $id){
+        
+          switch ($type) {
+            case 'title':
+                $record = $this->titleEndpoint->getRecord($id, 'gokb');
+                break;
+            case 'package':
+                $record = $this->packageEndpoint->getRecord($id, 'gokb');
+                break;
+            default:
+                return null;
+                break;
+        }
 
+        $rec = $record->{'GetRecord'}->{'record'};
+        return $rec;
+    }
 }
  
 

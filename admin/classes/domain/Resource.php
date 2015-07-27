@@ -2336,6 +2336,37 @@ class Resource extends DatabaseObject {
     }
   }
 
+
+  		/********************************
+  		 * 			NEW FUNCTION 		*
+  		 ********************************/
+  	/* TODO
+				/!\			/!\			/!\
+		/!\ rgrep IsbnOrIssn avant de tout casser !! /!\
+				/!\			/!\			/!\
+  	*/
+
+
+  	/**
+  	* Fill the Identifier table in DB
+  	* @param $identifiers 	array 	array of all identifiers (type => id) (if type isn't known, don't put any key)
+  	* 
+  	*/
+  	public function setIdentifiers($identifiers){
+
+  		foreach ($identifiers as $key => $value) {
+  			$identifier = new Identifier();
+  			$identifier->resourceID = $this->resourceID;
+			$identifier->identifierTypeID = $identifier->getIdentifierTypeID($key);
+			$identifier->identifier = $value;
+  			
+  			$identifier->save();
+  		}
+  	}
+
+
+
+
 }
 
 ?>

@@ -1153,3 +1153,11 @@ select option.changeSelect{
 #importPage h1, h2 {
   color: #2c3c42;
 }
+
+.text-center {
+	text-align: center;
+}
+
+.issueList h3 {
+	margin-top: 8px;
+}

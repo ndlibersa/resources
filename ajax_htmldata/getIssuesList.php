@@ -55,6 +55,7 @@ $util = new Utility();
 //display any organization level issues for the resource
 $organizationArray = $resource->getOrganizationArray();
 if (count($organizationArray) > 0) {
+	echo '<h3 class="text-center">Organizational</h3>';
 	foreach ($organizationArray as $orgData) {
 		$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
 		foreach ($organization->getIssues($archivedFlag) as $issue) {
@@ -65,6 +66,7 @@ if (count($organizationArray) > 0) {
 
 //display any resource level issues for the resource (shows any other resources associated with the issue, too)
 $resourceIssues = $resource->getIssues($archivedFlag);
+echo '<h3 class="text-center">Resources</h3>';
 foreach ($resourceIssues as $issue) {
 	$associatedEntities = array();
 	if ($associatedResources = $issue->getAssociatedResources()) {

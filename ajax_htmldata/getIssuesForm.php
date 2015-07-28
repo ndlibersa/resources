@@ -9,7 +9,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	  	<a class=\"closeBtn\" href=\"\">close</a>
 	  	<dl>
 	  		<dt>Date reported:</dt> 
-	  		<dd>{$issue->attributes['dateCreated']}</dd>
+	  		<dd>{$issue->dateCreated}</dd>
 	  		
 	  		<dt>Contact(s):</dt> 
 	  		<dd>";
@@ -17,7 +17,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	if($contacts) {
 		$html .= "<ul class=\"contactList\">";
 		foreach($contacts as $contact) {
-			$html .= "<li><a href=\"mailto:".urlencode($contact->attributes['emailAddress'])."?Subject=RE: {$issue->attributes['subjectText']}\">{$contact->attributes['name']}</a></li>";
+			$html .= "<li><a href=\"mailto:".urlencode($contact->emailAddress)."?Subject=RE: {$issue->subjectText}\">{$contact->name}</a></li>";
 		}
 		$html .= "</ul>";
 	}
@@ -35,10 +35,10 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	}
 	$html .= "</dd> 
 	  		<dt>Subject:</dt> 
-	  		<dd>{$issue->attributes['subjectText']}</dd> 
+	  		<dd>{$issue->subjectText}</dd> 
 	  		
 	  		<dt class=\"block\">Body:</dt> 
-	  		<dd>{$issue->attributes['bodyText']}</dd>
+	  		<dd>{$issue->bodyText}</dd>
 	  	</dl>
 	</div>";
 	return $html;

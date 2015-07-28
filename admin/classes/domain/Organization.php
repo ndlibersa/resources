@@ -50,10 +50,9 @@ class Organization extends DatabaseObject {
   	}
 
 	public function getIssues() {
-		$issueDB = $this->db->config->settings->organizationsDatabaseName;
 		$query = "SELECT i.* 
-			  FROM `{$issueDB}`.Issue i
-			  LEFT JOIN `{$issueDB}`.IssueRelationship ir ON ir.issueID=i.issueID
+			  FROM Issue i
+			  LEFT JOIN IssueRelationship ir ON (ir.issueID=i.issueID AND ir.entityTypeID=1)
 			  WHERE ir.entityID={$this->organizationID}";
 		$result = $this->db->processQuery($query, 'assoc');
 

@@ -8,7 +8,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	<div class=\"issue\">
 	  	<a class=\"closeBtn\" href=\"\">close</a>
 	  	<dl>
-	  		<dt>Date reported: {$issue->issueID}</dt> 
+	  		<dt>Date reported:</dt> 
 	  		<dd>{$issue->attributes['dateCreated']}</dd>
 	  		
 	  		<dt>Contact(s):</dt> 

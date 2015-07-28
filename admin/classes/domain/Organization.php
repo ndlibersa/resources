@@ -49,11 +49,18 @@ class Organization extends DatabaseObject {
 		return $result['organizationID'];
   	}
 
-	public function getIssues() {
+	public function getIssues($archivedOnly=false) {
 		$query = "SELECT i.* 
 			  FROM Issue i
 			  LEFT JOIN IssueRelationship ir ON (ir.issueID=i.issueID AND ir.entityTypeID=1)
 			  WHERE ir.entityID={$this->organizationID}";
+		if ($archivedOnly) {
+			$query .= " AND i.dateClosed IS NOT NULL";
+		} else {
+			$query .= " AND i.dateClosed IS NULL";
+		}
+		$query .= "	ORDER BY i.dateCreated DESC";
+
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$objects = array();

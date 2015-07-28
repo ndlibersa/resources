@@ -37,33 +37,32 @@ class Organization extends DatabaseObject {
 
 	}
 
-  public function alreadyExists($shortName) {
+	public function alreadyExists($shortName) {
 		$query = "SELECT count(*) orgcount FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
 		$result = $this->db->processQuery($query, 'assoc');
 		return $result['orgcount'];
-  }
+ 	}
 
-  public function getOrganizationIDByName($shortName) {
-    $query = "SELECT organizationID FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
+  	public function getOrganizationIDByName($shortName) {
+    	$query = "SELECT organizationID FROM Organization WHERE UPPER(shortName) = '" . str_replace("'", "''", strtoupper($shortName)) . "';";
 		$result = $this->db->processQuery($query, 'assoc');
 		return $result['organizationID'];
-  }
-/*
-	public function getIssues(){
+  	}
+
+	public function getIssues() {
+		$issueDB = $this->db->config->settings->organizationsDatabaseName;
 		$query = "SELECT i.* 
-				  FROM Issue i
-				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
-				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
-		
+			  FROM `{$issueDB}`.Issue i
+			  LEFT JOIN `{$issueDB}`.IssueRelationship ir ON ir.issueID=i.issueID
+			  WHERE ir.entityID={$this->organizationID}";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$objects = array();
-
 		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['issueID'])){
+		if (isset($result['issueID'])) {
 			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
 			array_push($objects, $object);
-		}else{
+		} else {
 			foreach ($result as $row) {
 				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
 				array_push($objects, $object);
@@ -71,8 +70,6 @@ class Organization extends DatabaseObject {
 		}
 		return $objects;
 	}
-*/
-
 }
 
 ?>

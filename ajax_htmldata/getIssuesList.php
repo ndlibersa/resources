@@ -1,12 +1,16 @@
 <?php
 $resourceID = $_GET['resourceID'];
-$archived = $_GET['archived'];
+$archivedFlag = (!empty($_GET['archived']) && $_GET['archived'] == 1) ? true:false;
 
 //shared html template for organization and resource issues
 function generateIssueHTML($issue,$associatedEntities=null) {
 	$html = "
-	<div class=\"issue\">
-	  	<a class=\"closeBtn\" href=\"\">close</a>
+	<div class=\"issue\">";
+	if (!$issue->dateClosed) {
+		$html .= "
+		<a class=\"closeBtn\" href=\"\">close</a>";
+	}
+	$html .= "
 	  	<dl>
 	  		<dt>Date reported:</dt> 
 	  		<dd>{$issue->dateCreated}</dd>
@@ -53,14 +57,14 @@ $organizationArray = $resource->getOrganizationArray();
 if (count($organizationArray) > 0) {
 	foreach ($organizationArray as $orgData) {
 		$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
-		foreach ($organization->getIssues() as $issue) {
+		foreach ($organization->getIssues($archivedFlag) as $issue) {
 			echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
 		}
 	}
 }
 
 //display any resource level issues for the resource (shows any other resources associated with the issue, too)
-$resourceIssues = $resource->getIssues();
+$resourceIssues = $resource->getIssues($archivedFlag);
 foreach ($resourceIssues as $issue) {
 	$associatedEntities = array();
 	if ($associatedResources = $issue->getAssociatedResources()) {

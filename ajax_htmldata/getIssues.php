@@ -4,7 +4,7 @@
 	$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 
 	$util = new Utility();
-	$getIssuesFormData = "action=getIssuesForm&resourceID=".$resourceID;
+	$getIssuesFormData = "action=getIssuesList&resourceID=".$resourceID;
 
 
 ?>

@@ -2,13 +2,17 @@
 $resourceID = $_GET['resourceID'];
 $archivedFlag = (!empty($_GET['archived']) && $_GET['archived'] == 1) ? true:false;
 
+$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
+$util = new Utility();
+
+
 //shared html template for organization and resource issues
 function generateIssueHTML($issue,$associatedEntities=null) {
 	$html = "
 	<div class=\"issue\">";
 	if (!$issue->dateClosed) {
 		$html .= "
-		<a class=\"closeBtn\" href=\"\">close</a>";
+		<a class=\"thickbox closeIssueBtn\" href=\"ajax_forms.php?action=getCloseIssueForm&issueID={$issue->issueID}&height=120&width=345&modal=true\">close</a>";
 	}
 	$html .= "
 	  	<dl>
@@ -47,10 +51,6 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	</div>";
 	return $html;
 }
-
-$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
-
-$util = new Utility();
 
 //display any organization level issues for the resource
 $organizationArray = $resource->getOrganizationArray();

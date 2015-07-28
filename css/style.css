@@ -980,7 +980,7 @@ div.issueList .issue {
 	width: 85%;
 }
 
-div.issueList a.closeBtn {
+div.issueList a.closeIssueBtn {
 	float: right;
 }
 
@@ -1006,6 +1006,13 @@ div.issueList dl dt.block {
 	display: block;
 }
 
+div#closeIssue .text-left {
+	text-align: left;
+}
+
+div#closeIssue .text-right {
+	text-align: right;
+}
 
 
 

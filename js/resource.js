@@ -262,12 +262,11 @@ function getIssues(element) {
 		cache:      false,
 		success:    function(html) {
 			element.siblings(".issueList").html(html).slideToggle(250);
-			console.log(html);
+			tb_reinit();
 		}
 	});
 	
 }
-
 
 function updateAccounts(){
   $("#icon_accounts").html("<img src='images/littlecircle.gif'>");

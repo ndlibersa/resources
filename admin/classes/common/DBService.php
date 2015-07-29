@@ -37,6 +37,7 @@ class DBService extends Object {
 	protected function checkForError() {
 		if ($this->error = mysql_error($this->db)) {
 			throw new Exception("There was a problem with the database: " . $this->error);
+			echo "DEBUG _ ERROR process query : ".$this->error;
 		}
 	}
 

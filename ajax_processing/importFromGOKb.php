@@ -19,25 +19,39 @@ $identifiers = array("gokb" => $_POST['id']);
 
 $recordDetails=$record->{'metadata'}->{'gokb'}->{$_POST['type']};
 
-$datas['titleText'] = $recordDetails->{'name'};
-
+$datas['titleText'] = $gokbTool->getResourceName($recordDetails);
 $string = "";
 
 
 if ($_POST['type'] == 'package'){
 	//resource parent (package lui meme)
+	$acqID = AcquisitionType::getAcquisitionTypeID($recordDetails->{"paymentType"});
+	if ($acqID != null){
+		$datas["acquisitionTypeID"] = $acqID;
+		$string .= "insertion de datas[acquisitionTypeID] = ".$acqID."</br>";
+	}
+	
+	//Organization:
+	$datas['organization'] = array (
+		"platform" => $recordDetails->{"nominalPlatform"},
+		"provider" => $recordDetails->{"nominalProvider"}
+	);
+	$string .= "insertion organizations ";
+	
 	
 
 	//ensemble des tipps (boucle)
-	$tippsDatas = array();
+	//$tippsDatas = array();
+	
+	
 
 } else{ //import title; 
 	//TODO medium = resourceType (ajout manuel only pour l'instant)
 
 	//Organization
 	$org = $recordDetails->{"publisher"}->{'name'};     
-	if ($org ){
-		$data["organization"]=array("publisher" => $org);
+	if ($org != NULL){
+		$datas['organization']=array("publisher" => $org);
 		$string .= "insertion de datas['organization'] = ".$org."</br>";
 	}
 	
@@ -48,8 +62,8 @@ if ($_POST['type'] == 'package'){
 
 	foreach ($xmlIDs as $key => $value) {
 		$tmp = $value->attributes();
-		$datas[$tmp[0]] = $tmp[1];
-		$string .= "insertion de datas[".$tmp[0]."] = ".$tmp[1]."</br>";
+		$identifiers["$tmp[0]"] = (string) $tmp[1];
+		$string .= "insertion de identifiers[".$tmp[0]."] = ".$tmp[1]."</br>";
 	}
 	
 	
@@ -57,9 +71,12 @@ if ($_POST['type'] == 'package'){
 	//History / Aliases
 
 
-echo "$string";
-	//$datas['parentResource'] ?
 
+	//$datas['parentResource'] ?
+//echo "$string";	
+$importTool->addResource($datas, $identifiers);
+
+return $string;
 
 }
 

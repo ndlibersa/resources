@@ -281,12 +281,10 @@ function submitCloseIssue() {
 		data:       { "issueID": $("#issueID").val(), "resolutionText":$("#resolutionText").val() },
 		success:    function(html) {
 			if (html.length > 1) {
-				//$("#span_errors").html(html);
 				$("#submitCloseIssue").removeAttr("disabled");
 			} else {
 				tb_remove();
-				//update open issues
-				//update archived issues
+				updateIssues();
 				return false;
 			}			
 		}

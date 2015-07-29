@@ -1617,19 +1617,27 @@ class Resource extends DatabaseObject {
 
 			}
 
-
-
-
-
 		}
 
 
 		return $resourceOrgArray;
 	}
 
+	public function organizationContactsArray($organizationID) {
 
+		if($this->db->config->settings->organizationsModule == 'Y') {
+			$dbName = $this->db->config->settings->organizationsDatabaseName;
 
+			$orgContactsArray = array();
 
+			$query = "SELECT * FROM {$dbName}.Contact WHERE organizationID = '" . $organizationID . "'";
+
+			return $this->db->processQuery($query, 'assoc');
+
+		} else {
+			return false;
+		} 	
+	}
 
 	//gets an array of distinct organizations set up for this resource (organizationID, organization)
 	public function getDistinctOrganizationArray(){

@@ -69,6 +69,10 @@ $(document).ready(function(){
 		getIssues($(this));
 	});
 
+	$("#submitCloseIssue").live("click", function() {
+		submitCloseIssue();
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -266,6 +270,27 @@ function getIssues(element) {
 		}
 	});
 	
+}
+
+function submitCloseIssue() {
+	$('#submitCloseIssue').attr("disabled", "disabled"); 
+	$.ajax({
+		type:       "POST",
+		url:        "ajax_processing.php?action=submitCloseIssue",
+		cache:      false,
+		data:       { "issueID": $("#issueID").val(), "resolutionText":$("#resolutionText").val() },
+		success:    function(html) {
+			if (html.length > 1) {
+				//$("#span_errors").html(html);
+				$("#submitCloseIssue").removeAttr("disabled");
+			} else {
+				tb_remove();
+				//update open issues
+				//update archived issues
+				return false;
+			}			
+		}
+	});
 }
 
 function updateAccounts(){

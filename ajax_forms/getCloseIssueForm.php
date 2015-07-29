@@ -4,7 +4,7 @@
 ?>
 <div id="closeIssue">
 	<form>
-		<input type="hidden" name="issueID" value="<?php echo $issueID; ?>">
+		<input type="hidden" id="issueID" name="issueID" value="<?php echo $issueID; ?>">
 		<table class="thickboxTable" style="width:98%;background-image:url('images/title.gif');background-repeat:no-repeat;">
 			<tr>
 				<td colspan='2'>
@@ -14,7 +14,7 @@
 			<tr>
 				<td colspan='2'>
 					<label for="resolutionText">Resolution:</label>
-					<textarea name="resolutionText"></textarea>
+					<textarea id="resolutionText" name="resolutionText"></textarea>
 				</td>
 			</tr>
 		</table>

@@ -65,6 +65,7 @@ class Issue extends DatabaseObject {
 		}
 		return $objects;
 	}
+
 }
 
 ?>

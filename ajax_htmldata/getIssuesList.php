@@ -54,13 +54,26 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 
 //display any organization level issues for the resource
 $organizationArray = $resource->getOrganizationArray();
+
 if (count($organizationArray) > 0) {
 	echo '<h3 class="text-center">Organizational</h3>';
+
 	foreach ($organizationArray as $orgData) {
+
 		$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
-		foreach ($organization->getIssues($archivedFlag) as $issue) {
-			echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
+
+		$orgIssues = $organization->getIssues($archivedFlag);
+
+		if(count($orgIssues) > 0) {
+			foreach ($orgIssues as $issue) {
+				echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
+			}
+		} else {
+			echo "<br><p>There are no organization level issues.</p><br>";
 		}
+
+		$orgIssues = null;
+
 	}
 }
 

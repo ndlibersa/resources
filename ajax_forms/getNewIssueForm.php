@@ -9,6 +9,7 @@ $organizationData = $organizationArray[0];
 
 if($organizationData['organizationID']) {
 	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
+	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
 }
 	
 
@@ -95,7 +96,17 @@ if (resourceID) {
 		<tr>
 			<td><label>Applies to:</label></td>
 			<td>
-				<select multiple id="resourceIDs" name="resourceIDs">
+				<div>
+					<input type="checkbox" name="allResources" value="1" /> <label for="allResources">Applies to all</label>
+				</div>
+				<select style="min-height: 140px" multiple id="resourceIDs" name="resourceIDs">
+<?php
+if (!empty($organizationResourcesArray)) {
+	foreach ($organizationResourcesArray as $resource) {
+		echo "		<option value=\"{$resource['resourceID']}\">{$resource['titleText']}</option>";
+	}
+}
+?>
 				</select>
 				<span id='span_error_resourceIDs' class='smallDarkRedText'>
 			</td>

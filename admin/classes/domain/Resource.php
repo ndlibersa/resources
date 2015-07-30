@@ -1639,6 +1639,15 @@ class Resource extends DatabaseObject {
 		} 	
 	}
 
+	public function getSiblingResourcesArray($organizationID) {
+
+			$query = "SELECT DISTINCT r.resourceID, r.titleText FROM ResourceOrganizationLink rol 
+					  LEFT JOIN Resource r ON r.resourceID=rol.resourceID
+					  WHERE rol.organizationID=".$organizationID." AND r.archiveDate IS NULL
+					  ORDER BY r.titleText";
+			return $this->db->processQuery($query, 'assoc');
+	}
+
 	//gets an array of distinct organizations set up for this resource (organizationID, organization)
 	public function getDistinctOrganizationArray(){
 		$config = new Configuration;

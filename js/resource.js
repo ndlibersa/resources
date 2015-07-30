@@ -78,6 +78,18 @@ $(document).ready(function(){
 		submitNewIssue();
 	});
 
+	$("#addEmail").live("click", function(e) {
+		e.preventDefault();
+		$("#currentEmails").append($("#inputEmail").val()+", ");
+		currentVal = $("#ccEmails").val();
+		if (!currentVal) {
+			$("#ccEmails").val($("#inputEmail").val());
+		} else {
+			$("#ccEmails").val(currentVal+','+$("#inputEmail").val());
+		}
+		$("#inputEmail").val('');
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();

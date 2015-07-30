@@ -72,11 +72,13 @@ if (resourceID) {
 		<tr>
 			<td><label>CC:</label></td>
 			<td>
-				<select id='contactIDs' name='issue[contactIDs]' value='' class='changeInput' />
-				<span id='span_error_contactIDs' class='smallDarkRedText'>
+				<input type="text" id="inputEmail" name="inputEmail" />
+				<input type="button" id="addEmail" name="addEmail" value="Add" />
 				<p>
-					<a href="">add additional cc:</a>
+					Current CCs: <span id="currentEmails"></span>
 				</p>
+				<input type="hidden" id='ccEmails' name='ccEmails' value='' class='changeInput' />
+				<span id='span_error_contactIDs' class='smallDarkRedText'>
 			</td>
 		</tr>
 		<tr>

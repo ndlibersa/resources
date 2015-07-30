@@ -37,7 +37,6 @@ CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
   `issueContactID` int(11) NOT NULL AUTO_INCREMENT,
   `issueID` int(11) NOT NULL,
   `contactID` int(11) NOT NULL,
-  `isPrimary` tinyint(1) NOT NULL,
   PRIMARY KEY (`issueContactID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 

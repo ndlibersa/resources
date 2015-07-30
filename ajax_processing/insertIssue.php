@@ -2,6 +2,7 @@
 
 $formDataArray = $_POST["issue"];
 $resourceIDArray = $_POST["resourceIDs"];
+$contactIDs = $_POST['contactIDs'];
 
 $issueEmails = array();
 $issueEmails = explode(',',$_POST["ccEmails"]);
@@ -41,6 +42,16 @@ if (count($issueEmails) > 0) {
 		$newIssueEmail->email = $email;
 		$newIssueEmail->save();
 		unset($newIssueEmail);
+	}
+}
+
+if (count($contactIDs)) {
+	foreach ($contactIDs as $contactID) {
+		$newIssueContact = new IssueContact();
+		$newIssueContact->issueID = $newIssue->primaryKey;
+		$newIssueContact->contactID = $contactID;
+		$newIssueContact->save();
+		unset($newIssueContact);
 	}
 }
 

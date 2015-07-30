@@ -11,22 +11,7 @@ if($organizationData['organizationID']) {
 	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
 	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
 }
-	
 
-/*
-if (organizationID) {
-	$organization = new Organization
-	get organization contacts
-	get organization resources
-}
-
-if (resourceID) {
-	use to highlight in list of applies to
-}
-
--on organization change - 
-
-*/
 ?>
 
 <form id='newIssueForm'>
@@ -47,19 +32,16 @@ if (resourceID) {
 		<tr>
 			<td><label>Contact:</label></td>
 			<td>
-				<select type='text' id='contactName' name='issueContact[contactName]'>
+				<select multiple style="min-height: 60px;" type='text' id='contactIDs' name='contactIDs[]'>
 <?php 
 
 	foreach ($organizationContactsArray as $contact) {
-		echo "		<option>{$contact['name']}</option>";
+		echo "		<option value=\"{$contact['contactID']}\">{$contact['name']}</option>";
 	}
 
 ?>
 				</select>
 				<span id='span_error_contactName' class='smallDarkRedText'>
-				<p>
-					<a href="">add additional contact:</a>
-				</p>
 			</td>
 		</tr>
 		<tr>

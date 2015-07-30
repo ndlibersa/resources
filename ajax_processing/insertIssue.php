@@ -2,10 +2,17 @@
 
 	$formDataArray = $_POST["issue"];
 	$resourceIDArray = $_POST["resourceIDs"];
+
 	$newIssue = new Issue();
 
 	$newIssue->creatorID = $user->loginID;
 	$newIssue->dateCreated = date( 'Y-m-d H:i:s');
+
+	$issueEmails = array();
+
+	if($_POST["ccCreator"]) {
+		$issueEmails[] = $user->emailAddress;
+	}
 
 	if(!is_numeric($formDataArray["reminderInterval"])) {
 		$formDataArray["reminderInterval"] = 0;
@@ -26,4 +33,13 @@
 		unset($newIssueRelationship);
 	}
 
+	if (count($issueEmails) > 0) {
+		foreach ($issueEmails as $email) {
+			$newIssueEmail = new IssueEmail();
+			$newIssueEmail->issueID = $newIssue->primaryKey;
+			$newIssueEmail->email = $email;
+			$newIssueEmail->save();
+			unset($newIssueEmail);
+		}
+	}
 ?>

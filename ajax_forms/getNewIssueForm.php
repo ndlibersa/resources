@@ -65,8 +65,8 @@ if (resourceID) {
 		<tr>
 			<td><label>CC myself:</label></td>
 			<td>
-				<input type='checkbox' id='primaryContact' name='primaryContact' class='changeInput' />
-				<span id='span_error_primaryContact' class='smallDarkRedText'>
+				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' />
+				<span id='span_error_ccCreator' class='smallDarkRedText'>
 			</td>
 		</tr>
 		<tr>

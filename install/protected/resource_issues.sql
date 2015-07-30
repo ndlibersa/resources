@@ -44,8 +44,8 @@ CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueEmail`;
 CREATE TABLE `_DATABASE_NAME_`.`IssueEmail` (
-  `IssueEmailID` int(11) NOT NULL AUTO_INCREMENT,
-  `IssueID` int(11) NOT NULL,
+  `issueEmailID` int(11) NOT NULL AUTO_INCREMENT,
+  `issueID` int(11) NOT NULL,
   `email` varchar(120) NOT NULL,
   PRIMARY KEY (`IssueEmailID`),
   KEY `IssueID` (`IssueID`)

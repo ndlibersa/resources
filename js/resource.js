@@ -73,6 +73,11 @@ $(document).ready(function(){
 		submitCloseIssue();
 	});
 
+	$("#submitNewIssue").live("click", function(e) {
+		e.preventDefault();
+		submitNewIssue();
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -255,6 +260,25 @@ function updateIssues(){
 
 
   });
+
+}
+
+function submitNewIssue() {
+	
+	$.ajax({
+		 type:       "POST",
+		 url:        "ajax_processing.php?action=insertIssue",
+		 cache:      false,
+		 data:       $("#newIssueForm").serialize(),
+		 success:    function(res) {
+			console.log(res);
+			updateIssues();
+			tb_remove()
+		 }
+
+
+	  });
+
 
 }
 

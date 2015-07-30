@@ -47,7 +47,7 @@ if (resourceID) {
 		<tr>
 			<td><label>Contact:</label></td>
 			<td>
-				<select type='text' id='contactName' name='contactName'>
+				<select type='text' id='contactName' name='issueContact[contactName]'>
 <?php 
 
 	foreach ($organizationContactsArray as $contact) {
@@ -72,7 +72,7 @@ if (resourceID) {
 		<tr>
 			<td><label>CC:</label></td>
 			<td>
-				<select id='contactIDs' name='contactIDs' value='' class='changeInput' />
+				<select id='contactIDs' name='issue[contactIDs]' value='' class='changeInput' />
 				<span id='span_error_contactIDs' class='smallDarkRedText'>
 				<p>
 					<a href="">add additional cc:</a>
@@ -82,14 +82,14 @@ if (resourceID) {
 		<tr>
 			<td><label>Subject:</label></td>
 			<td>
-				<input type='text' id='subjectText' name='subjectText' value='' class='changeInput' />
+				<input type='text' id='subjectText' name='issue[subjectText]' value='' class='changeInput' />
 				<span id='span_error_subjectText' class='smallDarkRedText'>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Body:</label></td>
 			<td>
-				<textarea id='bodyText' name='bodyText' value='' />
+				<textarea id='bodyText' name='issue[bodyText]' value='' />
 				<span id='span_error_bodyText' class='smallDarkRedText'>
 			</td>
 		</tr>
@@ -97,9 +97,9 @@ if (resourceID) {
 			<td><label>Applies to:</label></td>
 			<td>
 				<div>
-					<input type="checkbox" name="allResources" value="1" /> <label for="allResources">Applies to all</label>
+					<input type="checkbox" name="issueResources[allResources]" value="1" /> <label for="allResources">Applies to all</label>
 				</div>
-				<select style="min-height: 140px" multiple id="resourceIDs" name="resourceIDs">
+				<select style="min-height: 140px" multiple id="resourceIDs" name="resourceIDs[]">
 <?php
 if (!empty($organizationResourcesArray)) {
 	foreach ($organizationResourcesArray as $resource) {
@@ -114,7 +114,7 @@ if (!empty($organizationResourcesArray)) {
 	</table>
 
 	<p> Send me a reminder in 
-		<select></select> days 
+		<select name="issue[reminderInterval]"></select> days 
 	</p>
 
 	<table class='noBorderTable' style='width:125px;'>

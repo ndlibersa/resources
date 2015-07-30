@@ -28,7 +28,6 @@ class Identifier extends DatabaseObject {
 		$config = new Configuration();
 		$dbName = $config->settings->resourcesDatabaseName;
 		$query = "SELECT identifierTypeID FROM IdentifierType WHERE UPPER(identifierName) = '" . str_replace("'", "''", strtoupper($type)) . "'";
-//$query = "SELECT identifierTypeID FROM $dbName.IdentifierType WHERE UPPER(identifierName) = '" . str_replace("'", "''", strtoupper($type)) . "'";
 		$result = $this->db->processQuery($query);
 
 		if (count($result) == 0) {//this type doesn't exist

@@ -285,10 +285,13 @@ class GOKbTools {
         $string = "";
         $tipps=$record->{'TIPPs'};
         
-        if ($recordType == 'package') $type = 'title';
-        else $type = 'package';
+        if ($recordType == 'package') {
+                  $type = 'title';
+            } else {
+                  $type = 'package';
+            }
 
-        $string .= "<table> ";
+            $string .= "<table> ";
         
         foreach ($tipps->children() as $child) {
             $resource = $child->{$type};
@@ -309,7 +312,7 @@ class GOKbTools {
     * @return           string              name of the resource
     */
     function getResourceName($record){
-        return $record->{'name'};
+        return (string) $record->{'name'};
     }
 // -------------------------------------------------------------------------
     /**
@@ -320,7 +323,7 @@ class GOKbTools {
     function getNbTipps($record){
         $tipps = $record->{'TIPPs'};
         $tmp = $tipps->attributes();
-        return $tmp[0];
+        return (int) $tmp[0];
     }
 
 // -------------------------------------------------------------------------

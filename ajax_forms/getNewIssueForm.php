@@ -5,10 +5,10 @@ $resourceID = $_GET["resourceID"];
 $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID))); 
 
 $organizationArray = $resource->getOrganizationArray();
-$organizationID = $organizationArray[0]["organizationID"];
+$organizationData = $organizationArray[0];
 
-if($organizationID) {
-	$organizationContactsArray = $resource->organizationContactsArray($organizationID);
+if($organizationData['organizationID']) {
+	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
 }
 	
 
@@ -39,7 +39,7 @@ if (resourceID) {
 		<tr>
 			<td><label>Organization:</label></td>
 			<td>
-				<p><?php echo $organization->shortName; ?></p>
+				<p><?php echo $organizationData['organization']; ?></p>
 				<span id='span_error_organizationId' class='smallDarkRedText'>
 			</td>
 		</tr>
@@ -50,13 +50,15 @@ if (resourceID) {
 <?php 
 
 	foreach ($organizationContactsArray as $contact) {
-		echo "<option>{$contact['name']}</option>";
+		echo "		<option>{$contact['name']}</option>";
 	}
 
 ?>
 				</select>
 				<span id='span_error_contactName' class='smallDarkRedText'>
-				<a href="">add additional contact:</a>
+				<p>
+					<a href="">add additional contact:</a>
+				</p>
 			</td>
 		</tr>
 		<tr>
@@ -71,7 +73,9 @@ if (resourceID) {
 			<td>
 				<select id='contactIDs' name='contactIDs' value='' class='changeInput' />
 				<span id='span_error_contactIDs' class='smallDarkRedText'>
-				<a href="">add additional cc:</a>
+				<p>
+					<a href="">add additional cc:</a>
+				</p>
 			</td>
 		</tr>
 		<tr>

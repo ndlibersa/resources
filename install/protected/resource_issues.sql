@@ -39,4 +39,14 @@ CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
   `contactID` int(11) NOT NULL,
   `isPrimary` tinyint(1) NOT NULL,
   PRIMARY KEY (`issueContactID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueEmail`;
+CREATE TABLE `_DATABASE_NAME_`.`IssueEmail` (
+  `IssueEmailID` int(11) NOT NULL AUTO_INCREMENT,
+  `IssueID` int(11) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  PRIMARY KEY (`IssueEmailID`),
+  KEY `IssueID` (`IssueID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

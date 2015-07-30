@@ -80,10 +80,17 @@ if($organizationData['organizationID']) {
 		<tr>
 			<td><label>Applies to:</label></td>
 			<td>
+
 				<div>
-					<input type="checkbox" name="issueResources[allResources]" value="1" /> <label for="allResources">Applies to all</label>
+					<input type="checkbox" class="issueResources" name="issueResources[thisResource]" value="1" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
-				<select style="min-height: 140px" multiple id="resourceIDs" name="resourceIDs[]">
+				<div>
+					<input type="checkbox" class="issueResources" name="issueResources[allResources]" value="1" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
+				</div>
+				<div>
+					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources</label>
+				</div>
+				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php
 if (!empty($organizationResourcesArray)) {
 	foreach ($organizationResourcesArray as $resource) {
@@ -99,16 +106,7 @@ if (!empty($organizationResourcesArray)) {
 
 	<p> Send me a reminder every 
 		<select name="issue[reminderInterval]">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-			<option>10</option>
+			<?php for ($i = 1; $i <= 31; $i++) echo "<option>{$i}</option>"; ?>
 		</select> day(s) 
 	</p>
 

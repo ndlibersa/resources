@@ -78,6 +78,19 @@ $(document).ready(function(){
 		submitNewIssue();
 	});
 
+	$(".issueResources").live("click", function() {
+
+		$(".issueResources").attr("checked", false);
+		$(this).attr("checked", true);
+
+		if($(this).attr("id") == "otherResources") {
+			$("#resourceIDs").fadeIn(250)
+		} else {
+			$("#resourceIDs").fadeOut(250)
+		}
+
+	});
+
 	$("#addEmail").live("click", function(e) {
 		e.preventDefault();
 		$("#currentEmails").append($("#inputEmail").val()+", ");

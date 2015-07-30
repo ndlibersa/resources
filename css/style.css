@@ -1014,7 +1014,10 @@ div#closeIssue .text-right {
 	text-align: right;
 }
 
-
+form#newIssueForm #resourceIDs {
+	min-height: 140px;
+	display: none;
+}
 
 table.noBorder td { border:0; }
 table.smallPadding td{ padding:1px; }

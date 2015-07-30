@@ -1,6 +1,7 @@
 <?php
 
 	$formDataArray = $_POST["issue"];
+	$resourceIDArray = $_POST["resourceIDs"];
 	$newIssue = new Issue();
 
 	$newIssue->creatorID = $user->loginID;
@@ -14,8 +15,15 @@
 		$newIssue->$key = $value;
 	}
 
-	print_r($formDataArray);
-
 	$newIssue->save();
+
+	foreach($resourceIDArray as $resourceID) {
+		$newIssueRelationship = new IssueRelationship();
+		$newIssueRelationship->issueID = $newIssue->primaryKey;
+		$newIssueRelationship->entityID = $resourceID;
+		$newIssueRelationship->entityTypeID = 2;
+		$newIssueRelationship->save();
+		unset($newIssueRelationship);
+	}
 
 ?>

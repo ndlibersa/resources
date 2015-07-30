@@ -75,10 +75,9 @@ if ($_POST['submit']) {
       $uploadfile = $_POST['uploadfile'];
 
       if (($handle = fopen($uploadfile, "r")) !== FALSE) {
-            $firstLine = true;
+            $row = 0;
             while ($line = fgetcsv($handle, 0, $delimiter)) {
-                  if ($firstLine) {
-                        $firstLine = false;
+                  if ($row == 0) {
                         print "<h2>Settings</h2>";
                         print "<p>Importing and deduping isbnOrISSN on the following columns: ";
                         foreach ($line as $key => $value) {
@@ -107,9 +106,15 @@ if ($_POST['submit']) {
 
                         $tool->addResource($datas, $identifiers);
                   }
+              $row++;    
             }
       } 
-        
+    print "<h2>Results</h2>";
+    print "<p>" . ($row- 1) . " rows have been processed. ".ImportTool::getNbInserted()." rows have been inserted.</p>";
+    print "<p>". ImportTool::getNbParentInserted()." parents have been created. ".ImportTool::getNbParentAttached()." resources have been attached to an existing parent.</p>";
+    print "<p>".ImportTool::getNbOrganizationsInserted()." organizations have been created";
+    if (count(ImportTool::getArrayOrganizationsCreated()) > 0) print " (" . implode(',', ImportTool::getArrayOrganizationsCreated()) . ")";
+    print ". ".ImportTool::getNbOrganizationsAttached()." resources have been attached to an existing organization.</p>";
 } else {
           
 ?>

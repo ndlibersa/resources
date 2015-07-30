@@ -384,6 +384,9 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
+      public static function getArrayOrganizationsCreated(){
+            return self::$arrayOrganizationsCreated;
+      }
 }
 
 ?>

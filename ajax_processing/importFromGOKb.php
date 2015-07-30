@@ -3,21 +3,16 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/GOKbTools.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ImportTool.php";
 
-/* required $_POST : type, gokbID */
-
 $gokbTool = GOKbTools::getInstance();
 $importTool = new ImportTool();
 
 $record = $gokbTool->getRecord($_POST['type'], $_POST['id']);
-//echo "DEBUG_ IFG _ request 1 ok\n";
-//$nbTipps = $gokbTool->getNbTipps($record);
+$recordDetails = $record->{'metadata'}->{'gokb'}->{$_POST['type']};
+$nbTipps = $gokbTool->getNbTipps($recordDetails);
 
-//echo "DEBUG_ IFG _ all request ok\n";
 $datas = array();
 $identifiers = array("gokb" => $_POST['id']);
 
-$recordDetails = $record->{'metadata'}->{'gokb'}->{$_POST['type']};
-$nbTipps = $gokbTool->getNbTipps($recordDetails);
 $datas['titleText'] = $gokbTool->getResourceName($recordDetails);
 $string = "";
 
@@ -29,7 +24,7 @@ if ($_POST['type'] == 'package') {
             $datas["acquisitionTypeID"] = $acqID;
             $string .= "insertion de datas[acquisitionTypeID] = " . $acqID . "</br>";
       }
-
+      
       //Organization:
       $datas['organization'] = array(
           "platform" => $recordDetails->{"nominalPlatform"},

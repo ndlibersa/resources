@@ -61,13 +61,14 @@ if (count($organizationArray) > 0) {
 	$issuedOrgs = array();
 	foreach ($organizationArray as $orgData) {
 		if (!in_array($orgData['organizationID'],$issuedOrgs)) {
+// todo: create issues repo so we don't have to initialize an organization object from the wrong module
 			$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
 
 			$orgIssues = $organization->getIssues($archivedFlag);
 
 			if(count($orgIssues) > 0) {
 				foreach ($orgIssues as $issue) {
-					echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
+					echo generateIssueHTML($issue,array(array("name"=>$orgData['organization'],"id"=>$organization->organizationID,"entityType"=>1)));
 				}
 			} else {
 				echo "<br><p>There are no organization level issues.</p><br>";

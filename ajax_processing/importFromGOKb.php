@@ -36,15 +36,15 @@ if ($_POST['type'] == 'package') {
 
       //ensemble des tipps (boucle)
       //$tippsDatas = array();
+      
 } else { //import title; 
-      //TODO medium = resourceType (ajout manuel only pour l'instant)
+     
       //Organization
       $org = $recordDetails->{"publisher"}->{'name'};
       if ($org != NULL) {
             $datas['organization'] = array("publisher" => $org);
             $string .= "insertion de datas['organization'] = " . $org . "</br>";
       }
-
 
       //Identifiers _ URL ?
       $xml = $recordDetails->{'identifiers'};
@@ -55,34 +55,15 @@ if ($_POST['type'] == 'package') {
             $identifiers["$tmp[0]"] = (string) $tmp[1];
             $string .= "insertion de identifiers[" . $tmp[0] . "] = " . $tmp[1] . "</br>";
       }
+     
+      //ResourceType
+      $datas['resourceType'] = (string) $recordDetails->{'medium'} ;//TODO _ ID _ create type if needed
+     
+      //History / Aliases
+      
 
       
-      //parents
-     if ($nbTipps > 0) {
-            $tipps = $recordDetails->{'TIPPs'};
-            $type = "package";
-            $parents = array();
-
-            foreach ($tipps->children() as $child) {
-                  $resource = $child->{$type};
-                  $resourceAttr = $resource->attributes();
-
-                  $parentDatas = array();
-                  $parentDatas['titleText'] = $gokbTool->getResourceName($resource);
-                  $parentDatas['identifiers']['gokb'] = $gokbTool->UriToGokbId("$type" . 's/' . $resourceAttr[0]);
-                  $parentDatas['organization']['platform'] = (string) $child->{'platform'}->{'name'};
-                  $parentDatas['resourceURL'] = (string) $child->{'url'};
-                  //TODO _ coverage and others
-                  array_push($parents, $parentDatas);
-            }
-      }
-
-      $datas['parentResource'] = $parents; //TODO _ modif struct string -> tab
-
-      //History / Aliases
-      //$datas['parentResource'] ?
-//echo "$string";	
-    //  $importTool->addResource($datas, $identifiers);
+      $importTool->addResource($datas, $identifiers);
 
       return $string;
 }

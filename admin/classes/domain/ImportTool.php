@@ -73,38 +73,54 @@ class ImportTool {
       public function addResource($datas, $identifiers) {
             $res_tmp = new Resource();
             $org = null;
-            $parents = null;
+            $parentName = null;
+            $resourceType = null;
 
             $htmlContent = ''; //TODO _ DEBUG _ Displaying after select
 
-            /*             * *****************************************
-             * *     Has the resource to be inserted ?    **
-             * ***************************************** */
+            /*******************************************
+             **     Has the resource to be inserted ?    **
+             *******************************************/
             $hasToBeInserted = $this->hasResourceToBeInserted($datas, $identifiers);
 
-            /*             * **************************************
-             * *		Datas insertion		**
-             * ************************************** */
+            /****************************************
+             **                     Datas insertion                **
+             ****************************************/
             if ($hasToBeInserted) {
                   $res = $res_tmp->getNewInitializedResource();
                   echo "DEBUG _ Resource insertion !!</br>";
 
                   //Resource treatment
                   foreach ($datas as $key => $value) {
-                        if ($key == "organization") {
-                              $org = $value;
-                        } elseif ($key == "parentResource") {
-                              $parentName = $value;
-                           //   $parents = $value;
-                        } else {
-                              $res->$key = (string) $value;
+                        switch ($key) {
+                              case "organization":
+                                    $org = $value;
+                                    break;
+                              case "parentResource":
+                                    $parentName = $value;
+                                    break;
+                              case "resourceType":
+                                    $resourceType = $value;
+                                    break;
+                              default:
+                                    $res->$key = (string) $value;
+                                    break;
                         }
                   }
+                  //ResourceType treatment
+                  if($resourceType != NULL){
+                        $res->resourceTypeID = ResourceType::getResourceTypeID($resourceType);
+                  }
+                  
                   $res->save();
 
                   //Resource identifiers treatment
                   $res->setIdentifiers($identifiers);
 
+                  
+                  
+                  
+                  
                   //Parent treatment
                   if ($parentName != null) {
                         $parentID = $this->parentTreatment($parentName);
@@ -224,15 +240,6 @@ class ImportTool {
                         $result = $organization->db->processQuery($query, 'assoc');
 
                         if ($result['count'] == 0) { // If not, we try to create it
-//                              $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . mysql_escape_string($orgName) . "'";
-//                              try {
-//                                    $result = $organization->db->processQuery($query);
-//                                    $organizationID = $result;
-//                                    self::$organizationsInserted++;
-//                                    array_push(self::$arrayOrganizationsCreated, $orgName);
-//                              } catch (Exception $e) {
-//                                    $htmlContent .= "<p>Organization $orgName could not be added.</p>";
-//                              }
                               $organizationID = $this->createOrgWithOrganizationModule($orgName);
                         }
                         // If yes, we attach it to our resource
@@ -340,6 +347,8 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
+      
+      
 
       /********************************
        *                Accessors               *

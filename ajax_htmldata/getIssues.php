@@ -5,6 +5,7 @@
 
 	$util = new Utility();
 	$getIssuesFormData = "action=getIssuesList&resourceID=".$resourceID;
+	$exportUrl = "export_issues.php?resourceID={$resourceID}";
 
 
 ?>
@@ -19,14 +20,14 @@
 		<tr>
 			<td>
 				<a href="<?php echo $getIssuesFormData; ?>" class="issuesBtn" id="openIssuesBtn">view open issue</a> 
-				<a target="_blank" href="export_issues.php?resourceID=<?php echo $resourceID;?>"><img src="images/xls.gif" /></a>
+				<a target="_blank" href="{$exportUrl}"><img src="images/xls.gif" /></a>
 				<div class="issueList" id="openIssues" style="display:none;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="<?php echo $getIssuesFormData."&archived=1"; ?>" class="issuesBtn" id="archivedIssuesBtn">view archived issues</a> 
-				<a href=""><img src="images/xls.gif" /></a>
+				<a target="_blank" href="<?php echo $exportUrl;?>&archived=1"><img src="images/xls.gif" /></a>
 				<div class="issueList" id="archivedIssues"></div>
 			</td>
 		</tr>

@@ -29,13 +29,14 @@ if (count($organizationArray) > 0) {
 					$issueIndex++;
 				}
 			}
+			$orgIssues = null;
+			$issuedOrgs[] = $orgData['organizationID'];
 		}
 	}
 }
 
 
 //display any resource level issues for the resource (shows any other resources associated with the issue, too)
-
 $resourceIssues = $resource->getIssues($archivedFlag);
 if (count($resourceIssues) > 0) {
 	foreach ($resourceIssues as $issue) {

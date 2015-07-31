@@ -20,7 +20,7 @@
 		<tr>
 			<td>
 				<a href="<?php echo $getIssuesFormData; ?>" class="issuesBtn" id="openIssuesBtn">view open issue</a> 
-				<a target="_blank" href="{$exportUrl}"><img src="images/xls.gif" /></a>
+				<a target="_blank" href="<?php echo $exportUrl;?>"><img src="images/xls.gif" /></a>
 				<div class="issueList" id="openIssues" style="display:none;"></div>
 			</td>
 		</tr>

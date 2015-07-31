@@ -12,7 +12,7 @@ $util = new Utility();
 $organizationArray = $resource->getOrganizationArray();
 
 $exportIssues = array();
-$issueIndex = 0;
+
 if (count($organizationArray) > 0) {
 	$issuedOrgs = array();
 	foreach ($organizationArray as $orgData) {
@@ -20,32 +20,13 @@ if (count($organizationArray) > 0) {
 // todo: create issues repo so we don't have to initialize an organization object from the wrong module
 			$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
 
-			$orgIssues = $organization->getIssues($archivedFlag);
-			if (count($orgIssues) > 0) {
-				foreach ($orgIssues as $issue) {
-					foreach ($issue->attributeNames as $field=>$value) {
-						$exportIssues[$issueIndex][$field] = $issue->attributes[$field];
-					}
-					$issueIndex++;
-				}
-			}
-			$orgIssues = null;
+			$exportIssues = array_merge($exportIssues,$organization->getExportableIssues($archivedFlag));
 			$issuedOrgs[] = $orgData['organizationID'];
 		}
 	}
 }
 
-
-//display any resource level issues for the resource (shows any other resources associated with the issue, too)
-$resourceIssues = $resource->getIssues($archivedFlag);
-if (count($resourceIssues) > 0) {
-	foreach ($resourceIssues as $issue) {
-		foreach ($issue->attributeNames as $field=>$value) {
-			$exportIssues[$issueIndex][$field] = $issue->attributes[$field];
-		}
-		$issueIndex++;
-	}
-}
+$exportIssues = array_merge($exportIssues,$resource->getExportableIssues($archivedFlag));
 
 header("Pragma: public");
 header("Content-type: text/csv");

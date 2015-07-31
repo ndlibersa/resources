@@ -7,11 +7,9 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 $organizationArray = $resource->getOrganizationArray();
 $organizationData = $organizationArray[0];
 
-if($organizationData['organizationID']) {
+if ($organizationData['organizationID']) {
 	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
 	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
-}
-
 ?>
 
 <form id='newIssueForm'>
@@ -92,11 +90,11 @@ if($organizationData['organizationID']) {
 				</div>
 				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php
-if (!empty($organizationResourcesArray)) {
-	foreach ($organizationResourcesArray as $resource) {
-		echo "		<option value=\"{$resource['resourceID']}\">{$resource['titleText']}</option>";
+	if (!empty($organizationResourcesArray)) {
+		foreach ($organizationResourcesArray as $resource) {
+			echo "		<option value=\"{$resource['resourceID']}\">{$resource['titleText']}</option>";
+		}
 	}
-}
 ?>
 				</select>
 				<span id='span_error_resourceIDs' class='smallDarkRedText'>
@@ -118,5 +116,15 @@ if (!empty($organizationResourcesArray)) {
 	</table>
 
 </form>
+
+<?php
+} else {
+	echo '
+		<p>
+			Opening an issue requires a resource to be associated with an organization.
+		</p>
+		<input type="button" value="cancel" onclick="tb_remove();">';
+}
+?>
 
 

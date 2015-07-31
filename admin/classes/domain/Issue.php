@@ -8,7 +8,7 @@ class Issue extends DatabaseObject {
 
 	public function getContacts() {
 		$orgDB = $this->db->config->settings->organizationsDatabaseName;
-		$query = "SELECT ic.contactID,c.name
+		$query = "SELECT ic.contactID,c.name,c.emailAddress
 				FROM IssueContact ic
 				LEFT JOIN `{$orgDB}`.Contact c ON c.contactID=ic.contactID 
 				WHERE ic.issueID=".$this->issueID;

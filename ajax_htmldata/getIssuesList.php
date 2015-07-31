@@ -25,7 +25,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	if ($contacts) {
 		$html .= "<ul class=\"contactList\">";
 		foreach($contacts as $contact) {
-			$html .= "<li><a href=\"mailto:".urlencode($contact->emailAddress)."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
+			$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
 		}
 		$html .= "</ul>";
 	}

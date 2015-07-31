@@ -13,7 +13,8 @@ $nbTipps = $gokbTool->getNbTipps($recordDetails);
 $datas = array();
 $identifiers = array("gokb" => $_POST['id']);
 
-$datas['titleText'] = $gokbTool->getResourceName($recordDetails);
+$recordName = $gokbTool->getResourceName($recordDetails);
+$datas['titleText'] = $recordName;
 $string = "";
 
 
@@ -46,21 +47,72 @@ if ($_POST['type'] == 'package') {
             $string .= "insertion de datas['organization'] = " . $org . "</br>";
       }
 
-      //Identifiers _ URL ?
-      $xml = $recordDetails->{'identifiers'};
-      $xmlIDs = $xml->children();
-
-      foreach ($xmlIDs as $key => $value) {
-            $tmp = $value->attributes();
-            $identifiers["$tmp[0]"] = (string) $tmp[1];
-            $string .= "insertion de identifiers[" . $tmp[0] . "] = " . $tmp[1] . "</br>";
-      }
-     
-      //ResourceType
+       //ResourceType
       $datas['resourceType'] = (string) $recordDetails->{'medium'} ;//TODO _ ID _ create type if needed
      
-      //History / Aliases
       
+      //Identifiers _ URL ?
+      $xml = $recordDetails->{'identifiers'};
+      $idToKeep = $xml->children();
+
+//      foreach ($xmlIDs as $key => $value) {
+//            $tmp = $value->attributes();
+//            $identifiers["$tmp[0]"] = (string) $tmp[1];
+//            $string .= "insertion de identifiers[" . $tmp[0] . "] = " . $tmp[1] . "</br>";
+//      }
+     
+     
+      //History / Aliases
+      $variantName = $recordDetails->{'variantNames'};
+      $variants = $variantName->children();
+      
+      if (count($variants) > 0){
+            $datas['alias']['alternate name']=array();
+            foreach ($variants as $key => $name) {
+                  array_push($datas['alias']['alternate name'], (string) $name);
+            }
+      }
+      
+      $history = $recordDetails->{'history'};
+      $events = $history->children();
+      
+  //    if ($history != null){ //comparer date pour identifiers, (publishedTO, event->date)  
+      if (count($events) > 0){
+            $datas['alias'] ['name change']= array();
+            $events = $history->children();
+            $checkDate = false;
+            $date = 0;
+            if ($recordDetails->{'publishedTo'} != null && $recordDetails->{'publishedTo'} != ''){
+                  $checkDate = true;
+                  $date =(string) $recordDetails->{'publishedTo'} ;
+                  $date = $gokbTool->convertXmlDateToDateTime($date);
+            } else {
+                  $date = new DateTime();
+            }
+            
+            foreach ($events as  $event) {
+                 $eventDate = (string) $event->{'date'};
+                 $eventDate = $gokbTool->convertXmlDateToDateTime($eventDate);
+                 $from =$event->{'from'}->{'title'};
+                 $to = $event->{'to'}->{'title'};
+                 if ($from != $recordName){
+                       array_push($datas['alias'] ['name change'], (string)$from);
+                 }
+                 if ($to != $recordName){
+                       array_push($datas['alias'] ['name change'], (string)$to);
+                 }
+                 
+                 if ($date < $eventDate){
+                       $date = $eventDate;
+                       $id_tmp = $event->{'to'}->{'identifiers'};
+                       $idToKeep = $id_tmp->children();
+                 }
+                 
+            }
+            
+      }
+      
+      $identifiers = $gokbTool->createIdentifiersArrayToImport($idToKeep);
 
       
       $importTool->addResource($datas, $identifiers);

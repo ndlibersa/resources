@@ -3,6 +3,13 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/common/Configuration.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/Resource.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ResourceRelationship.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ResourceType.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/AliasType.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/Alias.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/Organization.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/OrganizationRole.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ResourceOrganizationLink.php";
+
 
 class ImportTool {
 
@@ -75,6 +82,7 @@ class ImportTool {
             $org = null;
             $parentName = null;
             $resourceType = null;
+            $aliases = null;
 
             $htmlContent = ''; //TODO _ DEBUG _ Displaying after select
 
@@ -102,14 +110,18 @@ class ImportTool {
                               case "resourceType":
                                     $resourceType = $value;
                                     break;
+                              case "alias":
+                                    $aliases = $value;
+                                    break;
                               default:
                                     $res->$key = (string) $value;
                                     break;
                         }
                   }
+                  
                   //ResourceType treatment
                   if($resourceType != NULL){
-                        $res->resourceTypeID = ResourceType::getResourceTypeID($resourceType);
+                        $res->resourceTypeID = ResourceType::getResourceTypeID((string)$resourceType);
                   }
                   
                   $res->save();
@@ -117,7 +129,10 @@ class ImportTool {
                   //Resource identifiers treatment
                   $res->setIdentifiers($identifiers);
 
-                  
+                  //Aliases treatment (history name change/ variant name) //TODO
+                  if ($aliases != null){
+                        $this->aliasesTreatment($aliases, $res->resourceID);
+                  }
                   
                   
                   
@@ -134,6 +149,7 @@ class ImportTool {
                   echo "DEBUG _ Resource not inserted ! </br>";
             }
             echo 'DEBUG_ AddResource finished';
+            self::$row++;
       }
 
 // -------------------------------------------------------------------------
@@ -194,7 +210,7 @@ class ImportTool {
 
             if ($numberOfParents == 0) { // If not, create parent
                   $parentResource = $resource->getNewInitializedResource();
-                  $parentResource->titleText = $parentName; //TODO _ appel à addResource avec $datas compètes
+                  $parentResource->titleText = $parentName; //TODO _ appel à addResource avec $datas complètes
                   $parentResource->save();
                   $parentID = $parentResource->resourceID;
                   self::$parentInserted++;
@@ -348,8 +364,19 @@ class ImportTool {
 
 // -------------------------------------------------------------------------
       
-      
-
+      private function aliasesTreatment($aliases, $resourceID) {
+            foreach ($aliases as $aliasType => $aliasArray){
+                  $typeID = AliasType::getAliasTypeID((string)$aliasType);
+                  foreach ($aliasArray as $alias){
+                        $al = new Alias();
+                        $al->resourceID = $resourceID;
+                        $al->aliasTypeID = $typeID;
+                        $al->shortName = (string) $alias;
+                        $al->save();
+                  }
+            }
+      }
+// -------------------------------------------------------------------------
       /********************************
        *                Accessors               *
        * ****************************** */

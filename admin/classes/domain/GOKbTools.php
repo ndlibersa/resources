@@ -345,7 +345,25 @@ class GOKbTools {
         $rec = $record->{'GetRecord'}->{'record'};
         return $rec;
     }
+    
+    function createIdentifiersArrayToImport($ids) {
+            foreach ($ids as $key => $value) {
+                  $tmp = $value->attributes();
+                  $identifiers["$tmp[0]"] = (string) $tmp[1];
+                  //$string .= "insertion de identifiers[" . $tmp[0] . "] = " . $tmp[1] . "</br>";
+            }
+            return $identifiers;
+      }
+      
+      function convertXmlDateToDateTime($xmlDate){
+            $format = "Y-m-d H:i:s.u";
+            $date = DateTime::createFromFormat($format, $xmlDate);
+            return $date;
+      }
+
 }
  
+
+
 
 ?>

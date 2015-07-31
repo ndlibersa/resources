@@ -95,9 +95,16 @@ if (count($contactIDs)) {
 			$emailMessage .= "{$contactData['name']} ({$contactData['emailAddress']})\r\n";
 		}
 	}
+	//send emails to contacts
+	foreach ($organizationContactsArray as $contactData) {
+		if (in_array($contactData['contactID'],$contactIDs)) {
+			mail($email, "New Issue: {$newIssue->subjectText}",$emailMessage);
+		}
+	}
 }
 
 if (count($issueEmails) > 0) {
+	//send emails to CCs
 	foreach ($issueEmails as $email) {
 		mail($email, "New Issue: {$newIssue->subjectText}",$emailMessage);
 	}

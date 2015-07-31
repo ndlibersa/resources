@@ -82,10 +82,10 @@ if($organizationData['organizationID']) {
 			<td>
 
 				<div>
-					<input type="checkbox" class="issueResources" name="issueResources[thisResource]" value="1" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
+					<input type="checkbox" class="issueResources" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources" name="issueResources[allResources]" value="1" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
+					<input type="checkbox" class="issueResources" name="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
 				</div>
 				<div>
 					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources</label>

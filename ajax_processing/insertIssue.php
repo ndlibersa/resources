@@ -1,11 +1,14 @@
 <?php
-
 $formDataArray = $_POST["issue"];
 $resourceIDArray = $_POST["resourceIDs"];
 $contactIDs = $_POST['contactIDs'];
+$organizationID = $_POST['organizationID'];
 
 $issueEmails = array();
-$issueEmails = explode(',',$_POST["ccEmails"]);
+
+if (!empty($_POST["ccEmails"])) {
+	$issueEmails = explode(',',$_POST["ccEmails"]);
+}
 
 $newIssue = new Issue();
 
@@ -26,13 +29,21 @@ foreach($formDataArray as $key => $value) {
 
 $newIssue->save();
 
-foreach($resourceIDArray as $resourceID) {
+if ($organizationID) {
 	$newIssueRelationship = new IssueRelationship();
 	$newIssueRelationship->issueID = $newIssue->primaryKey;
-	$newIssueRelationship->entityID = $resourceID;
-	$newIssueRelationship->entityTypeID = 2;
+	$newIssueRelationship->entityID = $organizationID;
+	$newIssueRelationship->entityTypeID = 1;
 	$newIssueRelationship->save();
-	unset($newIssueRelationship);
+} else {
+	foreach($resourceIDArray as $resourceID) {
+		$newIssueRelationship = new IssueRelationship();
+		$newIssueRelationship->issueID = $newIssue->primaryKey;
+		$newIssueRelationship->entityID = $resourceID;
+		$newIssueRelationship->entityTypeID = 2;
+		$newIssueRelationship->save();
+		unset($newIssueRelationship);
+	}
 }
 
 if (count($issueEmails) > 0) {

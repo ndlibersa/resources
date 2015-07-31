@@ -58,22 +58,24 @@ $organizationArray = $resource->getOrganizationArray();
 if (count($organizationArray) > 0) {
 	echo '<h3 class="text-center">Organizational</h3>';
 
+	$issuedOrgs = array();
 	foreach ($organizationArray as $orgData) {
+		if (!in_array($orgData['organizationID'],$issuedOrgs)) {
+			$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
 
-		$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
+			$orgIssues = $organization->getIssues($archivedFlag);
 
-		$orgIssues = $organization->getIssues($archivedFlag);
-
-		if(count($orgIssues) > 0) {
-			foreach ($orgIssues as $issue) {
-				echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
+			if(count($orgIssues) > 0) {
+				foreach ($orgIssues as $issue) {
+					echo generateIssueHTML($issue,array(array("name"=>$organization->shortName,"id"=>$organization->organizationID,"entityType"=>1)));
+				}
+			} else {
+				echo "<br><p>There are no organization level issues.</p><br>";
 			}
-		} else {
-			echo "<br><p>There are no organization level issues.</p><br>";
+
+			$orgIssues = null;
+			$issuedOrgs[] = $orgData['organizationID'];
 		}
-
-		$orgIssues = null;
-
 	}
 }
 

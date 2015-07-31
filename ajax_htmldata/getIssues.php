@@ -19,7 +19,7 @@
 		<tr>
 			<td>
 				<a href="<?php echo $getIssuesFormData; ?>" class="issuesBtn" id="openIssuesBtn">view open issue</a> 
-				<a href=""><img src="images/xls.gif" /></a>
+				<a target="_blank" href="export_issues.php?resourceID=<?php echo $resourceID;?>"><img src="images/xls.gif" /></a>
 				<div class="issueList" id="openIssues" style="display:none;"></div>
 			</td>
 		</tr>

@@ -63,7 +63,7 @@ class AcquisitionType extends DatabaseObject {
 
       public static function getAcquisitionTypeID($type) {
             $object = new AcquisitionType();
-            $query = "SELECT acquisitionTypeID FROM AcquisitionType WHERE shortName = '" . $type . "';";
+            $query = "SELECT acquisitionTypeID FROM AcquisitionType WHERE upper(shortName) = '" . str_replace("'", "''", strtoupper($type)) . "'";
 
             $result = $object->db->processQuery($query, 'assoc');
 

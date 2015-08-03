@@ -53,7 +53,6 @@ if ($_POST['type'] == 'package') {
       $tippsList = $tipps->children();
 
       foreach ($tippsList as $tipp) {
-            echo "DEBUG _ breakpoint to check";
             unset($datas);
             unset($identifiers);
             

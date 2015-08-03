@@ -9,7 +9,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/Alias.p
 include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/Organization.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/OrganizationRole.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ResourceOrganizationLink.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/OrganizationHierarchy.php";
 
 //include_once $_SERVER['DOCUMENT_ROOT'] . "resources/directory.php";
 
@@ -88,14 +88,14 @@ class ImportTool {
 
             $htmlContent = ''; //TODO _ DEBUG _ Displaying after select
 
-            /*******************************************
-             **     Has the resource to be inserted ?    **
-             *******************************************/
+            /*             * *****************************************
+             * *     Has the resource to be inserted ?    **
+             * ***************************************** */
             $hasToBeInserted = $this->hasResourceToBeInserted($datas, $identifiers);
 
-            /****************************************
-             **                     Datas insertion                **
-             ****************************************/
+            /*             * **************************************
+             * *                     Datas insertion                **
+             * ************************************** */
             if ($hasToBeInserted) {
                   $res = $res_tmp->getNewInitializedResource();
 
@@ -119,19 +119,19 @@ class ImportTool {
                                     break;
                         }
                   }
-                  
+
                   //ResourceType treatment
-                  if($resourceType != NULL){
-                        $res->resourceTypeID = ResourceType::getResourceTypeID((string)$resourceType);
+                  if ($resourceType != NULL) {
+                        $res->resourceTypeID = ResourceType::getResourceTypeID((string) $resourceType);
                   }
-                  
+
                   $res->save();
 
                   //Resource identifiers treatment
                   $res->setIdentifiers($identifiers);
 
                   //Aliases treatment (history name change/ variant name) //TODO
-                  if ($aliases != null){
+                  if ($aliases != null) {
                         $this->aliasesTreatment($aliases, $res->resourceID);
                   }
 
@@ -145,7 +145,7 @@ class ImportTool {
                         $this->organizationTreatment($org, $res->resourceID);
                   }
                   self::$inserted++;
-            } 
+            }
             self::$row++;
       }
 
@@ -217,8 +217,6 @@ class ImportTool {
             }
 
             return $parentID;
-            
-            
       }
 
 // -------------------------------------------------------------------------	
@@ -299,6 +297,7 @@ class ImportTool {
                   if ($organizations['platform']) {
                         $platformName = $organizations['platform'];
                         $providerName = $organizations['provider'];
+                        $this->setOrganizationsHierarchy($platformName, $providerName);
                   }
             }
             // If we do not use the Organizations module
@@ -344,7 +343,7 @@ class ImportTool {
       private function createOrgWithOrganizationModule($orgName) {
             $dbName = $this->config->settings->organizationsDatabaseName;
             $loginID = $_SESSION['loginID'];
-            
+
             $organization = new Organization();
             $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . mysql_escape_string($orgName) . "'";
             try {
@@ -359,11 +358,49 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
-      
+      private function setOrganizationsHierarchy($orgName, $parentOrgName) {
+            $orgID = null;
+            $parentID = null;
+            $relation = new OrganizationHierarchy();
+            $dbName = $this->config->settings->organizationsDatabaseName;
+
+            $query = "SELECT organizationID "
+                    . "FROM $dbName.Organization "
+                    . "WHERE upper(name) = '" . str_replace("'", "''", strtoupper($orgName)) . "'";
+            $result = $relation->db->processQuery($query);
+
+            if (count($result) > 0)
+                  $orgID = $result[0];
+
+
+            $query = "SELECT organizationID "
+                    . "FROM $dbName.Organization "
+                    . "WHERE upper(name) = '" . str_replace("'", "''", strtoupper($parentOrgName)) . "'";
+            $result = $relation->db->processQuery($query);
+            if (count($result) > 0)
+                  $parentID = $result[0];
+
+
+            if ( ($orgID != null)  && 
+                    ($parentID != null)  && 
+                    ( !($relation->relationExists($orgID, $parentID))) ) {
+//                  $relation->organizationID = $orgID;
+//                  $relation->parentOrganizationID = $parentID;
+//                  $relation->save();
+                  //$query = "INSERT INTO $dbName.OrganizationHierarchy SET `organizationID`=$orgID, `parentOrganizationID`=$parentID ;";
+                  $query = "INSERT INTO $dbName.OrganizationHierarchy VALUES ($orgID, $parentID);";
+                  $relation->db->processQuery($query);
+                  
+                  $debug = "breakpoint";
+            }
+      }
+
+// -------------------------------------------------------------------------
+
       private function aliasesTreatment($aliases, $resourceID) {
-            foreach ($aliases as $aliasType => $aliasArray){
-                  $typeID = AliasType::getAliasTypeID((string)$aliasType);
-                  foreach ($aliasArray as $alias){
+            foreach ($aliases as $aliasType => $aliasArray) {
+                  $typeID = AliasType::getAliasTypeID((string) $aliasType);
+                  foreach ($aliasArray as $alias) {
                         $al = new Alias();
                         $al->resourceID = $resourceID;
                         $al->aliasTypeID = $typeID;
@@ -372,8 +409,9 @@ class ImportTool {
                   }
             }
       }
+
 // -------------------------------------------------------------------------
-      /********************************
+      /*       * ******************************
        *                Accessors               *
        * ****************************** */
       public static function getNbRow() {
@@ -416,9 +454,10 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
-      public static function getArrayOrganizationsCreated(){
+      public static function getArrayOrganizationsCreated() {
             return self::$arrayOrganizationsCreated;
       }
+
 }
 
 ?>

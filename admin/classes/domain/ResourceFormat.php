@@ -61,7 +61,28 @@ class ResourceFormat extends DatabaseObject {
 
 	}
 
+public static function getResourceFormatID($format) {
+      $object = new ResourceFormat();
+      
+      $query = "SELECT resourceFormatID "
+              . "FROM ResourceFormat "
+              . "WHERE upper(shortName) = '" . str_replace("'", "''", strtoupper($format)) . "'";
+      $result = $object->db->processQuery($query);
+      
+       if (count($result) == 0){ //this format doesn't exist, we create it
+             $object->shortName = $format;
+             $object->save();
+             $id = $object->resourceFormatID;
 
+       } else {
+             $id = $result[0];
+       }
+       return $id;
+      
+      
+      
+}
+ 
 
 }
 

@@ -11,6 +11,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/Org
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ResourceOrganizationLink.php";
 
 
+//include_once $_SERVER['DOCUMENT_ROOT'] . "resources/directory.php";
+
 class ImportTool {
 
       private $config;
@@ -96,7 +98,6 @@ class ImportTool {
              ****************************************/
             if ($hasToBeInserted) {
                   $res = $res_tmp->getNewInitializedResource();
-                  echo "DEBUG _ Resource insertion !!</br>";
 
                   //Resource treatment
                   foreach ($datas as $key => $value) {
@@ -133,9 +134,7 @@ class ImportTool {
                   if ($aliases != null){
                         $this->aliasesTreatment($aliases, $res->resourceID);
                   }
-                  
-                  
-                  
+
                   //Parent treatment
                   if ($parentName != null) {
                         $parentID = $this->parentTreatment($parentName);
@@ -145,10 +144,8 @@ class ImportTool {
                   if ($org != null) { // Do we have to create an organization or attach the resource to an existing one?
                         $this->organizationTreatment($org, $res->resourceID);
                   }
-            } else {
-                  echo "DEBUG _ Resource not inserted ! </br>";
-            }
-            echo 'DEBUG_ AddResource finished';
+                  self::$inserted++;
+            } 
             self::$row++;
       }
 
@@ -312,7 +309,6 @@ class ImportTool {
                         $organizationID = false;
                         // Search if such organization already exists
                         $organizationExists = $organization->alreadyExists($orgName);
-                        $parentID = null;
 
                         if (!$organizationExists) { // If not, create it
                               $organization->shortName = $orgName;

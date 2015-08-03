@@ -190,7 +190,7 @@ class GOKbTools {
      */
 
 
-    private function UriToGokbId($uri)
+    public function UriToGokbId($uri)
     {
         $cut = explode('/', $uri);
         $nb = count($cut);

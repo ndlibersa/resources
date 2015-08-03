@@ -13,7 +13,8 @@ if ($organizationData['organizationID']) {
 ?>
 
 <form id='newIssueForm'>
-
+	<input type="hidden" name="sourceOrganizationID" value="<?php echo $organizationData['organizationID'];?>" />
+	<input type="hidden" name="sourceResourceID" value="<?php echo $resourceID;?>" />
 	<table class="thickboxTable" style="width:98%;background-image:url('images/title.gif');background-repeat:no-repeat;">
 		<tr>
 			<td colspan="2">

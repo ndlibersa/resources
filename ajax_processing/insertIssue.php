@@ -4,6 +4,12 @@ $resourceIDArray = $_POST["resourceIDs"];
 $contactIDs = $_POST['contactIDs'];
 $organizationID = $_POST['organizationID'];
 
+$sourceResourceID = $_POST['sourceResourceID'];
+$sourceOrganizationID = $_POST['sourceOrganizationID'];
+
+$sourceResource = new Resource(new NamedArguments(array('primaryKey' => $sourceResourceID))); 
+
+
 $issueEmails = array();
 
 if (!empty($_POST["ccEmails"])) {
@@ -29,12 +35,27 @@ foreach($formDataArray as $key => $value) {
 
 $newIssue->save();
 
+//start building the email body
+$emailMessage = "Subject: {$newIssue->subjectText}\r\n\r\n
+			Body: {$newIssue->bodyText}\r\n\r\n
+			Applies To: ";
+
 if ($organizationID) {
 	$newIssueRelationship = new IssueRelationship();
 	$newIssueRelationship->issueID = $newIssue->primaryKey;
 	$newIssueRelationship->entityID = $organizationID;
 	$newIssueRelationship->entityTypeID = 1;
 	$newIssueRelationship->save();
+
+	$organizationArray = $sourceResource->getOrganizationArray();
+
+	$issuedOrgs = array();
+	foreach ($organizationArray as $orgData) {
+		if (!in_array($orgData['organizationID'],$issuedOrgs)) {
+			$emailMessage .= "{$orgData['organization']}\r\n";
+			$issuedOrgs[] = $orgData['organizationID'];
+		}
+	}
 } else {
 	foreach($resourceIDArray as $resourceID) {
 		$newIssueRelationship = new IssueRelationship();
@@ -43,6 +64,9 @@ if ($organizationID) {
 		$newIssueRelationship->entityTypeID = 2;
 		$newIssueRelationship->save();
 		unset($newIssueRelationship);
+
+		$tempResource = new Resource(new NamedArguments(array('primaryKey' => $resourceID))); 
+		$emailMessage .= "{$tempResource->titleText}\r\n";
 	}
 }
 
@@ -64,6 +88,25 @@ if (count($contactIDs)) {
 		$newIssueContact->save();
 		unset($newIssueContact);
 	}
+	$organizationContactsArray = $sourceResource->organizationContactsArray($sourceOrganizationID);
+	$emailMessage .= "\r\n\r\nContacts: \r\n\r\n";
+	foreach ($organizationContactsArray as $contactData) {
+		if (in_array($contactData['contactID'],$contactIDs)) {
+			$emailMessage .= "{$contactData['name']} ({$contactData['emailAddress']})\r\n";
+		}
+	}
+	//send emails to contacts
+	foreach ($organizationContactsArray as $contactData) {
+		if (in_array($contactData['contactID'],$contactIDs)) {
+			mail($email, "New Issue: {$newIssue->subjectText}",$emailMessage);
+		}
+	}
 }
 
+if (count($issueEmails) > 0) {
+	//send emails to CCs
+	foreach ($issueEmails as $email) {
+		mail($email, "New Issue: {$newIssue->subjectText}",$emailMessage);
+	}
+}
 ?>

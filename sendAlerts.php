@@ -67,7 +67,7 @@ if ($config->settings->enableAlerts == 'Y'){
 			$email->message = $util->createMessageFromTemplate('Alert', $resourceID, $resource->titleText, '', '', '');
 			$email->subject		= "CORAL Alert: " . $resource->titleText;
 
-			//$email->send();
+			$email->send();
 
 		}
 	}else{
@@ -81,9 +81,6 @@ if ($config->settings->enableAlerts == 'Y'){
 	//If we have alertable issues then loop over them
 	if (count($alertableIssuesArray) > 0){
 		foreach($alertableIssuesArray as $alertableIssue) {
-
-			$sendToArray = array();
-
 			//start building the email body
 			$emailMessage = "Subject: {$alertableIssue['subjectText']}\r\n\r\n
 			Body: {$alertableIssue['bodyText']}\r\n\r\n

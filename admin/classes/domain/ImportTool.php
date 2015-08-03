@@ -391,7 +391,6 @@ class ImportTool {
                   $query = "INSERT INTO $dbName.OrganizationHierarchy VALUES ($orgID, $parentID);";
                   $relation->db->processQuery($query);
                   
-                  $debug = "breakpoint";
             }
       }
 

@@ -25,7 +25,6 @@ $config = new Configuration();
 
 if ($config->settings->enableAlerts == 'Y'){
 	$alertDaysInAdvance = new AlertDaysInAdvance();
-
 	//returns array of all days in advance objects
 	$alertDaysArray = $alertDaysInAdvance->all();
 
@@ -34,7 +33,6 @@ if ($config->settings->enableAlerts == 'Y'){
 	//loop through each of the days, e.g. 30, 60, 90
 	foreach ($alertDaysArray as $alertDays){
 		//get resources that fit this criteria
-
 		if (is_numeric($alertDays->daysInAdvanceNumber)){
 			foreach($alertDays->getResourcesToAlert() as $resource){
 				$resourceIDArray[] = $resource->resourceID;
@@ -69,12 +67,39 @@ if ($config->settings->enableAlerts == 'Y'){
 			$email->message = $util->createMessageFromTemplate('Alert', $resourceID, $resource->titleText, '', '', '');
 			$email->subject		= "CORAL Alert: " . $resource->titleText;
 
-			$email->send();
+			//$email->send();
 
 		}
 	}else{
-		echo "No Resources found fitting alert day criteria";
+		echo "No Resources found fitting alert day criteria";		
 	}
+
+	//Get all Issues that should be alerted today
+	$Issue = new Issue();
+	$alertableIssuesArray = $Issue->getAllAlertable();
+
+	//If we have alertable issues then loop over them
+	if (count($alertableIssuesArray) > 0){
+		foreach($alertableIssuesArray as $alertableIssue) {
+
+			$sendToArray = array();
+
+			//start building the email body
+			$emailMessage = "Subject: {$alertableIssue['subjectText']}\r\n\r\n
+			Body: {$alertableIssue['bodyText']}\r\n\r\n
+			Applies To: {$alertableIssue['appliesto']}\r\n
+			\r\n\r\nContacts: \r\n\r\n
+			{$alertableIssue['contacts']}\r\n";
+
+			foreach(explode(",", $alertableIssue['CCs']) as $emailAddr) {
+				mail($emailAddr, "New Issue: {$alertableIssue['subjectText']}",$emailMessage);
+			}
+
+		}
+	} else {
+	 	echo "No Issues found fitting alert criteria";			
+	}
+
 
 
 }else{

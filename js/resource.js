@@ -91,6 +91,21 @@ $(document).ready(function(){
 
 	});
 
+	$("#getCreateContactForm").live("click",function(e) {
+		e.preventDefault();
+		getInlineContactForm();
+	});
+
+	$("#createContact").live("click",function(e) {
+		e.preventDefault();
+		var roles = new Array();
+		$(".check_roles:checked").each(function() {
+			roles.push($(this).val());
+		});
+		//create the contact and update the contact list
+		createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
+	});
+
 	$("#addEmail").live("click", function(e) {
 		e.preventDefault();
 		$("#currentEmails").append($("#inputEmail").val()+", ");
@@ -268,6 +283,41 @@ function updateArchivedContacts(showArchivedPassed){
 
   });
 
+}
+
+function createOrganizationContact(contact) {
+	var baseUrl = $("#orgModuleUrl").val();
+	contact.contactRoles = contact.contactRoles.join();
+	$.ajax({
+		type:       "POST",
+		url:        baseUrl+"ajax_processing.php?action=submitContact",
+		cache:      false,
+		data:       contact,
+		success:    function(res) {
+			$.ajax({
+				type:       "GET",
+				url:        baseUrl+"ajax_htmldata.php",
+				cache:      false,
+				data:       "action=getOrganizationContacts&organizationID="+contact.organizationID,
+				success:    function(html) {
+					$("#contactIDs").html(html);
+				}
+			});
+		}
+	});
+}
+
+function getInlineContactForm() {
+	var baseUrl = $("#orgModuleUrl").val();
+	$.ajax({
+		 type:       "GET",
+		 url:        baseUrl+"ajax_forms.php",
+		 cache:      false,
+		 data:       "action=getInlineContactForm",
+		 success:    function(html) {
+			$("#inlineContact").html(html)
+		 }
+	  });
 }
 
 function updateIssues(){

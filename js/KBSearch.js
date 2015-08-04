@@ -20,6 +20,7 @@ function allResults(s_name, s_pub, s_type) {
             }
       });
       window.history.pushState({funcName: 'allResults', param:[s_name, s_pub, s_type]}, 'test', null);
+      console.debug("pushState(allResults("+s_name+","+ s_pub+","+ s_type+"))");
 }
 
 /*******************************************************************************************************/
@@ -43,11 +44,12 @@ function getDetails(s_type, s_gokbID) {
             }
       });
       window.history.pushState({funcName: 'getDetails', param: [s_type, s_gokbID]}, 'test', null);
-
+      console.debug("pushState(getDetails("+ s_type+","+s_gokbID+"))");
 }
 
 /*******************************************************************************************************/
-function select(s_type, s_gokbID) {
+function selectResource(s_type, s_gokbID) {
+      alert("FONCTION SELECT !! we are in!");
       console.debug("fonction select(" + s_type + "," + s_gokbID + ")");
       $.ajax({
             type: "POST",
@@ -62,7 +64,7 @@ function select(s_type, s_gokbID) {
 
 
       });
-
+      
       //TODO history
 
 
@@ -77,7 +79,7 @@ function select(s_type, s_gokbID) {
  * @return: nothing but display the right content
  */
 function loadDetailsContent(element_nb) {
-
+      console.debug("loadDetailsContent");
       var tabs = document.getElementById("detailsTabs").getElementsByTagName("li");
       var divs = document.getElementById("detailsContainer").getElementsByTagName("div");
 
@@ -233,7 +235,11 @@ function searchGokbBack(s_name, s_pub) {
             }
       });
       window.history.pushState(null, null, null);
+      console.debug("pushState NULL");
+      
       window.history.pushState({funcName: 'searchGokbBack', param: [s_name, s_pub]}, 'test', null);
+      console.debug("pushState searchGokbBack("+s_name+","+s_pub+")");
+      
 }
 /*******************************************************************************************************/
 

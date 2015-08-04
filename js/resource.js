@@ -315,7 +315,7 @@ function getInlineContactForm() {
 		 cache:      false,
 		 data:       "action=getInlineContactForm",
 		 success:    function(html) {
-			$("#inlineContact").html(html)
+			$("#inlineContact").html(html).fadeIn("fast");
 		 }
 	  });
 }

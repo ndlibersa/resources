@@ -1014,9 +1014,49 @@ div#closeIssue .text-right {
 	text-align: right;
 }
 
+#inlineContact {
+	display: none;
+	border: 1px solid #dfdfdf;
+	padding: 10px;
+}
+
 form#newIssueForm #resourceIDs {
 	min-height: 140px;
 	display: none;
+}
+
+#newIssueForm table.thickboxTable {
+	width: 100%;
+	background-image:url('../images/title.gif');
+	background-repeat:no-repeat;
+}
+
+#newIssueForm table.thickboxTable td:first-child {
+	width: 25%;
+}
+
+#newIssueForm table.thickboxTable td:last-child {
+	width: 75%;
+}
+
+#newIssueForm .form-element {
+	margin: 2px;
+	padding: 4px;
+}
+
+#newIssueForm .form-element-tight {
+	display: inline-block;
+	margin: 2px;
+	padding: 4px;
+}
+
+#newIssueForm .form-element label, #newIssueForm .form-element input {
+	display: inline-block;
+	min-width: 20%;
+}
+
+#newIssueForm .form-element-tight label, #newIssueForm .form-element-tight input {
+	min-width: 10%;
 }
 
 table.noBorder td { border:0; }

@@ -291,16 +291,21 @@ class GOKbTools {
                   $type = 'package';
             }
 
-            $string .= "<table> ";
+            $string .= "<table id='tippsTable'> ";
+//        $string.= "<ul>";
         
         foreach ($tipps->children() as $child) {
             $resource = $child->{$type};
             $resourceAttr = $resource->attributes();
-         
-            $string .= "<tr class=invisible> <td> <input type=hidden name=gokbID value=".$this->UriToGokbId("$type".'s/'.$resourceAttr[0])."/><td/> <td> ";
-            $string .= $this->getResourceName($resource). "</td> </tr>";
+            $gokbID = $this->UriToGokbId("$type".'s/'.$resourceAttr[0]);
+            
+            $string .= '<tr class=invisible> <td>- </td> <td><span onclick="';
+            $string.= "getDetails('".$type."','".$gokbID."');";
+            $string.= '">';
+            $string .= $this->getResourceName($resource). "</span></td> </tr>";
         }
-
+        
+//        $string .= "</ul>";
         $string .= "</table>";
         
            return $string;

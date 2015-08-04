@@ -19,8 +19,8 @@ function allResults(s_name, s_pub, s_type) {
                   $('#TB_ajaxContent').append(res);
             }
       });
-      window.history.pushState({funcName: 'allResults', param:[s_name, s_pub, s_type]}, 'test', null);
-      console.debug("pushState(allResults("+s_name+","+ s_pub+","+ s_type+"))");
+      window.history.pushState({funcName: 'allResults', param: [s_name, s_pub, s_type]}, 'test', null);
+      console.debug("pushState(allResults(" + s_name + "," + s_pub + "," + s_type + "))");
 }
 
 /*******************************************************************************************************/
@@ -35,7 +35,7 @@ function allResults(s_name, s_pub, s_type) {
 function getDetails(s_type, s_gokbID) {
       $.ajax({
             type: "POST",
-            url: "ajax_htmldata.php?action=getGokbResourceDetails&height=503&width=775&resourceID=&modal=true",
+            url: "ajax_htmldata.php?action=getGokbResourceDetails&modal=true",
             cache: false,
             data: {type: s_type, id: s_gokbID},
             success: function (res) {
@@ -44,12 +44,11 @@ function getDetails(s_type, s_gokbID) {
             }
       });
       window.history.pushState({funcName: 'getDetails', param: [s_type, s_gokbID]}, 'test', null);
-      console.debug("pushState(getDetails("+ s_type+","+s_gokbID+"))");
+      console.debug("pushState(getDetails(" + s_type + "," + s_gokbID + "))");
 }
 
 /*******************************************************************************************************/
 function selectResource(s_type, s_gokbID) {
-      alert("FONCTION SELECT !! we are in!");
       console.debug("fonction select(" + s_type + "," + s_gokbID + ")");
       $.ajax({
             type: "POST",
@@ -64,7 +63,7 @@ function selectResource(s_type, s_gokbID) {
 
 
       });
-      
+
       //TODO history
 
 
@@ -92,6 +91,12 @@ function loadDetailsContent(element_nb) {
                   divs[i].className = "invisible";
             }
 
+      }
+
+      if (element_nb == 1) {
+            document.getElementById("paginationDiv").className = "";
+      } else {
+            document.getElementById("paginationDiv").className = "invisible";
       }
 
 }
@@ -188,6 +193,10 @@ function iterator(page) {
                               pagination[i + 2].className = 'invisible';
                   }
             }
+      } else {
+            for (var i=0; i<nbPages; i++){
+                  pagination[i+2].className = '';
+            }
       }
       pagination[page + 2].className = "active";
 
@@ -236,10 +245,10 @@ function searchGokbBack(s_name, s_pub) {
       });
       window.history.pushState(null, null, null);
       console.debug("pushState NULL");
-      
+
       window.history.pushState({funcName: 'searchGokbBack', param: [s_name, s_pub]}, 'test', null);
-      console.debug("pushState searchGokbBack("+s_name+","+s_pub+")");
-      
+      console.debug("pushState searchGokbBack(" + s_name + "," + s_pub + ")");
+
 }
 /*******************************************************************************************************/
 

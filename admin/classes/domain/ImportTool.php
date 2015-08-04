@@ -428,18 +428,8 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
-      public static function incrementNbParentInserted() {
-            self::$parentInserted++;
-      }
-
-// -------------------------------------------------------------------------
       public static function getNbParentAttached() {
             return self::$parentAttached;
-      }
-
-// -------------------------------------------------------------------------
-      public static function incrementNbParentAttached() {
-            self::$parentAttached++;
       }
 
 // -------------------------------------------------------------------------

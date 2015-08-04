@@ -1,4 +1,6 @@
-<div> Import from GOKb . php </div>           
+<div class='formTitle' style='width:745px;'>
+            <span class='headerText'>Import from GOKb</span>
+      </div>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/GOKbTools.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/ImportTool.php";
@@ -166,7 +168,7 @@ if ($_POST['type'] == 'package') {
       $importTool->addResource($datas, $identifiers);
 }
 
-print "<h2>Results</h2>";
+print "</br><h2>Results</h2>";
 print "<p>" . (ImportTool::getNbRow()) . " rows have been processed. " . ImportTool::getNbInserted() . " rows have been inserted.</p>";
 print "<p>" . ImportTool::getNbParentInserted() . " parents have been created. " . ImportTool::getNbParentAttached() . " resources have been attached to an existing parent.</p>";
 print "<p>" . ImportTool::getNbOrganizationsInserted() . " organizations have been created";

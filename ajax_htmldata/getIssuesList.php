@@ -17,9 +17,16 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	$html .= "
 	  	<dl>
 	  		<dt>Date reported:</dt> 
-	  		<dd>{$issue->dateCreated}</dd>
+	  		<dd>{$issue->dateCreated}</dd>";
+	if ($issue->dateClosed) {
+	  	
+		$html .= "<dt>Date closed:</dt>
+	  		<dd>{$issue->dateClosed}</dd>
+	  		<dt>Resolution</dt>
+	  		<dd>{$issue->resolutionText}</dd>";
+	  	}
 	  		
-	  		<dt>Contact(s):</dt> 
+	$html .= "<dt>Contact(s):</dt> 
 	  		<dd>";
 	$contacts = $issue->getContacts();
 	if ($contacts) {
@@ -41,7 +48,8 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 		}
 		$html .= rtrim($temp,',');
 	}
-	$html .= "</dd> 
+
+	$html .= "</dd>
 	  		<dt>Subject:</dt> 
 	  		<dd>{$issue->subjectText}</dd> 
 	  		

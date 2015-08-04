@@ -93,7 +93,9 @@ $(document).ready(function(){
 
 	$("#getCreateContactForm").live("click",function(e) {
 		e.preventDefault();
-		getInlineContactForm();
+		$(this).fadeOut(250, function() {
+			getInlineContactForm();
+		});
 	});
 
 	$("#createContact").live("click",function(e) {
@@ -300,6 +302,9 @@ function createOrganizationContact(contact) {
 				cache:      false,
 				data:       "action=getOrganizationContacts&organizationID="+contact.organizationID,
 				success:    function(html) {
+					$("#inlineContact").html(html).slideUp(250, function() {
+						$("#getCreateContactForm").fadeIn(250);
+					});
 					$("#contactIDs").html(html);
 				}
 			});
@@ -315,7 +320,7 @@ function getInlineContactForm() {
 		 cache:      false,
 		 data:       "action=getInlineContactForm",
 		 success:    function(html) {
-			$("#inlineContact").html(html).fadeIn("fast");
+			$("#inlineContact").html(html).slideDown(250);
 		 }
 	  });
 }

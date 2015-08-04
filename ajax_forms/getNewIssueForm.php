@@ -96,7 +96,7 @@ if ($organizationData['organizationID']) {
 					<input type="checkbox" class="issueResources" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources</label>
+					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources of <?php echo $resource->titleText ?></label>
 				</div>
 				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php

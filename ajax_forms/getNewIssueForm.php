@@ -1,4 +1,5 @@
 <?php
+$util = new utility();
 
 $resourceID = $_GET["resourceID"];
 
@@ -44,6 +45,14 @@ if ($organizationData['organizationID']) {
 			</td>
 		</tr>
 		<tr>
+			<td></td>
+			<td>
+				<input type="hidden" name="orgModuleUrl" id="orgModuleUrl" value="<?php echo $util->getCoralUrl();?>organizations/" />
+				<a id="getCreateContactForm" href="#">add contact</a>
+				<div id="inlineContact"></div>
+			</td>
+		</tr>
+		<tr>
 			<td><label>CC myself:</label></td>
 			<td>
 				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' />
@@ -84,7 +93,7 @@ if ($organizationData['organizationID']) {
 					<input type="checkbox" class="issueResources" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources" name="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
+					<input type="checkbox" class="issueResources" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
 				</div>
 				<div>
 					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources</label>

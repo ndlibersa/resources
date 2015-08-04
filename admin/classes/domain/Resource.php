@@ -1680,7 +1680,14 @@ class Resource extends DatabaseObject {
 					  LEFT JOIN Resource r ON r.resourceID=rol.resourceID
 					  WHERE rol.organizationID=".$organizationID." AND r.archiveDate IS NULL
 					  ORDER BY r.titleText";
-			return $this->db->processQuery($query, 'assoc');
+
+			$result = $this->db->processQuery($query, 'assoc');
+
+			if($result["resourceID"]) {
+				return array($result);
+			}
+					  
+			return $result;
 	}
 
 	//gets an array of distinct organizations set up for this resource (organizationID, organization)

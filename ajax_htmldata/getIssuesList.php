@@ -69,7 +69,6 @@ if (count($organizationArray) > 0) {
 	$issuedOrgs = array();
 	foreach ($organizationArray as $orgData) {
 		if (!in_array($orgData['organizationID'],$issuedOrgs)) {
-// todo: create issues repo so we don't have to initialize an organization object from the wrong module
 			$organization = new Organization(new NamedArguments(array('primaryKey' => $orgData['organizationID'])));
 
 			$orgIssues = $organization->getIssues($archivedFlag);
@@ -91,13 +90,17 @@ if (count($organizationArray) > 0) {
 //display any resource level issues for the resource (shows any other resources associated with the issue, too)
 $resourceIssues = $resource->getIssues($archivedFlag);
 echo '<h3 class="text-center">Resources</h3>';
-foreach ($resourceIssues as $issue) {
-	$associatedEntities = array();
-	if ($associatedResources = $issue->getAssociatedResources()) {
-		foreach ($associatedResources as $resource) {
-			$associatedEntities[] = array("name"=>$resource->titleText,"id"=>$resource->resourceID,"entityType"=>2);
-		}
+if(count($resourceIssues) > 0) {
+	foreach ($resourceIssues as $issue) {
+		$associatedEntities = array();
+		if ($associatedResources = $issue->getAssociatedResources()) {
+			foreach ($associatedResources as $resource) {
+				$associatedEntities[] = array("name"=>$resource->titleText,"id"=>$resource->resourceID,"entityType"=>2);
+			}
+		} 
+		echo generateIssueHTML($issue,$associatedEntities);
 	}
-	echo generateIssueHTML($issue,$associatedEntities);
+} else {
+	echo "<br><p>There are no resource level issues.</p><br>";
 }
 ?>

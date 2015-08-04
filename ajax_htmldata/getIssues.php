@@ -15,7 +15,7 @@
 			<th>Issues/Problems</th>
 		</tr>
 		<tr>
-			<td><a class="thickbox" href="ajax_forms.php?action=getNewIssueForm&resourceID=<?php echo $resourceID; ?>&modal=true">report new issue</a></td>
+			<td><a id="createNewIssueBtn" class="thickbox" href="ajax_forms.php?action=getNewIssueForm&resourceID=<?php echo $resourceID; ?>&modal=true">report new issue</a></td>
 		</tr>
 		<tr>
 			<td>

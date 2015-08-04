@@ -1014,6 +1014,12 @@ div#closeIssue .text-right {
 	text-align: right;
 }
 
+#newIssueForm #contactIDs,
+#newIssueForm #bodyText {
+	min-width: 200px;
+	min-height: 50px;
+}
+
 #inlineContact {
 	display: none;
 	border: 1px solid #dfdfdf;

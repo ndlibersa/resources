@@ -296,12 +296,23 @@ function createOrganizationContact(contact) {
 		cache:      false,
 		data:       contact,
 		success:    function(res) {
-			console.log(res);
+			
+			var data = {};
+			data.contactIDs = [];
+
+			$("#contactIDs option:selected").each(function() {
+				data.contactIDs.push($(this).val());
+			});
+
+			data.action = "getOrganizationContacts";
+			data.organizationID = contact.organizationID;
+			data.contactIDs.push(res);
+
 			$.ajax({
 				type:       "GET",
 				url:        baseUrl+"ajax_htmldata.php",
 				cache:      false,
-				data:       "action=getOrganizationContacts&organizationID="+contact.organizationID+"&contactID="+res,
+				data:       $.param(data),
 				success:    function(html) {
 					$("#inlineContact").html(html).slideUp(250, function() {
 						$("#getCreateContactForm").fadeIn(250);

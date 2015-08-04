@@ -296,11 +296,12 @@ function createOrganizationContact(contact) {
 		cache:      false,
 		data:       contact,
 		success:    function(res) {
+			console.log(res);
 			$.ajax({
 				type:       "GET",
 				url:        baseUrl+"ajax_htmldata.php",
 				cache:      false,
-				data:       "action=getOrganizationContacts&organizationID="+contact.organizationID,
+				data:       "action=getOrganizationContacts&organizationID="+contact.organizationID+"&contactID="+res,
 				success:    function(html) {
 					$("#inlineContact").html(html).slideUp(250, function() {
 						$("#getCreateContactForm").fadeIn(250);

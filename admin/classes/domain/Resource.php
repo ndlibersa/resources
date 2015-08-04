@@ -1665,7 +1665,7 @@ class Resource extends DatabaseObject {
 
 			$orgContactsArray = array();
 
-			$query = "SELECT * FROM {$dbName}.Contact WHERE organizationID = '" . $organizationID . "'";
+			$query = "SELECT * FROM {$dbName}.Contact WHERE organizationID = '" . $organizationID . "' ORDER BY `name`";
 
 			return $this->db->processQuery($query, 'assoc');
 

@@ -91,6 +91,10 @@ $(document).ready(function(){
 
 	});
 
+	$("#createIssueBtn").live("click", function() {
+		$(".issueList").slideUp(250);
+	});
+
 	$("#getCreateContactForm").live("click",function(e) {
 		e.preventDefault();
 		$(this).fadeOut(250, function() {

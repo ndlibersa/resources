@@ -2194,7 +2194,7 @@ class Resource extends DatabaseObject {
             $this->setIsbnOrIssn($isbnorissns);
       }
 
-      public function getResourceByIdentifierAndType($identifier, $type = NULL) { //TODO _ $identifier est un tableau !! => do boucle !!
+      public function getResourceByIdentifierAndType($identifier, $type = NULL) { 
             $query = "SELECT resourceID FROM Identifier WHERE upper(identifier) = '" . str_replace("'", "''", strtoupper($identifier)) . "'";
             if ($type != NULL) {
                   $id = new Identifier();
@@ -2266,8 +2266,8 @@ class Resource extends DatabaseObject {
             //$res->save();
 
             return $res;
-      }
-
+      }    
+      
 }
 
 ?>

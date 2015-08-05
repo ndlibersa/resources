@@ -1,7 +1,7 @@
-$( document ).ajaxError(function( event, request, settings ) {
-      alert("An error occured with this request, please retry later");
-      goBack();
-});
+//$( document ).ajaxError(function( event, request, settings ) {
+//      alert("An error occured with this request, please retry later");
+//      goBack();
+//});
 
 
 /**
@@ -316,3 +316,22 @@ function displayLoadBar() {
       $('#TB_load').show();//show loader
 }
 
+/*******************************************************************************************************/
+
+function getCustomizationScreen(packageID){
+      displayLoadBar();
+      console.debug("fonction getCustomizationScreen(" +packageID+ ")");
+      $.ajax({
+            type: "POST",
+            url: "ajax_processing.php?action=customImportedPackageContent&modal=true",
+            cache: false,
+            data: {id: packageID},
+            success: function (res) {
+                  document.getElementById("TB_ajaxContent").innerHTML = "";
+                  $('#TB_ajaxContent').append(res);
+            }
+
+// TODO _ history
+
+      });
+}

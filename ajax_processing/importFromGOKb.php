@@ -176,9 +176,14 @@ if (count(ImportTool::getArrayOrganizationsCreated()) > 0) {
       print " (" . implode(',', ImportTool::getArrayOrganizationsCreated()) . ")";
 }
 print ". " . ImportTool::getNbOrganizationsAttached() . " resources have been attached to an existing organization.</p>";
+if ($_POST['type'] == 'package') {
+      print "<div>"
+              . "Personalize this package content <input type='button' value='Custom' onclick=\"getCustomizationScreen('".$_POST['id']."');\">"
+              . "</div>";
+}
 ?>
+
 <div class="search_nav_button">
       <span id="span_back"><input type=button value='Back' onclick="goBack();"/></span>
-
       <input type='button' value='cancel' onclick="tb_remove();">
 </div>

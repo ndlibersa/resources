@@ -23,13 +23,13 @@ function tb_reinit() {
 
 //add thickbox to href & area elements that have a class of .thickbox
 function tb_init(domChunk){
-	$(domChunk).click(function(){
+	$(domChunk).click(function(e){
+	e.preventDefault();
 	var t = this.title || this.name || null;
 	var a = this.href || this.alt;
 	var g = this.rel || false;
 	tb_show(t,a,g);
 	this.blur();
-	return false;
 	});
 }
 

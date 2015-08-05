@@ -292,20 +292,20 @@ class GOKbTools {
             }
 
             $string .= "<table id='tippsTable'> ";
-//        $string.= "<ul>";
         
         foreach ($tipps->children() as $child) {
             $resource = $child->{$type};
             $resourceAttr = $resource->attributes();
             $gokbID = $this->UriToGokbId("$type".'s/'.$resourceAttr[0]);
             
-            $string .= '<tr class=invisible> <td>- </td> <td><span onclick="';
+            //$string .= '<tr class=invisible> <td>- </td> <td><span onclick="';
+            $string .= '<tr class=invisible> <td>- </td> <td><a class=tippLink onclick="';
             $string.= "getDetails('".$type."','".$gokbID."');";
             $string.= '">';
-            $string .= $this->getResourceName($resource). "</span></td> </tr>";
+            //$string .= $this->getResourceName($resource). "</span></td> </tr>";
+            $string .= $this->getResourceName($resource). "</a></td> </tr>";
         }
         
-//        $string .= "</ul>";
         $string .= "</table>";
         
            return $string;

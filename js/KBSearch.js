@@ -8,13 +8,14 @@
  * @return: 	nothing but display results thanks to ajax and php treatment
  */
 function allResults(s_name, s_pub, s_type) {
-
+      displayLoadBar();
       $.ajax({
             type: "POST",
             url: "ajax_htmldata.php?action=getKBSearchResults&height=503&width=775&resourceID=&modal=true",
             cache: false,
             data: {name: s_name, issn: '', publisher: s_pub, type: s_type, paginate: true},
             success: function (res) {
+                  
                   document.getElementById("TB_ajaxContent").innerHTML = "";
                   $('#TB_ajaxContent').append(res);
             }
@@ -33,6 +34,7 @@ function allResults(s_name, s_pub, s_type) {
  * @return: 	nothing but display results thanks to ajax and treatment
  */
 function getDetails(s_type, s_gokbID) {
+      displayLoadBar();
       $.ajax({
             type: "POST",
             url: "ajax_htmldata.php?action=getGokbResourceDetails&modal=true",
@@ -49,6 +51,7 @@ function getDetails(s_type, s_gokbID) {
 
 /*******************************************************************************************************/
 function selectResource(s_type, s_gokbID) {
+      displayLoadBar();
       console.debug("fonction select(" + s_type + "," + s_gokbID + ")");
       $.ajax({
             type: "POST",
@@ -78,6 +81,7 @@ function selectResource(s_type, s_gokbID) {
  * @return: nothing but display the right content
  */
 function loadDetailsContent(element_nb) {
+      displayLoadBar();
       console.debug("loadDetailsContent");
       var tabs = document.getElementById("detailsTabs").getElementsByTagName("li");
       var divs = document.getElementById("detailsContainer").getElementsByTagName("div");
@@ -194,8 +198,8 @@ function iterator(page) {
                   }
             }
       } else {
-            for (var i=0; i<nbPages; i++){
-                  pagination[i+2].className = '';
+            for (var i = 0; i < nbPages; i++) {
+                  pagination[i + 2].className = '';
             }
       }
       pagination[page + 2].className = "active";
@@ -232,6 +236,7 @@ function navIterator(op) {
  * @param: 	s_pub 		string 		Provoder field content
  */
 function searchGokbBack(s_name, s_pub) {
+      displayLoadBar();
       console.debug("appel à searchGokbBack");
       $.ajax({
             type: "POST",
@@ -256,6 +261,7 @@ function searchGokbBack(s_name, s_pub) {
  * Manage the 'back' button
  */
 function goBack() {
+      displayLoadBar();
       //Get the previous state
       window.history.go(-1);
       var myState = window.history.state;
@@ -297,3 +303,10 @@ function goBack() {
 
 
 }
+
+function displayLoadBar() {
+      document.getElementById("TB_ajaxContent").innerHTML = "";
+      $('#TB_ajaxContent').append("<div id='TB_load'><img src='images/loadingAnimation.gif' /></div>");
+      $('#TB_load').show();//show loader
+}
+

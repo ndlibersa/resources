@@ -142,6 +142,11 @@
       height: 25px;
 }
 
+.tippLink{
+      text-decoration: underline;
+      color: blue;
+}
+
 /********************************
  ****	 	   getPagination.php		****
  ********************************/

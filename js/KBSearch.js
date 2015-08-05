@@ -1,3 +1,8 @@
+$( document ).ajaxError(function( event, request, settings ) {
+      alert("An error occured with this request, please retry later");
+      goBack();
+});
+
 
 /**
  * Send a SPARQL request to filter results with criteria
@@ -15,7 +20,7 @@ function allResults(s_name, s_pub, s_type) {
             cache: false,
             data: {name: s_name, issn: '', publisher: s_pub, type: s_type, paginate: true},
             success: function (res) {
-                  
+
                   document.getElementById("TB_ajaxContent").innerHTML = "";
                   $('#TB_ajaxContent').append(res);
             }
@@ -44,6 +49,7 @@ function getDetails(s_type, s_gokbID) {
                   document.getElementById("TB_ajaxContent").innerHTML = "";
                   $('#TB_ajaxContent').append(res);
             }
+
       });
       window.history.pushState({funcName: 'getDetails', param: [s_type, s_gokbID]}, 'test', null);
       console.debug("pushState(getDetails(" + s_type + "," + s_gokbID + "))");
@@ -300,9 +306,9 @@ function goBack() {
             console.debug("back, new state = " + myState.funcName);
 
       }
-
-
 }
+
+/*******************************************************************************************************/
 
 function displayLoadBar() {
       document.getElementById("TB_ajaxContent").innerHTML = "";

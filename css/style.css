@@ -1015,7 +1015,8 @@ div#closeIssue .text-right {
 }
 
 #newIssueForm #contactIDs,
-#newIssueForm #bodyText {
+#newIssueForm #bodyText,
+#newIssueForm #resourceIDs {
 	min-width: 200px;
 	min-height: 50px;
 }
@@ -1027,7 +1028,6 @@ div#closeIssue .text-right {
 }
 
 form#newIssueForm #resourceIDs {
-	min-height: 140px;
 	display: none;
 }
 

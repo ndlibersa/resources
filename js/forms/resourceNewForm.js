@@ -297,7 +297,6 @@ function submitResource(status) {
                               window.parent.location = ("queue.php?ref=new");
                               tb_remove();
                               return false;
-
                         }
 
                   }

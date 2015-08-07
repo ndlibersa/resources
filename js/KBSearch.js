@@ -1,7 +1,8 @@
-//$( document ).ajaxError(function( event, request, settings ) {
-//      alert("An error occured with this request, please retry later");
-//      goBack();
-//});
+$(document).ajaxError(function (event, request, settings) {
+      alert("An error occured with this request, please retry later");
+      console.debug("Ajax error: event = " + event.toString());
+      goBack();
+});
 
 
 /**
@@ -87,7 +88,7 @@ function selectResource(s_type, s_gokbID) {
  * @return: nothing but display the right content
  */
 function loadDetailsContent(element_nb) {
-      displayLoadBar();
+      //displayLoadBar();
       console.debug("loadDetailsContent");
       var tabs = document.getElementById("detailsTabs").getElementsByTagName("li");
       var divs = document.getElementById("detailsContainer").getElementsByTagName("div");
@@ -318,9 +319,9 @@ function displayLoadBar() {
 
 /*******************************************************************************************************/
 
-function getCustomizationScreen(packageID){
+function getCustomizationScreen(packageID) {
       displayLoadBar();
-      console.debug("fonction getCustomizationScreen(" +packageID+ ")");
+      console.debug("fonction getCustomizationScreen(" + packageID + ")");
       $.ajax({
             type: "POST",
             url: "ajax_processing.php?action=customImportedPackageContent&modal=true",
@@ -334,4 +335,58 @@ function getCustomizationScreen(packageID){
 // TODO _ history
 
       });
+}
+
+function submitCustom(packageID) {
+
+      console.debug("function submitCustom");
+      var checkboxes = document.getElementById("customPackageTable").getElementsByTagName("input");
+      displayLoadBar();
+      var max = checkboxes.length;
+      var resToRemove = new Array();
+      for (var i = 0; i < max; i++) {
+            if (!(checkboxes[i].checked)) {
+                  console.debug("checkboxes " + i + " is unchecked and is " + checkboxes[i].value);
+                  resToRemove.push(checkboxes[i].value);
+            }
+      }
+      console.debug("after displaying cb array");
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_processing.php?action=customImportedPackageContent&modal=true",
+            cache: false,
+            data: {tab: resToRemove, id: packageID},
+            success: function (res) {
+                  document.getElementById("TB_ajaxContent").innerHTML = "";
+                  $('#TB_ajaxContent').append(res);
+            }
+
+      });
+}
+
+function checkAll(source) {
+      var checkboxes = document.getElementsByName('cbs');
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+      }
+}
+
+
+function removeResAndChildren(packageID) {
+
+      if (confirm("Do you really want to delete this resource and all its children?") == true) {
+            displayLoadBar();
+            $.ajax({
+                  type: "GET",
+                  url: "ajax_processing.php",
+                  cache: false,
+                  data: "action=deleteResourceAndChildren&resourceID=" + packageID,
+                  success: function (html) {
+                        //post return message to index
+                        postwith('index.php', {message: html});
+                  }
+            });
+      }
+      //TODO _ history
 }

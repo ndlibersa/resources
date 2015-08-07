@@ -99,7 +99,7 @@ class ImportTool {
             if ($hasToBeInserted) {
                   $res = $res_tmp->getNewInitializedResource();
 
-                  //Resource treatment
+//Resource treatment
                   foreach ($datas as $key => $value) {
                         switch ($key) {
                               case "organization":
@@ -120,22 +120,22 @@ class ImportTool {
                         }
                   }
 
-                  //ResourceType treatment
+//ResourceType treatment
                   if ($resourceType != NULL) {
                         $res->resourceTypeID = ResourceType::getResourceTypeID((string) $resourceType);
                   }
 
                   $res->save();
 
-                  //Resource identifiers treatment
+//Resource identifiers treatment
                   $res->setIdentifiers($identifiers);
 
-                  //Aliases treatment (history name change/ variant name) //TODO
+//Aliases treatment (history name change/ variant name) //TODO
                   if ($aliases != null) {
                         $this->aliasesTreatment($aliases, $res->resourceID);
                   }
 
-                  //Parent treatment
+//Parent treatment
                   if ($parentName != null) {
                         $parentID = $this->parentTreatment($parentName);
                         $this->setResourcesRelationship($res->resourceID, $parentID);
@@ -169,30 +169,38 @@ class ImportTool {
        */
       private function hasResourceToBeInserted($datas, $identifiers) {
             $res_tmp = new Resource();
-            $hasToBeInserted = false;
+            $hasToBeInserted = true;
 
             $resource = $res_tmp->getResourceByIdentifiers($identifiers);
-
-            if (count($resource) == 0) { //resource doesn't exist, we have to create it
+            $nbRes = count($resource);
+            
+            if ($nbRes == 0) { //resource doesn't exist, we have to create it
                   $hasToBeInserted = true;
-            } elseif ($datas['parentResource']) { //resource exists and got a parent, test title + parent
-                  $res = $resource[0];
-                  //$currentResourceID = $res->resourceID;
-                  $parents = $res->getParentResources();
-                  $nbParents = count($parents);
+            } else {
+                  $ii = 0;
+                  while ($hasToBeInserted && $ii<$nbRes){
+                        $res = $resource[$ii];
+                        $parents = $res->getParentResources(); // getParentResources return an array of relationship
+                        $nbParents = count($parents);
 
-                  if ($nbParents == 0) { //existing resource doesn't have any parent
-                        $hasToBeInserted = true;
-                  } else {
-                        $hasToBeInserted = true;
-                        foreach ($parents as $parentResource) {
-                              if ($parentResource->titleText == $datas['parentResource']) {
-                                    $hasToBeInserted = false;
+                        if (($datas['parentResource']) && $nbParents == 0) {
+                              $hasToBeInserted = true;
+                        } elseif ($datas['parentResource']) { //both resources have a parent
+                              $hasToBeInserted = true;
+                              foreach ($parents as $relationship) {
+                                    $parentResource = new Resource(new NamedArguments(array('primaryKey' => "$relationship->relatedResourceID")));
+                                    if ($parentResource->titleText == $datas['parentResource']) {
+                                          $hasToBeInserted = false;
+                                    }
                               }
+                        } elseif ($nbParents != 0) { //existing resource got a parent but not the new one
+                              $hasToBeInserted = true;
+                        } else {
+                              $hasToBeInserted = false;
                         }
+                        $ii++;
                   }
             }
-
             return $hasToBeInserted;
       }
 
@@ -201,7 +209,7 @@ class ImportTool {
             $resource = new Resource();
             $parentResource = $resource->getResourceByTitle($parentName);
 
-            // Search if such parent exists
+// Search if such parent exists
             $numberOfParents = count($parentResource);
             $parentID = null;
 
@@ -238,7 +246,7 @@ class ImportTool {
             $loginID = $_SESSION['loginID'];
             $htmlContent = '';
 
-            //Organizations module is used
+//Organizations module is used
             if ($this->config->settings->organizationsModule == 'Y') { //TODO _ hierarchy platform/provider
                   $dbName = $this->config->settings->organizationsDatabaseName;
                   foreach ($organizations as $role => $orgName) {
@@ -246,14 +254,14 @@ class ImportTool {
                         $organizationRole = new OrganizationRole();
                         $organizationID = false;
 
-                        // Does the organization already exists?
+// Does the organization already exists?
                         $query = "SELECT count(*) AS count FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($orgName)) . "'";
                         $result = $organization->db->processQuery($query, 'assoc');
 
                         if ($result['count'] == 0) { // If not, we try to create it
                               $organizationID = $this->createOrgWithOrganizationModule($orgName);
                         }
-                        // If yes, we attach it to our resource
+// If yes, we attach it to our resource
                         elseif ($result['count'] == 1) {
                               $query = "SELECT name, organizationID FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($orgName)) . "'";
                               $result = $organization->db->processQuery($query, 'assoc');
@@ -264,14 +272,14 @@ class ImportTool {
                         }
 
                         if ($organizationID) {
-                              // Get role
+// Get role
                               $query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . mysql_escape_string($role) . "'";
                               $result = $organization->db->processQuery($query);
                               $roleID = ($result[0]) ? $result[0] : 1;
-                              // Does the organizationRole already exists?
+// Does the organizationRole already exists?
                               $query = "SELECT count(*) AS count FROM $dbName.OrganizationRoleProfile WHERE organizationID=$organizationID AND organizationRoleID=$roleID";
                               $result = $organization->db->processQuery($query, 'assoc');
-                              // If not, we try to create it
+// If not, we try to create it
                               if ($result['count'] == 0) {
                                     $query = "INSERT INTO $dbName.OrganizationRoleProfile SET organizationID=$organizationID, organizationRoleID=$roleID";
                                     try {
@@ -286,27 +294,27 @@ class ImportTool {
                               }
                         }
 
-                        // Let's link the resource and the organization.
-                        // (this has to be done whether the module Organization is in use or not)
+// Let's link the resource and the organization.
+// (this has to be done whether the module Organization is in use or not)
                         if ($organizationID && $roleID) {
                               $this->setResourceOrganizationLink($roleID, $resourceID, $organizationID);
                         }
                   }
 
-                  //TODO _ hierarchy platform/provider (packages)
+//TODO _ hierarchy platform/provider (packages)
                   if ($organizations['platform']) {
                         $platformName = $organizations['platform'];
                         $providerName = $organizations['provider'];
                         $this->setOrganizationsHierarchy($platformName, $providerName);
                   }
             }
-            // If we do not use the Organizations module
+// If we do not use the Organizations module
             else {
                   foreach ($organizations as $role => $orgName) {
                         $organization = new Organization(); //TODO _ instanciation dans une boucle j'aime pas trop ça ;)
                         $organizationRole = new OrganizationRole();
                         $organizationID = false;
-                        // Search if such organization already exists
+// Search if such organization already exists
                         $organizationExists = $organization->alreadyExists($orgName);
 
                         if (!$organizationExists) { // If not, create it
@@ -324,12 +332,12 @@ class ImportTool {
 
                         $organizationRoles = $organizationRole->getArray();
                         if (($roleID = array_search($role, $organizationRoles)) == 0) {
-                              // If role is not found, fallback to the first one.
+// If role is not found, fallback to the first one.
                               $roleID = '1';
                         }
 
-                        // Let's link the resource and the organization.
-                        // (this has to be done whether the module Organization is in use or not)
+// Let's link the resource and the organization.
+// (this has to be done whether the module Organization is in use or not)
                         if ($organizationID && $roleID) {
                               $this->setResourceOrganizationLink($roleID, $resourceID, $organizationID);
                         }
@@ -352,7 +360,7 @@ class ImportTool {
                   self::$organizationsInserted++;
                   array_push(self::$arrayOrganizationsCreated, $orgName);
             } catch (Exception $e) {
-                  //  $htmlContent .= "<p>Organization $orgName could not be added.</p>";
+//  $htmlContent .= "<p>Organization $orgName could not be added.</p>";
             }
             return $organizationID;
       }
@@ -381,16 +389,15 @@ class ImportTool {
                   $parentID = $result[0];
 
 
-            if ( ($orgID != null)  && 
-                    ($parentID != null)  && 
-                    ( !($relation->relationExists($orgID, $parentID))) ) {
+            if (($orgID != null) &&
+                    ($parentID != null) &&
+                    (!($relation->relationExists($orgID, $parentID)))) {
 //                  $relation->organizationID = $orgID;
 //                  $relation->parentOrganizationID = $parentID;
 //                  $relation->save();
-                  //$query = "INSERT INTO $dbName.OrganizationHierarchy SET `organizationID`=$orgID, `parentOrganizationID`=$parentID ;";
+//$query = "INSERT INTO $dbName.OrganizationHierarchy SET `organizationID`=$orgID, `parentOrganizationID`=$parentID ;";
                   $query = "INSERT INTO $dbName.OrganizationHierarchy VALUES ($orgID, $parentID);";
                   $relation->db->processQuery($query);
-                  
             }
       }
 

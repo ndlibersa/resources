@@ -33,22 +33,22 @@ if ($step == "3"){
 	}else{
 
 		//first check connecting to host
-		$link = @mysql_connect("$database_host", "$database_username", "$database_password");
-		if (!$link) {
-			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . mysql_error();
+		$link = new mysqli("$database_host", "$database_username", "$database_password");
+		if ($link->connect_error) {
+			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . $link->error;
 		}else{
 
 			//next check that the database exists
-			$dbcheck = @mysql_select_db("$database_name");
+			$dbcheck = $link->select_db("$database_name");
 			if (!$dbcheck) {
-				$errorMessage[] = "Unable to access the database '" . $database_name . "'.  Please verify it has been created.<br />MySQL Error: " . mysql_error();
+				$errorMessage[] = "Unable to access the database '" . $database_name . "'.  Please verify it has been created.<br />MySQL Error: " . $link->error;
 			}else{
 
 				//make sure the tables don't already exist - otherwise this script will overwrite all of the data!
 				$query = "SELECT count(*) count FROM information_schema.`COLUMNS` WHERE table_schema = '" . $database_name . "' AND table_name='Resource'";
 
 				//if Resource table exists, error out
-				if (!$row = mysql_fetch_array(mysql_query($query))){
+				if (!$row = $link->query($query)->fetch_array()){
 					$errorMessage[] = "Please verify your database user has access to select from the information_schema MySQL metadata database.";
 				}else{
 					if ($row['count'] > 0){
@@ -72,9 +72,9 @@ if ($step == "3"){
 							foreach ($sqlArray as $stmt) {
 							   if (strlen(trim($stmt))>3){
 
-									$result = mysql_query($stmt);
+									$result = $link->query($stmt);
 									if (!$result){
-										$errorMessage[] = mysql_error() . "<br /><br />For statement: " . $stmt;
+										$errorMessage[] = $link->error . "<br /><br />For statement: " . $stmt;
 										 break;
 									}
 								}
@@ -97,9 +97,9 @@ if ($step == "3"){
 								foreach ($sqlArray as $stmt) {
 								   if (strlen(trim($stmt))>3){
 
-										$result = mysql_query($stmt);
+										$result = $link->query($stmt);
 										if (!$result){
-											$errorMessage[] = mysql_error() . "<br /><br />For statement: " . $stmt;
+											$errorMessage[] = $link->error . "<br /><br />For statement: " . $stmt;
 											 break;
 										}
 									}
@@ -137,30 +137,30 @@ if ($step == "3"){
 	}else{
 
 		//first check connecting to host
-		$link = @mysql_connect("$database_host", "$database_username", "$database_password");
-		if (!$link) {
-			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . mysql_error();
+		$link = new mysqli("$database_host", "$database_username", "$database_password");
+		if ($link->connect_error) {
+			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . $link->error;
 		}else{
 
 			//next check that the database exists
-			$dbcheck = @mysql_select_db("$database_name");
+			$dbcheck = $link->select_db("$database_name");
 			if (!$dbcheck) {
-				$errorMessage[] = "Unable to access the database '" . $database_name . "'.  Please verify it has been created.<br />MySQL Error: " . mysql_error();
+				$errorMessage[] = "Unable to access the database '" . $database_name . "'.  Please verify it has been created.<br />MySQL Error: " . $link->error;
 			}else{
 				//passed db host, name check, test that user can select from License database
-				$result = mysql_query("SELECT privilegeID FROM " . $database_name . ".Privilege WHERE shortName like '%admin%';");
+				$result = $link->query("SELECT privilegeID FROM " . $database_name . ".Privilege WHERE shortName like '%admin%';");
 				if (!$result){
-					$errorMessage[] = "Unable to select from the Privilege table in database '" . $database_name . "' with user '" . $database_username . "'.  Error: " . mysql_error();
+					$errorMessage[] = "Unable to select from the Privilege table in database '" . $database_name . "' with user '" . $database_username . "'.  Error: " . $link->error;
 				}else{
-					while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+					while ($row = $result->fetch_array(MYSQLI_NUM)) {
 						$privilegeID = $row[0];
 					}
 
 					//delete admin user if they exist, then set them back up
 					$query = "DELETE FROM " . $database_name . ".User;";
-					mysql_query($query);
+					$link->query($query);
 					$query = "INSERT INTO " . $database_name . ".User (loginID, privilegeID) values ('" . $admin_login . "', " . $privilegeID . ");";
-					mysql_query($query);
+					$link->query($query);
 				}
 
 			}
@@ -206,9 +206,9 @@ if ($step == "3"){
 	}else{
 
 		//first check connecting to host
-		$link = @mysql_connect("$database_host", "$database_username", "$database_password");
-		if (!$link) {
-			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . mysql_error();
+		$link = new mysqli("$database_host", "$database_username", "$database_password");
+		if ($link->connect_error) {
+			$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . $link->error;
 		}
 
 
@@ -232,21 +232,21 @@ if ($step == "3"){
 		if (($authDatabaseName) && ($_POST['authModule'])){
 
 			//first check connecting to host
-			$link = @mysql_connect("$database_host", "$database_username", "$database_password");
-			if (!$link) {
-				$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . mysql_error();
+			$link = new mysqli("$database_host", "$database_username", "$database_password");
+			if ($link->connect_error) {
+				$errorMessage[] = "Could not connect to the server '" . $database_host . "'<br />MySQL Error: " . $link->error;
 			}else{
 
 				//next check that the database exists
-				$dbcheck = @mysql_select_db("$authDatabaseName");
+				$dbcheck = $link->select_db("$authDatabaseName");
 				if (!$dbcheck) {
-					$errorMessage[] = "Unable to access the auth database '" . $authDatabaseName . "'.  Please verify it has been created.<br />MySQL Error: " . mysql_error();
+					$errorMessage[] = "Unable to access the auth database '" . $authDatabaseName . "'.  Please verify it has been created.<br />MySQL Error: " . $link->error;
 				}else{
 					//make sure the tables don't already exist - otherwise this script will overwrite all of the data!
 					$query = "SELECT count(*) count FROM information_schema.`COLUMNS` WHERE table_schema = '" . $authDatabaseName . "' AND table_name='Session'";
 
 					//if auth table exists, error out
-					if (!$row = mysql_fetch_array(mysql_query($query))){
+					if (!$row = $link->query($query)->fetch_array()){
 						$errorMessage[] = "Please verify your database user has access to select from the the auth tables and the information_schema MySQL metadata database.";
 					}else{
 						if ($row['count'] == 0){

@@ -228,8 +228,8 @@ class Resource extends DatabaseObject {
 				//first, get the license name
 				$query = "SELECT shortName FROM " . $dbName . ".License WHERE licenseID = " . $result['licenseID'];
 
-				if ($licResult = mysql_query($query)){
-					while ($licRow = mysql_fetch_assoc($licResult)){
+				if ($licResult = $this->db->query($query)){
+					while ($licRow = $licResult->fetch_assoc()){
 						$licArray['license'] = $licRow['shortName'];
 						$licArray['licenseID'] = $result['licenseID'];
 					}
@@ -243,8 +243,8 @@ class Resource extends DatabaseObject {
 					//first, get the license name
 					$query = "SELECT shortName FROM " . $dbName . ".License WHERE licenseID = " . $row['licenseID'];
 
-					if ($licResult = mysql_query($query)){
-						while ($licRow = mysql_fetch_assoc($licResult)){
+					if ($licResult = $this->db->query($query)){
+						while ($licRow = $licResult->fetch_assoc()){
 							$licArray['license'] = $licRow['shortName'];
 							$licArray['licenseID'] = $row['licenseID'];
 						}
@@ -900,7 +900,7 @@ class Resource extends DatabaseObject {
   }
   
   public static function getSearchDetails() {
-    // A successful mysql_connect must be run before mysql_real_escape_string will function.  Instantiating a resource model will set up the connection
+    // A successful mysqli_connect must be run before mysqli_real_escape_string will function.  Instantiating a resource model will set up the connection
     $resource = new Resource();
     
     $search = Resource::getSearch();
@@ -912,7 +912,7 @@ class Resource extends DatabaseObject {
 
 		//if name is passed in also search alias, organizations and organization aliases
 		if ($search['name']) {
-			$nameQueryString = mysql_real_escape_string(strtoupper($search['name']));
+			$nameQueryString = $this->db->escapeString(strtoupper($search['name']));
 			$nameQueryString = preg_replace("/ +/", "%", $nameQueryString);
 		  $nameQueryString = "'%" . $nameQueryString . "%'";
 
@@ -932,16 +932,16 @@ class Resource extends DatabaseObject {
 
 		//get where statements together (and escape single quotes)
 		if ($search['resourceID']) {
-		  $whereAdd[] = "R.resourceID = '" . mysql_real_escape_string($search['resourceID']) . "'";
+		  $whereAdd[] = "R.resourceID = '" . $this->db->escapeString($search['resourceID']) . "'";
 		  $searchDisplay[] = "Resource ID: " . $search['resourceID'];
 	  }
 		if ($search['resourceISBNOrISSN']) {
-		  $resourceISBNOrISSN = mysql_real_escape_string(str_replace("-","",$search['resourceISBNOrISSN']));
+		  $resourceISBNOrISSN = $this->db->escapeString(str_replace("-","",$search['resourceISBNOrISSN']));
 		  $whereAdd[] = "REPLACE(I.isbnOrIssn,'-','') = '" . $resourceISBNOrISSN . "'";
 		  $searchDisplay[] = "ISSN/ISBN: " . $search['resourceISBNOrISSN'];
 		} 
 		if ($search['fund']) {
-		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
+		  $fund = $this->db->escapeString(str_replace("-","",$search['fund']));
 		  $whereAdd[] = "REPLACE(RPAY.fundName,'-','') = '" . $fund . "'";
 		  $searchDisplay[] = "Fund: " . $search['fund'];
 	  }
@@ -949,7 +949,7 @@ class Resource extends DatabaseObject {
     if ($search['stepName']) {
       $status = new Status();
       $completedStatusID = $status->getIDFromName('complete');
-      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . mysql_real_escape_string($search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
+      $whereAdd[] = "(R.statusID != $completedStatusID AND RS.stepName = '" . $this->db->escapeString($search['stepName']) . "' AND RS.stepStartDate IS NOT NULL AND RS.stepEndDate IS NULL)";
       $searchDisplay[] = "Routing Step: " . $search['stepName'];
     }
 
@@ -963,14 +963,14 @@ class Resource extends DatabaseObject {
 
     
 		if ($search['statusID']) {
-		  $whereAdd[] = "R.statusID = '" . mysql_real_escape_string($search['statusID']) . "'";
+		  $whereAdd[] = "R.statusID = '" . $this->db->escapeString($search['statusID']) . "'";
 		  $status = new Status(new NamedArguments(array('primaryKey' => $search['statusID'])));
     	$searchDisplay[] = "Status: " . $status->shortName;
 	  }
 	  
 		if ($search['creatorLoginID']) {
-		  $whereAdd[] = "R.createLoginID = '" . mysql_real_escape_string($search['creatorLoginID']) . "'";
-		  
+		  $whereAdd[] = "R.createLoginID = '" . $this->db->escapeString($search['creatorLoginID']) . "'";
+
 		  $createUser = new User(new NamedArguments(array('primaryKey' => $search['creatorLoginID'])));
     	if ($createUser->firstName){
     		$name = $createUser->lastName . ", " . $createUser->firstName;
@@ -981,25 +981,25 @@ class Resource extends DatabaseObject {
 	  }
 
 		if ($search['resourceFormatID']) {
-		  $whereAdd[] = "R.resourceFormatID = '" . mysql_real_escape_string($search['resourceFormatID']) . "'";
+		  $whereAdd[] = "R.resourceFormatID = '" . $this->db->escapeString($search['resourceFormatID']) . "'";
 		  $resourceFormat = new ResourceFormat(new NamedArguments(array('primaryKey' => $search['resourceFormatID'])));
     	$searchDisplay[] = "Resource Format: " . $resourceFormat->shortName;
 	  }
 	  
 		if ($search['acquisitionTypeID']) {
-		  $whereAdd[] = "R.acquisitionTypeID = '" . mysql_real_escape_string($search['acquisitionTypeID']) . "'";
+		  $whereAdd[] = "R.acquisitionTypeID = '" . $this->db->escapeString($search['acquisitionTypeID']) . "'";
 		  $acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $search['acquisitionTypeID'])));
     	$searchDisplay[] = "Acquisition Type: " . $acquisitionType->shortName;
 	  }
 
 
 		if ($search['resourceNote']) {
-		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . mysql_real_escape_string($search['resourceNote']) . "%')";
+		  $whereAdd[] = "UPPER(RN.noteText) LIKE UPPER('%" . $this->db->escapeString($search['resourceNote']) . "%')";
 		  $searchDisplay[] = "Note contains: " . $search['resourceNote'];
 	  }
 
 		if ($search['createDateStart']) {
-		  $whereAdd[] = "R.createDate >= STR_TO_DATE('" . mysql_real_escape_string($search['createDateStart']) . "','%m/%d/%Y')";
+		  $whereAdd[] = "R.createDate >= STR_TO_DATE('" . $this->db->escapeString($search['createDateStart']) . "','%m/%d/%Y')";
 		  if (!$search['createDateEnd']) {
 		    $searchDisplay[] = "Created on or after: " . $search['createDateStart'];
 	    } else {
@@ -1008,14 +1008,14 @@ class Resource extends DatabaseObject {
 	  }
 	  
 		if ($search['createDateEnd']) {
-		  $whereAdd[] = "R.createDate <= STR_TO_DATE('" . mysql_real_escape_string($search['createDateEnd']) . "','%m/%d/%Y')";
+		  $whereAdd[] = "R.createDate <= STR_TO_DATE('" . $this->db->escapeString($search['createDateEnd']) . "','%m/%d/%Y')";
 		  if (!$search['createDateStart']) {
 		    $searchDisplay[] = "Created on or before: " . $search['createDateEnd'];
 	    }
 	  }
 
 		if ($search['startWith']) {
-		  $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . mysql_real_escape_string($search['startWith']) . "%')";
+		  $whereAdd[] = "TRIM(LEADING 'THE ' FROM UPPER(R.titleText)) LIKE UPPER('" . $this->db->escapeString($search['startWith']) . "%')";
 		  $searchDisplay[] = "Starts with: " . $search['startWith'];
 	  }
 
@@ -1024,7 +1024,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['resourceTypeID']){
-			$whereAdd[] = "R.resourceTypeID = '" . mysql_real_escape_string($search['resourceTypeID']) . "'";
+			$whereAdd[] = "R.resourceTypeID = '" . $this->db->escapeString($search['resourceTypeID']) . "'";
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $search['resourceTypeID'])));
     	$searchDisplay[] = "Resource Type: " . $resourceType->shortName;
 		}
@@ -1034,7 +1034,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((GDLINK.generalSubjectID IS NULL) OR (GDLINK.generalSubjectID = '0'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['generalSubjectID']){
-			$whereAdd[] = "GDLINK.generalSubjectID = '" . mysql_real_escape_string($search['generalSubjectID']) . "'";
+			$whereAdd[] = "GDLINK.generalSubjectID = '" . $this->db->escapeString($search['generalSubjectID']) . "'";
 			$generalSubject = new GeneralSubject(new NamedArguments(array('primaryKey' => $search['generalSubjectID'])));
     	$searchDisplay[] = "General Subject: " . $generalSubject->shortName;
 		}		
@@ -1043,7 +1043,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((GDLINK.detailedSubjectID IS NULL) OR (GDLINK.detailedSubjectID = '0') OR (GDLINK.detailedSubjectID = '-1'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['detailedSubjectID']){
-			$whereAdd[] = "GDLINK.detailedSubjectID = '" . mysql_real_escape_string($search['detailedSubjectID']) . "'";
+			$whereAdd[] = "GDLINK.detailedSubjectID = '" . $this->db->escapeString($search['detailedSubjectID']) . "'";
 			$detailedSubject = new DetailedSubject(new NamedArguments(array('primaryKey' => $search['detailedSubjectID'])));
     	$searchDisplay[] = "Detailed Subject: " . $detailedSubject->shortName;
 		}			
@@ -1052,7 +1052,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "(RN.noteTypeID IS NULL) AND (RN.noteText IS NOT NULL)";
 			$searchDisplay[] = "Note Type: none";
 		}else if ($search['noteTypeID']){
-			$whereAdd[] = "RN.noteTypeID = '" . mysql_real_escape_string($search['noteTypeID']) . "'";
+			$whereAdd[] = "RN.noteTypeID = '" . $this->db->escapeString($search['noteTypeID']) . "'";
 			$noteType = new NoteType(new NamedArguments(array('primaryKey' => $search['noteTypeID'])));
     	$searchDisplay[] = "Note Type: " . $noteType->shortName;
 		}
@@ -1062,7 +1062,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RPSL.purchaseSiteID IS NULL";
 			$searchDisplay[] = "Purchase Site: none";
 		}else if ($search['purchaseSiteID']){
-			$whereAdd[] = "RPSL.purchaseSiteID = '" . mysql_real_escape_string($search['purchaseSiteID']) . "'";
+			$whereAdd[] = "RPSL.purchaseSiteID = '" . $this->db->escapeString($search['purchaseSiteID']) . "'";
 			$purchaseSite = new PurchaseSite(new NamedArguments(array('primaryKey' => $search['purchaseSiteID'])));
     	$searchDisplay[] = "Purchase Site: " . $purchaseSite->shortName;
 		}
@@ -1072,7 +1072,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RAUSL.authorizedSiteID IS NULL";
 			$searchDisplay[] = "Authorized Site: none";
 		}else if ($search['authorizedSiteID']){
-			$whereAdd[] = "RAUSL.authorizedSiteID = '" . mysql_real_escape_string($search['authorizedSiteID']) . "'";
+			$whereAdd[] = "RAUSL.authorizedSiteID = '" . $this->db->escapeString($search['authorizedSiteID']) . "'";
 			$authorizedSite = new AuthorizedSite(new NamedArguments(array('primaryKey' => $search['authorizedSiteID'])));
     	$searchDisplay[] = "Authorized Site: " . $authorizedSite->shortName;
 		}
@@ -1082,7 +1082,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "RADSL.administeringSiteID IS NULL";
 			$searchDisplay[] = "Administering Site: none";
 		}else if ($search['administeringSiteID']){
-			$whereAdd[] = "RADSL.administeringSiteID = '" . mysql_real_escape_string($search['administeringSiteID']) . "'";
+			$whereAdd[] = "RADSL.administeringSiteID = '" . $this->db->escapeString($search['administeringSiteID']) . "'";
 			$administeringSite = new AdministeringSite(new NamedArguments(array('primaryKey' => $search['administeringSiteID'])));
     	$searchDisplay[] = "Administering Site: " . $administeringSite->shortName;
 		}
@@ -1092,7 +1092,7 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "R.authenticationTypeID IS NULL";
 			$searchDisplay[] = "Authentication Type: none";
 		}else if ($search['authenticationTypeID']){
-			$whereAdd[] = "R.authenticationTypeID = '" . mysql_real_escape_string($search['authenticationTypeID']) . "'";
+			$whereAdd[] = "R.authenticationTypeID = '" . $this->db->escapeString($search['authenticationTypeID']) . "'";
 			$authenticationType = new AuthenticationType(new NamedArguments(array('primaryKey' => $search['authenticationTypeID'])));
 			$searchDisplay[] = "Authentication Type: " . $authenticationType->shortName;
 		}
@@ -1101,7 +1101,7 @@ class Resource extends DatabaseObject {
 		  $whereAdd[] = "(R.catalogingStatusID IS NULL)";
 		  $searchDisplay[] = "Cataloging Status: none";
 		} else if ($search['catalogingStatusID']) {
-			$whereAdd[] = "R.catalogingStatusID = '" . mysql_real_escape_string($search['catalogingStatusID']) . "'";
+			$whereAdd[] = "R.catalogingStatusID = '" . $this->db->escapeString($search['catalogingStatusID']) . "'";
 			$catalogingStatus = new CatalogingStatus(new NamedArguments(array('primaryKey' => $search['catalogingStatusID'])));
 		  $searchDisplay[] = "Cataloging Status: " . $catalogingStatus->shortName;
 	  }
@@ -1254,12 +1254,12 @@ class Resource extends DatabaseObject {
 	//used for A-Z on search (index)
 	public function getAlphabeticalList(){
 		$alphArray = array();
-		$result = mysql_query("SELECT DISTINCT UPPER(SUBSTR(TRIM(LEADING 'The ' FROM titleText),1,1)) letter, COUNT(SUBSTR(TRIM(LEADING 'The ' FROM titleText),1,1)) letter_count
+		$result = $this->db->query("SELECT DISTINCT UPPER(SUBSTR(TRIM(LEADING 'The ' FROM titleText),1,1)) letter, COUNT(SUBSTR(TRIM(LEADING 'The ' FROM titleText),1,1)) letter_count
 								FROM Resource R
 								GROUP BY SUBSTR(TRIM(LEADING 'The ' FROM titleText),1,1)
 								ORDER BY 1;");
 
-		while ($row = mysql_fetch_assoc($result)){
+		while ($row = $result->fetch_assoc()){
 			$alphArray[$row['letter']] = $row['letter_count'];
 		}
 
@@ -1474,8 +1474,8 @@ class Resource extends DatabaseObject {
 				//first, get the organization name
 				$query = "SELECT name FROM " . $dbName . ".Organization WHERE organizationID = " . $result['organizationID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organization'] = $orgRow['name'];
 						$orgArray['organizationID'] = $result['organizationID'];
 					}
@@ -1484,8 +1484,8 @@ class Resource extends DatabaseObject {
 				//then, get the role name
 				$query = "SELECT * FROM " . $dbName . ".OrganizationRole WHERE organizationRoleID = " . $result['organizationRoleID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organizationRoleID'] = $orgRow['organizationRoleID'];
 						$orgArray['organizationRole'] = $orgRow['shortName'];
 					}
@@ -1500,8 +1500,8 @@ class Resource extends DatabaseObject {
 					//first, get the organization name
 					$query = "SELECT name FROM " . $dbName . ".Organization WHERE organizationID = " . $row['organizationID'];
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organization'] = $orgRow['name'];
 							$orgArray['organizationID'] = $row['organizationID'];
 						}
@@ -1511,8 +1511,8 @@ class Resource extends DatabaseObject {
 					$query = "SELECT * FROM " . $dbName . ".OrganizationRole WHERE organizationRoleID = " . $row['organizationRoleID'];
 
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organizationRoleID'] = $orgRow['organizationRoleID'];
 							$orgArray['organizationRole'] = $orgRow['shortName'];
 						}
@@ -1549,8 +1549,8 @@ class Resource extends DatabaseObject {
 				//first, get the organization name
 				$query = "SELECT shortName FROM Organization WHERE organizationID = " . $result['organizationID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organization'] = $orgRow['shortName'];
 						$orgArray['organizationID'] = $result['organizationID'];
 					}
@@ -1559,8 +1559,8 @@ class Resource extends DatabaseObject {
 				//then, get the role name
 				$query = "SELECT * FROM OrganizationRole WHERE organizationRoleID = " . $result['organizationRoleID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organizationRoleID'] = $orgRow['organizationRoleID'];
 						$orgArray['organizationRole'] = $orgRow['shortName'];
 					}
@@ -1575,8 +1575,8 @@ class Resource extends DatabaseObject {
 					//first, get the organization name
 					$query = "SELECT shortName FROM Organization WHERE organizationID = " . $row['organizationID'];
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organization'] = $orgRow['shortName'];
 							$orgArray['organizationID'] = $row['organizationID'];
 						}
@@ -1586,8 +1586,8 @@ class Resource extends DatabaseObject {
 					$query = "SELECT * FROM OrganizationRole WHERE organizationRoleID = " . $row['organizationRoleID'];
 
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organizationRoleID'] = $orgRow['organizationRoleID'];
 							$orgArray['organizationRole'] = $orgRow['shortName'];
 						}
@@ -1636,8 +1636,8 @@ class Resource extends DatabaseObject {
 				//first, get the organization name
 				$query = "SELECT name FROM " . $dbName . ".Organization WHERE organizationID = " . $result['organizationID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organization'] = $orgRow['name'];
 						$orgArray['organizationID'] = $result['organizationID'];
 					}
@@ -1652,8 +1652,8 @@ class Resource extends DatabaseObject {
 					//first, get the organization name
 					$query = "SELECT DISTINCT name FROM " . $dbName . ".Organization WHERE organizationID = " . $row['organizationID'];
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organization'] = $orgRow['name'];
 							$orgArray['organizationID'] = $row['organizationID'];
 						}
@@ -1690,8 +1690,8 @@ class Resource extends DatabaseObject {
 				//first, get the organization name
 				$query = "SELECT DISTINCT shortName FROM Organization WHERE organizationID = " . $result['organizationID'];
 
-				if ($orgResult = mysql_query($query)){
-					while ($orgRow = mysql_fetch_assoc($orgResult)){
+				if ($orgResult = $this->db->query($query)){
+					while ($orgRow = $orgResult->fetch_assoc()){
 						$orgArray['organization'] = $orgRow['shortName'];
 						$orgArray['organizationID'] = $result['organizationID'];
 					}
@@ -1706,8 +1706,8 @@ class Resource extends DatabaseObject {
 					//first, get the organization name
 					$query = "SELECT DISTINCT shortName FROM Organization WHERE organizationID = " . $row['organizationID'];
 
-					if ($orgResult = mysql_query($query)){
-						while ($orgRow = mysql_fetch_assoc($orgResult)){
+					if ($orgResult = $this->db->query($query)){
+						while ($orgRow = $orgResult->fetch_assoc()){
 							$orgArray['organization'] = $orgRow['shortName'];
 							$orgArray['organizationID'] = $row['organizationID'];
 						}
@@ -1934,12 +1934,12 @@ class Resource extends DatabaseObject {
 	//search used for the resource autocomplete
 	public function resourceAutocomplete($q){
 		$resourceArray = array();
-		$result = mysql_query("SELECT titleText, resourceID
+		$result = $this->db->query("SELECT titleText, resourceID
 								FROM Resource
 								WHERE upper(titleText) like upper('%" . $q . "%')
 								ORDER BY 1;");
 
-		while ($row = mysql_fetch_assoc($result)){
+		while ($row = $result->fetch_assoc()){
 			$resourceArray[] = $row['titleText'] . "|" . $row['resourceID'];
 		}
 
@@ -1956,7 +1956,7 @@ class Resource extends DatabaseObject {
 		if ($config->settings->organizationsModule == 'Y'){
 			$dbName = $config->settings->organizationsDatabaseName;
 
-			$result = mysql_query("SELECT CONCAT(A.name, ' (', O.name, ')') shortName, O.organizationID
+			$result = $this->db->query("SELECT CONCAT(A.name, ' (', O.name, ')') shortName, O.organizationID
 									FROM " . $dbName . ".Alias A, " . $dbName . ".Organization O
 									WHERE A.organizationID=O.organizationID
 									AND upper(A.name) like upper('%" . $q . "%')
@@ -1968,7 +1968,7 @@ class Resource extends DatabaseObject {
 
 		}else{
 
-			$result = mysql_query("SELECT organizationID, shortName
+			$result = $this->db->query("SELECT organizationID, shortName
 									FROM Organization O
 									WHERE upper(O.shortName) like upper('%" . $q . "%')
 									ORDER BY shortName;");
@@ -1976,7 +1976,7 @@ class Resource extends DatabaseObject {
 		}
 
 
-		while ($row = mysql_fetch_assoc($result)){
+		while ($row = $result->fetch_assoc()){
 			$organizationArray[] = $row['shortName'] . "|" . $row['organizationID'];
 		}
 
@@ -1997,14 +1997,14 @@ class Resource extends DatabaseObject {
 		if ($config->settings->licensingModule == 'Y'){
 			$dbName = $config->settings->licensingDatabaseName;
 
-			$result = mysql_query("SELECT shortName, licenseID
+			$result = $this->db->query("SELECT shortName, licenseID
 									FROM " . $dbName . ".License
 									WHERE upper(shortName) like upper('%" . $q . "%')
 									ORDER BY 1;");
 
 		}
 
-		while ($row = mysql_fetch_assoc($result)){
+		while ($row = $result->fetch_assoc()){
 			$licenseArray[] = $row['shortName'] . "|" . $row['licenseID'];
 		}
 

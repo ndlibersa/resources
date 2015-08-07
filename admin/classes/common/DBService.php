@@ -35,7 +35,7 @@ class DBService extends Object {
 	}
 
 	protected function checkForError() {
-		if ($this->error = mysql_error($this->db)) {
+		if ($this->error = $this->db->error) {
 			throw new Exception(_("There was a problem with the database: ") . $this->error);
 		}
 	}
@@ -44,44 +44,50 @@ class DBService extends Object {
 		$host = $this->config->database->host;
 		$username = $this->config->database->username;
 		$password = $this->config->database->password;
-		$this->db = mysql_connect($host, $username, $password);
+		$this->db = new mysqli($host, $username, $password);
 		$this->checkForError();
-		mysql_set_charset('utf8', $this->db);
+        $this->db->set_charset('utf8');
 
 		$databaseName = $this->config->database->name;
-		mysql_select_db($databaseName, $this->db);
+        $this->db->select_db($databaseName);
 		$this->checkForError();
 	}
 
 	protected function disconnect() {
-		//mysql_close($this->db);
+		//mysqli_close($this->db);
 	}
 
 	public function escapeString($value) {
-		return mysql_real_escape_string($value, $this->db);
+        return $this->db->escapeString($value);
 	}
+
+    public function query($sql) {
+        $result = $this->db->query($sql);
+        $this->checkForError();
+        return $result;
+    }
 
 	public function processQuery($sql, $type = NULL) {
     	//echo $sql. "\n\n";
-		$result = mysql_query($sql, $this->db);
+		$result = $this->db->query($sql);
 		$this->checkForError();
 		$data = array();
 
 		if (is_resource($result)) {
-			$resultType = MYSQL_NUM;
+			$resultType = MYSQLI_NUM;
 			if ($type == 'assoc') {
-				$resultType = MYSQL_ASSOC;
+				$resultType = MYSQLI_ASSOC;
 			}
-			while ($row = mysql_fetch_array($result, $resultType)) {
-				if (mysql_affected_rows($this->db) > 1) {
+			while ($row = $result->fetch_array($resultType)) {
+				if ($this->db->affected_rows > 1) {
 					array_push($data, $row);
 				} else {
 					$data = $row;
 				}
 			}
-			mysql_free_result($result);
+			$result->free();
 		} else if ($result) {
-			$data = mysql_insert_id($this->db);
+			$data = $this->db->insert_id;
 		}
 
 		return $data;

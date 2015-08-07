@@ -133,7 +133,7 @@ if ($_POST['submit']) {
               $result = $organization->db->processQuery($query, 'assoc');
               // If not, we try to create it
               if ($result['count'] == 0) {
-                $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . mysql_escape_string($organizationName) . "'";
+                $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . $organization->db->escapeString($organizationName) . "'";
                 try {
                   $result = $organization->db->processQuery($query);
                   $organizationID = $result;
@@ -154,7 +154,7 @@ if ($_POST['submit']) {
               if ($organizationID) {
                 $dbName = $config->settings->organizationsDatabaseName;
                 // Get role
-                $query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . mysql_escape_string($data[$_POST['role']]) . "'";
+                $query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . $organization->db->escapeString($data[$_POST['role']]) . "'";
                 $result = $organization->db->processQuery($query);
                 // If role is not found, fallback to the first one.
                 $roleID = ($result[0]) ? $result[0] : 1;

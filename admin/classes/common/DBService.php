@@ -73,7 +73,7 @@ class DBService extends Object {
 		$this->checkForError();
 		$data = array();
 
-		if (is_resource($result)) {
+		if ($result instanceof mysqli_result) {
 			$resultType = MYSQLI_NUM;
 			if ($type == 'assoc') {
 				$resultType = MYSQLI_ASSOC;

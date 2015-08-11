@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS `Downtime`;
 CREATE TABLE IF NOT EXISTS `Downtime` (
 `downtimeID` int(11) NOT NULL,
   	`issueID` int(11) DEFAULT NULL,
-  	`downtimeStartdate` date NOT NULL,
-  	`downtimeEnddate` date DEFAULT NULL,
+  	`downtimeStartdate` datetime NOT NULL,
+  	`downtimeEnddate` datetime DEFAULT NULL,
   	`downtimeType` int(11) NOT NULL,
   	PRIMARY KEY (`downtimeID`),
   	KEY `IssueID` (`IssueID`)

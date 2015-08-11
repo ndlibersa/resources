@@ -82,7 +82,7 @@
 		<input type='hidden' id='organizationID' value='<?php echo $orgID; ?>' />
 		<input type='hidden' id='editResourceID' value='<?php echo $resourceID; ?>' />
 		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo "Edit Saved Resource"; }else{ echo "Add New Resource"; } ?></span></div>
-		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields<span class="smallBlueText" >  <img src= 'images/loupe.png'/> search fields</span> </div>
+		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields<span class="smallBlueText" id="searchFieldsText">  <img src= 'images/loupe.png'/> search fields</span> </div>
 
 		<table class='noBorder'>
 		<tr style='vertical-align:top;'>
@@ -99,7 +99,7 @@
 					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='titleText'>Name:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value="<?php echo $resource->titleText; ?>" /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
-					<td ><img src= 'images/loupe.png'/></td/>
+					<td ><img class="loupe" src= 'images/loupe.png'/></td/>
 					</tr>
 
 					<tr>
@@ -110,13 +110,13 @@
 					<tr>
 					<td style="vertical-align:top;text-align:left;"><label for="ISSNText">ISSN:</label></td>
 					<td><input type="text" id="ISSNText" style="width:220px;" class="changeInput ac_input idleField" value="" autocomplete="off"><span id="span_error_providerText" class="smallDarkRedText"></span></td>
-					<td ><img src= 'images/loupe.png'/></td/>
+					<td ><img class="loupe" src= 'images/loupe.png'/></td/>
 					</tr>
 
 					<tr>
 					<td style='vertical-align:top;text-align:left;'><label for='providerText'>Provider:</label></td>
 					<td><input type='text' id='providerText' style='width:220px;' class='changeInput' value='<?php echo $providerText; ?>' /><span id='span_error_providerText' class='smallDarkRedText'></span></td>
-					<td ><img src= 'images/loupe.png'/></td/>
+					<td ><img class="loupe" src= 'images/loupe.png'/></td/>
 					</tr>
 
 					<tr>
@@ -250,7 +250,8 @@
 						if (strtoupper($resourceType['resourceTypeID']) == $resource->resourceTypeID) $checked = 'checked';
 					}
 
-					echo "<td><input type='radio' name='resourceTypeID' id='resourceTypeID' value='" . $resourceType['resourceTypeID'] . "' " . $checked . "/>" . $resourceType['shortName'] . "</td>\n";
+//					echo "<td><input type='radio' name='resourceTypeID' id='resourceTypeID' value=' " . $resourceType['resourceTypeID'] . "' " . $checked . "/>" . $resourceType['shortName'] . "</td>\n";
+            echo "<td><input type='radio' name='resourceTypeID' id='resourceTypeID' value=' " . $resourceType['resourceTypeID'] . "' " . $checked . "/><label for='resourceTypeID'> ".$resourceType['shortName'] . "</label></td>";
 
 					if(($i % 3)==0){
 						echo "</tr>\n";
@@ -299,10 +300,10 @@
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
-				<td style="text-align:left"><input type="button" value="search on GOKb" class="searchGokb" id="search"></td>
-				<td style='text-align:left'><input type='button' value='save' class='submitResource' id ='save'></td>
-				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
-				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>
+				<td style="text-align:left"><input type="button" value="Search on GOKb" class="searchGokb" id="search"></td>
+				<td style='text-align:left'><input type='button' value='Save' class='submitResource' id ='save'></td>
+				<td style='text-align:left'><input type='button' value='Submit' class='submitResource' id ='progress'></td>
+				<td style='text-align:left'><input type='button' value='Cancel' onclick="kill(); tb_remove()"></td>
 			</tr>
 			<tr>
 				<span id='span_error_search' class='smallDarkRedText'></span>

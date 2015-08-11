@@ -17,7 +17,7 @@
       if ($nb_packages > 0) {
             echo "<div id='div_packagesResults' class='div_results'>";
             echo "<span class='results_type_title'> Packages </span> <a class='moreResults linkStyle";
-            if ($isPaginated)
+            if ($isPaginated || $nb_packages<5)
                   echo " invisible";
             echo '\' onclick=allResults("' . $_POST['name'] . '","' . $_POST['publisher'] . '",-1);';
             echo ">View all packages results</a><br/>";
@@ -41,7 +41,7 @@
       if ($nb_titles > 0) {
             echo "<div id='div_titlesResults' class='div_results'>";
             echo '<span class="results_type_title"> Titles </span> <a class="moreResults linkStyle';
-            if ($isPaginated)
+            if ($isPaginated || $nb_titles<5)
                   echo " invisible";
             echo '" onclick=allResults("' . $_POST['name'] . '","' . $_POST['publisher'] . '",1);';
             echo '>View all titles results</a><br/>';
@@ -54,6 +54,7 @@
                         echo " class='invisible'";
                   echo "><td class='results_table_title_cell'>";
                   echo ' - ' . $value;
+                  //echo ' - '.utf8_encode($value);
                   echo '<td class="results_table_cell"> <button class=thickbox onclick=getDetails("title","' . $key . '");>Details</button></td>';
                   echo '<td class="results_table_cell"> <button class=thickbox onclick=selectResource("title","' . $key . '");>Select</button></td>';
                   echo "</tr>";

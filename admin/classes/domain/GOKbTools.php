@@ -146,8 +146,10 @@ class GOKbTools {
             foreach ($res as $a => $b ) {
                 $uri = $b->{'binding'}->{'uri'};
                 $id = $this->UriToGokbId($uri);
-                $prefLabel = $b->{'binding'}[1]->{'literal'};
+                //$prefLabel = $b->{'binding'}[1]->{'literal'};
+                $prefLabel = utf8_encode($b->{'binding'}[1]->{'literal'});
                 $titles["$id"] = $prefLabel;
+             //  $titles["$id"] = \utf8_encode($prefLabel);
             }
 
         }

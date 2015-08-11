@@ -55,7 +55,7 @@ $nbTipps = $tool->getNbTipps($record);
       <div class="search_nav_button">
             <?php echo "<input type=button value='Select' onclick=\" selectResource('" . $_POST['type'] . "','" . $_POST['id'] . "');\">"; ?>
             <span id="span_back"><input type=button value='Back' onclick="goBack();"/></span>
-            <input type='button' value='cancel' onclick="tb_remove();">
+            <input type='button' value='Cancel' onclick="tb_remove();">
 
       </div>
 

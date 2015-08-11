@@ -9,7 +9,7 @@ $(document).ajaxError(function (event, request, settings) {
  * Send a SPARQL request to filter results with criteria
  * @param: 	s_name		string 		content of "Name" field (new resource form)
  * @param: 	s_pub		string 		content of "Provider" field (new resource form)
- * @param: 	s_type		int 		searchType (0 = all ; -1 = packages only; 1=issues only)
+ * @param: 	s_type		int 		searchType (0 = all ; -1 = packages only; 1=titles only)
  *
  * @return: 	nothing but display results thanks to ajax and php treatment
  */
@@ -336,6 +336,8 @@ function getCustomizationScreen(packageID) {
 
       });
 }
+
+/*******************************************************************************************************/
 
 function submitCustom(packageID) {
 

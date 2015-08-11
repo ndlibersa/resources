@@ -184,7 +184,16 @@
 	display: none;
 }
 
+/*****************************************
+ ****	 	   getResourceNewForm.php		****
+ *****************************************/
+.loupe{
+      cursor: pointer;
+}
 
+#searchFieldsText{
+      margin: 30px;
+}
 
 /************************
  ****			  Multiple				****

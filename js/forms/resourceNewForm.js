@@ -24,6 +24,10 @@ $(document).ready(function () {
       $("#search").click(function () {
             searchGokb($('#titleText').val(), $('#ISSNText').val(), $('#providerText').val());
       });
+      
+      $(".loupe").click(function(){
+            searchGokb($('#titleText').val(), $('#ISSNText').val(), $('#providerText').val());
+      });
 
       //do submit if enter is hit
       $('#titleText').keyup(function (e) {

@@ -137,7 +137,7 @@ class Client
      * @param  string            $resp The response body from a HTTP request
      * @return \SimpleXMLElement An XML document
      */
-    public function decodeResponse($resp)
+    protected function decodeResponse($resp)
     {
         //Setup a SimpleXML Document
         try {

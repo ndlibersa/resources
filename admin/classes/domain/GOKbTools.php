@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-
+include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/MyClient.php";
 
 use Phpoaipmh\Client,
     Phpoaipmh\Endpoint,
@@ -176,8 +176,8 @@ class GOKbTools {
             $tmpClient->checkForOaipmhException($e);
             $response = '';
         }
-
-        $res =  $tmpClient->decodeResponse($response); //decodeResponse protected: passé à public temporairement --> trouver une solution !! (héritage + surcharge ?)
+        $myTmpClient = new MyClient();
+        $res =  $myTmpClient->decodeResponse($response); //decodeResponse protected: passé à public temporairement --> trouver une solution !! (héritage + surcharge ?)
         return $res;
     }
 

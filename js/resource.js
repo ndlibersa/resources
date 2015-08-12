@@ -69,6 +69,11 @@ $(document).ready(function(){
 		getIssues($(this));
 	});
 
+	$(".downtimeBtn").live("click", function(e) {
+		e.preventDefault();
+		getDowntime($(this));
+	});
+
 	$("#submitCloseIssue").live("click", function() {
 		submitCloseIssue();
 	});
@@ -386,6 +391,20 @@ function getIssues(element) {
 		cache:      false,
 		success:    function(html) {
 			element.siblings(".issueList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function getDowntime(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".downtimeList").html(html).slideToggle(250);
 			tb_reinit();
 		}
 	});

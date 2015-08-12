@@ -4,6 +4,7 @@ $(document).ajaxError(function (event, request, settings) {
       goBack();
 });
 
+/*******************************************************************************************************/
 
 /**
  * Send a SPARQL request to filter results with criteria
@@ -52,11 +53,22 @@ function getDetails(s_type, s_gokbID) {
             }
 
       });
-      window.history.pushState({funcName: 'getDetails', param: [s_type, s_gokbID]}, 'test', null);
-      console.debug("pushState(getDetails(" + s_type + "," + s_gokbID + "))");
+      var currentState = window.history.state;
+      if ((currentState.funcName == 'getDetails') && (currentState.param[1] == s_gokbID)) {
+            console.debug("Same state as before !!, don't push");
+      } else {
+            window.history.pushState({funcName: 'getDetails', param: [s_type, s_gokbID]}, 'test', null);
+            console.debug("pushState(getDetails(" + s_type + "," + s_gokbID + "))");
+      }
 }
 
 /*******************************************************************************************************/
+
+/**
+ * Import the resource from GOKb to DB
+ * @param {string}       s_type           'package' OR 'title"
+ * @param {string}      s_gokbID        GOKb ID of resource
+ */
 function selectResource(s_type, s_gokbID) {
       displayLoadBar();
       console.debug("fonction select(" + s_type + "," + s_gokbID + ")");
@@ -70,17 +82,11 @@ function selectResource(s_type, s_gokbID) {
                   document.getElementById("TB_ajaxContent").innerHTML = "";
                   $('#TB_ajaxContent').append(res);
             }
-
-
       });
-
-      //TODO history
-
-
-
 }
 
 /*******************************************************************************************************/
+
 /**
  * Manage the details tabs (global detail or TIPPs)
  * @param: 	element_nb 	int 	index of selected tab
@@ -88,7 +94,6 @@ function selectResource(s_type, s_gokbID) {
  * @return: nothing but display the right content
  */
 function loadDetailsContent(element_nb) {
-      //displayLoadBar();
       console.debug("loadDetailsContent");
       var tabs = document.getElementById("detailsTabs").getElementsByTagName("li");
       var divs = document.getElementById("detailsContainer").getElementsByTagName("div");
@@ -109,7 +114,6 @@ function loadDetailsContent(element_nb) {
       } else {
             document.getElementById("paginationDiv").className = "invisible";
       }
-
 }
 
 /*******************************************************************************************************/
@@ -311,6 +315,9 @@ function goBack() {
 
 /*******************************************************************************************************/
 
+/**
+ * Display load bar while treatment
+ */
 function displayLoadBar() {
       document.getElementById("TB_ajaxContent").innerHTML = "";
       $('#TB_ajaxContent').append("<div id='TB_load'><img src='images/loadingAnimation.gif' /></div>");
@@ -319,6 +326,10 @@ function displayLoadBar() {
 
 /*******************************************************************************************************/
 
+/**
+ * Display package content for customization
+ * @param {string}      packageID         GOKb package ID
+ */
 function getCustomizationScreen(packageID) {
       displayLoadBar();
       console.debug("fonction getCustomizationScreen(" + packageID + ")");
@@ -339,8 +350,11 @@ function getCustomizationScreen(packageID) {
 
 /*******************************************************************************************************/
 
+/**
+ * Remove unselected titles from package
+ * @param {string}       packageID        GOKb package ID
+ */
 function submitCustom(packageID) {
-
       console.debug("function submitCustom");
       var checkboxes = document.getElementById("customPackageTable").getElementsByTagName("input");
       displayLoadBar();
@@ -352,7 +366,6 @@ function submitCustom(packageID) {
                   resToRemove.push(checkboxes[i].value);
             }
       }
-      console.debug("after displaying cb array");
 
       $.ajax({
             type: "POST",
@@ -367,6 +380,12 @@ function submitCustom(packageID) {
       });
 }
 
+/*******************************************************************************************************/
+
+/**
+ * Check / Uncheck all checkboxes (titles  included in package)
+ * @param {checkBox}     source     main checkbox
+ */
 function checkAll(source) {
       var checkboxes = document.getElementsByName('cbs');
       for (var i = 0, n = checkboxes.length; i < n; i++) {
@@ -374,7 +393,12 @@ function checkAll(source) {
       }
 }
 
+/*******************************************************************************************************/
 
+/**
+ * Remove resource and all its children
+ * @param {int}   packageID         DB primaryKey of package
+ */
 function removeResAndChildren(packageID) {
 
       if (confirm("Do you really want to delete this resource and all its children?") == true) {
@@ -390,5 +414,6 @@ function removeResAndChildren(packageID) {
                   }
             });
       }
-      //TODO _ history
 }
+
+/*******************************************************************************************************/

@@ -39,7 +39,7 @@
 			<th>Downtime</th>
 		</tr>
 		<tr>
-			<td><a id="createDowntimeBtn" class="thickbox" href="ajax_forms.php?action=getNewDowntimeForm&resourceID=<?php echo $resourceID; ?>&modal=true">report new Downtime</a></td>
+			<td><a id="createDowntimeBtn" class="thickbox" href="ajax_forms.php?action=getNewDowntimeForm&resourceID=<?php echo $resourceID; ?>&height=160&width=390&modal=true">report new Downtime</a></td>
 		</tr>
 		<tr>
 			<td>

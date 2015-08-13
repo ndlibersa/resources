@@ -48,6 +48,20 @@ class Downtime extends DatabaseObject {
 		parent::save();
 	}
 
+	public function getDowntimeTypesArray() {
+		$query = "SELECT dt.*
+				  FROM DowntimeType dt";
+
+		$result = $this->db->processQuery($query, "assoc");
+		$names = array();
+
+		foreach ($result as $name) {
+			array_push($names, $name);
+		}
+
+		return $names;
+	}
+
 }
 
 ?>

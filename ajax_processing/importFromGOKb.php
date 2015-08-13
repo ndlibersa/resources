@@ -200,8 +200,17 @@ print $displayStat(ImportTool::getNbOrganizationsAttached(), "resource", "attach
 
 
 if ($_POST['type'] == 'package') {
+      $res = new Resource();
+      $packID = $res->getResourceByIdentifierAndType($_POST['id'], 'gokb');
+      $nb = count($packID);
+      if(($nb>1) || ($nb == 0) ){
+            echo "None or more than one resource correspond => ERROR"; //DEBUG _ TODO
+      } else {
+            $p_id = $packID[0]->resourceID;
+      }
+      
       print "<div>"
-              . "Personalize this package content <input type='button' value='Custom' onclick=\"getCustomizationScreen('".$_POST['id']."');\">"
+              . "Personalize this package content <input type='button' value='Custom' onclick=\"getCustomizationScreen('".$p_id."');\">"
               . "</div>";
 }
 ?>

@@ -4,6 +4,16 @@ $(document).ajaxError(function (event, request, settings) {
       goBack();
 });
 
+
+$(document).ready(function(){
+      
+      $("#customFilter").keyup(function(){
+            console.debug("Change custom filter !");
+            filterCustomContent();
+      });
+      
+});
+
 /*******************************************************************************************************/
 
 /**
@@ -319,9 +329,12 @@ function goBack() {
  * Display load bar while treatment
  */
 function displayLoadBar() {
-      document.getElementById("TB_ajaxContent").innerHTML = "";
-      $('#TB_ajaxContent').append("<div id='TB_load'><img src='images/loadingAnimation.gif' /></div>");
-      $('#TB_load').show();//show loader
+      var element = document.getElementById("TB_ajaxContent");
+      if (element != null) {
+            document.getElementById("TB_ajaxContent").innerHTML = "";
+            $('#TB_ajaxContent').append("<div id='TB_load'><img src='images/loadingAnimation.gif' /></div>");
+            $('#TB_load').show();//show loader
+      }
 }
 
 /*******************************************************************************************************/
@@ -342,9 +355,6 @@ function getCustomizationScreen(packageID) {
                   document.getElementById("TB_ajaxContent").innerHTML = "";
                   $('#TB_ajaxContent').append(res);
             }
-
-// TODO _ history
-
       });
 }
 
@@ -356,7 +366,7 @@ function getCustomizationScreen(packageID) {
  */
 function submitCustom(packageID) {
       console.debug("function submitCustom");
-      var checkboxes = document.getElementById("customPackageTable").getElementsByTagName("input");
+      var checkboxes = document.getElementById("customTbody").getElementsByTagName("input");
       displayLoadBar();
       var max = checkboxes.length;
       var resToRemove = new Array();
@@ -417,3 +427,25 @@ function removeResAndChildren(packageID) {
 }
 
 /*******************************************************************************************************/
+function filterCustomContent(){
+      console.debug("function filterCustomContent() ");
+      
+      var content = document.getElementById("customTbody").getElementsByTagName("tr");
+      var textuals;
+      var textual = "";
+      var filterText = document.getElementById("customFilter").value;
+      filterText = filterText.toLowerCase();
+      
+      for (var i=0; i<content.length; i++){
+            textuals = content[i].childNodes;
+            textual = textuals[1].innerHTML;
+            textual = textual.toLowerCase();
+            
+            if (textual.indexOf(filterText) != -1) {
+                  content[i].className = "";
+            } else {
+                  content[i].className ="invisible";
+            }
+      }
+}
+

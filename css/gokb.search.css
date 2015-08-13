@@ -2,40 +2,40 @@
  **** 		getKBSearchResults.php		****
  **************************************/
 .div_results{
-	margin-top: 10px;
-	width: 745px;
+      margin-top: 10px;
+      width: 745px;
 }
 .results_table{
-	width: 745px;
-	height: 190px;
-	border-bottom: 1px solid black;
+      width: 745px;
+      height: 190px;
+      border-bottom: 1px solid black;
 }
 
 .results_table_line{	
-	height: 20%;
+      height: 20%;
 }
 
 .results_table_title_cell{
-	width: 90%;
+      width: 90%;
 }
 
 .results_table_cell{
-	width: 5%;
+      width: 5%;
 }
 
 .results_type_title{
-	font-size: 150%;
-	font-weight: bold;
-	margin-bottom: 10px;
+      font-size: 150%;
+      font-weight: bold;
+      margin-bottom: 10px;
 }
 
 .moreResults{
-	float: right;
+      float: right;
 }
 
 .linkStyle{
-	color: blue;
-	text-decoration: underline;
+      color: blue;
+      text-decoration: underline;
 }
 
 
@@ -46,92 +46,92 @@
  ****************************************/
 
 #resourceDetails{
-	width: 745px;
+      width: 745px;
 }
 
 #detailsTabs{
-	margin-top: 15px;
+      margin-top: 15px;
 }
 
 #detailsTabs ul{
-	font: normal 14px arial, sans, sans-serif;
-    -list-style-type: none;
-    /*border-bottom: 1px solid gray;*/
-    margin: 0;
-    padding-left:0;
-    padding-right:0;
-    padding-bottom: 26px;
+      font: normal 14px arial, sans, sans-serif;
+      -list-style-type: none;
+      /*border-bottom: 1px solid gray;*/
+      margin: 0;
+      padding-left:0;
+      padding-right:0;
+      padding-bottom: 26px;
 }
 #detailsTabs ul li{
-	display: inline;
-    float: left;
-    height: 17px;
-    min-width:80px;
-    text-align:center;
-    text-decoration: none;
-    padding: 4px;
-    margin: 1px 0px 0px 0px;
-    border: 1px solid gray;
-    color: #666;
-    background-color:#eee;
+      display: inline;
+      float: left;
+      height: 17px;
+      min-width:80px;
+      text-align:center;
+      text-decoration: none;
+      padding: 4px;
+      margin: 1px 0px 0px 0px;
+      border: 1px solid gray;
+      color: #666;
+      background-color:#eee;
 }
 
 
 #detailsTabs ul li.selected {
-	color: #000;
-    font-weight:bold;
-    background-color: #fff;
-    border-bottom: 1px solid #fff;
+      color: #000;
+      font-weight:bold;
+      background-color: #fff;
+      border-bottom: 1px solid #fff;
 }
 
 #detailsTabs ul li:hover{
-	color: #000;
-    font-weight:bold;
-    background-color: #fff;
+      color: #000;
+      font-weight:bold;
+      background-color: #fff;
 }
 
 #detailsContainer{
-	background: white;
-    border:1px solid gray;
-  /*  height:350px;*/
-    width:100%;
-    padding:0;
-    margin:0;
-    margin-top: 1px;
-    left:0;
-    top:0;	
+      background: white;
+      border:1px solid gray;
+      /*  height:350px;*/
+      width:100%;
+      padding:0;
+      margin:0;
+      margin-top: 1px;
+      left:0;
+      top:0;	
 }
 
 #resourceName{
-	text-align: center;
-	font-size: 110%;
+      text-align: center;
+      font-size: 110%;
 }
 
 #resType{
-	text-decoration: italic;
-	margin-left: 25px;
+      text-decoration: italic;
+      margin-left: 25px;
 }
 
 #resName{
-	font-weight: bold;
+      font-weight: bold;
 }
 
 #detailsTab{
-	margin: 10px;
+      margin: 10px;
 }
 
 #detailsTab tr{
-	height: 10%;
+      height: 10%;
 }
 
 .detailsTab_val{
-	padding-left: 5px;
+      padding-left: 5px;
 }
 
 .detailsTab_tag{
-	font-weight: bold;
-	padding-right: 10px;
-	text-align: right;
+      font-weight: bold;
+      padding-right: 10px;
+      text-align: right;
 }
 
 #span_select{
@@ -144,7 +144,7 @@
 
 .tippLink{
       text-decoration: underline;
-      color: blue;
+      /*color: blue;*/
       cursor: pointer;
 }
 
@@ -152,36 +152,36 @@
  ****	 	   getPagination.php		****
  ********************************/
 #pageIterator {
-	margin: 10px;
-	text-align: center;
-	font-weight: normal;
-	color: #000;
+      margin: 10px;
+      text-align: center;
+      font-weight: normal;
+      color: #000;
 }
 
 #pageIterator ul li{
-	display: inline;
-	border: 1px solid black;
-	margin-left: 5px;
-	padding: 5px;
+      display: inline;
+      border: 1px solid black;
+      margin-left: 5px;
+      padding: 5px;
 }
 
 #pageIterator ul li:hover{
-	
-    font-weight:bold;
-    background-color: #fff;
-    border: 2px solid black;
+
+      font-weight:bold;
+      background-color: #fff;
+      border: 2px solid black;
 }
 
 #pageIterator ul li.active{
-	background-color: #e9edf0;
-	border: 1px solid #e9edf0;
+      background-color: #e9edf0;
+      border: 1px solid #e9edf0;
 }
 #pageIterator ul li.active:hover{
-	font-weight: normal;
+      font-weight: normal;
 }
 
 #pageIterator ul li.invisible{
-	display: none;
+      display: none;
 }
 
 /*****************************************
@@ -195,14 +195,65 @@
       margin: 30px;
 }
 
+/***************************************************
+ ****	 	   customImportedPackageContent.php		****
+ ***************************************************/
+
+#customPackageFieldset{
+      height: 375px;
+}
+
+#customTbody{
+      height: 290px;
+      position: absolute;
+      overflow: auto;
+      width: 745px;
+      margin-top: 50px;
+      border-top: 1px solid black;
+}
+
+#customPackageTable{
+      position: fixed;
+      height: 350px;
+      width: 750px;
+      overflow: auto;
+      border: 1px solid black;
+}
+
+#customPackageTable tr{
+      height: 20px;
+}
+
+#customPackageTable thead{
+      height: 30px;
+      width: 100%;
+}
+
+.customCb{
+      width: 75px;
+      text-align: center;
+}
+
+#removedRes
+{
+      border-left: 2px solid black;
+      margin-left: 20px;
+      margin-top: 10px;
+      padding: 0 5px 5px;
+      width: 80%;
+}
+
+#removedRes tr{
+      height: 30px;
+}
 /************************
  ****			  Multiple				****
  ************************/
 
 .invisible{
-	display: none;
+      display: none;
 }
 
 .search_nav_button{ 
-	margin-top: 5px;
+      margin-top: 5px;
 }

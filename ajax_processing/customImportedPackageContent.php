@@ -4,59 +4,88 @@
 
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "resources/admin/classes/domain/Resource.php";
+$resID = "";
+if ($_POST['id'])
+      $resID = $_POST['id'];
+else
+      $resID = $_GET['id'];
 
-if ($_POST['tab']) {    
-      $resToRemove = $_POST['tab']; 
-      echo "The ".count($resToRemove)." following resources have been removed from package :";
-      
+
+$displayResourceTabLines = function ($r_tab) {
+      foreach ($r_tab as $resource) {
+            $title = new Resource(new NamedArguments(array('primaryKey' => $resource->resourceID)));
+            echo _("<tr><td class='customCb'><input type ='checkBox' checked='checked' name='cbs' value='" . $title->resourceID . "'></td><td class='customText'>" . $title->titleText . "</td></tr>");
+      }
+};
+
+$customDone = false;
+
+if ($_POST['tab']) {
+      $resToRemove = $_POST['tab'];
+      echo _("<br/><h4>The " . count($resToRemove) . " following resources have been removed from package :</h4></br>");
+      echo _("<table id='removedRes'>");
       foreach ($resToRemove as $res) {
-          $object = new Resource(new NamedArguments(array('primaryKey' => $res)));
-          echo "<br/>- ".$object->titleText;
-          $object->removeResource();
+            $object = new Resource(new NamedArguments(array('primaryKey' => $res)));
+            echo _("<tr><td> -     " . $object->titleText."</td></tr>");
+            $object->removeResource();
       }
-      
+      echo _("</table>");
+      $customDone = true;
 } else {
-      echo '<p>Uncheck titles you want to remove from this package. Unselect all will import package only without any titles. <br/>
-      To delete this package and all resources included in <a onclick="removeResAndChildren(\''.$_POST['id'].'\');">Click here</a></p>';
-      $resource = new Resource();
-      $package = $resource->getResourceByIdentifierAndType($_POST['id'], 'gokb');
+      echo _('<p>Uncheck titles you want to remove from this package. Unselect all will import package only without any titles. <br/>
+      To delete this package and all resources included in <a class="tippLink" onclick="removeResAndChildren(\'' . $resID . '\');">Click here</a></p>');
+
+      $package = new Resource(new NamedArguments(array('primaryKey' => $resID)));
       if (count($package) > 1) {
-            echo "more than 1 resource correspond to this package !! "; //TODO _ DEBUG _ 
+            echo _("more than 1 resource correspond to this package !! "); //TODO _ DEBUG _ 
       } else {
-            $titles = $package[0]->getChildResources(); //return an array of ResourceRelationship
-            //ajax_processing/customImportedPackageContent.php
-            echo "<div>"
-                    . "<form enctype=\"multipart/form-data\" action=\"#\" method=\"post\" id=\"customPackageForm\" name=\"customPackageForm\">"
-                    . "<fieldset id=\"customPackageFieldset\">"
-                    . "<legend>Package content</legend>"
-                    . " <input type='checkbox' id='selectAll' onclick=\"checkAll(this);\" checked='checked'>Select all"
-                    . "<table id =\"customPackageTable\"> ";
-            
-            foreach ($titles as $relationship) {
-                  $title = new Resource(new NamedArguments(array('primaryKey' => $relationship->resourceID)));
-                  echo "<tr><td><input type ='checkBox' checked='checked' name='cbs' value='" . $title->resourceID . "'></td><td>" . $title->titleText."</td></tr>";
-            }
-            echo  "</table>"
-            . "</fieldset>"
-                    . "<input type=\"button\" name=\"submit\" value=\"confirmCustomization\" onclick=\"submitCustom('".$_POST['id']."');\"/>"
-                    . "</form>"
-                    . "</div>";
-            
-      }
-
-}
-      
-?>
-
+            ?>
+            <div id='customDivContainer'>
+                  <form enctype="multipart/form-data" action="#" method="post" id="customPackageForm" name="customPackageForm">
+                        <fieldset id="customPackageFieldset">
+                              <legend><h3>Package content</h3></legend>
+                              <table id ="customPackageTable">
+                                    <thead>
+                                          <tr>
+                                                <th class='customCb'> All </th>
+                                                <th class='customText'> Name filter</th>
+                                          </tr>
+                                          <tr>
+                                                <td class="customCb">
+                                                      <input type='checkbox' id='selectAll' onclick="checkAll(this);" checked='checked'>
+                                                </td>
+                                                <td class="customText"><input type='text' id='customFilter'></td>
+                                          </tr>
+                                    </thead>
+                                    <tbody id='customTbody'>
+                                          <?php
+                                          if ($_POST['filter']) {
+                                                $displayResourceTabLines($_POST['filter']);
+                                          } else {
+                                                $titles = $package->getChildResources(); //return an array of ResourceRelationship
+                                                $displayResourceTabLines($titles);
+                                          }
+                                          ?>
+                                    </tbody>
+                              </table>
+                        </fieldset>
+                  </form>
+            </div>
+      <?php }
+} ?>
 <div class="search_nav_button">
-      <span id="span_back"><input type=button value="Back" onclick="goBack();"/></span>
-      <input type="button" value="OK" onclick="tb_remove();"/>
+      <?php if ($customDone) { ?>
+            <input type="button" value="OK" onclick="tb_remove();"/>
+             <?php } else { ?>
+            <input type="button" name="submit" value="Confirm customization" onclick="submitCustom(
+            <?php echo $package->resourceID; ?>);"/>
+            <input type="button" value="Cancel" onclick="tb_remove();"/>
+<?php } ?>
 </div>
-      
 
 
-      
-      
+<script type="text/javascript" src="js/KBSearch.js"></script>
 
-        
-        
+
+
+

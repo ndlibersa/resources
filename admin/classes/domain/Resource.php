@@ -863,6 +863,30 @@ class Resource extends DatabaseObject {
 		}
 	}
 
+	public function getExportableDowntimes($archivedOnly=false){
+		
+		$query = "SELECT d.*
+				  FROM Downtime d
+				  WHERE d.entityID={$this->resourceID} AND d.entityTypeID=2";
+		if ($archivedOnly) {
+			$query .= " AND d.endDate < CURDATE()";
+		} else {
+			$query .= " AND d.endDate >= CURDATE()";
+		}
+		$query .= "	ORDER BY d.dateCreated DESC";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['downtimeID'])){
+			return array($result);
+		}else{
+			return $result;
+		}
+	}
+
 	//returns array of attachments objects
 	public function getAttachments(){
 

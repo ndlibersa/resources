@@ -37,8 +37,18 @@ function allResults(s_name, s_pub, s_type) {
                   $('#TB_ajaxContent').append(res);
             }
       });
-      window.history.pushState({funcName: 'allResults', param: [s_name, s_pub, s_type]}, 'test', null);
-      console.debug("pushState(allResults(" + s_name + "," + s_pub + "," + s_type + "))");
+      
+      var parameters = [s_name, s_pub, s_type];
+      var currentState=window.history.state;
+      
+      if ((currentState.funcName == 'allResults') && compareParamArray(currentState.param, parameters)) {
+            console.debug("Same state as before !!, don't push");
+      } else {
+            window.history.pushState({funcName: 'allResults', param: [s_name, s_pub, s_type]}, 'test', null);
+            console.debug("pushState(allResults(" + s_name + "," + s_pub + "," + s_type + "))");
+      }
+      
+      
 }
 
 /*******************************************************************************************************/
@@ -325,6 +335,23 @@ function goBack() {
 
 /*******************************************************************************************************/
 
+function compareParamArray(paramArray, arrayToCompare){
+      var max=paramArray.length; 
+      var isEqual = true;
+      
+      if (max != arrayToCompare.length) return false;
+      
+      for (var i=0; i<max; i++){
+            if (paramArray[i] != arrayToCompare[i]) return false;
+      }
+      
+      return isEqual;
+}
+
+
+
+
+/*******************************************************************************************************/
 /**
  * Display load bar while treatment
  */

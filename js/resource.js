@@ -56,6 +56,88 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(".showIssues").click(function () {
+	    $('.resource_tab_content').hide();
+		$('#div_issues').show();
+		$('#div_fullRightPanel').show();
+		updateIssues();
+		return false;
+	});
+
+	$(".issuesBtn").live("click", function(e) {
+		e.preventDefault();
+		getIssues($(this));
+	});
+
+	$(".downtimeBtn").live("click", function(e) {
+		e.preventDefault();
+		getDowntime($(this));
+	});
+
+	$("#submitCloseIssue").live("click", function() {
+		submitCloseIssue();
+	});
+
+	$("#submitNewIssue").live("click", function(e) {
+		e.preventDefault();
+		submitNewIssue();
+	});
+
+	$("#submitNewDowntime").live("click", function(e) {
+		e.preventDefault();
+		submitNewDowntime();
+	});
+
+	$(".issueResources").live("click", function() {
+
+		$(".issueResources").attr("checked", false);
+		$(this).attr("checked", true);
+
+		if($(this).attr("id") == "otherResources") {
+			$("#resourceIDs").fadeIn(250)
+		} else {
+			$("#resourceIDs").fadeOut(250)
+		}
+
+	});
+
+	$("#createIssueBtn").live("click", function() {
+		$(".issueList").slideUp(250);
+	});
+
+	$("#createDowntimeBtn").live("click", function() {
+		$(".downtimeList").slideUp(250);
+	});
+
+	$("#getCreateContactForm").live("click",function(e) {
+		e.preventDefault();
+		$(this).fadeOut(250, function() {
+			getInlineContactForm();
+		});
+	});
+
+	$("#createContact").live("click",function(e) {
+		e.preventDefault();
+		var roles = new Array();
+		$(".check_roles:checked").each(function() {
+			roles.push($(this).val());
+		});
+		//create the contact and update the contact list
+		createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
+	});
+
+	$("#addEmail").live("click", function(e) {
+		e.preventDefault();
+		$("#currentEmails").append($("#inputEmail").val()+", ");
+		currentVal = $("#ccEmails").val();
+		if (!currentVal) {
+			$("#ccEmails").val($("#inputEmail").val());
+		} else {
+			$("#ccEmails").val(currentVal+','+$("#inputEmail").val());
+		}
+		$("#inputEmail").val('');
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -223,6 +305,160 @@ function updateArchivedContacts(showArchivedPassed){
 
 }
 
+function createOrganizationContact(contact) {
+	var baseUrl = $("#orgModuleUrl").val();
+	contact.contactRoles = contact.contactRoles.join();
+	$.ajax({
+		type:       "POST",
+		url:        baseUrl+"ajax_processing.php?action=submitContact",
+		cache:      false,
+		data:       contact,
+		success:    function(res) {
+			
+			var data = {};
+			data.contactIDs = [];
+
+			$("#contactIDs option:selected").each(function() {
+				data.contactIDs.push($(this).val());
+			});
+
+			data.action = "getOrganizationContacts";
+			data.organizationID = contact.organizationID;
+			data.contactIDs.push(res);
+
+			$.ajax({
+				type:       "GET",
+				url:        baseUrl+"ajax_htmldata.php",
+				cache:      false,
+				data:       $.param(data),
+				success:    function(html) {
+					$("#inlineContact").html(html).slideUp(250, function() {
+						$("#getCreateContactForm").fadeIn(250);
+					});
+					$("#contactIDs").html(html);
+				}
+			});
+		}
+	});
+}
+
+function getInlineContactForm() {
+	var baseUrl = $("#orgModuleUrl").val();
+	$.ajax({
+		 type:       "GET",
+		 url:        baseUrl+"ajax_forms.php",
+		 cache:      false,
+		 data:       "action=getInlineContactForm",
+		 success:    function(html) {
+			$("#inlineContact").html(html).slideDown(250);
+		 }
+	  });
+}
+
+function updateIssues(){
+  
+  $.ajax({
+	 type:       "GET",
+	 url:        "ajax_htmldata.php",
+	 cache:      false,
+	 data:       "action=getIssues&resourceID=" + $("#resourceID").val(),
+	 success:    function(html) {
+		$(".div_mainContent").html(html);
+		bind_removes();
+		tb_reinit();
+	 }
+
+
+  });
+
+}
+
+function submitNewIssue() {
+	
+	$.ajax({
+		 type:       "POST",
+		 url:        "ajax_processing.php?action=insertIssue",
+		 cache:      false,
+		 data:       $("#newIssueForm").serialize(),
+		 success:    function(res) {
+			updateIssues();
+			tb_remove()
+		 }
+
+
+	  });
+
+
+}
+
+function submitNewDowntime() {
+	
+	var data = $("#newDowntimeForm").serialize();
+	data += "&startDate="+$("#startDate").val();
+	data += "&endDate="+$("#endDate").val();
+
+	$.ajax({
+		 type:       "POST",
+		 url:        "ajax_processing.php?action=insertDowntime",
+		 cache:      false,
+		 data:       data,
+		 success:    function(res) {
+			updateIssues();
+			tb_remove()
+		 }
+
+
+	  });
+
+
+}
+
+function getIssues(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".issueList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function getDowntime(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".downtimeList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function submitCloseIssue() {
+	$('#submitCloseIssue').attr("disabled", "disabled"); 
+	$.ajax({
+		type:       "POST",
+		url:        "ajax_processing.php?action=submitCloseIssue",
+		cache:      false,
+		data:       { "issueID": $("#issueID").val(), "resolutionText":$("#resolutionText").val() },
+		success:    function(html) {
+			if (html.length > 1) {
+				$("#submitCloseIssue").removeAttr("disabled");
+			} else {
+				tb_remove();
+				updateIssues();
+				return false;
+			}			
+		}
+	});
+}
 
 function updateAccounts(){
   $("#icon_accounts").html("<img src='images/littlecircle.gif'>");
@@ -337,8 +573,6 @@ function updateRightPanel(){
 } 
 
 
-
-
 function updateTitle(){
   $.ajax({
 	 type:       "GET",
@@ -353,12 +587,6 @@ function updateTitle(){
   });
 
 } 
-
-
-
-
-
-
 
 
 function bind_removes(){

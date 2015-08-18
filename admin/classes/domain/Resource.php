@@ -748,11 +748,6 @@ class Resource extends DatabaseObject {
 		return $objects;
 	}
 
-
-
-
-
-
 	//returns array of the initial note object
 	public function getInitialNote(){
 		$noteType = new NoteType();
@@ -776,11 +771,121 @@ class Resource extends DatabaseObject {
 
 	}
 
+	public function getIssues($archivedOnly=false){
+		$query = "SELECT i.* 
+				  FROM Issue i
+				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
+				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
+		if ($archivedOnly) {
+			$query .= " AND i.dateClosed IS NOT NULL";
+		} else {
+			$query .= " AND i.dateClosed IS NULL";
+		}
+		$query .= "	ORDER BY i.dateCreated DESC";
+		
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
 
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
 
+	public function getDowntime($archivedOnly=false){
+		$query = "SELECT d.*
+				  FROM Downtime d
+				  WHERE d.entityID={$this->resourceID} AND d.entityTypeID=2";
+		if ($archivedOnly) {
+			$query .= " AND d.endDate < CURDATE()";
+		} else {
+			$query .= " AND d.endDate >= CURDATE()";
+		}
+		$query .= "	ORDER BY d.dateCreated DESC";
 
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['downtimeID'])){
+			$object = new Downtime(new NamedArguments(array('primaryKey' => $result['downtimeID'])));
+			array_push($objects, $object);
+		}else{
+			foreach ($result as $row) {
+				$object = new Downtime(new NamedArguments(array('primaryKey' => $row['downtimeID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
+
+	public function getExportableIssues($archivedOnly=false){
+		$orgDB = $this->db->config->settings->organizationsDatabaseName;
+		$query = "SELECT i.*,(SELECT GROUP_CONCAT(CONCAT(sc.name,' - ',sc.emailAddress) SEPARATOR ', ')
+								FROM IssueContact sic 
+								LEFT JOIN `{$orgDB}`.Contact sc ON sc.contactID=sic.contactID
+								WHERE sic.issueID=i.issueID) AS `contacts`,
+							 (SELECT GROUP_CONCAT(se.titleText SEPARATOR ', ')
+								FROM IssueRelationship sir 
+								LEFT JOIN Resource se ON (se.resourceID=sir.entityID AND sir.entityTypeID=2)
+								WHERE sir.issueID=i.issueID) AS `appliesto`,
+							 (SELECT GROUP_CONCAT(sie.email SEPARATOR ', ')
+								FROM IssueEmail sie 
+								WHERE sie.issueID=i.issueID) AS `CCs`
+				  FROM Issue i
+				  LEFT JOIN IssueRelationship ir ON ir.issueID=i.issueID
+				  WHERE ir.entityID={$this->resourceID} AND ir.entityTypeID=2";
+		if ($archivedOnly) {
+			$query .= " AND i.dateClosed IS NOT NULL";
+		} else {
+			$query .= " AND i.dateClosed IS NULL";
+		}
+		$query .= "	ORDER BY i.dateCreated DESC";
+		
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])){
+			return array($result);
+		}else{
+			return $result;
+		}
+	}
+
+	public function getExportableDowntimes($archivedOnly=false){
+		
+		$query = "SELECT d.*
+				  FROM Downtime d
+				  WHERE d.entityID={$this->resourceID} AND d.entityTypeID=2";
+		if ($archivedOnly) {
+			$query .= " AND d.endDate < CURDATE()";
+		} else {
+			$query .= " AND d.endDate >= CURDATE()";
+		}
+		$query .= "	ORDER BY d.dateCreated DESC";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['downtimeID'])){
+			return array($result);
+		}else{
+			return $result;
+		}
+	}
 
 	//returns array of attachments objects
 	public function getAttachments(){
@@ -1599,19 +1704,43 @@ class Resource extends DatabaseObject {
 
 			}
 
-
-
-
-
 		}
 
 
 		return $resourceOrgArray;
 	}
 
+	public function organizationContactsArray($organizationID) {
 
+		if($this->db->config->settings->organizationsModule == 'Y') {
+			$dbName = $this->db->config->settings->organizationsDatabaseName;
 
+			$orgContactsArray = array();
 
+			$query = "SELECT * FROM {$dbName}.Contact WHERE organizationID = '" . $organizationID . "' ORDER BY `name`";
+
+			return $this->db->processQuery($query, 'assoc');
+
+		} else {
+			return false;
+		} 	
+	}
+
+	public function getSiblingResourcesArray($organizationID) {
+
+			$query = "SELECT DISTINCT r.resourceID, r.titleText FROM ResourceOrganizationLink rol 
+					  LEFT JOIN Resource r ON r.resourceID=rol.resourceID
+					  WHERE rol.organizationID=".$organizationID." AND r.archiveDate IS NULL
+					  ORDER BY r.titleText";
+
+			$result = $this->db->processQuery($query, 'assoc');
+
+			if($result["resourceID"]) {
+				return array($result);
+			}
+					  
+			return $result;
+	}
 
 	//gets an array of distinct organizations set up for this resource (organizationID, organization)
 	public function getDistinctOrganizationArray(){

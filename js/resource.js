@@ -128,7 +128,7 @@ $(document).ready(function(){
 			});
 		} 
 
-		if(!validateEmail($(emailAddress).val())) {	
+		if(!validateEmail($("#emailAddress").val())) {	
 			errors.push({
 				message: "CC must be a valid email.",
 				target: '#span_error_contactEmailAddress'

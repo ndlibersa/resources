@@ -493,9 +493,6 @@ function submitNewDowntime() {
 
 
 	  });
-
-
->>>>>>> cf8fb6556b7099c9338c18b7d64c292b76a9631f
 }
 
 function getIssues(element) {

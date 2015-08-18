@@ -105,7 +105,7 @@ $(document).ready(function(){
 		} 
 
 		if(errors.length == 0) {
-			//submitNewDowntime();
+			submitNewDowntime();
 		} else {
 
 			$(".addDowntimeError").html("");

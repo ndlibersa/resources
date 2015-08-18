@@ -69,6 +69,11 @@ $(document).ready(function(){
 		getIssues($(this));
 	});
 
+	$(".downtimeBtn").live("click", function(e) {
+		e.preventDefault();
+		getDowntime($(this));
+	});
+
 	$("#submitCloseIssue").live("click", function() {
 		submitCloseIssue();
 	});
@@ -76,6 +81,11 @@ $(document).ready(function(){
 	$("#submitNewIssue").live("click", function(e) {
 		e.preventDefault();
 		submitNewIssue();
+	});
+
+	$("#submitNewDowntime").live("click", function(e) {
+		e.preventDefault();
+		submitNewDowntime();
 	});
 
 	$(".issueResources").live("click", function() {
@@ -93,6 +103,10 @@ $(document).ready(function(){
 
 	$("#createIssueBtn").live("click", function() {
 		$(".issueList").slideUp(250);
+	});
+
+	$("#createDowntimeBtn").live("click", function() {
+		$(".downtimeList").slideUp(250);
 	});
 
 	$("#getCreateContactForm").live("click",function(e) {
@@ -367,7 +381,28 @@ function submitNewIssue() {
 		 cache:      false,
 		 data:       $("#newIssueForm").serialize(),
 		 success:    function(res) {
-			console.log(res);
+			updateIssues();
+			tb_remove()
+		 }
+
+
+	  });
+
+
+}
+
+function submitNewDowntime() {
+	
+	var data = $("#newDowntimeForm").serialize();
+	data += "&startDate="+$("#startDate").val();
+	data += "&endDate="+$("#endDate").val();
+
+	$.ajax({
+		 type:       "POST",
+		 url:        "ajax_processing.php?action=insertDowntime",
+		 cache:      false,
+		 data:       data,
+		 success:    function(res) {
 			updateIssues();
 			tb_remove()
 		 }
@@ -386,6 +421,20 @@ function getIssues(element) {
 		cache:      false,
 		success:    function(html) {
 			element.siblings(".issueList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function getDowntime(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".downtimeList").html(html).slideToggle(250);
 			tb_reinit();
 		}
 	});

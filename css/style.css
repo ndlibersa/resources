@@ -966,11 +966,16 @@ table.borderedHeadTable tr {
 	vertical-align:middle;
 }
 
-table.issueTable tr th {
+table.issueTabTable tr th {
 	background:#f5f8fa;
 }
 
-div.issueList {
+table.issueTabTable#downTimeTable {
+	margin-top: 25px;
+}
+
+div.issueList,
+div.downtimeList {
 	display: none;
 	width: 85%;
 	padding: 0 10px 5px 25px;
@@ -984,25 +989,30 @@ div.issueList a.closeIssueBtn {
 	float: right;
 }
 
-div.issueList dl {
+div.issueList dl,
+div.downtimeList dl {
 	margin-top: 15px;
 }
 
-div.issueList dl dt {
+div.issueList dl dt,
+div.downtimeList dl dt {
 	margin-top: 5px; 
 	font-weight: bold;
 	display: inline;
 }
 
-div.issueList dl dd {
+div.issueList dl dd,
+div.downtimeList dl dd {
 	display: inline;
 }
 
-div.issueList dl dd:after { 
+div.issueList dl dd:after,
+div.downtimeList dl dd:after { 
 	content:"\A"; white-space:pre; 
 }
 
-div.issueList dl dt.block {
+div.issueList dl dt.block,
+div.downtimeList dl dt.block {
 	display: block;
 }
 

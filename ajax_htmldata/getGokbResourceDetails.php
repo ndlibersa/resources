@@ -10,12 +10,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "resources/ajax_htmldata/getPagination.
 $tool = GOKbTools::getInstance();
 $record = $tool->getDetails($_POST['type'], $_POST['id']);
 $nbTipps = $tool->getNbTipps($record);
+$displayTippsTab = ($nbTipps > 0);
 ?>
 
 <div id='resourceDetails'>
       <div class='formTitle' style='width:745px;'>
             <span class='headerText'>
-<?php echo ucfirst($_POST['type']); ?>
+                  <?php echo ucfirst($_POST['type']); ?>
                   details for
                   <?php echo $tool->getResourceName($record); ?>
             </span>
@@ -24,36 +25,48 @@ $nbTipps = $tool->getNbTipps($record);
       <div id="detailsTabs">
             <ul>
                   <li id='globalDetails' class='selected' onclick="loadDetailsContent(0);">Details</li> 
-                  <li id='tippsDetails' onclick="loadDetailsContent(1);
-                              iterator(0);">
-                        <?php
+                  <?php
+                  if ($displayTippsTab) {
+                        echo "<li id='tippsDetails' onclick=\"loadDetailsContent(1);
+                              iterator(0);\">";
+                        //<?php
                         if ($_POST['type'] == 'package') {
                               echo "Titles ";
                         } else {
                               echo "Available in ";
                         }
                         echo "(" . $nbTipps . ")";
-                        ?>
-                  </li> 
+
+                        echo "</li>";
+                  }
+                  ?>
             </ul>
       </div>
 
       <div id="detailsContainer">
             <div id="globalDet">
-                  <?php echo $tool->displayRecord($record); ?>
+            <?php 
+            if (!$displayTippsTab) { 
+                  echo "<p id='noTipps'> No TIPPs for this resource </p>";
+            }
+            echo $tool->displayRecord($record); ?>
             </div>
-            <div id="tippsDet" class='invisible'>
-                  <?php echo $tool->displayRecordTipps($record, $_POST['type']);
+                  <?php if ($displayTippsTab) { ?>
+                  <div id="tippsDet" class='invisible'>
+                        <?php
+                        echo $tool->displayRecordTipps($record, $_POST['type']);
 //                  echo paginate($nbTipps, "tippsDet");
-                  ?>
+                        ?>
+                  </div>
+            <?php } ?>
+      </div>
+      <?php if ($displayTippsTab) { ?>
+            <div id="paginationDiv" class="invisible">
+                  <?php echo paginate($nbTipps, "tippsDet"); ?>
             </div>
-      </div>
-      <div id="paginationDiv" class="invisible">
-            <?php echo paginate($nbTipps, "tippsDet"); ?>
-      </div>
-
+<?php } ?>
       <div class="search_nav_button">
-            <?php echo "<input type=button value='Select' onclick=\" selectResource('" . $_POST['type'] . "','" . $_POST['id'] . "');\">"; ?>
+<?php echo "<input type=button value='Select' onclick=\" selectResource('" . $_POST['type'] . "','" . $_POST['id'] . "');\">"; ?>
             <span id="span_back"><input type=button value='Back' onclick="goBack();"/></span>
             <input type='button' value='Cancel' onclick="tb_remove();">
 

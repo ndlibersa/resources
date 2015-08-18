@@ -36,6 +36,7 @@
 .linkStyle{
       color: blue;
       text-decoration: underline;
+      cursor: pointer;
 }
 
 
@@ -74,6 +75,7 @@
       border: 1px solid gray;
       color: #666;
       background-color:#eee;
+      cursor: pointer;
 }
 
 
@@ -82,6 +84,7 @@
       font-weight:bold;
       background-color: #fff;
       border-bottom: 1px solid #fff;
+      cursor: default;
 }
 
 #detailsTabs ul li:hover{
@@ -144,8 +147,14 @@
 
 .tippLink{
       text-decoration: underline;
-      /*color: blue;*/
       cursor: pointer;
+}
+
+#noTipps{
+      margin-bottom: -10px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
 }
 
 /********************************
@@ -163,6 +172,7 @@
       border: 1px solid black;
       margin-left: 5px;
       padding: 5px;
+      cursor: pointer;
 }
 
 #pageIterator ul li:hover{
@@ -175,6 +185,7 @@
 #pageIterator ul li.active{
       background-color: #e9edf0;
       border: 1px solid #e9edf0;
+      cursor: default;
 }
 #pageIterator ul li.active:hover{
       font-weight: normal;
@@ -204,11 +215,10 @@
 }
 
 #customTbody{
-      height: 290px;
+      height: 300px;
       position: absolute;
       overflow: auto;
       width: 745px;
-      margin-top: 50px;
       border-top: 1px solid black;
 }
 
@@ -225,7 +235,6 @@
 }
 
 #customPackageTable thead{
-      height: 30px;
       width: 100%;
 }
 

@@ -39,7 +39,7 @@ if ($_POST['type'] == 'package') {
       $variantName = $recordDetails->{'variantNames'};
       $variants = $variantName->children();
 
-      if (count($variants) > 0) {
+      if (($variants != NULL) && (count($variants) > 0)) {
             $datas['alias']['alternate name'] = array();
             foreach ($variants as $key => $name) {
                   array_push($datas['alias']['alternate name'], (string) $name);

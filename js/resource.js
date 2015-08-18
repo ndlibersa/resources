@@ -104,12 +104,40 @@ $(document).ready(function(){
 
 	$("#createContact").live("click",function(e) {
 		e.preventDefault();
-		var roles = new Array();
-		$(".check_roles:checked").each(function() {
-			roles.push($(this).val());
-		});
-		//create the contact and update the contact list
-		createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
+		
+		var errors = [];
+
+		if($("#contactAddName").val() == "") {	
+			errors.push({
+				message: "New contact must have a name.",
+				target: '#span_error_contactAddName'
+			});
+		} 
+
+		if(!validateEmail($(emailAddress).val())) {	
+			errors.push({
+				message: "CC must be a valid email.",
+				target: '#span_error_contactEmailAddress'
+			});
+		} 
+
+		if(errors.length == 0) {
+			var roles = new Array();
+			$(".check_roles:checked").each(function() {
+				roles.push($(this).val());
+			});
+			//create the contact and update the contact list
+			createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactAddName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
+		} else {
+
+			$(".addContactError").html("");
+
+			for(var index in errors) {
+				error = errors[index];
+				$(error.target).html(error.message);
+			}
+		}	 
+			
 	});
 
 	$("#addEmail").live("click", function(e) {

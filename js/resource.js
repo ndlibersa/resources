@@ -474,6 +474,7 @@ function submitNewIssue() {
 			}
 		});
 	}
+}
 
 function submitNewDowntime() {
 	

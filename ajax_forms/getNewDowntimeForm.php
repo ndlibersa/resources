@@ -43,14 +43,14 @@ if ($organizationData['organizationID']) {
 			<td><label>Downtime Start:</label></td>
 			<td>
 				<input value="<?php echo $defaultStart; ?>" type="datetime-local" name="startDate" id="startDate" />
-				<span id='span_error_contactName' class='smallDarkRedText'>
+				<span id='span_error_startDate' class='smallDarkRedText addDowntimeError'>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Downtime Resolution:</label></td>
 			<td>
 				<input value="<?php echo $defaultEnd; ?>"  type="datetime-local" name="endDate" id="endDate" />
-				<span id='span_error_contactName' class='smallDarkRedText'>
+				<span id='span_error_endDate' class='smallDarkRedText addDowntimeError'>
 			</td>
 		</tr>
 		<tr>

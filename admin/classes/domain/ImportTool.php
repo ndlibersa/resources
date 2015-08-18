@@ -13,8 +13,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "organizations/admin/classes/domain/Org
 
 //include_once $_SERVER['DOCUMENT_ROOT'] . "resources/directory.php";
 
+
 class ImportTool {
 
+      /**
+       * @var Configuration 
+       *    used to know which module is activated and their DB names
+       */
       private $config;
 
       /**
@@ -86,8 +91,6 @@ class ImportTool {
             $resourceType = null;
             $aliases = null;
 
-            $htmlContent = ''; //TODO _ DEBUG _ Displaying after select
-
             /*             * *****************************************
              * *     Has the resource to be inserted ?    **
              * ***************************************** */
@@ -130,7 +133,7 @@ class ImportTool {
 //Resource identifiers treatment
                   $res->setIdentifiers($identifiers);
 
-//Aliases treatment (history name change/ variant name) //TODO
+//Aliases treatment (history name change/ variant name) 
                   if ($aliases != null) {
                         $this->aliasesTreatment($aliases, $res->resourceID);
                   }
@@ -151,6 +154,12 @@ class ImportTool {
 
 // -------------------------------------------------------------------------
 
+      /**
+       *  Link a resource with an organization
+       * @param int     $roleID   ID of the organization's role (DB primaryKey)
+       * @param int     $resourceID     ID of the resource (DB primaryKey)
+       * @param int     $organizationID   ID of the organization (DB primaryKey)
+       */
       private function setResourceOrganizationLink($roleID, $resourceID, $organizationID) {
             $organizationLink = new ResourceOrganizationLink();
             $organizationLink->organizationRoleID = $roleID;
@@ -205,6 +214,12 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------	
+      
+      /**
+       *  Create resource's parent or attach it
+       * @param string $parentName
+       * @return int    ID of the parent resource
+       */
       private function parentTreatment($parentName) {
             $resource = new Resource();
             $parentResource = $resource->getResourceByTitle($parentName);
@@ -228,6 +243,12 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------	
+      
+      /**
+       *  Link a resource with its parent
+       * @param int      $resourceID      ID of the resource
+       * @param int      $parentID          ID of the parent resouce
+       */
       private function setResourcesRelationship($resourceID, $parentID) {
             if ($parentID != NULL) {
                   $resourceRelationship = new ResourceRelationship();
@@ -242,15 +263,20 @@ class ImportTool {
 
 // -------------------------------------------------------------------------
 
+      /**
+       *  create reosurce's organization or attach it
+       * @param array    $organizations   array(role => organization)
+       * @param int      $resourceID      ID of the resource
+       */
       private function organizationTreatment($organizations, $resourceID) {
             $loginID = $_SESSION['loginID'];
             $htmlContent = '';
 
 //Organizations module is used
-            if ($this->config->settings->organizationsModule == 'Y') { //TODO _ hierarchy platform/provider
+            if ($this->config->settings->organizationsModule == 'Y') {
                   $dbName = $this->config->settings->organizationsDatabaseName;
                   foreach ($organizations as $role => $orgName) {
-                        $organization = new Organization(); //TODO _ instanciation dans une boucle j'aime pas trop ça ;)
+                        $organization = new Organization(); 
                         $organizationRole = new OrganizationRole();
                         $organizationID = false;
 
@@ -301,7 +327,7 @@ class ImportTool {
                         }
                   }
 
-//TODO _ hierarchy platform/provider (packages)
+//Hierarchy platform/provider ( gokb packages)
                   if ($organizations['platform']) {
                         $platformName = $organizations['platform'];
                         $providerName = $organizations['provider'];
@@ -311,7 +337,7 @@ class ImportTool {
 // If we do not use the Organizations module
             else {
                   foreach ($organizations as $role => $orgName) {
-                        $organization = new Organization(); //TODO _ instanciation dans une boucle j'aime pas trop ça ;)
+                        $organization = new Organization(); 
                         $organizationRole = new OrganizationRole();
                         $organizationID = false;
 // Search if such organization already exists
@@ -347,7 +373,12 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
-
+      
+      /**
+       * create a new organization when Organization module is activated
+       * @param string $orgName
+       * @return int    ID of the created organization
+       */
       private function createOrgWithOrganizationModule($orgName) {
             $dbName = $this->config->settings->organizationsDatabaseName;
             $loginID = $_SESSION['loginID'];
@@ -366,6 +397,12 @@ class ImportTool {
       }
 
 // -------------------------------------------------------------------------
+      
+      /**
+       * child/parent  organizations treatment
+       * @param string   $orgName
+       * @param string   $parentOrgName
+       */
       private function setOrganizationsHierarchy($orgName, $parentOrgName) {
             $orgID = null;
             $parentID = null;
@@ -403,6 +440,11 @@ class ImportTool {
 
 // -------------------------------------------------------------------------
 
+      /**
+       *  Add resource aliases to resource object in DB
+       * @param array    $aliases         array (alias type => array (alias name))
+       * @param int      $resourceID      ID of the resource
+       */
       private function aliasesTreatment($aliases, $resourceID) {
             foreach ($aliases as $aliasType => $aliasArray) {
                   $typeID = AliasType::getAliasTypeID((string) $aliasType);

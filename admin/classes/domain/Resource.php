@@ -2203,7 +2203,7 @@ class Resource extends DatabaseObject {
             }
             $query .= ";";
 
-            $result = $this->db->processQuery($query, 'assoc'); //TODO _ see param assoc
+            $result = $this->db->processQuery($query, 'assoc'); 
 
 
 

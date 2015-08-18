@@ -41,9 +41,6 @@ class GOKbTools {
      */
     private $httpClient;
 
-
-
-
     /**
      * @var GOKbTools (Pattern Singleton)
      */
@@ -149,7 +146,6 @@ class GOKbTools {
                 //$prefLabel = $b->{'binding'}[1]->{'literal'};
                 $prefLabel = utf8_encode($b->{'binding'}[1]->{'literal'});
                 $titles["$id"] = $prefLabel;
-             //  $titles["$id"] = \utf8_encode($prefLabel);
             }
 
         }
@@ -177,7 +173,7 @@ class GOKbTools {
             $response = '';
         }
         $myTmpClient = new MyClient();
-        $res =  $myTmpClient->decodeResponse($response); //decodeResponse protected: passé à public temporairement --> trouver une solution !! (héritage + surcharge ?)
+        $res =  $myTmpClient->decodeResponse($response);
         return $res;
     }
 
@@ -190,8 +186,6 @@ class GOKbTools {
      * @param   string  $uri    resource's URI
      * @return  string          resource's GOKb identifier
      */
-
-
     public function UriToGokbId($uri)
     {
         $cut = explode('/', $uri);
@@ -335,6 +329,12 @@ class GOKbTools {
 
 // -------------------------------------------------------------------------
 
+    /**
+     *   Perform a 'GetRecord' request
+     * @param string     $type      resource's type (title or package)
+     * @param string     $id           GOKb ID
+     * @return XMLElement          Record: resource's informations
+     */
     function getRecord($type, $id){
         
           switch ($type) {
@@ -346,22 +346,34 @@ class GOKbTools {
                 break;
             default:
                 return null;
-                break;
         }
 
         $rec = $record->{'GetRecord'}->{'record'};
         return $rec;
     }
     
+    // -------------------------------------------------------------------------
+    
+    /**
+     * create an array to stock identifiers for import treatment
+     * @param array  $ids     array(XML elements)
+     * @return type
+     */
     function createIdentifiersArrayToImport($ids) {
             foreach ($ids as $key => $value) {
                   $tmp = $value->attributes();
                   $identifiers["$tmp[0]"] = (string) $tmp[1];
-                  //$string .= "insertion de identifiers[" . $tmp[0] . "] = " . $tmp[1] . "</br>";
             }
             return $identifiers;
       }
       
+      // -------------------------------------------------------------------------
+      
+      /**
+       *  Convert a string date (from XML GOKb record) into DateTime object
+       * @param string   $xmlDate   the date from XML record
+       * @return DateTIme 
+       */
       function convertXmlDateToDateTime($xmlDate){
             $format = "Y-m-d H:i:s.u";
             $date = DateTime::createFromFormat($format, $xmlDate);
@@ -369,8 +381,5 @@ class GOKbTools {
       }
 
 }
- 
-
-
 
 ?>

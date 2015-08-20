@@ -440,8 +440,8 @@ function updateIssues(){
 
 function validateNewIssue () {
 	$(".error").html("");
- 	errorFlag = 0;
 
+ 	var errorFlag = 0;
 	var organization = $('#sourceOrganizationID').val();
 	var contact = $('#contactIDs').val();
 	var subject = $('#subjectText').val();

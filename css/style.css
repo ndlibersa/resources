@@ -987,6 +987,7 @@ div.issueList .issue {
 
 div.issueList a.closeIssueBtn {
 	float: right;
+	margin-right: 6px;
 }
 
 div.issueList dl,

@@ -2,6 +2,7 @@
 $util = new utility();
 
 $resourceID = $_GET["resourceID"];
+$issueID = $_GET['issueID'];
 
 $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 $issues = $resource->getIssues();
@@ -75,7 +76,7 @@ if ($issues) {
 					<option value="">none</option>
 <?php
 			foreach ($issues as $issue) {
-				echo "<option value=".$issue->issueID.">".$issue->subjectText."</option>";
+				echo "<option".(($issueID) ? ' selected':'')." value=".$issue->issueID.">".$issue->subjectText."</option>";
 			}
 ?>
 				</select>

@@ -29,6 +29,12 @@ function generateDowntimeHTML($downtime,$associatedEntities=null) {
 	  		<dd>{$downtime->subjectText}</dd>";
 	}
 
+	if ($downtime->note) {
+		$html .= "
+	  		<dt>Note:</dt> 
+	  		<dd>{$downtime->note}</dd>";
+	}
+
 	$html .= "		
 		</dl>
 	</div>";	

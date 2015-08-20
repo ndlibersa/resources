@@ -62,8 +62,7 @@
             echo '</table>';
 
             echo "</div>";
-      } else {
-            if (!$isPaginated)
+      } else if(($nb_packages == 0) && ($nb_titles == 0) && (!$isPaginated)){
                   echo "No results, please check your search fields <br/>";
       }
 

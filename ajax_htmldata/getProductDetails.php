@@ -199,7 +199,7 @@
       <td style='width:345px;'>
       <?php 
         foreach ($isbnOrIssns as $isbnOrIssn) {
-          print $isbnOrIssn->isbnOrIssn . "<br />";
+              print $isbnOrIssn->identifier . "<br />";
         }
       ?></td>
 			</tr>

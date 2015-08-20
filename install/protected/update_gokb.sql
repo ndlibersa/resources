@@ -14,7 +14,7 @@ INSERT INTO `Identifier` (`resourceID`, `identifier`)
 SELECT `resourceID`, `isbnOrIssn` FROM `IsbnOrIssn`;
 UPDATE `Identifier` SET `identifierTypeID`=1;
 
-
+DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IsbnOrIssn`;
 
 DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IdentifierType`;
 CREATE TABLE `_DATABASE_NAME_`.`IdentifierType` (

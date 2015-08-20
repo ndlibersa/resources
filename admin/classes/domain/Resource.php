@@ -62,9 +62,11 @@ class Resource extends DatabaseObject {
       //returns resource objects by title
       public function getResourceByIsbnOrISSN($isbnOrISSN) {
 
-            $query = "SELECT DISTINCT(resourceID)
-			FROM IsbnOrIssn";
-
+          //  $query = "SELECT DISTINCT(resourceID)
+			//FROM IsbnOrIssn";
+              $query = "SELECT DISTINCT(resourceID)
+			FROM Identifier";
+         
             $i = 0;
 
             if (!is_array($isbnOrISSN)) {
@@ -74,7 +76,9 @@ class Resource extends DatabaseObject {
 
             foreach ($isbnOrISSN as $value) {
                   $query .= ($i == 0) ? " WHERE " : " OR ";
-                  $query .= "isbnOrIssn = '" . $this->db->escapeString($value) . "'";
+                 // $query .= "isbnOrIssn = '" . $this->db->escapeString($value) . "'";
+                  $query .= "identifier = '" . $this->db->escapeString($value) . "'"
+                          . " AND identifierTypeID < 6";
                   $i++;
             }
 
@@ -99,25 +103,43 @@ class Resource extends DatabaseObject {
       }
 
       public function getIsbnOrIssn() {
-            $query = "SELECT *
-      FROM IsbnOrIssn
+//            $query = "SELECT *
+//      FROM IsbnOrIssn
+//      WHERE resourceID = '" . $this->resourceID . "'
+//      ORDER BY 1";
+  $query = "SELECT *
+      FROM Identifier
       WHERE resourceID = '" . $this->resourceID . "'
+            AND identifierTypeID < 6 
       ORDER BY 1";
-
+            
+            
+            
             $result = $this->db->processQuery($query, 'assoc');
 
             $objects = array();
 
             //need to do this since it could be that there's only one request and this is how the dbservice returns result
-            if (isset($result['isbnOrIssnID'])) {
-                  $object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $result['isbnOrIssnID'])));
+//            if (isset($result['isbnOrIssnID'])) {
+//                  $object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $result['isbnOrIssnID'])));
+//                  array_push($objects, $object);
+//            } else {
+//                  foreach ($result as $row) {
+//                        $object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $row['isbnOrIssnID'])));
+//                        array_push($objects, $object);
+//                  }
+//            }
+            
+              if (isset($result['identifierID'])) {
+                  $object = new Identifier(new NamedArguments(array('primaryKey' => $result['identifierID'])));
                   array_push($objects, $object);
             } else {
                   foreach ($result as $row) {
-                        $object = new IsbnOrIssn(new NamedArguments(array('primaryKey' => $row['isbnOrIssnID'])));
+                        $object = new Identifier(new NamedArguments(array('primaryKey' => $row['identifierID'])));
                         array_push($objects, $object);
                   }
             }
+            
 
             return $objects;
       }
@@ -858,7 +880,7 @@ class Resource extends DatabaseObject {
             }
             if ($search['resourceISBNOrISSN']) {
                   $resourceISBNOrISSN = mysql_real_escape_string(str_replace("-", "", $search['resourceISBNOrISSN']));
-                  $whereAdd[] = "REPLACE(I.isbnOrIssn,'-','') = '" . $resourceISBNOrISSN . "'";
+                  $whereAdd[] = "REPLACE(I.identifier,'-','') = '" . $resourceISBNOrISSN . "'";
                   $searchDisplay[] = "ISSN/ISBN: " . $search['resourceISBNOrISSN'];
             }
             if ($search['fund']) {
@@ -1065,7 +1087,7 @@ class Resource extends DatabaseObject {
                   $groupBy = "";
             } else {
                   $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, S.shortName status,
-						GROUP_CONCAT(DISTINCT A.shortName, I.isbnOrIssn ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
+						GROUP_CONCAT(DISTINCT A.shortName, I.identifier ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
                   $groupBy = "GROUP BY R.resourceID";
             }
 
@@ -1092,7 +1114,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
 									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
-                  LEFT JOIN IsbnOrIssn I ON R.resourceID = I.resourceID
+                  LEFT JOIN Identifier I ON R.resourceID = I.resourceID
                   ");
 
             $additional_joins = array();
@@ -1239,7 +1261,7 @@ class Resource extends DatabaseObject {
 						R.currentStartDate, R.currentEndDate, R.subscriptionAlertEnabledInd, AUT.shortName authenticationType,
 						AM.shortName accessMethod, SL.shortName storageLocation, UL.shortName userLimit, R.authenticationUserName, 
 						R.authenticationPassword, R.coverageText, CT.shortName catalogingType, CS.shortName catalogingStatus, R.recordSetIdentifier, R.bibSourceURL, 
-						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, I.isbnOrIssn, 
+						R.numberRecordsAvailable, R.numberRecordsLoaded, R.hasOclcHoldings, I.identifier, 
 						" . $orgSelectAdd . ",
 						" . $licSelectAdd . "
 						GROUP_CONCAT(DISTINCT A.shortName ORDER BY A.shortName DESC SEPARATOR '; ') aliases,
@@ -1282,7 +1304,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN AccessMethod AM ON AM.accessMethodID = R.accessMethodID
 									LEFT JOIN StorageLocation SL ON SL.storageLocationID = R.storageLocationID
 									LEFT JOIN UserLimit UL ON UL.userLimitID = R.userLimitID
-                  LEFT JOIN IsbnOrIssn I ON I.resourceID = R.resourceID
+                  LEFT JOIN Identifier I ON I.resourceID = R.resourceID
 									" . $licJoinAdd . "
 								" . $whereStatement . "
 								GROUP BY R.resourceID
@@ -1655,7 +1677,6 @@ class Resource extends DatabaseObject {
             $this->removeResourceOrganizations();
             $this->removeResourcePayments();
             $this->removeAllSubjects();
-            $this->removeAllIsbnOrIssn();
             $this->removeResourceIdentifiers();
 
 
@@ -2151,33 +2172,13 @@ class Resource extends DatabaseObject {
             $result = $this->db->processQuery($query);
       }
 
-      public function removeAllIsbnOrIssn() {
-            $query = "DELETE
-			FROM IsbnOrIssn
-			WHERE resourceID = '" . $this->resourceID . "'";
-
-            $result = $this->db->processQuery($query);
-      }
-
-      public function setIsbnOrIssn($isbnorissns) {
-            $this->removeAllIsbnOrIssn();
-            foreach ($isbnorissns as $isbnorissn) {
-                  if (trim($isbnorissn) != '') {
-                        $isbnOrIssn = new IsbnOrIssn();
-                        $isbnOrIssn->resourceID = $this->resourceID;
-                        $isbnOrIssn->isbnOrIssn = $isbnorissn;
-                        $isbnOrIssn->save();
-                  }
-            }
-      }
-
       /**
        * Fill the Identifier table in DB
        * @param $identifiers 	array 	array of all identifiers (type => id) (if type isn't known, don't put any key)
        * 
        */
       public function setIdentifiers($identifiers) {
-            $isbnorissns = array();
+         //   $isbnorissns = array();
             foreach ($identifiers as $key => $value) {
                   $identifier = new Identifier();
                   $identifier->resourceID = $this->resourceID;
@@ -2185,13 +2186,13 @@ class Resource extends DatabaseObject {
                   $identifier->identifier = $value;
 
                   $identifier->save();
-
+/*
                   //Temporary fill IsbnOrIssn table
                   if ($identifier->identifierTypeID <= 5) {
                         array_push($isbnorissns, $value);
-                  }
+                  } */
             }
-            $this->setIsbnOrIssn($isbnorissns);
+           // $this->setIsbnOrIssn($isbnorissns);
       }
 
       public function getResourceByIdentifierAndType($identifier, $type = NULL) { 

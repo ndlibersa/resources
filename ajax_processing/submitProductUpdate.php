@@ -15,7 +15,7 @@
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
-    $resource->setIsbnOrIssn($isbnarray);
+    $resource->setIdentifiers($isbnarray);
 
 		//to determine status id
 		$status = new Status();

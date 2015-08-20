@@ -157,7 +157,8 @@ $orgArray = $resource->getOrganizationArray();
                                                                                           $isbnOrIssns = $resource->getIsbnOrIssn();
                                                                                           $i = 1;
                                                                                           foreach ($isbnOrIssns as $isbnOrIssn) {
-                                                                                                ?><input type='text' class='isbnOrISSN' name='isbnOrISSN' value = '<?php echo $isbnOrIssn->isbnOrIssn; ?>' style='width:97px;' class='changeInput'  /><br /><?php
+                                                                                                ?><input type='text' class='isbnOrISSN' name='isbnOrISSN' value = '<?php echo $isbnOrIssn->identifier; 
+                                                                                                ?>' style='width:97px;' class='changeInput'  /><br /><?php
                                                                                                 $i++;
                                                                                           }
                                                                                           ?>

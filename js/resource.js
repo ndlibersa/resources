@@ -438,8 +438,9 @@ function updateIssues(){
   });
 }
 
-function validateNewIssue (){
- 	myReturn=0;
+function validateNewIssue () {
+	$(".error").html("");
+ 	errorFlag = 0;
 
 	var organization = $('#sourceOrganizationID').val();
 	var contact = $('#contactIDs').val();
@@ -447,47 +448,42 @@ function validateNewIssue (){
 	var body = $('#bodyText').val();
 	var appliesTo = false;
 
-	//also perform same checks on the current record in case add button wasn't clicked
-	// if (title == '' || title == null){
-	// 	$('#span_error_titleText').html('A title must be entered to continue.');
-	// 	myReturn=1;		
-	// }
-
 	if (organization == '' || organization == null) {
 		$('#span_error_organizationId').html('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.');
-		myReturn=1;
+		errorFlag=1;
 	}
 
 	if (contact == null || contact.length == 0) {
 		$('#span_error_contactName').html('A contact must be selected to continue.');
-		myReturn=1;
+		errorFlag=1;
 	}
 
 	if (subject == '' || subject == null) {
 		$('#span_error_subjectText').html('A subject must be entered to continue.');
-		myReturn=1;
+		errorFlag=1;
 	}
 
 	if (body == '' || body == null) {
 		$('#span_error_bodyText').html('A body must be entered to continue.');
-		myReturn=1;
+		errorFlag=1;
 	}
 
-	$('.resourcesArray').each(function() {
+	$('.entityArray').each(function() {
 		if($(this).is(':checked') || $(this).is(':selected')) {
 			appliesTo = true;
+			return false;
 		}
 	});
 
 	if(!appliesTo) {
-		myReturn=1;
+		errorFlag=1;
+		$('#span_error_entities').html('An issue must be associated with an organization or resource(s).');
 	}
 	
- 	if (myReturn == 1){
-		return false; 	
- 	}else{
- 		return true;
- 	}
+ 	if (errorFlag == 0){
+		return true; 	
+	}
+	return false;
 }
 
 function submitNewIssue() {

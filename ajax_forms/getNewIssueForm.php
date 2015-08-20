@@ -27,7 +27,7 @@ if ($organizationData['organizationID']) {
 			<td><label>Organization:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
 				<p><?php echo $organizationData['organization']; ?></p>
-				<span id='span_error_organizationId' class='smallDarkRedText'></span>
+				<span id='span_error_organizationId' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
@@ -42,7 +42,7 @@ if ($organizationData['organizationID']) {
 
 ?>
 				</select>
-				<span id='span_error_contactName' class='smallDarkRedText'></span>
+				<span id='span_error_contactName' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +57,7 @@ if ($organizationData['organizationID']) {
 			<td><label>CC myself:</label></td>
 			<td>
 				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' />
-				<span id='span_error_ccCreator' class='smallDarkRedText'></span>
+				<span id='span_error_ccCreator' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
@@ -69,21 +69,21 @@ if ($organizationData['organizationID']) {
 					Current CCs: <span id="currentEmails"></span>
 				</p>
 				<input type="hidden" id='ccEmails' name='ccEmails' value='' class='changeInput' />
-				<span id='span_error_contactIDs' class='smallDarkRedText'></span>
+				<span id='span_error_contactIDs' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Subject:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
 				<input type='text' id='subjectText' name='issue[subjectText]' value='' class='changeInput' />
-				<span id='span_error_subjectText' class='smallDarkRedText'></span>
+				<span id='span_error_subjectText' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Body:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
 				<textarea id='bodyText' name='issue[bodyText]' value='' />
-				<span id='span_error_bodyText' class='smallDarkRedText'></span>
+				<span id='span_error_bodyText' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 		<tr>
@@ -91,24 +91,24 @@ if ($organizationData['organizationID']) {
 			<td>
 
 				<div>
-					<input type="checkbox" class="issueResources resourcesArray" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
+					<input type="checkbox" class="issueResources entityArray" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources resourceArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
+					<input type="checkbox" class="issueResources entityArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
 				</div>
 				<div>
 					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources of <?php echo $resource->titleText ?></label>
 				</div>
-				<select multiple id="resourceIDs" class="resourcesArray" name="resourceIDs[]">
+				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php
 	if (!empty($organizationResourcesArray)) {
 		foreach ($organizationResourcesArray as $resource) {
-			echo "		<option value=\"{$resource['resourceID']}\">{$resource['titleText']}</option>";
+			echo "		<option class=\"entityArray\" value=\"{$resource['resourceID']}\">{$resource['titleText']}</option>";
 		}
 	}
 ?>
 				</select>
-				<span id='span_error_resourceIDs' class='smallDarkRedText'></span>
+				<span id='span_error_entities' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
 	</table>

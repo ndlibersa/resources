@@ -66,6 +66,9 @@ if ($organizationData['organizationID']) {
 			</td>
 		</tr>
 		<tr>
+<?php
+if ($issues) {
+?>
 			<td><label>Link to open issue:</label></td>
 			<td>
 				<select class="issueID" name="issueID">
@@ -78,6 +81,9 @@ if ($organizationData['organizationID']) {
 				</select>
 			</td>
 		</tr>
+<?php
+}
+?>
 		<tr>
 			<td><label>Note:</label></td>
 			<td>

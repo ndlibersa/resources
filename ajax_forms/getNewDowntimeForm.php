@@ -78,6 +78,12 @@ if ($organizationData['organizationID']) {
 				</select>
 			</td>
 		</tr>
+		<tr>
+			<td><label>Note:</label></td>
+			<td>
+				<textarea name="note"></textarea>
+			</td>
+		</tr>
 	</table>
 
 	<table class='noBorderTable' style='width:125px;'>

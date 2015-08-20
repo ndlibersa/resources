@@ -10,6 +10,7 @@ $newDowntime->endDate = date('Y-m-d H:i:s', strtotime($_POST['endDate']));
 
 $newDowntime->dateCreated = date( 'Y-m-d H:i:s');
 $newDowntime->entityTypeID = 2;
+$newDowntime->note = ($_POST['note']) ? $_POST['note']:null;
 
 $newDowntime->save();
 

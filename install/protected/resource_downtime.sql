@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `Downtime`;
 CREATE TABLE IF NOT EXISTS `Downtime` (
-  `downtimeID` int(11) NOT NULL,
+  `downtimeID` int(11) NOT NULL AUTO_INCREMENT,
   `entityID` int(11) NOT NULL,
   `issueID` int(11) DEFAULT NULL,
   `creatorID` varchar(80) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `Downtime` (
 
 DROP TABLE IF EXISTS `DowntimeType`;
 CREATE TABLE IF NOT EXISTS `DowntimeType` (
-  `downtimeTypeID` int(11) NOT NULL,
+  `downtimeTypeID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) NOT NULL,
   PRIMARY KEY (`downtimeTypeID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

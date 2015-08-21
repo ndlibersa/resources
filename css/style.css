@@ -985,7 +985,7 @@ div.issueList .issue {
 	width: 85%;
 }
 
-div.issueList a.closeIssueBtn {
+div.issue a.action {
 	float: right;
 	margin-right: 6px;
 }

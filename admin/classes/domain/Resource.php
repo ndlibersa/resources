@@ -829,10 +829,15 @@ class Resource extends DatabaseObject {
 	}
 
 	public function getExportableIssues($archivedOnly=false){
-		$orgDB = $this->db->config->settings->organizationsDatabaseName;
+		if ($this->db->config->settings->organizationsModule == 'Y' && $this->db->config->settings->organizationsDatabaseName) {
+			$contactsDB = $this->db->config->settings->organizationsDatabaseName;
+		} else {
+			$contactsDB = $this->db->config->database->name;
+		}
+
 		$query = "SELECT i.*,(SELECT GROUP_CONCAT(CONCAT(sc.name,' - ',sc.emailAddress) SEPARATOR ', ')
 								FROM IssueContact sic 
-								LEFT JOIN `{$orgDB}`.Contact sc ON sc.contactID=sic.contactID
+								LEFT JOIN `{$contactsDB}`.Contact sc ON sc.contactID=sic.contactID
 								WHERE sic.issueID=i.issueID) AS `contacts`,
 							 (SELECT GROUP_CONCAT(se.titleText SEPARATOR ', ')
 								FROM IssueRelationship sir 

@@ -106,12 +106,19 @@ class Organization extends DatabaseObject {
 	}
 
 	public function getExportableIssues($archivedOnly=false) {
-		$orgDB = $this->db->config->settings->organizationsDatabaseName;
+		if ($this->db->config->settings->organizationsModule == 'Y' && $this->db->config->settings->organizationsDatabaseName) {
+			$orgDB = $this->db->config->settings->organizationsDatabaseName;
+			$orgField = 'name';
+		} else {
+			$orgDB = $this->db->config->database->name;
+			$orgField = 'shortName';
+		}
+
 		$query = "SELECT i.*,(SELECT GROUP_CONCAT(CONCAT(sc.name,' - ',sc.emailAddress) SEPARATOR ', ')
 								FROM IssueContact sic 
 								LEFT JOIN `{$orgDB}`.Contact sc ON sc.contactID=sic.contactID
 								WHERE sic.issueID=i.issueID) AS `contacts`,
-							 (SELECT GROUP_CONCAT(se.name SEPARATOR ', ')
+							 (SELECT GROUP_CONCAT(se.{$orgField} SEPARATOR ', ')
 								FROM IssueRelationship sir 
 								LEFT JOIN `{$orgDB}`.Organization se ON (se.organizationID=sir.entityID AND sir.entityTypeID=1)
 								WHERE sir.issueID=i.issueID) AS `appliesto`,

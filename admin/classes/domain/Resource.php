@@ -1710,22 +1710,6 @@ class Resource extends DatabaseObject {
 		return $resourceOrgArray;
 	}
 
-	public function organizationContactsArray($organizationID) {
-
-		if($this->db->config->settings->organizationsModule == 'Y') {
-			$dbName = $this->db->config->settings->organizationsDatabaseName;
-
-			$orgContactsArray = array();
-
-			$query = "SELECT * FROM {$dbName}.Contact WHERE organizationID = '" . $organizationID . "' ORDER BY `name`";
-
-			return $this->db->processQuery($query, 'assoc');
-
-		} else {
-			return false;
-		} 	
-	}
-
 	public function getSiblingResourcesArray($organizationID) {
 
 			$query = "SELECT DISTINCT r.resourceID, r.titleText FROM ResourceOrganizationLink rol 

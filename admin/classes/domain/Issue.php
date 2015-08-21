@@ -7,10 +7,14 @@ class Issue extends DatabaseObject {
 	protected function overridePrimaryKeyName() {}
 
 	public function getContacts() {
-		$orgDB = $this->db->config->settings->organizationsDatabaseName;
+		if ($this->db->config->settings->organizationsModule == 'Y' && $this->db->config->settings->organizationsDatabaseName) {
+			$contactsDB = $this->db->config->settings->organizationsDatabaseName;
+		} else {
+			$contactsDB = $this->db->config->database->name;
+		}
 		$query = "SELECT ic.contactID,c.name,c.emailAddress
 				FROM IssueContact ic
-				LEFT JOIN `{$orgDB}`.Contact c ON c.contactID=ic.contactID 
+				LEFT JOIN `{$contactsDB}`.Contact c ON c.contactID=ic.contactID 
 				WHERE ic.issueID=".$this->issueID;
 		$result = $this->db->processQuery($query, 'assoc');
 		$objects = array();

@@ -8,8 +8,9 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 $organizationArray = $resource->getOrganizationArray();
 $organizationData = $organizationArray[0];
 
+$contactsArray = $resource->getUnarchivedContacts();
 if ($organizationData['organizationID']) {
-	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
+//	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
 	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
 ?>
 
@@ -36,7 +37,7 @@ if ($organizationData['organizationID']) {
 				<select multiple style="min-height: 60px;" type='text' id='contactIDs' name='contactIDs[]'>
 <?php 
 
-	foreach ($organizationContactsArray as $contact) {
+	foreach ($contactsArray as $contact) {
 		echo "		<option value=\"{$contact['contactID']}\">{$contact['name']}</option>";
 	}
 

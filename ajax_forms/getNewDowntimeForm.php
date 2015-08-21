@@ -60,7 +60,7 @@ if ($organizationData['organizationID']) {
 				<select class="downtimeType" name="downtimeType">
 <?php
 			foreach ($downtimeTypeNames as $downtimeType) {
-				echo "<option value=".$downtimeType["downtimeTypeID"].">".$downtimeType["name"]."</option>";
+				echo "<option value=".$downtimeType["downtimeTypeID"].">".$downtimeType["shortName"]."</option>";
 			}
 ?>
 				</select>

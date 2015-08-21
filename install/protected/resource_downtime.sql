@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS `Downtime` (
 DROP TABLE IF EXISTS `DowntimeType`;
 CREATE TABLE IF NOT EXISTS `DowntimeType` (
   `downtimeTypeID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL,
+  `shortName` varchar(80) NOT NULL,
   PRIMARY KEY (`downtimeTypeID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

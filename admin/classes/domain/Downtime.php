@@ -12,7 +12,7 @@ class Downtime extends DatabaseObject {
 
 		//if exists in the database
 		if (isset($this->primaryKey)) {	
-			$query = "SELECT d.*, dt.name, i.subjectText
+			$query = "SELECT d.*, dt.shortName, i.subjectText
 				  FROM Downtime d
 				  LEFT JOIN DowntimeType dt ON dt.downtimeTypeID=d.downtimeTypeID
 				  LEFT JOIN Issue i ON i.issueID=d.issueID
@@ -39,8 +39,8 @@ class Downtime extends DatabaseObject {
 	public function save() {
 
 		//We have added the name attribute after the fact, and here, we are cleaning it up
-		unset($this->attributes["name"]); 
-		unset($this->attributesNames["name"]);
+		unset($this->attributes["shortName"]); 
+		unset($this->attributesNames["shortName"]);
 
 		unset($this->attributes["subjectText"]); 
 		unset($this->attributesNames["subjectText"]);

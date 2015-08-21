@@ -15,7 +15,7 @@ function generateDowntimeHTML($downtime,$associatedEntities=null) {
 	$html .= "
 	  	<dl>
 	  		<dt>Type:</dt> 
-	  		<dd>{$downtime->name}</dd>
+	  		<dd>{$downtime->shortName}</dd>
 
 	  		<dt>Downtime Start:</dt> 
 	  		<dd>{$downtime->startDate}</dd>

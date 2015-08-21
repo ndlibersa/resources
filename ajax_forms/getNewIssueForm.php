@@ -10,7 +10,6 @@ $organizationData = $organizationArray[0];
 
 $contactsArray = $resource->getUnarchivedContacts();
 if ($organizationData['organizationID']) {
-//	$organizationContactsArray = $resource->organizationContactsArray($organizationData['organizationID']);
 	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
 ?>
 

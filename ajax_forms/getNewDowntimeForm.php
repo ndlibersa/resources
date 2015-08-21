@@ -76,7 +76,7 @@ if ($issues) {
 					<option value="">none</option>
 <?php
 			foreach ($issues as $issue) {
-				echo "<option".(($issueID) ? ' selected':'')." value=".$issue->issueID.">".$issue->subjectText."</option>";
+				echo "<option".(($issueID == $issue->issueID) ? ' selected':'')." value=".$issue->issueID.">".$issue->subjectText."</option>";
 			}
 ?>
 				</select>

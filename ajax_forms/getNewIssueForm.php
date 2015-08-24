@@ -45,6 +45,9 @@ if ($organizationData['organizationID']) {
 				<span id='span_error_contactName' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
+<?php
+if ($config->settings->organizationsModule == 'Y') {
+?>
 		<tr>
 			<td></td>
 			<td>
@@ -53,6 +56,9 @@ if ($organizationData['organizationID']) {
 				<div id="inlineContact"></div>
 			</td>
 		</tr>
+<?php
+}
+?>
 		<tr>
 			<td><label>CC myself:</label></td>
 			<td>

@@ -397,49 +397,49 @@ class Resource extends DatabaseObject {
 
 
 	//returns array of contact objects
-	public function getUnarchivedContacts(){
-
-
+	public function getUnarchivedContacts($moduleFilter=false){
 		$config = new Configuration;
+		$resultArray = array();
 		$contactsArray = array();
 
-		//get resource specific contacts first
-		$query = "SELECT C.*, GROUP_CONCAT(CR.shortName SEPARATOR '<br /> ') contactRoles
-			FROM Contact C, ContactRole CR, ContactRoleProfile CRP
-			WHERE (archiveDate = '0000-00-00' OR archiveDate is null)
-			AND C.contactID = CRP.contactID
-			AND CRP.contactRoleID = CR.contactRoleID
-			AND resourceID = '" . $this->resourceID . "'
-			GROUP BY C.contactID
-			ORDER BY C.name";
+		if (!$moduleFilter || $moduleFilter == 'resources') {
+			//get resource specific contacts first
+			$query = "SELECT C.*, GROUP_CONCAT(CR.shortName SEPARATOR '<br /> ') contactRoles
+				FROM Contact C, ContactRole CR, ContactRoleProfile CRP
+				WHERE (archiveDate = '0000-00-00' OR archiveDate is null)
+				AND C.contactID = CRP.contactID
+				AND CRP.contactRoleID = CR.contactRoleID
+				AND resourceID = '" . $this->resourceID . "'
+				GROUP BY C.contactID
+				ORDER BY C.name";
 
-		$result = $this->db->processQuery($query, 'assoc');
+			$result = $this->db->processQuery($query, 'assoc');
 
 
-		//need to do this since it could be that there's only one request and this is how the dbservice returns result
-		if (isset($result['contactID'])){
+			//need to do this since it could be that there's only one request and this is how the dbservice returns result
+			if (isset($result['contactID'])){
 
-			foreach (array_keys($result) as $attributeName) {
-				$resultArray[$attributeName] = $result[$attributeName];
-			}
-
-			array_push($contactsArray, $resultArray);
-
-		}else{
-			foreach ($result as $row) {
-				$resultArray = array();
-				foreach (array_keys($row) as $attributeName) {
-					$resultArray[$attributeName] = $row[$attributeName];
+				foreach (array_keys($result) as $attributeName) {
+					$resultArray[$attributeName] = $result[$attributeName];
 				}
 
 				array_push($contactsArray, $resultArray);
+
+			}else{
+				foreach ($result as $row) {
+					$resultArray = array();
+					foreach (array_keys($row) as $attributeName) {
+						$resultArray[$attributeName] = $row[$attributeName];
+					}
+
+					array_push($contactsArray, $resultArray);
+				}
 			}
 		}
 
 
-
 		//if the org module is installed also get the org contacts from org database
-		if ($config->settings->organizationsModule == 'Y'){
+		if ($config->settings->organizationsModule == 'Y' && (!$moduleFilter || $moduleFilter == 'organizations')) {
 			$dbName = $config->settings->organizationsDatabaseName;
 
 			$query = "SELECT distinct OC.*, O.name organizationName, GROUP_CONCAT(DISTINCT CR.shortName SEPARATOR '<br /> ') contactRoles

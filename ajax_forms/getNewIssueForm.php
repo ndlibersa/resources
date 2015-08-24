@@ -8,7 +8,9 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 $organizationArray = $resource->getOrganizationArray();
 $organizationData = $organizationArray[0];
 
-$contactsArray = $resource->getUnarchivedContacts();
+//the issues feature currently support org or resource contacts, but not both
+$moduleFilter = ($config->settings->organizationsModule == 'Y') ? 'organizations':'resources';
+$contactsArray = $resource->getUnarchivedContacts($moduleFilter);
 if ($organizationData['organizationID']) {
 	$organizationResourcesArray = $resource->getSiblingResourcesArray($organizationData['organizationID']);
 ?>

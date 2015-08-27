@@ -38,8 +38,6 @@ $search = Resource::getSearch();
 
 $_SESSION['ref_script']=$currentPage;
 
-
-
 ?>
 
 <div style='text-align:left;'>

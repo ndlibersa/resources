@@ -34,6 +34,24 @@ class ResourceType extends DatabaseObject {
 		return $result['childCount'];
 
 	}
+ 
+ public static function getResourceTypeID($type) {
+       $object = new ResourceType();
+       $id = null;
+       $query = "SELECT  resourceTypeID FROM ResourceType WHERE upper(shortName) = '" . str_replace("'", "''", strtoupper($type)) . "'";
+           
+       $result =$object->db->processQuery($query);
+       
+       if (count($result) == 0){ //this type doesn't exist, we create it
+             $resType = new ResourceType();
+             $resType->shortName = $type;
+             $resType->save();
+             $id = $resType->resourceTypeID;
+       } else {
+             $id = $result[0];
+       }
+       return $id;
+ }
 
 
 }

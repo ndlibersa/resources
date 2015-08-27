@@ -120,7 +120,7 @@ foreach($resourceArray as $resource) {
     $updateDateFormatted,
     $resource['updateName'],
     $resource['status'],
-    $resource['isbnOrISSN'],
+    $resource['isbnOrISSN'], //DEBUG _ this attribute doesn't exist anymore
     $resource['resourceURL'],
     $resource['resourceAltURL'],	
     $resource['organizationNames'],

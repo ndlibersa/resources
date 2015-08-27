@@ -1,0 +1,268 @@
+/**************************************
+ **** 		getKBSearchResults.php		****
+ **************************************/
+.div_results{
+      margin-top: 10px;
+      width: 745px;
+}
+.results_table{
+      width: 745px;
+      height: 190px;
+      border-bottom: 1px solid black;
+}
+
+.results_table_line{	
+      height: 20%;
+}
+
+.results_table_title_cell{
+      width: 90%;
+}
+
+.results_table_cell{
+      width: 5%;
+}
+
+.results_type_title{
+      font-size: 150%;
+      font-weight: bold;
+      margin-bottom: 10px;
+}
+
+.moreResults{
+      float: right;
+}
+
+.linkStyle{
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+}
+
+
+
+
+/****************************************
+ ****	  getGokbResourceDetails.php	****
+ ****************************************/
+
+#resourceDetails{
+      width: 745px;
+}
+
+#detailsTabs{
+      margin-top: 15px;
+}
+
+#detailsTabs ul{
+      font: normal 14px arial, sans, sans-serif;
+      -list-style-type: none;
+      /*border-bottom: 1px solid gray;*/
+      margin: 0;
+      padding-left:0;
+      padding-right:0;
+      padding-bottom: 26px;
+}
+#detailsTabs ul li{
+      display: inline;
+      float: left;
+      height: 17px;
+      min-width:80px;
+      text-align:center;
+      text-decoration: none;
+      padding: 4px;
+      margin: 1px 0px 0px 0px;
+      border: 1px solid gray;
+      color: #666;
+      background-color:#eee;
+      cursor: pointer;
+}
+
+
+#detailsTabs ul li.selected {
+      color: #000;
+      font-weight:bold;
+      background-color: #fff;
+      border-bottom: 1px solid #fff;
+      cursor: default;
+}
+
+#detailsTabs ul li:hover{
+      color: #000;
+      font-weight:bold;
+      background-color: #fff;
+}
+
+#detailsContainer{
+      background: white;
+      border:1px solid gray;
+      /*  height:350px;*/
+      width:100%;
+      padding:0;
+      margin:0;
+      margin-top: 1px;
+      left:0;
+      top:0;	
+}
+
+#resourceName{
+      text-align: center;
+      font-size: 110%;
+}
+
+#resType{
+      text-decoration: italic;
+      margin-left: 25px;
+}
+
+#resName{
+      font-weight: bold;
+}
+
+#detailsTab{
+      margin: 10px;
+}
+
+#detailsTab tr{
+      height: 10%;
+}
+
+.detailsTab_val{
+      padding-left: 5px;
+}
+
+.detailsTab_tag{
+      font-weight: bold;
+      padding-right: 10px;
+      text-align: right;
+}
+
+#span_select{
+      float: right;
+}
+
+#tippsTable tr{
+      height: 25px;
+}
+
+.tippLink{
+      text-decoration: underline;
+      cursor: pointer;
+}
+
+#noTipps{
+      margin-bottom: -10px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+}
+
+/********************************
+ ****	 	   getPagination.php		****
+ ********************************/
+#pageIterator {
+      margin: 10px;
+      text-align: center;
+      font-weight: normal;
+      color: #000;
+}
+
+#pageIterator ul li{
+      display: inline;
+      border: 1px solid black;
+      margin-left: 5px;
+      padding: 5px;
+      cursor: pointer;
+}
+
+#pageIterator ul li:hover{
+
+      font-weight:bold;
+      background-color: #fff;
+      border: 2px solid black;
+}
+
+#pageIterator ul li.active{
+      background-color: #e9edf0;
+      border: 1px solid #e9edf0;
+      cursor: default;
+}
+#pageIterator ul li.active:hover{
+      font-weight: normal;
+}
+
+#pageIterator ul li.invisible{
+      display: none;
+}
+
+/*****************************************
+ ****	 	   getResourceNewForm.php		****
+ *****************************************/
+.loupe{
+      cursor: pointer;
+}
+
+#searchFieldsText{
+      margin: 30px;
+}
+
+/***************************************************
+ ****	 	   customImportedPackageContent.php		****
+ ***************************************************/
+
+#customPackageFieldset{
+      height: 375px;
+}
+
+#customTbody{
+      height: 300px;
+      position: absolute;
+      overflow: auto;
+      width: 745px;
+      border-top: 1px solid black;
+}
+
+#customPackageTable{
+      position: fixed;
+      height: 350px;
+      width: 750px;
+      overflow: auto;
+      border: 1px solid black;
+}
+
+#customPackageTable tr{
+      height: 20px;
+}
+
+#customPackageTable thead{
+      width: 100%;
+}
+
+.customCb{
+      width: 75px;
+      text-align: center;
+}
+
+#removedRes
+{
+      border-left: 2px solid black;
+      margin-left: 20px;
+      margin-top: 10px;
+      padding: 0 5px 5px;
+      width: 80%;
+}
+
+#removedRes tr{
+      height: 30px;
+}
+/************************
+ ****			  Multiple				****
+ ************************/
+
+.invisible{
+      display: none;
+}
+
+.search_nav_button{ 
+      margin-top: 5px;
+}

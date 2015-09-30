@@ -30,8 +30,8 @@ class AlertDaysInAdvance extends DatabaseObject {
 
 		$query = "SELECT DISTINCT resourceID
 					FROM Resource
-					WHERE ((DATE_SUB(subscriptionEndDate, INTERVAL " . $this->daysInAdvanceNumber . " DAY) = CURDATE()) OR
-					(subscriptionEndDate = CURDATE()))
+					WHERE ((DATE_SUB(currentEndDate, INTERVAL " . $this->daysInAdvanceNumber . " DAY) = CURDATE()) OR
+					(currentEndDate = CURDATE()))
 					AND subscriptionAlertEnabledInd = '1'";
 
 

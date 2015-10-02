@@ -64,7 +64,7 @@ if ($config->settings->organizationsModule == 'Y') {
 		<tr>
 			<td><label>CC myself:</label></td>
 			<td>
-				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' />
+				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' checked />
 				<span id='span_error_ccCreator' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
@@ -102,10 +102,10 @@ if ($config->settings->organizationsModule == 'Y') {
 					<input type="checkbox" class="issueResources entityArray" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources entityArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all resources of <?php echo $organizationData['organization']; ?></label>
+					<input type="checkbox" class="issueResources entityArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all <?php echo $organizationData['organization']; ?> resources.</label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to other Resources of <?php echo $resource->titleText ?></label>
+					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to selected <?php echo $organizationData['organization'] ?> resources.</label>
 				</div>
 				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php
@@ -123,7 +123,7 @@ if ($config->settings->organizationsModule == 'Y') {
 
 	<p> Send me a reminder every 
 		<select name="issue[reminderInterval]">
-			<?php for ($i = 1; $i <= 31; $i++) echo "<option>{$i}</option>"; ?>
+			<?php for ($i = 1; $i <= 31; $i++) echo "<option".(($i==7) ? ' selected':'').">{$i}</option>"; ?>
 		</select> day(s) 
 	</p>
 

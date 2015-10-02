@@ -99,5 +99,4 @@ if (count($issueEmails) > 0) {
 		mail($email, "{$newIssue->subjectText}",$emailMessage);
 	}
 }
-echo $emailMessage;
 ?>

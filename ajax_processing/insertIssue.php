@@ -88,7 +88,7 @@ if (count($contactIDs)) {
 	//send emails to contacts
 	foreach ($organizationContactsArray as $contactData) {
 		if (in_array($contactData['contactID'],$contactIDs)) {
-			mail($email, "{$newIssue->subjectText}",$emailMessage);
+			mail($email, "{$newIssue->subjectText}",$emailMessage,"From: {$user->emailAddress}\r\nReply-To: {$user->emailAddress}");
 		}
 	}
 }
@@ -96,7 +96,7 @@ if (count($contactIDs)) {
 if (count($issueEmails) > 0) {
 	//send emails to CCs
 	foreach ($issueEmails as $email) {
-		mail($email, "{$newIssue->subjectText}",$emailMessage);
+		mail($email, "{$newIssue->subjectText}",$emailMessage,"From: {$user->emailAddress}\r\nReply-To: {$user->emailAddress}");
 	}
 }
 ?>

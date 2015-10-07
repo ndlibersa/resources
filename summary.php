@@ -195,7 +195,7 @@ if ($resource->titleText){
 
 
 	<div class='printContent'>
-	<table class='linedFormTable'>
+	<table class='linedFormTable' style='width:510px;'>
 		<tr>
 		<th colspan='2' style='margin-top: 7px; margin-bottom: 5px;'>
 		<span style='float:left; vertical-align:top; margin-left:3px;'><span style='font-weight:bold;font-size:120%;margin-right:8px;'><?php echo $resource->titleText; ?></span><span style='font-weight:normal;font-size:100%;'><?php echo $resourceFormat->shortName . " " . $resourceType->shortName; ?></span></span>
@@ -277,7 +277,7 @@ if ($resource->titleText){
 
 			foreach ($childResourceArray as $childResource){
 				$childResourceObj = new Resource(new NamedArguments(array('primaryKey' => $childResource['resourceID'])));
-				echo $childResourceObj->titleText . "&nbsp;&nbsp;<br />";
+				echo "<span style='float: left;'>" . $childResourceObj->titleText . "&nbsp;&nbsp;(child)</span>";
 			}
 
 
@@ -397,7 +397,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable'>
+		<table class='linedFormTable' style='width:510px;'>
 			<tr>
 			<th colspan='2'>Additional Product Notes</th>
 			</tr>
@@ -416,7 +416,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable'>
+	<table class='linedFormTable' style='width:510px;'>
 	<tr>
 	<th colspan='2' style='vertical-align:bottom;'>
 	<span style='float:left;vertical-align:bottom;'>Order</span>
@@ -480,9 +480,9 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable'>
+	<table class='linedFormTable' style='width:510px;'>
 	<tr>
-	<th colspan='3'>Cost History</th>
+	<th colspan='3'>Initial Cost</th>
 	</th>
 	</tr>
 
@@ -505,7 +505,7 @@ if ($resource->titleText){
 	</table>
 	<br />
 
-	<table class='linedFormTable'>
+	<table class='linedFormTable' style='width:510px;'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'>License</span>
@@ -550,7 +550,6 @@ if ($resource->titleText){
 
 	</table>
 
-	<br />
 
 	<?php
 
@@ -585,7 +584,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable'>
+		<table class='linedFormTable' style='width:510px;'>
 			<tr>
 			<th colspan='2'>Additional Acquisitions Notes</th>
 			</th>&nbsp;
@@ -606,7 +605,7 @@ if ($resource->titleText){
 	<br />
 
 
-	<table class='linedFormTable'>
+	<table class='linedFormTable' style='width:510px;'>
 	<tr>
 	<th colspan='2'>
 	<span style='float:left;vertical-align:bottom;'>Access Information</span>
@@ -710,7 +709,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable'>
+		<table class='linedFormTable' style='width:510px;'>
 			<tr>
 			<th colspan='2'>Additional Access Notes</th>
 			</tr>
@@ -725,7 +724,7 @@ if ($resource->titleText){
 	}
 	?>
 
-  <table class='linedFormTable'>
+  <table class='linedFormTable' style='width:510px;'>
     <tr>
       <th colspan='2' style='vertical-align:bottom;'>
         <span style='float:left;vertical-align:bottom;'>Cataloging</span>
@@ -823,7 +822,7 @@ if ($resource->titleText){
 
 	if (count($noteArray) > 0){
 	?>
-		<table class='linedFormTable'>
+		<table class='linedFormTable' style='width:510px;'>
 			<tr>
 			<th colspan='2'>Additional Cataloging Notes</th>
 			</tr>

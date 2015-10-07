@@ -1,7 +1,12 @@
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> global settings needed for thickbox <<<-----------------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------------*/
-*{padding: 0; margin: 0;}
+
+* {
+	padding: 0;
+	margin: 0;
+	border-spacing: 0px;
+}
 
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> thickbox specific link and font settings <<<------------------------------------------------------*/
@@ -34,7 +39,10 @@
 	width:100%;
 }
 
-.smallText{color:#3D545D;font-size:92%;}
+.smallText {
+	color:#3D545D;
+	font-size:12px;
+}
 
 .TB_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}
 .TB_overlayBG {
@@ -114,7 +122,9 @@ margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = d
 }
 
 #TB_ajaxContent.TB_modal{
-	padding:15px;
+	padding: 5px;
+	width: auto !important;
+	height: auto !important;
 }
 
 #TB_ajaxContent p{

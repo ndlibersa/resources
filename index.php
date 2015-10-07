@@ -53,7 +53,7 @@ $_SESSION['ref_script']=$currentPage;
     }
     ?>
     
-	<table class='noBorder'>
+	<table class='noBorder' id='title-search'>
 	<tr><td style='text-align:left;width:75px;' align='left'>
 	<span style='font-size:130%;font-weight:bold;'>Search</span><br />
 	<a href='javascript:void(0)' class='newSearch'>new search</a>
@@ -103,8 +103,8 @@ $_SESSION['ref_script']=$currentPage;
 	<option value=''>All</option>
 	<?php
 
-		$display = array();
-		$acquisitionType = new AcquisitionType();
+	  $display = array();
+	  $acquisitionType = new AcquisitionType();
 
 		foreach($acquisitionType->allAsArray() as $display) {
 			if ($search['acquisitionTypeID'] == $display['acquisitionTypeID']) {

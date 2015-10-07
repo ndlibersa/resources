@@ -154,6 +154,15 @@ CREATE TABLE  `Currency` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `Funds`;
+CREATE TABLE `Funds` (
+  `fundCode` varchar(3) NOT NULL,
+  `shortName` varchar(200) default NULL,
+  PRIMARY KEY (`fundCode`),
+  UNIQUE KEY `fundCode` (`fundCode`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
 DROP TABLE IF EXISTS `ExternalLogin`;
 CREATE TABLE  `ExternalLogin` (
   `externalLoginID` int(11) NOT NULL auto_increment,

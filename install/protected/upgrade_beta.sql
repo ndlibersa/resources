@@ -26,6 +26,14 @@ CREATE TABLE  `Currency` (
   UNIQUE KEY `currencyCode` (`currencyCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `Funds`;
+CREATE TABLE `Funds` (
+  `fundCode` varchar(3) NOT NULL,
+  `shortName` varchar(200) default NULL,
+  PRIMARY KEY (`fundCode`),
+  UNIQUE KEY `fundCode` (`fundCode`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 ALTER TABLE `Resource` ADD COLUMN `archiveDate` DATE AFTER `updateLoginID`,
  ADD COLUMN `archiveLoginID` VARCHAR(45) AFTER `archiveDate`,
  ADD COLUMN `workflowRestartDate` DATE AFTER `archiveLoginID`,

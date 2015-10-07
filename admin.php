@@ -68,6 +68,7 @@ if ($user->isAdmin()){
 					<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='CostDetails' class='AdminLink'>Cost Details</div></td></tr>
 				<?php } ?>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='CurrencyLink'>Currency</div></td></tr>
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='FundLink'>Funds</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='LicenseStatus' class='AdminLink'>License Status</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='NoteType' class='AdminLink'>Note Type</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='OrderType' class='AdminLink'>Order Type</div></td></tr>

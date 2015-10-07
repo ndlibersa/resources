@@ -45,6 +45,9 @@ $(document).ready(function(){
         updateCurrencyTable();
     });
 
+    $(".FundLink").click(function () {
+        updateFundTable();
+    });
 
     $('.removeData').live('click', function () {
         deleteData($(this).attr("cn"), $(this).attr("id"));
@@ -60,6 +63,7 @@ function updateTable(className){
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".AdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
     $("#" + className).parent().parent().addClass('selected');
 
@@ -88,6 +92,7 @@ function updateCurrencyTable(){
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".UserAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().addClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 
     $.ajax({
@@ -106,6 +111,32 @@ function updateCurrencyTable(){
 
 }
 
+function updateFundTable(){
+
+    $(".AlertAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
+    $(".WorkflowAdminLink").parent().parent().removeClass('selected');
+    $(".UserAdminLink").parent().parent().removeClass('selected');
+    $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().addClass('selected');
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
+
+    $.ajax({
+        type:       "GET",
+        url:        "ajax_htmldata.php",
+        cache:      false,
+        data:       "action=getAdminFundDisplay",
+        success:    function(html) {
+            $('#div_AdminContent').html(html);
+            tb_reinit();
+        }
+    });
+
+    //make sure error is empty
+    $('#div_error').html("");
+
+}
+
 
 function updateUserTable(){
 
@@ -113,6 +144,7 @@ function updateUserTable(){
     $(".AdminLink").parent().parent().removeClass('selected'); 
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".UserAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 
@@ -138,7 +170,8 @@ function updateAlertTable(){
     $(".UserAdminLink").parent().parent().removeClass('selected'); 
     $(".AdminLink").parent().parent().removeClass('selected'); 
     $(".WorkflowAdminLink").parent().parent().removeClass('selected'); 
-    $(".CurrencyLink").parent().parent().removeClass('selected'); 
+    $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".AlertAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 
@@ -165,6 +198,7 @@ function updateWorkflowTable(){
     $(".AdminLink").parent().parent().removeClass('selected'); 
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
 
@@ -190,6 +224,7 @@ function updateSubjectsTable(){
     $(".AdminLink").parent().parent().removeClass('selected'); 
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().addClass('selected');  
 
@@ -278,6 +313,36 @@ function validateCurrency() {
     }else{
         return true;
     }	
+}
+
+function submitFundData(){
+    if(validateFund() === true){
+        $.ajax({
+            type:       "POST",
+            url:        "ajax_processing.php?action=updateFund",
+            cache:      false,
+            data:       { editFundCode: $('#editFundCode').val(), fundCode: $('#fundCode').val(), shortName: $('#shortName').val() },
+            success:    function(html) {
+                updateCurrencyTable();
+                window.parent.tb_remove();
+            }
+        });
+    }
+}
+
+// Validate fund form
+function validateFund() {
+    if ($("#fundCode").val() == ''){
+        $("#span_errors").html('Error - Please enter the fund code');
+        $("#fundCode").focus();
+        return false;
+    }else if($("#shortName").val() == ''){
+        $("#span_errors").html('Error - Please enter a short name for the fund');
+        $("#shortName").focus();
+        return false;
+    }else{
+        return true;
+    }
 }
 
 function submitAdminAlertEmail(){

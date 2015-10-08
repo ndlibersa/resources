@@ -1,13 +1,13 @@
 <?php
 
-		//$instanceArray = array();
-		//$obj = new Fund();
+		$instanceArray = array();
+		$obj = new Fund();
 
-		//$instanceArray = $obj->allAsArray();
+		$instanceArray = $obj->allAsArray();
 
 		echo "<div class='adminRightHeader'>Fund</div>";
 
-		//if (count($instanceArray) > 0){
+		if (count($instanceArray) > 0){
 			?>
 			<table class='linedDataTable'>
 				<tr>

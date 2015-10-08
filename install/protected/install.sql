@@ -156,11 +156,10 @@ CREATE TABLE  `Currency` (
 
 DROP TABLE IF EXISTS `Funds`;
 CREATE TABLE `Funds` (
-  `id` int(11) NOT NULL  auto_increment,
   `fundCode` varchar(3) NOT NULL,
   `shortName` varchar(200) default NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` id
+  PRIMARY KEY (`fundCode`),
+  UNIQUE KEY `fundCode` (`fundCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 

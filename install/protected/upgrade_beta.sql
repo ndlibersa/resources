@@ -28,10 +28,11 @@ CREATE TABLE  `Currency` (
 
 DROP TABLE IF EXISTS `Funds`;
 CREATE TABLE `Funds` (
+  `id` int(11) NOT NULL,
   `fundCode` varchar(3) NOT NULL,
   `shortName` varchar(200) default NULL,
-  PRIMARY KEY (`fundCode`),
-  UNIQUE KEY `fundCode` (`fundCode`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` id
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 ALTER TABLE `Resource` ADD COLUMN `archiveDate` DATE AFTER `updateLoginID`,

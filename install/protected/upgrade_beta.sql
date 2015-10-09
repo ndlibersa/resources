@@ -28,7 +28,7 @@ CREATE TABLE  `Currency` (
 
 DROP TABLE IF EXISTS `Funds`;
 CREATE TABLE `Funds` (
-  `fundCode` varchar(3) NOT NULL,
+  `fundCode` varchar(20) NOT NULL,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY (`fundCode`),
   UNIQUE KEY `fundCode` (`fundCode`)

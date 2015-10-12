@@ -12,6 +12,10 @@
 			$subStartArray      = array();  $subStartArray      = explode(':::',$_POST['subStarts']);
 			$subEndArray        = array();  $subEndArray        = explode(':::',$_POST['subEnds']);
 			$fundNameArray      = array();  $fundNameArray      = explode(':::',$_POST['fundNames']);
+			$fundCodeArray      = array();  $fundCodeArray      = explode(':::',$_POST['fundCodes']);
+      $pteArray           = array();  $pteArray           = explode(':::',$_POST['pricesTaxExcluded']);
+      $taxRateArray       = array();  $taxRateArray       = explode(':::',$_POST['taxRates']);
+      $ptiArray           = array();  $ptiArray           = explode(':::',$_POST['pricesTaxIncluded']);
 			$paymentAmountArray = array();  $paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
 			$currencyCodeArray  = array();  $currencyCodeArray  = explode(':::',$_POST['currencyCodes']);
 			$orderTypeArray     = array();  $orderTypeArray     = explode(':::',$_POST['orderTypes']);
@@ -28,6 +32,10 @@
 					$resourcePayment->subscriptionStartDate = $start;
 					$resourcePayment->subscriptionEndDate   = $end;
 					$resourcePayment->fundName      = $fundNameArray[$key];
+					$resourcePayment->fundCode      = $fundCodeArray[$key];
+					$resourcePayment->priceTaxExcluded = cost_to_integer($pteArray[$key]);
+					$resourcePayment->taxRate       = $taxRateArray[$key];
+					$resourcePayment->priceTaxIncluded = cost_to_integer($ptiArray[$key]);
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
 					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
 					$resourcePayment->orderTypeID   = $value;

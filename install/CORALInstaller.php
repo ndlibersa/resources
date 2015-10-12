@@ -9,8 +9,8 @@ if (!function_exists('debug')) {
 }
 
 class CORALInstaller {
-  
-  protected $db;
+
+  public $db; // because CORALInstaller::query does unwanted things with result
   public $error;
   protected $statusNotes;
   protected $config;
@@ -82,17 +82,17 @@ class CORALInstaller {
 		if ($password === null) {
 		  $password = $this->config->database->password;
 	  }
-		$this->db = @mysql_connect($host, $username, $password);
-		if (!$this->db) {
-		  
-		  $this->error = mysql_error();
+		$this->db = new mysqli($host, $username, $password);
+		if ($this->db->connect_error) {
+
+		  $this->error = $this->db->connect_error;
 		  if (!$this->error) {
 		    $this->error = "Access denied for user '$username'";
 		  }
 	  } else {
   		$databaseName = $this->config->database->name;
-  		mysql_select_db($databaseName, $this->db);
-  		$this->error = mysql_error($this->db);
+  		$this->db->select_db($databaseName);
+  		$this->error = $this->db->error;
 		}
 		
 		if ($this->error) {
@@ -102,26 +102,32 @@ class CORALInstaller {
       $this->statusNotes['database_connection'] = "Database connection successful";
     }
 	}
-	
-	public function query($sql) {
-		$result = mysql_query($sql, $this->db);
-		
+
+    public function query($sql) {
+        $result = $this->db->query($sql);
+        $this->checkForError();
+        return $result;
+    }
+
+	public function processQuery($sql) {
+		$result = $this->db->query($sql);
+
 		$this->checkForError();
 		$data = array();
 
-		if (is_resource($result)) {
-			while ($row = mysql_fetch_array($result)) {
+		if ($result instanceof mysqli_result) {
+			while ($row = $result->fetch_array()) {
 				array_push($data, $row);
 			}
 		} else if ($result) {
-			$data = mysql_insert_id($this->db);
+			$data = $this->db->insert_id;
 		}
 
 		return $data;
 	}
 	
 	protected function checkForError() {
-		if ($this->error = mysql_error($this->db)) {
+		if ($this->error = $this->db->error) {
 			throw new Exception("There was a problem with the database: " . $this->error);
 		}
 	}

@@ -315,6 +315,7 @@ function validateCurrency() {
     }	
 }
 
+// Validate fund form
 function submitFundData(){
     if(validateFund() === true){
         $.ajax({
@@ -323,7 +324,7 @@ function submitFundData(){
             cache:      false,
             data:       { editFundCode: $('#editFundCode').val(), fundCode: $('#fundCode').val(), shortName: $('#shortName').val() },
             success:    function(html) {
-                updateCurrencyTable();
+                updateFundTable();
                 window.parent.tb_remove();
             }
         });

@@ -27,7 +27,7 @@ class Fund extends DatabaseObject {
 
 
 	public function allAsArray() {
-		$query = "SELECT * FROM FUNDS ORDER BY 1";
+		$query = "SELECT * FROM FUND ORDER BY 1";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$resultArray = array();

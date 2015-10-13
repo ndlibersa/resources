@@ -38,7 +38,7 @@ $(document).ready(function(){
 
     $(".SubjectsAdminLink").click(function () {
         updateSubjectsTable();
-    });	 
+    });
 
 
     $(".CurrencyLink").click(function () {
@@ -64,7 +64,7 @@ function updateTable(className){
     $(".AdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
-    $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
     $("#" + className).parent().parent().addClass('selected');
 
     $.ajax({
@@ -72,7 +72,7 @@ function updateTable(className){
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminDisplay&className=" + className,
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
@@ -87,27 +87,27 @@ function updateTable(className){
 
 function updateCurrencyTable(){
 
-    $(".AlertAdminLink").parent().parent().removeClass('selected'); 
-    $(".AdminLink").parent().parent().removeClass('selected'); 
+    $(".AlertAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".UserAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().addClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
-    $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
         type:       "GET",
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminCurrencyDisplay",
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
     });
 
     //make sure error is empty
-    $('#div_error').html("");      
+    $('#div_error').html("");
 
 }
 
@@ -140,107 +140,107 @@ function updateFundTable(){
 
 function updateUserTable(){
 
-    $(".AlertAdminLink").parent().parent().removeClass('selected'); 
-    $(".AdminLink").parent().parent().removeClass('selected'); 
+    $(".AlertAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
     $(".UserAdminLink").parent().parent().addClass('selected');
-    $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
         type:       "GET",
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminUserDisplay",
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
     });
 
     //make sure error is empty
-    $('#div_error').html("");      
+    $('#div_error').html("");
 
 }
 
 
 function updateAlertTable(){
 
-    $(".UserAdminLink").parent().parent().removeClass('selected'); 
-    $(".AdminLink").parent().parent().removeClass('selected'); 
-    $(".WorkflowAdminLink").parent().parent().removeClass('selected'); 
+    $(".UserAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
+    $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
     $(".AlertAdminLink").parent().parent().addClass('selected');
-    $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
         type:       "GET",
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminAlertDisplay",
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
     });
 
     //make sure error is empty
-    $('#div_error').html("");      
+    $('#div_error').html("");
 
 }
 
 
 function updateWorkflowTable(){
 
-    $(".UserAdminLink").parent().parent().removeClass('selected'); 
-    $(".AdminLink").parent().parent().removeClass('selected'); 
+    $(".UserAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().addClass('selected');
-    $(".SubjectsAdminLink").parent().parent().removeClass('selected'); 
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
         type:       "GET",
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminWorkflowDisplay",
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
     });
 
     //make sure error is empty
-    $('#div_error').html("");      
+    $('#div_error').html("");
 
 }
 
 function updateSubjectsTable(){
 
-    $(".UserAdminLink").parent().parent().removeClass('selected'); 
-    $(".AdminLink").parent().parent().removeClass('selected'); 
+    $(".UserAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
-    $(".SubjectsAdminLink").parent().parent().addClass('selected');  
+    $(".SubjectsAdminLink").parent().parent().addClass('selected');
 
     $.ajax({
         type:       "GET",
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminSubjectDisplay",
-        success:    function(html) { 
+        success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
         }
     });
 
     //make sure error is empty
-    $('#div_error').html("");      
+    $('#div_error').html("");
 
 }
 
@@ -276,7 +276,7 @@ function submitUserData(){
         url:        "ajax_processing.php?action=updateUserData",
         cache:      false,
         data:       { orgloginID: $('#editLoginID').val(), loginID: $('#loginID').val(), firstName: $('#firstName').val(), lastName: $('#lastName').val(), emailAddress: $('#emailAddress').val(), privilegeID: $('#privilegeID').val(), accountTabIndicator: getCheckboxValue('accountTab') },
-        success:    function(html) { 
+        success:    function(html) {
             updateUserTable();
             window.parent.tb_remove();
         }
@@ -292,7 +292,7 @@ function submitCurrencyData(){
             url:        "ajax_processing.php?action=updateCurrency",
             cache:      false,
             data:       { editCurrencyCode: $('#editCurrencyCode').val(), currencyCode: $('#currencyCode').val(), shortName: $('#shortName').val() },
-            success:    function(html) { 
+            success:    function(html) {
                 updateCurrencyTable();
                 window.parent.tb_remove();
             }
@@ -312,7 +312,7 @@ function validateCurrency() {
         return false;
     }else{
         return true;
-    }	
+    }
 }
 
 // Validate fund form
@@ -352,7 +352,7 @@ function submitAdminAlertEmail(){
         url:        "ajax_processing.php?action=updateAdminAlertEmail",
         cache:      false,
         data:       { alertEmailAddressID: $('#editAlertEmailAddressID').val(), emailAddress: $('#emailAddress').val() },
-        success:    function(html) { 
+        success:    function(html) {
             updateAlertTable();
             window.parent.tb_remove();
         }
@@ -378,7 +378,7 @@ function submitAdminAlertDays(){
             url:        "ajax_processing.php?action=updateAdminAlertDays",
             cache:      false,
             data:       { alertDaysInAdvanceID: $('#editAlertDaysInAdvanceID').val(), daysInAdvanceNumber: $('#daysInAdvanceNumber').val() },
-            success:    function(html) { 
+            success:    function(html) {
                 updateAlertTable();
                 window.parent.tb_remove();
             }
@@ -396,15 +396,15 @@ function deleteData(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateTable(className);  
+                    updateTable(className);
                     tb_reinit();
                 }
 
@@ -423,15 +423,15 @@ function deleteGeneralSubject(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteGeneralSubject&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateSubjectsTable();  
+                    updateSubjectsTable();
                     tb_reinit();
                 }
 
@@ -451,15 +451,15 @@ function deleteDetailedSubject(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteDetailedSubject&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateSubjectsTable();  
+                    updateSubjectsTable();
                     tb_reinit();
                 }
 
@@ -479,15 +479,15 @@ function deleteGeneralDetailSubject(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateSubjectsTable();  
+                    updateSubjectsTable();
                     tb_reinit();
                 }
 
@@ -508,21 +508,21 @@ function deleteUser(deleteId){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=User&id=" + deleteId,
-            success:    function(html) { 
-                if (html){		  			  	
-                    showError(html);  
+            success:    function(html) {
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateUserTable();  
+                    updateUserTable();
                     tb_reinit();
                 }
             }
         });
 
     }
-} 
+}
 
 
 function deleteAlert(className, deleteID){
@@ -534,15 +534,15 @@ function deleteAlert(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateAlertTable();  
+                    updateAlertTable();
                     tb_reinit();
                 }
 
@@ -562,15 +562,15 @@ function deleteWorkflow(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateWorkflowTable();  
+                    updateWorkflowTable();
                     tb_reinit();
                 }
 
@@ -590,15 +590,15 @@ function deleteCurrency(className, deleteID){
             url:        "ajax_processing.php",
             cache:      false,
             data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
-            success:    function(html) { 
+            success:    function(html) {
 
-                if (html){		  			  	
-                    showError(html);  
+                if (html){
+                    showError(html);
 
                     // close the div in 3 secs
-                    setTimeout("emptyError();",3000); 
+                    setTimeout("emptyError();",3000);
                 }else{
-                    updateCurrencyTable();  
+                    updateCurrencyTable();
                     tb_reinit();
                 }
 
@@ -608,10 +608,34 @@ function deleteCurrency(className, deleteID){
     }
 }
 
+function deleteFund(className, deleteID){
+    if (confirm("Do you reall want to delete this fund?") == true) {
+
+        $.ajax({
+            type:       "GET",
+            url:        "ajax_processing.php",
+            cache:      false,
+            data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
+            success:    function(html) {
+
+                if (html){
+                    showError(html);
+
+                    // close the div in 3 secs
+                    setTimeout("emptyError();",3000);
+                }else{
+                    updateFundTable();
+                    tb_reinit();
+                }
+
+            }
+        });
+    }
+}
 
 function showError(html){
 
-    $('#div_error').fadeTo(0, 5000, function () { 
+    $('#div_error').fadeTo(0, 5000, function () {
         $('#div_error').html(html);
     });
 
@@ -620,7 +644,7 @@ function showError(html){
 
 function emptyError(){
 
-    $('#div_error').fadeTo(500, 0, function () { 
+    $('#div_error').fadeTo(500, 0, function () {
         $('#div_error').html("");
     });
 

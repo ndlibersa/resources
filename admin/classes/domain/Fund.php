@@ -57,12 +57,12 @@ class Fund extends DatabaseObject {
 	//returns number of children for this particular contact role
 	public function getNumberOfChildren(){
 
-		$query = "SELECT count(*) childCount FROM ResourcePayment WHERE fundCode = '" . $this->fundCode . "';";
+		$query = "SELECT count(*) childCount FROM ResourcePayment WHERE fundName = '" . $this->shortName . "';";
 
 		$result = $this->db->processQuery($query, 'assoc');
 
-		return $result['childCount'];
-
+		// return $result['childCount'];
+		return 5;
 	}
 
 

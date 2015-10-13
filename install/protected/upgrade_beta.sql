@@ -26,8 +26,8 @@ CREATE TABLE  `Currency` (
   UNIQUE KEY `currencyCode` (`currencyCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `Funds`;
-CREATE TABLE `Funds` (
+DROP TABLE IF EXISTS `Fund`;
+CREATE TABLE `Fund` (
   `fundCode` varchar(20) NOT NULL,
   `shortName` varchar(200) default NULL,
   PRIMARY KEY (`fundCode`),

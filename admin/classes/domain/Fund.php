@@ -61,8 +61,7 @@ class Fund extends DatabaseObject {
 
 		$result = $this->db->processQuery($query, 'assoc');
 
-		// return $result['childCount'];
-		return 5;
+		return $result['childCount'];
 	}
 
 

@@ -11,7 +11,7 @@
 
 		<input type='hidden' id='editFundCode' value='<?php echo $updateID; ?>'>
 
-		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Currency"; } else { echo "Add Fund"; } ?></span></div>
+		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Fund"; } else { echo "Add Fund"; } ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -64,4 +64,3 @@
 
 
 	</script>
-

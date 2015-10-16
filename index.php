@@ -89,8 +89,17 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 	<td class='searchRow'><label for='searchFund'><b>Fund</b></label>
 	<br />
-	<?php echo Html::text_search_field_tag('fund', $search['fund']); ?><br />
-	<div id='div_searchFund' style='<?php if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='go!' class='searchButton' /></div>
+		<select name='search[fund]' id='searchFund' style='width:150px' class ='changeInput'>
+			<option value=''>All</option>
+			<?php
+				$display = array();
+				$fundType = new Fund();
+
+				foreach($fundType->allAsArray() as $display) {
+					echo "<option value='" . $display['fundCode'] . "'>" . $display['shortName'] . "</option>";
+				}
+			?>
+		</select>
 	</td>
 	</tr>
 

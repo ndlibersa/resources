@@ -86,7 +86,19 @@
 		<input type='text' value='' style='width:60px;' class='date-pick changeDefaultWhite changeInput subscriptionEndDate' /></td>
 		<?php } ?>
 		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:60px;' class='changeDefaultWhite changeInput fundName' />
+			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
+				<option value='' selected></option>
+				<?php
+
+						$display = array();
+						$FundType = new Fund();
+
+						foreach($FundType->allAsArray() as $display) {
+							echo "<option value='" . $display['fundCode'] . "'>" . $display['fundCode'] . "</option>";
+						}
+
+						?>
+			</select>
 		</td>
 		<td style='vertical-align:top;text-align:left;background:white;'>
 		<input type='text' value='' style='width:50px;' class='changeDefaultWhite changeInput paymentAmount' />
@@ -161,7 +173,19 @@ if (count($paymentArray) > 0){
 		<input type='text' value='<?php echo normalize_date($payment['subscriptionEndDate']); ?>' style='width:60px;' class='date-pick changeInput subscriptionEndDate' /></td>
 		<?php } ?>
 		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo $payment['fundName']; ?>' style='width:60px;' class='changeInput fundName' />
+			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
+				<option value='' selected></option>
+				<?php
+
+						$display = array();
+						$FundType = new Fund();
+
+						foreach($FundType->allAsArray() as $display) {
+							echo "<option value='" . $display['fundCode'] . "'>" . $display['fundCode'] . "</option>";
+						}
+
+						?>
+			</select>
 		</td>
 		<td style='vertical-align:top;text-align:left;'>
 		<input type='text' value='<?php echo integer_to_cost($payment['paymentAmount']); ?>' style='width:50px;' class='changeInput paymentAmount' />

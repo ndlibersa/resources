@@ -904,7 +904,7 @@ class Resource extends DatabaseObject {
     $resource = new Resource();
     
     $search = Resource::getSearch();
-    
+
 		$whereAdd = array();
 		$searchDisplay = array();
 		$config = new Configuration();
@@ -924,7 +924,7 @@ class Resource extends DatabaseObject {
 			}else{
 
 				$whereAdd[] = "((UPPER(R.titleText) LIKE " . $nameQueryString . ") OR (UPPER(A.shortName) LIKE " . $nameQueryString . ") OR (UPPER(O.shortName) LIKE " . $nameQueryString . ") OR (UPPER(RP.titleText) LIKE " . $nameQueryString . ") OR (UPPER(RC.titleText) LIKE " . $nameQueryString . ") OR (UPPER(R.recordSetIdentifier) LIKE " . $nameQueryString . "))";
-
+`
 			}
 			
 			$searchDisplay[] = "Name contains: " . $search['name'];

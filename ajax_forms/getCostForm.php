@@ -89,12 +89,10 @@
 			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
 				<option value='' selected></option>
 				<?php
-
-						$display = array();
 						$FundType = new Fund();
 
-						foreach($FundType->allAsArray() as $display) {
-							echo "<option value='" . $display['fundCode'] . "'>" . $display['fundCode'] . "</option>";
+						foreach($FundType->allAsArray() as $fund) {
+							echo "<option value='" . $fund['fundCode'] . "'>" . $fund['fundCode'] . "</option>";
 						}
 
 						?>
@@ -176,12 +174,10 @@ if (count($paymentArray) > 0){
 			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
 				<option value='' selected></option>
 				<?php
-
-						$display = array();
 						$FundType = new Fund();
 
-						foreach($FundType->allAsArray() as $display) {
-							echo "<option value='" . $display['fundCode'] . "'>" . $display['fundCode'] . "</option>";
+						foreach($FundType->allAsArray() as $fund) {
+							echo "<option value='" . $fund['fundCode'] . "'>" . $fund['fundCode'] . "</option>";
 						}
 
 						?>

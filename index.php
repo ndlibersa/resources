@@ -92,11 +92,10 @@ $_SESSION['ref_script']=$currentPage;
 		<select name='search[fund]' id='searchFund' style='width:150px' class ='changeInput'>
 			<option value=''>All</option>
 			<?php
-				$display = array();
 				$fundType = new Fund();
 
-				foreach($fundType->allAsArray() as $display) {
-					echo "<option value='" . $display['fundCode'] . "'>" . $display['shortName'] . "</option>";
+				foreach($fundType->allAsArray() as $fund) {
+					echo "<option value='" . $fund['fundCode'] . "'>" . $fund['shortName'] . "</option>";
 				}
 			?>
 		</select>

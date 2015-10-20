@@ -86,13 +86,13 @@
 		<input type='text' value='' style='width:60px;' class='date-pick changeDefaultWhite changeInput subscriptionEndDate' /></td>
 		<?php } ?>
 		<td style='vertical-align:top;text-align:left;background:white;'>
-			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
+			<select class='changeDefaultWhite changeInput fundID' id='searchFundID' style='width:150px'>
 				<option value='' selected></option>
 				<?php
 						$FundType = new Fund();
 
 						foreach($FundType->allAsArray() as $fund) {
-							echo "<option value='" . $fund['fundCode'] . "'>" . $fund['fundCode'] . "</option>";
+							echo "<option value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . "</option>";
 						}
 
 						?>
@@ -171,13 +171,18 @@ if (count($paymentArray) > 0){
 		<input type='text' value='<?php echo normalize_date($payment['subscriptionEndDate']); ?>' style='width:60px;' class='date-pick changeInput subscriptionEndDate' /></td>
 		<?php } ?>
 		<td style='vertical-align:top;text-align:left;'>
-			<select class='changeDefaultWhite changeInput fundName' id='searchFundID' style='width:150px'>
-				<option value='' selected></option>
+			<select class='changeDefaultWhite changeInput fundID' id='searchFundID' style='width:150px'>
+				<option value=''></option>
 				<?php
 						$FundType = new Fund();
 
 						foreach($FundType->allAsArray() as $fund) {
-							echo "<option value='" . $fund['fundCode'] . "'>" . $fund['fundCode'] . "</option>";
+							echo "<option ";
+							if ($payment['fundID'] == $fund['fundID'])
+							{
+								echo " selected ";
+							}
+							echo " value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . $payment->fundId . "</option>";
 						}
 
 						?>
@@ -276,4 +281,3 @@ if (count($paymentArray) > 0){
 
 
 		<script type="text/javascript" src="js/forms/costForm.js?random=<?php echo rand(); ?>"></script>
-

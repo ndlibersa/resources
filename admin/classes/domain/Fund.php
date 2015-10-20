@@ -21,11 +21,6 @@ class Fund extends DatabaseObject {
 
 	protected function defineRelationships() {}
 
-	protected function overridePrimaryKeyName() {
-		$this->primaryKeyName = 'fundCode';
-	}
-
-
 	public function allAsArray() {
 		$query = "SELECT * FROM FUND ORDER BY 1";
 		$result = $this->db->processQuery($query, 'assoc');
@@ -57,7 +52,7 @@ class Fund extends DatabaseObject {
 	//returns number of children for this particular contact role
 	public function getNumberOfChildren(){
 
-		$query = "SELECT count(*) childCount FROM ResourcePayment WHERE fundName = '" . $this->shortName . "';";
+		$query = "SELECT count(*) childCount FROM ResourcePayment WHERE fundID = '" . $this->fundID. "';";
 
 		$result = $this->db->processQuery($query, 'assoc');
 

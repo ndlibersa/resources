@@ -28,11 +28,12 @@ CREATE TABLE  `Currency` (
 
 DROP TABLE IF EXISTS `Fund`;
 CREATE TABLE `Fund` (
-  `fundCode` varchar(20) NOT NULL,
+  `fundID` int(11) NOT NULL auto_increment,
+  `fundCode` varchar(20) default NULL,
   `shortName` varchar(200) default NULL,
-  PRIMARY KEY (`fundCode`),
-  UNIQUE KEY `fundCode` (`fundCode`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`fundID`),
+  UNIQUE `fundCode` (`fundCode`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 ALTER TABLE `Resource` ADD COLUMN `archiveDate` DATE AFTER `updateLoginID`,
  ADD COLUMN `archiveLoginID` VARCHAR(45) AFTER `archiveDate`,
@@ -124,8 +125,8 @@ ALTER TABLE `Resource` ADD INDEX `Index_createDate`(`createDate`),
  ADD INDEX `Index_All`(`createDate`, `createLoginID`, `titleText`, `isbnOrISSN`, `statusID`, `resourceTypeID`, `resourceFormatID`, `acquisitionTypeID`);
  
 ALTER TABLE `ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
- ADD INDEX `Index_fundName`(`fundName`),
- ADD INDEX `Index_All`(`resourceID`, `fundName`); 
+ ADD INDEX `Index_fundID`(`fundID`),
+ ADD INDEX `Index_All`(`resourceID`, `fundID:`); 
  
 ALTER TABLE `ResourceNote` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_noteTypeID`(`noteTypeID`),
@@ -193,3 +194,15 @@ INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, disp
 VALUES (5, NULL, 'Licensing', 2, 2, 1);
 INSERT INTO `Step` (stepID, priorStepID, stepName, userGroupID, workflowID, displayOrderSequence)
 VALUES (6, NULL, 'Activation', 1, 2, 2);
+
+INSERT INTO `Fund` (shortName) SELECT DISTINCT `fundName` FROM `ResourcePayment`;
+UPDATE `Fund` SET fundCode = fundID;
+
+ALTER TABLE `ResourcePayment` ADD COLUMN `fundID` int(10) AFTER `resourceID`;
+
+UPDATE `ResourcePayment`
+INNER JOIN `Fund`
+    ON `ResourcePayment`.fundName = `Fund`.shortName
+SET `ResourcePayment`.fundID = `Fund`.fundID;
+
+ALTER TABLE `ResourcePayment` DROP COLUMN `fundName`;

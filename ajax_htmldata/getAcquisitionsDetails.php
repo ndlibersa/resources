@@ -55,6 +55,9 @@
 					$sanitizedInstance['amountChange'] = $instance->getPaymentAmountChangeFromPreviousYear();
 				}
 
+				$fund = new Fund(new NamedArguments(array('primaryKey' => $instance->fundID)));
+				$sanitizedInstance['fundCode'] = $fund->fundCode;
+
 				array_push($paymentArray, $sanitizedInstance);
 
 		}
@@ -209,7 +212,7 @@
 				$year = $payment['year'] ? $payment['year'] : "&nbsp;";
 				$subStart = $payment['subscriptionStartDate'] ? normalize_date($payment['subscriptionStartDate']) : "&nbsp;";
 				$subEnd = $payment['subscriptionEndDate'] ? normalize_date($payment['subscriptionEndDate']) : "&nbsp;";
-				$fundName = $payment['fundName'] ? $payment['fundName'] : "&nbsp;";
+				$fundCode = $payment['fundCode'] ? $payment['fundCode'] : "&nbsp;";
 				if (integer_to_cost($payment['paymentAmount'])){
 					$cost = $payment['currencyCode'] . " " . integer_to_cost($payment['paymentAmount']);
 				}else{
@@ -226,7 +229,7 @@
 				<td <?php echo $classAdd;?>><?php echo $subStart; ?></td>
 				<td <?php echo $classAdd;?>><?php echo $subEnd; ?></td>
 			<?php } ?>
-				<td <?php echo $classAdd;?>><?php echo $fundName; ?></td>
+				<td <?php echo $classAdd;?>><?php echo $fundCode; ?></td>
 				<td <?php echo $classAdd;?>><?php echo $cost; ?></td>
 			<?php if ($enhancedCostFlag && 0){ ?>
 				<td <?php echo $classAdd;?> style='text-align: right'><?php echo $payment['amountChange']; ?></td>
@@ -381,4 +384,3 @@
 		}
 
 ?>
-

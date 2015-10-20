@@ -192,7 +192,7 @@ function submitCostForm(){
 	}); 
 
 	fundNameList ='';
-	$(".fundName").each(function(id) {
+	$(".fundID").each(function(id) {
 	      fundNameList += $(this).val() + ":::";
 	}); 
 
@@ -236,7 +236,7 @@ function submitCostForm(){
                       years: yearList,
                       subStarts: subStartList,
                       subEnds: subEndList,
-                      fundNames: fundNameList,
+                      fundIDs: fundNameList,
                       paymentAmounts: paymentAmountList,
                       currencyCodes: currencyCodeList,
                       orderTypes: orderTypeList,
@@ -267,7 +267,7 @@ function submitCostForm(){
 
 
 
- 
+
  function validateForm (){
  	myReturn=0;
 

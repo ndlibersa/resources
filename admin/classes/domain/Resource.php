@@ -126,7 +126,7 @@ class Resource extends DatabaseObject {
 	public function getChildResources(){
     return $this->getRelatedResources('relatedResourceID');
 	}
-  
+
   // return array of related resource objects
   private function getRelatedResources($key) {
 
@@ -184,7 +184,7 @@ class Resource extends DatabaseObject {
 	//returns array of ResourcePayment objects
 	public function getResourcePayments(){
 
-		$query = "SELECT * FROM ResourcePayment WHERE resourceID = '" . $this->resourceID . "' ORDER BY year DESC, fundName, subscriptionStartDate DESC";
+		$query = "SELECT * FROM ResourcePayment WHERE resourceID = '" . $this->resourceID . "' ORDER BY year DESC, subscriptionStartDate DESC";
 
 		$result = $this->db->processQuery($query, 'assoc');
 
@@ -942,7 +942,7 @@ class Resource extends DatabaseObject {
 		} 
 		if ($search['fund']) {
 		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
-		  $whereAdd[] = "REPLACE(RPAY.fundName,'-','') = '" . $fund . "'";
+		  $whereAdd[] = "REPLACE(RPAY.fundID,'-','') = '" . $fund . "'";
 		  $searchDisplay[] = "Fund: " . $search['fund'];
 	  }
 

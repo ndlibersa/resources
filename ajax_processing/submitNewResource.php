@@ -103,7 +103,7 @@
 			$yearArray          = array();  $yearArray          = explode(':::',$_POST['years']);
 			$subStartArray      = array();  $subStartArray      = explode(':::',$_POST['subStarts']);
 			$subEndArray        = array();  $subEndArray        = explode(':::',$_POST['subEnds']);
-			$fundNameArray      = array();  $fundNameArray      = explode(':::',$_POST['fundNames']);
+			$fundIDArray        = array();  $fundIDArray        = explode(':::',$_POST['fundIDs']);
 			$paymentAmountArray = array();  $paymentAmountArray = explode(':::',$_POST['paymentAmounts']);
 			$currencyCodeArray  = array();  $currencyCodeArray  = explode(':::',$_POST['currencyCodes']);
 			$orderTypeArray     = array();  $orderTypeArray     = explode(':::',$_POST['orderTypes']);
@@ -115,13 +115,13 @@
 			$resource->removeResourcePayments();
 
 			foreach ($orderTypeArray as $key => $value){
-				if (($value) && ($paymentAmountArray[$key] || $yearArray[$key] || $fundNameArray[$key] || $costNoteArray[$key])){
+				if (($value) && ($paymentAmountArray[$key] || $yearArray[$key] || $fundIDArray[$key] || $costNoteArray[$key])){
 					$resourcePayment = new ResourcePayment();
 					$resourcePayment->resourceID    = $resourceID;
 					$resourcePayment->year          = $yearArray[$key];
 					$resourcePayment->subscriptionStartDate = $subStartArray[$key];
 					$resourcePayment->subscriptionEndDate   = $subEndArray[$key];
-					$resourcePayment->fundName      = $fundNameArray[$key];
+					$resourcePayment->fundID        = $fundIDArray[$key];
 					$resourcePayment->paymentAmount = cost_to_integer($paymentAmountArray[$key]);
 					$resourcePayment->currencyCode  = $currencyCodeArray[$key];
 					$resourcePayment->orderTypeID   = $value;

@@ -154,15 +154,6 @@ CREATE TABLE  `Currency` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `Fund`;
-CREATE TABLE `Fund` (
-  `fundCode` varchar(20) NOT NULL,
-  `shortName` varchar(200) default NULL,
-  PRIMARY KEY (`fundCode`),
-  UNIQUE KEY `fundCode` (`fundCode`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-
 DROP TABLE IF EXISTS `ExternalLogin`;
 CREATE TABLE  `ExternalLogin` (
   `externalLoginID` int(11) NOT NULL auto_increment,
@@ -199,6 +190,15 @@ CREATE TABLE  `IsbnOrIssn` (
   KEY `isbnOrIssn` (`isbnOrIssn`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
+DROP TABLE IF EXISTS `Fund`;
+CREATE TABLE `Fund` (
+  `fundID` int(11) NOT NULL auto_increment,
+  `fundCode` varchar(20) default NULL,
+  `shortName` varchar(200) default NULL,
+  PRIMARY KEY (`fundID`),
+  UNIQUE `fundCode` (`fundCode`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `LicenseStatus`;
@@ -410,7 +410,7 @@ DROP TABLE IF EXISTS `ResourcePayment`;
 CREATE TABLE  `ResourcePayment` (
   `resourcePaymentID` int(11) NOT NULL auto_increment,
   `resourceID` int(10) unsigned NOT NULL,
-  `fundName` varchar(200) default NULL,
+  `fundID` int(10) default NULL,
   `selectorLoginID` varchar(45) default NULL,
   `paymentAmount` int(10) unsigned default NULL,
   `orderTypeID` int(10) unsigned default NULL,
@@ -620,12 +620,12 @@ ALTER TABLE `Resource` ADD INDEX `Index_createDate`(`createDate`),
 ALTER TABLE `ResourceFormat` ADD INDEX `shortName` ( `shortName` );
 
 ALTER TABLE `ResourcePayment` ADD INDEX `Index_resourceID`(`resourceID`),
- ADD INDEX `Index_fundName`(`fundName`),
+ ADD INDEX `Index_fundID`(`fundID`),
  ADD INDEX `Index_year`(`year`),
  ADD INDEX `Index_costDetailsID`(`costDetailsID`),
  ADD INDEX `Index_invoiceNum`(`invoiceNum`),
- ADD INDEX `Index_All`(`resourceID`, `fundName`, `year`, `costDetailsID`, `invoiceNum`); 
- 
+ ADD INDEX `Index_All`(`resourceID`, `fundID`, `year`, `costDetailsID`, `invoiceNum`);
+
 
 ALTER TABLE `ResourceNote` ADD INDEX `Index_resourceID`(`resourceID`),
  ADD INDEX `Index_noteTypeID`(`noteTypeID`),

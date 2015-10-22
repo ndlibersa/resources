@@ -23,7 +23,7 @@
 					echo "<td>" . $instance['fundCode'] . "</td>";
 					echo "<td>" . $instance['shortName'] . "</td>";
 					echo "<td><a href='ajax_forms.php?action=getAdminFundUpdateForm&updateID=" . $instance['fundCode'] . "&height=178&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
-					echo "<td><a href='javascript:deleteFund(\"Fund\", \"" . $instance['fundCode'] . "\");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
+					echo "<td><a href='javascript:deleteFund(\"Fund\", \"" . $instance['fundID'] . "\");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					echo "</tr>";
 				}
 
@@ -38,4 +38,3 @@
 		echo "<a href='ajax_forms.php?action=getAdminFundUpdateForm&updateID=&height=178&width=260&modal=true' class='thickbox'>add new fund</a>";
 
 ?>
-

@@ -31,6 +31,7 @@ CREATE TABLE `Fund` (
   `fundID` int(11) NOT NULL auto_increment,
   `fundCode` varchar(20) default NULL,
   `shortName` varchar(200) default NULL,
+  `archived` boolean default NULL,
   PRIMARY KEY (`fundID`),
   UNIQUE `fundCode` (`fundCode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

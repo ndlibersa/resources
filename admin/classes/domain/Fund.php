@@ -29,11 +29,13 @@ class Fund extends DatabaseObject {
 		$rowArray = array();
 
 		if (isset($result['fundCode'])){
+
 			foreach (array_keys($result) as $attributeName) {
 				$rowArray[$attributeName] = $result[$attributeName];
 			}
 			array_push($resultArray, $rowArray);
 		}else{
+
 			foreach ($result as $row) {
 				foreach (array_keys($this->attributeNames) as $attributeName) {
 					$rowArray[$attributeName] = $row[$attributeName];
@@ -45,10 +47,6 @@ class Fund extends DatabaseObject {
 		return $resultArray;
 	}
 
-
-
-
-
 	//returns number of children for this particular contact role
 	public function getNumberOfChildren(){
 
@@ -59,11 +57,62 @@ class Fund extends DatabaseObject {
 		return $result['childCount'];
 	}
 
+	//returns array of archived objects
+		public function getUnArchivedFunds(){
 
+		$query = "SELECT * FROM FUND WHERE archived is null ORDER BY 1";
+				$result = $this->db->processQuery($query, 'assoc');
 
+				$resultArray = array();
+				$rowArray = array();
 
+				if (isset($result['fundCode'])){
 
+					foreach (array_keys($result) as $attributeName) {
+						$rowArray[$attributeName] = $result[$attributeName];
+					}
+					array_push($resultArray, $rowArray);
+				}else{
 
+					foreach ($result as $row) {
+						foreach (array_keys($this->attributeNames) as $attributeName) {
+							$rowArray[$attributeName] = $row[$attributeName];
+						}
+						array_push($resultArray, $rowArray);
+					}
+				}
+
+		return $resultArray;
+		}
+
+		//get all unarchived ones and include the archived if it was selected previously
+		public function getUnArchivedFundsForCostHistory($fundID){
+
+				$query = "SELECT * FROM FUND WHERE fundID = ". $fundID . " OR archived is null ORDER BY 1";
+
+				$result = $this->db->processQuery($query, 'assoc');
+
+				$resultArray = array();
+				$rowArray = array();
+
+				if (isset($result['fundCode'])){
+
+					foreach (array_keys($result) as $attributeName) {
+						$rowArray[$attributeName] = $result[$attributeName];
+					}
+					array_push($resultArray, $rowArray);
+				}else{
+
+					foreach ($result as $row) {
+						foreach (array_keys($this->attributeNames) as $attributeName) {
+							$rowArray[$attributeName] = $row[$attributeName];
+						}
+						array_push($resultArray, $rowArray);
+					}
+				}
+
+				return $resultArray;
+		}
 }
 
 ?>

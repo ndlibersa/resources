@@ -6,10 +6,11 @@
 	}else{
 		$instance = new Fund();
 	}
+
 ?>
 		<div id='div_updateForm'>
 
-		<input type='hidden' id='editFundCode' value='<?php echo $updateID; ?>'>
+		<input type='hidden' id='fundID' value='<?php echo $updateID; ?>'>
 
 		<div class='formTitle' style='width:245px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Fund"; } else { echo "Add Fund"; } ?></span></div>
 
@@ -26,6 +27,12 @@
 			<tr>
 			<td>Name</td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
 			</tr>
+			<?php	{
+								if($instance->archived == 1){$archive = 'checked';}else{$archive='';}
+								echo "<tr><td>Archived</td>";
+								echo "<td><input type='checkbox' id='archivedUpdate' ".$archive." /></td></tr>";
+					}
+			?>
 			</table>
 
 		</td>

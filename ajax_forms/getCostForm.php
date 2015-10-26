@@ -91,7 +91,7 @@
 				<?php
 						$FundType = new Fund();
 
-						foreach($FundType->allAsArray() as $fund) {
+						foreach($FundType->getUnArchivedFunds() as $fund) {
 							echo "<option value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . "</option>";
 						}
 
@@ -176,7 +176,7 @@ if (count($paymentArray) > 0){
 				<?php
 						$FundType = new Fund();
 
-						foreach($FundType->allAsArray() as $fund) {
+						foreach($FundType->getUnArchivedFundsForCostHistory($payment['fundID']) as $fund) {
 							echo "<option ";
 							if ($payment['fundID'] == $fund['fundID'])
 							{

@@ -112,7 +112,6 @@ function updateCurrencyTable(){
 }
 
 function updateFundTable(){
-
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".AdminLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
@@ -317,12 +316,13 @@ function validateCurrency() {
 
 // Validate fund form
 function submitFundData(){
+	var isArchived = $('#archivedUpdate').attr('checked');
     if(validateFund() === true){
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=updateFund",
             cache:      false,
-            data:       { editFundCode: $('#editFundCode').val(), fundCode: $('#fundCode').val(), shortName: $('#shortName').val() },
+            data:       { fundID: $('#fundID').val(), fundCode: $('#fundCode').val(), shortName: $('#shortName').val(), archived: isArchived },
             success:    function(html) {
                 updateFundTable();
                 window.parent.tb_remove();
@@ -609,7 +609,7 @@ function deleteCurrency(className, deleteID){
 }
 
 function deleteFund(className, deleteID){
-    if (confirm("Do you reall want to delete this fund?") == true) {
+    if (confirm("Do you really want to delete this fund?") == true) {
 
         $.ajax({
             type:       "GET",
@@ -631,6 +631,34 @@ function deleteFund(className, deleteID){
             }
         });
     }
+}
+
+function archiveFund(isChecked, fundID, fundCode, shortName) {
+	var conformMsg;
+	var warningMsgArchive = "The archived funds will not be used for new resources. Do you  want to continue?";
+	var warningMsgRestore = "Do you want to restore this fund?";
+
+	if(isChecked == true)	{
+		conformMsg = warningMsgArchive;	}
+	else{
+		conformMsg = warningMsgRestore;}
+
+	if (confirm(conformMsg) == true) {
+	         $.ajax({
+			            type:       "POST",
+			            url:        "ajax_processing.php?action=updateFund",
+			            cache:      false,
+			            data:       { fundID: fundID, fundCode: fundCode, shortName: shortName, archived: isChecked },
+			            success:    function(html) {
+			                updateFundTable();
+			                window.parent.tb_remove();
+			            }
+        });
+    }
+    else
+    {
+		 updateFundTable();
+	}
 }
 
 function showError(html){

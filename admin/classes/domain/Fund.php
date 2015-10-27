@@ -88,7 +88,7 @@ class Fund extends DatabaseObject {
 		//get all unarchived ones and include the archived if it was selected previously
 		public function getUnArchivedFundsForCostHistory($fundID){
 
-				$query = "SELECT * FROM FUND WHERE fundID = ". $fundID . " OR archived is null ORDER BY 1";
+				$query = "SELECT * FROM FUND WHERE fundID = ". $fundID . " OR archived is null OR archived = 0 ORDER BY 1";
 
 				$result = $this->db->processQuery($query, 'assoc');
 

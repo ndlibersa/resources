@@ -50,7 +50,7 @@
 					$row++;
 				}
 				print "<h2>Results</h2>";
-				print "<p>" . ($row - 1) . " rows have been processed. $row rows have been inserted.</p>";
+				print "<p> $row rows have been processed.</p>";
 			}
 		}
 	} else {

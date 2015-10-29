@@ -17,72 +17,41 @@
 		$pageTitle='Funds import';
 		include 'templates/header.php';
 		$uploaddir = 'attachments/';
-		$uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
-		if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploadfile)) {
-			print '<p>The file has been successfully uploaded.</p>';
+		$uploadfile = $_FILES['uploadFile']['tmp_name'];
+		print '<p>The file has been successfully uploaded.</p>';
 
-			// Let's analyze this file
-			if (($handle = fopen($uploadfile, "r")) !== FALSE) {
-				if (($data = fgetcsv($handle)) !== FALSE) {
-					$columns_ok = true;
-					foreach ($data as $key => $value) {
-						$available_columns[$value] = $key;
-					}
-				} else {
-					$error = 'Unable to get columns headers from the file';
+		// Let's analyze this file
+		if (($handle = fopen($uploadfile, "r")) !== FALSE) {
+			if (($data = fgetcsv($handle)) !== FALSE) {
+				$columns_ok = true;
+				foreach ($data as $key => $value) {
+					$available_columns[$value] = $key;
 				}
 			} else {
-				$error = 'Unable to open the uploaded file';
+				$error = 'Unable to get columns headers from the file';
 			}
 		} else {
-			$error = 'Unable to upload the file';
+			$error = 'Unable to open the uploaded file';
 		}
 		if ($error) {
 			print "<p>Error: $error.</p>";
 		} else {
-			print "<p>Please choose columns from your CSV file:</p>";
-			print "<form action=\"importFunds.php\" method=\"post\">";
-			foreach ($required_columns as $rkey => $rvalue) {
-				print "<label for=\"$rkey\">" . $rkey . "</label><select name=\"$rkey\">";
-				print '<option value=""></option>';
-				foreach ($available_columns as $akey => $avalue) {
-					print "<option value=\"$avalue\"";
-					if ($rkey == $akey) print ' selected="selected"';
-					print ">$akey</option>";
-				}
-				print '</select><br />';
-			}
-			print "<input type=\"hidden\" name=\"delimiter\" value=\"','\" />";
-			print "<input type=\"hidden\" name=\"uploadfile\" value=\"$uploadfile\" />";
-			print "<input type=\"submit\" name=\"matchsubmit\" id=\"matchsubmit\" /></form>";
-		}
-	// Process
-	} elseif ($_POST['matchsubmit']) {
-		include_once 'directory.php';
-		$pageTitle='Funds import';
-		include 'templates/header.php';
-		$uploadfile = $_POST['uploadfile'];
 		// Let's analyze this file
-		if (($handle = fopen($uploadfile, "r")) !== FALSE) {
-			$row = 0;
-			$inserted = 0;
-			while (($data = fgetcsv($handle)) !== FALSE) {
-				if ($row == 0){
-
-				}else{
+			if (($handle = fopen($uploadfile, "r")) !== FALSE) {
+				$row = 0;
+				while (($data = fgetcsv($handle)) !== FALSE) {
 					$Fund = new Fund();
 					$funds = $Fund -> allAsArray();
 					// Convert to UTF-8
 					$data = array_map(function($row) { return mb_convert_encoding($row, 'UTF-8'); }, $data);
-					$Fund->fundCode = array_values($data)[$_POST['fundCode']];
-					$Fund->shortName = array_values($data)[$_POST['shortName']];
+					$Fund->fundCode = array_values($data)['0'];
+					$Fund->shortName = array_values($data)['1'];
 					$Fund->save();
-					$inserted++;
+					$row++;
 				}
-				$row++;
+				print "<h2>Results</h2>";
+				print "<p>" . ($row - 1) . " rows have been processed. $row rows have been inserted.</p>";
 			}
-			print "<h2>Results</h2>";
-			print "<p>" . ($row - 1) . " rows have been processed. $inserted rows have been inserted.</p>";
 		}
 	} else {
 		?>

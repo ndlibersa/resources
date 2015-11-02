@@ -619,10 +619,7 @@ function deleteFund(className, deleteID){
             success:    function(html) {
 
                 if (html){
-                    showError(html);
-
-                    // close the div in 3 secs
-                    setTimeout("emptyError();",3000);
+					alert(html);
                 }else{
                     updateFundTable();
                     tb_reinit();
@@ -665,8 +662,8 @@ function showError(html){
 
     $('#div_error').fadeTo(0, 5000, function () {
         $('#div_error').html(html);
-    });
 
+    });
 }
 
 

@@ -188,7 +188,7 @@ if ($resource->titleText){
 	<title>Resources Module - <?php echo $pageTitle; ?></title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="print" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-	<link rel="SHORTCUT ICON" href="images/butterflyfishfavicon.ico" />
+	<link rel="SHORTCUT ICON" href="images/favicon.ico" />
 
 	</head>
 	<body>

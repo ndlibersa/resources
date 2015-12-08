@@ -23,8 +23,8 @@
 					$resourcePayment = new ResourcePayment();
 					$resourcePayment->resourceID    = $resourceID;
 					$resourcePayment->year          = $yearArray[$key];
-					$start = $subStartArray[$key] ? date("Y-m-d", strtotime($subStartArray[$key])) : 'null';
-					$end   = $subEndArray[$key]   ? date("Y-m-d", strtotime($subEndArray[$key]))   : 'null';
+					$start = $subStartArray[$key] ? date("Y-m-d", strtotime($subStartArray[$key])) : null;
+					$end   = $subEndArray[$key]   ? date("Y-m-d", strtotime($subEndArray[$key]))   : null;
 					$resourcePayment->subscriptionStartDate = $start;
 					$resourcePayment->subscriptionEndDate   = $end;
 					$resourcePayment->fundID        = $fundIDArray[$key];

@@ -92,6 +92,11 @@ $_SESSION['ref_script']=$currentPage;
 		<select name='search[fund]' id='searchFund' style='width:150px' class ='changeInput'>
 			<option value=''>All</option>
 			<?php
+				if ($search['fund'] == "none"){
+					echo "<option value='none' selected>(none)</option>";
+				}else{
+					echo "<option value='none'>(none)</option>";
+				}
 				$fundType = new Fund();
 
 				foreach($fundType->allAsArray() as $fund) {

@@ -940,11 +940,6 @@ class Resource extends DatabaseObject {
 		  $whereAdd[] = "REPLACE(I.isbnOrIssn,'-','') = '" . $resourceISBNOrISSN . "'";
 		  $searchDisplay[] = "ISSN/ISBN: " . $search['resourceISBNOrISSN'];
 		} 
-		if ($search['fund']) {
-		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
-		  $whereAdd[] = "REPLACE(RPAY.fundID,'-','') = '" . $fund . "'";
-		  $searchDisplay[] = "Fund: " . $search['fund'];
-	  }
 
     if ($search['stepName']) {
       $status = new Status();
@@ -1020,6 +1015,14 @@ class Resource extends DatabaseObject {
 	  }
 
 		//the following are not-required fields with dropdowns and have "none" as an option
+		if ($search['fund'] == 'none'){
+			$whereAdd[] = "((RPAY.fundID IS NULL) OR (RPAY.fundID = '0'))";
+			$searchDisplay[] = "Fund: none";
+		}else if ($search['fund']) {
+		  $fund = mysql_real_escape_string(str_replace("-","",$search['fund']));
+		  $whereAdd[] = "REPLACE(RPAY.fundID,'-','') = '" . $fund . "'";
+		  $searchDisplay[] = "Fund: " . $search['fund'];
+	  }
 		if ($search['resourceTypeID'] == 'none'){
 			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
 			$searchDisplay[] = "Resource Type: none";

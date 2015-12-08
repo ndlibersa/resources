@@ -10,12 +10,6 @@ Update the resources module codebase
 	you may have.  Copying the new files over the existing files and replacing them will ensure you get the
 	changes needed without removing additional files.
 	-Ensure that your configuration file (/admin/configuration.ini) is still correct.
-	
-Update the database schema
-
-    -Open SQL file in /coral/resources/install/protected/update_1.3.sql and replace 
-	_DATABASE_NAME_ with your database schema name
-    -Run SQL file
 
 Update /admin/configuration.ini
 
@@ -26,3 +20,7 @@ Update /admin/configuration.ini
 		-Those are columns names from the imported CSV file which will be used for matching against already
 		existing ISBNs in Coral.
 		-Example: importISBNDedupingColumns="ISSN,EISSN,PrintISSN,OnlineISSN,Print ISSN,Online ISSN,ISBN,EISBN"
+
+Update the module
+
+    -Run /coral/resources/install/update.php to apply the upgrade

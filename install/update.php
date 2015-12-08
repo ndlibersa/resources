@@ -36,14 +36,13 @@ if ($_POST["submit"]) {
 			//Process the sql file by statements
 			foreach ($statements as $statement) {
 			   if (strlen(trim($statement))>3){
-					//replace the DATABASE_NAME parameter with what was actually input
-					$statement = str_replace("_DATABASE_NAME_", $installer->getDatabaseName(), $statement);
 
-					$result = mysql_query($statement);
-					if (!$result){
-						$installer->addErrorMessage(mysql_error() . "<br /><br />For statement: " . $statement);
-						break;
-					}
+					$result = $installer->db->query($statement);
+                        if (!$result){
+                        $installer->addErrorMessage($installer->db->error . "<br /><br />For statement: " . $statement);
+                        break;
+                    }
+
 				}
 			}
       

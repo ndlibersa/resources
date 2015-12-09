@@ -22,7 +22,7 @@ class Fund extends DatabaseObject {
 	protected function defineRelationships() {}
 
 	public function allAsArray() {
-		$query = "SELECT * FROM FUND ORDER BY 1";
+		$query = "SELECT * FROM FUND ORDER BY 3";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$resultArray = array();
@@ -60,7 +60,7 @@ class Fund extends DatabaseObject {
 	//returns array of archived objects
 		public function getUnArchivedFunds(){
 
-		$query = "SELECT * FROM FUND WHERE archived is null ORDER BY 1";
+		$query = "SELECT * FROM FUND WHERE archived is null ORDER BY 3";
 				$result = $this->db->processQuery($query, 'assoc');
 
 				$resultArray = array();
@@ -88,7 +88,7 @@ class Fund extends DatabaseObject {
 		//get all unarchived ones and include the archived if it was selected previously
 		public function getUnArchivedFundsForCostHistory($fundID){
 
-				$query = "SELECT * FROM FUND WHERE fundID = ". $fundID . " OR archived is null OR archived = 0 ORDER BY 1";
+				$query = "SELECT * FROM FUND WHERE fundID = ". $fundID . " OR archived is null OR archived = 0 ORDER BY 3";
 
 				$result = $this->db->processQuery($query, 'assoc');
 

@@ -92,7 +92,7 @@
 						$FundType = new Fund();
 
 						foreach($FundType->getUnArchivedFunds() as $fund) {
-							echo "<option value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . "</option>";
+							echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
 						}
 
 						?>
@@ -187,7 +187,7 @@ if (count($paymentArray) > 0){
 							{
 								echo " selected ";
 							}
-							echo " value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . $payment->fundId . "</option>";
+							echo " value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund["fundCode"] . "]</option>";
 						}
 
 						?>

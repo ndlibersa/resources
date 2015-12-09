@@ -1337,7 +1337,7 @@ class Resource extends DatabaseObject {
 						GROUP_CONCAT(DISTINCT ADS.shortName ORDER BY ADS.shortName DESC SEPARATOR '; ') administeringSites,
 						GROUP_CONCAT(DISTINCT RP.titleText ORDER BY RP.titleText DESC SEPARATOR '; ') parentResources,
 						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '; ') childResources,
-						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode, ' ', OT.shortName ORDER BY RPAY.paymentAmount ASC SEPARATOR '; ') payments
+						GROUP_CONCAT(DISTINCT F.shortName, ' [', F.fundCode, ']: ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode, ' ', OT.shortName ORDER BY RPAY.paymentAmount ASC SEPARATOR '; ') payments
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
 									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
@@ -1353,6 +1353,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN AcquisitionType AT ON R.acquisitionTypeID = AT.acquisitionTypeID
 									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
+									LEFT JOIN Fund F ON RPAY.fundID = F.fundID
 									LEFT JOIN OrderType OT ON RPAY.orderTypeID = OT.orderTypeID
 									LEFT JOIN Status S ON R.statusID = S.statusID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID

@@ -100,7 +100,7 @@ $_SESSION['ref_script']=$currentPage;
 				$fundType = new Fund();
 
 				foreach($fundType->allAsArray() as $fund) {
-					echo "<option value='" . $fund['fundID'] . "'>" . $fund['fundCode'] . "</option>";
+					echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
 				}
 			?>
 		</select>

@@ -209,7 +209,7 @@ class CORALInstaller {
       $grants = array();
       $permission = "(ALL PRIVILEGES|".strtoupper($permission).")";
       foreach ($this->query("SHOW GRANTS FOR CURRENT_USER()") as $row) {
-        $grant = $row[0];
+        $grant = array_values($row)[0];
         if (strpos(str_replace('\\', '', $grant), $this->config->database->name) || strpos($grant, "ON *.*")) {
           if (preg_match("/(GRANT|,) $permission(,| ON)/i",$grant)) {
             return true;

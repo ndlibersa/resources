@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`Issue`;
-CREATE TABLE `_DATABASE_NAME_`.`Issue` (
+DROP TABLE IF EXISTS `Issue`;
+CREATE TABLE `Issue` (
   `issueID` int(11) NOT NULL AUTO_INCREMENT,
   `creatorID` varchar(20) NOT NULL,
   `subjectText` varchar(80) NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE `_DATABASE_NAME_`.`Issue` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueRelationship`;
-CREATE TABLE `_DATABASE_NAME_`.`IssueRelationship` (
+DROP TABLE IF EXISTS `IssueRelationship`;
+CREATE TABLE `IssueRelationship` (
   `issueRelationshipID` int(11) NOT NULL AUTO_INCREMENT,
   `issueID` int(11) NOT NULL,
   `entityID` int(11) NOT NULL,
@@ -24,16 +24,16 @@ CREATE TABLE `_DATABASE_NAME_`.`IssueRelationship` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueEntityType`;
-CREATE TABLE `_DATABASE_NAME_`.`IssueEntityType` (
+DROP TABLE IF EXISTS `IssueEntityType`;
+CREATE TABLE `IssueEntityType` (
   `entityTypeID` int(11) NOT NULL AUTO_INCREMENT,
   `entityName` varchar(80) NOT NULL,
   PRIMARY KEY (`entityTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueContact`;
-CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
+DROP TABLE IF EXISTS `IssueContact`;
+CREATE TABLE `IssueContact` (
   `issueContactID` int(11) NOT NULL AUTO_INCREMENT,
   `issueID` int(11) NOT NULL,
   `contactID` int(11) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE `_DATABASE_NAME_`.`IssueContact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 
-DROP TABLE IF EXISTS `_DATABASE_NAME_`.`IssueEmail`;
-CREATE TABLE `_DATABASE_NAME_`.`IssueEmail` (
+DROP TABLE IF EXISTS `IssueEmail`;
+CREATE TABLE `IssueEmail` (
   `issueEmailID` int(11) NOT NULL AUTO_INCREMENT,
   `issueID` int(11) NOT NULL,
   `email` varchar(120) NOT NULL,

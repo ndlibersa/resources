@@ -1,3 +1,12 @@
+1.4 The 1.4 update to the CORAL Resources module includes the following enhancements:
+
+	-Added Issue tracker feature that allows tracking of down resources.
+	-Integrates closely with the Orginization module.
+	-Sends email alerts.
+
+	Database structure changes include:
+	- Create Issue, IssueRelationship, IssueEntityType, IssueContact, IssueEmail, Downtime, DowntimeType
+	
 1.3 The 1.3 update to the CORAL Resources module includes the following enhancements:
 
 	-Cost history tracking

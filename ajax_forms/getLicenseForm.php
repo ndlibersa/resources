@@ -47,7 +47,7 @@
 		<form id='licenseForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:360px; margin-bottom:5px;'><span class='headerText'>Edit Licenses</span></div>
+		<div class='formTitle' style='width:360px; margin-bottom:5px;'><span class='headerText'><?php echo _("Edit Licenses");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -57,7 +57,7 @@
 
 
 			<?php if ($config->settings->licensingModule == 'Y'){ ?>
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseRecords'><b>License Records</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseRecords'><b><?php echo _("License Records");?></b></label>&nbsp;&nbsp;</span>
 
 
 			<table class='surroundBox' style='width:350px;'>
@@ -73,7 +73,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();' class='addLicense'><img src='images/add.gif' class='addLicense' alt='add license' title='add license'></a>
+				<a href='javascript:void();' class='addLicense'><img src='images/add.gif' class='addLicense' alt="<?php echo _("add license");?>" title="<?php echo _("add license");?>"></a>
 				</td>
 				</tr>
 				</table>
@@ -100,7 +100,7 @@
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove license link' title='remove <?php echo $license['license']; ?> license' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?php echo _("remove license link");?>' title='<?php echo _("remove ").$license['license']._(" license"); ?>' class='remove' /></a>
 						</td>
 
 						</tr>
@@ -125,7 +125,7 @@
 
 			<?php } ?>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseStatus'><b>Licensing Status</b></label></span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='licenseStatus'><b><?php echo _("Licensing Status");?></b></label></span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -133,7 +133,7 @@
 
 				<table class='noBorder smallPadding' style='width:310px; margin:15px 20px 0px 20px'>
 				<tr>
-				<td style='vertical-align:top;text-align:left;width:60px;'>Status:</td>
+				<td style='vertical-align:top;text-align:left;width:60px;'><?php echo _("Status:");?></td>
 				<td style='vertical-align:top;text-align:left;'>
 				<select class='changeSelect' id='licenseStatusID'>
 				<option value=''></option>
@@ -157,16 +157,16 @@
 
 				<table class='noBorder' style='width:310px; margin:5px 15px;'>
 				<tr>
-				<td style='vertical-align:top;width:60px;'>History:</td>
+				<td style='vertical-align:top;width:60px;'><?php echo _("History:");?></td>
 				<td>
 
 				<?php
 				if (count($resourceLicenseStatusArray) > 0){
 					foreach ($resourceLicenseStatusArray as $licenseStatus){
-						echo $licenseStatus['licenseStatus'] . " - <i>" . format_date($licenseStatus['licenseStatusChangeDate']) . " by " . $licenseStatus['changeName'] . "</i><br />";
+						echo $licenseStatus['licenseStatus'] . " - <i>" . format_date($licenseStatus['licenseStatusChangeDate']) . _(" by ") . $licenseStatus['changeName'] . "</i><br />";
 					}
 				}else{
-					echo "<i>No license status information available.</i>";
+					echo "<i>"._("No license status information available.")."</i>";
 				}
 
 				?>
@@ -188,8 +188,8 @@
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitLicense' id ='submitLicense'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitLicense' id ='submitLicense'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

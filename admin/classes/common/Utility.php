@@ -118,7 +118,7 @@ class Utility {
 				$defaultMessage .= $buffer;
 			}
 			if (!feof($fh)) {
-				return "Error: unexpected fgets() fail\n";
+				return _("Error: unexpected fgets() fail")."\n";
 			}
 
 			fclose($fh);
@@ -130,7 +130,7 @@ class Utility {
 				$resourceTitleInURL = str_replace('+', '%20', $resourceTitleInURL);
 
 				$completionLink = str_replace('<ResourceTitle>', $resourceTitleInURL, $config->settings->completionLink);
-				$defaultMessage .= "Edit DDW facet/term selections at: " . $completionLink;
+				$defaultMessage .= _("Edit DDW facet/term selections at: ") . $completionLink;
 			}
 
 
@@ -145,7 +145,7 @@ class Utility {
 			return $defaultMessage;
 
 		}else{
-			return 'Email template file not found: ' . $templateFile;
+			return _('Email template file not found: ') . $templateFile;
 		}
 
 

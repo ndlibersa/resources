@@ -31,7 +31,7 @@ class LdapPerson extends DynamicObject {
 			$ds = ldap_connect($config->ldap->host);
 
 			//may need ldap_bind( $ds, $username, $password )
-			$bd = ldap_bind($ds) or die("<br /><h3>Could not connect to " . $config->ldap->host . "</h3>");
+			$bd = ldap_bind($ds) or die("<br /><h3>"._("Could not connect to ") . $config->ldap->host . "</h3>");
 
 			if ($bd){
 				$filter = $config->ldap->search_key . "=" . $userKey;

@@ -15,7 +15,7 @@
 		<form id='detailedSubjectForm'>
 		<input type='hidden' name='editgeneralSubjectID' id='editgeneralSubjectID' value='<?php echo $generalSubjectID; ?>'>
 
-		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo "Add / Edit Subject Relationships"; ?></span></div>
+		<div class='formTitle' style='width:280px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo _("Add / Edit Subject Relationships"); ?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -24,7 +24,7 @@
 		<td style='vertical-align:top;position:relative;'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b>General Subject</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='rule'><b><?php echo _("General Subject");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -50,7 +50,7 @@
 			<tr style='vertical-align:top;'>
 			<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b>Detailed Subjects</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='detailedSubjectID'><b><?php echo _("Detailed Subjects");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:275px;'>
 			<tr>
@@ -72,7 +72,7 @@
 						</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='adddetailedSubject' alt='add detail subject' title='add detail subject'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='adddetailedSubject' alt="<?php echo _("add detail subject");?>" title="<?php echo _("add detail subject");?>"></a>
 				</td>
 				</tr>
 				</table>
@@ -102,9 +102,9 @@
 							// Check to see if detail subject is in use.  If not allow removal.
 							$subjectObj = new DetailedSubject();
 							if ($subjectObj->inUse($dsSubject->detailedSubjectID, $generalSubject->generalSubjectID) == 0)  { ?>
-								<a href='javascript:void();'><img src='images/cross.gif' alt='remove detailed subject' title='remove detailed subject' class='remove' /></a>
+								<a href='javascript:void();'><img src='images/cross.gif' alt="<?php echo _("remove detailed subject");?>" title="<?php echo _("remove detailed subject");?>" class='remove' /></a>
 						<?php } else { ?>
-								<img src='images/do_not_enter.png' alt='subject in use' title='subject in use' />
+								<img src='images/do_not_enter.png' alt="<?php echo _("subject in use");?>" title="<?= _("subject in use");?>" />
 						<?php }  ?>
 						</td>
 						</tr>
@@ -125,8 +125,8 @@
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitDetailSubjectForm' id ='submitDetailSubjectForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitDetailSubjectForm' id ='submitDetailSubjectForm'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

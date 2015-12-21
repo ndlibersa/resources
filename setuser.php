@@ -41,7 +41,7 @@ if (!($testUser)){
 			$user->firstName = $ldap->fname;
 		}
 	}catch(Exception $e) {
-		$errorMessage = "LDAP Connection is not working or has timed out.  Please check configuration.ini to verify settings.";
+		$errorMessage = _("LDAP Connection is not working or has timed out.  Please check configuration.ini to verify settings.");
 	}
 	$user->save();
 }

@@ -56,7 +56,7 @@
 	
  function validateGeneralSubject(){
 	if ($("#updateVal").val() == ''){
-		$("#span_errors").html('Error - Please enter a value');
+		$("#span_errors").html(_("Error - Please enter a value"));
 		return false;
 	}else{
 		return true;

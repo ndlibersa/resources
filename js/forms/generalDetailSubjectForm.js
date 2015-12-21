@@ -84,7 +84,7 @@ $(document).ready(function(){
 		var detailedSubjectID = $('.newdetailedSubjectTable').children().children().children().children('.detailedSubjectID').val();
 		
 		if ((detailedSubjectID == '') || (detailedSubjectID == null)){
-			$('#div_errordetailedSubject').html('Error - Detailed Subject is required');
+			$('#div_errordetailedSubject').html(_("Error - Detailed Subject is required"));
 			return false;
 			
 		}else{
@@ -105,8 +105,8 @@ $(document).ready(function(){
 			$('.changeSelect option').each(function () {
 
 				if (($(this).val() == detailID) && (!firstFlag)) {
-					$('#div_errordetailedSubject').html('Error - Detail Subject Already Added');
-					$('#div_errordetailedSubject').html('Error - Detail Subject Already Added');	
+					$('#div_errordetailedSubject').html(_("Error - Detail Subject Already Added"));
+					$('#div_errordetailedSubject').html(_("Error - Detail Subject Already Added"));	
 					$('.newdetailedSubjectTR').remove();
 		
 					//next put the original clone back, we just need to reset the values
@@ -132,8 +132,8 @@ $(document).ready(function(){
 
 			$('.newdetailedSubjectTR').children().children().children('.adddetailedSubject').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove user from group',
-			  title: 'remove from group'
+			  alt: _("remove user from group"),
+			  title: _("remove from group")
 			});
 			
 			$('.newdetailedSubjectTR').children().children().children('.adddetailedSubject').addClass('remove');
@@ -178,7 +178,7 @@ $(document).ready(function(){
 
  function validateDetailSubject(){
  	myReturn=0;
- 	if (!validateRequired('shortName','<br />Short Name must be entered to continue.<br />')) myReturn="1";
+ 	if (!validateRequired('shortName',"<br />"+_("Short Name must be entered to continue.")+"<br />")) myReturn="1";
 	
  	 
  	if (myReturn == "1"){

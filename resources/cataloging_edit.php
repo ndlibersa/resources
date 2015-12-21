@@ -12,7 +12,7 @@ $catalogingType = new CatalogingType();
 <form id='catalogingForm' method="post" action="resources/cataloging_update.php">
 <input type='hidden' name='resourceID' id='resourceID' value='<?php echo $resourceID; ?>'>
 
-<div class='formTitle' style='width:715px; margin-bottom:5px;'><span class='headerText'>Edit Cataloging</span></div>
+<div class='formTitle' style='width:715px; margin-bottom:5px;'><span class='headerText'><?php echo _("Edit Cataloging");?></span></div>
 
 <span class='smallDarkRedText' id='span_errors'></span>
 
@@ -21,7 +21,7 @@ $catalogingType = new CatalogingType();
 <td style='vertical-align:top;' colspan='2'>
 
 
-<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b>Record Set</b></label>&nbsp;&nbsp;</span>
+<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='accessHead'><b><?php echo _("Record Set");?></b></label>&nbsp;&nbsp;</span>
 
 <table class='surroundBox' style='width:710px;'>
 <tr>
@@ -33,13 +33,13 @@ $catalogingType = new CatalogingType();
 	<td style="width:400px;">
 		<table>
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('recordSetIdentifier', 'Identifier'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('recordSetIdentifier', _('Identifier')); ?></td>
 		<td><?php echo Html::text_field('recordSetIdentifier', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
 
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('bibSourceURL', 'Source URL'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('bibSourceURL', _('Source URL')); ?></td>
 		<td><?php echo Html::text_field('bibSourceURL', $resource, array('width' => '240px')) ?>
 		</td>
 		</tr>
@@ -65,21 +65,21 @@ $catalogingType = new CatalogingType();
 		<table>
     
       <tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsAvailable', '# Records Available'); ?></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsAvailable', _('# Records Available')); ?></td>
   		<td>
   		  <?php echo Html::text_field('numberRecordsAvailable', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 
   		<tr>
-  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsLoaded', '# Records Loaded'); ?></td>
+  		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('numberRecordsLoaded', _('# Records Loaded')); ?></td>
   		<td>
   		  <?php echo Html::text_field('numberRecordsLoaded', $resource, array('width' => '60px')) ?>
   		</td>
   		</tr>
 		
 		<tr>
-		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('hasOclcHoldings', 'OCLC Holdings'); ?></td>
+		<td style='vertical-align:top;text-align:left;font-weight:bold;'><?php echo Html::label_tag('hasOclcHoldings', _('OCLC Holdings')); ?></td>
 		<td><input type='checkbox' value="1" id='hasOclcHoldings' name='hasOclcHoldings' <?php if ($resource->hasOclcHoldings) { echo 'checked'; } ?> /></td>
 		</tr>
 		</table>
@@ -99,8 +99,8 @@ $catalogingType = new CatalogingType();
 
 <table class='noBorderTable' style='width:125px;'>
 <tr>
-	<td style='text-align:left'><input type='submit' value='submit' name='submitCatalogingChanges' id ='submitCatalogingChanges'></td>
-	<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+	<td style='text-align:left'><input type='submit' value='<?php echo _("submit");?>' name='submitCatalogingChanges' id ='submitCatalogingChanges'></td>
+	<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 </tr>
 </table>
 

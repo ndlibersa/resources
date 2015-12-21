@@ -4,23 +4,23 @@
 		$resourceArray = array();
 		$resourceArray = $user->getOutstandingTasks();
 
-		echo "<div class='adminRightHeader'>Outstanding Tasks</div>";
+		echo "<div class='adminRightHeader'>"._("Outstanding Tasks")."</div>";
 
 
 
 		if (count($resourceArray) == "0"){
-			echo "<i>No outstanding requests</i>";
+			echo "<i>"._("No outstanding requests")."</i>";
 		}else{
 		?>
 
 
 			<table class='dataTable' style='width:646px;padding:0x;margin:0px;height:100%;'>
 			<tr>
-				<th style='width:45px;'>ID</th>
-				<th style='width:300px;'>Name</th>
-				<th style='width:95px;'>Acquisition Type</th>
-				<th style='width:125px;'>Routing Step</th>
-				<th style='width:75px;'>Start Date</th>
+				<th style='width:45px;'><?php echo _("ID");?></th>
+				<th style='width:300px;'><?php echo _("Name");?></th>
+				<th style='width:95px;'><?php echo _("Acquisition Type");?></th>
+				<th style='width:125px;'><?php echo _("Routing Step");?></th>
+				<th style='width:75px;'><?php echo _("Start Date");?></th>
 			</tr>
 
 		<?php

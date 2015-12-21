@@ -23,7 +23,7 @@
 
 		try {
 			$user->save();
-			echo "User successfully saved.";
+			echo _("User successfully saved.");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}

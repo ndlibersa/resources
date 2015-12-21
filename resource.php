@@ -51,7 +51,7 @@ if ($resource->titleText){
 		<div style='vertical-align:top; width:100%; height:35px; margin-left:5px;padding:0;'>
 			<span class="headerText" id='span_resourceName' style='float:left;vertical-align:text-top;'><?php echo $resource->titleText; ?>&nbsp;</span>
 			<div id='div_new' style='float:left;vertical-align:bottom;font-weight:115%;margin-top:3px;' class='darkRedText'><?php if ($_GET['ref'] == 'new'){ ?>&nbsp;&nbsp;<img src='images/red_checkmark.gif' />
-				<span class='boldText'>Success!</span>&nbsp;&nbsp;New resource added<?php } ?>
+				<span class='boldText'><?php echo _("Success!");?></span>&nbsp;&nbsp;<?php echo _("New resource added"); } ?>
 			</div>
 		</div>
 
@@ -233,7 +233,7 @@ if ($resource->titleText){
 					<?php if ($config->settings->feedbackEmailAddress != '') {?>
 						<div style='margin:0px 8px 10px 8px;'>
 						<div style='width:219px; padding:7px; margin-bottom:5px;'>
-						<a href="mailto: <?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'>Send feedback on this resource</a>
+						<a href="mailto: <?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'><?php echo _("Send feedback on this resource");?></a>
 						</div>
 						</div>
 					<?php } ?>

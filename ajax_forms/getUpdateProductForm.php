@@ -69,7 +69,7 @@
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:715px; margin-bottom:5px;position:relative;'><span class='headerText'>Edit Resource</span></div>
+		<div class='formTitle' style='width:715px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo _("Edit Resource");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
@@ -78,7 +78,7 @@
 		<td style='vertical-align:top;position:relative;' colspan='2'>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Product</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php echo _("Product");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:710px;'>
 			<tr>
@@ -88,22 +88,22 @@
 				<td style='width:360px;'>
 					<table>
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Name:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?php echo _("Name:");?></label></td>
 					<td><input type='text' id='titleText' name='titleText' value = "<?php echo $resource->titleText; ?>" style='width:260px;' class='changeInput' /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'>Description:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'><?php echo _("Description:");?></label></td>
 					<td><textarea rows='4' id='descriptionText' name='descriptionText' style='width:260px' class='changeInput' ><?php echo $resource->descriptionText; ?></textarea></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceURL'>URL:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceURL'><?php echo _("URL:");?></label></td>
 					<td><input type='text' id='resourceURL' name='resourceURL' value = '<?php echo $resource->resourceURL; ?>' style='width:260px;' class='changeInput'  /></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceAltURL'>Alt URL:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceAltURL'><?php echo _("Alt URL:");?></label></td>
 					<td><input type='text' id='resourceAltURL' name='resourceAltURL' value = '<?php echo $resource->resourceAltURL; ?>' style='width:260px;' class='changeInput'  /></td>
 					</tr>
 
@@ -115,13 +115,13 @@
 
 
 					<tr>
-          <td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'>Parents:</label></td>
+          <td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?php echo _("Parents:");?></label></td>
 					<td>
 
            <span id="newParent">
            <div class="oneParent">
            <input type='text' class='parentResource parentResource_new' name='parentResourceName' value='' style='width:140px;' class='changeInput'  /><input type='hidden' class='parentResource parentResource_new' name='parentResourceID' value='' /><span id='span_error_parentResourceName' class='smallDarkRedText'></span>
-           <a href='#'><img src='images/add.gif' class='addParent' alt='add Parent resource' title='add Parent Resource'></a><br />
+           <a href='#'><img src='images/add.gif' class='addParent' alt='<?php echo _("add Parent resource");?>' title='<?php echo _("add Parent Resource");?>'></a><br />
           </div>
            </span>
            <hr />
@@ -134,7 +134,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
               <div class="oneParent">
               <input type='text' name='parentResourceName' disabled='disabled' value = '<?php echo $parentResourceObj->titleText; ?>' style='width:180px;' class='changeInput'  />
               <input type='hidden' name='parentResourceID' value = '<?php echo $parentResourceObj->resourceID; ?>' />
-              <a href='javascript:void();'><img src='images/cross.gif' alt='remove parent' title='remove parent' class='removeParent' /></a>
+              <a href='javascript:void();'><img src='images/cross.gif' alt='<?php echo _("remove parent");?>' title='<?php echo _("remove parent");?>' class='removeParent' /></a>
             </div>
 <?php
              $i++;
@@ -145,11 +145,11 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='isbnOrISSN'>ISSN / ISBN:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='isbnOrISSN'><?php echo _("ISSN / ISBN:");?></label></td>
 <td>
           <span id="newIsbn">
            <input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
-           <a href='javascript:void();'><img src='images/add.gif' class='addIsbn' alt='add Isbn' title='add Isbn'></a><br />
+           <a href='javascript:void(0);'><img src='images/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
            <hr /><br />
            </span>
            <span id="existingIsbn">
@@ -167,7 +167,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'>Format:</label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?php echo _("Format:");?></label></td>
 					<td>
 					<select name='resourceFormatID' id='resourceFormatID' style='width:100px;' class='changeSelect'>
 					<option value=''></option>
@@ -205,7 +205,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</tr>
 
 					<tr>
-					<td style='text-align:left'><label for='archiveInd'><b>Archived:</b></label></td>
+					<td style='text-align:left'><label for='archiveInd'><b><?php echo _("Archived:");?></b></label></td>
 					<td>
 					<input type='checkbox' id='archiveInd' name='archiveInd' <?php echo $archiveChecked; ?> />
 					</td>
@@ -234,8 +234,8 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 				<table class='noBorder smallPadding newOrganizationTable' style='width:330px;  margin:15px 20px 0px 20px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>Role:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'>Organization:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'><?php echo _("Role:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'><?php echo _("Organization:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -257,7 +257,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addOrganization' alt='add organization' title='add organization'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addOrganization' alt='<?php echo _("add organization");?>' title='<?php echo _("add organization");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -297,7 +297,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:40px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove organization' title='remove <?php echo $resourceOrganization['shortName']; ?> organization' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt="<?php echo _("remove organization");?>" title='<?php echo _("remove ").$resourceOrganization['shortName']._("organization"); ?>' class='remove' /></a>
 						</td>
 
 						</tr>
@@ -319,7 +319,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Aliases</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php echo _("Aliases");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:300px;'>
 			<tr>
@@ -327,8 +327,8 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 				<table class='noBorder smallPadding newAliasTable' style='width:260px; margin:15px 20px 0px 20px;'>
 				<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:98px;'>Type:</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;width:125px;'>Alias:</td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:98px;'><?php echo _("Type:");?></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;width:125px;'><?php echo _("Alias:");?></td>
 					<td>&nbsp;</td>
 				</tr>
 
@@ -350,7 +350,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 				</td>
 
 				<td style='vertical-align:center;text-align:left;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addAlias' alt='add this alias' title='add alias'></a>
+				<a href='javascript:void();'><img src='images/add.gif' class='addAlias' alt='<?php echo _("add this alias");?>' title='<?php echo _("add alias");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -391,7 +391,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 						</td>
 
 						<td style='vertical-align:top;text-align:left;width:37px;'>
-							<a href='javascript:void();'><img src='images/cross.gif' alt='remove this alias' title='remove this alias' class='remove' /></a>
+							<a href='javascript:void();'><img src='images/cross.gif' alt='<?php echo _("remove this alias");?>' title='<?php echo _("remove this alias");?>' class='remove' /></a>
 						</td>
 						</tr>
 
@@ -420,8 +420,8 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitProductChanges' id ='submitProductChanges'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' id ='submitProductChanges'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 		<script type="text/javascript" src="js/forms/resourceUpdateForm.js?random=<?php echo rand(); ?>"></script>

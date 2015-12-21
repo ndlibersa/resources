@@ -137,7 +137,7 @@
 		var lID = $('.newLicenseTable').children().children().children().children('.licenseID').val();
 						
 		if ((lID == '') || (lID == null)){
-			$('#div_errorLicense').html('Error - Please choose a valid license');
+			$('#div_errorLicense').html(_("Error - Please choose a valid license"));
 			return false;
 			
 		}else{
@@ -152,8 +152,8 @@
 
 			$('.newLicenseTR').children().children().children('.addLicense').attr({
 			  src: 'images/cross.gif',
-			  alt: 'remove this license',
-			  title: 'remove this license'
+			  alt: _("remove this license"),
+			  title: _("remove this license")
 			});
 			$('.newLicenseTR').children().children().children('.addLicense').addClass('remove');
 			$('.licenseRoleID').addClass('changeSelect');
@@ -253,7 +253,7 @@ function validateForm(){
 	var lName = $('.newLicenseTable').children().children().children().children('.licenseName').val();
 
 	if (((lID == '') || (lID == null)) && (lName != '')){
-		$('#div_errorLicense').html('Error - Please choose a valid license');
+		$('#div_errorLicense').html(_("Error - Please choose a valid license"));
 		return false;
 	}else{
 		return true;

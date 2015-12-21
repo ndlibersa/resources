@@ -52,7 +52,7 @@
 	$("#OutstandingTasks").parent().parent().removeClass('selected');
  	$('#SavedRequests').parent().parent().addClass('selected');
  
-	$('#div_feedback').html("<img src = 'images/circle.gif' />Refreshing...");
+	$('#div_feedback').html("<img src = 'images/circle.gif' />"+_("Refreshing..."));
 
 	  $.ajax({
 		  type:       "GET",
@@ -86,7 +86,7 @@
 	$("#OutstandingTasks").parent().parent().removeClass('selected');
  	$('#SavedRequests').parent().parent().removeClass('selected');
  
-	$('#div_feedback').html("<img src = 'images/circle.gif' />Refreshing...");
+	$('#div_feedback').html("<img src = 'images/circle.gif' />"+_("Refreshing..."));
 
 	  $.ajax({
 		  type:       "GET",
@@ -120,7 +120,7 @@
  	$("#OutstandingTasks").parent().parent().addClass('selected');
   	$('#SavedRequests').parent().parent().removeClass('selected');
   
- 	$('#div_feedback').html("<img src = 'images/circle.gif' />Refreshing...");
+ 	$('#div_feedback').html("<img src = 'images/circle.gif' />"+_("Refreshing..."));
  
  	  $.ajax({
  		  type:       "GET",
@@ -150,9 +150,9 @@
  //currently you can only delete saved requests, updateSavedRequests() is hardcoded
  function deleteRequest(deleteID){
  
- 	if (confirm("Do you really want to delete this request?") == true) {
+ 	if (confirm(_("Do you really want to delete this request?")) == true) {
 
-	       $('#div_feedback').html("<img src = 'images/circle.gif' />Refreshing...");
+	       $('#div_feedback').html("<img src = 'images/circle.gif' />"+_("Refreshing..."));
 
 	       $.ajax({
 		  type:       "GET",
@@ -190,9 +190,9 @@
  	 data:       "action=getSavedRequestsNumber",
  	 success:    function(remaining) {
  		if (remaining == 1){
- 			$(".span_SavedRequestsNumber").html("(" + remaining + " record)");
+ 			$(".span_SavedRequestsNumber").html("(" + remaining + _(" record)"));
  		}else{
- 			$(".span_SavedRequestsNumber").html("(" + remaining + " records)");
+ 			$(".span_SavedRequestsNumber").html("(" + remaining + _(" records)"));
  		}
  	 }
   });
@@ -211,9 +211,9 @@
  	 data:       "action=getOutstandingTasksNumber",
  	 success:    function(remaining) {
  		if (remaining == 1){
- 			$(".span_OutstandingTasksNumber").html("(" + remaining + " record)");
+ 			$(".span_OutstandingTasksNumber").html("(" + remaining + _(" record)"));
  		}else{
- 			$(".span_OutstandingTasksNumber").html("(" + remaining + " records)");
+ 			$(".span_OutstandingTasksNumber").html("(" + remaining + _(" records)"));
  		}
  	 }
   });
@@ -232,9 +232,9 @@
  	 data:       "action=getSubmittedRequestsNumber",
  	 success:    function(remaining) {
  		if (remaining == 1){
- 			$(".span_SubmittedRequestsNumber").html("(" + remaining + " record)");
+ 			$(".span_SubmittedRequestsNumber").html("(" + remaining + _(" record)"));
  		}else{
- 			$(".span_SubmittedRequestsNumber").html("(" + remaining + " records)");
+ 			$(".span_SubmittedRequestsNumber").html("(" + remaining + _(" records)"));
  		}
  	 }
   });

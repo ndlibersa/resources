@@ -98,7 +98,7 @@ if (isset($loginID) && ($loginID != "")){
 	include_once('setuser.php');
 }else{
 	$user = new User();
-	$errorMessage = "Login is not working.  Check the .htaccess file and the remoteAuthVariableName specified in /admin/configuration.ini";
+	$errorMessage = _("Login is not working.  Check the .htaccess file and the remoteAuthVariableName specified in /admin/configuration.ini");
 }
 
 

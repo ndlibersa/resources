@@ -70,8 +70,8 @@ if ($config->settings->enableAlerts == 'Y'){
 			$email->send();
 
 		}
-	}else{
-		echo "No Resources found fitting alert day criteria";		
+	} else {
+		echo _("No Resources found fitting alert day criteria");
 	}
 
 	//Get all Issues that should be alerted today
@@ -91,18 +91,12 @@ if ($config->settings->enableAlerts == 'Y'){
 			foreach(explode(",", $alertableIssue['CCs']) as $emailAddr) {
 				mail($emailAddr, "Reminder: {$alertableIssue['subjectText']}",$emailMessage);
 			}
-
 		}
 	} else {
-	 	echo "No Issues found fitting alert criteria";			
+		echo _("No Issues found fitting alert day criteria");
 	}
-
-
-
-}else{
-	echo "Alerts not enabled in configuration.ini file";
+} else {
+	echo _("Alerts not enabled in configuration.ini file");
 }
-
-
 
 ?>

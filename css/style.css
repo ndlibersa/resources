@@ -10,7 +10,6 @@ body {
  color:  #2c3c42;
  font-family: "arial";
  font-size: 10pt;
- font-weight: heavy;
  background: #FFFFFF;
  margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
  padding: 0;
@@ -98,14 +97,14 @@ a.helpfulLink {color:#526972;}
 
 .smallText{color:#3D545D;font-size:92%;}
 .smallerText{color:#3D545D;font-size:85%;}
-.redText{color:red}
+.redText{color:red;}
 .smallRedText{font-size:85%;color:red;}
 .darkRedText{color:#7a0026;}
 .bigDarkRedText{font-size:125%; color:#7a0026;}
 .smallDarkRedText{font-size:85%;color:#7a0026;}
-.normalText{color:#3D545D}
-.smallBlueText{font-size:85%;font-weight:normal; color:#526972}
-.smallGreyText{font-size:85%;font-weight:normal; color:gray}
+.normalText{color:#3D545D;}
+.smallBlueText{font-size:85%;font-weight:normal; color:#526972;}
+.smallGreyText{font-size:85%;font-weight:normal; color:gray;}
 .boldBlueText{font-weight:bold; color:#526972;}
 .boldText{font-weight:bold;}
 .bigBlueText{font-size:125%; color:#526972;}
@@ -118,10 +117,10 @@ fieldset {border:0;}
 
 
 select option { color: #3D545D; font-family: "arial"; font-size: 95%; margin:1px; }
-.optionStyle { color: #3D545D; font-family: "arial"; font-size: 8pt; font-weight: medium; }
+.optionStyle { color: #3D545D; font-family: "arial"; font-size: 8pt;}
 
 
-input, select, multiple, textarea{color: #3D545D; font-family: "arial"; font-size: 95%; font-weight: medium;}
+input, select, multiple, textarea{color: #3D545D; font-family: "arial"; font-size: 95%;}
 
 
 /* following is for the right panel (helpful links) in the resource page
@@ -157,7 +156,7 @@ table.queueMenuTable {
 
 table.queueMenuTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	background-color: #f6f8fa;
     	border-top: 1px solid #e6e5e9;
     	vertical-align:top;
@@ -167,7 +166,7 @@ table.queueMenuTable td {
 
 table.queueMenuTable td.selected {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
     	border-top: 1px solid #e6e5e9;
     	background-color: #f2f5f7;
     	background-image:url('../images/tab.gif');
@@ -190,7 +189,7 @@ table.queueMenuTable tr {
 
 
 td.queueRightPanel {	
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
 	border-collapse: collapse;
@@ -214,7 +213,7 @@ table.queueDataTable {
 
 table.queueDataTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	border-width: 1px 0 0 0;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -266,7 +265,7 @@ table.adminMenuTable {
 
 table.adminMenuTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	background-color: #f6f8fa;
     	border-top: 1px solid #e6e5e9;
     	vertical-align:top;
@@ -276,7 +275,7 @@ table.adminMenuTable td {
 
 table.adminMenuTable td.selected {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
     	border-top: 1px solid #e6e5e9;
     	background-color: #f2f5f7;
     	background-image:url('../images/tab.gif');
@@ -299,7 +298,7 @@ table.adminMenuTable tr {
 
 
 td.adminRightPanel {	
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
 	border-collapse: collapse;
@@ -323,7 +322,7 @@ table.linedDataTable {
 
 table.linedDataTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	border-width: 1px 0 0 0;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -562,18 +561,18 @@ table.sample {
 	margin:0px;
 	border-width: 0px;
 	border-spacing: 0px;
-	border-style: inset inset inset inset;
+	border-style: inset;
 	border-color: white;
 	border-collapse: collapse;
 	background-color: white;
 }
 
 table.sample td.main {
-	border-width: 1px 1px 1px 1px;
-	padding: 3px 3px 3px 3px;
-	border-style: solid solid solid solid;
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
 	border-color: gray gray gray white;
-	-moz-border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px;
 }
 
 table.sample td.selected {
@@ -581,21 +580,21 @@ table.sample td.selected {
 	height:15px;
 	border-width: 1px 0px 1px 1px;
 	padding: 8px 3px 8px 3px;
-	border-style: solid solid solid solid;
+	border-style: solid;
 	border-color: gray white gray gray;
-	-moz-border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px;
 
 }
 
 table.sample td.unselected {
 	width:110px;
 	height:15px;
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 	padding: 8px 3px 8px 3px;
-	border-style: solid solid solid solid;
-	border-color: gray gray gray gray;
+	border-style: solid;
+	border-color: gray;
 	background-color: #adc6de;
-	-moz-border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px;
 
 }
 
@@ -603,9 +602,9 @@ table.sample td.unselected {
 table.sample td.bottom {
 	width:90px;
 	height:auto;
-	border-width: 1px 1px 1px 1px;
-	padding: 3px 3px 3px 3px;
-	border-style: solid solid solid solid;
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
 	border-color: white gray white white;
 	-moz-border-radius: 0px 0px 0px 0px;
 
@@ -674,7 +673,7 @@ table.sample td.bottom {
 
 
 .printContent{
-    padding: 24px 24px 24px 24px; 
+    padding: 24px; 
     background-color: white; 
     text-align:left;
     background-color: white;
@@ -712,7 +711,7 @@ table.verticalFormTable {
 
 table.verticalFormTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	border-width: 1px 1px 0 0;
 	border-style: solid;
 	border-color: #e0dfe3;
@@ -761,7 +760,7 @@ table.linedFormTable {
 
 table.linedFormTable td {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	border-width: 1px 0 0 0;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -772,7 +771,7 @@ table.linedFormTable td {
 
 table.linedFormTable td.bottom {
 	margin: 0;
-	padding: 3px 3px 3px 3px;
+	padding: 3px;
 	border-width: 1px 0 0 0;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -1080,7 +1079,7 @@ table.noBorder td { border:0; }
 table.smallPadding td{ padding:1px; }
 
 table.noMargin { border:0px;margin:0px; padding:0px;text-align:center; }
-table.noMargin tr { border:0px;margin:0px; padding:0px; vertical-align:center; }
+table.noMargin tr { border:0px;margin:0px; padding:0px; vertical-align:middle; }
 table.noMargin td { border:0px;margin:0px; padding:0px; }
 
 
@@ -1095,7 +1094,6 @@ table.thickboxTable{
  color:  #2c3c42;
  font-family: "arial";
  font-size: 8pt;
- font-weight: heavy;
 }
 
 table.thickboxTable td{
@@ -1104,9 +1102,9 @@ table.thickboxTable td{
 
 .smallText{font-size:small;}
 
-.infoText{font-size:small;font-weight:normal; color:gray}
-.span_CancellationNumber{font-size:small;font-weight:normal; color:gray}
-.span_CurrentQueue{font-size:small;font-weight:normal; color:gray}
+.infoText{font-size:small;font-weight:normal; color:gray;}
+.span_CancellationNumber{font-size:small;font-weight:normal; color:gray;}
+.span_CurrentQueue{font-size:small;font-weight:normal; color:gray;}
 
 table.noBorderTable {padding:0px; width:100%; border-style:none;}
 table.noBorderTable td {padding:0px; border-style:none; vertical-align:middle;}
@@ -1140,7 +1138,7 @@ input.dp-applied {
 }
 
 .adminAddInput{margin-top:5px;}
-.licenseAddInput{margin-top:5px;margin-bottom;5px;}
+.licenseAddInput{margin-top:5px;margin-bottom:5px;}
 
 
 
@@ -1188,7 +1186,34 @@ select option.changeSelect{
 .changeDefaultWhite{  
  border: solid 1px #a5acb2;  
  color: #526972;  
-} 
+}
+
+/* Change Module */
+.changeMod{
+    position: absolute;
+    background: #e4f5fc; /* Old browsers */
+    background: linear-gradient(to bottom, #c8d8e9 3%,#e2f0ff 52%,#c7cefc 100%); /* W3C */  
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Change language */
+.dropDownLang{
+    float:right; 
+    position:absolute; 
+    margin-left:135px; 
+    margin-top:-22px;
+    color: #3D545D;
+    background: #e4f5fc; /* Old browsers */
+    background: linear-gradient(to bottom, #c8d8e9 3%,#e2f0ff 52%,#c7cefc 100%); /* W3C */
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    height:20px;
+    cursor: pointer;
+}
 
 #importPage {
   text-align:left;

@@ -82,14 +82,14 @@ if ($config->settings->enableAlerts == 'Y'){
 	if (count($alertableIssuesArray) > 0){
 		foreach($alertableIssuesArray as $alertableIssue) {
 			//start building the email body
-			$emailMessage = "This is a reminder that this issue needs to be revisited.\r\n\r\n
+			$emailMessage = _("This is a reminder that this issue needs to be revisited.\r\n\r\n
 			Body: {$alertableIssue['bodyText']}\r\n\r\n
 			Applies To: {$alertableIssue['appliesto']}\r\n
 			\r\n\r\nContacts: \r\n\r\n
-			{$alertableIssue['contacts']}\r\n";
+			{$alertableIssue['contacts']}\r\n");
 
 			foreach(explode(",", $alertableIssue['CCs']) as $emailAddr) {
-				mail($emailAddr, "Reminder: {$alertableIssue['subjectText']}",$emailMessage);
+				mail($emailAddr, _("Reminder: {$alertableIssue['subjectText']}"),$emailMessage);
 			}
 		}
 	} else {

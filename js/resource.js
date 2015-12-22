@@ -88,18 +88,16 @@ $(document).ready(function(){
 		
 		var errors = [];
 
-		console.log($("#startDate").val());
-
 		if($("#startDate").val()=="") {	
 			errors.push({
-				message: "Must set a date.",
+				message: _("Must set a date."),
 				target: '#span_error_startDate'
 			});
 		} 
 
 		if($("#endDate").val()=="") {	
 			errors.push({
-				message: "Must set a date.",
+				message: _("Must set a date."),
 				target: '#span_error_endDate'
 			});
 		} 
@@ -153,14 +151,14 @@ $(document).ready(function(){
 
 		if($("#contactAddName").val() == "") {	
 			errors.push({
-				message: "New contact must have a name.",
+				message: _("New contact must have a name."),
 				target: '#span_error_contactAddName'
 			});
 		} 
 
 		if(!validateEmail($("#emailAddress").val())) {	
 			errors.push({
-				message: "CC must be a valid email.",
+				message: _("CC must be a valid email."),
 				target: '#span_error_contactEmailAddress'
 			});
 		} 
@@ -202,7 +200,7 @@ $(document).ready(function(){
 			$("#inputEmail").val('');
 			$('#span_error_contactIDs').html('');	
 		} else {
-			$('#span_error_contactIDs').html('CC must be a valid email.');
+			$('#span_error_contactIDs').html(_('CC must be a valid email.'));
 		}
 	});
 
@@ -449,22 +447,22 @@ function validateNewIssue () {
 	var appliesTo = false;
 
 	if (organization == '' || organization == null) {
-		$('#span_error_organizationId').html('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.');
+		$('#span_error_organizationId').html(_('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.'));
 		errorFlag=1;
 	}
 
 	if (contact == null || contact.length == 0) {
-		$('#span_error_contactName').html('A contact must be selected to continue.');
+		$('#span_error_contactName').html(_('A contact must be selected to continue.'));
 		errorFlag=1;
 	}
 
 	if (subject == '' || subject == null) {
-		$('#span_error_subjectText').html('A subject must be entered to continue.');
+		$('#span_error_subjectText').html(_('A subject must be entered to continue.'));
 		errorFlag=1;
 	}
 
 	if (body == '' || body == null) {
-		$('#span_error_bodyText').html('A body must be entered to continue.');
+		$('#span_error_bodyText').html(_('A body must be entered to continue.'));
 		errorFlag=1;
 	}
 
@@ -477,7 +475,7 @@ function validateNewIssue () {
 
 	if(!appliesTo) {
 		errorFlag=1;
-		$('#span_error_entities').html('An issue must be associated with an organization or resource(s).');
+		$('#span_error_entities').html(_('An issue must be associated with an organization or resource(s).'));
 	}
 	
  	if (errorFlag == 0){

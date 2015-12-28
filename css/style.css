@@ -51,15 +51,6 @@ a {
 a:active {color:#94a9be;}
 a:focus {color:#94a9be; outline: none; -moz-outline-style: none;}
 
-
-
-a.smallLink {
- font-size: 12px;
- text-decoration: none;
- color: #1B76A9;
-}
-
-
 a.bigLink {font-size:103%; }
 a.helpfulLink {color:#526972;}
 
@@ -351,7 +342,7 @@ table#title {padding:0px; background-image:url('../images/organizationstitle.jpg
 
 table.headerTable {
 	padding: 1px;
-	width: 900px;
+	width: 1024px;
 	min-height:40px;
 	background: none !important;
 	border-collapse: collapse;
@@ -512,8 +503,8 @@ table.dataTable {
 	border-color: #e0dfe3;
 	border-collapse: collapse;
 	border-spacing: 0;
-	max-width:895px;
-	width:895px;
+	max-width:840px;
+	width:840px;
 	font-size:90%;
 	margin-top: 11px;
 	margin-bottom: 10px;
@@ -527,7 +518,7 @@ table.dataTable td {
 	border-style: solid;
 	border-color: #e0dfe3;
 	-moz-border-radius: 0px;
-	/vertical-align: middle;
+	vertical-align: middle;
 	background-color: #f3f3f3;
 }
 
@@ -627,6 +618,7 @@ table.sample td.bottom {
     text-align: left;
     font-size: 12px;
     color: #fff;
+    margin-right: 10px;
 }
 
 .sidemenu a:link {
@@ -639,9 +631,6 @@ table.sample td.bottom {
      color: #ccc;
 }
 
-.sidemenu img {
-     vertical-align: top;
-}
 
 .sidemenu span.icon{
   display: none;
@@ -758,6 +747,7 @@ table.linedFormTable {
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size:90%;
+	margin-bottom: 10px !important;
 }
 
 table.linedFormTable td {
@@ -811,6 +801,8 @@ div.formTitle {
 	background-color: #cad7e1;
 	-moz-border-radius: 0px;
 	background: rgba(200, 200, 200, 0.5) url(../images/bg-diagonal-stripes.png) repeat top left !important;
+	font-size: 125%
+	font-weight: bold;
 }
 
 
@@ -830,6 +822,7 @@ table.surroundBox {
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size:100%;
+	width: 370px !important;
 }
 
 table.surroundBox td {
@@ -879,9 +872,9 @@ table.surroundForm tr {
 
 
 table.borderedFormTable {	
-	border-width: 0 0 1px 1px;
+	border-width: 0;
 	border-style: solid;
-	border-color: #e0dfe3;
+	border-color: #5295ba;
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size:90%;
@@ -1078,51 +1071,20 @@ select option.changeSelect{
  color: #526972;  
 } 
 
-#importPage {
-  text-align:left;
-}
-
-#importPage form {
-  width: auto;
-}
-
-#importPage fieldset {
-  border: 1px lightgray solid;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-#importPage label {
-  display:inline-block;
-  margin-bottom: 10px;
-  width: 150px;
-  margin-right: 20px;
-  vertical-align: top;
-  text-align: right;
-}
-
-#importPage p, h1 {
-  margin-bottom: 10px;
-}
-
-#importPage h1, h2 {
-  color: #2c3c42;
-}
-
 /*--- Additional Custom CSS ---*/
 
 .titleTable {
      height: 120px;
-     /*-*/margin-bottom: 25px;
+     margin-bottom: 25px;
 }
 
 .titleTable td {
-     /*-*/height: 40px !important;
-     /*-*/padding-top: 20px !important;
+     height: 40px !important;
+     padding-top: 20px !important;
 }
 
 .titleTable td a {
-     /*-*/padding-left: 0px;
+     padding-left: 0px;
 }
 
 .titleTable ul.tabs {
@@ -1142,9 +1104,9 @@ select option.changeSelect{
 }
 
 .noBorder > tbody > tr > td:nth-child(1) {
-  /*-*/width: 100px !important;
-  /*-*/padding-bottom: 20px;
-  /*-*/padding-left: 20px;
+  width: 100px !important;
+  padding-bottom: 20px;
+  padding-left: 20px;
 }
 
 a.newSearch:hover {
@@ -1706,4 +1668,473 @@ a#login-link:hover {
 
 #importPage fieldset {
   margin-bottom: 20px;
+}
+
+input#resourceTypeID {
+ margin-right: 5px;
+}
+
+/*--- Align Text When No Documents Fit the Query ---*/
+
+div#div_searchResults > i {
+ font-size: 18px;
+ position: relative;
+ top: 20px;
+ left: 20px;
+}
+
+/*--- Capitalize Add/Edit Links ---*/
+
+.div_mainContent a {
+ text-transform: capitalize;
+}
+
+/*---  Adjust Edit Resource Form Modal Window ---*/
+
+span#newParent {
+ padding-bottom: 10px !important;
+ display: block;
+}
+
+#newIsbn hr {
+ margin-top: 10px;
+}
+
+#div_resourceForm input#submitProductChanges {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 15px;
+}
+
+#div_resourceForm input#submitProductChanges:hover {
+ cursor: pointer;
+}
+
+#div_resourceForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_resourceForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+img.addParent {
+ top: 4px;
+ position: relative;
+}
+
+img.addIsbn {
+ top: 4px;
+ position: relative;
+}
+
+img.addOrganization {
+ top: 1px;
+ position: relative;
+}
+
+img.addAlias {
+ top: 1px;
+ position: relative;
+}
+
+/*--- Adjust Add New Subject Form Modal Window ---*/
+
+#div_updateForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_updateForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add New Note Form Modal Window ---*/
+
+#div_noteForm input#submitResourceNoteForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_noteForm input#submitResourceNoteForm:hover {
+ cursor: pointer;
+}
+
+#div_noteForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_noteForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Edit Acquisitions Form Modal Window ---*/
+
+#div_resourceForm input#submitOrder{
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_resourceForm input#submitOrder:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Edit Cost Information Form Modal Window ---*/
+
+#div_resourceForm input#submitCost{
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_resourceForm input#submitCost:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Edit Licenses Form Modal Window ---*/
+
+#div_licenseForm input#submitLicense {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_licenseForm input#submitLicense:hover {
+ cursor: pointer;
+}
+
+#div_licenseForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_licenseForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+img.addLicense {
+ position: relative;
+ top: 1px;
+}
+
+/*--- Adjust Edit Access Form Modal Window ---*/
+
+#div_accessForm input#submitAccessChanges {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_accessForm input#submitAccessChanges:hover {
+ cursor: pointer;
+}
+
+#div_accessForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_accessForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Edit Cataloging Form Modal Window ---*/
+
+#div_catalogingForm input#submitCatalogingChanges {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_catalogingForm input#submitCatalogingChanges:hover {
+ cursor: pointer;
+}
+
+#div_catalogingForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_catalogingForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add Contact Form Modal Window ---*/
+
+#div_contactForm input#submitContactForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_contactForm input#submitContactForm:hover {
+ cursor: pointer;
+}
+
+#div_contactForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_contactForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add Attachment Form Modal Window ---*/
+
+#div_attachmentForm input#submitAttachmentForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_attachmentForm input#submitAttachmentForm:hover {
+	cursor: pointer;
+}
+
+#div_attachmentForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_attachmentForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Center Label on File Import Page ---*/
+
+label[for=uploadFile] {
+ margin-left: 65px;
+}
+
+/*------------------------------*/
+/*--- Admin Page Adjustments ---*/
+/*------------------------------*/
+
+.adminRightPanel a {
+ text-transform: capitalize;
+}
+
+div#div_AdminContent .linedDataTable {
+ margin-bottom: 10px !important;
+}
+
+/*--- Adjust Add New User Form Modal Window ---*/
+
+#div_updateForm input#submitAddUpdate {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_updateForm input#submitAddUpdate:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Edit Workflow Form Modal Window ---*/
+
+#div_resourceForm input#submitWorkflowForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_resourceForm input#submitWorkflowForm:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add User Group Form Modal Window ---*/
+
+#div_userGroupForm input#submitUserGroupForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_userGroupForm input#submitUserGroupForm:hover {
+ cursor: pointer;
+}
+
+#div_userGroupForm input[value=cancel] {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_userGroupForm input[value=cancel]:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add General Subject Form Modal Window ---*/
+
+#div_updateForm input#submitGeneralSubjectForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_updateForm input#submitGeneralSubjectForm:hover {
+ cursor: pointer;
+}
+
+/*--- Adjust Add Detailed Subject Form Modal Window ---*/
+
+#div_updateForm input#submitDetailedSubjectForm {
+ color: #FFFFFF;
+ font-family: "Arial", sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ background: #1b76a9;
+ border: none;
+ padding: 5px 10px;
+ text-transform: capitalize;
+ margin-left: 5px;
+}
+
+#div_updateForm input#submitDetailedSubjectForm:hover {
+ cursor: pointer;
 }

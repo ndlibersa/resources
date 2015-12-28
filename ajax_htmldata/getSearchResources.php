@@ -58,10 +58,10 @@
 
 				//print starting <<
 				if ($page == 1){
-					echo "<span class='smallerText'><<</span>&nbsp;";
+					echo "<span class='smallerText'><i class='fa fa-backward'></i></span>&nbsp;";
 				}else{
 					$prevPage = $page - 1;
-					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><<</a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><i class='fa fa-backward'></i></a>&nbsp;";
 				}
 
 
@@ -93,9 +93,9 @@
 				$nextPage = $page + 1;
 				//print last >> arrows
 				if ($nextPage >= $maxPages){
-					echo "<span class='smallerText'>>></span>&nbsp;";
+					echo "<span class='smallerText'><i class='fa fa-forward'></i></span>&nbsp;";
 				}else{
-					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'>>></a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'><i class='fa fa-forward'></i></a>&nbsp;";
 				}
 
 				echo "</div>";
@@ -107,7 +107,7 @@
 
 
 			?>
-			<table class='dataTable' style='width:727px'>
+			<table class='dataTable' style='width:840px'>
 			<tr>
 			<th><table class='noBorderTable' style='width:100%'><tr><td>ID</td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td>Name</td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
@@ -155,10 +155,10 @@
 
 				//print starting <<
 				if ($page == 1){
-					echo "<span class='smallerText'><<</span>&nbsp;";
+					echo "<span class='smallerText'><i class='fa fa-backward'></i></span>&nbsp;";
 				}else{
 					$prevPage = $page - 1;
-					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><<</a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $prevPage . "' class='setPage smallLink' alt='previous page' title='previous page'><i class='fa fa-backward'></i></a>&nbsp;";
 				}
 
 
@@ -190,9 +190,9 @@
 				$nextPage = $page + 1;
 				//print last >> arrows
 				if ($nextPage >= $maxPages){
-					echo "<span class='smallerText'>>></span>&nbsp;";
+					echo "<span class='smallerText'><i class='fa fa-forward'></i></span>&nbsp;";
 				}else{
-					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'>>></a>&nbsp;";
+					echo "<a href='javascript:void(0);' id='" . $nextPage . "' class='setPage smallLink' alt='next page' title='next page'><i class='fa fa-forward'></i></a>&nbsp;";
 				}
 			}
 			?>

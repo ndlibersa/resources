@@ -91,9 +91,17 @@
 				<?php
 						$FundType = new Fund();
 
-						foreach($FundType->getUnArchivedFunds() as $fund) {
-							echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
-						}
+//						foreach($FundType->getUnArchivedFunds() as $fund) {
+//							echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
+//						}
+
+		foreach($FundType->getUnArchivedFunds() as $fund) {
+				$fundCodeLength = strlen($fund['fundCode']) + 3;
+				$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
+				$fundName = ($combinedLength <=30) ? $fund['shortName'] : substr($fund['shortName'],0,29) . "&hellip;";
+				$fundName .= " [" . $fund['fundCode'] . "]</option>";
+				echo "<option value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
+		}
 
 						?>
 			</select>
@@ -181,14 +189,18 @@ if (count($paymentArray) > 0){
 						}else{
 							$Funds = $FundType->getUnArchivedFunds();
 						}
-						foreach($Funds as $fund) {
-							echo "<option ";
-							if ($payment['fundID'] == $fund['fundID'])
-							{
-								echo " selected ";
-							}
-							echo " value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund["fundCode"] . "]</option>";
+				foreach($Funds as $fund) {
+						$fundCodeLength = strlen($fund['fundCode']) + 3;
+						$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
+						$fundName = ($combinedLength <=30) ? $fund['shortName'] : substr($fund['shortName'],0,29) . "&hellip;";
+						$fundName .= " [" . $fund['fundCode'] . "]</option>";
+						echo "<option";
+						if ($payment['fundID'] == $fund['fundID'])
+						{
+														echo " selected";
 						}
+						echo " value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
+				}
 
 						?>
 			</select>

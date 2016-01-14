@@ -1,38 +1,38 @@
 html {
- height: 100%;
- margin: 0;
- padding: 0;
- -webkit-font-smoothing: antialiased;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
 }
 
 body {
- height: 100%;
- text-decoration: none;
- color:  #666;
- font-family: Arial, sans-serif;
- font-size: 14px;
- font-weight: 30;
- background: #E7E8E8;
- margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
- padding: 0;
- text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
- background: #E7E8E8 url(../images/bg-gray-texture.jpg) repeat top left;
- -webkit-font-smoothing: antialiased;
+	height: 100%;
+	text-decoration: none;
+	color:  #666;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 30;
+	background: #E7E8E8;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	background: #E7E8E8 url(../images/bg-gray-texture.jpg) repeat top left;
+	-webkit-font-smoothing: antialiased;
 }
 
 .wrapper {
- margin: 0 auto -2em;
- height; 120px;
- background-image: url("../images/back-header.jpg");
- background-repeat: repeat-x;
+	margin: 0 auto -2em;
+	height; 120px;
+	background-image: url("../images/back-header.jpg");
+	background-repeat: repeat-x;
 }
 
 table {
-     border-collapse: collapse;
+			border-collapse: collapse;
 }
 
 .push {
- height: 2em;
+	height: 2em;
 }
 
 .footer {
@@ -45,7 +45,7 @@ position: absolute;
 }
 
 a {
- color:#4d4d4d;
+	color:#4d4d4d;
 }
 
 a:active {color:#94a9be;}
@@ -98,9 +98,9 @@ div.rightPanelLink{margin-bottom:4px; margin-left:5px; font-size:90%; }
 *************************/
 
 div.queueRightHeader{
-     font-size: 135%;
-     color: #3D545D;
-     margin-bottom: 5px;
+			font-size: 135%;
+			color: #3D545D;
+			margin-bottom: 5px;
 }
 
 div.queueMenuLink a {
@@ -141,12 +141,12 @@ table.queueMenuTable td.selected a {
 	text-decoration: none;
 }
 
-table.queueMenuTable tr {	
+table.queueMenuTable tr {
 	vertical-align:top;
 }
 
 
-td.queueRightPanel {	
+td.queueRightPanel {
 	border-width: 1px 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -159,7 +159,7 @@ td.queueRightPanel {
 
 
 
-table.queueDataTable {	
+table.queueDataTable {
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -189,7 +189,7 @@ table.queueDataTable th {
 	-moz-border-radius: 0px;
 }
 
-table.queueDataTable tr {	
+table.queueDataTable tr {
 	vertical-align:top;
 }
 
@@ -211,7 +211,7 @@ div.adminMenuLink a:hover {color:#526972;text-decoration:underline;}
 div.adminMenuLink a:focus {color:#3D545D; outline: none; font-weight:bold;}
 
 
-table.adminMenuTable {	
+table.adminMenuTable {
 	border-width: 0 0 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -225,8 +225,8 @@ table.adminMenuTable td {
 	margin: 0;
 	padding: 3px 3px 3px 3px;
 	background-color: #f6f8fa;
-    	border-top: 1px solid #e6e5e9;
-    	vertical-align:top;
+			border-top: 1px solid #e6e5e9;
+			vertical-align:top;
 	-moz-border-radius: 0px;
 }
 
@@ -234,10 +234,10 @@ table.adminMenuTable td {
 table.adminMenuTable td.selected {
 	margin: 0;
 	padding: 3px 3px 3px 3px;
-    	border-top: 1px solid #e6e5e9;
-    	background-color: #f2f5f7;
-    	background-image:url('../images/tab.gif');
-    	background-repeat:no-repeat;
+			border-top: 1px solid #e6e5e9;
+			background-color: #f2f5f7;
+			background-image:url('../images/tab.gif');
+			background-repeat:no-repeat;
 	background-position:right top;
 	-moz-border-radius: 0px;
 }
@@ -250,12 +250,12 @@ table.adminMenuTable td.selected a:focus {color:#526972;outline: none;}
 
 
 
-table.adminMenuTable tr {	
+table.adminMenuTable tr {
 	vertical-align:top;
 }
 
 
-td.adminRightPanel {	
+td.adminRightPanel {
 	border-width: 1px 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -264,11 +264,14 @@ td.adminRightPanel {
 	background-color: white;
 	vertical-align:top;
 	padding: 15px 30px;
+	/*-*/width: 780px !important;
+	/*-*/display: block;
+	/*-*/margin-left: 20px !important;
 }
 
 
 
-table.linedDataTable {	
+table.linedDataTable {
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -276,6 +279,7 @@ table.linedDataTable {
 	border-spacing: 0;
 	font-size:95%;
 	margin-bottom:5px;
+	/*-*/width: 100% !important;
 }
 
 table.linedDataTable td {
@@ -286,6 +290,7 @@ table.linedDataTable td {
 	border-color: #e6e5e9;
 	background-color: white;
 	-moz-border-radius: 0px;
+	/*-*/word-break: break-word;
 }
 
 table.linedDataTable td.complete {
@@ -303,7 +308,7 @@ table.linedDataTable th {
 	-moz-border-radius: 0px;
 }
 
-table.linedDataTable tr {	
+table.linedDataTable tr {
 	vertical-align:top;
 }
 
@@ -322,18 +327,18 @@ div.f3 { clear: both; }
 
 
 .checkboxes label{
-    display: block;
-    float: left;
-    padding-right: 10px;
-    white-space: nowrap;
+		display: block;
+		float: left;
+		padding-right: 10px;
+		white-space: nowrap;
 }
 
 .checkboxes input{
-    vertical-align: middle;
+		vertical-align: middle;
 }
 
 .checkboxes label span{
-    vertical-align: middle;
+		vertical-align: middle;
 }
 
 
@@ -351,58 +356,58 @@ table.headerTable {
 
 
 hr {
-  border:0;
-  border-bottom: 1px solid #e0dfe3;
-  height: 0;
-  width: auto !important;
-  background: #e0dfe3;
+	border:0;
+	border-bottom: 1px solid #e0dfe3;
+	height: 0;
+	width: auto !important;
+	background: #e0dfe3;
 }
 
 span.searchLetter {
-     margin: 0px;
-     padding-left: 1px;
-     padding-right: 1px;
-     color: #fff;
-     font-family: Courier, monospace;
+			margin: 0px;
+			padding-left: 1px;
+			padding-right: 1px;
+			color: #fff;
+			font-family: Courier, monospace;
 }
 
 span.searchLetter a {
-     color: #fff;
+			color: #fff;
 }
 
 span.searchLetterSelected {
-     margin: 0px;
-     padding-left: 1px;
-     padding-right: 1px;
-     background-color: #A9D0E0;
-     color: #fff;
+			margin: 0px;
+			padding-left: 1px;
+			padding-right: 1px;
+			background-color: #A9D0E0;
+			color: #fff;
 }
 
 span.searchLetter a:hover {
-     text-decoration: none;
-     background-color: #4d4d4d;
-     margin: 0px;
+			text-decoration: none;
+			background-color: #4d4d4d;
+			margin: 0px;
 }
 
 span.searchLetterSelected a:focus{color:#3D545D;}
 span.searchLetterSelected a:active{color:#3D545D;}
 
 #search_box {
-    width: 170px;
-    height: 19px;
-    background: url('../images/searchbox.gif');
+		width: 170px;
+		height: 19px;
+		background: url('../images/searchbox.gif');
 }
 #search_box #search_organization {
-    float: left;
-    padding: 0;
-    margin: 2px 0 0 6px;
-    border: 0;
-    width: 159px;
-    background: none;
+		float: left;
+		padding: 0;
+		margin: 2px 0 0 6px;
+		border: 0;
+		width: 159px;
+		background: none;
 }
 #search_box #go {
-    float: right;
-    margin: 3px 4px 0 0;
+		float: right;
+		margin: 3px 4px 0 0;
 }
 
 
@@ -497,7 +502,7 @@ div.grayBorder {
 	border-color: #e0dfe3;
 }
 
-table.dataTable {	
+table.dataTable {
 	border-width: 0 0 1px 1px;
 	border-style: solid;
 	border-color: #e0dfe3;
@@ -612,89 +617,89 @@ table.sample td.bottom {
 
 
 .sidemenu{
-    background-color: #1b77aa;
-     width: 120px;
-    vertical-align: top;
-    text-align: left;
-    font-size: 12px;
-    color: #fff;
-    margin-right: 10px;
+		background-color: #1b77aa;
+			width: 120px;
+		vertical-align: top;
+		text-align: left;
+		font-size: 12px;
+		color: #fff;
+		margin-right: 10px;
 }
 
 .sidemenu a:link {
-    text-decoration: none;
-    color: #fff;
+		text-decoration: none;
+		color: #fff;
 }
 
 .sidemenu a:hover {
-     text-decoration: none;
-     color: #ccc;
+			text-decoration: none;
+			color: #ccc;
 }
 
 
 .sidemenu span.icon{
-  display: none;
+	display: none;
 }
 
 .sidemenuselected {
-    padding: 10px;
-    border-bottom: 1px solid #1b77aa;
-    background-color: #DAE6EA;
-    width: 150px !important;
+		padding: 10px;
+		border-bottom: 1px solid #1b77aa;
+		background-color: #DAE6EA;
+		width: 150px !important;
 }
 
 .sidemenuselected:last-child {
-    border-bottom: 1px solid #DAE6EA ;
+		border-bottom: 1px solid #DAE6EA ;
 }
 
 .sidemenuunselected {
-    padding: 10px;
-    border-bottom: 1px solid #5295ba;
-    width: 150px !important;
+		padding: 10px;
+		border-bottom: 1px solid #5295ba;
+		width: 150px !important;
 }
 
 .sidemenuselected a {
-     color: #1b77aa !important;
+			color: #1b77aa !important;
 }
 
 .mainContent{
-    background-color: #f9fafb;
-    text-align:left;
-    vertical-align: top;
-    border: solid 1px #e0dfe3;
+		background-color: #f9fafb;
+		text-align:left;
+		vertical-align: top;
+		border: solid 1px #e0dfe3;
 }
 
 
 
 .printContent{
-    padding: 24px 24px 24px 24px; 
-    background-color: white; 
-    text-align:left;
-    background-color: white;
-    vertical-align: top;
-    
+		padding: 24px 24px 24px 24px;
+		background-color: white;
+		text-align:left;
+		background-color: white;
+		vertical-align: top;
+		
 }
 
 
 
-table.formTable td {	
+table.formTable td {
 	margin:4px;
 	padding:4px;
 }
 
-table.formTable tr {	
+table.formTable tr {
 	vertical-align:top;
 }
 
 
-table.formTable td.alt {	
+table.formTable td.alt {
 	margin:4px;
 	padding:4px;
 	background-color:#f0f2f4;
 }
 
 
-table.verticalFormTable {	
+table.verticalFormTable {
 	border-width: 0 0 1px 1px;
 	border-style: solid;
 	border-color: #e0dfe3;
@@ -724,23 +729,23 @@ table.verticalFormTable th {
 }
 
 
-table.verticalFormTable tr {	
+table.verticalFormTable tr {
 	vertical-align:top;
 }
 
 
-table.verticalFormTable td.complete {	
+table.verticalFormTable td.complete {
 	background-color:#f2f5f7;
 }
 
-table.verticalFormTable td.outstanding {	
+table.verticalFormTable td.outstanding {
 	background-color:#fdf2e7;
 }
 
 
 
 
-table.linedFormTable {	
+table.linedFormTable {
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -777,16 +782,16 @@ table.linedFormTable th {
 }
 
 
-table.linedFormTable tr {	
+table.linedFormTable tr {
 	vertical-align:top;
 }
 
 
-table.linedFormTable tr.lightGrayBackground td {	
+table.linedFormTable tr.lightGrayBackground td {
 	background-color:#ebebeb;
 }
 
-table.linedFormTable td.outstanding {	
+table.linedFormTable td.outstanding {
 	background-color:#fdf2e7;
 }
 
@@ -807,15 +812,15 @@ div.formTitle {
 
 
 span.surroundBoxTitle {
-	background-color:white; 
-	position:relative; 
-	top:8px; 
+	background-color:white;
+	position:relative;
+	top:8px;
 	left:5px;
 	font-size:110%;
 }
 
 
-table.surroundBox {	
+table.surroundBox {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -832,13 +837,13 @@ table.surroundBox td {
 	-moz-border-radius: 0px;
 }
 
-table.surroundBox tr {	
+table.surroundBox tr {
 	vertical-align:top;
 }
 
 
 
-table.surroundForm {	
+table.surroundForm {
 	border-width: 1px 1px 0px 1px;
 	border-style: solid;
 	border-color: #e6e5e9;
@@ -859,7 +864,7 @@ table.surroundForm td {
 	-moz-border-radius: 0px;
 }
 
-table.surroundForm tr {	
+table.surroundForm tr {
 	vertical-align:top;
 }
 
@@ -871,7 +876,7 @@ table.surroundForm tr {
 
 
 
-table.borderedFormTable {	
+table.borderedFormTable {
 	border-width: 0;
 	border-style: solid;
 	border-color: #5295ba;
@@ -907,9 +912,9 @@ table.borderedFormTable td.searchRow {
 }
 
 table.borderedFormTable td.searchRow label b {
-     color: #fff;
-     font-weight: 100;
-     font-size: 11px;
+			color: #fff;
+			font-weight: 100;
+			font-size: 11px;
 }
 
 table.borderedFormTable th {
@@ -928,7 +933,7 @@ table.borderedFormTable tr {vertical-align: top;}
 
 
 
-table.borderedHeadTable {	
+table.borderedHeadTable {
 	width:947px;
 	border-width:  0 0 1px 1px;
 	border-style: solid;
@@ -971,16 +976,16 @@ table.noMargin td { border:0px;margin:0px; padding:0px; }
 div.thickboxDiv{display:none;}
 
 table.thickboxTable{
- padding:6px; 
- text-decoration: none;
- color:  #2c3c42;
- font-family: "arial";
- font-size: 8pt;
- font-weight: heavy;
+	padding:6px;
+	text-decoration: none;
+	color:  #2c3c42;
+	font-family: "arial";
+	font-size: 8pt;
+	font-weight: heavy;
 }
 
 table.thickboxTable td{
- padding:1px; 
+	padding:1px;
 }
 
 .smallText{font-size:small;}
@@ -1006,15 +1011,15 @@ a.dp-choose-date {
 	display: block;
 	text-indent: -2000px;
 	overflow: hidden;
-	background: url('../images/calendar.gif') no-repeat; 
+	background: url('../images/calendar.gif') no-repeat;
 }
 a.dp-choose-date.dp-disabled {
 	background-position: 0 -20px;
 	cursor: default;
 }
 /* makes the input field shorter once the date picker code
- * has run (to allow space for the calendar icon
- */
+	* has run (to allow space for the calendar icon
+	*/
 input.dp-applied {
 	width: 140px;
 	float: left;
@@ -1025,974 +1030,974 @@ input.dp-applied {
 
 
 
-.changeInput{  
- padding:1px;  
- outline:none;  
-}  
-
-select.changeSelect{  
- padding:0px;  
-}  
-
-select option.changeSelect{  
- padding:0px;  
+.changeInput{
+	padding:1px;
+	outline:none;
 }
 
-.changeDefault{  
- padding:2px;  
- outline:none;  
- background:#f5f8fa;
- border: solid 1px #a5acb2;  
- color: #526972;  
-} 
+select.changeSelect{
+	padding:0px;
+}
 
-.focusField{  
- border:solid 1px #526972;  
- background:#f5f8fa;  
- color:#2c3c42;  
-}  
-.idleField{  
- background:#fbfbfb;  
- color: #526972;  
- border: solid 1px #a5acb2;  
-}  
+select option.changeSelect{
+	padding:0px;
+}
+
+.changeDefault{
+	padding:2px;
+	outline:none;
+	background:#f5f8fa;
+	border: solid 1px #a5acb2;
+	color: #526972;
+}
+
+.focusField{
+	border:solid 1px #526972;
+	background:#f5f8fa;
+	color:#2c3c42;
+}
+.idleField{
+	background:#fbfbfb;
+	color: #526972;
+	border: solid 1px #a5acb2;
+}
 
 .changeAutocomplete{
- padding:2px;  
- outline:none;  
- background:#f5f8fa;
- border: solid 1px #a5acb2;  
- color: #526972;  
-} 
+	padding:2px;
+	outline:none;
+	background:#f5f8fa;
+	border: solid 1px #a5acb2;
+	color: #526972;
+}
 
 
-.changeDefaultWhite{  
- border: solid 1px #a5acb2;  
- color: #526972;  
-} 
+.changeDefaultWhite{
+	border: solid 1px #a5acb2;
+	color: #526972;
+}
 
 /*--- Additional Custom CSS ---*/
 
 .titleTable {
-     height: 120px;
-     margin-bottom: 25px;
+			height: 120px;
+			margin-bottom: 25px;
 }
 
 .titleTable td {
-     height: 40px !important;
-     padding-top: 20px !important;
+			height: 40px !important;
+			padding-top: 20px !important;
 }
 
 .titleTable td a {
-     padding-left: 0px;
+			padding-left: 0px;
 }
 
 .titleTable ul.tabs {
-     padding-right: 15px;
+			padding-right: 15px;
 }
 
 .titleTable tr:first-child td div {
-     padding-right: 20px;
+			padding-right: 20px;
 }
 
 .titleTable tr:first-child td div a:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 #menu-end {
-     display: none;
+			display: none;
 }
 
 .noBorder > tbody > tr > td:nth-child(1) {
-  width: 100px !important;
-  padding-bottom: 20px;
-  padding-left: 20px;
+	width: 100px !important;
+	padding-bottom: 20px;
+	padding-left: 20px;
 }
 
 a.newSearch:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#showMoreOptions:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 #hideShowOptions {
-     padding: 10px;
+			padding: 10px;
 }
 
 #div_searchName {
-     margin-left: 0 !important;
-     margin-top: 6px;
+			margin-left: 0 !important;
+			margin-top: 6px;
 }
 
 #div_searchISBNOrISSN {
-     margin-left: 0 !important;
-     margin-top: 6px;
+			margin-left: 0 !important;
+			margin-top: 6px;
 }
 
 #div_searchFund {
-     margin-left: 0 !important;
-     margin-top: 6px;
+			margin-left: 0 !important;
+			margin-top: 6px;
 }
 
 #div_searchID {
-     margin-left: 0 !important;
-     margin-top: 6px;
+			margin-left: 0 !important;
+			margin-top: 6px;
 }
 
 #div_searchResourceNote {
-     margin-left: 0 !important;
-     margin-top: 6px;
+			margin-left: 0 !important;
+			margin-top: 6px;
 }
 
 .searchButton {
-     text-transform: uppercase;
+			text-transform: uppercase;
 }
 
 #searchResourceIDButton {
-     text-transform: uppercase;
+			text-transform: uppercase;
 }
 
 #searchCreateDateEnd {
-     margin-left: 7px;
-     margin-bottom: 10px;
+			margin-left: 7px;
+			margin-bottom: 10px;
 }
 
 img[src*="menu-bar.gif"] {
-    display: none;
+		display: none;
 }
 
 img[src*="arrowup.png"] {
-    padding-left: 6px;
+		padding-left: 6px;
 }
 
 .noBorderTable td {
-     vertical-align: middle !important;
+			vertical-align: middle !important;
 }
 
 /*--- Table Column Widths ---*/
 
 table.dataTable th:nth-of-type(1) {
-     min-width: 36px;
+			min-width: 36px;
 }
 
 table.dataTable th:nth-of-type(2) {
-     min-width: 250px;
+			min-width: 250px;
 }
 
 table.dataTable th:nth-of-type(3) {
-     min-width: 68px;
+			min-width: 68px;
 }
 
 table.dataTable th:nth-of-type(4) {
-     min-width: 100px;
+			min-width: 100px;
 }
 
 table.dataTable th:nth-of-type(5) {
-     min-width: 120px;
+			min-width: 120px;
 }
 
 table.dataTable th:nth-of-type(6) {
-     min-width: 68px;
+			min-width: 68px;
 }
 
 /*-----*/
 
 #div_searchResults > span:nth-child(2) {
-     padding-right: 20px;
+			padding-right: 20px;
 }
 
 a.setPage:hover {
-     text-decoration: none;
-     color: #ccc;
+			text-decoration: none;
+			color: #ccc;
 }
 
 .noBorderTable tr td {
-     background: none;
+			background: none;
 }
 
 /*--- Links with Icons ---*/
 
 a.newSearch:before {
-  font-family: FontAwesome;
-  content: "\f00e";
-  font-size: 11px;
-  margin-right: 3px;
+	font-family: FontAwesome;
+	content: "\f00e";
+	font-size: 11px;
+	margin-right: 3px;
 }
 
 a.newSearch {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.newSearch:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#logout:before {
-  font-family: FontAwesome;
-  content: "\f007";
-  font-size: 11px;
-  margin-right: 3px;
+	font-family: FontAwesome;
+	content: "\f007";
+	font-size: 11px;
+	margin-right: 3px;
 }
 
 a#logout {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
-     position: relative;
-     top: 4px;
-     left: -4px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
+			position: relative;
+			top: 4px;
+			left: -4px;
 }
 
 a#logout:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#showMoreOptions:before {
-  font-family: FontAwesome;
-  content: "\f055";
-  font-size: 11px;
-  margin-right: 3px;
+	font-family: FontAwesome;
+	content: "\f055";
+	font-size: 11px;
+	margin-right: 3px;
 }
 
 a#showMoreOptions {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a#showMoreOptions:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 #print-view a:before {
-  font-family: FontAwesome;
-  content: "\f02f";
-  font-size: 11px;
-  margin-right: 3px;
+	font-family: FontAwesome;
+	content: "\f02f";
+	font-size: 11px;
+	margin-right: 3px;
 }
 
 #print-view a {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 #print-view a:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 /*--- Resources Side Menu Icons ---*/
 
 a.showProduct:before {
-  font-family: FontAwesome;
-  content: "\f02d";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f02d";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showProduct {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showProduct:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showAcquisitions:before {
-  font-family: FontAwesome;
-  content: "\f12e";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f12e";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showAcquisitions {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showAcquisitions:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showAccess:before {
-  font-family: FontAwesome;
-  content: "\f13e";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f13e";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showAccess {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showAccess:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showCataloging:before {
-  font-family: FontAwesome;
-  content: "\f00b";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f00b";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showCataloging {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showCataloging:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showContacts:before {
-  font-family: FontAwesome;
-  content: "\f234";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f234";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showContacts {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showContacts:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showAttachments:before {
-  font-family: FontAwesome;
-  content: "\f0c6";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f0c6";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showAttachments {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showAttachments:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a.showRouting:before {
-  font-family: FontAwesome;
-  content: "\f064";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f064";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a.showRouting {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a.showRouting:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 /*---------------*/
 
 td.searchRow > b {
-     color: #fff;
-     font-weight: normal;
-     position: relative;
-     top: 6px;
+			color: #fff;
+			font-weight: normal;
+			position: relative;
+			top: 6px;
 }
 
 td.searchRow input,
 td.searchRow select,
 td.searchRow multiple,
 td.searchRow textarea {
-  margin-top: 5px;
+	margin-top: 5px;
 }
 
 #div_additionalSearch > table > tbody > tr:nth-child(3) > td a.dp-choose-date {
-     margin-top: 5px;
+			margin-top: 5px;
 }
 
 #span_resourceName {
-     padding: 25px 20px;
-     padding-top: 0;
+			padding: 25px 20px;
+			padding-top: 0;
 }
 
 .span_AttachmentNumber {
-     color: #FFF654;
-     margin-left: 0px !important;
+			color: #FFF654;
+			margin-left: 0px !important;
 }
 
 .sidemenuselected .span_AttachmentNumber {
-     color: #666672;
+			color: #666672;
 }
 
 .resource_tab_content {
-     width: 630px !important;
+			width: 630px !important;
 }
 
 .sidemenu {
-     width: 170px;
-     float: left;
+			width: 170px;
+			float: left;
 }
 
 .mainContent {
-     width: 430px;
-     padding: 10px;
+			width: 430px;
+			padding: 10px;
 }
 
 .linedFormTable {
-     width: 430px !important;
+			width: 430px !important;
 }
 
 .rightPanel {
-     text-align: left;
+			text-align: left;
 }
 
 div.rightPanelLink {
-     margin: 0;
-     font-size: 12px;
+			margin: 0;
+			font-size: 12px;
 }
 
 div.rightPanelHeader {
-     color: #1B76A9;
-     margin-bottom: 5px;
+			color: #1B76A9;
+			margin-bottom: 5px;
 }
 
 #title-search {
-     padding: 20px;
-     padding-top: 0;
+			padding: 20px;
+			padding-top: 0;
 }
 
 input[type="button"]:hover {
-     cursor: pointer;
+			cursor: pointer;
 }
 
 table.surroundBox table.noBorder {
-     margin: 15px !important;
+			margin: 15px !important;
 }
 
 #resourcePromptForm table.noBorderTable input {
-     color: #FFFFFF;
-     font-family: "Arial", sans-serif;
-     font-size: 11px;
-     font-weight: normal;
-     background: #1b76a9;
-     border: none;
-     padding: 5px 10px;
-     text-transform: capitalize;
+			color: #FFFFFF;
+			font-family: "Arial", sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			background: #1b76a9;
+			border: none;
+			padding: 5px 10px;
+			text-transform: capitalize;
 }
 
 table.headerTable > tbody > tr > td > table:nth-child(1) > tbody > tr > td {
-     padding: 25px;
-     padding-top: 0;
+			padding: 25px;
+			padding-top: 0;
 }
 
 /*--- My Queue Page Side Menu ---*/
 
 a#OutstandingTasks:before {
-  font-family: FontAwesome;
-  content: "\f192";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f192";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a#OutstandingTasks {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a#OutstandingTasks:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#SavedRequests:before {
-  font-family: FontAwesome;
-  content: "\f0fe";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f0fe";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a#SavedRequests {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a#SavedRequests:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#SubmittedRequests:before {
-  font-family: FontAwesome;
-  content: "\f045";
-  font-size: 11px;
-  margin-right: 5px;
+	font-family: FontAwesome;
+	content: "\f045";
+	font-size: 11px;
+	margin-right: 5px;
 }
 
 a#SubmittedRequests {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 12px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 12px;
 }
 
 a#SubmittedRequests:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 .span_OutstandingTasksNumber {
-     color: #FFF654;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #FFF654;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 .span_SubmittedRequestsNumber {
-     color: #FFF654;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #FFF654;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 .span_SavedRequestsNumber {
-     color: #FFF654;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #FFF654;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 .selected .span_OutstandingTasksNumber {
-     color: #666672;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #666672;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 .selected  .span_SubmittedRequestsNumber {
-     color: #666672;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #666672;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 .selected .span_SavedRequestsNumber {
-     color: #666672;
-     font-size: 85%;
-     margin-left: 15px !important;
+			color: #666672;
+			font-size: 85%;
+			margin-left: 15px !important;
 }
 
 #print-view a.helpfulLink {
-     text-decoration: underline !important;
+			text-decoration: underline !important;
 }
 
 a.helpfulLink {
-     text-decoration: underline !important;
+			text-decoration: underline !important;
 }
 
 /*--- Custom CSS for Login Box ---*/
 
 label:nth-of-type(3) {
-  margin-top: 5px;
+	margin-top: 5px;
 }
 
 .smallerText a:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 /*--- New Custom CSS ---*/
 
 #login-form {
-     margin-top: 20px;
+			margin-top: 20px;
 }
 
 #login-form label:nth-of-type(1) {
-     margin: 110px 0 15px 0 !important;
-     text-align: center !important;
+			margin: 110px 0 15px 0 !important;
+			text-align: center !important;
 }
 
 a#admin-link:before {
-     font-family: FontAwesome;
-     content: "\f023";
-     font-size: 13px;
-     margin-right: 5px;
+			font-family: FontAwesome;
+			content: "\f023";
+			font-size: 13px;
+			margin-right: 5px;
 }
 
 a#admin-link {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 14px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 14px;
 }
 
 a#admin-link:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 a#login-link:before {
-     font-family: FontAwesome;
-     content: "\f007";
-     font-size: 13px;
-     margin-right: 5px;
+			font-family: FontAwesome;
+			content: "\f007";
+			font-size: 13px;
+			margin-right: 5px;
 }
 
 a#login-link {
-     text-decoration: none;
-     text-transform: capitalize;
-     font-size: 14px;
+			text-decoration: none;
+			text-transform: capitalize;
+			font-size: 14px;
 }
 
 a#login-link:hover {
-     color: #ccc;
+			color: #ccc;
 }
 
 #loginbutton {
-     margin-top: 13px !important;
+			margin-top: 13px !important;
 }
 
 #importPage p {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 #importPage legend {
-  margin-bottom: 10px;
-  font-weight: bold;
+	margin-bottom: 10px;
+	font-weight: bold;
 }
 
 #importPage fieldset {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 input#resourceTypeID {
- margin-right: 5px;
+	margin-right: 5px;
 }
 
 /*--- Align Text When No Documents Fit the Query ---*/
 
 div#div_searchResults > i {
- font-size: 18px;
- position: relative;
- top: 20px;
- left: 20px;
+	font-size: 18px;
+	position: relative;
+	top: 20px;
+	left: 20px;
 }
 
 /*--- Capitalize Add/Edit Links ---*/
 
 .div_mainContent a {
- text-transform: capitalize;
+	text-transform: capitalize;
 }
 
 /*---  Adjust Edit Resource Form Modal Window ---*/
 
 span#newParent {
- padding-bottom: 10px !important;
- display: block;
+	padding-bottom: 10px !important;
+	display: block;
 }
 
 #newIsbn hr {
- margin-top: 10px;
+	margin-top: 10px;
 }
 
 #div_resourceForm input#submitProductChanges {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 15px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 15px;
 }
 
 #div_resourceForm input#submitProductChanges:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_resourceForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_resourceForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 img.addParent {
- top: 4px;
- position: relative;
+	top: 4px;
+	position: relative;
 }
 
 img.addIsbn {
- top: 4px;
- position: relative;
+	top: 4px;
+	position: relative;
 }
 
 img.addOrganization {
- top: 1px;
- position: relative;
+	top: 1px;
+	position: relative;
 }
 
 img.addAlias {
- top: 1px;
- position: relative;
+	top: 1px;
+	position: relative;
 }
 
 /*--- Adjust Add New Subject Form Modal Window ---*/
 
 #div_updateForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_updateForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add New Note Form Modal Window ---*/
 
 #div_noteForm input#submitResourceNoteForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_noteForm input#submitResourceNoteForm:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_noteForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_noteForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Edit Acquisitions Form Modal Window ---*/
 
 #div_resourceForm input#submitOrder{
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_resourceForm input#submitOrder:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Edit Cost Information Form Modal Window ---*/
 
 #div_resourceForm input#submitCost{
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_resourceForm input#submitCost:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Edit Licenses Form Modal Window ---*/
 
 #div_licenseForm input#submitLicense {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_licenseForm input#submitLicense:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_licenseForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_licenseForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 img.addLicense {
- position: relative;
- top: 1px;
+	position: relative;
+	top: 1px;
 }
 
 /*--- Adjust Edit Access Form Modal Window ---*/
 
 #div_accessForm input#submitAccessChanges {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_accessForm input#submitAccessChanges:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_accessForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_accessForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Edit Cataloging Form Modal Window ---*/
 
 #div_catalogingForm input#submitCatalogingChanges {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_catalogingForm input#submitCatalogingChanges:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_catalogingForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_catalogingForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add Contact Form Modal Window ---*/
 
 #div_contactForm input#submitContactForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_contactForm input#submitContactForm:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_contactForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_contactForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add Attachment Form Modal Window ---*/
 
 #div_attachmentForm input#submitAttachmentForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_attachmentForm input#submitAttachmentForm:hover {
@@ -2000,25 +2005,25 @@ img.addLicense {
 }
 
 #div_attachmentForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_attachmentForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Center Label on File Import Page ---*/
 
 label[for=uploadFile] {
- margin-left: 65px;
+	margin-left: 65px;
 }
 
 /*------------------------------*/
@@ -2026,115 +2031,152 @@ label[for=uploadFile] {
 /*------------------------------*/
 
 .adminRightPanel a {
- text-transform: capitalize;
+	text-transform: capitalize;
 }
 
 div#div_AdminContent .linedDataTable {
- margin-bottom: 10px !important;
+	margin-bottom: 10px !important;
 }
 
 /*--- Adjust Add New User Form Modal Window ---*/
 
 #div_updateForm input#submitAddUpdate {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_updateForm input#submitAddUpdate:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Edit Workflow Form Modal Window ---*/
 
 #div_resourceForm input#submitWorkflowForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_resourceForm input#submitWorkflowForm:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add User Group Form Modal Window ---*/
 
 #div_userGroupForm input#submitUserGroupForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_userGroupForm input#submitUserGroupForm:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 #div_userGroupForm input[value=cancel] {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_userGroupForm input[value=cancel]:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add General Subject Form Modal Window ---*/
 
 #div_updateForm input#submitGeneralSubjectForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_updateForm input#submitGeneralSubjectForm:hover {
- cursor: pointer;
+	cursor: pointer;
 }
 
 /*--- Adjust Add Detailed Subject Form Modal Window ---*/
 
 #div_updateForm input#submitDetailedSubjectForm {
- color: #FFFFFF;
- font-family: "Arial", sans-serif;
- font-size: 11px;
- font-weight: normal;
- background: #1b76a9;
- border: none;
- padding: 5px 10px;
- text-transform: capitalize;
- margin-left: 5px;
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
 }
 
 #div_updateForm input#submitDetailedSubjectForm:hover {
- cursor: pointer;
+	cursor: pointer;
+}
+
+/*--- Remove Space to the Right of Main Nav Menu ---*/
+
+.titleTable img {
+	float: left;
+}
+
+/*--- Prevent Module Menu from Floating Left ---*/
+
+.titleTable ul.tabs ul.coraldropdown img {
+	float: none;
+}
+
+/*--- Add icon to Sidebar (Accounts) ---*/
+
+a.showAccounts:before {
+		font-family: FontAwesome;
+		content: "\f0c0";
+		font-size: 11px;
+		margin-right: 5px;
+}
+
+/*--- Widen Modal Window ---*/
+
+div_updateForm {
+	width: 450px;
+}
+
+/*--- IE 11 Fix for Sidemenu Link Color ---*/
+
+.sidemenu span.link a {
+	color: #fff;
+}
+
+.sidemenu span.link a:hover {
+	color: #ccc;
 }

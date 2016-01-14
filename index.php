@@ -46,13 +46,13 @@ $_SESSION['ref_script']=$currentPage;
 <table class="headerTable" style="background-image:url('images/header.gif');background-repeat:no-repeat;">
 <tr style='vertical-align:top;'>
 <td style="width:155px;padding-right:10px;">
-  <form method="get" action="ajax_htmldata.php?action=getSearchResources" id="resourceSearchForm">
-    <?php 
-    foreach(array('orderBy','page','recordsPerPage','startWith') as $hidden) {
-      echo Html::hidden_search_field_tag($hidden, $search[$hidden]);
-    }
-    ?>
-    
+	<form method="get" action="ajax_htmldata.php?action=getSearchResources" id="resourceSearchForm">
+		<?php
+		foreach(array('orderBy','page','recordsPerPage','startWith') as $hidden) {
+			echo Html::hidden_search_field_tag($hidden, $search[$hidden]);
+		}
+		?>
+		
 	<table class='noBorder' id='title-search'>
 	<tr><td style='text-align:left;width:75px;' align='left'>
 	<span style='font-size:130%;font-weight:bold;'>Search</span><br />
@@ -98,10 +98,15 @@ $_SESSION['ref_script']=$currentPage;
 					echo "<option value='none'>(none)</option>";
 				}
 				$fundType = new Fund();
+			
+		foreach($fundType->allAsArray() as $fund) {
+				$fundCodeLength = strlen($fund['fundCode']) + 3;
+				$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
+				$fundName = ($combinedLength <=30) ? $fund['shortName'] : substr($fund['shortName'],0,29) . "&hellip;";
+				$fundName .= " [" . $fund['fundCode'] . "]</option>";
+				echo "<option value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
+		}
 
-				foreach($fundType->allAsArray() as $fund) {
-					echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
-				}
 			?>
 		</select>
 	</td>
@@ -561,16 +566,16 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
-  
-  <tr>
+	
+	<tr>
 	<td class='searchRow'><label for='searchStepName'><b>Routing Step</b></label>
 	<br />
 	<select name='search[stepName]' id='searchStepName' style='width:150px'>
 	<option value=''>All</option>
 	<?php
 	  $step = new Step();
-    $stepNames = $step->allStepNames();
-    
+		$stepNames = $step->allStepNames();
+		
 		foreach($stepNames as $stepName) {
 		  if ($search['stepName'] == $stepName) {
 		    $stepSelected = " selected";
@@ -584,21 +589,21 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
-  <tr>
-    <td class='searchRow'><label for='searchParents'><b>Relationship</b></label>
-    <select name='search[parent]' id='searchParents' style='width:150px'>
-      <option value=''>All</option>
-      <option value='RRC'>Parent</option>
-      <option value='RRP'>Child</option>
-    </select>
-  </td>
-  </tr>
+	<tr>
+		<td class='searchRow'><label for='searchParents'><b>Relationship</b></label>
+		<select name='search[parent]' id='searchParents' style='width:150px'>
+			<option value=''>All</option>
+			<option value='RRC'>Parent</option>
+			<option value='RRP'>Child</option>
+		</select>
+	</td>
+	</tr>
 
 
 	</table>
 	</div>
 
-  </form>
+	</form>
 </td>
 <td>
 <div id='div_searchResults'></div>
@@ -609,27 +614,27 @@ $_SESSION['ref_script']=$currentPage;
 <script type="text/javascript" src="js/index.js"></script>
 <script type='text/javascript'>
 <?php
-  //used to default to previously selected values when back button is pressed
-  //if the startWith is defined set it so that it will default to the first letter picked
-  if ((isset($_SESSION['res_startWith'])) && ($reset != 'Y')){
+	//used to default to previously selected values when back button is pressed
+	//if the startWith is defined set it so that it will default to the first letter picked
+	if ((isset($_SESSION['res_startWith'])) && ($reset != 'Y')){
 	  echo "startWith = '" . $_SESSION['res_startWith'] . "';";
 	  echo "$(\"#span_letter_" . $_SESSION['res_startWith'] . "\").removeClass('searchLetter').addClass('searchLetterSelected');";
-  }
+	}
 
-  if ((isset($_SESSION['res_pageStart'])) && ($reset != 'Y')){
+	if ((isset($_SESSION['res_pageStart'])) && ($reset != 'Y')){
 	  echo "pageStart = '" . $_SESSION['res_pageStart'] . "';";
-  }
+	}
 
-  if ((isset($_SESSION['res_recordsPerPage'])) && ($reset != 'Y')){
+	if ((isset($_SESSION['res_recordsPerPage'])) && ($reset != 'Y')){
 	  echo "recordsPerPage = '" . $_SESSION['res_recordsPerPage'] . "';";
-  }
+	}
 
-  if ((isset($_SESSION['res_orderBy'])) && ($reset != 'Y')){
+	if ((isset($_SESSION['res_orderBy'])) && ($reset != 'Y')){
 	  echo "orderBy = \"" . $_SESSION['res_orderBy'] . "\";";
-  }
+	}
 
-  echo "</script>";
+	echo "</script>";
 
-  //print footer
-  include 'templates/footer.php';
+	//print footer
+	include 'templates/footer.php';
 ?>

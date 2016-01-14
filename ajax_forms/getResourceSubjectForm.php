@@ -14,7 +14,6 @@
 				<th>General Subject Name</th>
 				<th>Detail Subject Name</th>
 				<th>&nbsp;</th>
-				<th>&nbsp;</th>
 				</tr>
 				<?php
 

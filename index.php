@@ -102,7 +102,7 @@ $_SESSION['ref_script']=$currentPage;
 		foreach($fundType->allAsArray() as $fund) {
 				$fundCodeLength = strlen($fund['fundCode']) + 3;
 				$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
-				$fundName = ($combinedLength <=30) ? $fund['shortName'] : substr($fund['shortName'],0,29) . "&hellip;";
+				$fundName = ($combinedLength <=50) ? $fund['shortName'] : substr($fund['shortName'],0,49-$fundCodeLength) . "&hellip;";
 				$fundName .= " [" . $fund['fundCode'] . "]</option>";
 				echo "<option value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
 		}

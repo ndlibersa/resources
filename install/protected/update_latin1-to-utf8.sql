@@ -54,3 +54,23 @@ ALTER TABLE `DetailedSubject` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general
 ALTER TABLE `GeneralDetailSubjectLink` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE `ResourceSubject` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE `CostDetails` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `Issue` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `IssueRelationship` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `IssueEntityType` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `IssueContact` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `IssueEmail` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `Downtime` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE `DowntimeType` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+
+
+
+
+
+
+
+
+
+
+

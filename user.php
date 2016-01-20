@@ -36,7 +36,6 @@ if ($config->settings->authModule == 'Y'){
 	//if the user has an open session
 	if (($loginID) && ($user->hasOpenSession())){
 
-		session_start();
 		$_SESSION['loginID'] = $loginID;
 
 	//no open session
@@ -78,7 +77,6 @@ if ($config->settings->authModule == 'Y'){
 
 
 
-		session_start();
 		$_SESSION['loginID'] = $loginID;
 
 

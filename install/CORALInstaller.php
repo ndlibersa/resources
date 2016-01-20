@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('../directory.php');
 
 if (!function_exists('debug')) {

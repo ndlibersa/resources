@@ -18,7 +18,6 @@
 */
 
 
-session_start();
 
 include_once 'directory.php';
 

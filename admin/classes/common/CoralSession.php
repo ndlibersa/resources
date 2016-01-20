@@ -13,7 +13,7 @@ class CoralSession
     return self::$instance;
   }
   
-  public static get($key) {
+  public static function get($key) {
     self::open_for_read();
     if (isset($_SESSION[$key])) {
       return $_SESSION[$key]
@@ -22,7 +22,7 @@ class CoralSession
     }
   }
   
-  public static set($key, $value) {
+  public static function set($key, $value) {
     session_start();
     $_SESSION[$key] = $value;
     session_write_close();
@@ -30,9 +30,5 @@ class CoralSession
   }
   
 }
-  
-  
-  
-  
-  
+
 ?>

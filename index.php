@@ -29,13 +29,13 @@ include 'templates/header.php';
 //except we don't want it to retain if they press the 'index' button
 //check what referring script is
 
-if (CoralSession:get('ref_script') != "resource.php"){
+if (CoralSession::get('ref_script') != "resource.php"){
 	Resource::resetSearch();
 }
 
 $search = Resource::getSearch();
 
-CoralSession:set('ref_script', $currentPage);
+CoralSession::set('ref_script', $currentPage);
 
 
 

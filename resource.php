@@ -33,9 +33,9 @@ include 'templates/header.php';
 
 //set referring page
 if ((isset($_GET['ref'])) && ($_GET['ref'] == 'new')){
-  CoralSession:set('ref_script', 'new');
+  CoralSession::set('ref_script', 'new');
 }else{
-  CoralSession:set('ref_script', $currentPage);
+  CoralSession::set('ref_script', $currentPage);
 }
 
 

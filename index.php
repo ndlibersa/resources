@@ -21,9 +21,6 @@
 
 include_once 'directory.php';
 
-//print header
-$pageTitle=_('Home');
-include 'templates/header.php';
 
 //used for creating a "sticky form" for back buttons
 //except we don't want it to retain if they press the 'index' button
@@ -37,6 +34,9 @@ $search = Resource::getSearch();
 
 CoralSession::set('ref_script', $currentPage);
 
+//print header
+$pageTitle=_('Home');
+include 'templates/header.php';
 
 
 ?>

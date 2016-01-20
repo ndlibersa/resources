@@ -19,12 +19,12 @@
 
 include_once 'directory.php';
 
-$pageTitle=_('My Queue');
-include 'templates/header.php';
 
 //set referring page
 CoralSession::set('ref_script', $currentPage);
 
+$pageTitle=_('My Queue');
+include 'templates/header.php';
 
 
 

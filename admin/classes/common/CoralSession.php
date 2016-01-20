@@ -10,7 +10,6 @@ class CoralSession
        session_write_close();
        self::$opened = true;
      }
-    return $_SESSION;
   }
   
   public static function get($key) {

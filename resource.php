@@ -26,10 +26,6 @@ $status = new Status(new NamedArguments(array('primaryKey' => $resource->statusI
 //used to get default email address for feedback link in the right side panel
 $config = new Configuration();
 
-//set this to turn off displaying the title header in header.php
-$pageTitle=$resource->titleText;;
-include 'templates/header.php';
-
 
 //set referring page
 if ((isset($_GET['ref'])) && ($_GET['ref'] == 'new')){
@@ -37,6 +33,10 @@ if ((isset($_GET['ref'])) && ($_GET['ref'] == 'new')){
 }else{
   CoralSession::set('ref_script', $currentPage);
 }
+
+//set this to turn off displaying the title header in header.php
+$pageTitle=$resource->titleText;;
+include 'templates/header.php';
 
 
 if ($resource->titleText){

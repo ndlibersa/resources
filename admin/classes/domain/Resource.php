@@ -885,7 +885,7 @@ class Resource extends DatabaseObject {
     foreach ($search as $key => $value) {
     	$search[$key] = trim($value);
     }
-    $_SESSION['resourceSearch'] = $search;
+    CoralSession::set('resourceSearch', $search);
   }
 
   public static function resetSearch() {
@@ -893,10 +893,10 @@ class Resource extends DatabaseObject {
   }
 
   public static function getSearch() {
-    if (!isset($_SESSION['resourceSearch'])) {
+    if (!CoralSession::get('resourceSearch')) {
       Resource::resetSearch();
     }
-    return $_SESSION['resourceSearch'];
+    return CoralSession::get('resourceSearch');
   }
 
   public static function getSearchDetails() {

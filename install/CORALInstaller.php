@@ -8,6 +8,7 @@ if (!function_exists('debug')) {
 }
 
 class CORALInstaller {
+  session_start();
 
   public $db; // because CORALInstaller::query does unwanted things with result
   public $error;

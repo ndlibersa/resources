@@ -29,13 +29,13 @@ include 'templates/header.php';
 //except we don't want it to retain if they press the 'index' button
 //check what referring script is
 
-if ($_SESSION['ref_script'] != "resource.php"){
+if (CoralSession:get('ref_script') != "resource.php"){
 	Resource::resetSearch();
 }
 
 $search = Resource::getSearch();
 
-$_SESSION['ref_script']=$currentPage;
+CoralSession:set('ref_script', $currentPage);
 
 
 
@@ -597,21 +597,21 @@ $_SESSION['ref_script']=$currentPage;
 <?php
   //used to default to previously selected values when back button is pressed
   //if the startWith is defined set it so that it will default to the first letter picked
-  if ((isset($_SESSION['res_startWith'])) && ($reset != 'Y')){
-	  echo "startWith = '" . $_SESSION['res_startWith'] . "';";
-	  echo "$(\"#span_letter_" . $_SESSION['res_startWith'] . "\").removeClass('searchLetter').addClass('searchLetterSelected');";
+  if ((isset(CoralSession::get('res_startWith'))) && ($reset != 'Y')){
+	  echo "startWith = '" . CoralSession::get('res_startWith') . "';";
+	  echo "$(\"#span_letter_" . CoralSession::get('res_startWith') . "\").removeClass('searchLetter').addClass('searchLetterSelected');";
   }
 
-  if ((isset($_SESSION['res_pageStart'])) && ($reset != 'Y')){
-	  echo "pageStart = '" . $_SESSION['res_pageStart'] . "';";
+  if ((isset(CoralSession::get('res_pageStart'))) && ($reset != 'Y')){
+	  echo "pageStart = '" . CoralSession::get('res_pageStart') . "';";
   }
 
-  if ((isset($_SESSION['res_recordsPerPage'])) && ($reset != 'Y')){
-	  echo "recordsPerPage = '" . $_SESSION['res_recordsPerPage'] . "';";
+  if ((isset(CoralSession::get('res_recordsPerPage'))) && ($reset != 'Y')){
+	  echo "recordsPerPage = '" . CoralSession::get('res_recordsPerPage') . "';";
   }
 
-  if ((isset($_SESSION['res_orderBy'])) && ($reset != 'Y')){
-	  echo "orderBy = \"" . $_SESSION['res_orderBy'] . "\";";
+  if ((isset(CoralSession::get('res_orderBy'))) && ($reset != 'Y')){
+	  echo "orderBy = \"" . CoralSession::get('res_orderBy') . "\";";
   }
 
   echo "</script>";

@@ -2,15 +2,15 @@
 
 class CoralSession
 {
-  private static $instance;
+  private static $opened;
 
   private static function open_for_read() {
-    if (!isset(self::$instance)) {
+    if (!isset(self::$opened)) {
        session_start();
        session_write_close();
-       self::$instance = $_SESSION;
+       self::$opened = true;
      }
-    return self::$instance;
+    return $_SESSION;
   }
   
   public static function get($key) {
@@ -26,7 +26,7 @@ class CoralSession
     session_start();
     $_SESSION[$key] = $value;
     session_write_close();
-    self::$instance = $_SESSION
+    self::$opened = true;
   }
   
 }

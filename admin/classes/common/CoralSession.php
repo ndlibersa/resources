@@ -16,7 +16,7 @@ class CoralSession
   public static function get($key) {
     self::open_for_read();
     if (isset($_SESSION[$key])) {
-      return $_SESSION[$key]
+      return $_SESSION[$key];
     } else {
       return null;
     }

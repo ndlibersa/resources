@@ -97,6 +97,8 @@ $coralURL = $util->getCORALURL();
 	}else{
 		echo $user->loginID;
 	}
+<br />
+On machine <?php echo $_SERVER['SERVER_ADDR'] ?>^M
 
 ?>
 </span>

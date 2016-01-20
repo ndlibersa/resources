@@ -29,10 +29,8 @@ include_once 'directory.php';
 if (CoralSession::get('ref_script') != "resource.php"){
 	Resource::resetSearch();
 }
-
-$search = Resource::getSearch();
-
 CoralSession::set('ref_script', $currentPage);
+$search = Resource::getSearch();
 
 //print header
 $pageTitle=_('Home');

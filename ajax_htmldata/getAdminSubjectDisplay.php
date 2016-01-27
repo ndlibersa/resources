@@ -13,8 +13,8 @@
 			<table class='linedDataTable'>
 				<tr>
 				<th style='width:100%;'>Value</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
@@ -55,8 +55,8 @@
 			<table class='linedDataTable'>
 				<tr>
 				<th style='width:100%;'>Value</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
@@ -97,8 +97,8 @@
 				<tr>
 				<th>General Subject</th>
 				<th>Detailed Subject</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
@@ -113,6 +113,7 @@
 					}
 					echo "</td>";
 					echo "<td><a href='ajax_forms.php?action=getGeneralDetailSubjectForm&generalSubjectID=" . $generalSubject->generalSubjectID . "&height=400&width=305&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td></td>";
 					echo "</tr>";
 				}
 

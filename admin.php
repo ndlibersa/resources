@@ -87,7 +87,7 @@ if ($user->isAdmin()){
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceFormat' class='AdminLink'>Resource Format</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='ResourceType' class='AdminLink'>Resource Type</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='StorageLocation' class='AdminLink'>Storage Location</div></td></tr>
-				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='SubjectsAdminLink'>Subjects</div></td></tr>				
+				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' class='SubjectsAdminLink'>Subjects</div></td></tr>
 				<tr><td><div class='adminMenuLink'><a href='javascript:void(0);' id='UserLimit' class='AdminLink'>User Limit</div></td></tr>
 			</table>
 		</td>

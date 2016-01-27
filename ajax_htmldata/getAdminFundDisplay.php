@@ -11,18 +11,18 @@
 			?>
 			<table  class='linedDataTable' >
 				<tr>
-				<th style='width:25px;'>Code</th>
-				<th style='width:100%;'>Name</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th>Code</th>
+				<th>Name</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
 				foreach($instanceArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['fundCode'] . "</td>";
-					echo "<td>" . $instance['shortName'] . "</td>";
+					echo "<td id='fund-short-name'>" . $instance['shortName'] . "</td>";
 					echo "<td><a href='ajax_forms.php?action=getAdminFundUpdateForm&updateID=" . $instance['fundID'] . "&height=178&width=260&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
 					echo "<td><a href='javascript:deleteFund(\"Fund\", \"" . $instance['fundID'] . "\");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					if ($instance['archived'] == 1)

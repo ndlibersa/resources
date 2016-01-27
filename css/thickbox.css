@@ -26,10 +26,7 @@
 /* ---------->>> thickbox settings <<<-----------------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------------*/
 #TB_overlay {
-	/*---
 	position: fixed;
-	---*/
-	/*-*/position: absolute;
 	z-index:100;
 	top: 0px;
 	left: 0px;
@@ -53,7 +50,7 @@
 }
 
 #TB_window {
-	position: fixed;
+	/*-*/position: absolute;
 	background: #ffffff;
 	z-index: 102;
 	color:#3D545D;

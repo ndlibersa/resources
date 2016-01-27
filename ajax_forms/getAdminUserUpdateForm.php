@@ -29,11 +29,11 @@
 			<table class='noBorder' style='width:260px; margin:10px;'>
 
 
-				<tr><td><label for='loginID'><b>Login ID</b></label</td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
-				<tr><td><label for='firstName'><b>First Name</b></label</td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='lastName'><b>Last Name</b></label</td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='emailAddress'><b>Email Address</b></label</td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
-				<tr><td><label for='privilegeID'><b>Privilege</b></label</td>
+				<tr><td><label for='loginID'><b>Login ID</b></label></td><td><?php if (!$loginID) { ?><input type='text' id='loginID' value='<?php echo $loginID; ?>' style='width:150px;'/> <?php } else { echo $loginID; } ?></td></tr>
+				<tr><td><label for='firstName'><b>First Name</b></label></td><td><input type='text' id='firstName' value="<?php echo $user->firstName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='lastName'><b>Last Name</b></label></td><td><input type='text' id='lastName' value="<?php echo $user->lastName; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='emailAddress'><b>Email Address</b></label></td><td><input type='text' id='emailAddress' value="<?php echo $user->emailAddress; ?>" style='width:150px;'/></td></tr>
+				<tr><td><label for='privilegeID'><b>Privilege</b></label></td>
 				<td>
 				<select id='privilegeID' style='width:155px'>
 				<?php
@@ -51,7 +51,7 @@
 				</td>
 				</tr>
 
-				<tr><td><label for='accountTab'><b>View Accounts</b></label</td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
+				<tr><td><label for='accountTab'><b>View Accounts</b></label></td><td><input type='checkbox' id='accountTab' value='1' <?php echo $accountTab; ?> /></td></tr>
 
 
 			</table>

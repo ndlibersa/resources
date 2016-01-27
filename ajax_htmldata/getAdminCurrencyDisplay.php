@@ -11,7 +11,7 @@
 			?>
 			<table class='linedDataTable'>
 				<tr>
-				<th style='width:25px;'>Code</th>
+				<th style='width:180px;'>Code</th>
 				<th style='width:100%;'>Name</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>

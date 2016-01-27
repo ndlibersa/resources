@@ -57,11 +57,11 @@
 		?>
 			<form enctype="multipart/form-data" action="importFunds.php" method="post" id="importForm">
 				<div id='div_updateForm'>
-					<div class='formTitle' style='width:245px;'><b>Import Funds</b></div>
+					<div class='formTitle' style='width:245px;'><b>Import Funds</b></div><br/>
 					<label for="uploadFile">Select File</label>
 					<input type="file" name="uploadFile" id="uploadFile"/><br/><br/>
-					<input type="submit" name="submit" value="Import" />
-					<input type='button' value='Cancel' onclick="window.parent.tb_remove(); return false;"/>
+					<input type="submit" name="submit" value="Import" id="import-fund-button" />
+					<input type='button' value='Cancel' onclick="window.parent.tb_remove(); return false;" id="cancel-fund-button"/>
 				</div>
 			</form>
 		<?php

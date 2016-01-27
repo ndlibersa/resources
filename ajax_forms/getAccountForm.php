@@ -84,7 +84,7 @@
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
 				<td style='text-align:left'><input type='button' value='submit' name='submitExternalLoginForm' id ='submitExternalLoginForm'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();" id='cancel-add-account'></td>
 			</tr>
 		</table>
 

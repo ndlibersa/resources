@@ -16,8 +16,8 @@
 				<th>Acquisition Type</th>
 				<th>Resource Format</th>
 				<th>Resource Type</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
@@ -72,8 +72,8 @@
 				<th>Group Name</th>
 				<th>Email Address</th>
 				<th>Users</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 

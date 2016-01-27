@@ -14,8 +14,8 @@
 			<table class='linedDataTable'>
 				<tr>
 				<th style='width:100%;'>Email Address</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 
@@ -44,8 +44,8 @@
 			<table class='linedDataTable'>
 				<tr>
 				<th style='width:100%;'>Days in advance of expiration</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
+				<th style='width:20px;'&nbsp;</th>
+				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 

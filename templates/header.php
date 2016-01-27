@@ -87,7 +87,7 @@ $coralURL = $util->getCORALURL();
 </span>
 <br />
 <?php
-if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'>logout</a>"; } ?>
+if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout'  id='logout'>logout</a>"; } ?>
 <?php if ($config->settings->testMode == 'Y') { ?>
 	<br><span style="color:red;font-size:90%;">(Test)</span>
 <?php } ?>

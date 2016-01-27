@@ -36,12 +36,12 @@ table {
 }
 
 .footer {
-height: 2em;
-font-size:80%;
-color: #4d4d4d;
-text-align:center;
-width:100%;
-position: absolute;
+	height: 3em;
+	font-size: 80%;
+	text-align: center;
+	/*-*/width: 100%;
+	font-style: italic;
+	text-align: center;
 }
 
 a {
@@ -55,7 +55,13 @@ a.bigLink {font-size:103%; }
 a.helpfulLink {color:#526972;}
 
 .smallText{color:#3D545D;font-size:92%;}
-.smallerText{color:#3D545D;font-size:85%;}
+
+.smallerText {
+	color: #3D545D;
+	font-size: 85%;
+	font-weight: bold;
+}
+
 .redText{color:red}
 .smallRedText{font-size:85%;color:red;}
 .darkRedText{color:#7a0026;}
@@ -290,7 +296,6 @@ table.linedDataTable td {
 	border-color: #e6e5e9;
 	background-color: white;
 	-moz-border-radius: 0px;
-	/*-*/word-break: break-word;
 }
 
 table.linedDataTable td.complete {
@@ -312,9 +317,11 @@ table.linedDataTable tr {
 	vertical-align:top;
 }
 
+/*--- Prevent Table Cell from Being Too Long ---*/
 
-
-
+#fund-short-name {
+	word-break: break-all;
+}
 
 /* use floating divs instead of tables in some cases
 *************************/
@@ -1669,6 +1676,7 @@ a#login-link:hover {
 #importPage legend {
 	margin-bottom: 10px;
 	font-weight: bold;
+	width: 100%;
 }
 
 #importPage fieldset {
@@ -2144,6 +2152,106 @@ div#div_AdminContent .linedDataTable {
 	cursor: pointer;
 }
 
+#detailedSubjectForm input#submitDetailSubjectForm {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#detailedSubjectForm input#submitDetailSubjectForm:hover {
+	cursor: pointer;
+}
+
+#detailedSubjectForm input[value=cancel] {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#detailedSubjectForm input[value=cancel]:hover {
+	cursor: pointer;
+}
+
+/*--- Adjust Import Funds Modal Window ---*/
+
+#div_updateForm input#import-fund-button {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#div_updateForm input#import-fund-button:hover {
+	cursor: pointer;
+}
+
+#div_updateForm input#cancel-fund-button {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#div_updateForm input#cancel-fund-button:hover {
+	cursor: pointer;
+}
+
+/*--- Adjust Add Account Modal Window ---*/
+
+#div_accountForm input#submitExternalLoginForm {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#div_accountForm input#submitExternalLoginForm:hover {
+	cursor: pointer;
+}
+
+#div_accountForm input[value=cancel] {
+	color: #FFFFFF;
+	font-family: "Arial", sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background: #1b76a9;
+	border: none;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	margin-left: 5px;
+}
+
+#div_accountForm input[value=cancel]:hover {
+	cursor: pointer;
+}
+
 /*--- Remove Space to the Right of Main Nav Menu ---*/
 
 .titleTable img {
@@ -2165,12 +2273,6 @@ a.showAccounts:before {
 		margin-right: 5px;
 }
 
-/*--- Widen Modal Window ---*/
-
-div_updateForm {
-	width: 450px;
-}
-
 /*--- IE 11 Fix for Sidemenu Link Color ---*/
 
 .sidemenu span.link a {
@@ -2179,4 +2281,24 @@ div_updateForm {
 
 .sidemenu span.link a:hover {
 	color: #ccc;
+}
+
+/*--- Add Some Space Before Checkbox ---*/
+
+input#stats {
+		margin-left: 5px;
+}
+
+/*--- Capitalize Logout Link ---*/
+
+.titleTable a {
+		text-transform: capitalize;
+}
+
+/*--- Decorate Pagination Links ---*/
+
+a.smallLink {
+	font-size: 12px;
+	text-decoration: none;
+	color: #1B76A9;
 }

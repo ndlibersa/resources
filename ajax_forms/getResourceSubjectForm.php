@@ -49,4 +49,4 @@
 		</div>
 
 		<script type="text/javascript" src="js/forms/resourceSubject.js?random=<?php echo rand(); ?>"></script>
-
+		<script type="text/javascript">document.getElementById("div_updateForm").className="modalScroll";</script>

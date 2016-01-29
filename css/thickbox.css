@@ -50,7 +50,7 @@
 }
 
 #TB_window {
-	/*-*/position: absolute;
+	position: fixed;
 	background: #ffffff;
 	z-index: 102;
 	color:#3D545D;

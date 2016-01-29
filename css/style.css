@@ -270,7 +270,7 @@ td.adminRightPanel {
 	background-color: white;
 	vertical-align:top;
 	padding: 15px 30px;
-	/*-*/width: 780px !important;
+	/*-*/width: auto !important;
 	/*-*/display: block;
 	/*-*/margin-left: 20px !important;
 }
@@ -2301,4 +2301,11 @@ a.smallLink {
 	font-size: 12px;
 	text-decoration: none;
 	color: #1B76A9;
+}
+
+/*--- Add Scrollbar to Subject Modal Window ---*/
+
+.modalScroll {
+	overflow: scroll;
+	height: 400px;
 }

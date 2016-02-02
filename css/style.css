@@ -2309,3 +2309,10 @@ a.smallLink {
 	overflow: scroll;
 	height: 400px;
 }
+
+/*--- Add Scrollbar to Existing ISBN Span ---*/
+#existingIsbn {
+	display: block;
+	max-height: 80px;
+	overflow: auto;
+}

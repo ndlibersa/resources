@@ -152,10 +152,19 @@
 			<input type='text' value='' style='width:50px;' class='changeDefaultWhite changeInput invoiceNum' />
 			</td>
 		<?php } ?>
+<!--
 		<td style='vertical-align:center;text-align:center;width:37px;'>
 		<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
 		</td>
+-->
 		</tr>
+
+		<tr>
+			<td colspan='<?php echo $numCols; ?>' style='text-align:right;'>
+				<a href='javascript:void();' class='addPayment'>add a row</a>
+			</td>
+		</tr>
+
 		<tr>
 		<td colspan='<?php echo $numCols; ?>'>
 		<div class='smallDarkRedText' id='div_errorPayment' style='margin:0px 20px 0px 26px;'></div>

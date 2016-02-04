@@ -143,6 +143,7 @@ function resource_sidemenu($selected_link = '') {
     'cataloging' => 'cataloging',
     'contacts' => 'contacts',
     'accounts' => 'lock',
+    'issues' => 'help',
     'attachments' => 'attachment',
     'routing' => 'routing',
   );

@@ -59,6 +59,16 @@ class CORALInstaller {
 		<li>Add year, subscriptionStartDate, subscriptionEndDate, costDetailsID, costNote, and invoiceNum columns to the ResourcePayment table</li>
     	</ul>
       <p>After upgrading, you must change the <b>enhancedCostHistory</b> setting in the configuration file in order to turn on the new cost history features."
+    ),
+    "1.4" => array(
+      "privileges" => array("ALTER","CREATE"),
+      "installedTablesCheck" => array("Issue"),
+      "description" => "<p>The 1.4 update to the CORAL Resources module includes the new Issue and Downtime tracking features.</p>
+      <p>This upgrade will connect to MySQL and run the CORAL Resources structure changes. Database structure changes include:</p>
+      <ul>
+        <li>Create the Issue and associated tables</li>
+        <li>Create the Downtime and associated tables</li>
+      </ul>"
     )	
   );
   
@@ -199,7 +209,7 @@ class CORALInstaller {
       $grants = array();
       $permission = "(ALL PRIVILEGES|".strtoupper($permission).")";
       foreach ($this->query("SHOW GRANTS FOR CURRENT_USER()") as $row) {
-        $grant = $row[0];
+        $grant = array_values($row)[0];
         if (strpos(str_replace('\\', '', $grant), $this->config->database->name) || strpos($grant, "ON *.*")) {
           if (preg_match("/(GRANT|,) $permission(,| ON)/i",$grant)) {
             return true;

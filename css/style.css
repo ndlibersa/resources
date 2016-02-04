@@ -965,7 +965,115 @@ table.borderedHeadTable tr {
 	vertical-align:middle;
 }
 
+table.issueTabTable tr th {
+	background:#f5f8fa;
+}
 
+table.issueTabTable#downTimeTable {
+	margin-top: 25px;
+}
+
+div.issueList,
+div.downtimeList {
+	display: none;
+	width: 85%;
+	padding: 0 10px 5px 25px;
+}
+
+div.issueList .issue {
+	width: 85%;
+}
+
+div.issue a.action {
+	float: right;
+	margin-right: 6px;
+}
+
+div.issueList dl,
+div.downtimeList dl {
+	margin-top: 15px;
+}
+
+div.issueList dl dt,
+div.downtimeList dl dt {
+	margin-top: 5px; 
+	font-weight: bold;
+	display: inline;
+}
+
+div.issueList dl dd,
+div.downtimeList dl dd {
+	display: inline;
+}
+
+div.issueList dl dd:after,
+div.downtimeList dl dd:after { 
+	content:"\A"; white-space:pre; 
+}
+
+div.issueList dl dt.block,
+div.downtimeList dl dt.block {
+	display: block;
+}
+
+div#closeIssue .text-left {
+	text-align: left;
+}
+
+div#closeIssue .text-right {
+	text-align: right;
+}
+
+#newIssueForm #contactIDs,
+#newIssueForm #bodyText,
+#newIssueForm #resourceIDs {
+	min-width: 200px;
+	min-height: 50px;
+}
+
+#inlineContact {
+	display: none;
+	border: 1px solid #dfdfdf;
+	padding: 10px;
+}
+
+form#newIssueForm #resourceIDs {
+	display: none;
+}
+
+#newIssueForm table.thickboxTable {
+	width: 100%;
+	background-image:url('../images/title.gif');
+	background-repeat:no-repeat;
+}
+
+#newIssueForm table.thickboxTable td:first-child {
+	width: 25%;
+}
+
+#newIssueForm table.thickboxTable td:last-child {
+	width: 75%;
+}
+
+#newIssueForm .form-element {
+	margin: 2px;
+	padding: 4px;
+}
+
+#newIssueForm .form-element-tight {
+	display: inline-block;
+	margin: 2px;
+	padding: 4px;
+}
+
+#newIssueForm .form-element label, #newIssueForm .form-element input {
+	display: inline-block;
+	min-width: 20%;
+}
+
+#newIssueForm .form-element-tight label, #newIssueForm .form-element-tight input {
+	min-width: 10%;
+}
 
 table.noBorder td { border:0; }
 table.smallPadding td{ padding:1px; }
@@ -1136,4 +1244,12 @@ select option.changeSelect{
 
 #importPage h1, h2 {
   color: #2c3c42;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.issueList h3 {
+	margin-top: 8px;
 }

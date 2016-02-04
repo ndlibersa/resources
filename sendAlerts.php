@@ -25,7 +25,6 @@ $config = new Configuration();
 
 if ($config->settings->enableAlerts == 'Y'){
 	$alertDaysInAdvance = new AlertDaysInAdvance();
-
 	//returns array of all days in advance objects
 	$alertDaysArray = $alertDaysInAdvance->all();
 
@@ -34,7 +33,6 @@ if ($config->settings->enableAlerts == 'Y'){
 	//loop through each of the days, e.g. 30, 60, 90
 	foreach ($alertDaysArray as $alertDays){
 		//get resources that fit this criteria
-
 		if (is_numeric($alertDays->daysInAdvanceNumber)){
 			foreach($alertDays->getResourcesToAlert() as $resource){
 				$resourceIDArray[] = $resource->resourceID;
@@ -72,15 +70,33 @@ if ($config->settings->enableAlerts == 'Y'){
 			$email->send();
 
 		}
-	}else{
+	} else {
 		echo _("No Resources found fitting alert day criteria");
 	}
 
+	//Get all Issues that should be alerted today
+	$Issue = new Issue();
+	$alertableIssuesArray = $Issue->getAllAlertable();
 
-}else{
+	//If we have alertable issues then loop over them
+	if (count($alertableIssuesArray) > 0){
+		foreach($alertableIssuesArray as $alertableIssue) {
+			//start building the email body
+			$emailMessage = _("This is a reminder that this issue needs to be revisited.\r\n\r\n
+			Body: {$alertableIssue['bodyText']}\r\n\r\n
+			Applies To: {$alertableIssue['appliesto']}\r\n
+			\r\n\r\nContacts: \r\n\r\n
+			{$alertableIssue['contacts']}\r\n");
+
+			foreach(explode(",", $alertableIssue['CCs']) as $emailAddr) {
+				mail($emailAddr, _("Reminder: {$alertableIssue['subjectText']}"),$emailMessage);
+			}
+		}
+	} else {
+		echo _("No Issues found fitting alert day criteria");
+	}
+} else {
 	echo _("Alerts not enabled in configuration.ini file");
 }
-
-
 
 ?>

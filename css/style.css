@@ -2316,3 +2316,61 @@ a.smallLink {
 	max-height: 80px;
 	overflow: auto;
 }
+
+.newPaymentTable th {
+	/*vertical-align:top;*/
+	padding-left: 3px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.newPaymentTable td {
+	text-align: left;
+	background: white;
+	padding-left: 3px;
+}
+
+.paymentTable td {
+	text-align: left;
+	background: white;
+	padding-left: 3px;
+}
+
+.costHistoryYear {
+	width: 53px;
+}
+.costHistorySubStart {
+	width: 60px;
+}
+.costHistorySubEnd {
+	width: 60px;
+}
+.costHistoryFund {
+	width: 150px;
+}
+.costHistoryPayment {
+	width: 50px;
+}
+.costHistoryCurrency {
+	width: 60px;
+}
+.costHistoryType {
+	width: 80px;
+}
+.costHistoryCostDetails {
+	width: 75px;
+}
+.costHistoryNote {
+	width: 70px;
+}
+.costHistoryInvoice {
+	width: 50px;
+}
+.costHistoryAction {
+	width: 50px;
+	text-align: center !important;
+}
+.paymentTableDiv {
+	max-height: 300px;
+	overflow: auto;
+}

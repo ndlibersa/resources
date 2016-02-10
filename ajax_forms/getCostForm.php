@@ -56,115 +56,118 @@
 			<table class='surroundBox' style='width:<?php echo $baseWidth - 65; ?>px;'>
 			<tr>
 			<td>
-				<table class='noBorder smallPadding newPaymentTable' style='margin:7px 15px 0 15px;'>
+				<table class='newPaymentTable' style='margin:7px 15px 0 15px;'>
 				<tr>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Year</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub Start</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Sub End</td>
+					<th>Year</th>
+					<th>Sub Start</th>
+					<th>Sub End</th>
 					<?php } ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Fund</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;' colspan=2>Payment</td>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Type</td>
+					<th>Fund</th>
+					<th>Payment</th>
+					<th>Currency</th>
+					<th>Type</th>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Cost Details</td>
+					<th>Cost Details</th>
 					<?php } ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Note</td>
+					<th>Note</th>
 					<?php if ($enhancedCostFlag){ ?>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'>Invoice</td>
+					<th>Invoice</th>
 					<?php } ?>
-					<td>&nbsp;</td>
+					<th>&nbsp;</th>
 				</tr>
 
 		<tr class='newPaymentTR'>
 		<?php if ($enhancedCostFlag){ ?>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:53px;' class='changeDefaultWhite changeInput year' /></td>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:60px;' class='date-pick changeDefaultWhite changeInput subscriptionStartDate' /></td>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:60px;' class='date-pick changeDefaultWhite changeInput subscriptionEndDate' /></td>
+		<td>
+		<input type='text' value='' class='changeDefaultWhite changeInput year costHistoryYear' /></td>
+		<td>
+		<input type='text' value='' class='date-pick changeDefaultWhite changeInput subscriptionStartDate costHistorySubStart' /></td>
+		<td>
+		<input type='text' value='' class='date-pick changeDefaultWhite changeInput subscriptionEndDate costHistorySubEnd' /></td>
 		<?php } ?>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-			<select class='changeDefaultWhite changeInput fundID' id='searchFundID' style='width:150px'>
+		<td>
+			<select class='changeDefaultWhite changeInput fundID costHistoryFund' id='searchFundID'>
 				<option value='' selected></option>
 				<?php
-						$FundType = new Fund();
+				$FundType = new Fund();
+				foreach($FundType->getUnArchivedFunds() as $fund)
+				{
+					$fundCodeLength = strlen($fund['fundCode']) + 3;
+					$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
+					$fundName = ($combinedLength <=50) ? $fund['shortName'] : substr($fund['shortName'],0,49-$fundCodeLength) . "&hellip;";
+					$fundName .= " [" . $fund['fundCode'] . "]</option>";
+					echo "<option value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
+				}
 
-//						foreach($FundType->getUnArchivedFunds() as $fund) {
-//							echo "<option value='" . $fund['fundID'] . "'>" . $fund['shortName'] . " [" . $fund['fundCode'] . "]</option>";
-//						}
-
-		foreach($FundType->getUnArchivedFunds() as $fund) {
-				$fundCodeLength = strlen($fund['fundCode']) + 3;
-				$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
-				$fundName = ($combinedLength <=50) ? $fund['shortName'] : substr($fund['shortName'],0,49-$fundCodeLength) . "&hellip;";
-				$fundName .= " [" . $fund['fundCode'] . "]</option>";
-				echo "<option value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
-		}
-
-						?>
+				?>
 			</select>
 		</td>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:50px;' class='changeDefaultWhite changeInput paymentAmount' />
+		<td>
+			<input type='text' value='' class='changeDefaultWhite changeInput paymentAmount costHistoryPayment' />
 		</td>
-		<td style='vertical-align:top;text-align:left;'>
-			<select style='width:50px;' class='changeSelect currencyCode'>
+		<td>
+			<select class='changeSelect currencyCode costHistoryCurrency'>
 			<?php
-			foreach ($currencyArray as $currency){
-				if ($currency['currencyCode'] == $config->settings->defaultCurrency){
+			foreach ($currencyArray as $currency)
+			{
+				if ($currency['currencyCode'] == $config->settings->defaultCurrency)
+				{
 					echo "<option value='" . $currency['currencyCode'] . "' selected class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-				}else{
+				}
+				else
+				{
 					echo "<option value='" . $currency['currencyCode'] . "' class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
 				}
 			}
 			?>
 			</select>
 		</td>
-		<td style='vertical-align:top;text-align:left;'>
-			<select style='width:60px;' class='changeSelect orderTypeID'>
-			<option value='' selected></option>
-			<?php
-			foreach ($orderTypeArray as $orderType){
-				echo "<option value='" . $orderType['orderTypeID'] . "'>" . $orderType['shortName'] . "</option>\n";
-			}
-			?>
+		<td>
+			<select class='changeSelect orderTypeID costHistoryType'>
+				<option value='' selected></option>
+				<?php
+				foreach ($orderTypeArray as $orderType)
+				{
+					echo "<option value='" . $orderType['orderTypeID'] . "'>" . $orderType['shortName'] . "</option>\n";
+				}
+				?>
 			</select>
 		</td>
 		<?php if ($enhancedCostFlag){ ?>
-		<td style='vertical-align:top;text-align:left;'>
-			<select style='width:75px;' class='changeSelect costDetailsID'>
-			<option value=''></option>
-			<?php
-			foreach ($costDetailsArray as $costDetails){
-				echo "<option value='" . $costDetails['costDetailsID'] . "'>" . $costDetails['shortName'] . "</option>\n";
-			}
-			?>
+		<td>
+			<select class='changeSelect costDetailsID costHistoryCostDetails'>
+				<option value=''></option>
+				<?php
+					foreach ($costDetailsArray as $costDetails)
+					{
+						echo "<option value='" . $costDetails['costDetailsID'] . "'>" . $costDetails['shortName'] . "</option>\n";
+					}
+				?>
 			</select>
 		</td>
 		<?php } ?>
-		<td style='vertical-align:top;text-align:left;background:white;'>
-		<input type='text' value='' style='width:70px;' class='changeDefaultWhite changeInput costNote' />
+		<td>
+			<input type='text' value='' class='changeDefaultWhite changeInput costNote costHistoryNote' />
 		</td>
 		<?php if ($enhancedCostFlag){ ?>
-			<td style='vertical-align:top;text-align:left;background:white;'>
-			<input type='text' value='' style='width:50px;' class='changeDefaultWhite changeInput invoiceNum' />
-			</td>
+		<td>
+			<input type='text' value='' class='changeDefaultWhite changeInput invoiceNum costHistoryInvoice' />
+		</td>
 		<?php } ?>
-<!--
-		<td style='vertical-align:center;text-align:center;width:37px;'>
+
+		<td class='costHistoryAction'>
 		<a href='javascript:void();'><img src='images/add.gif' class='addPayment' alt='add this payment' title='add payment'></a>
 		</td>
--->
-		</tr>
 
+		</tr>
+<!---
 		<tr>
 			<td colspan='<?php echo $numCols; ?>' style='text-align:right;'>
 				<a href='javascript:void();' class='addPayment'>add a row</a>
 			</td>
 		</tr>
-
+-->
 		<tr>
 		<td colspan='<?php echo $numCols; ?>'>
 		<div class='smallDarkRedText' id='div_errorPayment' style='margin:0px 20px 0px 26px;'></div>
@@ -172,106 +175,124 @@
 		</td>
 		</tr>
 	</table>
-	<table class='noBorder smallPadding paymentTable' style='margin:7px 15px 0 15px;'>
+	<div class='paymentTableDiv'>
+	<table class='paymentTable' style='margin:7px 15px 0 15px; max-height: 100px; overflow: auto;'>
 <?php
 if (count($paymentArray) > 0){
 	foreach ($paymentArray as $payment){
 ?>
 		<tr>
-		<?php if ($enhancedCostFlag){ ?>
-		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo $payment['year']; ?>' style='width:53px;' class='changeInput year' />
-		</td>
-		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo normalize_date($payment['subscriptionStartDate']); ?>' style='width:60px;' class='date-pick changeInput subscriptionStartDate' /></td>
-		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo normalize_date($payment['subscriptionEndDate']); ?>' style='width:60px;' class='date-pick changeInput subscriptionEndDate' /></td>
-		<?php } ?>
-		<td style='vertical-align:top;text-align:left;'>
-			<select class='changeDefaultWhite changeInput fundID' id='searchFundID' style='width:150px'>
-				<option value=''></option>
-				<?php
+			<?php if ($enhancedCostFlag){ ?>
+			<td>
+				<input type='text' value='<?php echo $payment['year']; ?>' class='changeInput year costHistoryYear' />
+			</td>
+			<td>
+				<input type='text' value='<?php echo normalize_date($payment['subscriptionStartDate']); ?>' class='date-pick changeInput subscriptionStartDate costHistorySubStart' />
+			</td>
+			<td>
+				<input type='text' value='<?php echo normalize_date($payment['subscriptionEndDate']); ?>' class='date-pick changeInput subscriptionEndDate costHistorySubEnd' />
+			</td>
+			<?php } ?>
+			<td>
+				<select class='changeDefaultWhite changeInput fundID costHistoryFund' id='searchFundID'>
+					<option value=''></option>
+						<?php
 						$FundType = new Fund();
 						$Funds = array();
-						if (array_key_exists('fundID', $payment) && isset($payment['fundID'])) {
+						if (array_key_exists('fundID', $payment) && isset($payment['fundID']))
+						{
 							$Funds = $FundType->getUnArchivedFundsForCostHistory($payment['fundID']);
-						}else{
+						}
+						else
+						{
 							$Funds = $FundType->getUnArchivedFunds();
 						}
-				foreach($Funds as $fund) {
-						$fundCodeLength = strlen($fund['fundCode']) + 3;
-						$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
-						$fundName = ($combinedLength <=50) ? $fund['shortName'] : substr($fund['shortName'],0,49-$fundCodeLength) . "&hellip;";
-						$fundName .= " [" . $fund['fundCode'] . "]</option>";
-						echo "<option";
-						if ($payment['fundID'] == $fund['fundID'])
+						foreach($Funds as $fund)
 						{
-														echo " selected";
+							$fundCodeLength = strlen($fund['fundCode']) + 3;
+							$combinedLength = strlen($fund['shortName']) + $fundCodeLength;
+							$fundName = ($combinedLength <=50) ? $fund['shortName'] : substr($fund['shortName'],0,49-$fundCodeLength) . "&hellip;";
+							$fundName .= " [" . $fund['fundCode'] . "]</option>";
+							echo "<option";
+							if ($payment['fundID'] == $fund['fundID'])
+							{
+								echo " selected";
+							}
+							echo " value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
 						}
-						echo " value='" . $fund['fundID'] . "'>" . $fundName . "</option>";
-				}
-
 						?>
-			</select>
-		</td>
-		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo integer_to_cost($payment['paymentAmount']); ?>' style='width:50px;' class='changeInput paymentAmount' />
-		</td>
-		<td style='vertical-align:top;text-align:left;'>
-			<select style='width:50px;' class='changeSelect currencyCode'>
-			<?php
-			foreach ($currencyArray as $currency){
-				if ($currency['currencyCode'] == $payment['currencyCode']){
-					echo "<option value='" . $currency['currencyCode'] . "' selected class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-				}else{
-					echo "<option value='" . $currency['currencyCode'] . "' class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
-				}
-			}
-			?>
-			</select>
-		</td>
-		<td style='vertical-align:top;text-align:left;'>
-		<select style='width:60px;' class='changeSelect orderTypeID'>
-		<option value=''></option>
-		<?php
-		foreach ($orderTypeArray as $orderType){
-			if (!(trim(strval($orderType['orderTypeID'])) != trim(strval($payment['orderTypeID'])))){
-			echo "<option value='" . $orderType['orderTypeID'] . "' selected class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
-			}else{
-			echo "<option value='" . $orderType['orderTypeID'] . "' class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
-			}
-		}
-		?>
-		</select>
-		</td>
+				</select>
+			</td>
+			<td>
+				<input type='text' value='<?php echo integer_to_cost($payment['paymentAmount']); ?>' class='changeInput paymentAmount costHistoryPayment' />
+			</td>
+			<td>
+				<select class='changeSelect currencyCode costHistoryCurrency'>
+					<?php
+					foreach ($currencyArray as $currency)
+					{
+						if ($currency['currencyCode'] == $payment['currencyCode'])
+						{
+							echo "<option value='" . $currency['currencyCode'] . "' selected class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
+						}
+						else
+						{
+							echo "<option value='" . $currency['currencyCode'] . "' class='changeSelect'>" . $currency['currencyCode'] . "</option>\n";
+						}
+					}
+					?>
+				</select>
+			</td>
+			<td>
+				<select class='changeSelect orderTypeID costHistoryType'>
+					<option value=''></option>
+					<?php
+					foreach ($orderTypeArray as $orderType)
+					{
+						if (!(trim(strval($orderType['orderTypeID'])) != trim(strval($payment['orderTypeID']))))
+						{
+							echo "<option value='" . $orderType['orderTypeID'] . "' selected class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
+						}
+						else
+						{
+							echo "<option value='" . $orderType['orderTypeID'] . "' class='changeSelect'>" . $orderType['shortName'] . "</option>\n";
+						}
+					}
+					?>
+				</select>
+			</td>
 
-		<?php if ($enhancedCostFlag){ ?>
-			<td style='vertical-align:top;text-align:left;'>
-			<select style='width:75px;' class='changeSelect costDetailsID'>
-			<option value=''></option>
-			<?php
-			foreach ($costDetailsArray as $costDetails){
-				if (trim(strval($costDetails['costDetailsID'])) == trim(strval($payment['costDetailsID']))){
-				echo "<option value='" . $costDetails['costDetailsID'] . "' selected class='changeSelect'>" . $costDetails['shortName'] . "</option>\n";
-				}else{
-				echo "<option value='" . $costDetails['costDetailsID'] . "' class='changeSelect'>" . $costDetails['shortName'] . "</option>\n";
-				}
-			}
-			?>
-			</select>
+			<?php if ($enhancedCostFlag){ ?>
+			<td>
+				<select class='changeSelect costDetailsID costHistoryCostDetails'>
+					<option value=''></option>
+					<?php
+					foreach ($costDetailsArray as $costDetails)
+					{
+						if (trim(strval($costDetails['costDetailsID'])) == trim(strval($payment['costDetailsID'])))
+						{
+							echo "<option value='" . $costDetails['costDetailsID'] . "' selected class='changeSelect'>" . $costDetails['shortName'] . "</option>\n";
+						}
+						else
+						{
+							echo "<option value='" . $costDetails['costDetailsID'] . "' class='changeSelect'>" . $costDetails['shortName'] . "</option>\n";
+						}
+					}
+					?>
+				</select>
 			</td>
-		<?php } ?>
-		<td style='vertical-align:top;text-align:left;'>
-		<input type='text' value='<?php echo $payment['costNote']; ?>' style='width:70px;' class='changeInput costNote' />
-		</td>
-		<?php if ($enhancedCostFlag){ ?>
-			<td style='vertical-align:top;text-align:left;'>
-			<input type='text' value='<?php echo $payment['invoiceNum']; ?>' style='width:50px;' class='changeInput invoiceNum' />
+			<?php } ?>
+			<td>
+				<input type='text' value='<?php echo $payment['costNote']; ?>' class='changeInput costNote costHistoryNote' />
 			</td>
-		<?php } ?>
-		<td style='vertical-align:top;text-align:center;width:37px;'>
-			<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
-		</td>
+			<?php if ($enhancedCostFlag){ ?>
+			<td>
+				<input type='text' value='<?php echo $payment['invoiceNum']; ?>' class='changeInput invoiceNum costHistoryInvoice' />
+			</td>
+			<?php } ?>
+			<td class='costHistoryAction'>
+				<a href='javascript:void();'><img src='images/cross.gif' alt='remove this payment' title='remove this payment' class='remove' /></a>
+			</td>
 		</tr>
 
 	<?php
@@ -279,6 +300,7 @@ if (count($paymentArray) > 0){
 }
 ?>
 				</table>
+			</div>
 			</td>
 			</tr>
 			</table>

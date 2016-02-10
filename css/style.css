@@ -2337,13 +2337,13 @@ a.smallLink {
 }
 
 .costHistoryYear {
-	width: 53px;
+	width: 30px;
 }
 .costHistorySubStart {
-	width: 60px;
+	width: 60px !important;
 }
 .costHistorySubEnd {
-	width: 60px;
+	width: 60px !important;
 }
 .costHistoryFund {
 	width: 150px;

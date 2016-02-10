@@ -151,28 +151,19 @@ $(function(){
 			console.log(replaceImage);
 
 			duplicateTR.appendTo('.paymentTable');
-			/*
 
-			$('.newPaymentTR').children().children('.paymentAmount').val(pAmount);
-			$('.paymentTypeID').addClass('changeSelect idleField').css("background-color","");
-			//$('.paymentName').addClass('changeInput idleField');
-
-			
-			$('.addPayment').removeClass('addPayment');
-			$('.newPaymentTR').removeClass('newPaymentTR');
-
-			*/
-			//next put the original clone back, we just need to reset the values
+			//reset the add line values
 			$('.newPaymentTable').children().children().children().children('.year').val('');
 			$('.newPaymentTable').children().children().children().children('.subscriptionStartDate').val('');
 			$('.newPaymentTable').children().children().children().children('.subscriptionEndDate').val('');
-			$('.newPaymentTable').children().children().children().children('.fundName').val('');
+			$('.newPaymentTable').children().children().children().children('.fundID').val('');
 			$('.newPaymentTable').children().children().children().children('.paymentAmount').val('');
 			$('.newPaymentTable').children().children().children().children('.orderTypeID').val('');
 			$('.newPaymentTable').children().children().children().children('.costDetailsID').val('');
 			$('.newPaymentTable').children().children().children().children('.costNote').val('');
 			$('.newPaymentTable').children().children().children().children('.invoiceNum').val('');
-			
+			var tableDiv=$('.paymentTableDiv')[0];
+			tableDiv.scrollTop=tableDiv.scrollHeight;
 			return true;
 			
 		}
@@ -260,41 +251,38 @@ function submitCostForm(){
 	      invoiceList += $(this).val() + ":::";
 	}); 
 
-	//if (validateForm() === true) {
-		$('#submitCost').attr("disabled", "disabled"); 
-		  $.ajax({
-			 type:  "POST",
-			 url:   "ajax_processing.php?action=submitCost",
-			 cache: false,
-			 data:  { resourceID: $("#editResourceID").val(),
-                      years: yearList,
-                      subStarts: subStartList,
-                      subEnds: subEndList,
-                      fundIDs: fundNameList,
-                      paymentAmounts: paymentAmountList,
-                      currencyCodes: currencyCodeList,
-                      orderTypes: orderTypeList,
-                      costDetails: detailsList,
-                      costNotes: costNoteList,
-                      invoices: invoiceList
-                    },
-			 success:   function(html) {
-				if (html){
-					$("#span_errors").html(html);
-					$("#submitCost").removeAttr("disabled");
-				}else{
-					kill();
-					window.parent.tb_remove();
-					window.parent.updateAcquisitions();
-					return false;
-				}					
+	$('#submitCost').attr("disabled", "disabled"); 
+	  $.ajax({
+		 type:  "POST",
+		 url:   "ajax_processing.php?action=submitCost",
+		 cache: false,
+		 data:  { resourceID: $("#editResourceID").val(),
+                  years: yearList,
+                  subStarts: subStartList,
+                  subEnds: subEndList,
+                  fundIDs: fundNameList,
+                  paymentAmounts: paymentAmountList,
+                  currencyCodes: currencyCodeList,
+                  orderTypes: orderTypeList,
+                  costDetails: detailsList,
+                  costNotes: costNoteList,
+                  invoices: invoiceList
+                },
+		 success:   function(html) {
+			if (html){
+				$("#span_errors").html(html);
+				$("#submitCost").removeAttr("disabled");
+			}else{
+				kill();
+				window.parent.tb_remove();
+				window.parent.updateAcquisitions();
+				return false;
+			}					
 
-			 }
+		 }
 
 
-		 });
-	 //}
-
+	 });
 }
 
 

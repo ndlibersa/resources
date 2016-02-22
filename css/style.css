@@ -2374,3 +2374,30 @@ a.smallLink {
 	max-height: 300px;
 	overflow: auto;
 }
+
+/*--- Help Menu Link ---*//
+
+span#divider {
+    font-size: 12px;
+    position: relative;
+    top: 4px;
+}
+
+a#help {
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    top: 4px;
+    margin-left: 5px;
+}
+
+a#help:hover {
+    color: #ccc;
+}
+
+a#help:before {
+    font-family: FontAwesome;
+    content: "\f059";
+    font-size: 11px;
+    margin-right: 3px;
+}

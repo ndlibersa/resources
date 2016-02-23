@@ -85,15 +85,15 @@ $(function(){
 
 
 	$(".remove").live('click', function () {
-	    $(this).parent().parent().parent().fadeTo(400, 0, function () { 
-		$(this).remove();
+	    $(this).parent().parent().fadeTo(400, 0, function () { 
+		$(this).parent().parent().remove();
 	    });
 	    return false;
 	});
 
 
 
-	$(".addPayment").live('click', function () {
+	$(".addPayment").click(function () {
 
 		var y         = $('.newPaymentTable').find('.year').val();
 		var ssd       = $('.newPaymentTable').find('.susbcriptionStartDate').val();
@@ -128,7 +128,6 @@ $(function(){
 			});
 			replaceImage.removeClass('addPayment');
 			replaceImage.addClass('remove');
-			console.log(replaceImage);
 
 			duplicateTR.appendTo('.paymentTable');
 

@@ -60,7 +60,7 @@ class Object {
 		if (property_exists($this, $key)) {
 			$this->$key = $value;
 		} else {
-			throw new Exception("Cannot set value for undefined key ($key).");
+			throw new Exception(_("Cannot set value for undefined key (").$key.").");
 		}
 	}
 
@@ -69,7 +69,7 @@ class Object {
 		if (property_exists($this, $key)) {
 			return $this->$key;
 		} else {
-			throw new Exception("Cannot get value for undefined key ($key).");
+			throw new Exception(_("Cannot set value for undefined key (").$key.").");
 		}
 	}
 

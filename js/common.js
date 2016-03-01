@@ -70,7 +70,7 @@ $(function(){
 
 
 	 function log(event, data, formatted) {
-		$("<li>").html( !data ? "No match!" : "Selected: " + formatted).html("#result");
+		$("<li>").html( !data ? _("No match!") : _("Selected: ") + formatted).html("#result");
 
 	 }
 
@@ -183,6 +183,12 @@ function getCheckboxValue(field){
 	}else{
 		return 0;
 	}
+}
+
+function validateEmail(email) {
+	console.log("Validating email.");
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
 }
 
 function validateRequired(field,alerttxt){

@@ -49,14 +49,14 @@ if ($enhancedCostFlag)
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
-		<div class='formTitle' style='width:<?php echo $baseWidth + 46 ?>px; margin-bottom:5px;'><span class='headerText'>Edit Cost Information</span></div>
+		<div class='formTitle' style='width:<?php echo $baseWidth + 46 ?>px; margin-bottom:5px;'><span class='headerText'><?php echo _("Edit Cost Information");?></span></div>
 
 		<span class='smallDarkRedText' id='span_errors'></span>
 
 		<table class='noBorder' style='width:<?php echo $baseWidth + 45 ?>px;'>
 		<tr style='vertical-align:top;'>
 		<td>
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b>Cost History</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourcePayments'><b><?php echo _("Cost History");?></b></label>&nbsp;&nbsp;</span>
 			<table class='surroundBox' style='width:<?php echo $baseWidth - 65; ?>px;'>
 			<tr>
 			<td>
@@ -64,20 +64,20 @@ if ($enhancedCostFlag)
 					<thead>
 						<tr>
 							<?php if ($enhancedCostFlag){ ?>
-							<th>Year</th>
-							<th>Sub Start</th>
-							<th>Sub End</th>
+							<th><?php echo _("Year");?></th>
+							<th><?php echo _("Sub Start");?></th>
+							<th><?php echo _("Sub End");?></th>
 							<?php } ?>
-							<th>Fund</th>
-							<th>Payment</th>
-							<th>Currency</th>
-							<th>Type</th>
+							<th><?php echo _("Fund");?></th>
+							<th><?php echo _("Payment");?></th>
+							<th><?php echo _("Currency");?></th>
+							<th><?php echo _("Type");?></th>
 							<?php if ($enhancedCostFlag){ ?>
-							<th>Cost Details</th>
+							<th><?php echo _("Cost Details");?></th>
 							<?php } ?>
-							<th>Note</th>
+							<th><?php echo _("Note");?></th>
 							<?php if ($enhancedCostFlag){ ?>
-							<th>Invoice</th>
+							<th><?php echo _("Invoice");?></th>
 							<?php } ?>
 							<th>&nbsp;</th>
 						</tr>
@@ -332,8 +332,8 @@ if ($enhancedCostFlag)
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' name='submitCost' id ='submitCost'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="kill(); tb_remove();"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitCost' id ='submitCost'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
 

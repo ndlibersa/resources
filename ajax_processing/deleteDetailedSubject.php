@@ -9,7 +9,7 @@
 				$instance->delete();
 			} catch (Exception $e) {
 				//print out a friendly message...
-				echo "Unable to delete.  Please make sure no resources are set up with this information.";
+				echo _("Unable to delete.  Please make sure no resources are set up with this information.");
 			}
 
 ?>

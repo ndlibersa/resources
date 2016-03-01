@@ -37,11 +37,12 @@ if ($_POST["submit"]) {
 			foreach ($statements as $statement) {
 			   if (strlen(trim($statement))>3){
 
-					$result = mysql_query($statement);
-					if (!$result){
-						$installer->addErrorMessage(mysql_error() . "<br /><br />For statement: " . $statement);
-						break;
-					}
+					$result = $installer->db->query($statement);
+                        if (!$result){
+                        $installer->addErrorMessage($installer->db->error . "<br /><br />For statement: " . $statement);
+                        break;
+                    }
+
 				}
 			}
       

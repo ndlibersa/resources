@@ -56,6 +56,154 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(".showIssues").click(function () {
+	    $('.resource_tab_content').hide();
+		$('#div_issues').show();
+		$('#div_fullRightPanel').show();
+		updateIssues();
+		return false;
+	});
+
+	$(".issuesBtn").live("click", function(e) {
+		e.preventDefault();
+		getIssues($(this));
+	});
+
+	$(".downtimeBtn").live("click", function(e) {
+		e.preventDefault();
+		getDowntime($(this));
+	});
+
+	$("#submitCloseIssue").live("click", function() {
+		submitCloseIssue();
+	});
+
+	$("#submitNewIssue").live("click", function(e) {
+		e.preventDefault();
+		submitNewIssue();
+	});
+
+	$("#submitNewDowntime").live("click", function(e) {
+		e.preventDefault();
+		
+		var errors = [];
+
+		if($("#startDate").val()=="") {	
+			errors.push({
+				message: _("Must set a date."),
+				target: '#span_error_startDate'
+			});
+		} 
+
+		if($("#endDate").val()=="") {	
+			errors.push({
+				message: _("Must set a date."),
+				target: '#span_error_endDate'
+			});
+		} 
+
+		if(errors.length == 0) {
+			submitNewDowntime();
+		} else {
+
+			$(".addDowntimeError").html("");
+
+			for(var index in errors) {
+				error = errors[index];
+				$(error.target).html(error.message);
+			}
+		}
+	
+	});
+
+	$(".issueResources").live("click", function() {
+
+		$(".issueResources").attr("checked", false);
+		$(this).attr("checked", true);
+
+		if($(this).attr("id") == "otherResources") {
+			$("#resourceIDs").fadeIn(250)
+		} else {
+			$("#resourceIDs").fadeOut(250)
+		}
+
+	});
+
+	$("#createIssueBtn").live("click", function() {
+		$(".issueList").slideUp(250);
+	});
+
+	$("#createDowntimeBtn").live("click", function() {
+		$(".downtimeList").slideUp(250);
+	});
+
+	$("#getCreateContactForm").live("click",function(e) {
+		e.preventDefault();
+		$(this).fadeOut(250, function() {
+			getInlineContactForm();
+		});
+	});
+
+	$("#createContact").live("click",function(e) {
+		e.preventDefault();
+		
+		var errors = [];
+
+		if($("#contactAddName").val() == "") {	
+			errors.push({
+				message: _("New contact must have a name."),
+				target: '#span_error_contactAddName'
+			});
+		} 
+
+		if(!validateEmail($("#emailAddress").val())) {	
+			errors.push({
+				message: _("CC must be a valid email."),
+				target: '#span_error_contactEmailAddress'
+			});
+		} 
+
+		if(errors.length == 0) {
+			var roles = new Array();
+			$(".check_roles:checked").each(function() {
+				roles.push($(this).val());
+			});
+			//create the contact and update the contact list
+			createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactAddName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
+		} else {
+
+			$(".addContactError").html("");
+
+			for(var index in errors) {
+				error = errors[index];
+				$(error.target).html(error.message);
+			}
+		}	 
+			
+	});
+
+	$("#addEmail").live("click", function(e) {
+		e.preventDefault();
+		var inputEmail = $("#inputEmail").val();		
+		var valid = validateEmail(inputEmail);
+		if (valid) {
+			var currentVal = $("#ccEmails").val();
+
+			$("#currentEmails").append(inputEmail+", ");
+		
+			if (!currentVal) {
+				$("#ccEmails").val(inputEmail);
+			} else {
+				$("#ccEmails").val(currentVal+','+inputEmail);
+			}
+
+			$("#inputEmail").val('');
+			$('#span_error_contactIDs').html('');	
+		} else {
+			$('#span_error_contactIDs').html(_('CC must be a valid email.'));
+		}
+	});
+
 	$(".showAccounts").click(function () {
 	  $('.resource_tab_content').hide();
 		$('#div_product').hide();
@@ -113,7 +261,7 @@ var showArchivedContacts = 0;
 
 function updateProduct(){
 
-  $("#icon_product").html("<img src='images/littlecircle.gif'>");
+  $("#icon_product").html("<img src='images/littlecircle.gif' />");
   
   $.ajax({
 	 type:       "GET",
@@ -124,7 +272,7 @@ function updateProduct(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_product").html("<img src='images/butterflyfishicon.jpg'>");
+		$("#icon_product").html("<img src='images/butterflyfishicon.jpg' />");
 	 }
 
 
@@ -135,7 +283,7 @@ function updateProduct(){
 
 
 function updateAcquisitions(){
-  $("#icon_acquisitions").html("<img src='images/littlecircle.gif'>");
+  $("#icon_acquisitions").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
 	 type:       "GET",
@@ -146,7 +294,7 @@ function updateAcquisitions(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_acquisitions").html("<img src='images/acquisitions.gif'>");
+		$("#icon_acquisitions").html("<img src='images/acquisitions.gif' />");
 	 }
 
 
@@ -156,7 +304,7 @@ function updateAcquisitions(){
 
 
 function updateAccess(){
-  $("#icon_access").html("<img src='images/littlecircle.gif'>");
+  $("#icon_access").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
 	 type:       "GET",
@@ -167,7 +315,7 @@ function updateAccess(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_access").html("<img src='images/key.gif'>");
+		$("#icon_access").html("<img src='images/key.gif' />");
 	 }
 
 
@@ -179,7 +327,7 @@ function updateAccess(){
 
 
 function updateContacts(){
-  $("#icon_contacts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_contacts").html("<img src='images/littlecircle.gif' />");
   
   $.ajax({
 	 type:       "GET",
@@ -190,7 +338,7 @@ function updateContacts(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_contacts").html("<img src='images/contacts.gif'>");
+		$("#icon_contacts").html("<img src='images/contacts.gif' />");
 	 }
 
 
@@ -206,7 +354,7 @@ function updateArchivedContacts(showArchivedPassed){
   }
 
   
-  $("#div_archivedContactDetails").append("<img src='images/circle.gif'>  Refreshing Contents...");
+  $("#div_archivedContactDetails").append("<img src='images/circle.gif' />  "+_("Refreshing Contents..."));
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -223,9 +371,204 @@ function updateArchivedContacts(showArchivedPassed){
 
 }
 
+function createOrganizationContact(contact) {
+	var baseUrl = $("#orgModuleUrl").val();
+	contact.contactRoles = contact.contactRoles.join();
+	$.ajax({
+		type:       "POST",
+		url:        baseUrl+"ajax_processing.php?action=submitContact",
+		cache:      false,
+		data:       contact,
+		success:    function(res) {
+			
+			var data = {};
+			data.contactIDs = [];
+
+			$("#contactIDs option:selected").each(function() {
+				data.contactIDs.push($(this).val());
+			});
+
+			data.action = "getOrganizationContacts";
+			data.organizationID = contact.organizationID;
+			data.contactIDs.push(res);
+
+			$.ajax({
+				type:       "GET",
+				url:        baseUrl+"ajax_htmldata.php",
+				cache:      false,
+				data:       $.param(data),
+				success:    function(html) {
+					$("#inlineContact").html(html).slideUp(250, function() {
+						$("#getCreateContactForm").fadeIn(250);
+					});
+					$("#contactIDs").html(html);
+				}
+			});
+		}
+	});
+}
+
+function getInlineContactForm() {
+	var baseUrl = $("#orgModuleUrl").val();
+	$.ajax({
+		 type:       "GET",
+		 url:        baseUrl+"ajax_forms.php",
+		 cache:      false,
+		 data:       "action=getInlineContactForm",
+		 success:    function(html) {
+			$("#inlineContact").html(html).slideDown(250);
+		 }
+	  });
+}
+
+function updateIssues(){
+  
+  $.ajax({
+	 type:       "GET",
+	 url:        "ajax_htmldata.php",
+	 cache:      false,
+	 data:       "action=getIssues&resourceID=" + $("#resourceID").val(),
+	 success:    function(html) {
+		$(".div_mainContent").html(html);
+		bind_removes();
+		tb_reinit();
+	 }
+  });
+}
+
+function validateNewIssue () {
+	$(".error").html("");
+
+ 	var errorFlag = 0;
+	var organization = $('#sourceOrganizationID').val();
+	var contact = $('#contactIDs').val();
+	var subject = $('#subjectText').val();
+	var body = $('#bodyText').val();
+	var appliesTo = false;
+
+	if (organization == '' || organization == null) {
+		$('#span_error_organizationId').html(_('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.'));
+		errorFlag=1;
+	}
+
+	if (contact == null || contact.length == 0) {
+		$('#span_error_contactName').html(_('A contact must be selected to continue.'));
+		errorFlag=1;
+	}
+
+	if (subject == '' || subject == null) {
+		$('#span_error_subjectText').html(_('A subject must be entered to continue.'));
+		errorFlag=1;
+	}
+
+	if (body == '' || body == null) {
+		$('#span_error_bodyText').html(_('A body must be entered to continue.'));
+		errorFlag=1;
+	}
+
+	$('.entityArray').each(function() {
+		if($(this).is(':checked') || $(this).is(':selected')) {
+			appliesTo = true;
+			return false;
+		}
+	});
+
+	if(!appliesTo) {
+		errorFlag=1;
+		$('#span_error_entities').html(_('An issue must be associated with an organization or resource(s).'));
+	}
+	
+ 	if (errorFlag == 0){
+		return true; 	
+	}
+	return false;
+}
+
+function submitNewIssue() {
+	
+	if(validateNewIssue()) {
+		$.ajax({
+			type:       "POST",
+			url:        "ajax_processing.php?action=insertIssue",
+			cache:      false,
+			data:       $("#newIssueForm").serialize(),
+			success:    function(res) {
+				updateIssues();
+				tb_remove()
+			}
+		});
+	}
+}
+
+function submitNewDowntime() {
+	
+	var data = $("#newDowntimeForm").serialize();
+	data += "&startDate="+$("#startDate").val();
+	data += "&endDate="+$("#endDate").val();
+
+	$.ajax({
+		 type:       "POST",
+		 url:        "ajax_processing.php?action=insertDowntime",
+		 cache:      false,
+		 data:       data,
+		 success:    function(res) {
+			updateIssues();
+			tb_remove()
+		 }
+
+
+	  });
+}
+
+function getIssues(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".issueList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function getDowntime(element) {
+	var data = element.attr("href");
+	$.ajax({
+		url:        "ajax_htmldata.php",
+		data: 		data,
+		cache:      false,
+		success:    function(html) {
+			element.siblings(".downtimeList").html(html).slideToggle(250);
+			tb_reinit();
+		}
+	});
+	
+}
+
+function submitCloseIssue() {
+	$('#submitCloseIssue').attr("disabled", "disabled"); 
+	$.ajax({
+		type:       "POST",
+		url:        "ajax_processing.php?action=submitCloseIssue",
+		cache:      false,
+		data:       { "issueID": $("#issueID").val(), "resolutionText":$("#resolutionText").val() },
+		success:    function(html) {
+			if (html.length > 1) {
+				$("#submitCloseIssue").removeAttr("disabled");
+			} else {
+				tb_remove();
+				updateIssues();
+				return false;
+			}			
+		}
+	});
+}
 
 function updateAccounts(){
-  $("#icon_accounts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -235,7 +578,7 @@ function updateAccounts(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_accounts").html("<img src='images/lock.gif'>");
+		$("#icon_accounts").html("<img src='images/lock.gif' />");
 	 }
 
 
@@ -245,7 +588,7 @@ function updateAccounts(){
 
 
 function updateAttachments(){
-  $("#icon_attachments").html("<img src='images/littlecircle.gif'>");
+  $("#icon_attachments").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -255,7 +598,7 @@ function updateAttachments(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_attachments").html("<img src='images/attachment.gif'>");
+		$("#icon_attachments").html("<img src='images/attachment.gif' />");
 	 }
 
 
@@ -272,9 +615,9 @@ function updateAttachmentsNumber(){
 	 data:       "action=getAttachmentsNumber&resourceID=" + $("#resourceID").val(),
 	 success:    function(remaining) {
 		if (remaining == "1"){
-			$(".span_AttachmentNumber").html("(" + remaining + " record)");
+			$(".span_AttachmentNumber").html("(" + remaining + _(" record)"));
 		}else{
-			$(".span_AttachmentNumber").html("(" + remaining + " records)");
+			$(".span_AttachmentNumber").html("(" + remaining + _(" records)"));
 		}
 	 }
  });
@@ -282,7 +625,7 @@ function updateAttachmentsNumber(){
  
 
 function updateRouting(){
-  $("#icon_routing").html("<img src='images/littlecircle.gif'>");
+  $("#icon_routing").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -292,7 +635,7 @@ function updateRouting(){
 		$(".div_mainContent").html(html);
 		tb_reinit();
 		bind_routing();
-		$("#icon_routing").html("<img src='images/routing.gif'>");
+		$("#icon_routing").html("<img src='images/routing.gif' />");
 	 }
 
 
@@ -301,7 +644,7 @@ function updateRouting(){
 } 
 
 function updateCataloging(){
-  $("#icon_accounts").html("<img src='images/littlecircle.gif'>");
+  $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
 	 type:       "GET",
 	 url:        "resources/cataloging.php",
@@ -311,7 +654,7 @@ function updateCataloging(){
 		$(".div_mainContent").html(html);
 		bind_removes();
 		tb_reinit();
-		$("#icon_cataloging").html("<img src='images/cataloging.gif'>");
+		$("#icon_cataloging").html("<img src='images/cataloging.gif' />");
 	 }
 
   });
@@ -320,7 +663,7 @@ function updateCataloging(){
 
 
 function updateRightPanel(){
-  $("#div_rightPanel").append("<img src='images/circle.gif'>  Refreshing Contents...");
+  $("#div_rightPanel").append("<img src='images/circle.gif' />  "+_("Refreshing Contents..."));
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",
@@ -366,7 +709,7 @@ function bind_removes(){
 
 
    $(".removeContact").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this contact?") == true) {
+	  if (confirm(_("Do you really want to delete this contact?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -384,7 +727,7 @@ function bind_removes(){
    });
 
    $(".removeAccount").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this account?") == true) {
+	  if (confirm(_("Do you really want to delete this account?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -402,7 +745,7 @@ function bind_removes(){
 
 
    $(".removeAttachment").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this attachment?") == true) {
+	  if (confirm(_("Do you really want to delete this attachment?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -422,7 +765,7 @@ function bind_removes(){
 
 
    $(".removeResource").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this resource?") == true) {
+	  if (confirm(_("Do you really want to delete this resource?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -440,7 +783,7 @@ function bind_removes(){
    });
    
     $(".removeResourceAndChildren").unbind('click').click(function () {
-	  if (confirm("Do you really want to delete this resource and all its children?") == true) {
+	  if (confirm(_("Do you really want to delete this resource and all its children?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -461,7 +804,7 @@ function bind_removes(){
 
    	  tabName = $(this).attr("tab");
 	  
-	  if (confirm("Do you really want to remove this Subject?") == true) {
+	  if (confirm(_("Do you really want to remove this Subject?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -479,7 +822,7 @@ function bind_removes(){
    
    	  tabName = $(this).attr("tab");
 
-	  if (confirm("Do you really want to delete this note?") == true) {
+	  if (confirm(_("Do you really want to delete this note?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -522,7 +865,7 @@ function bind_routing(){
 
 
    $(".restartWorkflow").unbind('click').click(function () {
-	  if (confirm("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?") == true) {
+	  if (confirm(_("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?")) == true) {
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",
@@ -539,7 +882,7 @@ function bind_routing(){
 
 
    $(".markResourceComplete").unbind('click').click(function () {
-	  if (confirm("Do you really want to mark this resource complete?  This action cannot be undone.") == true) {   
+	  if (confirm(_("Do you really want to mark this resource complete?  This action cannot be undone.")) == true) {   
 		  $.ajax({
 			 type:       "GET",
 			 url:        "ajax_processing.php",

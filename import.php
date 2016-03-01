@@ -19,9 +19,9 @@
 session_start();
 include_once 'directory.php';
 //print header
-$pageTitle='Resources import';
+$pageTitle=_('Resources import');
 include 'templates/header.php';
-?><div id="importPage"><h1>CSV File import</h1><?php
+?><div id="importPage"><h1><?php echo _("CSV File import");?></h1><?php
 // CSV configuration
 $required_columns = array('titleText' => 0, 'resourceURL' => 0, 'resourceAltURL' => 0, 'parentResource' => 0, 'organization' => 0, 'role' => 0);
 if ($_POST['submit']) {
@@ -29,7 +29,7 @@ if ($_POST['submit']) {
   $uploaddir = 'attachments/';
   $uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
   if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploadfile)) {  
-    print '<p>The file has been successfully uploaded.</p>';
+    print '<p>'._("The file has been successfully uploaded.").'</p>';
   
   // Let's analyze this file
   if (($handle = fopen($uploadfile, "r")) !== FALSE) {
@@ -39,18 +39,18 @@ if ($_POST['submit']) {
         $available_columns[$value] = $key;
       } 
     } else {
-      $error = 'Unable to get columns headers from the file';
+      $error = _("Unable to get columns headers from the file");
     }
   } else {
-    $error = 'Unable to open the uploaded file';
+    $error = _("Unable to open the uploaded file");
   }
   } else {
-    $error = 'Unable to upload the file';
+    $error = _("Unable to upload the file");
   }
   if ($error) {
-    print "<p>Error: $error.</p>";
+    print "<p>"._("Error: ").$error.".</p>";
   } else {
-    print "<p>Please choose columns from your CSV file:</p>";
+    print "<p>"._("Please choose columns from your CSV file:")."</p>";
     print "<form action=\"import.php\" method=\"post\">";
     foreach ($required_columns as $rkey => $rvalue) {
       print "<label for=\"$rkey\">" . $rkey . "</label><select name=\"$rkey\">";
@@ -83,8 +83,8 @@ if ($_POST['submit']) {
     while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
       // Getting column names again for deduping
       if ($row == 0) {
-        print "<h2>Settings</h2>";
-        print "<p>Importing and deduping isbnOrISSN on the following columns: " ;
+        print "<h2>"._("Settings")."</h2>";
+        print "<p>"._("Importing and deduping isbnOrISSN on the following columns: ") ;
         foreach ($data as $key => $value) {
           if (in_array($value, $deduping_config)) {
             $deduping_columns[] = $key;
@@ -133,14 +133,14 @@ if ($_POST['submit']) {
               $result = $organization->db->processQuery($query, 'assoc');
               // If not, we try to create it
               if ($result['count'] == 0) {
-                $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . mysql_escape_string($organizationName) . "'";
+                $query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . $organization->db->escapeString($organizationName) . "'";
                 try {
                   $result = $organization->db->processQuery($query);
                   $organizationID = $result;
                   $organizationsInserted++;
                   array_push($arrayOrganizationsCreated, $organizationName);
                 } catch (Exception $e) {
-                  print "<p>Organization $organizationName could not be added.</p>";
+                  print "<p>"._("Organization ").$organizationName._(" could not be added.")."</p>";
                 }
               // If yes, we attach it to our resource
               } elseif ($result['count'] == 1) {
@@ -149,12 +149,12 @@ if ($_POST['submit']) {
                 $organizationID = $result['organizationID'];
                 $organizationsAttached++;
               } else {
-                print "<p>Error: more than one organization is called $organizationName. Please consider deduping.</p>";
+                print "<p>"._("Error: more than one organization is called ").$organizationName._(". Please consider deduping.")."</p>";
               }
               if ($organizationID) {
                 $dbName = $config->settings->organizationsDatabaseName;
                 // Get role
-                $query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . mysql_escape_string($data[$_POST['role']]) . "'";
+                $query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . $organization->db->escapeString($data[$_POST['role']]) . "'";
                 $result = $organization->db->processQuery($query);
                 // If role is not found, fallback to the first one.
                 $roleID = ($result[0]) ? $result[0] : 1;
@@ -171,7 +171,7 @@ if ($_POST['submit']) {
                       array_push($arrayOrganizationsCreated, $organizationName);
                     }
                   } catch (Exception $e) {
-                    print "<p>Unable to associate organization $organizationName with its role.</p>";
+                    print "<p>"._("Unable to associate organization ").$organizationName._(" with its role.")."</p>";
                   }
                 }
               }
@@ -192,7 +192,7 @@ if ($_POST['submit']) {
                 $organizationID = $organization->getOrganizationIDByName($organizationName);
                 $organizationsAttached++;
               } else {
-                print "<p>Error: more than one organization is called $organizationName. Please consider deduping.</p>";
+                print "<p>"._("Error: more than one organization is called ").$organizationName._(" Please consider deduping.")."</p>";
               }
               // Find role
               $organizationRoles = $organizationRole->getArray();
@@ -250,33 +250,33 @@ if ($_POST['submit']) {
         }
       $row++;
     }
-    print "<h2>Results</h2>";
-    print "<p>" . ($row - 1) . " rows have been processed. $inserted rows have been inserted.</p>";
-    print "<p>$parentInserted parents have been created. $parentAttached resources have been attached to an existing parent.</p>";
-    print "<p>$organizationsInserted organizations have been created";
+    print "<h2>"._("Results")."</h2>";
+    print "<p>" . ($row - 1) . _(" rows have been processed. ").$inserted._(" rows have been inserted.")."</p>";
+    print "<p>".$parentInserted._(" parents have been created. ").$parentAttached._(" resources have been attached to an existing parent.")."</p>";
+    print "<p>".$organizationsInserted._(" organizations have been created");
     if (count($arrayOrganizationsCreated) > 0) print " (" . implode(',', $arrayOrganizationsCreated) . ")";
-    print ". $organizationsAttached resources have been attached to an existing organization.</p>";
+    print ". $organizationsAttached"._(" resources have been attached to an existing organization.")."</p>";
   }
 } else {
           
 ?>
-<p>The first line of the CSV file must contain column names, and not data. These names will be used during the import process.</p>
+<p><?php echo _("The first line of the CSV file must contain column names, and not data. These names will be used during the import process.");?></p>
 <form enctype="multipart/form-data" action="import.php" method="post" id="importForm">
   <fieldset>
-  <legend>File selection</legend>
-  <label for="uploadFile">CSV File</label>
+  <legend><?php echo _("File selection");?></legend>
+  <label for="uploadFile"><?php echo _("CSV File");?></label>
   <input type="file" name="uploadFile" id="uploadFile" />
   </fieldset>
   <fieldset>
-  <legend>Import options</legend>
-  <label for="CSV delimiter">CSV delimiter</label>
+  <legend><?php echo _("Import options");?></legend>
+  <label for="CSV delimiter"><?php echo _("CSV delimiter");?></label>
   <select name="delimiter">
-    <option value=",">, (comma)</option>
-    <option value=";">; (semicolon)</option>
-    <option value="|">| (pipe)</option>
+    <option value=",">, <?php echo _("(comma)");?></option>
+    <option value=";">; <?php echo _("(semicolon)");?></option>
+    <option value="|">| <?php echo _("(pipe)");?></option>
   </select>
   </fieldset>
-  <input type="submit" name="submit" value="Upload" />
+  <input type="submit" name="submit" value="<?php echo _("Upload");?>" />
 </form>
 
 <?php

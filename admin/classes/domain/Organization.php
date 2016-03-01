@@ -49,9 +49,125 @@ class Organization extends DatabaseObject {
 		return $result['organizationID'];
   }
 
+	public function getIssues($archivedOnly=false) {
+		$query = "SELECT i.* 
+			  FROM Issue i
+			  LEFT JOIN IssueRelationship ir ON (ir.issueID=i.issueID AND ir.entityTypeID=1)
+			  WHERE ir.entityID={$this->primaryKey}";
+		if ($archivedOnly) {
+			$query .= " AND i.dateClosed IS NOT NULL";
+		} else {
+			$query .= " AND i.dateClosed IS NULL";
+		}
+		$query .= "	ORDER BY i.dateCreated DESC";
+		$result = $this->db->processQuery($query, 'assoc');
 
+		$objects = array();
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])) {
+			$object = new Issue(new NamedArguments(array('primaryKey' => $result['issueID'])));
+			array_push($objects, $object);
+		} else {
+			foreach ($result as $row) {
+				$object = new Issue(new NamedArguments(array('primaryKey' => $row['issueID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
 
+	public function getDowntime($archivedOnly=false) {
+		$query = "SELECT d.* 
+			  FROM Downtime d
+			  WHERE d.entityID={$this->primaryKey} 
+			  AND d.entityTypeID=1";
 
+		if ($archivedOnly) {
+			$query .= " AND d.endDate < CURDATE()";
+		} else {
+			$query .= " AND d.endDate >= CURDATE()";
+		}
+		$query .= "	ORDER BY d.dateCreated DESC";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['downtimeID'])) {
+			$object = new Downtime(new NamedArguments(array('primaryKey' => $result['downtimeID'])));
+			array_push($objects, $object);
+		} else {
+			foreach ($result as $row) {
+				$object = new Downtime(new NamedArguments(array('primaryKey' => $row['downtimeID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
+
+	public function getExportableIssues($archivedOnly=false) {
+		if ($this->db->config->settings->organizationsModule == 'Y' && $this->db->config->settings->organizationsDatabaseName) {
+			$orgDB = $this->db->config->settings->organizationsDatabaseName;
+			$orgField = 'name';
+		} else {
+			$orgDB = $this->db->config->database->name;
+			$orgField = 'shortName';
+		}
+
+		$query = "SELECT i.*,(SELECT GROUP_CONCAT(CONCAT(sc.name,' - ',sc.emailAddress) SEPARATOR ', ')
+								FROM IssueContact sic 
+								LEFT JOIN `{$orgDB}`.Contact sc ON sc.contactID=sic.contactID
+								WHERE sic.issueID=i.issueID) AS `contacts`,
+							 (SELECT GROUP_CONCAT(se.{$orgField} SEPARATOR ', ')
+								FROM IssueRelationship sir 
+								LEFT JOIN `{$orgDB}`.Organization se ON (se.organizationID=sir.entityID AND sir.entityTypeID=1)
+								WHERE sir.issueID=i.issueID) AS `appliesto`,
+							 (SELECT GROUP_CONCAT(sie.email SEPARATOR ', ')
+								FROM IssueEmail sie 
+								WHERE sie.issueID=i.issueID) AS `CCs`
+			  FROM Issue i
+			  LEFT JOIN IssueRelationship ir ON (ir.issueID=i.issueID AND ir.entityTypeID=1)
+			  WHERE ir.entityID={$this->primaryKey}";
+		if ($archivedOnly) {
+			$query .= " AND i.dateClosed IS NOT NULL";
+		} else {
+			$query .= " AND i.dateClosed IS NULL";
+		}
+		$query .= "	ORDER BY i.dateCreated DESC";
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['issueID'])) {
+			return array($result);
+		} else {
+			return $result;
+		}
+	}
+
+	public function getExportableDowntimes($archivedOnly=false){
+		
+		$query = "SELECT d.*
+				  FROM Downtime d
+				  WHERE d.entityID={$this->primaryKey} AND d.entityTypeID=1";
+		if ($archivedOnly) {
+			$query .= " AND d.endDate < CURDATE()";
+		} else {
+			$query .= " AND d.endDate >= CURDATE()";
+		}
+		$query .= "	ORDER BY d.dateCreated DESC";
+
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['downtimeID'])){
+			return array($result);
+		}else{
+			return $result;
+		}
+	}
 }
 
 ?>

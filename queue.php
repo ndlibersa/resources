@@ -19,7 +19,7 @@
 
 include_once 'directory.php';
 
-$pageTitle='My Queue';
+$pageTitle=_('My Queue');
 include 'templates/header.php';
 
 //set referring page
@@ -37,7 +37,7 @@ $_SESSION['ref_script']=$currentPage;
 		<table style='width:100%; margin:0;padding:0;'>
 		<tr style='vertical-align:top'>
 		<td>
-		<span class="headerText">My Queue</span>
+		<span class="headerText"><?php echo _("My Queue");?></span>
 		<br />
 		</td>
 		</tr>
@@ -48,15 +48,15 @@ $_SESSION['ref_script']=$currentPage;
 		<tr>
 		<td style='width:170px;vertical-align:top;'>
 			<table class='queueMenuTable' style='width:170px;'>
-				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='OutstandingTasks'>Outstanding Tasks</a></div><span class='span_OutstandingTasksNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
-				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SavedRequests'>Saved Requests</a></div><span class='span_SavedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
-				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SubmittedRequests'>Submitted Requests</a></div><span class='span_SubmittedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
+				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='OutstandingTasks'><?php echo _("Outstanding Tasks");?></a></div><span class='span_OutstandingTasksNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
+				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SavedRequests'><?php echo _("Saved Requests");?></a></div><span class='span_SavedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
+				<tr><td><div class='queueMenuLink'><a href='javascript:void(0);' id='SubmittedRequests'><?php echo _("Submitted Requests");?></a></div><span class='span_SubmittedRequestsNumber smallGreyText' style='clear:right; margin-left:10px;'></span></td></tr>
 
 			</table>
 		</td>
 		<td class='queueRightPanel' style='width:720px;margin:0;'>
 			<div id='div_QueueContent'>
-			<img src = "images/circle.gif" />Loading...
+			<img src = "images/circle.gif" /><?php echo _("Loading...");?>
 			</div>
 			<div style='margin-top:5px;' class='darkRedText' id='div_error'></div>
 

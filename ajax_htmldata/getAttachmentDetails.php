@@ -27,12 +27,12 @@
 				<th colspan='2'>
 					<span style='float:left; vertical-align:bottom;'>
 						<?php echo $attachment['shortName']; ?>&nbsp;&nbsp;
-						<a href='attachments/<?php echo $attachment['attachmentURL']; ?>' style='font-weight:normal;' target='_blank'><img src='images/arrow-up-right-blue.gif' alt='view attachment' title='view attachment' style='vertical-align:top;'></a></a>
+						<a href='attachments/<?php echo $attachment['attachmentURL']; ?>' style='font-weight:normal;' target='_blank'><img src='images/arrow-up-right-blue.gif' alt='<?php echo _("view attachment");?>' title='<?php echo _("view attachment");?>' style='vertical-align:top;'></a></a>
 					</span>
 					<span style='float:right;'>
 					<?php
 						if ($user->canEdit()){ ?>
-							<a href='ajax_forms.php?action=getAttachmentForm&height=305&width=360&attachmentID=<?php echo $attachment['attachmentID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit attachment'></a>  <a href='javascript:void(0);' class='removeAttachment' id='<?php echo $attachment['attachmentID']; ?>'><img src='images/cross.gif' alt='remove this attachment' title='remove this attachment'></a>
+							<a href='ajax_forms.php?action=getAttachmentForm&height=305&width=360&attachmentID=<?php echo $attachment['attachmentID']; ?>&modal=true' class='thickbox'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit attachment");?>'></a>  <a href='javascript:void(0);' class='removeAttachment' id='<?php echo $attachment['attachmentID']; ?>'><img src='images/cross.gif' alt='<?php echo _("remove this attachment");?>' title='<?php echo _("remove this attachment");?>'></a>
 							<?php
 						}else{
 							echo "&nbsp;";
@@ -44,7 +44,7 @@
 
 				<?php if ($attachment['attachmentTypeShortName']) { ?>
 				<tr>
-				<td style='vertical-align:top; width:110px;'>Type:</td>
+				<td style='vertical-align:top; width:110px;'><?php echo _("Type:");?></td>
 				<td style='vertical-align:top; width:350px;'><?php echo $attachment['attachmentTypeShortName']; ?></td>
 				</tr>
 				<?php
@@ -52,7 +52,7 @@
 
 				if ($attachment['descriptionText']) { ?>
 				<tr>
-				<td style='vertical-align:top; width:110px;'>Details:</td>
+				<td style='vertical-align:top; width:110px;'><?php echo _("Details:");?></td>
 				<td style='vertical-align:top; width:350px;'><?php echo $attachment['descriptionText']; ?></td>
 				</tr>
 				<?php
@@ -64,12 +64,12 @@
 			<?php
 			}
 		} else {
-			echo "<i>No attachments available</i><br /><br />";
+			echo "<i>"._("No attachments available")."</i><br /><br />";
 		}
 
 		if ($user->canEdit()){
 		?>
-		<a href='ajax_forms.php?action=getAttachmentForm&height=305&width=360&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAttachment'>add new attachment</a><br /><br />
+		<a href='ajax_forms.php?action=getAttachmentForm&height=305&width=360&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAttachment'><?php echo _("add new attachment");?></a><br /><br />
 		<?php
 		}
 ?>

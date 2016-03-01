@@ -366,10 +366,10 @@ function submitAdminAlertDays(){
     numberOfDays = $('#daysInAdvanceNumber').val();
 
     if (parseInt(numberOfDays) != numberOfDays-0){
-        $('#div_form_error').html("Number of days must be a number");
+        $('#div_form_error').html(_("Number of days must be a number"));
         return false;
     }else if ((numberOfDays < 1) || (numberOfDays > 365)){
-        $('#div_form_error').html("Number of days should be between 1 and 365");
+        $('#div_form_error').html(_("Number of days should be between 1 and 365"));
         return false;
     }else{
         $('#div_form_error').html("&nbsp;");
@@ -389,7 +389,7 @@ function submitAdminAlertDays(){
 
 function deleteData(className, deleteID){
 
-    if (confirm("Do you really want to delete this data?") == true) {
+    if (confirm(_("Do you really want to delete this data?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -416,7 +416,7 @@ function deleteData(className, deleteID){
 
 function deleteGeneralSubject(className, deleteID){
 
-    if (confirm("Do you really want to remove this data?") == true) {
+    if (confirm(_("Do you really want to remove this data?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -444,7 +444,7 @@ function deleteGeneralSubject(className, deleteID){
 
 function deleteDetailedSubject(className, deleteID){
 
-    if (confirm("Do you really want to remove this data?") == true) {
+    if (confirm(_("Do you really want to remove this data?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -472,7 +472,7 @@ function deleteDetailedSubject(className, deleteID){
 
 function deleteGeneralDetailSubject(className, deleteID){
 
-    if (confirm("Do you really want to remove this data?") == true) {
+    if (confirm(_("Do you really want to remove this data?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -500,7 +500,7 @@ function deleteGeneralDetailSubject(className, deleteID){
 
 function deleteUser(deleteId){
 
-    if (confirm("Do you really want to delete this user?") == true) {
+    if (confirm(_("Do you really want to delete this user?")) == true) {
 
         $('#span_User_response').html('<img src = "images/circle.gif">&nbsp;&nbsp;Processing...');
         $.ajax({
@@ -527,7 +527,7 @@ function deleteUser(deleteId){
 
 function deleteAlert(className, deleteID){
 
-    if (confirm("Do you really want to remove this alert setting?") == true) {
+    if (confirm(_("Do you really want to remove this alert setting?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -555,7 +555,7 @@ function deleteAlert(className, deleteID){
 
 function deleteWorkflow(className, deleteID){
 
-    if (confirm("Do you really want to remove this data?") == true) {
+    if (confirm(_("Do you really want to remove this data?")) == true) {
 
         $.ajax({
             type:       "GET",
@@ -583,7 +583,7 @@ function deleteWorkflow(className, deleteID){
 
 function deleteCurrency(className, deleteID){
 
-    if (confirm("Do you really want to delete this currency?") == true) {
+    if (confirm(_("Do you really want to delete this currency?")) == true) {
 
         $.ajax({
             type:       "GET",

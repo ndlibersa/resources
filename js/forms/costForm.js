@@ -282,17 +282,17 @@ function validateTable(objRows)
 
 		if ((pAmount == '' || pAmount == null) && (fName == '' || fName == null))
 		{
-			$(objRows[currentRow+1]).find('.div_errorPayment').html('Error - Either amount or fund is required');
+			$(objRows[currentRow+1]).find('.div_errorPayment').html(_("Error - Either amount or fund is required"));
 			hasNoErrors = false;
 		}
 		else if((typeID == '') || (typeID == null))
 		{
-			$(objRows[currentRow+1]).find('.div_errorPayment').html('Error - order type is a required field');
+			$(objRows[currentRow+1]).find('.div_errorPayment').html(_("Error - order type is a required field"));
 			hasNoErrors = false;
 		}
 		else if ((pAmount != '') && (pAmount != null) && (isAmount(pAmount) === false))
 		{
-			$(objRows[currentRow+1]).find('.div_errorPayment').html('Error - price is not numeric');
+			$(objRows[currentRow+1]).find('.div_errorPayment').html(_("Error - price is not numeric"));
 			hasNoErrors = false;
 		}
 		currentRow += 2;

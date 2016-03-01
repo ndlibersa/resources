@@ -145,6 +145,22 @@ if ($resource->titleText){
 
 		</div>
 
+		<div style="display:none;width: 597px;" id='div_issues' class="resource_tab_content">
+			<table cellpadding="0" cellspacing="0" style="width: 100%;">
+				<tr>
+					<td class="sidemenu">
+						<?php echo resource_sidemenu('issues'); ?>
+					</td>
+					<td class='mainContent'>
+
+						<div class='div_mainContent'></div>
+
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
 
 		<?php if ($user->accountTabIndicator == '1') { ?>
 
@@ -233,7 +249,7 @@ if ($resource->titleText){
 					<?php if ($config->settings->feedbackEmailAddress != '') {?>
 						<div style='margin:0px 8px 10px 8px;'>
 						<div style='width:219px; padding:7px; margin-bottom:5px;'>
-						<a href="mailto: <?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'>Send feedback on this resource</a>
+						<a href="mailto: <?php echo $config->settings->feedbackEmailAddress; ?>?subject=<?php echo $resource->titleText . ' (Resource ID: ' . $resource->resourceID . ')'; ?>" class='helpfulLink'><?php echo _("Send feedback on this resource");?></a>
 						</div>
 						</div>
 					<?php } ?>

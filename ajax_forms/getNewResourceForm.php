@@ -81,14 +81,14 @@
 
 		<input type='hidden' id='organizationID' value='<?php echo $orgID; ?>' />
 		<input type='hidden' id='editResourceID' value='<?php echo $resourceID; ?>' />
-		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo "Edit Saved Resource"; }else{ echo "Add New Resource"; } ?></span></div>
-		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* required fields</div>
+		<div class='formTitle' style='width:745px;'><span class='headerText'><?php if ($resourceID) { echo _("Edit Saved Resource"); }else{ echo _("Add New Resource"); } ?></span></div>
+		<div class='smallDarkRedText' style='height:14px;margin:3px 0px 0px 0px;'>&nbsp;* <?php echo _("required fields");?></div>
 
 		<table class='noBorder'>
 		<tr style='vertical-align:top;'>
 		<td style='vertical-align:top; padding-right:35px;'>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Product</b>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b><?php echo _("Product");?></b>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -97,27 +97,27 @@
 				<table class='noBorder' style='width:310px; margin:5px 15px;'>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='titleText'>Name:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='titleText'><?php echo _("Name:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 					<td><input type='text' id='titleText' style='width:220px;' class='changeInput' value="<?php echo $resource->titleText; ?>" /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='descriptionText'>Description:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='descriptionText'><?php echo _("Description:");?></label></td>
 					<td><textarea rows='3' id='descriptionText' style='width:223px'><?php echo $resource->descriptionText; ?></textarea></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='providerText'>Provider:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='providerText'><?php echo _("Provider:");?></label></td>
 					<td><input type='text' id='providerText' style='width:220px;' class='changeInput' value='<?php echo $providerText; ?>' /><span id='span_error_providerText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='resourceURL'>URL:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='resourceURL'><?php echo _("URL:");?></label></td>
 					<td><input type='text' id='resourceURL' style='width:220px;' class='changeInput' value='<?php echo $resource->resourceURL; ?>' /><span id='span_error_resourceURL' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='resourceAltURL'>Alt URL:</label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='resourceAltURL'><?php echo _("Alt URL:");?></label></td>
 					<td><input type='text' id='resourceAltURL' style='width:220px;' class='changeInput' value='<?php echo $resource->resourceAltURL; ?>' /><span id='span_error_resourceAltURL' class='smallDarkRedText'></span></td>
 					</tr>
 
@@ -128,7 +128,7 @@
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Format</b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php _("Format");?></b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -173,7 +173,7 @@
 			</table>
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b>Acquisition Type</b>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<b><?php echo _("Acquisition Type");?></b>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -220,7 +220,7 @@
 		</td>
 		<td>
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceTypeID'><b>Resource Type</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceTypeID'><b><?php echo _("Resource Type");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -266,7 +266,7 @@
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b>Notes</b></label>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php echo _("Notes");?></b></label>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -275,7 +275,7 @@
 				<table class='noBorder smallPadding' style='width:320px; margin:7px 15px;'>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><span class='smallGreyText'>Include any additional information</span><br />
+					<td style='vertical-align:top;text-align:left;'><span class='smallGreyText'><?php echo _("Include any additional information");?></span><br />
 					<textarea rows='5' id='noteText' name='noteText' style='width:310px'><?php echo $resourceNote->noteText; ?></textarea></td>
 					</tr>
 				</table>
@@ -291,9 +291,9 @@
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='save' class='submitResource' id ='save'></td>
-				<td style='text-align:left'><input type='button' value='submit' class='submitResource' id ='progress'></td>
-				<td style='text-align:left'><input type='button' value='cancel' onclick="kill(); tb_remove()"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("save");?>' class='submitResource' id ='save'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' class='submitResource' id ='progress'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove()"></td>
 			</tr>
 		</table>
 

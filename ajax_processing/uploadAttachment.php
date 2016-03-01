@@ -26,7 +26,7 @@
 			echo "success uploading!";
 		} else {
 		  header('HTTP/1.1 500 Internal Server Error');
-		  echo "<div id=\"error\">There was a problem saving your file to $target_path.  Please ensure your attachments directory is writable.</div>";
+		  echo "<div id=\"error\">"._("There was a problem saving your file to ").$target_path._(".  Please ensure your attachments directory is writable.")."</div>";
 		}
 
 	}

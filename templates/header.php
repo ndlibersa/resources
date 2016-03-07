@@ -114,13 +114,13 @@ if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?
 <tr style='vertical-align:top'>
 <td style='width:870px;height:19px;'>
 
-<a href='index.php'><img src="images/menu/menu-home<?php if ($currentPage == 'index.php') { echo "-on"; } ?>.gif" hover="images/menu/menu-home-over.gif" class="rollover" /></a>
+<a href='index.php'><img src="images/menu/<?php echo $http_lang?>/menu-home<?php if ($currentPage == 'index.php') { echo "-on"; } ?>.gif" hover="images/menu/<?php echo $http_lang?>/menu-home-over.gif" class="rollover" /></a>
 <?php if ($user->isAdmin() || $user->canEdit()){ ?>
-	<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><img src='images/menu/menu-newresource.gif' hover="images/menu/menu-newresource-over.gif" class="rollover"></a>
-	<a href='queue.php'><img src='images/menu/menu-myqueue<?php if ($currentPage == 'queue.php') { echo "-on"; } ?>.gif' hover="images/menu/menu-myqueue-over.gif" class="rollover"></a>
-	<a href='import.php'><img src='images/menu/menu-fileimport<?php if ($currentPage == 'import.php') { echo "-on"; } ?>.gif' hover="images/menu/menu-fileimport-over.gif" class="rollover"></a>
+	<a href='ajax_forms.php?action=getNewResourceForm&height=503&width=775&resourceID=&modal=true' class='thickbox' id='newResourceForm'><img src='images/menu/<?php echo $http_lang?>/menu-newresource.gif' hover="images/menu/<?php echo $http_lang?>/menu-newresource-over.gif" class="rollover"></a>
+	<a href='queue.php'><img src='images/menu/<?php echo $http_lang?>/menu-myqueue<?php if ($currentPage == 'queue.php') { echo "-on"; } ?>.gif' hover="images/menu/<?php echo $http_lang?>/menu-myqueue-over.gif" class="rollover"></a>
+	<a href='import.php'><img src='images/menu/<?php echo $http_lang?>/menu-fileimport<?php if ($currentPage == 'import.php') { echo "-on"; } ?>.gif' hover="images/menu/<?php echo $http_lang?>/menu-fileimport-over.gif" class="rollover"></a>
 	<?php if ($user->isAdmin()) { ?>
-		<a href='admin.php'><img src='images/menu/menu-admin<?php if ($currentPage == 'admin.php') { echo "-on"; } ?>.gif' hover="images/menu/menu-admin-over.gif" id="menu-last" class="rollover" /></a>
+		<a href='admin.php'><img src='images/menu/<?php echo $http_lang?>/menu-admin<?php if ($currentPage == 'admin.php') { echo "-on"; } ?>.gif' hover="images/menu/<?php echo $http_lang?>/menu-admin-over.gif" id="menu-last" class="rollover" /></a>
 	<?php } ?>
 <?php } ?>
 
@@ -137,7 +137,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
 
 	<div style='text-align:left;'>
 		<ul class="tabs">
-		<li style="background: url('images/change/coral-change.gif') no-repeat right;">&nbsp;
+		<li style="background: url('images/change/<?php echo $http_lang?>/coral-change.gif') no-repeat right;">&nbsp;
 			<ul class="coraldropdown">
 				<?php if (file_exists($util->getCORALPath() . "index.php")) {?>
 				<li><a href="<?php echo $coralURL; ?>" target='_blank'><img src='images/change/coral-main.png'></a></li>

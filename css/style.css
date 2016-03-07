@@ -2401,3 +2401,7 @@ a#help:before {
     font-size: 11px;
     margin-right: 3px;
 }
+
+td#setLanguage {
+	vertical-align:middle;
+}

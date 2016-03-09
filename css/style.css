@@ -2405,3 +2405,337 @@ a#help:before {
 td#setLanguage {
 	vertical-align:middle;
 }
+
+/*--- Adjustments for Language Dropdown ---*/
+
+select#lang {
+    border: none;
+    margin-left: 10px;
+    background-color: #fff;
+}
+
+/*--- Issues Section ---*/
+
+a.showIssues:before {
+    font-family: FontAwesome;
+    content: "\f071";
+    font-size: 11px;
+    margin-right: 5px;
+}
+
+#issueTable img {
+	width: 20px;
+	margin-left: 8px;
+	position: relative;
+	top: 4px;
+}
+
+#downTimeTable img {
+	width: 20px;
+	margin-left: 8px;
+	position: relative;
+	top: 4px;
+}
+
+div#openIssues {
+    margin: 8px;
+}
+
+div#archivedIssues {
+    margin: 8px;
+}
+
+div#currentDowntime {
+    margin: 8px;
+}
+
+div#archivedDowntime {
+    margin: 8px;
+}
+
+#newIssueForm table.thickboxTable {
+    background-image: none !important;
+    width: 100% !important;
+    font-size: 12px;
+}
+
+#newIssueForm td {
+	padding: 4px;
+	vertical-align: top;
+}
+
+#newIssueForm label {
+	font-weight: bold;
+	color: #3D545D;
+}
+
+#newIssueForm table.thickboxTable h1 {
+    width: auto !important;
+    margin: 0;
+    padding: 6px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #e6e5e9;
+    -moz-border-radius: 0px;
+    background-image: none;
+    background: rgba(200, 200, 200, 0.5) url(../images/bg-diagonal-stripes.png) repeat top left !important;
+    display: block;
+    font-size: 14px;
+    color: #3D545D;
+}
+
+#newIssueForm input#submitNewIssue {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    margin-left: 5px;
+}
+
+#newIssueForm input#submitNewIssue:hover {
+    cursor: pointer;
+}
+
+#newIssueForm input[value=cancel] {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+
+#newIssueForm input[value=cancel]:hover {
+    cursor: pointer;
+}
+
+a#getCreateContactForm {
+	text-transform: capitalize;
+}
+
+.issueResources {
+	margin-top: 8px;
+}
+
+#resourceIDs {
+	margin-top: 10px;
+	width: 400px;
+	margin-right: 30px;
+}
+
+#newIssueForm #resourceIDs option.entityArray {
+	word-break: break-word;
+    white-space: normal;
+}
+
+#newIssueForm td label {
+    vertical-align: initial;
+}
+
+#newIssueForm > p {
+	margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #3D545D;
+    margin-left: 5px;
+}
+
+#newDowntimeForm td {
+	padding: 4px;
+}
+
+#newDowntimeForm table.thickboxTable {
+    background-image: none !important;
+    width: 100% !important;
+    font-size: 12px;
+}
+
+#newDowntimeForm table.thickboxTable h1 {
+    width: auto !important;
+    margin: 0;
+    padding: 6px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #e6e5e9;
+    -moz-border-radius: 0px;
+    background-image: none;
+    background: rgba(200, 200, 200, 0.5) url(../images/bg-diagonal-stripes.png) repeat top left !important;
+    display: block;
+    font-size: 14px;
+    color: #3D545D;
+}
+
+#newDowntimeForm label {
+	font-weight: bold;
+	color: #3D545D; 
+}
+
+#newDowntimeForm input#submitNewDowntime {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    margin-left: 5px;
+}
+
+#newDowntimeForm input#submitNewDowntime:hover {
+    cursor: pointer;
+}
+
+#newDowntimeForm input[value=cancel] {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+
+#newDowntimeForm input[value=cancel]:hover {
+    cursor: pointer;
+}
+
+#newIssueForm input#createContact {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+#newIssueForm input#createContact:hover {
+    cursor: pointer;
+}
+
+#inlineContact > div:first-child > .form-element:nth-of-type(2) {
+    margin-top: 10px;
+}
+
+#inlineContact > div:nth-of-type(2) {
+    margin-left: 10px;
+}
+
+#newIssueForm input#addEmail {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 2px 10px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+#newIssueForm input#addEmail:hover {
+    cursor: pointer;
+}
+
+div#openIssues dd {
+    word-break: break-word;
+}
+
+div#openIssues {
+    line-height: 16px;
+}
+
+#openIssues a {
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: block;
+}
+
+div#archivedIssues dd {
+    word-break: break-word;
+}
+
+div#archivedIssues {
+    line-height: 18px;
+}
+
+#archivedIssues a {
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: block;
+}
+
+div#currentDowntime {
+    line-height: 18px;
+}
+
+a#openDowntimeBtn {
+    margin-bottom: 10px !important;
+    display: inline-block;
+}
+
+a#archiveddowntimeBtn {
+    margin-bottom: 10px !important;
+    display: inline-block;
+}
+
+div#archivedDowntime {
+    line-height: 18px;
+}
+
+a#archiveddowntimeBtn {
+    margin-bottom: 10px !important;
+    display: inline-block;
+}
+
+/*--- Import Page ---*/
+
+
+#import_configuration_table td {
+    padding:5px;
+}
+  
+.import_column_num {
+    width: 20px;
+}
+ 
+ 
+ 
+#configuration_group {
+    float: right;
+}
+ 
+#configuration {
+    width: 300px;
+    display: block;
+    margin: 15px 0px;
+}
+ 
+.config_label {
+    text-align: right;
+}
+ 
+.delimited_by {
+    padding-left: 10px;
+}
+ 
+.delimiter {
+   width: 30px;
+}
+ 
+.check_label {
+    margin-left: 5px;
+}
+ 

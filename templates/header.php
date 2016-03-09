@@ -87,7 +87,7 @@ $coralURL = $util->getCORALURL();
 <td style='height:53px;'>
 &nbsp;
 </td>
-<td style='text-align:right;height:53px;'>
+<td style='text-align:right;height:53px;' colspan='2'>
 <div style='margin-top:1px;'>
 <span class='smallText' style='color:#526972;'>
 <?php

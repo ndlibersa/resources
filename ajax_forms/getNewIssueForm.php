@@ -64,7 +64,7 @@ if ($config->settings->organizationsModule == 'Y') {
 		<tr>
 			<td><label>CC myself:</label></td>
 			<td>
-				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' checked />
+				<input type='checkbox' id='ccCreator' name='ccCreator' class='changeInput' />
 				<span id='span_error_ccCreator' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
@@ -99,13 +99,13 @@ if ($config->settings->organizationsModule == 'Y') {
 			<td>
 
 				<div>
-					<input type="checkbox" class="issueResources entityArray" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?>.</label>
+					<input type="checkbox" class="issueResources entityArray" name="resourceIDs[]" value="<?php echo $resourceID;?>" checked /> <label for="thisResources">Applies only to <?php echo $resource->titleText ?></label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources entityArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all <?php echo $organizationData['organization']; ?> resources.</label>
+					<input type="checkbox" class="issueResources entityArray" name="organizationID" id="organizationID" value="<?php echo $organizationData['organizationID'];?>" /> <label for="allResources">Applies to all <?php echo $organizationData['organization']; ?> resources</label>
 				</div>
 				<div>
-					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to selected <?php echo $organizationData['organization'] ?> resources.</label>
+					<input type="checkbox" class="issueResources" id="otherResources" /><label for="otherResources"> Applies to selected <?php echo $organizationData['organization'] ?> resources</label>
 				</div>
 				<select multiple id="resourceIDs" name="resourceIDs[]">
 <?php

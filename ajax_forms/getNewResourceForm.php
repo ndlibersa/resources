@@ -128,7 +128,7 @@
 
 
 
-			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php _("Format");?></b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
+			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php echo _("Format");?></b></label>&nbsp;<span class='bigDarkRedText'>*</span>&nbsp;&nbsp;</span>
 
 			<table class='surroundBox' style='width:350px;'>
 			<tr>
@@ -222,7 +222,7 @@
 
 			<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceTypeID'><b><?php echo _("Resource Type");?></b></label>&nbsp;&nbsp;</span>
 
-			<table class='surroundBox' style='width:350px;'>
+			<table class='surroundBox' style='width:350px;' id='resource-type'>
 			<tr>
 			<td>
 

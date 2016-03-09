@@ -2711,8 +2711,6 @@ a#archiveddowntimeBtn {
     width: 20px;
 }
  
- 
- 
 #configuration_group {
     float: right;
 }
@@ -2737,5 +2735,15 @@ a#archiveddowntimeBtn {
  
 .check_label {
     margin-left: 5px;
+}
+
+/*--- Add New Resource ---*/
+
+table#resource-type td {
+    width: 100% !important;
+    padding: 0;
+    float: left;
+    word-wrap: inherit;
+    line-height: 18px;
 }
  

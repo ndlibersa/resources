@@ -2708,7 +2708,8 @@ a#archiveddowntimeBtn {
 }
   
 .import_column_num {
-    width: 20px;
+    width: 25px;
+    text-align: center;
 }
  
 #configuration_group {

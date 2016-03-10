@@ -2702,7 +2702,6 @@ a#archiveddowntimeBtn {
 
 /*--- Import Page ---*/
 
-
 #import_configuration_table td {
     padding:5px;
 }
@@ -2710,10 +2709,7 @@ a#archiveddowntimeBtn {
 .import_column_num {
     width: 25px;
     text-align: center;
-}
- 
-#configuration_group {
-    float: right;
+    margin-left: 10px;
 }
  
 #configuration {
@@ -2732,10 +2728,27 @@ a#archiveddowntimeBtn {
  
 .delimiter {
    width: 30px;
+   margin-left: 10px;
 }
  
 .check_label {
     margin-left: 5px;
+}
+
+#save_configuration {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    margin-right: 5px;
+}
+
+#save_configuration:hover {
+    cursor: pointer;
 }
 
 /*--- Add New Resource ---*/

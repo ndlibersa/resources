@@ -77,7 +77,6 @@ if ($config->settings->authModule == 'Y'){
 		list ($loginID,$restofAddr) = explode("@", $remoteAuth);
 
 
-
 		session_start();
 		$_SESSION['loginID'] = $loginID;
 

@@ -19,9 +19,11 @@
 			<table class='linedDataTable' style='width:100%;margin-bottom:5px;'>
 				<tr>
 				<th style='background-color:#dad8d8;width:350px;'><?php echo _("Step");?></th>
+					<th style='background-color:#dad8d8;'>&nbsp;</th>
 				<th style='background-color:#dad8d8;width:150px;'><?php echo _("Group");?></th>
 				<th style='background-color:#dad8d8;width:120px;'><?php echo _("Start Date");?></th>
 				<th style='background-color:#dad8d8;width:250px;'><?php echo _("Complete");?></th>
+					<th style='background-color:#dad8d8;'><?php echo _("Delete");?></th>
 				</tr>
 			<?php
 			$openStep=0;
@@ -39,6 +41,9 @@
 				?>
 				<tr>
 				<td <?php echo $classAdd; ?> ><?php echo $resourceStep->stepName; ?></td>
+				<td <?php echo $classAdd; ?> ><?php if (is_null_date($resourceStep->stepEndDate)){
+						echo '<a href="ajax_forms.php?action=getResourceStepForm&amp;resourceStepID='.$resourceStep->resourceStepID.'&amp;height=250&amp;width=750&amp;modal=true" class="thickbox"><img src="images/edit.gif" alt="edit" title="edit"></a>';
+					} ?></td>
 				<td <?php echo $classAdd; ?> ><?php echo $userGroup->groupName; ?></td>
 				<td <?php echo $classAdd; ?> ><?php if ($resourceStep->stepStartDate) { echo format_date($resourceStep->stepStartDate); } ?></td>
 				<td <?php echo $classAdd; ?> >
@@ -57,6 +62,12 @@
 						//track how many open steps there are
 						$openStep++;
 					}?>
+				</td>
+				<td style="text-align:center;"> <?php
+					//add a delete step option, there will be a modal confirmation before delete.
+					if (!$resourceStep->stepEndDate){
+						echo '<a href="javascript:void(0);" class="removeResourceStep" id="'. $resourceStep->resourceStepID .'"><img src="images/cross.gif" alt="delete" title="delete"></a>';
+					} ?>
 				</td>
 				</tr>
 				<?php

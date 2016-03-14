@@ -50,6 +50,7 @@
 			print "<p>"._("Please choose columns from your CSV file:")."</p>";
 			print "<form action=\"generic_import.php\" method=\"post\">";
 ?>
+			<div id="config_left" style="width:50%;">
 			<table id="import_configuration_table">
 				<tr>
 					<td class="config_label"><?php echo _("Resource Title:");?><input id="title" class="import_column_num" type="text" maxlength="3" /></td>
@@ -103,6 +104,10 @@
 				</tr>
 
 			</table>
+			</div>
+			<div id="config_right" style="width:50%; float:right;">
+				Contents Right
+			</div>
 			<div id="configuration_group">
 				<select id="configuration" onchange="loadConfiguration(this.value);">
 					<?php

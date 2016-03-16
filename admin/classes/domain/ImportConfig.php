@@ -2,9 +2,9 @@
 
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.2
+** CORAL Resources Module v. 1.0
 **
-** Copyright (c) 2010-2014 University of Notre Dame
+** Copyright (c) 2010 University of Notre Dame
 **
 ** This file is part of CORAL.
 **
@@ -17,14 +17,34 @@
 **************************************************************************************************************************
 */
 
-session_start();
+class ImportConfig extends DatabaseObject {
 
-include_once 'directory.php';
-include_once 'user.php';
+	protected function defineRelationships() {}
 
-$action = $_GET['action'];
-if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_htmldata/$action.php")){
-	echo _("Data action ") . $action . _(" not set up!");
+	public function allAsArray() {
+		$query = "SELECT * FROM ImportConfig ORDER BY 2";
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$resultArray = array();
+		$rowArray = array();
+
+		if (isset($result['shortName'])){
+
+			foreach (array_keys($result) as $attributeName) {
+				$rowArray[$attributeName] = $result[$attributeName];
+			}
+			array_push($resultArray, $rowArray);
+		}else{
+
+			foreach ($result as $row) {
+				foreach (array_keys($this->attributeNames) as $attributeName) {
+					$rowArray[$attributeName] = $row[$attributeName];
+				}
+				array_push($resultArray, $rowArray);
+			}
+		}
+		return $resultArray;
+	}
 }
 
 ?>

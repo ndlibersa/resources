@@ -2751,6 +2751,16 @@ a#archiveddowntimeBtn {
     cursor: pointer;
 }
 
+/*--- New Import Page ---*/
+#importConfigOrgMapping {
+	width:100%;
+	text-align:center;
+}
+
+#importConfigOrgMapping td {
+	width: 50%;
+}
+
 /*--- Add New Resource ---*/
 
 table#resource-type td {

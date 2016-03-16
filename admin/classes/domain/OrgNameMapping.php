@@ -2,9 +2,9 @@
 
 /*
 **************************************************************************************************************************
-** CORAL Resources Module v. 1.2
+** CORAL Resources Module v. 1.0
 **
-** Copyright (c) 2010-2014 University of Notre Dame
+** Copyright (c) 2010 University of Notre Dame
 **
 ** This file is part of CORAL.
 **
@@ -17,14 +17,27 @@
 **************************************************************************************************************************
 */
 
-session_start();
+class OrgNameMapping extends DatabaseObject {
 
-include_once 'directory.php';
-include_once 'user.php';
+	protected function defineRelationships() {}
 
-$action = $_GET['action'];
-if (!preg_match('/^[A-Za-z]+$/', $action) || !(include "ajax_htmldata/$action.php")){
-	echo _("Data action ") . $action . _(" not set up!");
+	public function getOrgNameMappingByImportConfigID($importConfigID) {
+		$query = "SELECT * FROM OrgNameMapping WHERE importConfigID = '" . $importConfigID . "' ORDER BY 3";
+		$result = $this->db->processQuery($query, 'assoc');
+
+		$objects = array();
+
+		if (isset($result['orgNameMappingID'])){
+			$object = new OrgNameMapping(new NamedArguments(array('primaryKey' => $result['orgNameMappingID'])));
+			array_push($objects, $object);
+		}else{
+			foreach($result as $row) {
+				$object = new OrgNameMapping(new NamedArguments(array('primaryKey' => $row['orgNameMappingID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
 }
 
 ?>

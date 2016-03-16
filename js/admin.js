@@ -49,6 +49,10 @@ $(document).ready(function(){
         updateFundTable();
     });
 
+    $(".ImportConfigLink").click(function () {
+        updateImportConfigTable();
+    });
+
     $('.removeData').live('click', function () {
         deleteData($(this).attr("cn"), $(this).attr("id"));
     });
@@ -64,6 +68,7 @@ function updateTable(className){
     $(".AdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
     $("#" + className).parent().parent().addClass('selected');
 
@@ -93,6 +98,7 @@ function updateCurrencyTable(){
     $(".UserAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().addClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
@@ -118,6 +124,7 @@ function updateFundTable(){
     $(".UserAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().addClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
     $.ajax({
@@ -125,6 +132,32 @@ function updateFundTable(){
         url:        "ajax_htmldata.php",
         cache:      false,
         data:       "action=getAdminFundDisplay",
+        success:    function(html) {
+            $('#div_AdminContent').html(html);
+            tb_reinit();
+        }
+    });
+
+    //make sure error is empty
+    $('#div_error').html("");
+
+}
+
+function updateImportConfigTable(){
+    $(".AlertAdminLink").parent().parent().removeClass('selected');
+    $(".AdminLink").parent().parent().removeClass('selected');
+    $(".WorkflowAdminLink").parent().parent().removeClass('selected');
+    $(".UserAdminLink").parent().parent().removeClass('selected');
+    $(".CurrencyLink").parent().parent().removeClass('selected');
+    $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().addClass('selected');
+    $(".SubjectsAdminLink").parent().parent().removeClass('selected');
+
+    $.ajax({
+        type:       "GET",
+        url:        "ajax_htmldata.php",
+        cache:      false,
+        data:       "action=getAdminImportConfigDisplay",
         success:    function(html) {
             $('#div_AdminContent').html(html);
             tb_reinit();
@@ -144,6 +177,7 @@ function updateUserTable(){
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".UserAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
@@ -171,6 +205,7 @@ function updateAlertTable(){
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".AlertAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
@@ -198,6 +233,7 @@ function updateWorkflowTable(){
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().addClass('selected');
     $(".SubjectsAdminLink").parent().parent().removeClass('selected');
 
@@ -224,6 +260,7 @@ function updateSubjectsTable(){
     $(".AlertAdminLink").parent().parent().removeClass('selected');
     $(".CurrencyLink").parent().parent().removeClass('selected');
     $(".FundLink").parent().parent().removeClass('selected');
+    $(".ImportConfigLink").parent().parent().removeClass('selected');
     $(".WorkflowAdminLink").parent().parent().removeClass('selected');
     $(".SubjectsAdminLink").parent().parent().addClass('selected');
 
@@ -622,6 +659,28 @@ function deleteFund(className, deleteID){
 					alert(html);
                 }else{
                     updateFundTable();
+                    tb_reinit();
+                }
+
+            }
+        });
+    }
+}
+
+function deleteImportConfig(className, deleteID){
+    if (confirm("Do you really want to delete this import configuration?") == true) {
+
+        $.ajax({
+            type:       "GET",
+            url:        "ajax_processing.php",
+            cache:      false,
+            data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
+            success:    function(html) {
+
+                if (html){
+                    alert(html);
+                }else{
+                    updateImportConfigTable();
                     tb_reinit();
                 }
 

@@ -2752,14 +2752,39 @@ a#archiveddowntimeBtn {
 }
 
 /*--- New Import Page ---*/
+#importConfigColumns {
+	width: 100%;
+}
+
+#importConfigColumnsLeft {
+	width: 50%;
+	float: left;
+}
+
+#importConfigColumnsRight {
+	width: 50%;
+	float: right;
+}
+
 #importConfigOrgMapping {
+	margin: 50px 50px;
+}
+
+#importConfigOrgMapping table{
 	width:100%;
-	text-align:center;
+}
+
+#importConfigOrgMapping th {
+	width: 50%;
 }
 
 #importConfigOrgMapping td {
-	width: 50%;
 }
+
+#importConfigOrgMapping input {
+	width: 100%;
+}
+
 
 /*--- Add New Resource ---*/
 

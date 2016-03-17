@@ -23,6 +23,7 @@
 		<div class='formTitle' style='min-width:1000px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Import Configuration"; } else { echo "Add Import Configuration"; } ?></span></div>
 			<span class='smallDarkRedText' id='span_errors'></span>
 			<div id='importConfigColumns'>
+				<span>Configuration Name</span><span><input value='<?php echo $instance->shortName;?>'</span>
 				<div id='importConfigColumnsLeft'>
 					<p><span>Resource Title</span><span class='import-text-left'><input value="<?php echo $configuration["title"]?>" /></span></p>
 					<div id='resource_alias'>

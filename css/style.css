@@ -2785,6 +2785,13 @@ a#archiveddowntimeBtn {
 	width: 100%;
 }
 
+div.ic-content {
+	height:700px;
+	width: 1024px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
 span.ic-label {
     display: inline-block;
     width: 190px;

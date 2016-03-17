@@ -2785,6 +2785,34 @@ a#archiveddowntimeBtn {
 	width: 100%;
 }
 
+span.ic-label {
+    display: inline-block;
+    width: 190px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+input.ic-column {
+    width: 3em;
+}
+
+select.ic-dropdown {
+	margin-left: 200px;
+}
+
+div#ic-left-column {
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+div#ic-left-column a {
+    margin-left: 200px;
+}
+
+div#ic-right-column {
+    padding: 20px;
+    padding-bottom: 0;
+}
 
 /*--- Add New Resource ---*/
 

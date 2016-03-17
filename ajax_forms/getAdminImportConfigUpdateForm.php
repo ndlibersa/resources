@@ -22,77 +22,81 @@
 		<input type='hidden' id='imortConfigID' value='<?php echo $updateID; ?>'>
 		<div class='formTitle' style='min-width:1000px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo "Edit Import Configuration"; } else { echo "Add Import Configuration"; } ?></span></div>
 			<span class='smallDarkRedText' id='span_errors'></span>
+			<span>Configuration Name</span><span><input value='<?php echo $instance->shortName;?>'</span>
 			<div id='importConfigColumns'>
-				<span>Configuration Name</span><span><input value='<?php echo $instance->shortName;?>'</span>
 				<div id='importConfigColumnsLeft'>
-					<p><span>Resource Title</span><span class='import-text-left'><input value="<?php echo $configuration["title"]?>" /></span></p>
-					<div id='resource_alias'>
-						<?php
-							if(count($configuration["alias"]) > 0) {
-								foreach($configuration["alias"] as $alias) {
-									echo "<p><span>Alias</span><span><input value='".$alias."' /></span><span><select>";
+					<div id='ic-left-column'>
+						<p><span class="ic-label">Resource Title</span><span class='import-text-left'><input class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
+						<div id='resource_alias'>
+							<?php
+								if(count($configuration["alias"]) > 0) {
+									foreach($configuration["alias"] as $alias) {
+										echo "<p><span class='ic-label'>Alias</span><span><input class='ic-column' value='".$alias."' /></span></p><p><span><select class='ic-dropdown'>";
+										foreach($aliasTypeArray as $aliasType) {
+											echo "<option value='" . $aliasType['aliasTypeID'] . "'>" . $aliasType['shortName'] . "</option>";
+										}
+										echo "</select></span></p>";
+									}
+								}
+								else {
+									echo "<p><span class='ic-label'>Alias</span><span><input class='ic-column' value='' /></span></p><p><span><select class='ic-dropdown'>";
 									foreach($aliasTypeArray as $aliasType) {
 										echo "<option value='" . $aliasType['aliasTypeID'] . "'>" . $aliasType['shortName'] . "</option>";
 									}
 									echo "</select></span></p>";
 								}
-							}
-							else {
-								echo "<p><span>Alias</span><span><input value='' /></span><span><select>";
-								foreach($aliasTypeArray as $aliasType) {
-									echo "<option value='" . $aliasType['aliasTypeID'] . "'>" . $aliasType['shortName'] . "</option>";
+							?>
+							<p><a href='#'>+ Add another alias</a></p>
+						</div>
+						<p><span class="ic-label">Resource URL</span><span><input class="ic-column" value="<?php echo $configuration["url"]?>" /></span></p>
+						<p><span class="ic-label">Alternate URL</span><span><input class="ic-column" value="<?php echo $configuration["altUrl"]?>" /></span></p>
+						<div id='resource_parent'>
+							<?php
+								if(count($configuration["parent"]) > 0) {
+									foreach($configuration["parent"] as $parent) {
+										echo "<p><span class='ic-label'>Parent Resource</span><span><input class='ic-column' value='" . $parent . "' /></span></p>";
+									}
 								}
-								echo "</select></span></p>";
-							}
-						?>
-						<p><a href='#'>+ Add another alias</a></p>
-					</div>
-					<p><span>Resource URL</span><span><input value="<?php echo $configuration["url"]?>" /></span></p>
-					<p><span>Alternate URL</span><span><input value="<?php echo $configuration["altUrl"]?>" /></span></p>
-					<div id='resource_parent'>
-						<?php
-							if(count($configuration["parent"]) > 0) {
-								foreach($configuration["parent"] as $parent) {
-									echo "<p><span>Parent Resource</span><span><input value='" . $parent . "' /></span></p>";
+								else {
+									echo "<p><span class='ic-label'>Parent Resource</span><span><input class='ic-column' value='' /></span></p>";
 								}
-							}
-							else {
-								echo "<p><span>Parent Resource</span><span><input value='' /></span></p>";
-							}
-						?>
-						<p><a href='#'>+ Add another parent resource</a></p>
-					</div>
-					<div id='resource_isbnOrIssn'>
-						<?php
-							if(count($configuration["isbnOrIssn"]) > 0) {
-								foreach($configuration["isbnOrIssn"] as $isbnOrIssn) {
-									echo "<p><span>ISBN or ISSN</span><span><input value='" . $isbnOrIssn . "' /></span></p>";
+							?>
+							<p><a href='#'>+ Add another parent resource</a></p>
+						</div>
+						<div id='resource_isbnOrIssn'>
+							<?php
+								if(count($configuration["isbnOrIssn"]) > 0) {
+									foreach($configuration["isbnOrIssn"] as $isbnOrIssn) {
+										echo "<p><span class='ic-label'>ISBN or ISSN</span><span><input class='ic-column' value='" . $isbnOrIssn . "' /></span></p>";
+									}
 								}
-							}
-							else {
-								echo "<p><span>ISBN OR ISSN</span><span><input value='' /></span></p>";
-							}
-						?>
-						<p><a href='#'>+ Add another ISBN or ISSN</a></p>
-					</div>
-					<p><span>Resource Format</span><span><input value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
-					<p><span>Resource Type</span><span><input value="<?php echo $configuration["resourceType"]?>" /></span></p>
-					<div id='resource_subject'>
-						<?php
-							if(count($configuration["subject"]) > 0) {
-								foreach($configuration["subject"] as $subject) {
-									echo "<p><span>Subject</span><span><input value='" . $subject . "' /></span></p>";
+								else {
+									echo "<p><span class='ic-label'>ISBN OR ISSN</span><span><input class='ic-column' value='' /></span></p>";
 								}
-							}
-							else {
-								echo "<p><span>Subject</span><span><input value='' /></span></p>";
-							}
-						?>
-						<p><a href='#'>+ Add another subject</a></p>
+							?>
+							<p><a href='#'>+ Add another ISBN or ISSN</a></p>
+						</div>
+						<p><span class="ic-label">Resource Format</span><span><input class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
+						<p><span class="ic-label">Resource Type</span><span><input class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
+						<div id='resource_subject'>
+							<?php
+								if(count($configuration["subject"]) > 0) {
+									foreach($configuration["subject"] as $subject) {
+										echo "<p><span class='ic-label'>Subject</span><span><input class='ic-column' value='" . $subject . "' /></span></p>";
+									}
+								}
+								else {
+									echo "<p><span class='ic-label'>Subject</span><span><input class='ic-column' value='' /></span></p>";
+								}
+							?>
+							<p><a href='#'>+ Add another subject</a></p>
+						</div>
 					</div>
 				</div>
 				<div id='importConfigColumnsRight'>
-					Right Content
+					<div id='ic-right-column'>
+						Right Content
+					</div>
 				</div>
 				<div style='clear: both;''></div>
 			</div>

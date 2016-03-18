@@ -46,7 +46,7 @@
 	<input type='hidden' id='importConfigID' value='<?php echo $updateID; ?>'>
 	<div class='formTitle' style='min-width:1000px;'><span class='headerText' style='margin-left:7px;'><?php if ($updateID){ echo _("Edit Import Configuration"); } else { echo _("Add Import Configuration"); } ?></span></div>
 		<span class='smallDarkRedText' id='span_errors'></span>
-		<span><?php echo _("Configuration Name");?></span><span><input id='shortName' value='<?php echo $instance->shortName;?>'</span>
+		<div id='config-name'><?php echo _("Configuration Name");?><input id='shortName' value='<?php echo $instance->shortName;?>'></div>
 		<div class='ic-content'>
 			<div id='importConfigColumns'>
 				<div id='importConfigColumnsLeft'>

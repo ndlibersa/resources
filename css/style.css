@@ -2807,8 +2807,10 @@ select.ic-dropdown {
 }
 
 div#ic-left-column {
-    padding: 20px;
+    padding: 10px;
     padding-bottom: 0;
+    padding-top: 0;
+    border-right: solid 1px #ddd;
 }
 
 div#ic-left-column a {
@@ -2822,6 +2824,18 @@ div#ic-right-column {
 
 div#ic-right-column a {
     margin-left: 200px;
+}
+
+#config-name {
+	margin: 20px;
+	margin-left: 12px;
+	font-weight: bold;
+    font-size: 14px;
+}
+
+#config-name input {
+	margin-left: 10px;
+	width: 50%;
 }
 
 /*--- Add New Resource ---*/

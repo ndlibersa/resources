@@ -86,7 +86,7 @@ $(function(){
 
 	$(".remove").live('click', function () {
 	    $(this).parent().parent().fadeTo(400, 0, function () { 
-		$(this).parent().parent().remove();
+			$(this).parent().parent().remove();
 	    });
 	    return false;
 	});

@@ -180,17 +180,27 @@
 				<div style='clear: both;'></div>
 			</div>
 			<div id='importConfigOrgMapping'>
-				<table>
+				<table id='org_mapping_table' >
 					<tr>
 						<th><?php echo _("Text in CSV File");?></th>
 						<th><?php echo _("Will Change To");?></th>
+						<th></th>
+						<th></th>
 					</tr>
 					<?php
-						foreach($orgMappings as $orgMapping) {
-							echo "<tr><td><input value='".htmlspecialchars($orgMapping->orgNameImported)."' /></td><td><input value='".htmlspecialchars($orgMapping->orgNameMapped)."' /></td></tr>";
+						if(count($orgMappings)>0) {
+							foreach($orgMappings as $orgMapping) {
+								echo "<tr><td><input class='ic-org-imported' value='" . $orgMapping->orgNameImported . "' /></td>";
+								echo "<td><input class='ic-org-mapped' value='" . $orgMapping->orgNameMapped . "' /></td>";
+								echo "<td><img class='remove' src='images/cross.gif' /></td></tr>";
+							}
+						}
+						else {
+							echo "<tr><td><input class='ic-org-imported' /></td><td><input class='ic-org-mapped' /></td><td><img class='remove' src='images/cross.gif' /></td></tr>";
 						}
 					?>
 				</table>
+				<a id='add_mapping' href='#'><?php echo _("+ Add another mapping")?></a>
 			</div>
 		</div>
 		<br />
@@ -206,6 +216,11 @@
    $('#submitAddUpdate').click(function () {
 		submitImportConfigData();
    });
+	$(".remove").live('click', function () {
+	    $(this).parent().parent().fadeTo(400, 0, function () { 
+			$(this).remove();
+	    });
+	});   
    $('#add_alias').click(function () {
    		$('#resource_alias').append(
    			"<div class='alias-record'><p><span class='ic-label'><?php echo _('Alias');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Alias Type');?></span><span><select class='ic-dropdown'><?php echo $aliasOptions?></select></span></p></div>"
@@ -234,6 +249,11 @@
    $('#add_organization').click(function () {
    		$('#resource_organization').append (
 			"<div class='organization-record'><p><span class='ic-label'><?php echo _('Organization');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Organization Role');?></span><span><select class='ic-dropdown'><?php echo $organizationOptions?></select></span></p></div>"
+   		);
+   });
+   $('#add_mapping').live('click', function () {
+   		$('#org_mapping_table').append (
+   			"<tr><td><input class='ic-org-imported' /></td><td><input class='ic-org-mapped' /></td><td><img class='remove' src='images/cross.gif' /></td></tr>"
    		);
    });
 </script>

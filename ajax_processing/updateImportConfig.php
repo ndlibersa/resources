@@ -3,6 +3,10 @@
 		$shortName = $_POST['shortName'];
 		$configuration = $_POST['configuration'];
 
+		error_log($importConfigID);
+		error_log($shortName);
+		error_log($configuration);
+
 		if ($importConfigID != '') {
 			$instance = new ImportConfig(new NamedArguments(array('primaryKey' => $importConfigID)));
 		} else {

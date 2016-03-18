@@ -2804,7 +2804,6 @@ input.ic-column {
 }
 
 select.ic-dropdown {
-	margin-left: 200px;
 }
 
 div#ic-left-column {
@@ -2819,6 +2818,10 @@ div#ic-left-column a {
 div#ic-right-column {
     padding: 20px;
     padding-bottom: 0;
+}
+
+div#ic-right-column a {
+    margin-left: 200px;
 }
 
 /*--- Add New Resource ---*/

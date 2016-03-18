@@ -383,7 +383,78 @@ function validateFund() {
     }
 }
 
-function submitAdminAlertEmail(){
+function submitImportConfigData() {
+    if(validateImportConfig() === true)
+    {
+        //assemble configuration data as json
+        var jsonData = {};
+        jsonData.title = $('#resource_titleCol').val();
+        jsonData.alias = [];
+        $('div.alias-record').each(function() {
+            var aliasObject={}
+            aliasObject.column=$(this).find('input').val();
+            aliasObject.aliasType=$(this).find('select').val();
+            jsonData.alias.push(aliasObject);
+        });
+        jsonData.url = $('#resource_urlCol').val();
+        jsonData.altUrl = $("#resource_altUrlCol").val();
+        jsonData.parent = [];
+        $('div#resource_parent').find('input').each(function() {
+            jsonData.parent.push($(this).val());
+        });
+        jsonData.isbnOrIssn = [];
+        $('div#resource_isbnOrIssn').find('input').each(function() {
+            jsonData.isbnOrIssn.push($(this).val());
+        });
+        jsonData.resourceFormat = $("#resource_format").val();
+        jsonData.resourceType = $("#resource_type").val();
+        jsonData.subject = [];
+        $('div#resource_subject').find('input').each(function() {
+            jsonData.subject.push($(this).val());
+        });
+        jsonData.note = [];
+        $('div.note-record').each(function() {
+            var noteObject={}
+            noteObject.column=$(this).find('input').val();
+            noteObject.noteType=$(this).find('select').val();
+            jsonData.note.push(noteObject);
+        });
+        jsonData.organization = [];
+        $('div.organization-record').each(function() {
+            var organizationObject={}
+            organizationObject.column=$(this).find('input').val();
+            organizationObject.organizationRole=$(this).find('select').val();
+            jsonData.organization.push(organizationObject);
+        });
+        console.log(jsonData);
+        console.log(JSON.stringify(jsonData));
+        var configuration = JSON.stringify(jsonData);
+        //return;
+        $.ajax({
+            type:       "POST",
+            url:        "ajax_processing.php?action=updateImportConfig",
+            cache:      false,
+            data:       { importConfigID: $('#importConfigID').val(), shortName: $('#shortName').val(), configuration: configuration},
+            success:    function(html) {
+                updateImportConfigTable();
+                window.parent.tb_remove();
+            }
+        });
+    }
+}
+
+function validateImportConfig() {
+    if($("#shortName").val() == ''){
+        $("#span_errors").html('Error - Please enter a short name for the fund');
+        $("#shortName").focus();
+        return false;
+    }else{
+        return true;
+    }
+
+}
+
+function submitAdminAlertEmail() {
     $.ajax({
         type:       "POST",
         url:        "ajax_processing.php?action=updateAdminAlertEmail",

@@ -32,6 +32,4 @@
 			echo "(none found)<br />";
 		}
 		echo "<a href='ajax_forms.php?action=getAdminImportConfigUpdateForm&updateID=&height=760&width=1024&modal=true' class='thickbox'>add new import configuration</a><br/>";
-		//echo "<a href='importFunds.php?action=getAdminFundUpdateForm&updateID=&height=175&width=300&modal=true' class='thickbox'>import funds</a>";
-
 ?>

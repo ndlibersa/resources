@@ -45,6 +45,18 @@ class ImportConfig extends DatabaseObject {
 		}
 		return $resultArray;
 	}
+
+	public function removeOrgNameMappings() {
+		$query = "DELETE
+			FROM OrgNameMapping
+			WHERE importConfigID = '" . $this->importConfigID . "'";
+		$result = $this->db->processQuery($query);
+	}
+
+	public function removeImportConfig() {
+		$this->removeOrgNameMappings();
+		$this->delete;
+	}
 }
 
 ?>

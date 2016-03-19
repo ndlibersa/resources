@@ -251,7 +251,7 @@
 			"<div class='organization-record'><p><span class='ic-label'><?php echo _('Organization');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Organization Role');?></span><span><select class='ic-dropdown'><?php echo $organizationOptions?></select></span></p></div>"
    		);
    });
-   $('#add_mapping').live('click', function () {
+   $('#add_mapping').click(function () {
    		$('#org_mapping_table').append (
    			"<tr><td><input class='ic-org-imported' /></td><td><input class='ic-org-mapped' /></td><td><img class='remove' src='images/cross.gif' /></td></tr>"
    		);

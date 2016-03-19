@@ -426,15 +426,21 @@ function submitImportConfigData() {
             organizationObject.organizationRole=$(this).find('select').val();
             jsonData.organization.push(organizationObject);
         });
-        console.log(jsonData);
-        console.log(JSON.stringify(jsonData));
         var configuration = JSON.stringify(jsonData);
-        //return;
+        var orgNameImported = '';
+        $('.ic-org-imported').each(function() {
+            orgNameImported += $(this).val() + ":::";
+        });
+
+        var orgNameMapped = '';
+        $('.ic-org-mapped').each(function() {
+            orgNameMapped += $(this).val() + ":::";
+        });
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=updateImportConfig",
             cache:      false,
-            data:       { importConfigID: $('#importConfigID').val(), shortName: $('#shortName').val(), configuration: configuration},
+            data:       { importConfigID: $('#importConfigID').val(), shortName: $('#shortName').val(), configuration: configuration, orgNameImported: orgNameImported, orgNameMapped: orgNameMapped},
             success:    function(html) {
                 updateImportConfigTable();
                 window.parent.tb_remove();
@@ -745,11 +751,13 @@ function deleteImportConfig(className, deleteID){
             type:       "GET",
             url:        "ajax_processing.php",
             cache:      false,
-            data:       "action=deleteInstance&class=" + className + "&id=" + deleteID,
+            data:       "action=deleteImportConfig&importConfigID=" + deleteID,
             success:    function(html) {
 
                 if (html){
                     alert(html);
+                    updateImportConfigTable();
+                    tb_reinit();
                 }else{
                     updateImportConfigTable();
                     tb_reinit();

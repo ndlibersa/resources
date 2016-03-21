@@ -175,7 +175,6 @@
 		$resourceAltURLColumn=intval($jsonData['altUrl'])-1;
 		$resourceTypeColumn=intval($jsonData['resourceType'])-1;
 		$resourceFormatColumn=intval($jsonData['resourceFormat'])-1;
-		error_log($resourceFormatColumn);
 
 		//get all resource formats for output in drop down
 		$resourceFormatArray = array();
@@ -442,6 +441,7 @@ $deduping_count=0;
 				print " (" . implode(',', $arrayOrganizationsCreated) . ")";
 			}
 			print ". $organizationsAttached"._(" resources have been attached to an existing organization.")."</p>";
+			print "<p>".$resourceTypeInserted._(" resource types have been created")."</p>";
 		}
 	}
 	else

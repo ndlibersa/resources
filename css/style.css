@@ -2752,8 +2752,10 @@ a#archiveddowntimeBtn {
 }
 
 /*--- New Import Page ---*/
+
 #importConfigColumns {
 	width: 100%;
+	padding-top: 20px;
 }
 
 #importConfigColumnsLeft {
@@ -2768,6 +2770,7 @@ a#archiveddowntimeBtn {
 
 #importConfigOrgMapping {
 	margin: 50px 50px;
+	margin-bottom: 10px;
 }
 
 #importConfigOrgMapping table{
@@ -2781,12 +2784,8 @@ a#archiveddowntimeBtn {
 #importConfigOrgMapping td {
 }
 
-#importConfigOrgMapping input {
-	width: 100%;
-}
-
 div.ic-content {
-	height:700px;
+	height: 700px;
 	width: 1024px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -2794,8 +2793,7 @@ div.ic-content {
 
 span.ic-label {
     display: inline-block;
-    width: 190px;
-    text-align: right;
+    padding-left: 50px;
     padding-right: 10px;
 }
 
@@ -2818,7 +2816,6 @@ div#ic-left-column a {
 }
 
 div#ic-right-column {
-    padding: 20px;
     padding-bottom: 0;
 }
 
@@ -2836,6 +2833,78 @@ div#ic-right-column a {
 #config-name input {
 	margin-left: 10px;
 	width: 50%;
+}
+
+div#ic-left-column a {
+    margin-left: 50px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+div#ic-right-column a {
+    margin-left: 50px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+span.ic-dedupe {
+    margin-left: 50px;
+}
+
+input.ic-dedupe {
+    margin-right: 5px;
+}
+
+div#configDiv {
+    text-align: left;
+    padding-top: 10px;
+}
+
+form#config_form #matchsubmit {
+    color: #FFFFFF;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    background: #1b76a9;
+    border: none;
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+
+form#config_form #matchsubmit:hover {
+    cursor: pointer;
+}
+
+a#add_mapping {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+}
+
+input.ic-org-imported {
+    width: 100% !important;
+    margin-bottom: 3px;
+}
+
+input.ic-org-mapped {
+    margin-left: 10px;
+    padding-right: 20px;
+    width: 100% !important;
+    margin-bottom: 3px;
+}
+
+img.remove {
+    position: relative;
+    left: 15px;
+}
+
+#org_mapping_table tr:first-child th:nth-of-type(2) {
+    padding-left: 12px;
+    padding-bottom: 5px;
 }
 
 /*--- Add New Resource ---*/

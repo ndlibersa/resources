@@ -51,6 +51,7 @@
 				{
 					$error = _("Unable to get columns headers from the file");
 				}
+				fclose($handle);
 			}
 			else
 			{
@@ -118,8 +119,11 @@
 			            jsonData.parent.push($(this).val());
 			        });
 			        jsonData.isbnOrIssn = [];
-			        $('div#resource_isbnOrIssn').find('input').each(function() {
-			            jsonData.isbnOrIssn.push($(this).val());
+						$('div.isbnOrIssn-record').each(function() {
+			            var isbnOrIssnObj={};
+            			isbnOrIssnObj.column = $(this).find('input.ic-column').val();
+            			isbnOrIssnObj.dedupe = $(this).find('input.ic-dedupe').attr('checked');
+            			jsonData.isbnOrIssn.push(isbnOrIssnObj);
 			        });
 			        jsonData.resourceFormat = $("#resource_format").val();
 			        jsonData.resourceType = $("#resource_type").val();
@@ -181,15 +185,33 @@
 		$resourceFormatObj = new ResourceFormat();
 		$resourceFormatArray = $resourceFormatObj->sortedArray();
 
-		//get all resource types for output in drop down
+		//get all resource types
 		$resourceTypeArray = array();
 		$resourceTypeObj = new ResourceType();
 		$resourceTypeArray = $resourceTypeObj->allAsArray();
 
+		//get all resource formats
+		$resourceFormatArray = array();
+		$resourceFormatObj = new ResourceFormat();
+		$resourceFormatArray = $resourceFormatObj->allAsArray();
+
+		//get all subjects
+		$resourceSubjectArray = array();
+		$resourceSubjectObj = new GeneralSubject();
+		$resourceSubjectArray = $resourceSubjectObj->allAsArray();
+
 		$delimiter = $_POST['delimiter'];
-		$deduping_config = explode(',', $config->settings->importISBNDedupingColumns); 
+		$deduping_columns = array();
+		$allIsbnsOrIssns = array();
+		foreach($jsonData['isbnOrIssn'] as $isbnOrIssn)
+		{
+			if($isbnOrIssn['dedupe'] === true)
+			{
+				array_push($deduping_columns,intval($isbnOrIssn['column'])-1);
+			}
+		}
 		$uploadfile = $_POST['uploadfile'];
-		 // Let's analyze this file
+		// Let's analyze this file
 		if (($handle = fopen($uploadfile, "r")) !== FALSE)
 		{
 			$row = 0;
@@ -199,38 +221,38 @@
 		 	$organizationsInserted = 0;
 			$organizationsAttached = 0;
 			$resourceTypeInserted = 0;
+			$resourceFormatInserted = 0;
+			$resourceSubjectInserted = 0;
 			$arrayOrganizationsCreated = array();
 			while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE)
 			{
 		    	// Getting column names again for deduping
 		    	if ($row == 0)
 		    	{
+		    		error_log(print_r($data));
 		      		print "<h2>"._("Settings")."</h2>";
 		      		print "<p>"._("Importing and deduping isbnOrISSN on the following columns: ") ;
 		        	foreach ($data as $key => $value)
 		        	{
-		          		if (in_array($value, $deduping_config))
+		          		if (in_array($key, $deduping_columns))
 		          		{
-		            		$deduping_columns[] = $key;
-		            		print $value . " ";
+		            		print $value . "<sup>[" . (intval($key)+1) . "]</sup> ";
 						}
 					} 
 					print ".</p>";
 				}
 				else
 				{
+		        	//foreach()
 		        	// Deduping
 					unset($deduping_values);
 					$resource = new Resource(); 
 					$resourceObj = new Resource(); 
-//					foreach ($deduping_columns as $value)
-//					{
-//						$deduping_values[] = $data[$value];
-//					}
-//
-//Remove this//
-$deduping_count=0;
-//					$deduping_count = count($resourceObj->getResourceByIsbnOrISSN($deduping_values));
+					foreach ($deduping_columns as $value)
+					{
+						$deduping_values[] = $data[$value];
+					}
+					$deduping_count = count($resourceObj->getResourceByIsbnOrISSN($deduping_values));
 					if ($deduping_count == 0)
 					{
 						// Convert to UTF-8
@@ -247,10 +269,59 @@ $deduping_count=0;
 								$resourceTypeObj->shortName = $data[$resourceTypeColumn];
 								$resourceTypeObj->save();
 								$resourceTypeIndex = $resourceTypeObj->primaryKey;
-								$resourceTypeArray = $resourceTypeObj->allAsArray;
+								$resourceTypeArray = $resourceTypeObj->allAsArray();
 								$resourceTypeInserted++;
 							}
 						}
+
+						// If Resource Format is mapped, check to see if it exists
+						$resourceFormatIndex = null;
+						if($jsonData['resourceFormat'] != '')
+						{
+							$resourceFormatIndex = searchForShortName($data[$resourceFormatColumn], $resourceFormatArray);
+							if($resourceFormatIndex === null && $data[$resourceFormatColumn] != '') //If Resource Format does not exist, add it to the database
+							{
+								$resourceFormatObj = new ResourceFormat();
+								$resourceFormatObj->shortName = $data[$resourceFormatColumn];
+								$resourceFormatObj->save();
+								$resourceFormatIndex = $resourceFormatObj->primaryKey;
+								$resourceFormatArray = $resourceFormatObj->allAsArray();
+								$resourceFormatInserted++;
+							}
+						}
+
+						// If Subject is mapped, check to see if it exists
+						$resourceSubjectIndex = null;
+						$generalDetailSubjectLinkIndexes = array();
+						foreach($jsonData['subject'] as $subject)
+						{
+							error_log("I'm In the loop");
+							//$foundIndex = -1;
+							$resourceSubjectIndex = searchForShortName($data[intval($subject)-1], $resourceSubjectArray);
+							error_log($subject);
+							error_log($data[25]);
+							var_dump($data);
+							error_log($data[intval($subject)-1]);
+							error_log($resourceSubjectIndex);
+							if($resourceSubjectIndex === null && $data[intval($subject)-1] != '') //If Resource Subject does not exist, add it to the database
+							{
+								$resourceSubjectObj = new GeneralSubject();
+								$resourceSubjectObj->shortName = $data[intval($subject)-1];
+								$resourceSubjectObj->save();
+								$resourceSubjectIndex = $resourceSubjectObj->primaryKey;
+								$resourceSubjectArray = $resourceSubjectObj->allAsArray();
+								$resourceSubjectInserted++;
+								error_log($resourceSubjectIndex);
+							}
+							if($resourceSubjectIndex !== null && $data[intval($subject)-1] != '') //Find the generalDetailSubjectLinkID
+							{
+								$generalDetailSubjectLinkObj = new GeneralDetailSubjectLink();
+								$foundIndex = $generalDetailSubjectLinkObj->getGeneralDetailID($resourceSubjectIndex,-1);
+								error_log($foundIndex);
+							}
+						}
+						error_log("Finishing");
+						die;
 
 						// Let's insert data
 						$resource->createLoginID    = $loginID;
@@ -261,20 +332,19 @@ $deduping_count=0;
 						$resource->resourceURL      = $data[$resourceURLColumn];
 						$resource->resourceAltURL   = $data[$resourceAltURLColumn];
 						$resource->resourceTypeID   = $resourceTypeIndex;
+						$resource->resourceFormatID = $resourceFormatIndex;
 						//$resource->providerText     = $data[$_POST['providerText']];
-						//$resource->statusID         = 1;
-						//$resource->save();
-						//$resource->setIsbnOrIssn($deduping_values);
-						//$inserted++;
-					//remove this
+						$resource->statusID         = 1;
+						$resource->save();
+						$resource->setIsbnOrIssn($deduping_values);
+						$inserted++;
 					}
-					//
-					/*
-						// Do we have to create an organization or attach the resource to an existing one?
-						if($data[$jsonData['organization']['column']])
-						//if ($data[$_POST['organization']])
+					// Do we have to create an organization or attach the resource to an existing one?
+					foreach($jsonData['organization'] as $importOrganization)
+					{
+						if($data[intval($importOrganization['column'])-1])
 						{
-							$organizationName = $data[$jsonData['organization']['column']];
+							$organizationName = $data[intval($importOrganization['column'])-1];
 							$organization = new Organization();
 							$organizationRole = new OrganizationRole();
 							$organizationID = false;
@@ -312,11 +382,12 @@ $deduping_count=0;
 								{
 									print "<p>"._("Error: more than one organization is called ").$organizationName._(". Please consider deduping.")."</p>";
 								}
+								/*
 								if ($organizationID)
 								{
 									$dbName = $config->settings->organizationsDatabaseName;
 									// Get role
-									$query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . $organization->db->escapeString($data[$jsonData['organization']['organizationRole']]) . "'";
+									$query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . $organization->db->escapeString($importOrganization['organizationRole']) . "'";
 									$result = $organization->db->processQuery($query);
 									// If role is not found, fallback to the first one.
 									$roleID = ($result[0]) ? $result[0] : 1;
@@ -342,6 +413,7 @@ $deduping_count=0;
 										}
 									}
 								}
+								*/
 							}
 							else // If we do not use the Organizations module
 							{
@@ -366,27 +438,30 @@ $deduping_count=0;
 								{
 									print "<p>"._("Error: more than one organization is called ").$organizationName._(" Please consider deduping.")."</p>";
 								}
+								/*
 								// Find role
 								$organizationRoles = $organizationRole->getArray();
-								if (($roleID = array_search($data[$jsonData['organization']['organizationRole']], $organizationRoles)) == 0)
+								if (($roleID = array_search($importOrganization['organizationRole'], $organizationRoles)) == 0)
 								{
 									// If role is not found, fallback to the first one.
 									$roleID = '1';
 								} 
+								*/
 							}
 							// Let's link the resource and the organization.
 							// (this has to be done whether the module Organization is in use or not)
-							if ($organizationID && $roleID)
+							//if ($organizationID && $roleID)
+							if($organizationID)
 							{
 								$organizationLink = new ResourceOrganizationLink();
-								$organizationLink->organizationRoleID = $roleID;
+								//$organizationLink->organizationRoleID = $roleID;
 								$organizationLink->resourceID = $resource->resourceID;
 								$organizationLink->organizationID = $organizationID;
 								$organizationLink->save();
 							}
 						}
 					}
-
+/*
 					elseif ($deduping_count == 1)
 					{
 						$resources = $resourceObj->getResourceByIsbnOrISSN($deduping_values);
@@ -440,8 +515,10 @@ $deduping_count=0;
 			{
 				print " (" . implode(',', $arrayOrganizationsCreated) . ")";
 			}
-			print ". $organizationsAttached"._(" resources have been attached to an existing organization.")."</p>";
-			print "<p>".$resourceTypeInserted._(" resource types have been created")."</p>";
+			print ". $organizationsAttached" . _(" resources have been attached to an existing organization.") . "</p>";
+			print "<p>" . $resourceTypeInserted . _(" resource types have been created") . "</p>";
+			print "<p>" . $resourceFormatInserted . _(" resource formats have been created") . "</p>";
+			print "<p>" . $resourceSubjectInserted . _(" general subjects have been created") . "</p>";
 		}
 	}
 	else

@@ -403,8 +403,11 @@ function submitImportConfigData() {
             jsonData.parent.push($(this).val());
         });
         jsonData.isbnOrIssn = [];
-        $('div#resource_isbnOrIssn').find('input').each(function() {
-            jsonData.isbnOrIssn.push($(this).val());
+        $('div.isbnOrIssn-record').each(function() {
+            var isbnOrIssnObj={};
+            isbnOrIssnObj.column = $(this).find('input.ic-column').val();
+            isbnOrIssnObj.dedupe = $(this).find('input.ic-dedupe').attr('checked');
+            jsonData.isbnOrIssn.push(isbnOrIssnObj);
         });
         jsonData.resourceFormat = $("#resource_format").val();
         jsonData.resourceType = $("#resource_type").val();

@@ -374,7 +374,6 @@
 							$resourceSubject->resourceID = $resource->primaryKey;
 							$resourceSubject->generalDetailSubjectLinkID = $generalDetailID;
 							$resourceSubject->save();
-							//if($resourceSubject->duplicateCheck)
 						}
 						// Do we have to create an organization or attach the resource to an existing one?
 						foreach($jsonData['organization'] as $importOrganization)

@@ -336,88 +336,90 @@
 						$resource->save();
 						$resource->setIsbnOrIssn($isbnIssn_values);
 						$inserted++;
-					}
-					// Do we have to create an organization or attach the resource to an existing one?
-					foreach($jsonData['organization'] as $importOrganization)
-					{
-						if($importOrganization['column'] === "") //Skip organization if column reference is blank
-							continue;
-						$roleID=$importOrganization['organizationRole'];
-
-						if($data[intval($importOrganization['column'])-1])
+						// Do we have to create an organization or attach the resource to an existing one?
+						foreach($jsonData['organization'] as $importOrganization)
 						{
-							$organizationName = $data[intval($importOrganization['column'])-1];
-							$organization = new Organization();
-							$organizationRole = new OrganizationRole();
-							$organizationID = false;
-							if ($config->settings->organizationsModule == 'Y') // If we use the Organizations module
+							if($importOrganization['column'] === "") //Skip organization if column reference is blank
 							{
-								$dbName = $config->settings->organizationsDatabaseName;
-								// Does the organization already exists?
-								$query = "SELECT count(*) AS count FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($organizationName)) . "'";
-								$result = $organization->db->processQuery($query, 'assoc');
-								// If not, we try to create it
-								if ($result['count'] == 0)
+								continue;
+							}
+							$roleID=$importOrganization['organizationRole'];
+
+							if($data[intval($importOrganization['column'])-1])
+							{
+								$organizationName = $data[intval($importOrganization['column'])-1];
+								$organization = new Organization();
+								$organizationRole = new OrganizationRole();
+								$organizationID = false;
+								if ($config->settings->organizationsModule == 'Y') // If we use the Organizations module
 								{
-									$query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . $organization->db->escapeString($organizationName) . "'";
-									try
+									$dbName = $config->settings->organizationsDatabaseName;
+									// Does the organization already exists?
+									$query = "SELECT count(*) AS count FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($organizationName)) . "'";
+									$result = $organization->db->processQuery($query, 'assoc');
+									// If not, we try to create it
+									if ($result['count'] == 0)
 									{
-										$result = $organization->db->processQuery($query);
-										$organizationID = $result;
+										$query = "INSERT INTO $dbName.Organization SET createDate=NOW(), createLoginID='$loginID', name='" . $organization->db->escapeString($organizationName) . "'";
+										try
+										{
+											$result = $organization->db->processQuery($query);
+											$organizationID = $result;
+											$organizationsInserted++;
+											array_push($arrayOrganizationsCreated, $organizationName);
+										}
+										catch (Exception $e)
+										{
+											print "<p>"._("Organization ").$organizationName._(" could not be added.")."</p>";
+										}
+	              					}
+	              					// If yes, we attach it to our resource
+	              					elseif ($result['count'] == 1)
+	              					{
+										$query = "SELECT name, organizationID FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($organizationName)) . "'";
+										$result = $organization->db->processQuery($query, 'assoc');
+										$organizationID = $result['organizationID'];
+										$organizationsAttached++;
+									}
+									else
+									{
+										print "<p>"._("Error: more than one organization is called ").$organizationName._(". Please consider deduping.")."</p>";
+									}
+								}
+								else // If we do not use the Organizations module
+								{
+									// Search if such organization already exists
+									$organizationExists = $organization->alreadyExists($organizationName);
+									$parentID = null;
+									if (!$organizationExists)
+									{
+										// If not, create it
+										$organization->shortName = $organizationName;
+										$organization->save();
+										$organizationID = $organization->organizationID();
 										$organizationsInserted++;
 										array_push($arrayOrganizationsCreated, $organizationName);
 									}
-									catch (Exception $e)
+									elseif ($organizationExists == 1)
 									{
-										print "<p>"._("Organization ").$organizationName._(" could not be added.")."</p>";
+										$organizationID = $organization->getOrganizationIDByName($organizationName);
+										$organizationsAttached++;
 									}
-              					}
-              					// If yes, we attach it to our resource
-              					elseif ($result['count'] == 1)
-              					{
-									$query = "SELECT name, organizationID FROM $dbName.Organization WHERE UPPER(name) = '" . str_replace("'", "''", strtoupper($organizationName)) . "'";
-									$result = $organization->db->processQuery($query, 'assoc');
-									$organizationID = $result['organizationID'];
-									$organizationsAttached++;
+									else
+									{
+										print "<p>"._("Error: more than one organization is called ").$organizationName._(" Please consider deduping.")."</p>";
+									}
 								}
-								else
+								// Let's link the resource and the organization.
+								// (this has to be done whether the module Organization is in use or not)
+								if($organizationID)
 								{
-									print "<p>"._("Error: more than one organization is called ").$organizationName._(". Please consider deduping.")."</p>";
+									$organizationLink = new ResourceOrganizationLink();
+									$organizationLink->organizationRoleID = $roleID;
+									$organizationLink->resourceID = $resource->resourceID;
+									$organizationLink->organizationID = $organizationID;
+									$organizationLink->save();
 								}
-							}
-							else // If we do not use the Organizations module
-							{
-								// Search if such organization already exists
-								$organizationExists = $organization->alreadyExists($organizationName);
-								$parentID = null;
-								if (!$organizationExists)
-								{
-									// If not, create it
-									$organization->shortName = $organizationName;
-									$organization->save();
-									$organizationID = $organization->organizationID();
-									$organizationsInserted++;
-									array_push($arrayOrganizationsCreated, $organizationName);
-								}
-								elseif ($organizationExists == 1)
-								{
-									$organizationID = $organization->getOrganizationIDByName($organizationName);
-									$organizationsAttached++;
-								}
-								else
-								{
-									print "<p>"._("Error: more than one organization is called ").$organizationName._(" Please consider deduping.")."</p>";
-								}
-							}
-							// Let's link the resource and the organization.
-							// (this has to be done whether the module Organization is in use or not)
-							if($organizationID)
-							{
-								$organizationLink = new ResourceOrganizationLink();
-								$organizationLink->organizationRoleID = $roleID;
-								$organizationLink->resourceID = $resource->resourceID;
-								$organizationLink->organizationID = $organizationID;
-								$organizationLink->save();
 							}
 						}
 					}

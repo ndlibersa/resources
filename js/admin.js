@@ -412,12 +412,15 @@ function submitImportConfigData() {
         jsonData.resourceFormat = $("#resource_format").val();
         jsonData.resourceType = $("#resource_type").val();
         jsonData.subject = [];
-        $('div#resource_subject').find('input').each(function() {
-            jsonData.subject.push($(this).val());
+        $('div.subject-record').each(function() {
+            var subjectObject={};
+            subjectObject.column=$(this).find('input.ic-column').val();
+            subjectObject.delimiter=$(this).find('input.ic-delimiter').val();
+            jsonData.subject.push(subjectObject);
         });
         jsonData.note = [];
         $('div.note-record').each(function() {
-            var noteObject={}
+            var noteObject={};
             noteObject.column=$(this).find('input').val();
             noteObject.noteType=$(this).find('select').val();
             jsonData.note.push(noteObject);

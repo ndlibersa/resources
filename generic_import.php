@@ -128,8 +128,11 @@
 			        jsonData.resourceFormat = $("#resource_format").val();
 			        jsonData.resourceType = $("#resource_type").val();
 			        jsonData.subject = [];
-			        $('div#resource_subject').find('input').each(function() {
-			            jsonData.subject.push($(this).val());
+			        $('div.subject-record').each(function() {
+			            var subjectObject={};
+			            subjectObject.column=$(this).find('input.ic-column').val();
+			            subjectObject.delimiter=$(this).find('input.ic-delimiter').val();
+			            jsonData.subject.push(subjectObject);
 			        });
 			        jsonData.note = [];
 			        $('div.note-record').each(function() {
@@ -196,9 +199,9 @@
 		$resourceFormatArray = $resourceFormatObj->allAsArray();
 
 		//get all subjects
-		$resourceSubjectArray = array();
-		$resourceSubjectObj = new GeneralSubject();
-		$resourceSubjectArray = $resourceSubjectObj->allAsArray();
+		$generalSubjectArray = array();
+		$generalSubjectObj = new GeneralSubject();
+		$generalSubjectArray = $generalSubjectObj->allAsArray();
 
 		$delimiter = $_POST['delimiter'];
 		$deduping_columns = array();
@@ -223,7 +226,7 @@
 			$organizationsAttached = 0;
 			$resourceTypeInserted = 0;
 			$resourceFormatInserted = 0;
-			$resourceSubjectInserted = 0;
+			$generalSubjectInserted = 0;
 			$arrayOrganizationsCreated = array();
 			while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE)
 			{
@@ -264,61 +267,77 @@
 						$data = array_map(function($row) { return mb_convert_encoding($row, 'UTF-8'); }, $data);
 		        
 						// If Resource Type is mapped, check to see if it exists
-						$resourceTypeIndex = null;
+						$resourceTypeID = null;
 						if($jsonData['resourceType'] != '')
 						{
-							$resourceTypeIndex = searchForShortName($data[$resourceTypeColumn], $resourceTypeArray);
-							if($resourceTypeIndex === null && $data[$resourceTypeColumn] != '') //If Resource Type does not exist, add it to the database
+							$index = searchForShortName($data[$resourceTypeColumn], $resourceTypeArray);
+							if($index !== null)
+							{
+								$resourceTypeID = $resourceTypeArray[$index]['resourceTypeID'];
+							}
+							else if($index === null && $data[$resourceTypeColumn] != '') //If Resource Type does not exist, add it to the database
 							{
 								$resourceTypeObj = new ResourceType();
 								$resourceTypeObj->shortName = $data[$resourceTypeColumn];
 								$resourceTypeObj->save();
-								$resourceTypeIndex = $resourceTypeObj->primaryKey;
+								$resourceTypeID = $resourceTypeObj->primaryKey;
 								$resourceTypeArray = $resourceTypeObj->allAsArray();
 								$resourceTypeInserted++;
 							}
 						}
 
 						// If Resource Format is mapped, check to see if it exists
-						$resourceFormatIndex = null;
+						$resourceFormatID = null;
 						if($jsonData['resourceFormat'] != '')
 						{
-							$resourceFormatIndex = searchForShortName($data[$resourceFormatColumn], $resourceFormatArray);
-							if($resourceFormatIndex === null && $data[$resourceFormatColumn] != '') //If Resource Format does not exist, add it to the database
+							$index = searchForShortName($data[$resourceFormatColumn], $resourceFormatArray);
+							if($index !== null)
+							{
+								$resourceFormatID = $resourceFormatArray[$index]['resourceFormatID'];
+							}
+							else if($index === null && $data[$resourceFormatColumn] != '') //If Resource Format does not exist, add it to the database
 							{
 								$resourceFormatObj = new ResourceFormat();
 								$resourceFormatObj->shortName = $data[$resourceFormatColumn];
 								$resourceFormatObj->save();
-								$resourceFormatIndex = $resourceFormatObj->primaryKey;
+								$resourceFormatID = $resourceFormatObj->primaryKey;
 								$resourceFormatArray = $resourceFormatObj->allAsArray();
 								$resourceFormatInserted++;
 							}
 						}
 
 						// If Subject is mapped, check to see if it exists
-						$resourceSubjectIndex = null;
-						$generalDetailSubjectLinkIndexes = array();
+						$generalDetailSubjectLinkIDArray = array();
 						foreach($jsonData['subject'] as $subject)
 						{
-							$foundIndex = -1;
-							$resourceSubjectIndex = searchForShortName($data[intval($subject)-1], $resourceSubjectArray);
-							error_log($resourceSubjectIndex);
-							if($resourceSubjectIndex === null && $data[intval($subject)-1] != '') //If Resource Subject does not exist, add it to the database
+							$generalSubjectID = null;
+							if($subject === "") //Skip subject if column reference is blank
 							{
-								$resourceSubjectObj = new GeneralSubject();
-								$resourceSubjectObj->shortName = $data[intval($subject)-1];
-								$resourceSubjectObj->save();
-								$resourceSubjectIndex = $resourceSubjectObj->primaryKey;
-								$resourceSubjectArray = $resourceSubjectObj->allAsArray();
-								$resourceSubjectInserted++;
-								error_log($resourceSubjectIndex);
+								continue;
 							}
-							if($resourceSubjectIndex !== null && $data[intval($subject)-1] != '') //Find the generalDetailSubjectLinkID
+							$index = searchForShortName($data[intval($subject)-1], $generalSubjectArray);
+							if($index !== null)
+							{
+								$generalSubjectID = $generalSubjectArray[$index]['generalSubjectID'];
+							}
+							else if($index === null && $data[intval($subject)-1] != '') //If General Subject does not exist, add it to the database
+							{
+								$generalSubjectObj = new GeneralSubject();
+								$generalSubjectObj->shortName = $data[intval($subject)-1];
+								$generalSubjectObj->save();
+								$generalSubjectID = $resourceSubjectObj->primaryKey;
+								$generalSubjectArray = $generalSubjectObj->allAsArray();
+								$generalSubjectInserted++;
+							}
+							error_log($generalSubjectID);
+							/*
+							if($generalSubjectID !== null) //Find the generalDetailSubjectLinkID
 							{
 								$generalDetailSubjectLinkObj = new GeneralDetailSubjectLink();
-								$foundIndex = $generalDetailSubjectLinkObj->getGeneralDetailID($resourceSubjectIndex,-1);
-								//error_log($foundIndex);
+								$generalDetailID = $generalDetailSubjectLinkObj->getGeneralDetailID($resourceSubjectIndex,-1);
+								error_log($generalDetailID);
 							}
+							*/
 						}
 
 						// Let's insert data
@@ -329,8 +348,8 @@
 						$resource->titleText        = $data[$resourceTitleColumn];
 						$resource->resourceURL      = $data[$resourceURLColumn];
 						$resource->resourceAltURL   = $data[$resourceAltURLColumn];
-						$resource->resourceTypeID   = $resourceTypeIndex;
-						$resource->resourceFormatID = $resourceFormatIndex;
+						$resource->resourceTypeID   = $resourceTypeID;
+						$resource->resourceFormatID = $resourceFormatID;
 						//$resource->providerText     = $data[$_POST['providerText']];
 						$resource->statusID         = 1;
 						$resource->save();
@@ -431,7 +450,9 @@
 					foreach($jsonData['parent'] as $parent)
 					{
 						if($parent === "") //Skip parent if column reference is blank
+						{
 							continue;
+						}
 						if ($data[intval($parent)-1] && ($deduping_count == 0 || $deduping_count == 1) ) // Do we have a parent resource to create?
 						{
 							// Search if such parent exists
@@ -478,12 +499,17 @@
 			print "<p>".$organizationsInserted._(" organizations have been created");
 			if (count($arrayOrganizationsCreated) > 0)
 			{
-				print " (" . implode(',', $arrayOrganizationsCreated) . ")";
+				print "<ol>";
+				foreach($arrayOrganizationsCreated as $organization)
+				{
+					print "<li>" . $organization . "</li>";
+				}
+				print "</ol>";
 			}
 			print ". $organizationsAttached" . _(" resources have been attached to an existing organization.") . "</p>";
 			print "<p>" . $resourceTypeInserted . _(" resource types have been created") . "</p>";
 			print "<p>" . $resourceFormatInserted . _(" resource formats have been created") . "</p>";
-			print "<p>" . $resourceSubjectInserted . _(" general subjects have been created") . "</p>";
+			print "<p>" . $generalSubjectInserted . _(" general subjects have been created") . "</p>";
 		}
 	}
 	else

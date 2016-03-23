@@ -68,15 +68,15 @@
 		}
 		else
 		{
-			print "<p>"._("Please select the import configuration to load: ")."<select id='importConfiguration'>";
-			print "<option value='' disabled selected>"._("Select Configuration")."</option>";
+			print "<p>" . _("Please select the import configuration to load: ") . "<select id='importConfiguration'>";
+			print "<option value='' disabled selected>" . _("Select Configuration") . "</option>";
 			foreach($importConfigInstanceArray as $importConfiguration)
 			{
-				print "<option value='".$importConfiguration['importConfigID']."'>".$importConfiguration['shortName']."</option>";
+				print "<option value='" . $importConfiguration['importConfigID'] . "'>" . $importConfiguration['shortName'] . "</option>";
 			}
 			print "</select></p>";
 
-			print "<p>"._("Please choose columns from your CSV file:")."</p>";
+			print "<p>" . _("Please choose columns from your CSV file:") . "</p>";
 			print "<form id='config_form' action=\"generic_import.php\" method=\"post\">";
 ?>
 			<script type='text/javascript'>
@@ -202,13 +202,14 @@
 
 		$delimiter = $_POST['delimiter'];
 		$deduping_columns = array();
-		$allIsbnsOrIssns = array();
+		$allIsbnOrIssn_columns = array();
 		foreach($jsonData['isbnOrIssn'] as $isbnOrIssn)
 		{
 			if($isbnOrIssn['dedupe'] === true)
 			{
 				array_push($deduping_columns,intval($isbnOrIssn['column'])-1);
 			}
+			array_push($allIsbnOrIssn_columns,intval($isbnOrIssn['column'])-1);
 		}
 		$uploadfile = $_POST['uploadfile'];
 		// Let's analyze this file
@@ -229,7 +230,6 @@
 		    	// Getting column names again for deduping
 		    	if ($row == 0)
 		    	{
-		    		error_log(print_r($data));
 		      		print "<h2>"._("Settings")."</h2>";
 		      		print "<p>"._("Importing and deduping isbnOrISSN on the following columns: ") ;
 		        	foreach ($data as $key => $value)
@@ -246,11 +246,16 @@
 		        	//foreach()
 		        	// Deduping
 					unset($deduping_values);
+					unset($isbnIssn_values);
 					$resource = new Resource(); 
 					$resourceObj = new Resource(); 
 					foreach ($deduping_columns as $value)
 					{
 						$deduping_values[] = $data[$value];
+					}
+					foreach ($allIsbnOrIssn_columns as $value)
+					{
+						$isbnIssn_values[] = $data[$value];
 					}
 					$deduping_count = count($resourceObj->getResourceByIsbnOrISSN($deduping_values));
 					if ($deduping_count == 0)
@@ -295,13 +300,8 @@
 						$generalDetailSubjectLinkIndexes = array();
 						foreach($jsonData['subject'] as $subject)
 						{
-							error_log("I'm In the loop");
-							//$foundIndex = -1;
+							$foundIndex = -1;
 							$resourceSubjectIndex = searchForShortName($data[intval($subject)-1], $resourceSubjectArray);
-							error_log($subject);
-							error_log($data[25]);
-							var_dump($data);
-							error_log($data[intval($subject)-1]);
 							error_log($resourceSubjectIndex);
 							if($resourceSubjectIndex === null && $data[intval($subject)-1] != '') //If Resource Subject does not exist, add it to the database
 							{
@@ -317,11 +317,9 @@
 							{
 								$generalDetailSubjectLinkObj = new GeneralDetailSubjectLink();
 								$foundIndex = $generalDetailSubjectLinkObj->getGeneralDetailID($resourceSubjectIndex,-1);
-								error_log($foundIndex);
+								//error_log($foundIndex);
 							}
 						}
-						error_log("Finishing");
-						die;
 
 						// Let's insert data
 						$resource->createLoginID    = $loginID;
@@ -336,12 +334,16 @@
 						//$resource->providerText     = $data[$_POST['providerText']];
 						$resource->statusID         = 1;
 						$resource->save();
-						$resource->setIsbnOrIssn($deduping_values);
+						$resource->setIsbnOrIssn($isbnIssn_values);
 						$inserted++;
 					}
 					// Do we have to create an organization or attach the resource to an existing one?
 					foreach($jsonData['organization'] as $importOrganization)
 					{
+						if($importOrganization['column'] === "") //Skip organization if column reference is blank
+							continue;
+						$roleID=$importOrganization['organizationRole'];
+
 						if($data[intval($importOrganization['column'])-1])
 						{
 							$organizationName = $data[intval($importOrganization['column'])-1];
@@ -382,38 +384,6 @@
 								{
 									print "<p>"._("Error: more than one organization is called ").$organizationName._(". Please consider deduping.")."</p>";
 								}
-								/*
-								if ($organizationID)
-								{
-									$dbName = $config->settings->organizationsDatabaseName;
-									// Get role
-									$query = "SELECT organizationRoleID from OrganizationRole WHERE shortName='" . $organization->db->escapeString($importOrganization['organizationRole']) . "'";
-									$result = $organization->db->processQuery($query);
-									// If role is not found, fallback to the first one.
-									$roleID = ($result[0]) ? $result[0] : 1;
-									// Does the organizationRole already exists?
-									$query = "SELECT count(*) AS count FROM $dbName.OrganizationRoleProfile WHERE organizationID=$organizationID AND organizationRoleID=$roleID";
-									$result = $organization->db->processQuery($query, 'assoc');
-									// If not, we try to create it
-									if ($result['count'] == 0)
-									{
-										$query = "INSERT INTO $dbName.OrganizationRoleProfile SET organizationID=$organizationID, organizationRoleID=$roleID";
-										try
-										{
-											$result = $organization->db->processQuery($query);
-											if (!in_array($organizationName, $arrayOrganizationsCreated))
-											{
-												$organizationsInserted++;
-												array_push($arrayOrganizationsCreated, $organizationName);
-											}
-										}
-										catch (Exception $e)
-										{
-											print "<p>"._("Unable to associate organization ").$organizationName._(" with its role.")."</p>";
-										}
-									}
-								}
-								*/
 							}
 							else // If we do not use the Organizations module
 							{
@@ -438,72 +408,65 @@
 								{
 									print "<p>"._("Error: more than one organization is called ").$organizationName._(" Please consider deduping.")."</p>";
 								}
-								/*
-								// Find role
-								$organizationRoles = $organizationRole->getArray();
-								if (($roleID = array_search($importOrganization['organizationRole'], $organizationRoles)) == 0)
-								{
-									// If role is not found, fallback to the first one.
-									$roleID = '1';
-								} 
-								*/
 							}
 							// Let's link the resource and the organization.
 							// (this has to be done whether the module Organization is in use or not)
-							//if ($organizationID && $roleID)
 							if($organizationID)
 							{
 								$organizationLink = new ResourceOrganizationLink();
-								//$organizationLink->organizationRoleID = $roleID;
+								$organizationLink->organizationRoleID = $roleID;
 								$organizationLink->resourceID = $resource->resourceID;
 								$organizationLink->organizationID = $organizationID;
 								$organizationLink->save();
 							}
 						}
 					}
-/*
 					elseif ($deduping_count == 1)
 					{
 						$resources = $resourceObj->getResourceByIsbnOrISSN($deduping_values);
 						$resource = $resources[0];
 					}
-					if ($data[$_POST['parentResource']] && ($deduping_count == 0 || $deduping_count == 1) ) // Do we have a parent resource to create?
+					foreach($jsonData['parent'] as $parent)
 					{
-						// Search if such parent exists
-						$numberOfParents = count($resourceObj->getResourceByTitle($data[$_POST['parentResource']]));
-						$parentID = null;
-						if ($numberOfParents == 0)
+						if($parent === "") //Skip parent if column reference is blank
+							continue;
+						if ($data[intval($parent)-1] && ($deduping_count == 0 || $deduping_count == 1) ) // Do we have a parent resource to create?
 						{
-							// If not, create parent
-							$parentResource = new Resource();
-							$parentResource->createLoginID = $loginID;
-							$parentResource->createDate    = date( 'Y-m-d' );
-							$parentResource->titleText     = $data[$_POST['parentResource']];
-							$parentResource->statusID      = 1;
-							$parentResource->save();
-							$parentID = $parentResource->resourceID;
-							$parentInserted++;
-						}
-						elseif ($numberOfParents == 1)
-						{
-							// Else, attach the resource to its parent.
-							$parentResource = $resourceObj->getResourceByTitle($data[$_POST['parentResource']]);
-							$parentID = $parentResource[0]->resourceID;
-							$parentAttached++; 
-						}
-						if ($numberOfParents == 0 || $numberOfParents == 1)
-						{
-							$resourceRelationship = new ResourceRelationship();
-							$resourceRelationship->resourceID = $resource->resourceID;
-							$resourceRelationship->relatedResourceID = $parentID;
-							$resourceRelationship->relationshipTypeID = '1';  //hardcoded because we're only allowing parent relationships
-							if (!$resourceRelationship->exists())
+							// Search if such parent exists
+							$numberOfParents = count($resourceObj->getResourceByTitle($data[intval($parent)-1]));
+							$parentID = null;
+							if ($numberOfParents == 0)
 							{
-								$resourceRelationship->save();
+								// If not, create parent
+								$parentResource = new Resource();
+								$parentResource->createLoginID = $loginID;
+								$parentResource->createDate    = date( 'Y-m-d' );
+								$parentResource->titleText     = $data[intval($parent)-1];
+								$parentResource->statusID      = 1;
+								$parentResource->save();
+								$parentID = $parentResource->resourceID;
+								$parentInserted++;
+							}
+							elseif ($numberOfParents == 1)
+							{
+								// Else, attach the resource to its parent.
+								$parentResource = $resourceObj->getResourceByTitle($data[intval($parent)-1]);
+								$parentID = $parentResource[0]->resourceID;
+								$parentAttached++; 
+							}
+							if ($numberOfParents == 0 || $numberOfParents == 1)
+							{
+								$resourceRelationship = new ResourceRelationship();
+								$resourceRelationship->resourceID = $resource->resourceID;
+								$resourceRelationship->relatedResourceID = $parentID;
+								$resourceRelationship->relationshipTypeID = '1';  //hardcoded because we're only allowing parent relationships
+								if (!$resourceRelationship->exists())
+								{
+									$resourceRelationship->save();
+								}
 							}
 						}
 					}
-					*/ 
 				}
 				$row++;
 			}

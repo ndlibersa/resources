@@ -311,33 +311,44 @@
 						foreach($jsonData['subject'] as $subject)
 						{
 							$generalSubjectID = null;
-							if($subject === "") //Skip subject if column reference is blank
+							if($subject['column'] === "") //Skip subject if column reference is blank
 							{
 								continue;
 							}
-							$index = searchForShortName($data[intval($subject)-1], $generalSubjectArray);
-							if($index !== null)
+							if($subject['delimiter'] !== "") //If the subjects in the column are delimited
 							{
-								$generalSubjectID = $generalSubjectArray[$index]['generalSubjectID'];
+								$subjectArray = array_map('trim', explode($subject['delimiter'],$data[intval($subject['column'])-1]));
 							}
-							else if($index === null && $data[intval($subject)-1] != '') //If General Subject does not exist, add it to the database
+							else
 							{
-								$generalSubjectObj = new GeneralSubject();
-								$generalSubjectObj->shortName = $data[intval($subject)-1];
-								$generalSubjectObj->save();
-								$generalSubjectID = $resourceSubjectObj->primaryKey;
-								$generalSubjectArray = $generalSubjectObj->allAsArray();
-								$generalSubjectInserted++;
+								$subjectArray = array(trim($data[intval($subject['column'])-1]));
 							}
-							error_log($generalSubjectID);
-							/*
-							if($generalSubjectID !== null) //Find the generalDetailSubjectLinkID
+							foreach($subjectArray as $currentSubject)
 							{
-								$generalDetailSubjectLinkObj = new GeneralDetailSubjectLink();
-								$generalDetailID = $generalDetailSubjectLinkObj->getGeneralDetailID($resourceSubjectIndex,-1);
-								error_log($generalDetailID);
+								$index = searchForShortName($currentSubject, $generalSubjectArray);
+								if($index !== null)
+								{
+									$generalSubjectID = $generalSubjectArray[$index]['generalSubjectID'];
+								}
+								else if($index === null && $currentSubject != '') //If General Subject does not exist, add it to the database
+								{
+									$generalSubjectObj = new GeneralSubject();
+									$generalSubjectObj->shortName = $currentSubject;
+									$generalSubjectObj->save();
+									$generalSubjectID = $generalSubjectObj->primaryKey;
+									$generalSubjectArray = $generalSubjectObj->allAsArray();
+									$generalSubjectInserted++;
+								}
+								if($generalSubjectID !== null) //Find the generalDetailSubjectLinkID
+								{
+									$generalDetailSubjectLinkObj = new GeneralDetailSubjectLink();
+									$generalDetailID = $generalDetailSubjectLinkObj->getGeneralDetailID($generalSubjectID,-1);
+									if($generalDetailID !== -1)
+									{
+										array_push($generalDetailSubjectLinkIDArray, $generalDetailID);
+									}
+								}
 							}
-							*/
 						}
 
 						// Let's insert data
@@ -355,6 +366,16 @@
 						$resource->save();
 						$resource->setIsbnOrIssn($isbnIssn_values);
 						$inserted++;
+
+						//Add subjects to the resource
+						foreach($generalDetailSubjectLinkIDArray as $generalDetailID)
+						{
+							$resourceSubject = new ResourceSubject();
+							$resourceSubject->resourceID = $resource->primaryKey;
+							$resourceSubject->generalDetailSubjectLinkID = $generalDetailID;
+							$resourceSubject->save();
+							//if($resourceSubject->duplicateCheck)
+						}
 						// Do we have to create an organization or attach the resource to an existing one?
 						foreach($jsonData['organization'] as $importOrganization)
 						{

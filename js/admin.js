@@ -392,8 +392,9 @@ function submitImportConfigData() {
         jsonData.alias = [];
         $('div.alias-record').each(function() {
             var aliasObject={}
-            aliasObject.column=$(this).find('input').val();
+            aliasObject.column=$(this).find('input.ic-column').val();
             aliasObject.aliasType=$(this).find('select').val();
+            aliasObject.delimiter=$(this).find('input.ic-delimiter').val();
             jsonData.alias.push(aliasObject);
         });
         jsonData.url = $('#resource_urlCol').val();
@@ -421,8 +422,9 @@ function submitImportConfigData() {
         jsonData.note = [];
         $('div.note-record').each(function() {
             var noteObject={};
-            noteObject.column=$(this).find('input').val();
+            noteObject.column=$(this).find('input.ic-column').val();
             noteObject.noteType=$(this).find('select').val();
+            noteObject.delimiter=$(this).find('input.ic-delimiter').val();
             jsonData.note.push(noteObject);
         });
         jsonData.organization = [];

@@ -108,8 +108,9 @@
 			        jsonData.alias = [];
 			        $('div.alias-record').each(function() {
 			            var aliasObject={}
-			            aliasObject.column=$(this).find('input').val();
+			            aliasObject.column=$(this).find('input.ic-column').val();
 			            aliasObject.aliasType=$(this).find('select').val();
+			            aliasObject.delimiter=$(this).find('input.ic-delimiter').val();
 			            jsonData.alias.push(aliasObject);
 			        });
 			        jsonData.url = $('#resource_urlCol').val();
@@ -136,9 +137,10 @@
 			        });
 			        jsonData.note = [];
 			        $('div.note-record').each(function() {
-			            var noteObject={}
-			            noteObject.column=$(this).find('input').val();
+			            var noteObject={};
+			            noteObject.column=$(this).find('input.ic-column').val();
 			            noteObject.noteType=$(this).find('select').val();
+			            noteObject.delimiter=$(this).find('input.ic-delimiter').val();
 			            jsonData.note.push(noteObject);
 			        });
 			        jsonData.organization = [];
@@ -183,7 +185,7 @@
 		$resourceTypeColumn=intval($jsonData['resourceType'])-1;
 		$resourceFormatColumn=intval($jsonData['resourceFormat'])-1;
 
-		//get all resource formats for output in drop down
+		//get all resource formats
 		$resourceFormatArray = array();
 		$resourceFormatObj = new ResourceFormat();
 		$resourceFormatArray = $resourceFormatObj->sortedArray();
@@ -227,6 +229,8 @@
 			$resourceTypeInserted = 0;
 			$resourceFormatInserted = 0;
 			$generalSubjectInserted = 0;
+			$aliasInserted = 0;
+			$noteInserted = 0;
 			$arrayOrganizationsCreated = array();
 			while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE)
 			{
@@ -366,6 +370,65 @@
 						$resource->save();
 						$resource->setIsbnOrIssn($isbnIssn_values);
 						$inserted++;
+
+						// If Alias is mapped, check to see if it exists
+						foreach($jsonData['alias'] as $alias)
+						{
+							if($alias['column'] === "") //Skip alias if column reference is blank
+							{
+								continue;
+							}
+							if($alias['delimiter'] !== "") //If the aliases in the column are delimited
+							{
+								$aliasArray = array_map('trim', explode($alias['delimiter'],$data[intval($alias['column'])-1]));
+							}
+							else
+							{
+								$aliasArray = array(trim($data[intval($alias['column'])-1]));
+							}
+							foreach($aliasArray as $currentAlias)
+							{
+								if($currentAlias === $resource->titleText)
+								{
+									continue;
+								}
+								$aliasObj = new Alias();
+								$aliasObj->resourceID = $resource->primaryKey;
+								$aliasObj->aliasTypeID = $alias['aliasType'];
+								$aliasObj->shortName = $currentAlias;
+								$aliasObj->save();
+								$aliasInserted++;
+							}
+						}
+
+						// If Note is mapped, check to see if it exists
+						foreach($jsonData['note'] as $note)
+						{
+							if($note['column'] === "") //Skip note if column reference is blank
+							{
+								continue;
+							}
+							if($note['delimiter'] !== "") //If the notes in the column are delimited
+							{
+								$noteArray = array_map('trim', explode($note['delimiter'],$data[intval($note['column'])-1]));
+							}
+							else
+							{
+								$noteArray = array(trim($data[intval($note['column'])-1]));
+							}
+							foreach($noteArray as $currentNote)
+							{
+								$noteObj = new ResourceNote();
+								$noteObj->resourceID = $resource->primaryKey;
+								$noteObj->noteTypeID = $note['noteType'];
+								$noteObj->updateLoginID = '';
+								$noteObj->updateDate = '';
+								$noteObj->noteText = $currentNote;
+								$noteObj->tabName = 'Product';
+								$noteObj->save();
+								$noteInserted++;
+							}
+						}
 
 						//Add subjects to the resource
 						foreach($generalDetailSubjectLinkIDArray as $generalDetailID)
@@ -530,6 +593,8 @@
 			print "<p>" . $resourceTypeInserted . _(" resource types have been created") . "</p>";
 			print "<p>" . $resourceFormatInserted . _(" resource formats have been created") . "</p>";
 			print "<p>" . $generalSubjectInserted . _(" general subjects have been created") . "</p>";
+			print "<p>" . $aliasInserted . _(" aliases have been created") . "</p>";
+			print "<p>" . $noteInserted . _(" notes have been created") . "</p>";
 		}
 	}
 	else

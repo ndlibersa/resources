@@ -46,7 +46,8 @@
 				<?php
 					if(count($configuration["alias"]) > 0) {
 						foreach($configuration["alias"] as $alias) {
-							echo "<div class='alias-record'><p><span class='ic-label'>" . _("Alias") . "</span><span><input class='ic-column' value='".$alias["column"]."' /></span></p><p><span class='ic-label'>" . _('Alias Type') . "</span><span><select class='ic-dropdown'>";
+							echo "<div class='alias-record'><p><span class='ic-label'>" . _("Alias") . "</span><span><input class='ic-column' value='".$alias["column"]."' /></span></p>";
+							echo "<p><span class='ic-label'>" . _('Alias Type') . "</span><span><select class='ic-dropdown'>";
 							foreach($aliasTypeArray as $aliasType) {
 								echo "<option value='" . $aliasType['aliasTypeID'] . "'";
 								if($alias['aliasType'] == $aliasType['aliasTypeID']) {
@@ -54,15 +55,18 @@
 								}
 								echo ">" . $aliasType['shortName'] . "</option>";
 							}
-							echo "</select></span></p></div>";
+							echo "</select></span></p>";
+							echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><span><input class='ic-delimiter' value='" . $alias["delimiter"]. "' /></span></p></div>";
 						}
 					}
 					else {
-						echo "<div class='alias-record'><p><span class='ic-label'>" . _("Alias") . "</span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'>" . _('Alias Type') . "</span><span><select class='ic-dropdown'>";
+						echo "<div class='alias-record'><p><span class='ic-label'>" . _("Alias") . "</span><span><input class='ic-column' value='' /></span></p>";
+						echo "<p><span class='ic-label'>" . _('Alias Type') . "</span><span><select class='ic-dropdown'>";
 						foreach($aliasTypeArray as $aliasType) {
 							echo "<option value='" . $aliasType['aliasTypeID'] . "'>" . $aliasType['shortName'] . "</option>";
 						}
-						echo "</select></span></p></div>";
+						echo "</select></span></p>";
+						echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 					}
 				?>
 			</div>
@@ -118,7 +122,8 @@
 				<?php
 					if(count($configuration["note"]) > 0) {
 						foreach($configuration["note"] as $note) {
-							echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='" . $note['column'] . "' /></span></p><p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
+							echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='" . $note['column'] . "' /></span></p>";
+							echo "<p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
 							foreach($noteTypeArray as $noteType) {
 								echo "<option value='" . $noteType['noteTypeID'] . "'";
 								if($note['noteType'] == $noteType['noteTypeID']) {
@@ -126,15 +131,18 @@
 								}
 								echo ">" . $noteType['shortName'] . "</option>";
 							}
-							echo "</select></span></p></div>";
+							echo "</select></span></p>";
+							echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='" . $note['delimiter'] . "' /></span></p></div>";
 						}
 					}
 					else {
-						echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
+						echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='' /></span></p>";
+						echo "<p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
 						foreach($noteTypeArray as $noteType) {
 							echo "<option value='" . $noteType['noteTypeID'] . "'>" . $noteType['shortName'] . "</option>";
 						}
-						echo "</select></span></p></div>";
+						echo "</select></span></p>";
+						echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 					}
 				?>
 			</div>
@@ -205,7 +213,7 @@
    $('#add_alias').click(function (e) {
    		e.preventDefault();
    		$('#resource_alias').append(
-   			"<div class='alias-record'><p><span class='ic-label'><?php echo _('Alias');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Alias Type');?></span><span><select class='ic-dropdown'><?php echo $aliasOptions?></select></span></p></div>"
+   			"<div class='alias-record'><p><span class='ic-label'><?php echo _('Alias');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Alias Type');?></span><span><select class='ic-dropdown'><?php echo $aliasOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_parent').click(function (e) {
@@ -229,7 +237,7 @@
    $('#add_note').click(function (e) {
    		e.preventDefault();
    		$('#resource_note').append (
-			"<div class='note-record'><p><span class='ic-label'><?php echo _('Note');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Note Type');?></span><span><select class='ic-dropdown'><?php echo $noteOptions?></select></span></p></div>"
+			"<div class='note-record'><p><span class='ic-label'><?php echo _('Note');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Note Type');?></span><span><select class='ic-dropdown'><?php echo $noteOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_organization').click(function (e) {

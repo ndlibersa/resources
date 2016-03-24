@@ -2801,6 +2801,10 @@ input.ic-column {
     width: 3em;
 }
 
+input.ic-delimiter {
+	width: 3em;
+}
+
 select.ic-dropdown {
 }
 

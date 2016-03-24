@@ -34,9 +34,6 @@
 	foreach($organizationRoleArray as $organizationRoleID => $organizationRoleShortName) {
 		$organizationOptions .= "<option value='" . $organizationRoleID . "'>" . $organizationRoleShortName . "</option>";
 	}
-
-
-//	$configuration=json_decode($instance->configuration,true);
 ?>
 <div id='importConfigColumns'>
 	<div id='importConfigColumnsLeft'>

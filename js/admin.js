@@ -389,6 +389,7 @@ function submitImportConfigData() {
         //assemble configuration data as json
         var jsonData = {};
         jsonData.title = $('#resource_titleCol').val();
+        jsonData.description = $('#resource_descCol').val();
         jsonData.alias = [];
         $('div.alias-record').each(function() {
             var aliasObject={}

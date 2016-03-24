@@ -41,7 +41,8 @@
 <div id='importConfigColumns'>
 	<div id='importConfigColumnsLeft'>
 		<div id='ic-left-column'>
-			<p><span class="ic-label"><?php echo _("Resource Title");?></span><span class='import-text-left'><input id="resource_titleCol" class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
+			<p><span class="ic-label"><?php echo _("Resource Title");?></span><span><input id="resource_titleCol" class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
+			<p><span class="ic-label"><?php echo _("Description");?></span><span><input id="resource_descCol" class="ic-column" value="<?php echo $configuration["description"]?>" /></span></p>
 			<div id='resource_alias'>
 				<?php
 					if(count($configuration["alias"]) > 0) {

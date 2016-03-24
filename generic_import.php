@@ -105,6 +105,7 @@
 				$('#config_form').submit(function () {
 			        var jsonData = {};
 			        jsonData.title = $('#resource_titleCol').val();
+			        jsonData.description = $('#resource_descCol').val();
 			        jsonData.alias = [];
 			        $('div.alias-record').each(function() {
 			            var aliasObject={}
@@ -180,6 +181,7 @@
 
 		//Get Columns
 		$resourceTitleColumn=intval($jsonData['title'])-1;
+		$resourceDescColumn=intval($jsonData['description'])-1;
 		$resourceURLColumn=intval($jsonData['url'])-1;
 		$resourceAltURLColumn=intval($jsonData['altUrl'])-1;
 		$resourceTypeColumn=intval($jsonData['resourceType'])-1;
@@ -355,14 +357,16 @@
 							}
 						}
 
+
 						// Let's insert data
 						$resource->createLoginID    = $loginID;
 						$resource->createDate       = date( 'Y-m-d' );
 						$resource->updateLoginID    = '';
 						$resource->updateDate       = '';
-						$resource->titleText        = $data[$resourceTitleColumn];
-						$resource->resourceURL      = $data[$resourceURLColumn];
-						$resource->resourceAltURL   = $data[$resourceAltURLColumn];
+						$resource->titleText        = trim($data[$resourceTitleColumn]);
+						$resource->descriptionText  = trim($data[$resourceDescColumn]);
+						$resource->resourceURL      = trim($data[$resourceURLColumn]);
+						$resource->resourceAltURL   = trim($data[$resourceAltURLColumn]);
 						$resource->resourceTypeID   = $resourceTypeID;
 						$resource->resourceFormatID = $resourceFormatID;
 						//$resource->providerText     = $data[$_POST['providerText']];

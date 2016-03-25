@@ -18,7 +18,7 @@
 		include 'templates/header.php';
 		$uploaddir = 'attachments/';
 		$uploadfile = $_FILES['uploadFile']['tmp_name'];
-		print '<p>The file has been successfully uploaded.</p>';
+		print '<p>' . _("The file has been successfully uploaded.") . '</p>';
 
 		// Let's analyze this file
 		if (($handle = fopen($uploadfile, "r")) !== FALSE) {
@@ -28,13 +28,13 @@
 					$available_columns[$value] = $key;
 				}
 			} else {
-				$error = 'Unable to get columns headers from the file';
+				$error = _("Unable to get columns headers from the file");
 			}
 		} else {
-			$error = 'Unable to open the uploaded file';
+			$error = _("Unable to open the uploaded file");
 		}
 		if ($error) {
-			print "<p>Error: $error.</p>";
+			print "<p>" . _("Error: ") . $error . "</p>";
 		} else {
 		// Let's analyze this file
 			if (($handle = fopen($uploadfile, "r")) !== FALSE) {
@@ -49,8 +49,8 @@
 					$Fund->save();
 					$row++;
 				}
-				print "<h2>Results</h2>";
-				print "<p> $row rows have been processed.</p>";
+				print "<h2>" . _("Results") . "</h2>";
+				print "<p> $row " . _("rows have been processed.") . "</p>";
 			}
 		}
 	} else {
@@ -60,8 +60,8 @@
 					<div class='formTitle' style='width:245px;'><b>Import Funds</b></div><br/>
 					<label for="uploadFile">Select File</label>
 					<input type="file" name="uploadFile" id="uploadFile"/><br/><br/>
-					<input type="submit" name="submit" value="Import" id="import-fund-button" />
-					<input type='button' value='Cancel' onclick="window.parent.tb_remove(); return false;" id="cancel-fund-button"/>
+					<input type="submit" name="submit" value='<?php echo _("import");?>' id="import-fund-button" class='submit-button' />
+					<input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;" id="cancel-fund-button" class='cancel-button' />
 				</div>
 			</form>
 		<?php

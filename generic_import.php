@@ -168,6 +168,20 @@
 			        newinput.type = "hidden";
 			        newinput.value = JSON.stringify(jsonData);
 			        document.getElementById("config_form").appendChild(newinput);
+
+			        var newinput = document.createElement("input");
+			        newinput.id = 'orgNamesImported';
+			        newinput.name = 'orgNamesImported';
+			        newinput.type = "hidden";
+			        newinput.value = orgNameImported;
+			        document.getElementById("config_form").appendChild(newinput);
+
+			        var newinput = document.createElement("input");
+			        newinput.id = 'orgNamesMapped';
+			        newinput.name = 'orgNamesMapped';
+			        newinput.type = "hidden";
+			        newinput.value = orgNameMapped;
+			        document.getElementById("config_form").appendChild(newinput);
 				});
 			</script>
 <?php
@@ -178,6 +192,8 @@
 		//get the configuration as a php array
 		$jsonData = $_POST['jsonData'];
 		$jsonData = json_decode($jsonData,true);
+		$orgNamesImported = explode(":::",$_POST['orgNamesImported']);
+		$orgNamesMapped = explode(":::",$_POST['orgNamesMapped']);
 
 		//Get Columns
 		$resourceTitleColumn=intval($jsonData['title'])-1;
@@ -453,7 +469,14 @@
 
 							if($data[intval($importOrganization['column'])-1])
 							{
-								$organizationName = $data[intval($importOrganization['column'])-1];
+								$organizationName = trim($data[intval($importOrganization['column'])-1]);
+
+								//transform organization if necessary
+								foreach($orgNamesImported as $key=>$value)
+								{
+									$organizationName = preg_replace('/' . $value . '/i',$orgNamesMapped[$key], $organizationName);
+								}
+
 								$organization = new Organization();
 								$organizationRole = new OrganizationRole();
 								$organizationID = false;

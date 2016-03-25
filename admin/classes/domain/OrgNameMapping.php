@@ -22,7 +22,7 @@ class OrgNameMapping extends DatabaseObject {
 	protected function defineRelationships() {}
 
 	public function getOrgNameMappingByImportConfigID($importConfigID) {
-		$query = "SELECT * FROM OrgNameMapping WHERE importConfigID = '" . $importConfigID . "' ORDER BY 3";
+		$query = "SELECT * FROM OrgNameMapping WHERE importConfigID = '" . $importConfigID . "'";
 		$result = $this->db->processQuery($query, 'assoc');
 
 		$objects = array();

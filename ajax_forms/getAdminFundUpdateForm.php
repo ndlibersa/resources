@@ -42,8 +42,8 @@
 		<br />
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='submit' id ='submitAddUpdate'></td>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="window.parent.tb_remove(); return false;"></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id ='submitAddUpdate'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;"></td>
 			</tr>
 		</table>
 

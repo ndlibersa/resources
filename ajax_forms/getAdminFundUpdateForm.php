@@ -22,14 +22,14 @@
 
 			<table class='noBorder' style='width:200px; margin:10px;'>
 			<tr>
-			<td>Code</td><td><input type='text' id='fundCode' value='<?php echo $instance->fundCode; ?>' style='width:150px;'/></td>
+			<td><?php echo _("Code");?></td><td><input type='text' id='fundCode' value='<?php echo $instance->fundCode; ?>' style='width:150px;'/></td>
 			</tr>
 			<tr>
-			<td>Name</td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
+			<td><?php echo _("Name");?></td><td><input type='text' id='shortName' value='<?php echo $instance->shortName; ?>' style='width:150px;'/></td>
 			</tr>
 			<?php	{
 								if($instance->archived == 1){$archive = 'checked';}else{$archive='';}
-								echo "<tr><td>Archived</td>";
+								echo "<tr><td>" . _("Archived") . "</td>";
 								echo "<td><input type='checkbox' id='archivedUpdate' ".$archive." /></td></tr>";
 					}
 			?>

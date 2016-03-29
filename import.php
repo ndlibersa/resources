@@ -77,7 +77,7 @@
 			print "</select></p>";
 
 			print "<p>" . _("Please choose columns from your CSV file:") . "</p>";
-			print "<form id='config_form' action=\"generic_import.php\" method=\"post\">";
+			print "<form id='config_form' action=\"import.php\" method=\"post\">";
 ?>
 			<script type='text/javascript'>
 				$('#importConfiguration').change(function (){
@@ -633,7 +633,7 @@
 	{
 ?>
 		<p><?php echo _("The first line of the CSV file must contain column names, and not data. These names will be used during the import process.");?></p>
-		<form enctype="multipart/form-data" action="generic_import.php" method="post" id="importForm">
+		<form enctype="multipart/form-data" action="import.php" method="post" id="importForm">
 			<fieldset>
 				<legend><?php echo _("File selection");?></legend>
 				<label for="uploadFile"><?php echo _("CSV File");?></label>

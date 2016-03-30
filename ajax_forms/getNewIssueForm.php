@@ -129,8 +129,8 @@ if ($config->settings->organizationsModule == 'Y') {
 
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
-			<td style='text-align:left'><input type='button' value='submit' name='submitNewIssue' id='submitNewIssue'></td>
-			<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+			<td style='text-align:left'><input type='button' value='submit' name='submitNewIssue' id='submitNewIssue' class='submit-button'></td>
+			<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();" class='cancel-button'></td>
 		</tr>
 	</table>
 

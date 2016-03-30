@@ -199,15 +199,6 @@ table.queueDataTable tr {
 	vertical-align:top;
 }
 
-
-
-
-
-
-
-
-
-
 /* following is all for admin and queue pages
 *************************/
 div.adminRightHeader{font-size:135%; color:#3D545D; margin-bottom:5px; }
@@ -275,8 +266,6 @@ td.adminRightPanel {
 	/*-*/margin-left: 20px !important;
 }
 
-
-
 table.linedDataTable {
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
@@ -329,10 +318,6 @@ div.f1 { float: left; }
 div.f2 { float: left; }
 div.f3 { clear: both; }
 
-
-
-
-
 .checkboxes label{
 		display: block;
 		float: left;
@@ -348,8 +333,6 @@ div.f3 { clear: both; }
 		vertical-align: middle;
 }
 
-
-
 table#title {padding:0px; background-image:url('../images/organizationstitle.jpg');background-repeat:no-repeat;height:120px;width:900px;}
 
 table.headerTable {
@@ -359,8 +342,6 @@ table.headerTable {
 	background: none !important;
 	border-collapse: collapse;
 }
-
-
 
 hr {
 	border:0;
@@ -416,8 +397,6 @@ span.searchLetterSelected a:active{color:#3D545D;}
 		float: right;
 		margin: 3px 4px 0 0;
 }
-
-
 
 /* Coral Change Module Menu  -  tabs
 *************************/
@@ -563,10 +542,6 @@ table.dataTable th {
 }
 
 table.dataTable tr {vertical-align: top;}
-
-
-
-
 
 table.sample {
 	padding:0px;
@@ -875,14 +850,6 @@ table.surroundForm tr {
 	vertical-align:top;
 }
 
-
-
-
-
-
-
-
-
 table.borderedFormTable {
 	border-width: 0;
 	border-style: solid;
@@ -936,10 +903,6 @@ table.borderedFormTable th {
 
 table.borderedFormTable tr {vertical-align: top;}
 
-
-
-
-
 table.borderedHeadTable {
 	width:947px;
 	border-width:  0 0 1px 1px;
@@ -966,8 +929,6 @@ table.borderedHeadTable td {
 table.borderedHeadTable tr {
 	vertical-align:middle;
 }
-
-
 
 table.noBorder td { border:0; }
 table.smallPadding td{ padding:1px; }
@@ -1497,7 +1458,7 @@ table.surroundBox table.noBorder {
 			margin: 15px !important;
 }
 
-#resourcePromptForm table.noBorderTable input {
+/*#resourcePromptForm table.noBorderTable input {
 			color: #FFFFFF;
 			font-family: "Arial", sans-serif;
 			font-size: 11px;
@@ -1506,7 +1467,7 @@ table.surroundBox table.noBorder {
 			border: none;
 			padding: 5px 10px;
 			text-transform: capitalize;
-}
+}*/
 
 table.headerTable > tbody > tr > td > table:nth-child(1) > tbody > tr > td {
 			padding: 25px;
@@ -1713,7 +1674,7 @@ span#newParent {
 	margin-top: 10px;
 }
 
-#div_resourceForm input#submitProductChanges {
+/*#div_resourceForm input#submitProductChanges {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1743,7 +1704,7 @@ span#newParent {
 
 #div_resourceForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 img.addParent {
 	top: 4px;
@@ -1767,7 +1728,7 @@ img.addAlias {
 
 /*--- Adjust Add New Subject Form Modal Window ---*/
 
-#div_updateForm input[value=cancel] {
+/*#div_updateForm input[value=cancel] {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1781,11 +1742,11 @@ img.addAlias {
 
 #div_updateForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add New Note Form Modal Window ---*/
 
-#div_noteForm input#submitResourceNoteForm {
+/*#div_noteForm input#submitResourceNoteForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1815,11 +1776,11 @@ img.addAlias {
 
 #div_noteForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Edit Acquisitions Form Modal Window ---*/
 
-#div_resourceForm input#submitOrder{
+/*#div_resourceForm input#submitOrder{
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1833,11 +1794,11 @@ img.addAlias {
 
 #div_resourceForm input#submitOrder:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Edit Cost Information Form Modal Window ---*/
 
-#div_resourceForm input#submitCost{
+/*#div_resourceForm input#submitCost{
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1851,11 +1812,11 @@ img.addAlias {
 
 #div_resourceForm input#submitCost:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Edit Licenses Form Modal Window ---*/
 
-#div_licenseForm input#submitLicense {
+/*#div_licenseForm input#submitLicense {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1885,7 +1846,7 @@ img.addAlias {
 
 #div_licenseForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 img.addLicense {
 	position: relative;
@@ -1894,7 +1855,7 @@ img.addLicense {
 
 /*--- Adjust Edit Access Form Modal Window ---*/
 
-#div_accessForm input#submitAccessChanges {
+/*#div_accessForm input#submitAccessChanges {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1924,11 +1885,11 @@ img.addLicense {
 
 #div_accessForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Edit Cataloging Form Modal Window ---*/
 
-#div_catalogingForm input#submitCatalogingChanges {
+/*#div_catalogingForm input#submitCatalogingChanges {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1959,10 +1920,10 @@ img.addLicense {
 #div_catalogingForm input[value=cancel]:hover {
 	cursor: pointer;
 }
-
+*/
 /*--- Adjust Add Contact Form Modal Window ---*/
 
-#div_contactForm input#submitContactForm {
+/*#div_contactForm input#submitContactForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -1992,11 +1953,11 @@ img.addLicense {
 
 #div_contactForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add Attachment Form Modal Window ---*/
 
-#div_attachmentForm input#submitAttachmentForm {
+/*#div_attachmentForm input#submitAttachmentForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2026,7 +1987,7 @@ img.addLicense {
 
 #div_attachmentForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Center Label on File Import Page ---*/
 
@@ -2048,7 +2009,7 @@ div#div_AdminContent .linedDataTable {
 
 /*--- Adjust Add New User Form Modal Window ---*/
 
-#div_updateForm input#submitAddUpdate {
+/*#div_updateForm input#submitAddUpdate {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2063,10 +2024,10 @@ div#div_AdminContent .linedDataTable {
 #div_updateForm input#submitAddUpdate:hover {
 	cursor: pointer;
 }
-
+*/
 /*--- Adjust Edit Workflow Form Modal Window ---*/
 
-#div_resourceForm input#submitWorkflowForm {
+/*#div_resourceForm input#submitWorkflowForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2080,11 +2041,11 @@ div#div_AdminContent .linedDataTable {
 
 #div_resourceForm input#submitWorkflowForm:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add User Group Form Modal Window ---*/
 
-#div_userGroupForm input#submitUserGroupForm {
+/*#div_userGroupForm input#submitUserGroupForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2114,11 +2075,11 @@ div#div_AdminContent .linedDataTable {
 
 #div_userGroupForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add General Subject Form Modal Window ---*/
 
-#div_updateForm input#submitGeneralSubjectForm {
+/*#div_updateForm input#submitGeneralSubjectForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2132,11 +2093,11 @@ div#div_AdminContent .linedDataTable {
 
 #div_updateForm input#submitGeneralSubjectForm:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add Detailed Subject Form Modal Window ---*/
 
-#div_updateForm input#submitDetailedSubjectForm {
+/*#div_updateForm input#submitDetailedSubjectForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2182,11 +2143,11 @@ div#div_AdminContent .linedDataTable {
 
 #detailedSubjectForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Import Funds Modal Window ---*/
 
-#div_updateForm input#import-fund-button {
+/*#div_updateForm input#import-fund-button {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2216,11 +2177,11 @@ div#div_AdminContent .linedDataTable {
 
 #div_updateForm input#cancel-fund-button:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Adjust Add Account Modal Window ---*/
 
-#div_accountForm input#submitExternalLoginForm {
+/*#div_accountForm input#submitExternalLoginForm {
 	color: #FFFFFF;
 	font-family: "Arial", sans-serif;
 	font-size: 11px;
@@ -2250,7 +2211,7 @@ div#div_AdminContent .linedDataTable {
 
 #div_accountForm input[value=cancel]:hover {
 	cursor: pointer;
-}
+}*/
 
 /*--- Remove Space to the Right of Main Nav Menu ---*/
 
@@ -2484,7 +2445,7 @@ div#archivedDowntime {
     color: #3D545D;
 }
 
-#newIssueForm input#submitNewIssue {
+/*#newIssueForm input#submitNewIssue {
     color: #FFFFFF;
     font-family: "Arial", sans-serif;
     font-size: 11px;
@@ -2513,7 +2474,7 @@ div#archivedDowntime {
 
 #newIssueForm input[value=cancel]:hover {
     cursor: pointer;
-}
+}*/
 
 a#getCreateContactForm {
 	text-transform: capitalize;
@@ -2576,7 +2537,7 @@ a#getCreateContactForm {
 	color: #3D545D; 
 }
 
-#newDowntimeForm input#submitNewDowntime {
+/*#newDowntimeForm input#submitNewDowntime {
     color: #FFFFFF;
     font-family: "Arial", sans-serif;
     font-size: 11px;
@@ -2621,7 +2582,7 @@ a#getCreateContactForm {
 
 #newIssueForm input#createContact:hover {
     cursor: pointer;
-}
+}*/
 
 #inlineContact > div:first-child > .form-element:nth-of-type(2) {
     margin-top: 10px;
@@ -2631,7 +2592,7 @@ a#getCreateContactForm {
     margin-left: 10px;
 }
 
-#newIssueForm input#addEmail {
+/*#newIssueForm input#addEmail {
     color: #FFFFFF;
     font-family: "Arial", sans-serif;
     font-size: 11px;
@@ -2645,7 +2606,7 @@ a#getCreateContactForm {
 
 #newIssueForm input#addEmail:hover {
     cursor: pointer;
-}
+}*/
 
 div#openIssues dd {
     word-break: break-word;
@@ -2935,13 +2896,30 @@ table#resource-type td {
     border: none;
     padding: 5px 10px;
     text-transform: capitalize;
-    margin-left: 5px;
+    margin-left: 8px;
     min-width: 60px;
+    margin-top: 10px;
 }
 
 .submit-button:hover,
 .cancel-button:hover,
 .save-button {
     cursor: pointer;
+}
+
+.submit-button {
+    margin-left: 0;
+}
+
+.save-button {
+	margin-right: 8px;
+}
+
+a.submit-button,
+a.cancel-button,
+a.save-button
+ {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
 }
  

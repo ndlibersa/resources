@@ -98,7 +98,6 @@
 				<th><?php echo _("General Subject");?></th>
 				<th><?php echo _("Detailed Subject");?></th>
 				<th style='width:20px;'>&nbsp;</th>
-				<th style='width:20px;'>&nbsp;</th>
 				</tr>
 				<?php
 

@@ -112,8 +112,8 @@ if ($issues) {
 
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
-			<td style='text-align:left'><input type='button' value='submit' name='submitNewDowntime' id='submitNewDowntime'></td>
-			<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+			<td style='text-align:left'><input type='button' value='submit' name='submitNewDowntime' id='submitNewDowntime' class='submit-button'></td>
+			<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();" class='submit-button'></td>
 		</tr>
 	</table>
 

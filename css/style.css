@@ -2922,4 +2922,10 @@ a.save-button
     color: #FFFFFF !important;
     text-decoration: none !important;
 }
+
+/*--- Add Space Between Up/Down Arrows ---*/
+
+img[src*="arrowdown.png"] {
+    padding-left: 3px;
+}
  

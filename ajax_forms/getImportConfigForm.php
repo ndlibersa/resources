@@ -49,7 +49,7 @@
 				<p><span class="ic-label"><?php echo _("Resource Format");?></span><span><input id="resource_format" class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
 				<p><span class="ic-label"><?php echo _("Resource Type");?></span><span><input id="resource_type" class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
 			</fieldset>
-			<div id='resource_alias'><fieldset><legend><?php echo _("Alias Sets");?></legend>
+			<fieldset><legend><?php echo _("Alias Sets");?></legend><div id='resource_alias'>
 				<?php
 					if(count($configuration["alias"]) > 0) {
 						foreach($configuration["alias"] as $alias) {
@@ -76,9 +76,9 @@
 						echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 					}
 				?>
-			</fieldset></div>
-			<p><a id='add_alias' href='#'><?php echo _("+ Add another alias set");?></a></p>
-			<div id='resource_parent'><fieldset><legend><?php echo _("Resource Parents");?></legend>
+			</div><p><a id='add_alias' href='#'><?php echo _("+ Add another alias set");?></a></p></fieldset>
+			
+			<fieldset><legend><?php echo _("Resource Parents");?></legend><div id='resource_parent'>
 				<?php
 					if(count($configuration["parent"]) > 0) {
 						foreach($configuration["parent"] as $parent) {
@@ -89,13 +89,14 @@
 						echo "<p><span class='ic-label'>" . _("Parent Resource") . "</span><span><input class='ic-column' value='' /></span></p>";
 					}
 				?>
-			</fieldset></div>
-			<p><a id='add_parent' href='#'><?php echo _("+ Add another parent resource")?></a></p>
-			<div id='resource_isbnOrIssn'>
+			</div><p><a id='add_parent' href='#'><?php echo _("+ Add another parent resource")?></a></p></fieldset>
+			
+			
 				<fieldset>
 					<legend>
 						<?php echo _("ISBN/ISSN Sets");?>
 					</legend>
+					<div id='resource_isbnOrIssn'>
 					<?php
 						if(count($configuration["isbnOrIssn"]) > 0) {
 							foreach($configuration["isbnOrIssn"] as $isbnOrIssn) {
@@ -108,14 +109,16 @@
 							echo "<p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox' /><span>" . _("Dedupe on this column") . "</span></p></div>";
 						}
 					?>
-				</fieldset>
-			</div>
-			<p><a id='add_isbnorissn' href='#'><?php echo _("+ Add another ISBN or ISSN set");?></a></p>
-			<div id='resource_subject'>
+				</div><p><a id='add_isbnorissn' href='#'><?php echo _("+ Add another ISBN or ISSN set");?></a></p>
+			</fieldset>
+			
+			
+			
 				<fieldset>
 					<legend>
 						<?php echo _("Subject Sets");?>
 					</legend>
+					<div id='resource_subject'>
 					<?php
 						if(count($configuration["subject"]) > 0) {
 							foreach($configuration["subject"] as $subject) {
@@ -128,14 +131,15 @@
 							echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><input class='ic-delimiter' value='' /></span></p></div>";
 						}
 					?>
-				</fieldset>
-			</div>
-			<p><a id='add_subject' href='#'><?php echo _("+ Add another subject set");?></a></p>
-			<div id='resource_note'>
+				</div><p><a id='add_subject' href='#'><?php echo _("+ Add another subject set");?></a></p>
+			</fieldset>
+			
+			
+			
 				<fieldset>
 					<legend>
 						<?php echo _("Note Sets");?>
-					</legend>
+					</legend><div id='resource_note'>
 					<?php
 						if(count($configuration["note"]) > 0) {
 							foreach($configuration["note"] as $note) {
@@ -162,16 +166,16 @@
 							echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 						}
 					?>
-				</fieldset>
-			</div>
-			<p><a id='add_note' href='#'><?php echo _("+ Add another note set");?></a></p>
+				</div><p><a id='add_note' href='#'><?php echo _("+ Add another note set");?></a></p></fieldset>
+			
+			
 		</div>
 	</div>
 	<div id='importConfigColumnsRight'>
 		<div id='ic-right-column'>
-			<div id='resource_organization'>
+			
 				<fieldset>
-					<legend><?php echo _("Organization Sets");?></legend>
+					<legend><?php echo _("Organization Sets");?></legend><div id='resource_organization'>
 					<?php
 						if(count($configuration["organization"]) > 0) {
 							foreach($configuration["organization"] as $organization) {
@@ -194,9 +198,9 @@
 							echo "</select></span></p></div>";
 						}
 					?>
-				</fieldset>
-			</div>
-			<p><a id='add_organization' href='#'><?php echo _("+ Add another organization set");?></a></p>
+				</div><p><a id='add_organization' href='#'><?php echo _("+ Add another organization set");?></a></p></fieldset>
+			
+			
 
 			<div id='importConfigOrgMapping'>
 				<table id='org_mapping_table' >
@@ -233,37 +237,37 @@
 	});   
    $('#add_alias').click(function (e) {
    		e.preventDefault();
-   		$('#resource_alias > fieldset').append(
+   		$('#resource_alias').append(
    			"<div class='alias-record'><p><span class='ic-label'><?php echo _('Alias');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Alias Type');?></span><span><select class='ic-dropdown'><?php echo $aliasOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_parent').click(function (e) {
    		e.preventDefault();
-   		$('#resource_parent > fieldset').append (
+   		$('#resource_parent').append (
    			"<p><span class='ic-label'><?php echo _('Parent Resource');?></span><span><input class='ic-column' value='' /></span></p>"
    		);
    });
    $('#add_isbnorissn').click(function (e) {
    		e.preventDefault();
-   		$('#resource_isbnOrIssn > fieldset').append (
+   		$('#resource_isbnOrIssn').append (
    			"<div class='isbnOrIssn-record'><p><span class='ic-label'><?php echo _('ISBN or ISSN');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox' /><span><?php echo _('Dedupe on this column');?></span></p></div>"
    		);
    });
    $('#add_subject').click(function (e) {
    		e.preventDefault();
-   		$('#resource_subject > fieldset').append(
+   		$('#resource_subject').append(
    			"<div class='subject-record'><p><span class='ic-label'><?php echo _('Subject');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_note').click(function (e) {
    		e.preventDefault();
-   		$('#resource_note > fieldset').append (
+   		$('#resource_note').append (
 			"<div class='note-record'><p><span class='ic-label'><?php echo _('Note');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Note Type');?></span><span><select class='ic-dropdown'><?php echo $noteOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_organization').click(function (e) {
    		e.preventDefault();
-   		$('#resource_organization > fieldset').append (
+   		$('#resource_organization').append (
 			"<div class='organization-record'><p><span class='ic-label'><?php echo _('Organization');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Organization Role');?></span><span><select class='ic-dropdown'><?php echo $organizationOptions?></select></span></p></div>"
    		);
    });

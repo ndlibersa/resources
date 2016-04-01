@@ -2732,6 +2732,7 @@ a#archiveddowntimeBtn {
 #importConfigOrgMapping {
 	margin: 50px 50px;
 	margin-bottom: 10px;
+	margin-left: 20px;
 }
 
 #importConfigOrgMapping table{
@@ -2773,7 +2774,6 @@ div#ic-left-column {
     padding: 10px;
     padding-bottom: 0;
     padding-top: 0;
-    border-right: solid 1px #ddd;
 }
 
 div#ic-left-column a {
@@ -2804,16 +2804,24 @@ div#ic-left-column a {
     margin-left: 50px;
     font-weight: 600;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-top: 5px;
+    text-align: right;
+    padding-right: 20px;
 }
 
 div#ic-right-column a {
     margin-left: 50px;
     font-weight: 600;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-top: 5px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+div#ic-right-column a#add_mapping {
+    padding-right: 0;
 }
 
 span.ic-dedupe {
@@ -2870,6 +2878,78 @@ img.remove {
 #org_mapping_table tr:first-child th:nth-of-type(2) {
     padding-left: 12px;
     padding-bottom: 5px;
+}
+
+#importConfigColumns fieldset legend {
+	padding: 0 5px;
+	font-weight: bold;
+}
+
+#importConfigColumns fieldset {
+	border: solid 1px #ccc;
+	margin: 10px 10px 10px 0;
+}
+
+#ic-right-column fieldset {
+	margin-right: 25px;
+}
+
+#ic-left-column fieldset:first-of-type {
+	padding: 10px 0;
+}
+
+.alias-record p:first-of-type {
+    padding-top: 10px !important;
+}
+
+.alias-record p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
+}
+
+#resource_parent p:first-of-type {
+    padding-top: 10px !important;
+}
+
+#resource_parent p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
+}
+
+.isbnOrIssn-record p:first-of-type {
+    padding-top: 10px !important;
+}
+
+.isbnOrIssn-record p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
+}
+
+.subject-record p:first-of-type {
+    padding-top: 10px !important;
+}
+
+.subject-record p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
+}
+
+.note-record p:first-of-type {
+    padding-top: 10px !important;
+}
+
+.note-record p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
+}
+
+.organization-record p:first-of-type {
+    padding-top: 10px !important;
+}
+
+.organization-record p:last-of-type {
+    border-bottom: dotted 1px #ddd;
+    padding-bottom: 10px !important;
 }
 
 /*--- Add New Resource ---*/

@@ -40,7 +40,11 @@
 		<div id='ic-left-column'>
 			<p><span class="ic-label"><?php echo _("Resource Title");?></span><span><input id="resource_titleCol" class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
 			<p><span class="ic-label"><?php echo _("Description");?></span><span><input id="resource_descCol" class="ic-column" value="<?php echo $configuration["description"]?>" /></span></p>
-			<div id='resource_alias'>
+			<p><span class="ic-label"><?php echo _("Resource URL");?></span><span><input id='resource_urlCol' class="ic-column" value="<?php echo $configuration["url"]?>" /></span></p>
+			<p><span class="ic-label"><?php echo _("Alternate URL");?></span><span><input id='resource_altUrlCol' class="ic-column" value="<?php echo $configuration["altUrl"]?>" /></span></p>
+			<p><span class="ic-label"><?php echo _("Resource Format");?></span><span><input id="resource_format" class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
+			<p><span class="ic-label"><?php echo _("Resource Type");?></span><span><input id="resource_type" class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
+			<div id='resource_alias'><fieldset><legend><?php echo _("Alias Sets");?></legend>
 				<?php
 					if(count($configuration["alias"]) > 0) {
 						foreach($configuration["alias"] as $alias) {
@@ -67,11 +71,9 @@
 						echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 					}
 				?>
-			</div>
+			</fieldset></div>
 			<p><a id='add_alias' href='#'><?php echo _("+ Add another alias set");?></a></p>
-			<p><span class="ic-label"><?php echo _("Resource URL");?></span><span><input id='resource_urlCol' class="ic-column" value="<?php echo $configuration["url"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Alternate URL");?></span><span><input id='resource_altUrlCol' class="ic-column" value="<?php echo $configuration["altUrl"]?>" /></span></p>
-			<div id='resource_parent'>
+			<div id='resource_parent'><fieldset><legend><?php echo _("Resource Parents");?></legend>
 				<?php
 					if(count($configuration["parent"]) > 0) {
 						foreach($configuration["parent"] as $parent) {
@@ -82,67 +84,80 @@
 						echo "<p><span class='ic-label'>" . _("Parent Resource") . "</span><span><input class='ic-column' value='' /></span></p>";
 					}
 				?>
-			</div>
+			</fieldset></div>
 			<p><a id='add_parent' href='#'><?php echo _("+ Add another parent resource")?></a></p>
 			<div id='resource_isbnOrIssn'>
-				<?php
-					if(count($configuration["isbnOrIssn"]) > 0) {
-						foreach($configuration["isbnOrIssn"] as $isbnOrIssn) {
-							echo "<div class='isbnOrIssn-record'><p><span class='ic-label'>" . _("ISBN or ISSN") . "</span><span><input class='ic-column' value='" . $isbnOrIssn['column'] . "' /></span></p>";
-							echo "<p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox'" . (($isbnOrIssn['dedupe'])?' checked':'') . " /><span>" . _("Dedupe on this column") . "</span></p></div>";
+				<fieldset>
+					<legend>
+						<?php echo _("ISBN/ISSN Sets");?>
+					</legend>
+					<?php
+						if(count($configuration["isbnOrIssn"]) > 0) {
+							foreach($configuration["isbnOrIssn"] as $isbnOrIssn) {
+								echo "<div class='isbnOrIssn-record'><p><span class='ic-label'>" . _("ISBN or ISSN") . "</span><span><input class='ic-column' value='" . $isbnOrIssn['column'] . "' /></span></p>";
+								echo "<p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox'" . (($isbnOrIssn['dedupe'])?' checked':'') . " /><span>" . _("Dedupe on this column") . "</span></p></div>";
+							}
 						}
-					}
-					else {
-						echo "<div class='isbnOrIssn-record'><p><span class='ic-label'>" . _("ISBN or ISSN") . "</span><span><input class='ic-column' value='' /></span></p>";
-						echo "<p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox' /><span>" . _("Dedupe on this column") . "</span></p></div>";
-					}
-				?>
+						else {
+							echo "<div class='isbnOrIssn-record'><p><span class='ic-label'>" . _("ISBN or ISSN") . "</span><span><input class='ic-column' value='' /></span></p>";
+							echo "<p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox' /><span>" . _("Dedupe on this column") . "</span></p></div>";
+						}
+					?>
+				</fieldset>
 			</div>
 			<p><a id='add_isbnorissn' href='#'><?php echo _("+ Add another ISBN or ISSN set");?></a></p>
-			<p><span class="ic-label"><?php echo _("Resource Format");?></span><span><input id="resource_format" class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Resource Type");?></span><span><input id="resource_type" class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
 			<div id='resource_subject'>
-				<?php
-					if(count($configuration["subject"]) > 0) {
-						foreach($configuration["subject"] as $subject) {
-							echo "<div class='subject-record'><p><span class='ic-label'>" . _("Subject") . "</span><span><input class='ic-column' value='" . $subject['column'] . "' /></span></p>";
-							echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><input class='ic-delimiter' value='" . $subject['delimiter'] . "' /></span></p></div>";
+				<fieldset>
+					<legend>
+						<?php echo _("Subject Sets");?>
+					</legend>
+					<?php
+						if(count($configuration["subject"]) > 0) {
+							foreach($configuration["subject"] as $subject) {
+								echo "<div class='subject-record'><p><span class='ic-label'>" . _("Subject") . "</span><span><input class='ic-column' value='" . $subject['column'] . "' /></span></p>";
+								echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><input class='ic-delimiter' value='" . $subject['delimiter'] . "' /></span></p></div>";
+							}
 						}
-					}
-					else {
-						echo "<div class='subject-record'><p><span class='ic-label'>" . _("Subject") . "</span><span><input class='ic-column' value='' /></span></p>";
-						echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><input class='ic-delimiter' value='' /></span></p></div>";
-					}
-				?>
+						else {
+							echo "<div class='subject-record'><p><span class='ic-label'>" . _("Subject") . "</span><span><input class='ic-column' value='' /></span></p>";
+							echo "<p><span class='ic-label'>" . _("If delimited, delimited by") . "</span><input class='ic-delimiter' value='' /></span></p></div>";
+						}
+					?>
+				</fieldset>
 			</div>
 			<p><a id='add_subject' href='#'><?php echo _("+ Add another subject set");?></a></p>
 			<div id='resource_note'>
-				<?php
-					if(count($configuration["note"]) > 0) {
-						foreach($configuration["note"] as $note) {
-							echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='" . $note['column'] . "' /></span></p>";
+				<fieldset>
+					<legend>
+						<?php echo _("Note Sets");?>
+					</legend>
+					<?php
+						if(count($configuration["note"]) > 0) {
+							foreach($configuration["note"] as $note) {
+								echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='" . $note['column'] . "' /></span></p>";
+								echo "<p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
+								foreach($noteTypeArray as $noteType) {
+									echo "<option value='" . $noteType['noteTypeID'] . "'";
+									if($note['noteType'] == $noteType['noteTypeID']) {
+										echo " selected";
+									}
+									echo ">" . $noteType['shortName'] . "</option>";
+								}
+								echo "</select></span></p>";
+								echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='" . $note['delimiter'] . "' /></span></p></div>";
+							}
+						}
+						else {
+							echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='' /></span></p>";
 							echo "<p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
 							foreach($noteTypeArray as $noteType) {
-								echo "<option value='" . $noteType['noteTypeID'] . "'";
-								if($note['noteType'] == $noteType['noteTypeID']) {
-									echo " selected";
-								}
-								echo ">" . $noteType['shortName'] . "</option>";
+								echo "<option value='" . $noteType['noteTypeID'] . "'>" . $noteType['shortName'] . "</option>";
 							}
 							echo "</select></span></p>";
-							echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='" . $note['delimiter'] . "' /></span></p></div>";
+							echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
 						}
-					}
-					else {
-						echo "<div class='note-record'><p><span class='ic-label'>" . _("Note") . "</span><span><input class='ic-column' value='' /></span></p>";
-						echo "<p><span class='ic-label'>" . _('Note Type') . "</span><span><select class='ic-dropdown'>";
-						foreach($noteTypeArray as $noteType) {
-							echo "<option value='" . $noteType['noteTypeID'] . "'>" . $noteType['shortName'] . "</option>";
-						}
-						echo "</select></span></p>";
-						echo "<p><span class='ic-label'>" . _('If delimited, delimited by') . "</span><span><input class='ic-delimiter' value='' /></span></p></div>";
-					}
-				?>
+					?>
+				</fieldset>
 			</div>
 			<p><a id='add_note' href='#'><?php echo _("+ Add another note set");?></a></p>
 		</div>
@@ -150,57 +165,60 @@
 	<div id='importConfigColumnsRight'>
 		<div id='ic-right-column'>
 			<div id='resource_organization'>
-				<?php
-					if(count($configuration["organization"]) > 0) {
-						foreach($configuration["organization"] as $organization) {
-							echo "<div class='organization-record'><p><span class='ic-label'>" . _("Organization") . "</span><span><input class='ic-column' value='".$organization['column']."' /></span></p><p><span class='ic-label'>" . _('Organization Role') . "</span><span><select class='ic-dropdown'>";
-							foreach($organizationRoleArray as $organizationRoleID => $organizationRoleShortName) {
-								echo "<option value='" . $organizationRoleID . "'";
-								if($organization["organizationRole"] == $organizationRoleID) {
-									echo " selected";
+				<fieldset>
+					<legend><?php echo _("Organization Sets");?></legend>
+					<?php
+						if(count($configuration["organization"]) > 0) {
+							foreach($configuration["organization"] as $organization) {
+								echo "<div class='organization-record'><p><span class='ic-label'>" . _("Organization") . "</span><span><input class='ic-column' value='".$organization['column']."' /></span></p><p><span class='ic-label'>" . _('Organization Role') . "</span><span><select class='ic-dropdown'>";
+								foreach($organizationRoleArray as $organizationRoleID => $organizationRoleShortName) {
+									echo "<option value='" . $organizationRoleID . "'";
+									if($organization["organizationRole"] == $organizationRoleID) {
+										echo " selected";
+									}
+									echo ">" . $organizationRoleShortName . "</option>";
 								}
-								echo ">" . $organizationRoleShortName . "</option>";
+								echo "</select></span></p></div>";
+							}
+						}
+						else {
+							echo "<div class='organization-record'><p><span class='ic-label'>" . _("Organization") . "</span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'>" . _('Organization Role') . "</span><span><select class='ic-dropdown'>";
+							foreach($organizationRoleArray as $organizationRoleID => $organizationRoleShortName) {
+								echo "<option value='" . $organizationRoleID . "'>" . $organizationRoleShortName . "</option>";
 							}
 							echo "</select></span></p></div>";
 						}
-					}
-					else {
-						echo "<div class='organization-record'><p><span class='ic-label'>" . _("Organization") . "</span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'>" . _('Organization Role') . "</span><span><select class='ic-dropdown'>";
-						foreach($organizationRoleArray as $organizationRoleID => $organizationRoleShortName) {
-							echo "<option value='" . $organizationRoleID . "'>" . $organizationRoleShortName . "</option>";
-						}
-						echo "</select></span></p></div>";
-					}
-				?>
+					?>
+				</fieldset>
 			</div>
 			<p><a id='add_organization' href='#'><?php echo _("+ Add another organization set");?></a></p>
 
+			<div id='importConfigOrgMapping'>
+				<table id='org_mapping_table' >
+					<tr>
+						<th><?php echo _("Text in CSV File");?></th>
+						<th><?php echo _("Will Change To");?></th>
+						<th></th>
+						<th></th>
+					</tr>
+					<?php
+						if(count($orgMappings)>0) {
+							foreach($orgMappings as $orgMapping) {
+								echo "<tr><td><input class='ic-org-imported' value='" . $orgMapping->orgNameImported . "' /></td>";
+								echo "<td><input class='ic-org-mapped' value='" . $orgMapping->orgNameMapped . "' /></td>";
+								echo "<td><img class='remove' src='images/cross.gif' /></td></tr>";
+							}
+						}
+						else {
+							echo "<tr><td><input class='ic-org-imported' /></td><td><input class='ic-org-mapped' /></td><td><img class='remove' src='images/cross.gif' /></td></tr>";
+						}
+					?>
+				</table>
+				<a id='add_mapping' href='#'><?php echo _("+ Add another mapping")?></a>
+			</div>
 		</div>
 	</div>
 	<div style='clear: both;'></div>
-</div>
-<div id='importConfigOrgMapping'>
-	<table id='org_mapping_table' >
-		<tr>
-			<th><?php echo _("Text in CSV File");?></th>
-			<th><?php echo _("Will Change To");?></th>
-			<th></th>
-			<th></th>
-		</tr>
-		<?php
-			if(count($orgMappings)>0) {
-				foreach($orgMappings as $orgMapping) {
-					echo "<tr><td><input class='ic-org-imported' value='" . $orgMapping->orgNameImported . "' /></td>";
-					echo "<td><input class='ic-org-mapped' value='" . $orgMapping->orgNameMapped . "' /></td>";
-					echo "<td><img class='remove' src='images/cross.gif' /></td></tr>";
-				}
-			}
-			else {
-				echo "<tr><td><input class='ic-org-imported' /></td><td><input class='ic-org-mapped' /></td><td><img class='remove' src='images/cross.gif' /></td></tr>";
-			}
-		?>
-	</table>
-	<a id='add_mapping' href='#'><?php echo _("+ Add another mapping")?></a>
 </div>
 <script type='text/javascript'>
 	$(".remove").live('click', function () {

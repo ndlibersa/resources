@@ -648,7 +648,7 @@
 					<option value="|">| <?php echo _("(pipe)");?></option>
 				</select>
 			</fieldset>
-			<input type="submit" name="submit" value="<?php echo _("Upload");?>" />
+			<input type="submit" name="submit" value="<?php echo _("Upload");?>" class="submit-button" />
 		</form>
 <?php
 	}

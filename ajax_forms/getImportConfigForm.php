@@ -38,12 +38,17 @@
 <div id='importConfigColumns'>
 	<div id='importConfigColumnsLeft'>
 		<div id='ic-left-column'>
-			<p><span class="ic-label"><?php echo _("Resource Title");?></span><span><input id="resource_titleCol" class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Description");?></span><span><input id="resource_descCol" class="ic-column" value="<?php echo $configuration["description"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Resource URL");?></span><span><input id='resource_urlCol' class="ic-column" value="<?php echo $configuration["url"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Alternate URL");?></span><span><input id='resource_altUrlCol' class="ic-column" value="<?php echo $configuration["altUrl"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Resource Format");?></span><span><input id="resource_format" class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
-			<p><span class="ic-label"><?php echo _("Resource Type");?></span><span><input id="resource_type" class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
+			<fieldset>
+				<legend>
+					<?php echo _("General Resource Fields");?>
+				</legend>
+				<p><span class="ic-label"><?php echo _("Resource Title");?></span><span><input id="resource_titleCol" class="ic-column" value="<?php echo $configuration["title"]?>" /></span></p>
+				<p><span class="ic-label"><?php echo _("Description");?></span><span><input id="resource_descCol" class="ic-column" value="<?php echo $configuration["description"]?>" /></span></p>
+				<p><span class="ic-label"><?php echo _("Resource URL");?></span><span><input id='resource_urlCol' class="ic-column" value="<?php echo $configuration["url"]?>" /></span></p>
+				<p><span class="ic-label"><?php echo _("Alternate URL");?></span><span><input id='resource_altUrlCol' class="ic-column" value="<?php echo $configuration["altUrl"]?>" /></span></p>
+				<p><span class="ic-label"><?php echo _("Resource Format");?></span><span><input id="resource_format" class="ic-column" value="<?php echo $configuration["resourceFormat"]?>" /></span></p>
+				<p><span class="ic-label"><?php echo _("Resource Type");?></span><span><input id="resource_type" class="ic-column" value="<?php echo $configuration["resourceType"]?>" /></span></p>
+			</fieldset>
 			<div id='resource_alias'><fieldset><legend><?php echo _("Alias Sets");?></legend>
 				<?php
 					if(count($configuration["alias"]) > 0) {

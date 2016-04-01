@@ -2735,7 +2735,7 @@ a#archiveddowntimeBtn {
 	margin-left: 20px;
 }
 
-#importConfigOrgMapping table{
+#importConfigOrgMapping table {
 	width:100%;
 }
 
@@ -2883,6 +2883,7 @@ img.remove {
 #importConfigColumns fieldset legend {
 	padding: 0 5px;
 	font-weight: bold;
+	width: initial;
 }
 
 #importConfigColumns fieldset {

@@ -233,37 +233,37 @@
 	});   
    $('#add_alias').click(function (e) {
    		e.preventDefault();
-   		$('#resource_alias').append(
+   		$('#resource_alias > fieldset').append(
    			"<div class='alias-record'><p><span class='ic-label'><?php echo _('Alias');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Alias Type');?></span><span><select class='ic-dropdown'><?php echo $aliasOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_parent').click(function (e) {
    		e.preventDefault();
-   		$('#resource_parent').append (
+   		$('#resource_parent > fieldset').append (
    			"<p><span class='ic-label'><?php echo _('Parent Resource');?></span><span><input class='ic-column' value='' /></span></p>"
    		);
    });
    $('#add_isbnorissn').click(function (e) {
    		e.preventDefault();
-   		$('#resource_isbnOrIssn').append (
+   		$('#resource_isbnOrIssn > fieldset').append (
    			"<div class='isbnOrIssn-record'><p><span class='ic-label'><?php echo _('ISBN or ISSN');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-dedupe'><input class='ic-dedupe' type='checkbox' /><span><?php echo _('Dedupe on this column');?></span></p></div>"
    		);
    });
    $('#add_subject').click(function (e) {
    		e.preventDefault();
-   		$('#resource_subject').append(
+   		$('#resource_subject > fieldset').append(
    			"<div class='subject-record'><p><span class='ic-label'><?php echo _('Subject');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_note').click(function (e) {
    		e.preventDefault();
-   		$('#resource_note').append (
+   		$('#resource_note > fieldset').append (
 			"<div class='note-record'><p><span class='ic-label'><?php echo _('Note');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Note Type');?></span><span><select class='ic-dropdown'><?php echo $noteOptions?></select></span></p><p><span class='ic-label'><?php echo _('If delimited, delimited by');?></span><span><input class='ic-delimiter' value='' /></span></p></div>"
    		);
    });
    $('#add_organization').click(function (e) {
    		e.preventDefault();
-   		$('#resource_organization').append (
+   		$('#resource_organization > fieldset').append (
 			"<div class='organization-record'><p><span class='ic-label'><?php echo _('Organization');?></span><span><input class='ic-column' value='' /></span></p><p><span class='ic-label'><?php echo _('Organization Role');?></span><span><select class='ic-dropdown'><?php echo $organizationOptions?></select></span></p></div>"
    		);
    });

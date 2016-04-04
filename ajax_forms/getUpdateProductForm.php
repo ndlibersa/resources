@@ -121,7 +121,7 @@
            <span id="newParent">
            <div class="oneParent">
            <input type='text' class='parentResource parentResource_new' name='parentResourceName' value='' style='width:140px;' class='changeInput'  /><input type='hidden' class='parentResource parentResource_new' name='parentResourceID' value='' /><span id='span_error_parentResourceName' class='smallDarkRedText'></span>
-           <a href='#'><img src='images/add.gif' class='addParent' alt='<?php echo _("add Parent resource");?>' title='<?php echo _("add Parent Resource");?>'></a><br />
+           <a href='#'><img src='images/<?php echo $http_lang?>/add.gif' class='addParent' alt='<?php echo _("add Parent resource");?>' title='<?php echo _("add Parent Resource");?>'></a><br />
           </div>
            </span>
            <hr />
@@ -149,7 +149,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 <td>
           <span id="newIsbn">
            <input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
-           <a href='javascript:void(0);'><img src='images/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
+           <a href='javascript:void(0);'><img src='images/<?php echo $http_lang?>/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
            <hr /><br />
            </span>
            <span id="existingIsbn">
@@ -257,7 +257,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addOrganization' alt='<?php echo _("add organization");?>' title='<?php echo _("add organization");?>'></a>
+				<a href='javascript:void();'><img src='images/<?php echo $http_lang?>/add.gif' class='addOrganization' alt='<?php echo _("add organization");?>' title='<?php echo _("add organization");?>'></a>
 				</td>
 				</tr>
 				</table>
@@ -350,7 +350,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 				</td>
 
 				<td style='vertical-align:center;text-align:left;width:37px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addAlias' alt='<?php echo _("add this alias");?>' title='<?php echo _("add alias");?>'></a>
+				<a href='javascript:void();'><img src='images/<?php echo $http_lang?>/add.gif' class='addAlias' alt='<?php echo _("add this alias");?>' title='<?php echo _("add alias");?>'></a>
 				</td>
 				</tr>
 				</table>

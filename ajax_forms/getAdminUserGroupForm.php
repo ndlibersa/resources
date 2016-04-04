@@ -79,7 +79,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/add.gif' class='addUser' alt="<?php echo _("add user");?>" title="<?php echo _("add user");?>"></a>
+				<a href='javascript:void();'><img src='images/<?php echo $http_lang?>/add.gif' class='addUser' alt="<?php echo _("add user");?>" title="<?php echo _("add user");?>"></a>
 				</td>
 				</tr>
 				</table>

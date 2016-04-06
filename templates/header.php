@@ -186,8 +186,8 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
             // Get all translations on the 'locale' folder
             $route='locale';
             $lang[]="en_US"; // add default language
-            if (is_dir($route)) { 
-                if ($dh = opendir($route)) { 
+            if (is_dir($route)) {
+                if ($dh = opendir($route)) {
                     while (($file = readdir($dh)) !== false) {
                         if (is_dir("$route/$file") && $file!="." && $file!=".."){
                             $lang[]=$file;
@@ -206,15 +206,15 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
             for($i=0; $i<count($lang); $i++){
                 if(isset($_COOKIE["lang"])){
                     if($_COOKIE["lang"]==$lang[$i]){
-                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang(substr($lang[$i],0,2))."</option>";
+                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
                     }else{
-                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang(substr($lang[$i],0,2))."</option>";
+                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
                     }
                 }else{
                     if($defLang==substr($lang[$i],0,2)){
-                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang(substr($lang[$i],0,2))."</option>";
+                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
                     }else{
-                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang(substr($lang[$i],0,2))."</option>";
+                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
                     }
                 }
             }

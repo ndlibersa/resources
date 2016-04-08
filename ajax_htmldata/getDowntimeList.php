@@ -14,24 +14,24 @@ function generateDowntimeHTML($downtime,$associatedEntities=null) {
 	
 	$html .= "
 	  	<dl>
-	  		<dt>Type:</dt> 
+	  		<dt>" . _("Type:") . "</dt> 
 	  		<dd>{$downtime->shortName}</dd>
 
-	  		<dt>Downtime Start:</dt> 
+	  		<dt>" . _("Downtime Start:") . "</dt> 
 	  		<dd>{$downtime->startDate}</dd>
 
-	  		<dt>Downtime Resolved:</dt> 
+	  		<dt>" . _("Downtime Resolved:") . "</dt> 
 	  		<dd>{$downtime->endDate}</dd>";
 
 	if($downtime->subjectText) {
 		$html .= "
-	  		<dt>Linked issue:</dt> 
+	  		<dt>" . _("Linked issue:") . "</dt> 
 	  		<dd>{$downtime->subjectText}</dd>";
 	}
 
 	if ($downtime->note) {
 		$html .= "
-	  		<dt>Note:</dt> 
+	  		<dt>" . _("Note:") . "</dt> 
 	  		<dd>{$downtime->note}</dd>";
 	}
 
@@ -46,7 +46,7 @@ function generateDowntimeHTML($downtime,$associatedEntities=null) {
 $organizationArray = $resource->getOrganizationArray();
 
 if (count($organizationArray) > 0) {
-	echo '<h3 class="text-center">Organizational</h3>';
+	echo '<h3 class="text-center">' . _("Organizational") . '</h3>';
 
 	$downtimedOrgs = array();
 	foreach ($organizationArray as $orgData) {
@@ -60,7 +60,7 @@ if (count($organizationArray) > 0) {
 					echo generateDowntimeHTML($downtime,array(array("name"=>$orgData['organization'],"id"=>$organization->organizationID,"entityType"=>1)));
 				}
 			} else {
-				echo "<br><p>There are no organization level downtimes.</p><br>";
+				echo "<br><p>" . _("There are no organization level downtimes.") . "</p><br>";
 			}
 
 			$orgDowntimes = null;
@@ -71,7 +71,7 @@ if (count($organizationArray) > 0) {
 
 //display any resource level downtimes for the resource (shows any other resources associated with the downtime, too)
 $resourceDowntimes = $resource->getDowntime($archivedFlag);
-echo '<h3 class="text-center">Resources</h3>';
+echo '<h3 class="text-center">' . _("Resources") . '</h3>';
 if(count($resourceDowntimes) > 0) {
 	foreach ($resourceDowntimes as $downtime) {
 		$associatedEntities = array();
@@ -83,6 +83,6 @@ if(count($resourceDowntimes) > 0) {
 		echo generateDowntimeHTML($downtime,$associatedEntities);
 	}
 } else {
-	echo "<br><p>There are no resource level downtimes.</p><br>";
+	echo "<br><p>" . _("There are no resource level downtimes.") . "</p><br>";
 }
 ?>

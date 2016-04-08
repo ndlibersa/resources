@@ -139,7 +139,7 @@ if ($config->settings->organizationsModule == 'Y') {
 <?php
 } else {
 	echo '<p>' . _("Opening an issue requires a resource to be associated with an organization.") . '</p>';
-	echo '<input type="button" value="cancel" onclick="tb_remove();">';
+	echo '<input type="button" value="' . _("cancel") . '" onclick="tb_remove();">';
 }
 ?>
 

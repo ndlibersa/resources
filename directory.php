@@ -189,7 +189,7 @@ global $http_lang;
 if(isset($_COOKIE["lang"])){
     $http_lang = $_COOKIE["lang"];
 }else{        
-    $codeL = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+    $codeL = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
     $http_lang = $lang_name->getLanguage($codeL);
 }
 putenv("LC_ALL=$http_lang");

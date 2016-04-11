@@ -191,6 +191,8 @@ if(isset($_COOKIE["lang"])){
 }else{        
     $codeL = str_replace("-","_",substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5));
     $http_lang = $lang_name->getLanguage($codeL);
+    if($http_lang == "")
+      $http_lang = "en_US";
 }
 putenv("LC_ALL=$http_lang");
 setlocale(LC_ALL, $http_lang.".utf8");

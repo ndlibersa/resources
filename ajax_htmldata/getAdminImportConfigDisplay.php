@@ -4,13 +4,13 @@
 
 		$instanceArray = $obj->allAsArray();
 
-		echo "<div class='adminRightHeader'>Import Configuration</div>";
+		echo "<div class='adminRightHeader'>" . _("Import Configuration") . "</div>";
 
 		if (count($instanceArray) > 0){
 			?>
 			<table  class='linedDataTable' >
 				<tr>
-				<th>Name</th>
+				<th><?php echo _("Name");?></th>
 				<th style='width:20px;'>&nbsp;</th>
 				<th style='width:20px;'>&nbsp;</th>
 				</tr>
@@ -31,5 +31,5 @@
 		}else{
 			echo "(none found)<br />";
 		}
-		echo "<a href='ajax_forms.php?action=getAdminImportConfigUpdateForm&updateID=&height=760&width=1024&modal=true' class='thickbox'>add new import configuration</a><br/>";
+		echo "<a href='ajax_forms.php?action=getAdminImportConfigUpdateForm&updateID=&height=760&width=1024&modal=true' class='thickbox'>" . _("add new import configuration"); . "</a><br/>";
 ?>

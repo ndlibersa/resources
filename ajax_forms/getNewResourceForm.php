@@ -291,8 +291,8 @@
 
 		<table class='noBorderTable' style='width:175px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?php echo _("save");?>' id='save' class='save-button'></td>
-				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id='progress' class='submit-button'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("save");?>' id='save' class='submitResource save-button'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' id='progress' class='submitResource submit-button'></td>
 				<td style='text-align:left'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove()" class='cancel-button'></td>
 			</tr>
 		</table>

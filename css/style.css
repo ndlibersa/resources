@@ -3030,6 +3030,8 @@ img[src*="arrowdown.png"] {
 
 #importDesc {
 	margin: 15px !important;
+	text-align: left;
+	padding: 0 15px;
 }
 
 /*--- Main Menu Spacing Fixes ---*/
@@ -3037,4 +3039,10 @@ img[src*="arrowdown.png"] {
 span#divider {
 	position: relative;
 	top: 3px;
+}
+
+/*--- Import Config Paragraph Padding ---*/
+
+#ic-instructions {
+	padding-left: 10px !important;
 }

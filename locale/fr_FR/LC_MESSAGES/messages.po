@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-04-12 12:35-0600\n"
-"PO-Revision-Date: 2016-04-14 15:56+0100\n"
+"POT-Creation-Date: 2016-05-03 11:06-0600\n"
+"PO-Revision-Date: 2016-05-04 12:07+0100\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
-"X-Poedit-Basepath: ../../../wamp/www/Coral/resources\n"
+"X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -80,8 +80,8 @@ msgid ""
 "File name may not contain special characters - ampersand, single quote, "
 "double quote or less than/greater than characters"
 msgstr ""
-"Le nom du fichier ne peut contenir de caractères spéciaux (\"et\" "
-"commercial, apostrophe, guillemets ou de signes plus grand que/moins que)."
+"Le nom du fichier ne peut contenir de caractères spéciaux (\"et\" commercial "
+"&, apostrophes, guillemets, signes plus grand que/moins que)."
 
 #: js/forms/attachmentForm.js:102
 msgid "The attachments directory is not writable."
@@ -101,7 +101,7 @@ msgstr "Le type de pièce jointe doit être sélectionné avant de continuer."
 
 #: js/forms/attachmentForm.js:178
 msgid "A file must be uploaded"
-msgstr "Le fichier doit être téléchargé"
+msgstr "Un fichier doit être téléchargé"
 
 #: js/forms/contactForm.js:179
 msgid "Please choose at least one role."
@@ -123,15 +123,15 @@ msgstr "Erreur - Le sujet détaillé est déjà ajouté"
 #: js/forms/generalDetailSubjectForm.js:135 js/forms/userGroupForm.js:117
 #: ajax_forms/getAdminUserGroupForm.php:121
 msgid "remove user from group"
-msgstr "Enlever un utilisateur du groupe"
+msgstr "Retirer un utilisateur du groupe"
 
 #: js/forms/generalDetailSubjectForm.js:136 js/forms/userGroupForm.js:118
 msgid "remove from group"
-msgstr "Enlever du groupe"
+msgstr "Retirer du groupe"
 
 #: js/forms/generalDetailSubjectForm.js:181
 msgid "Short Name must be entered to continue."
-msgstr "Un nom court doit être entré pour continuer."
+msgstr "Un Nom court doit être entré pour continuer."
 
 #: js/forms/licenseForm.js:140 js/forms/licenseForm.js:256
 msgid "Error - Please choose a valid license"
@@ -151,7 +151,7 @@ msgstr "Un titre doit être entré avant de continuer."
 
 #: js/forms/resourceNewForm.js:232
 msgid "The resource format is required."
-msgstr "Le format de ressource est obligatoire."
+msgstr "Le format de la ressource est obligatoire."
 
 #: js/forms/resourceNewForm.js:237
 msgid "The resource type is required."
@@ -163,7 +163,7 @@ msgstr "La remarque doit être entrée avant de continuer."
 
 #: js/forms/resourceUpdateForm.js:90
 msgid "Error - Parent cannot be the same as the child"
-msgstr "Erreur - Le principal et le subsidiaire ne peuvent pas être identiques"
+msgstr "Erreur - Le principal et le subsidiaire ne doivent pas être identiques"
 
 #: js/forms/resourceUpdateForm.js:217 js/forms/resourceUpdateForm.js:302
 #: js/forms/resourceUpdateForm.js:392 js/forms/resourceUpdateForm.js:403
@@ -178,7 +178,7 @@ msgstr "Supprimer cet alias"
 #: js/forms/resourceUpdateForm.js:277
 msgid "Error - Parent is not found.  Please use the Autocomplete."
 msgstr ""
-"Erreur - Elément principal non-trouvé. Utilisez l'option d'auto-complétion"
+"Erreur - Elément principal non-trouvé. Utilisez l'option d'auto-complétion."
 
 #: js/forms/resourceUpdateForm.js:286 ajax_forms/getUpdateProductForm.php:137
 msgid "remove parent"
@@ -198,7 +198,7 @@ msgstr "Erreur - Organisation non-trouvée. Utilisez l’auto-complétion."
 
 #: js/forms/userGroupForm.js:101
 msgid "Error - User is required"
-msgstr "Erreur - un utilisateur est obligatoire"
+msgstr "Erreur - l'utilisateur est obligatoire"
 
 #: js/forms/userGroupForm.js:163
 msgid "Group name must be entered to continue."
@@ -222,7 +222,7 @@ msgid ""
 "Please click the Add button to the first step before submitting this "
 "workflow."
 msgstr ""
-"Cliquez sur le bouton Ajouter de cette première étape avant de valider ce "
+"Cliquez sur le bouton Ajouter de la première étape avant de valider ce "
 "workflow."
 
 #: js/index.js:113
@@ -231,7 +231,7 @@ msgstr "Traitement en cours..."
 
 #: js/index.js:241 index.php:357
 msgid "more options..."
-msgstr "plus d'options..."
+msgstr "Plus d'options..."
 
 #: js/plugins/date.js:30
 msgid "Sunday"
@@ -411,7 +411,7 @@ msgstr "Actualisation des contenus en cours..."
 
 #: js/queue.js:153
 msgid "Do you really want to delete this request?"
-msgstr "Voulez-vous vraiment supprimer cette requête ?"
+msgstr "Voulez-vous vraiment supprimer cette demande ?"
 
 #: js/queue.js:193 js/queue.js:214 js/queue.js:235 js/resource.js:618
 msgid " record)"
@@ -423,7 +423,7 @@ msgstr " fiches)"
 
 #: js/resource.js:93 js/resource.js:100
 msgid "Must set a date."
-msgstr "Vous devez indiquer une date."
+msgstr "Indiquez une date."
 
 #: js/resource.js:154
 msgid "New contact must have a name."
@@ -447,15 +447,15 @@ msgstr ""
 
 #: js/resource.js:455
 msgid "A contact must be selected to continue."
-msgstr "Vous devez sélectionner un contact pour continuer."
+msgstr "Sélectionnez un contact pour continuer."
 
 #: js/resource.js:460
 msgid "A subject must be entered to continue."
-msgstr "Un objet doit être entré pour continuer."
+msgstr "Entrez un objet pour continuer."
 
 #: js/resource.js:465
 msgid "A body must be entered to continue."
-msgstr "Du texte doit être entré dans le message pour continuer."
+msgstr "Saisissez du texte dans le message pour continuer."
 
 #: js/resource.js:478
 msgid "An issue must be associated with an organization or resource(s)."
@@ -546,7 +546,7 @@ msgid "Alert Settings"
 msgstr "Configuration des messages"
 
 #: admin.php:60 ajax_forms/getImportConfigForm.php:57
-#: ajax_forms/getImportConfigForm.php:71 ajax_forms/getImportConfigForm.php:241
+#: ajax_forms/getImportConfigForm.php:71 ajax_forms/getImportConfigForm.php:245
 msgid "Alias Type"
 msgstr "Type d'alias"
 
@@ -572,7 +572,7 @@ msgstr "Type de catalogage"
 
 #: admin.php:66
 msgid "Contact Role"
-msgstr "Rôle de contact"
+msgstr "Rôle du contact"
 
 #: admin.php:68 ajax_forms/getCostForm.php:76
 msgid "Cost Details"
@@ -591,7 +591,7 @@ msgstr "Types d'indisponibilité"
 msgid "Funds"
 msgstr "Fonds"
 
-#: admin.php:73
+#: admin.php:73 ajax_htmldata/getAdminImportConfigDisplay.php:7
 msgid "Import Configuration"
 msgstr "Importer une configuration"
 
@@ -601,7 +601,7 @@ msgstr "Statut de licence"
 
 #: admin.php:75 ajax_forms/getImportConfigForm.php:147
 #: ajax_forms/getImportConfigForm.php:161
-#: ajax_forms/getImportConfigForm.php:265 index.php:362
+#: ajax_forms/getImportConfigForm.php:269 index.php:362
 msgid "Note Type"
 msgstr "Type de remarque"
 
@@ -611,7 +611,7 @@ msgstr "Type de commande"
 
 #: admin.php:83 ajax_forms/getImportConfigForm.php:182
 #: ajax_forms/getImportConfigForm.php:194
-#: ajax_forms/getImportConfigForm.php:271
+#: ajax_forms/getImportConfigForm.php:275
 msgid "Organization Role"
 msgstr "Rôle de l'organisation"
 
@@ -722,11 +722,11 @@ msgstr "Lieu de stockage :"
 #: ajax_forms/getAccessForm.php:128 ajax_htmldata/getAccessDetails.php:72
 #: summary.php:646
 msgid "Simultaneous User Limit:"
-msgstr "Nombre limite d'utilisateurs simultanés :"
+msgstr "Limite du nombre d'utilisateurs simultanés :"
 
 #: ajax_forms/getAccessForm.php:145 ajax_htmldata/getAccessDetails.php:95
 msgid "Coverage:"
-msgstr "Couverture de l'accès :"
+msgstr "Plage d'accès :"
 
 #: ajax_forms/getAccessForm.php:163
 msgid "Authorized Site(s)"
@@ -741,7 +741,7 @@ msgstr "Site(s) gérant(s)"
 #: ajax_forms/getAdminAlertEmailForm.php:34
 #: ajax_forms/getAdminCurrencyUpdateForm.php:38
 #: ajax_forms/getAdminFundUpdateForm.php:45
-#: ajax_forms/getAdminImportConfigUpdateForm.php:39
+#: ajax_forms/getAdminImportConfigUpdateForm.php:40
 #: ajax_forms/getAdminUpdateForm.php:44
 #: ajax_forms/getAdminUserGroupForm.php:147
 #: ajax_forms/getAdminUserUpdateForm.php:66
@@ -762,7 +762,7 @@ msgstr "Envoyer"
 #: ajax_forms/getAdminAlertEmailForm.php:35
 #: ajax_forms/getAdminCurrencyUpdateForm.php:39
 #: ajax_forms/getAdminFundUpdateForm.php:46
-#: ajax_forms/getAdminImportConfigUpdateForm.php:40
+#: ajax_forms/getAdminImportConfigUpdateForm.php:41
 #: ajax_forms/getAdminUpdateForm.php:45
 #: ajax_forms/getAdminUserGroupForm.php:148
 #: ajax_forms/getAdminUserUpdateForm.php:67
@@ -810,11 +810,11 @@ msgstr "Remarques :"
 
 #: ajax_forms/getAdminAlertDaysForm.php:14
 msgid "Edit Alert Days In Advance"
-msgstr "Modifier le message d'alerte de journées à l'avance"
+msgstr "Modifier le message d'alerte Jours en avance"
 
 #: ajax_forms/getAdminAlertDaysForm.php:14
 msgid "Add Alert Days In Advance"
-msgstr "Ajouter des messages de jours à l'avance"
+msgstr "Ajouter des messages Jours en avance"
 
 #: ajax_forms/getAdminAlertEmailForm.php:14
 msgid "Edit Alert Email Address"
@@ -841,6 +841,7 @@ msgstr "Code"
 #: ajax_forms/getAdminCurrencyUpdateForm.php:27
 #: ajax_forms/getAdminFundUpdateForm.php:28
 #: ajax_htmldata/getAdminCurrencyDisplay.php:15
+#: ajax_htmldata/getAdminImportConfigDisplay.php:13
 #: ajax_htmldata/getOutstandingQueue.php:20 ajax_htmldata/getSavedQueue.php:18
 #: ajax_htmldata/getSearchResources.php:113
 #: ajax_htmldata/getSubmittedQueue.php:15
@@ -862,6 +863,34 @@ msgstr "Ajouter une configuration importée"
 #: ajax_forms/getAdminImportConfigUpdateForm.php:31
 msgid "Configuration Name"
 msgstr "Nom de la configuration"
+
+#: ajax_forms/getAdminImportConfigUpdateForm.php:34
+msgid ""
+"For each of the resource fields please input the number of the column in "
+"your CSV file that corresponds to the resource field. For example, if your "
+"import file has a second column called Name that corresponds to the Resource "
+"Title, then you would input 2 for the value for the Resource Title field. "
+"For columns with multiple values that are character-delimited, indicate the "
+"delimiter using the If delimited, delimited by field. For fields with values "
+"across multiple columns, add additional sets using the +Add another links. "
+"Use the Dedupe on this column option for ISBN/ISSN sets to ignore any "
+"duplicate values that might occur across those columns. The Alias Types, "
+"Note Types, and Organization Roles that you can assign to your mapped "
+"columns can be configured on the Admin page."
+msgstr ""
+"Pour chaque champ de ressource, veuillez entrer le numéro de colonne de "
+"votre fichier CSV correspondant au champ de la ressource. Par exemple, si "
+"votre fichier importé a une deuxième colonne nommée Nom qui correspond au "
+"Titre de la ressource, entrez 2 comme valeur dans le champ Titre de la "
+"ressource. Pour les colonnes comportant plusieurs valeurs délimitées par des "
+"caractères, indiquez le délimiteur en sélectionnant l’option Si délimité, "
+"Délimité par champ. Pour les champs ayant des valeurs dans plusieurs "
+"colonnes, ajoutez des ensembles de données supplémentaires en cliquant sur "
+"les liens +Ajouter. Utilisez la fonction Dédupliquer sur cette colonne pour "
+"les ensembles ISBN/ISSN pour ignorer les éventuelles valeurs dupliquées qui "
+"pourraient apparaître dans ces colonnes. Les Types d’alias, les Types de "
+"remarques et les Rôles d’organisation que vous pouvez attribuer à vos "
+"colonnes mappées peuvent être paramétrées dans la page Administration."
 
 #: ajax_forms/getAdminUpdateForm.php:16
 #: ajax_forms/getDetailSubjectUpdateForm.php:16
@@ -913,7 +942,7 @@ msgstr "Modifier un utilisateur"
 
 #: ajax_forms/getAdminUserUpdateForm.php:21
 msgid "Add New User"
-msgstr "Ajouter un nouvel utilisateur"
+msgstr "Ajouter un utilisateur"
 
 #: ajax_forms/getAdminUserUpdateForm.php:32
 #: ajax_htmldata/getAdminUserDisplay.php:22
@@ -949,7 +978,7 @@ msgstr "Afficher les comptes"
 
 #: ajax_forms/getAdminWorkflowForm.php:42
 msgid "Edit Workflow"
-msgstr "Modifier le Workflow"
+msgstr "Modifier le workflow"
 
 #: ajax_forms/getAdminWorkflowForm.php:51
 msgid "Resource Entry Requirements"
@@ -974,7 +1003,7 @@ msgstr "Type :"
 
 #: ajax_forms/getAdminWorkflowForm.php:114
 msgid "Workflow Steps"
-msgstr "Étapes du Workflow"
+msgstr "Étapes du workflow"
 
 #: ajax_forms/getAdminWorkflowForm.php:123 ajax_forms/getAttachmentForm.php:27
 #: ajax_forms/getContactForm.php:43 ajax_forms/getImportSaveCfgForm.php:16
@@ -1092,7 +1121,7 @@ msgstr "Type"
 
 #: ajax_forms/getCostForm.php:78 ajax_forms/getImportConfigForm.php:146
 #: ajax_forms/getImportConfigForm.php:160
-#: ajax_forms/getImportConfigForm.php:265
+#: ajax_forms/getImportConfigForm.php:269
 msgid "Note"
 msgstr "Remarque"
 
@@ -1102,7 +1131,7 @@ msgstr "Facture"
 
 #: ajax_forms/getGeneralDetailSubjectForm.php:18
 msgid "Add / Edit Subject Relationships"
-msgstr "Ajouter / modifier des liens entre les sujets"
+msgstr "Ajouter / modifier les liens entre sujets"
 
 #: ajax_forms/getGeneralDetailSubjectForm.php:27
 #: ajax_htmldata/getAdminSubjectDisplay.php:98 index.php:269
@@ -1152,7 +1181,7 @@ msgid "Alias Sets"
 msgstr "Ensembles d'alias"
 
 #: ajax_forms/getImportConfigForm.php:56 ajax_forms/getImportConfigForm.php:70
-#: ajax_forms/getImportConfigForm.php:241
+#: ajax_forms/getImportConfigForm.php:245
 msgid "Alias"
 msgstr "Alias"
 
@@ -1161,9 +1190,9 @@ msgstr "Alias"
 #: ajax_forms/getImportConfigForm.php:131
 #: ajax_forms/getImportConfigForm.php:156
 #: ajax_forms/getImportConfigForm.php:166
-#: ajax_forms/getImportConfigForm.php:241
-#: ajax_forms/getImportConfigForm.php:259
-#: ajax_forms/getImportConfigForm.php:265
+#: ajax_forms/getImportConfigForm.php:245
+#: ajax_forms/getImportConfigForm.php:263
+#: ajax_forms/getImportConfigForm.php:269
 msgid "If delimited, delimited by"
 msgstr "Si délimité, délimiter par"
 
@@ -1176,7 +1205,7 @@ msgid "Resource Parents"
 msgstr "Ressources principales"
 
 #: ajax_forms/getImportConfigForm.php:85 ajax_forms/getImportConfigForm.php:89
-#: ajax_forms/getImportConfigForm.php:247
+#: ajax_forms/getImportConfigForm.php:251
 msgid "Parent Resource"
 msgstr "Ressource principale"
 
@@ -1190,15 +1219,15 @@ msgstr "Ensembles ISBN/ISSN"
 
 #: ajax_forms/getImportConfigForm.php:103
 #: ajax_forms/getImportConfigForm.php:108
-#: ajax_forms/getImportConfigForm.php:253
+#: ajax_forms/getImportConfigForm.php:257
 msgid "ISBN or ISSN"
 msgstr "ISBN ou ISSN"
 
 #: ajax_forms/getImportConfigForm.php:104
 #: ajax_forms/getImportConfigForm.php:109
-#: ajax_forms/getImportConfigForm.php:253
+#: ajax_forms/getImportConfigForm.php:257
 msgid "Dedupe on this column"
-msgstr "Dédoublonner dans cette colonne"
+msgstr "Dédupliquer sur cette colonne"
 
 #: ajax_forms/getImportConfigForm.php:112
 msgid "+ Add another ISBN or ISSN set"
@@ -1210,7 +1239,7 @@ msgstr "Ensembles de sujets"
 
 #: ajax_forms/getImportConfigForm.php:125
 #: ajax_forms/getImportConfigForm.php:130
-#: ajax_forms/getImportConfigForm.php:259
+#: ajax_forms/getImportConfigForm.php:263
 msgid "Subject"
 msgstr "Sujet"
 
@@ -1232,7 +1261,7 @@ msgstr "Ensembles d'organisations"
 
 #: ajax_forms/getImportConfigForm.php:182
 #: ajax_forms/getImportConfigForm.php:194
-#: ajax_forms/getImportConfigForm.php:271
+#: ajax_forms/getImportConfigForm.php:275
 msgid "Organization"
 msgstr "Organisation"
 
@@ -1240,15 +1269,45 @@ msgstr "Organisation"
 msgid "+ Add another organization set"
 msgstr "+ Ajouter un autre ensemble d'organisations"
 
-#: ajax_forms/getImportConfigForm.php:208
-msgid "Text in CSV File"
-msgstr "Texte du fichier CSV"
+#: ajax_forms/getImportConfigForm.php:206
+msgid "Organization Name Mapping"
+msgstr "Mappage du nom de l'organisation"
 
-#: ajax_forms/getImportConfigForm.php:209
-msgid "Will Change To"
-msgstr "Sera remplacé par"
+#: ajax_forms/getImportConfigForm.php:207
+msgid ""
+"Use these mappings to normalize different variations of an organization’s "
+"name to a single value. For example, you could have a publisher with three "
+"variations of their name across your import file: PublisherHouse, "
+"PublisherH, and PH. You could create a mapping for each one and normalize "
+"them all to PublisherHouse, to prevent duplicate organizations from being "
+"created. Each column that is added to an Organization set above is checked "
+"against the complete list of mappings that you create. "
+msgstr ""
+"Utilisez ces mappages pour normaliser les différentes variations du nom "
+"d’une organisation en une seule valeur. Par exemple, un éditeur pourrait "
+"avoir trois variantes de nom dans votre fichier importé : EditionBleue, "
+"EditionB et EB. Vous pouvez créer un mappage pour chaque variation et les "
+"normaliser toutes à EditionBleue, pour éviter la création d’organisations "
+"dupliquées. Chaque colonne ajoutée à un ensemble d’Organisations ci-dessus "
+"est comparée à la liste complète des mappages que vous avez créés."
 
-#: ajax_forms/getImportConfigForm.php:226
+#: ajax_forms/getImportConfigForm.php:207
+msgid "PCRE regular expressions"
+msgstr "Expressions régulières PCRE"
+
+#: ajax_forms/getImportConfigForm.php:207
+msgid " are supported for these mappings."
+msgstr " sont supportées avec ces mappages."
+
+#: ajax_forms/getImportConfigForm.php:211
+msgid "Organization Name"
+msgstr "Nom d'organisation"
+
+#: ajax_forms/getImportConfigForm.php:212
+msgid "Will Be Mapped To"
+msgstr "Sera mappé à"
+
+#: ajax_forms/getImportConfigForm.php:229
 msgid "+ Add another mapping"
 msgstr "+ Ajouter un autre mappage"
 
@@ -1391,7 +1450,7 @@ msgstr "Ajouter"
 
 #: ajax_forms/getNewIssueForm.php:77
 msgid "Current CCs:"
-msgstr "Adresses mails ajoutées en CC :"
+msgstr "Adresses emails ajoutées en CC :"
 
 #: ajax_forms/getNewIssueForm.php:84 ajax_htmldata/getIssuesList.php:58
 msgid "Subject:"
@@ -1419,7 +1478,7 @@ msgstr "S'applique aux personnes sélectionnées"
 
 #: ajax_forms/getNewIssueForm.php:124
 msgid "Send me a reminder every"
-msgstr "Envoyez-moi un rappel tous les"
+msgstr "Envoyer-moi un rappel tous les"
 
 #: ajax_forms/getNewIssueForm.php:141
 msgid ""
@@ -1470,7 +1529,7 @@ msgstr "Remarques"
 
 #: ajax_forms/getNewResourceForm.php:278
 msgid "Include any additional information"
-msgstr "Ajoutez toute information supplémentaire"
+msgstr "Ajoutez des informations supplémentaires"
 
 #: ajax_forms/getNoteForm.php:18
 msgid "Edit Note"
@@ -1614,7 +1673,7 @@ msgstr "Action des données "
 
 #: ajax_htmldata/getAccessDetails.php:31 summary.php:611
 msgid "Access Information"
-msgstr "Accéder aux Informations"
+msgstr "Accéder aux informations"
 
 #: ajax_htmldata/getAccessDetails.php:35 ajax_htmldata/getAccessDetails.php:170
 #: ajax_htmldata/getAccountDetails.php:44
@@ -1757,7 +1816,7 @@ msgstr "Affichage du catalogue"
 
 #: ajax_htmldata/getAcquisitionsDetails.php:139
 msgid "Purchasing Sites:"
-msgstr "Site(s) d'achat(s) :"
+msgstr "Sites d'achats :"
 
 #: ajax_htmldata/getAcquisitionsDetails.php:155 summary.php:475
 msgid "Expiration Alert Enabled"
@@ -1831,7 +1890,7 @@ msgstr "Ajouter des jours"
 
 #: ajax_htmldata/getAdminCurrencyDisplay.php:38
 msgid "add new currency"
-msgstr "Ajouter une nouvelle devise monétaire"
+msgstr "Ajouter une devise monétaire"
 
 #: ajax_htmldata/getAdminDisplay.php:16
 #: ajax_htmldata/getAdminSubjectDisplay.php:57
@@ -1845,6 +1904,10 @@ msgstr "Valeur"
 #: ajax_htmldata/getGeneralSubjectDisplay.php:38
 msgid "add new "
 msgstr "Ajouter "
+
+#: ajax_htmldata/getAdminImportConfigDisplay.php:34
+msgid "add new import configuration"
+msgstr "Ajouter une configuration importée"
 
 #: ajax_htmldata/getAdminSubjectDisplay.php:51
 #: ajax_htmldata/getAdminSubjectDisplay.php:99 index.php:300
@@ -1862,7 +1925,7 @@ msgstr "Modifier un utilisateur"
 #: ajax_htmldata/getAdminUserDisplay.php:54
 #: ajax_htmldata/getAdminUserDisplay.php:58
 msgid "add new user"
-msgstr "Ajouter un nouvel utilisateur"
+msgstr "Ajouter un utilisateur"
 
 #: ajax_htmldata/getAdminWorkflowDisplay.php:10
 msgid "Workflow Setup"
@@ -1875,8 +1938,7 @@ msgstr "Ajouter un workflow"
 #: ajax_htmldata/getAdminWorkflowDisplay.php:56
 msgid "You must set up at least one user group before you can add workflows"
 msgstr ""
-"Vous devez configurer au moins un groupe d'utilisateurs avant d'ajouter des "
-"workflows"
+"Configurez au moins un groupe d'utilisateurs avant d'ajouter des workflows"
 
 #: ajax_htmldata/getAdminWorkflowDisplay.php:66
 msgid "User Group Setup"
@@ -1908,7 +1970,7 @@ msgstr "Aucune pièce jointe disponible"
 
 #: ajax_htmldata/getAttachmentDetails.php:72
 msgid "add new attachment"
-msgstr "Ajouter une nouvelle pièce jointe"
+msgstr "Ajouter une pièce jointe"
 
 #: ajax_htmldata/getContactDetails.php:23
 msgid "The following are archived contacts:"
@@ -1960,7 +2022,7 @@ msgstr "Temps d'indisponibilité résolu :"
 
 #: ajax_htmldata/getDowntimeList.php:28
 msgid "Linked issue:"
-msgstr "Incident rattaché :"
+msgstr "Incident associé :"
 
 #: ajax_htmldata/getDowntimeList.php:49 ajax_htmldata/getIssuesList.php:72
 msgid "Organizational"
@@ -1988,11 +2050,11 @@ msgstr "Signaler un nouvel incident"
 
 #: ajax_htmldata/getIssues.php:24
 msgid "view open issues"
-msgstr "voir les incidents ouverts"
+msgstr "Voir les incidents ouverts"
 
 #: ajax_htmldata/getIssues.php:31
 msgid "view archived issues"
-msgstr "voir les incidents archivés"
+msgstr "Voir les incidents archivés"
 
 #: ajax_htmldata/getIssues.php:40
 msgid "Downtime"
@@ -2004,15 +2066,15 @@ msgstr "Signaler un nouveau temps d'indisponibilité"
 
 #: ajax_htmldata/getIssues.php:47
 msgid "view current/upcoming downtime"
-msgstr "voir les temps d'indisponibilité actuels/à venir"
+msgstr "Voir les temps d'indisponibilité actuels/à venir"
 
 #: ajax_htmldata/getIssues.php:54
 msgid "view archived downtime"
-msgstr "voir le temps d'indisponibilité archivé"
+msgstr "Voir le temps d'indisponibilité archivé"
 
 #: ajax_htmldata/getIssuesList.php:15
 msgid "close"
-msgstr "fermer"
+msgstr "Fermer"
 
 #: ajax_htmldata/getIssuesList.php:17 ajax_htmldata/getIssuesList.php:19
 msgid "downtime"
@@ -2050,7 +2112,7 @@ msgstr "Aucune demande en attente"
 #: ajax_htmldata/getSearchResources.php:112
 #: ajax_htmldata/getSubmittedQueue.php:14
 msgid "ID"
-msgstr "Identifiant/numéro"
+msgstr "Identifiant"
 
 #: ajax_htmldata/getOutstandingQueue.php:22 index.php:571
 msgid "Routing Step"
@@ -2071,11 +2133,11 @@ msgstr "Supprimer la ressource et ses éléments subsidiaires"
 
 #: ajax_htmldata/getProductDetails.php:75 summary.php:206
 msgid "Record ID:"
-msgstr "Numéro/identifiant de fiche :"
+msgstr "Numéro de fiche :"
 
 #: ajax_htmldata/getProductDetails.php:115 summary.php:218
 msgid "Created:"
-msgstr "Créé le :"
+msgstr "Créée le :"
 
 #: ajax_htmldata/getProductDetails.php:140 summary.php:244
 msgid "Last Update:"
@@ -2088,7 +2150,7 @@ msgstr "Produits associés :"
 #: ajax_htmldata/getProductDetails.php:173
 #: ajax_htmldata/getProductDetails.php:181
 msgid "view resource"
-msgstr "afficher la ressource"
+msgstr "Afficher la ressource"
 
 #: ajax_htmldata/getProductDetails.php:173
 #: ajax_htmldata/getProductDetails.php:181
@@ -2114,7 +2176,7 @@ msgstr "Aller à l'URL de la ressource"
 
 #: ajax_htmldata/getProductDetails.php:258
 msgid "Visit Secondary Resource URL"
-msgstr "Aller à l'URL secondaire de la source"
+msgstr "Aller à l'URL secondaire de la ressource"
 
 #: ajax_htmldata/getProductDetails.php:273
 msgid "edit product details"
@@ -2172,12 +2234,12 @@ msgstr ""
 msgid ""
 "If you think this is in error, please contact your workflow administrator."
 msgstr ""
-"Si vous pensez qu'il s'agit d'une erreur, contactez votre administrateur "
+"Si vous pensez qu'il s'agit d'une erreur, contactez votre administrateur de "
 "workflows."
 
 #: ajax_htmldata/getRoutingDetails.php:15
 msgid "Not entered into workflow."
-msgstr "N'a pas été entré dans le workflow."
+msgstr "Non-entré dans le workflow."
 
 #: ajax_htmldata/getRoutingDetails.php:21
 msgid "Step"
@@ -2211,7 +2273,7 @@ msgstr "Redémarrer le workflow"
 
 #: ajax_htmldata/getRoutingDetails.php:96
 msgid "mark entire workflow complete"
-msgstr "Marquer le workflow entier comme terminé"
+msgstr "Marquer tout le workflow comme Terminé"
 
 #: ajax_htmldata/getSavedQueue.php:6 queue.php:52
 msgid "Saved Requests"
@@ -2301,7 +2363,7 @@ msgstr ""
 
 #: ajax_processing/deleteImportConfig.php:7
 msgid "Import configuration successfully deleted."
-msgstr "Configuration importée supprimée avec succès."
+msgstr "La configuration importée a été supprimée avec succès."
 
 #: ajax_processing/deleteInstance.php:12
 msgid "Unable to delete  - this "
@@ -2366,7 +2428,7 @@ msgstr "Le fichier a été téléchargé avec succès."
 #: import.php:52 importFunds.php:31
 msgid "Unable to get columns headers from the file"
 msgstr ""
-"Impossible d'obtenir les noms des en-têtes de colonnes à partir du fichier"
+"Impossible d'obtenir les noms des en-têtes de colonne à partir du fichier"
 
 #: import.php:58 importFunds.php:34
 msgid "Unable to open the uploaded file"
@@ -2381,94 +2443,124 @@ msgid "Error: "
 msgstr "Erreur : "
 
 #: import.php:71
-msgid "Please select the import configuration to load: "
-msgstr "Veuillez sélectionner la configuration importée à charger :"
+msgid ""
+"If you have not previously created an Import Configuration, then for each of "
+"the resource fields please input the number of the column in your CSV file "
+"that corresponds to the resource field. For example, if your import file has "
+"a second column called Name that corresponds to the Resource Title, then you "
+"would input 2 for the value for the Resource Title field. For columns with "
+"multiple values that are character-delimited, indicate the delimiter using "
+"the If delimited, delimited by field. For fields with values across multiple "
+"columns, add additional sets using the +Add another links. Use the Dedupe on "
+"this column option for ISBN/ISSN sets to ignore any duplicate values that "
+"might occur across those columns. The Alias Types, Note Types, and "
+"Organization Roles that you can assign to your mapped columns can be "
+"configured on the Admin page."
+msgstr ""
+"Si vous n’avez pas créé précédemment de Configuration d’importation, pour "
+"chaque champ de ressource veuillez entrer le numéro de la colonne de votre "
+"fichier CSV qui correspond au champ de la ressource. Par exemple, si votre "
+"fichier importé a une deuxième colonne nommée Nom qui correspond au Titre de "
+"la ressource, entrez 2 comme valeur dans le champ Titre de la ressource. "
+"Pour les colonnes comportant plusieurs valeurs délimitées par des "
+"caractères, indiquez le délimiteur en sélectionnant l’option Si délimité, "
+"Délimité par champ. Pour les champs ayant des valeurs dans plusieurs "
+"colonnes, ajoutez des ensembles de données supplémentaires en cliquant sur "
+"les liens +Ajouter. Utilisez la fonction Dédupliquer sur cette colonne pour "
+"les ensembles ISBN/ISSN pour ignorer les éventuelles valeurs dupliquées qui "
+"pourraient apparaître dans ces colonnes. Les Types d’alias, les Types de "
+"remarques et les Rôles d’organisation que vous pouvez attribuer à vos "
+"colonnes mappées peuvent être paramétrées dans la page Administration."
 
 #: import.php:72
+msgid "Please select the import configuration to load: "
+msgstr "Veuillez sélectionner la configuration importée à charger : "
+
+#: import.php:73
 msgid "Select Configuration"
 msgstr "Sélectionnez une configuration"
 
-#: import.php:79
+#: import.php:80
 msgid "Please choose columns from your CSV file:"
 msgstr "Choisissez les colonnes de votre fichier CSV :"
 
-#: import.php:258
+#: import.php:259
 msgid "Settings"
 msgstr "Paramètres"
 
-#: import.php:259
+#: import.php:260
 msgid "Importing and deduping isbnOrISSN on the following columns: "
-msgstr "Importer et dédoublonner isbnOrISSN dans les colonnes suivantes : "
+msgstr "Importer et dédoublonner isbnOuISSN dans les colonnes suivantes : "
 
-#: import.php:508
+#: import.php:509
 msgid "Organization "
 msgstr "Organisation "
 
-#: import.php:508
+#: import.php:509
 msgid " could not be added."
-msgstr " n'a pas pu être ajouté."
+msgstr " n'a pu être ajouté."
 
-#: import.php:521 import.php:545
+#: import.php:522 import.php:546
 msgid "Error: more than one organization is called "
 msgstr "Erreur : Plusieurs organisations ont le même nom "
 
-#: import.php:521
+#: import.php:522
 msgid ". Please consider deduping."
 msgstr ". Pensez à supprimer les doublons."
 
-#: import.php:545
+#: import.php:546
 msgid " Please consider deduping."
 msgstr " Pensez à supprimer les doublons."
 
-#: import.php:611 importFunds.php:52
+#: import.php:612 importFunds.php:52
 msgid "Results"
 msgstr "Résultats"
 
-#: import.php:612
+#: import.php:613
 msgid " rows have been processed. "
 msgstr " lignes ont été traitées. "
 
-#: import.php:612
+#: import.php:613
 msgid " rows have been inserted."
 msgstr " lignes ont été ajoutées."
 
-#: import.php:613
+#: import.php:614
 msgid " parents have been created. "
 msgstr " principales ont été créées. "
 
-#: import.php:613
+#: import.php:614
 msgid " resources have been attached to an existing parent."
 msgstr " ressources ont été rattachées à une ressource principale existante."
 
-#: import.php:614
+#: import.php:615
 msgid " organizations have been created"
 msgstr " organisations ont été créées"
 
-#: import.php:624
+#: import.php:625
 msgid " resources have been attached to an existing organization."
 msgstr " ressources ont été rattachées à une organisation existante."
 
-#: import.php:625
+#: import.php:626
 msgid " resource types have been created"
 msgstr " types de ressource ont été créés"
 
-#: import.php:626
+#: import.php:627
 msgid " resource formats have been created"
 msgstr " formats de ressources ont été créés"
 
-#: import.php:627
+#: import.php:628
 msgid " general subjects have been created"
 msgstr " sujets généraux ont été créés"
 
-#: import.php:628
+#: import.php:629
 msgid " aliases have been created"
 msgstr " alias ont été créés"
 
-#: import.php:629
+#: import.php:630
 msgid " notes have been created"
 msgstr " remarques ont été créées"
 
-#: import.php:635
+#: import.php:636
 msgid ""
 "The first line of the CSV file must contain column names, and not data. "
 "These names will be used during the import process."
@@ -2476,35 +2568,35 @@ msgstr ""
 "La première ligne du fichier CSV doit contenir des noms de colonnes et non "
 "des données. Ces noms seront utilisés pendant le processus d'importation."
 
-#: import.php:638
+#: import.php:639
 msgid "File selection"
 msgstr "Sélection du fichier"
 
-#: import.php:639
+#: import.php:640
 msgid "CSV File"
 msgstr "Fichier CSV"
 
-#: import.php:643
+#: import.php:644
 msgid "Import options"
 msgstr "Options d'importation"
 
-#: import.php:644
+#: import.php:645
 msgid "CSV delimiter"
 msgstr "Délimiteur CSV"
 
-#: import.php:646
+#: import.php:647
 msgid "(comma)"
 msgstr "(virgule)"
 
-#: import.php:647
+#: import.php:648
 msgid "(semicolon)"
 msgstr "(point-virgule)"
 
-#: import.php:648
+#: import.php:649
 msgid "(pipe)"
 msgstr "(barre verticale)"
 
-#: import.php:651
+#: import.php:652
 msgid "Upload"
 msgstr "Télécharger"
 
@@ -2551,7 +2643,7 @@ msgstr "(aucun)"
 
 #: index.php:260
 msgid "Record ID"
-msgstr "identifiant/numéro de la notice"
+msgstr "Numéro de notice"
 
 #: index.php:331
 msgid "Starts with"
@@ -2611,7 +2703,7 @@ msgstr "Nombre de fiches disponibles"
 
 #: resources/cataloging.php:142 summary.php:764
 msgid "# Records Available:"
-msgstr "# fiches disponibles :"
+msgstr "Nbre de fiches disponibles :"
 
 #: resources/cataloging.php:147
 msgid "Number of Records Loaded"
@@ -2619,7 +2711,7 @@ msgstr "Nombre de fiches chargées"
 
 #: resources/cataloging.php:148 summary.php:770
 msgid "# Records Loaded:"
-msgstr "# fiches chargées :"
+msgstr "Nbre de fiches chargées :"
 
 #: resources/cataloging.php:153 summary.php:776
 msgid "OCLC Holdings:"
@@ -2659,11 +2751,11 @@ msgstr "URL de la source "
 
 #: resources/cataloging_edit.php:68
 msgid "# Records Available"
-msgstr "# Fiches disponibles"
+msgstr "Nbre de fiches disponibles"
 
 #: resources/cataloging_edit.php:75
 msgid "# Records Loaded"
-msgstr "# Fiches chargées"
+msgstr "Nbre de fiches chargées"
 
 #: resources/cataloging_edit.php:82
 msgid "OCLC Holdings"
@@ -2671,7 +2763,7 @@ msgstr "Fonds OCLC"
 
 #: sendAlerts.php:76
 msgid "No Resources found fitting alert day criteria"
-msgstr "Aucune ressource ne répond aux critères de messages journaliers"
+msgstr "Aucune ressource ne répond aux critères de messages de jours"
 
 #: sendAlerts.php:98
 msgid "No Issues found fitting alert day criteria"
@@ -2691,7 +2783,7 @@ msgstr ""
 
 #: summary.php:34
 msgid " Summary"
-msgstr " Resumé"
+msgstr " Résumé"
 
 #: summary.php:275
 msgid "(Parent)"
@@ -2751,13 +2843,13 @@ msgstr "Se déconnecter"
 msgid "Help"
 msgstr "Aide"
 
-#: templates/header.php:108
-msgid "(Test)"
-msgstr "(Test)"
-
-#: templates/header.php:199
+#: templates/header.php:124
 msgid "Invalid translation route!"
 msgstr "Chemin d'accès aux traductions invalide !"
+
+#: templates/header.php:152
+msgid "(Test)"
+msgstr "(Test)"
 
 #: user.php:101
 msgid ""
@@ -2766,6 +2858,12 @@ msgid ""
 msgstr ""
 "La connexion ne fonctionne pas. Vérifiez le fichier .htaccess et la valeur "
 "remoteAuthVariableName indiquée dans le fichier /admin/configuration.ini"
+
+#~ msgid "Text in CSV File"
+#~ msgstr "Texte du fichier CSV"
+
+#~ msgid "Will Change To"
+#~ msgstr "Sera remplacé par"
 
 #~ msgid "French"
 #~ msgstr "Français"

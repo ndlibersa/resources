@@ -416,7 +416,7 @@ ul.tabs li{
 	display: table-cell;
 	float: left;
 	position: relative;
-	width: 150px;
+	width: 166px;
 	height: 40px;
 }
 
@@ -2371,8 +2371,11 @@ td#setLanguage {
 
 select#lang {
     border: none;
-    margin-left: 10px;
+    margin-left: 6px;
     background-color: #fff;
+    position: relative;
+    top: 3px;
+    font-size: 12px;
 }
 
 /*--- Issues Section ---*/
@@ -3013,4 +3016,33 @@ a.save-button
 img[src*="arrowdown.png"] {
     padding-left: 3px;
 }
- 
+
+#regexLink {
+	margin: 0 !important;
+	padding: 0 !important;
+	display: inline !important;
+	font-weight: normal !important;
+}
+
+#resource_organization p {
+	margin: 15px !important;
+}
+
+#importDesc {
+	margin: 15px !important;
+	text-align: left;
+	padding: 0 15px;
+}
+
+/*--- Main Menu Spacing Fixes ---*/
+
+span#divider {
+	position: relative;
+	top: 3px;
+}
+
+/*--- Import Config Paragraph Padding ---*/
+
+#ic-instructions {
+	padding-left: 10px !important;
+}

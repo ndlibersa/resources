@@ -68,6 +68,7 @@
 		}
 		else
 		{
+			print "<p id='importDesc'>" . _("If you have not previously created an Import Configuration, then for each of the resource fields please input the number of the column in your CSV file that corresponds to the resource field. For example, if your import file has a second column called Name that corresponds to the Resource Title, then you would input 2 for the value for the Resource Title field. For columns with multiple values that are character-delimited, indicate the delimiter using the If delimited, delimited by field. For fields with values across multiple columns, add additional sets using the +Add another links. Use the Dedupe on this column option for ISBN/ISSN sets to ignore any duplicate values that might occur across those columns. The Alias Types, Note Types, and Organization Roles that you can assign to your mapped columns can be configured on the Admin page.");
 			print "<p>" . _("Please select the import configuration to load: ") . "<select id='importConfiguration'>";
 			print "<option value='' disabled selected>" . _("Select Configuration") . "</option>";
 			foreach($importConfigInstanceArray as $importConfiguration)

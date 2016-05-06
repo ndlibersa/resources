@@ -13,7 +13,7 @@
 
 	$configuration=json_decode($instance->configuration,true);
 ?>
-<div id='div_updateForm'>
+<div id='div_updateForm' style='height: 700px;'>
 	<input type='hidden' id='importConfigID' value='<?php echo $updateID; ?>'>
 	<div class='formTitle' style='min-width:1000px;'>
 		<span class='headerText' style='margin-left:7px;'>

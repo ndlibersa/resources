@@ -19,7 +19,7 @@
 				foreach($instanceArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
-					echo "<td><a href='ajax_forms.php?action=getAdminImportConfigUpdateForm&updateID=" . $instance['importConfigID'] . "&height=760&width=1024&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
+					echo "<td><a href='ajax_forms.php?action=getAdminImportConfigUpdateForm&updateID=" . $instance['importConfigID'] . "&height=700&width=1024&modal=true' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a></td>";
 					echo "<td><a href='javascript:deleteImportConfig(\"ImportConfig\", \"" . $instance['importConfigID'] . "\");'><img src='images/cross.gif' alt='remove' title='remove'></a></td>";
 					echo "</tr>";
 				}

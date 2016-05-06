@@ -2750,7 +2750,7 @@ a#archiveddowntimeBtn {
 }
 
 div.ic-content {
-	height: 700px;
+	height: 550px;
 	width: 1024px;
 	overflow-y: auto;
 	overflow-x: hidden;

@@ -3084,11 +3084,13 @@ span#divider {
 	padding: 13px 0 12px;
     color: #fff;
     height: initial;
+    text-align: center;
 }
 
 #change-mod-menu img {
-    margin-right: 8px;
-    vertical-align: middle;
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 
 #change-mod-menu .fa-chevron-down {
@@ -3101,6 +3103,7 @@ span#divider {
 li.change-mod-item {
     background: #4d4d4d;
     height: initial !important;
+    text-align: left;
 }
 
 li.change-mod-item a {
@@ -3109,6 +3112,9 @@ li.change-mod-item a {
     font-size: 14px;
     padding: 10px !important;
     margin: 0;
+    line-height: 18px !important;
+    position: relative !important;
+    padding-left: 35px !important;
 }
 
 .change-mod-item a span {

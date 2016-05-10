@@ -3046,3 +3046,81 @@ span#divider {
 #ic-instructions {
 	padding-left: 10px !important;
 }
+
+/*--- Newly Designed Main Menu ---*/
+
+.main-menu-link {
+    float: left;
+    padding: 13px 10px 12px;
+    border-left: solid 1px #5295BA;
+}
+
+#main-menu-titles a:first-child .main-menu-link {
+    border: none;
+}
+
+.main-menu-link:hover {
+	background: #4d4d4d;
+}
+
+.main-menu-link.active {
+    background: #3999c2;
+}
+
+.main-menu-link span {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.main-menu-link img {
+    margin-right: 6px;
+}
+
+/*--- Change Module Menu ---*/
+
+#change-mod-menu {
+	padding: 13px 0 12px;
+    color: #fff;
+    height: initial;
+}
+
+#change-mod-menu img {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#change-mod-menu .fa-chevron-down {
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+    margin-left: 8px;
+}
+
+li.change-mod-item {
+    background: #4d4d4d;
+    height: initial !important;
+}
+
+li.change-mod-item a {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px !important;
+    margin: 0;
+}
+
+.change-mod-item a span {
+    position: relative;
+    top: 1px;
+}
+
+#change-mod-menu span {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+li.change-mod-item:hover {
+    background-color: none !important;
+}

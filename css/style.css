@@ -2250,12 +2250,12 @@ input#stats {
 		margin-left: 5px;
 }
 
-/*--- Capitalize Logout Link ---*/
+/*--- Capitalize Logout Link ---
 
 .titleTable a {
 		text-transform: capitalize;
 }
-
+*/
 /*--- Decorate Pagination Links ---*/
 
 a.smallLink {

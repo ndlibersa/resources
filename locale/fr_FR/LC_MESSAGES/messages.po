@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-05-10 14:55-0600\n"
-"PO-Revision-Date: 2016-05-10 14:55-0600\n"
+"POT-Creation-Date: 2016-05-11 12:55-0600\n"
+"PO-Revision-Date: 2016-05-11 12:56-0600\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -615,7 +615,7 @@ msgstr "Type de commande"
 msgid "Organization Role"
 msgstr "Rôle de l'organisation"
 
-#: admin.php:84 templates/header.php:221
+#: admin.php:84 templates/header.php:224
 msgid "Organizations"
 msgstr "Organisations"
 
@@ -2033,6 +2033,7 @@ msgid "There are no organization level downtimes."
 msgstr "Il n'y aucun temps d'indisponibilité au niveau organisationnel."
 
 #: ajax_htmldata/getDowntimeList.php:74 ajax_htmldata/getIssuesList.php:97
+#: templates/header.php:95
 msgid "Resources"
 msgstr "Ressources"
 
@@ -2608,7 +2609,7 @@ msgstr "lignes ont été traitées."
 msgid "import"
 msgstr "Importer"
 
-#: index.php:26 templates/header.php:164
+#: index.php:26 templates/header.php:167
 msgid "Home"
 msgstr "Accueil"
 
@@ -2665,7 +2666,7 @@ msgstr "et"
 msgid "Purchase Site"
 msgstr "Site d'achat"
 
-#: queue.php:22 queue.php:40 templates/header.php:179
+#: queue.php:22 queue.php:40 templates/header.php:182
 msgid "My Queue"
 msgstr "Ma file d'attente"
 
@@ -2831,55 +2832,43 @@ msgstr ""
 msgid "try again"
 msgstr "réessayez à nouveau"
 
-#: templates/header.php:94
-msgid "Hello, "
-msgstr "Bonjour, "
+#: templates/header.php:96
+msgid "Powered by"
+msgstr "Alimenté par"
 
-#: templates/header.php:106
-msgid "logout"
-msgstr "Se déconnecter"
-
-#: templates/header.php:106
-msgid "Help"
-msgstr "Aide"
-
-#: templates/header.php:124
+#: templates/header.php:130
 msgid "Invalid translation route!"
 msgstr "Chemin d'accès aux traductions invalide !"
 
-#: templates/header.php:152
-msgid "(Test)"
-msgstr "(Test)"
-
-#: templates/header.php:172
+#: templates/header.php:175
 msgid "New Resource"
 msgstr "Nouvelle ressource"
 
-#: templates/header.php:186
+#: templates/header.php:189
 msgid "File Import"
 msgstr "Importer"
 
-#: templates/header.php:194
+#: templates/header.php:197
 msgid "Admin"
 msgstr "Administration"
 
-#: templates/header.php:213
+#: templates/header.php:216
 msgid "Change Module"
 msgstr "Changer de module"
 
-#: templates/header.php:216
+#: templates/header.php:219
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: templates/header.php:226
+#: templates/header.php:229
 msgid "Licensing"
 msgstr "Licensing"
 
-#: templates/header.php:231
+#: templates/header.php:234
 msgid "Usage Statistics"
 msgstr "Statistiques d'utilisation"
 
-#: templates/header.php:236
+#: templates/header.php:239
 msgid "Management"
 msgstr "Gestion"
 
@@ -2890,6 +2879,18 @@ msgid ""
 msgstr ""
 "La connexion ne fonctionne pas. Vérifiez le fichier .htaccess et la valeur "
 "remoteAuthVariableName indiquée dans le fichier /admin/configuration.ini"
+
+#~ msgid "Hello, "
+#~ msgstr "Bonjour, "
+
+#~ msgid "logout"
+#~ msgstr "Se déconnecter"
+
+#~ msgid "Help"
+#~ msgstr "Aide"
+
+#~ msgid "(Test)"
+#~ msgstr "(Test)"
 
 #~ msgid "Usage Staistics"
 #~ msgstr "Statistiques d'utilisation"

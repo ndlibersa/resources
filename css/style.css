@@ -1053,7 +1053,7 @@ select option.changeSelect{
 
 .titleTable td {
 			height: 40px !important;
-			padding-top: 20px !important;
+			padding-top: 13px !important;
 }
 
 .titleTable td a {
@@ -3129,4 +3129,54 @@ li.change-mod-item a {
 
 li.change-mod-item:hover {
     background-color: none !important;
+}
+
+/*--- New Top Bar Titles ---*/
+
+#main-title {
+    font-size: 36px;
+    color: #6098A7;
+    font-family: "Open Sans";
+    font-weight: 100;
+    float: left;
+}
+
+#main-title span {
+	float: left;
+}
+
+#menu-login {
+	float: right;
+	text-align: right;
+}
+
+#main-title-text {
+    margin-left: 15px;
+}
+
+#powered-by-text img {
+    vertical-align: text-bottom;
+    margin-left: 7px;
+    float: none;
+}
+
+#powered-by-text {
+    color: #687FA1;
+    margin-top: 20px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#main-title > img {
+    margin-left: 15px;
+}
+
+table.titleTable {
+    border-collapse: collapse;
+}
+
+/*--- Main Table ---*/
+
+#main-table {
+    margin: 0 30px;
 }

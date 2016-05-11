@@ -76,87 +76,90 @@ $coralURL = $util->getCORALURL();
 
 <div class="wrapper">
 <center>
-<table>
+
+<table id="main-table">
+
 <tr>
 <td style='vertical-align:top;'>
 <div style="text-align:left;">
 
 <center>
-<table class="titleTable" style="background-image:url('images/resourcestitle.jpg');background-repeat:no-repeat;width:1024px;text-align:left;">
-<tr style='vertical-align:top;'>
-<td style='height:53px;'>
-&nbsp;
-</td>
-<td style='text-align:right;height:53px;' colspan='2'>
-<div style='margin-top:1px;'>
-<span class='smallText' style='color:#526972;'>
-<?php
-	echo _("Hello, ");
-	//user may not have their first name / last name set up
-	if ($user->lastName){
-		echo $user->firstName . " " . $user->lastName;
-	}else{
-		echo $user->loginID;
-	}
 
-?>
-</span>
-<br />
-<?php
-if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout' id='logout'>"._("logout")."</a><span id='divider'> | </span><a href='https://js-erm-helps.bc.sirsidynix.net' id='help' target='_blank'>"._("Help")."</a><span id='divider'> | </span>"; } ?>
+<table class="titleTable" style="width:1024px;text-align:left;">
 
-<span id="setLanguage">
-		<select name="lang" id="lang" class="dropDownLang">
-           <?php
-            // Get all translations on the 'locale' folder
-            $route='locale';
-            $lang[]="en_US"; // add default language
-            if (is_dir($route)) {
-                if ($dh = opendir($route)) {
-                    while (($file = readdir($dh)) !== false) {
-                        if (is_dir("$route/$file") && $file!="." && $file!=".."){
-                            $lang[]=$file;
-                        } 
-                    } 
-                    closedir($dh); 
-                } 
-            }else {
-                echo "<br>"._("Invalid translation route!"); 
-            }
-            // Get language of navigator
-            $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
-            
-            // Show an ordered list
-            sort($lang); 
-            for($i=0; $i<count($lang); $i++){
-                if(isset($_COOKIE["lang"])){
-                    if($_COOKIE["lang"]==$lang[$i]){
-                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
+    <tr style='vertical-align:top;'>
+        <td style='height:53px;' colspan='3'>
+                
+            <div id="main-title">
+                <img src="images/title-icon-resources.png" />
+                <span id="main-title-text"><?php echo _("Resources"); ?></span>
+                <span id="powered-by-text"><?php echo _("Powered by");?><img src="images/logo-coral.jpg" /></span>
+            </div>
+
+            <div id="menu-login" style='margin-top:1px;'>
+                <span class='smallText' style='color:#526972;'>
+                <?php
+                    echo "Hello, ";
+                    //user may not have their first name / last name set up
+                    if ($user->lastName){
+                        echo $user->firstName . " " . $user->lastName;
                     }else{
-                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
+                        echo $user->loginID;
                     }
-                }else{
-                    if($defLang==substr($lang[$i],0,2)){
-                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
-                    }else{
-                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
-                    }
-                }
-            }
-            ?>
-            
-        </select>
-</span>
+                ?>
+                </span><br />
 
-<?php if ($config->settings->testMode == 'Y') { ?>
-  <br><span style="color:red;font-size:90%;"><?php echo _("(Test)");?></span>
-<?php } ?>
-</div>
-</td>
-</tr>
+            <?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout' id='logout'>logout</a><span id='divider'> | </span><a href='https://js-erm-helps.bc.sirsidynix.net' id='help' target='_blank'>Help</a><span id='divider'> | </span>"; } ?>
+
+                <span id="setLanguage">
+                    <select name="lang" id="lang" class="dropDownLang">
+                       <?php
+                        // Get all translations on the 'locale' folder
+                        $route='locale';
+                        $lang[]="en_US"; // add default language
+                        if (is_dir($route)) {
+                            if ($dh = opendir($route)) {
+                                while (($file = readdir($dh)) !== false) {
+                                    if (is_dir("$route/$file") && $file!="." && $file!=".."){
+                                        $lang[]=$file;
+                                    } 
+                                } 
+                                closedir($dh); 
+                            } 
+                        }else {
+                            echo "<br>"._("Invalid translation route!"); 
+                        }
+                        // Get language of navigator
+                        $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+                        
+                        // Show an ordered list
+                        sort($lang); 
+                        for($i=0; $i<count($lang); $i++){
+                            if(isset($_COOKIE["lang"])){
+                                if($_COOKIE["lang"]==$lang[$i]){
+                                    echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
+                                }else{
+                                    echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
+                                }
+                            }else{
+                                if($defLang==substr($lang[$i],0,2)){
+                                    echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
+                                }else{
+                                    echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
+                                }
+                            }
+                        }
+                        ?>
+                        
+                    </select>
+                </span>
+            </div>
+
+        </td>
+    </tr>
 
 <tr style='vertical-align:top'>
-<td style='width:870px;height:19px;' colspan="2">
+<td style='width:870px;height:19px;' id="main-menu-titles" colspan="2">
 
     <a href='index.php'>
         <div class="main-menu-link <?php if ($currentPage == 'index.php') { echo "active"; } ?>">

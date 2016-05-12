@@ -100,7 +100,7 @@ $coralURL = $util->getCORALURL();
             <div id="menu-login" style='margin-top:1px;'>
                 <span class='smallText' style='color:#526972;'>
                 <?php
-                    echo "Hello, ";
+                    echo _("Hello") . ", ";
                     //user may not have their first name / last name set up
                     if ($user->lastName){
                         echo $user->firstName . " " . $user->lastName;
@@ -110,7 +110,7 @@ $coralURL = $util->getCORALURL();
                 ?>
                 </span><br />
 
-            <?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout' id='logout'>logout</a><span id='divider'> | </span><a href='https://js-erm-helps.bc.sirsidynix.net' id='help' target='_blank'>Help</a><span id='divider'> | </span>"; } ?>
+            <?php if($config->settings->authModule == 'Y'){ echo "<a href='" . $coralURL . "auth/?logout' id='logout'>" . _("logout") . "</a><span id='divider'> | </span><a href='https://js-erm-helps.bc.sirsidynix.net' id='help' target='_blank'>" . _("Help") . "</a><span id='divider'> | </span>"; } ?>
 
                 <span id="setLanguage">
                     <select name="lang" id="lang" class="dropDownLang">

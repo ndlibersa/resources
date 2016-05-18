@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-05-12 14:11-0600\n"
-"PO-Revision-Date: 2016-05-12 14:11-0600\n"
+"POT-Creation-Date: 2016-05-18 08:43-0600\n"
+"PO-Revision-Date: 2016-05-18 08:43-0600\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -1479,6 +1479,10 @@ msgstr "S'applique aux personnes sélectionnées"
 #: ajax_forms/getNewIssueForm.php:124
 msgid "Send me a reminder every"
 msgstr "Envoyer-moi un rappel tous les"
+
+#: ajax_forms/getNewIssueForm.php:127
+msgid "day(s)"
+msgstr "jour(s)"
 
 #: ajax_forms/getNewIssueForm.php:141
 msgid ""

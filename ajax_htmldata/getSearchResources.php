@@ -49,7 +49,9 @@
 			}
 
 			//div for displaying record count
-			echo "<span style='float:left; font-weight:bold; width:650px;'>"._("Displaying ") . $displayStartingRecNumber . _(" to ") . $displayEndingRecNumber . _(" of ") . $totalRecords . _(" Resource Records")."</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
+			echo "<span style='float:left; font-weight:bold; width:650px;'>";
+				echo sprintf(ngettext('Displaying %d to %d of %d Resource Record', 'Displaying %d to %d of %d Resource Records', $totalRecords), $displayStartingRecNumber, $displayEndingRecNumber, $totalRecords);
+			echo "</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
 
 
 			//print out page selectors as long as there are more records than the number that should be displayed

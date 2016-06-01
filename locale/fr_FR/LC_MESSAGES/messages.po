@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-06-01 10:22-0600\n"
-"PO-Revision-Date: 2016-06-01 10:24-0600\n"
+"POT-Creation-Date: 2016-06-01 13:49-0600\n"
+"PO-Revision-Date: 2016-06-01 14:20-0600\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -532,7 +532,7 @@ msgstr "Type de compte"
 #: admin.php:55 ajax_forms/getNewResourceForm.php:176
 #: ajax_htmldata/getAdminWorkflowDisplay.php:16
 #: ajax_htmldata/getOutstandingQueue.php:21 ajax_htmldata/getSavedQueue.php:20
-#: ajax_htmldata/getSearchResources.php:116
+#: ajax_htmldata/getSearchResources.php:118
 #: ajax_htmldata/getSubmittedQueue.php:17 index.php:118
 msgid "Acquisition Type"
 msgstr "Type d'acquisition"
@@ -843,7 +843,7 @@ msgstr "Code"
 #: ajax_htmldata/getAdminCurrencyDisplay.php:15
 #: ajax_htmldata/getAdminImportConfigDisplay.php:13
 #: ajax_htmldata/getOutstandingQueue.php:20 ajax_htmldata/getSavedQueue.php:18
-#: ajax_htmldata/getSearchResources.php:113
+#: ajax_htmldata/getSearchResources.php:115
 #: ajax_htmldata/getSubmittedQueue.php:15
 msgid "Name"
 msgstr "Nom"
@@ -2114,7 +2114,7 @@ msgid "No outstanding requests"
 msgstr "Aucune demande en attente"
 
 #: ajax_htmldata/getOutstandingQueue.php:19 ajax_htmldata/getSavedQueue.php:17
-#: ajax_htmldata/getSearchResources.php:112
+#: ajax_htmldata/getSearchResources.php:114
 #: ajax_htmldata/getSubmittedQueue.php:14
 msgid "ID"
 msgstr "Identifiant"
@@ -2288,12 +2288,12 @@ msgstr "Demandes enregistrées"
 msgid "No saved requests"
 msgstr "Aucune demande enregistrée"
 
-#: ajax_htmldata/getSavedQueue.php:19 ajax_htmldata/getSearchResources.php:115
+#: ajax_htmldata/getSavedQueue.php:19 ajax_htmldata/getSearchResources.php:117
 #: ajax_htmldata/getSubmittedQueue.php:16
 msgid "Date Created"
 msgstr "Créée le"
 
-#: ajax_htmldata/getSavedQueue.php:21 ajax_htmldata/getSearchResources.php:117
+#: ajax_htmldata/getSavedQueue.php:21 ajax_htmldata/getSearchResources.php:119
 #: ajax_htmldata/getSubmittedQueue.php:18 index.php:141
 msgid "Status"
 msgstr "Statut"
@@ -2310,37 +2310,28 @@ msgstr "Supprimer une demande"
 msgid "Sorry, no requests fit your query"
 msgstr "Désolé, aucune demande ne répond à votre requête"
 
-#: ajax_htmldata/getSearchResources.php:52
-msgid "Displaying "
-msgstr "Affichage de "
+#: ajax_htmldata/getSearchResources.php:53
+#, php-format
+msgid "Displaying %d to %d of %d Resource Record"
+msgid_plural "Displaying %d to %d of %d Resource Records"
+msgstr[0] "Affichage de %d à %d de %d fiche de ressource"
+msgstr[1] "Affichage de %d à %d de %d fiches de ressource"
 
-#: ajax_htmldata/getSearchResources.php:52
-msgid " to "
-msgstr " sur "
-
-#: ajax_htmldata/getSearchResources.php:52
-msgid " of "
-msgstr " de "
-
-#: ajax_htmldata/getSearchResources.php:52
-msgid " Resource Records"
-msgstr " Fiches des ressources"
-
-#: ajax_htmldata/getSearchResources.php:64
-#: ajax_htmldata/getSearchResources.php:161
+#: ajax_htmldata/getSearchResources.php:66
+#: ajax_htmldata/getSearchResources.php:163
 msgid "previous page"
 msgstr "Page précédente"
 
-#: ajax_htmldata/getSearchResources.php:98
-#: ajax_htmldata/getSearchResources.php:195
+#: ajax_htmldata/getSearchResources.php:100
+#: ajax_htmldata/getSearchResources.php:197
 msgid "next page"
 msgstr "Page suivante"
 
-#: ajax_htmldata/getSearchResources.php:114 index.php:172
+#: ajax_htmldata/getSearchResources.php:116 index.php:172
 msgid "Creator"
 msgstr "Créé par"
 
-#: ajax_htmldata/getSearchResources.php:212
+#: ajax_htmldata/getSearchResources.php:214
 msgid "records per page"
 msgstr "fiches par page"
 
@@ -2907,6 +2898,18 @@ msgid ""
 msgstr ""
 "La connexion ne fonctionne pas. Vérifiez le fichier .htaccess et la valeur "
 "remoteAuthVariableName indiquée dans le fichier /admin/configuration.ini"
+
+#~ msgid "Displaying "
+#~ msgstr "Affichage de "
+
+#~ msgid " to "
+#~ msgstr " sur "
+
+#~ msgid " of "
+#~ msgstr " de "
+
+#~ msgid " Resource Records"
+#~ msgstr " Fiches des ressources"
 
 #~ msgid "Hello, "
 #~ msgstr "Bonjour, "

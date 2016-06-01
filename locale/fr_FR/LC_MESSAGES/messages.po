@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-05-18 08:43-0600\n"
-"PO-Revision-Date: 2016-05-18 08:43-0600\n"
+"POT-Creation-Date: 2016-06-01 10:22-0600\n"
+"PO-Revision-Date: 2016-06-01 10:24-0600\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -2633,18 +2633,22 @@ msgstr "Nom (contient)"
 msgid "go!"
 msgstr "OK !"
 
-#: index.php:121 index.php:144 index.php:175 index.php:207 index.php:231
-#: index.php:272 index.php:303 index.php:365 index.php:423 index.php:455
-#: index.php:487 index.php:517 index.php:547 index.php:574
-msgid "All"
-msgstr "Tous"
+#: index.php:79
+msgid "ISBN/ISSN"
+msgstr "ISBN/ISSN"
 
-#: index.php:236 index.php:238 index.php:277 index.php:279 index.php:308
-#: index.php:310 index.php:369 index.php:371 index.php:427 index.php:429
-#: index.php:459 index.php:461 index.php:491 index.php:493 index.php:521
-#: index.php:523 index.php:550 index.php:552
+#: index.php:96 index.php:98 index.php:236 index.php:238 index.php:277
+#: index.php:279 index.php:308 index.php:310 index.php:369 index.php:371
+#: index.php:427 index.php:429 index.php:459 index.php:461 index.php:491
+#: index.php:493 index.php:521 index.php:523 index.php:550 index.php:552
 msgid "(none)"
 msgstr "(aucun)"
+
+#: index.php:121 index.php:144 index.php:175 index.php:207 index.php:231
+#: index.php:272 index.php:303 index.php:365 index.php:423 index.php:455
+#: index.php:487 index.php:517 index.php:547 index.php:574 index.php:595
+msgid "All"
+msgstr "Tous"
 
 #: index.php:260
 msgid "Record ID"
@@ -2669,6 +2673,14 @@ msgstr "et"
 #: index.php:420
 msgid "Purchase Site"
 msgstr "Site d'achat"
+
+#: index.php:596
+msgid "Parent"
+msgstr "Parent"
+
+#: index.php:597
+msgid "Child"
+msgstr "Enfant"
 
 #: queue.php:22 queue.php:40 templates/header.php:183
 msgid "My Queue"

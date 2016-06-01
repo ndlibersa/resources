@@ -76,7 +76,7 @@ $_SESSION['ref_script']=$currentPage;
 
 
 	<tr>
-	<td class='searchRow'><label for='searchResourceISBNOrISSN'><b>ISBN/ISSN</b></label>
+	<td class='searchRow'><label for='searchResourceISBNOrISSN'><b><?php echo _("ISBN/ISSN");?></b></label>
 	<br />
 	<?php echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
 	<br />
@@ -93,9 +93,9 @@ $_SESSION['ref_script']=$currentPage;
 			<option value=''>All</option>
 			<?php
 				if ($search['fund'] == "none"){
-					echo "<option value='none' selected>(none)</option>";
+					echo "<option value='none' selected>" . _("(none)") . "</option>";
 				}else{
-					echo "<option value='none'>(none)</option>";
+					echo "<option value='none'>" . _("(none)") . "</option>";
 				}
 				$fundType = new Fund();
 			
@@ -592,9 +592,9 @@ $_SESSION['ref_script']=$currentPage;
 	<tr>
 		<td class='searchRow'><label for='searchParents'><b>Relationship</b></label>
 		<select name='search[parent]' id='searchParents' style='width:150px'>
-			<option value=''>All</option>
-			<option value='RRC'>Parent</option>
-			<option value='RRP'>Child</option>
+			<option value=''><?php echo _("All");?></option>
+			<option value='RRC'><?php echo _("Parent");?></option>
+			<option value='RRP'><?php echo _("Child");?></option>
 		</select>
 	</td>
 	</tr>

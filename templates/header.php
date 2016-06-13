@@ -56,7 +56,7 @@ $coralURL = $util->getCORALURL();
 <?php
     // Add translation for the JavaScript files
     global $http_lang;
-    $str = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+    $str = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
     $default_l = $lang_name->getLanguage($str);
     if($default_l==null || empty($default_l)){$default_l=$str;}
     if(isset($_COOKIE["lang"])){
@@ -131,7 +131,7 @@ $coralURL = $util->getCORALURL();
                             echo "<br>"._("Invalid translation route!"); 
                         }
                         // Get language of navigator
-                        $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+                        $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
                         
                         // Show an ordered list
                         sort($lang); 
@@ -143,7 +143,7 @@ $coralURL = $util->getCORALURL();
                                     echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
                                 }
                             }else{
-                                if($defLang==substr($lang[$i],0,2)){
+                                if($defLang==substr($lang[$i],0,5)){
                                     echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
                                 }else{
                                     echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";

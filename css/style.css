@@ -1079,7 +1079,7 @@ select option.changeSelect{
 .noBorder > tbody > tr > td:nth-child(1) {
 	width: 100px !important;
 	padding-bottom: 20px;
-	padding-left: 20px;
+	padding-left: 5px;
 }
 
 a.newSearch:hover {
@@ -2267,8 +2267,8 @@ a.smallLink {
 /*--- Add Scrollbar to Subject Modal Window ---*/
 
 .modalScroll {
-	overflow: scroll;
-	height: 400px;
+/*	overflow: scroll;
+	height: 400px;*/
 }
 
 /*--- Add Scrollbar to Existing ISBN Span ---*/
@@ -2752,8 +2752,6 @@ a#archiveddowntimeBtn {
 div.ic-content {
 	height: 550px;
 	width: 1024px;
-	overflow-y: auto;
-	overflow-x: hidden;
 }
 
 span.ic-label {
@@ -3179,4 +3177,32 @@ table.titleTable {
 
 #main-table {
     margin: 0 30px;
+}
+
+/*--- Allow Browser to Scroll When Modal Appears ---*/
+
+#TB_window {
+	position: absolute !important;
+	margin-top: 100px !important;
+	top: 0 !important;
+}
+
+/*--- Allow for Language Changes to Helpful Links Side Menu ---*/
+
+#side-menu-title {
+    font-size: 21px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+/*--- Make Table Widths 100% ---*/
+
+.div_mainContent .linedFormTable {
+    width: 100% !important;
+}
+
+/*--- Increase Width of Add Contact Text Area in "Report New Problem" ---*/
+
+select#contactIDs {
+    width: 90%;
 }

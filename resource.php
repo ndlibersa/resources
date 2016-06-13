@@ -237,13 +237,12 @@ if ($resource->titleText){
 		</div>
 	</div>
 	<div style='float:right; vertical-align:top; width:303px; text-align:left; padding:0; margin:0; background-color:white;' id='div_fullRightPanel' class='rightPanel'>
-		<div style="background-image:url('images/helpfullinks-top.jpg');background-repeat:no-repeat;width:265px;text-align:left;padding:6px;margin:10px 19px 0px 19px;">
-			<div style='margin:29px 8px 0px 8px;' id='div_rightPanel'>
-			</div>
-
+		<div style="width:265px;text-align:left;padding:10px;">
+			<div id="side-menu-title"><?php echo _("Helpful Links"); ?></div>
+			<div style='margin:10px 8px 0px 8px;' id='div_rightPanel'></div>
 		</div>
 
-		<div style="background-image:url('images/helpfullinks-bottom.jpg');background-repeat:no-repeat;width:265px;height:50px;padding:6px; margin:0px 19px 15px 19px;">
+		<div>
 
 
 					<?php if ($config->settings->feedbackEmailAddress != '') {?>

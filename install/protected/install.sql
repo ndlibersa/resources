@@ -201,6 +201,24 @@ CREATE TABLE `Fund` (
   UNIQUE `fundCode` (`fundCode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `ImportConfig`;
+CREATE TABLE `ImportConfig` (
+  `importConfigID` int(11) NOT NULL auto_increment,
+  `shortName` varchar(200) default NULL,
+  `configuration` varchar(1000) default NULL,
+  PRIMARY KEY (`importConfigID`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+DROP TABLE IF EXISTS `OrgNameMapping`;
+CREATE TABLE `OrgNameMapping` (
+  `orgNameMappingID` int(11) NOT NULL auto_increment,
+  `importConfigID` int(11) NOT NULL,
+  `orgNameImported` varchar(200) default NULL,
+  `orgNameMapped` varchar(200) default NULL,
+  PRIMARY KEY (`orgNameMappingID`),
+  KEY (`importConfigID`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
 DROP TABLE IF EXISTS `LicenseStatus`;
 CREATE TABLE  `LicenseStatus` (
   `licenseStatusID` int(11) NOT NULL auto_increment,

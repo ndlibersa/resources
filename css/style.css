@@ -2271,13 +2271,6 @@ a.smallLink {
 	height: 400px;*/
 }
 
-/*--- Add Scrollbar to Existing ISBN Span ---*/
-#existingIsbn {
-	display: block;
-	max-height: 80px;
-	overflow: auto;
-}
-
 .newPaymentTable th {
 	/*vertical-align:top;*/
 	padding-left: 3px;
@@ -3214,4 +3207,57 @@ table.titleTable {
 
 select#contactIDs {
     width: 90%;
+}
+
+/*--- Fix for "Delete" Images for Parents and ISSN/ISBN Numbers ---*/
+
+.oneIssnIsbn {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.oneIssnIsbn > a {
+    margin-left: 5px;
+}
+
+#newIsbn > .oneIssnIsbn {
+	margin-bottom: 15px;
+}
+
+#existingIsbn {
+	display: block;
+	max-height: 80px;
+	overflow: auto;
+	border: solid 1px #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.oneParent {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.oneParent > a {
+    margin-left: 5px;
+}
+
+span#newParent {
+    padding-bottom: 5px !important;
+}
+
+input.changeInput.organizationName.ac_input.idleField {
+	width: 100% !important;
+}
+
+table#general-resource-info td {
+    padding-bottom: 10px;
+}
+
+input#archiveInd {
+	margin-top: 2px;
+}
+
+#div_resourceForm .surroundBox {
+	width: 100% !important;
 }

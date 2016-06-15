@@ -130,13 +130,7 @@ $(document).ready(function(){
 			//it's too confusing to chain all of the children.
 			$('.newdetailedSubjectTR').appendTo('.detailedSubjectTable');
 
-			$('.newdetailedSubjectTR').children().children().children('.adddetailedSubject').attr({
-			  src: 'images/cross.gif',
-			  alt: _("remove user from group"),
-			  title: _("remove from group")
-			});
-			
-			$('.newdetailedSubjectTR').children().children().children('.adddetailedSubject').addClass('remove');
+			$('.newdetailedSubjectTR').children().children().children('.adddetailedSubject').replaceWith("<img src='images/cross.gif' class='remove' alt='" + _("remove detailed subject") + "' title='" + _("remove detailed subject") + "'/>");
 			$('.detailedSubjectID').addClass('changeSelect');
 			$('.detailedSubjectID').addClass('idleField');
 			$('.detailedSubjectID').css("background-color","");

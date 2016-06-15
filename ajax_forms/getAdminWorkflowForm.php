@@ -152,7 +152,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:center;width:40px;'>
-				<a href='javascript:void();'><img src='images/<?php echo $http_lang?>/add.gif' class='addStep' alt="<?php echo _("add step");?>" title="<?php echo _("add step");?>"></a>
+				<a href='javascript:void();'><input class='addStep add-button' title='<?php echo _("add step");?>' type='button' value='<?php echo _("Add");?>'/></a>
 				</td>
 
 				</tr>

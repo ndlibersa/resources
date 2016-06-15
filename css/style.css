@@ -2972,7 +2972,8 @@ table#resource-type td {
 
 .submit-button,
 .cancel-button,
-.save-button
+.save-button,
+.add-button
  {
     color: #FFFFFF;
     font-family: "Arial", sans-serif;
@@ -2994,7 +2995,15 @@ table#resource-type td {
 }
 
 .submit-button {
-    margin-left: 0;
+    margin-left: 5px;
+}
+
+.add-button {
+	margin-left: 5px;
+	margin-top: 0px;
+	min-width: 40px;
+	height: 18px;
+	line-height: 8px;
 }
 
 .save-button {

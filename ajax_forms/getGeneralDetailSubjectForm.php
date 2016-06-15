@@ -72,7 +72,9 @@
 						</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();'><img src='images/<?php echo $http_lang?>/add.gif' class='adddetailedSubject' alt="<?php echo _("add detail subject");?>" title="<?php echo _("add detail subject");?>"></a>
+				<a href='javascript:void();'>
+					<input class='adddetailedSubject add-button' title='<?php echo _("add detail subject");?>' type='button' value='<?php echo _("Add");?>'/>
+				</a>
 				</td>
 				</tr>
 				</table>

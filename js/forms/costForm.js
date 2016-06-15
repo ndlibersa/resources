@@ -85,8 +85,9 @@ $(function(){
 
 
 	$(".remove").live('click', function () {
-	    $(this).parent().parent().fadeTo(400, 0, function () { 
-			$(this).parent().parent().remove();
+	    $(this).parent().parent().parent().fadeTo(400, 0, function () {
+	    	$(this).next().remove(); //remove the error line first
+			$(this).remove(); //then remove the row containing the data
 	    });
 	    return false;
 	});
@@ -120,14 +121,8 @@ $(function(){
 			duplicateTR.removeClass('newPaymentTR'); //remove newPaymentTR class from duplicate
 			duplicateTR.find('.dp-choose-date').remove(); //remove date pickers from clone
 			duplicateTR.find('.date-pick').datePicker({startDate:'01/01/1996'}); //add new date pickers to clone
-			replaceImage=duplicateTR.children().last().find('img');
-			replaceImage.attr({
-				'src': 'images/cross.gif',
-				'alt': 'remove this payment',
-				'title': 'remove this payment'
-			});
-			replaceImage.removeClass('addPayment');
-			replaceImage.addClass('remove');
+			replaceInputWithImage=duplicateTR.children().last().find('.addPayment');
+			replaceInputWithImage.replaceWith("<img src='images/cross.gif' class='remove' alt='" + _("remove this payment") + "' title='" + _("remove this payment") + "'/>");
 
 			duplicateTR.appendTo('.paymentTable');
 
@@ -259,6 +254,11 @@ function submitCostForm()
 
 			}
 		});
+	}
+	else
+	{
+		$("#span_errors").html(_("Validation Failed"));
+		$("#submitCost").removeAttr("disabled");
 	}
 }
 

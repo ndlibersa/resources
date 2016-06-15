@@ -150,12 +150,7 @@
 			//it's too confusing to chain all of the children.
 			$('.newLicenseTR').appendTo('.licenseTable');
 
-			$('.newLicenseTR').children().children().children('.addLicense').attr({
-			  src: 'images/cross.gif',
-			  alt: _("remove this license"),
-			  title: _("remove this license")
-			});
-			$('.newLicenseTR').children().children().children('.addLicense').addClass('remove');
+			$('.newLicenseTR').children().children().children('.addLicense').replaceWith("<img src='images/cross.gif' class='remove' alt='" + _("remove this license") + "' title='" + _("remove this license") + "'/>");
 			$('.licenseRoleID').addClass('changeSelect');
 			$('.licenseRoleID').addClass('idleField');
 			$('.licenseRoleID').css("background-color","");

@@ -165,7 +165,7 @@ if ($enhancedCostFlag)
 							<?php } ?>
 							<td class='costHistoryAction'>
 								<a href='javascript:void();'>
-									<img src='images/<?php echo $http_lang?>/add.gif' class='addPayment' alt='add this payment' title='add payment'>
+									<input class='addPayment add-button' title='<?php echo _("add payment");?>' type='button' value='<?php echo _("Add");?>'/>
 								</a>
 							</td>
 

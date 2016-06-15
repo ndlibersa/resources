@@ -73,7 +73,7 @@
 				</td>
 
 				<td style='vertical-align:top;text-align:left;width:40px;'>
-				<a href='javascript:void();' class='addLicense'><img src='images/<?php echo $http_lang?>/add.gif' class='addLicense' alt="<?php echo _("add license");?>" title="<?php echo _("add license");?>"></a>
+				<a href='javascript:void();' class='addLicense'><input class='addLicense add-button' title='<?php echo _("add license");?>' type='button' value='<?php echo _("Add");?>'/></a>
 				</td>
 				</tr>
 				</table>

@@ -196,12 +196,7 @@
 			//it's too confusing to chain all of the children.
 			$('.newStepTR').appendTo('.stepTable');
 
-			$('.newStepTR').children().children().children('.addStep').attr({
-			  src: 'images/cross.gif',
-			  alt: _("remove this step"),
-			  title: _("remove this step")
-			});
-			$('.newStepTR').children().children().children('.addStep').addClass('removeStep').css("text-align","center");
+			$('.newStepTR').children().children().children('.addStep').replaceWith("<img src='images/cross.gif' class='removeStep' alt='" + _("remove this step") + "' title='" + _("remove this step") + "'/>");
 			$('.stepName').addClass('changeInput');
 			$('.stepName').addClass('idleField');
 			$('.userGroupID').addClass('changeSelect');

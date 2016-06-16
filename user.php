@@ -51,10 +51,9 @@ if ($config->settings->authModule == 'Y'){
 
 
 		$authURL = $util->getCORALURL() . "auth/" . $addURL . htmlentities($_SERVER['REQUEST_URI']);
-		error_log($authURL);
 		header('Location: ' . $authURL, true);
-		exit; //PREVENT SECURITY HOLE
 
+		exit; //PREVENT SECURITY HOLE
 	}
 
 

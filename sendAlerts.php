@@ -25,7 +25,6 @@ $config = new Configuration();
 
 if ($config->settings->enableAlerts == 'Y'){
 	$alertDaysInAdvance = new AlertDaysInAdvance();
-
 	//returns array of all days in advance objects
 	$alertDaysArray = $alertDaysInAdvance->all();
 
@@ -34,7 +33,6 @@ if ($config->settings->enableAlerts == 'Y'){
 	//loop through each of the days, e.g. 30, 60, 90
 	foreach ($alertDaysArray as $alertDays){
 		//get resources that fit this criteria
-
 		if (is_numeric($alertDays->daysInAdvanceNumber)){
 			foreach($alertDays->getResourcesToAlert() as $resource){
 				$resourceIDArray[] = $resource->resourceID;

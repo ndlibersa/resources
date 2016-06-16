@@ -65,7 +65,7 @@
 		//get organizations (already returned in an array)
 		$orgArray = $resource->getOrganizationArray();
 ?>
-		<div id='div_resourceForm'>
+		<div id='div_resourceForm' class='modalScroll'>
 		<form id='resourceForm'>
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 

@@ -2267,8 +2267,8 @@ a.smallLink {
 /*--- Add Scrollbar to Subject Modal Window ---*/
 
 .modalScroll {
-/*	overflow: scroll;
-	height: 400px;*/
+	overflow: scroll;
+	height: 700px;
 }
 
 .newPaymentTable th {
@@ -2745,6 +2745,8 @@ a#archiveddowntimeBtn {
 div.ic-content {
 	height: 550px;
 	width: 1024px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 span.ic-label {
@@ -3183,11 +3185,11 @@ table.titleTable {
 
 /*--- Allow Browser to Scroll When Modal Appears ---*/
 
-#TB_window {
+/* #TB_window {
 	position: absolute !important;
 	margin-top: 100px !important;
-	top: 0 !important;
-}
+	top: 0 !important; 
+} */
 
 /*--- Allow for Language Changes to Helpful Links Side Menu ---*/
 

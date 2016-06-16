@@ -494,6 +494,8 @@ function kill(){
 
     $('.addAlias').die('click'); 
     $('.addOrganization').die('click');
+    $(".addParent").die('click');
+    $(".addIsbn").die('click');
     $('.changeDefault').die('blur');
     $('.changeDefault').die('focus');
     $('.changeInput').die('blur');

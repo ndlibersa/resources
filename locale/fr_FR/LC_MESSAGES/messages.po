@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-06-13 12:51-0600\n"
-"PO-Revision-Date: 2016-06-13 12:55-0600\n"
+"POT-Creation-Date: 2016-06-16 08:31-0600\n"
+"PO-Revision-Date: 2016-06-16 08:36-0600\n"
 "Last-Translator: Paul Poulain <paul.poulain@biblibre.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -64,6 +64,7 @@ msgid "Error - price is not numeric"
 msgstr "Erreur -  le prix n'est pas un chiffre"
 
 #: js/forms/acquisitionsForm.js:147 js/forms/acquisitionsForm.js:148
+#: js/forms/costForm.js:125
 msgid "remove this payment"
 msgstr "Supprimer ce paiement"
 
@@ -107,6 +108,10 @@ msgstr "Un fichier doit être téléchargé"
 msgid "Please choose at least one role."
 msgstr "Sélectionnez au moins un rôle."
 
+#: js/forms/costForm.js:260
+msgid "Validation Failed"
+msgstr "Validation échouée"
+
 #: js/forms/detailedSubjectForm.js:60 js/forms/generalSubjectForm.js:59
 msgid "Error - Please enter a value"
 msgstr "Erreur - Entrez une valeur"
@@ -120,24 +125,20 @@ msgstr "Erreur - Le sujet détaillé est obligatoire"
 msgid "Error - Detail Subject Already Added"
 msgstr "Erreur - Le sujet détaillé est déjà ajouté"
 
-#: js/forms/generalDetailSubjectForm.js:135 js/forms/userGroupForm.js:117
-#: ajax_forms/getAdminUserGroupForm.php:121
-msgid "remove user from group"
-msgstr "Retirer un utilisateur du groupe"
+#: js/forms/generalDetailSubjectForm.js:133
+#: ajax_forms/getGeneralDetailSubjectForm.php:107
+msgid "remove detailed subject"
+msgstr "Supprimer un sujet spécifique"
 
-#: js/forms/generalDetailSubjectForm.js:136 js/forms/userGroupForm.js:118
-msgid "remove from group"
-msgstr "Retirer du groupe"
-
-#: js/forms/generalDetailSubjectForm.js:181
+#: js/forms/generalDetailSubjectForm.js:175
 msgid "Short Name must be entered to continue."
 msgstr "Un Nom court doit être entré pour continuer."
 
-#: js/forms/licenseForm.js:140 js/forms/licenseForm.js:256
+#: js/forms/licenseForm.js:140 js/forms/licenseForm.js:251
 msgid "Error - Please choose a valid license"
 msgstr "Erreur - Sélectionnez une licence valide"
 
-#: js/forms/licenseForm.js:155 js/forms/licenseForm.js:156
+#: js/forms/licenseForm.js:153
 msgid "remove this license"
 msgstr "Supprimer cette licence"
 
@@ -165,30 +166,33 @@ msgstr "La remarque doit être entrée avant de continuer."
 msgid "Error - Parent cannot be the same as the child"
 msgstr "Erreur - Le principal et le subsidiaire ne doivent pas être identiques"
 
-#: js/forms/resourceUpdateForm.js:217 js/forms/resourceUpdateForm.js:302
+#: js/forms/resourceUpdateForm.js:223 js/forms/resourceUpdateForm.js:307
 #: js/forms/resourceUpdateForm.js:392 js/forms/resourceUpdateForm.js:403
 msgid "Error - Both fields are required"
 msgstr "Erreur -  Les deux champs sont obligatoires"
 
-#: js/forms/resourceUpdateForm.js:232 js/forms/resourceUpdateForm.js:233
-#: ajax_forms/getUpdateProductForm.php:394
+#: js/forms/resourceUpdateForm.js:236 ajax_forms/getUpdateProductForm.php:400
 msgid "remove this alias"
 msgstr "Supprimer cet alias"
 
-#: js/forms/resourceUpdateForm.js:277
+#: js/forms/resourceUpdateForm.js:263 ajax_forms/getUpdateProductForm.php:164
+msgid "remove Issn/Isbn"
+msgstr "Supprimer ISSN / ISBN"
+
+#: js/forms/resourceUpdateForm.js:282
 msgid "Error - Parent is not found.  Please use the Autocomplete."
 msgstr ""
 "Erreur - Elément principal non-trouvé. Utilisez l'option d'auto-complétion."
 
-#: js/forms/resourceUpdateForm.js:286 ajax_forms/getUpdateProductForm.php:137
+#: js/forms/resourceUpdateForm.js:291 ajax_forms/getUpdateProductForm.php:137
 msgid "remove parent"
 msgstr "Supprimer une ressource principale"
 
-#: js/forms/resourceUpdateForm.js:304
+#: js/forms/resourceUpdateForm.js:309
 msgid "Error - Organization is not found.  Please use the Autocomplete."
 msgstr "Erreur - Organisation non-trouvée. Utilisez l’auto-complétion."
 
-#: js/forms/resourceUpdateForm.js:321 js/forms/resourceUpdateForm.js:322
+#: js/forms/resourceUpdateForm.js:324
 msgid "remove this organization"
 msgstr "Supprimer cette organisation"
 
@@ -200,7 +204,15 @@ msgstr "Erreur - Organisation non-trouvée. Utilisez l’auto-complétion."
 msgid "Error - User is required"
 msgstr "Erreur - l'utilisateur est obligatoire"
 
-#: js/forms/userGroupForm.js:163
+#: js/forms/userGroupForm.js:115 ajax_forms/getAdminUserGroupForm.php:121
+msgid "remove user from group"
+msgstr "Retirer un utilisateur du groupe"
+
+#: js/forms/userGroupForm.js:115
+msgid "remove from group"
+msgstr "Retirer du groupe"
+
+#: js/forms/userGroupForm.js:158
 msgid "Group name must be entered to continue."
 msgstr "Le nom du groupe doit être entré avant de continuer."
 
@@ -208,16 +220,15 @@ msgstr "Le nom du groupe doit être entré avant de continuer."
 msgid "Error - Step name is required"
 msgstr "Erreur - Le nom de l'étape est obligatoire"
 
-#: js/forms/workflowForm.js:201 js/forms/workflowForm.js:202
-#: ajax_forms/getAdminWorkflowForm.php:238
+#: js/forms/workflowForm.js:199 ajax_forms/getAdminWorkflowForm.php:238
 msgid "remove this step"
 msgstr "Supprimer cette étape"
 
-#: js/forms/workflowForm.js:373
+#: js/forms/workflowForm.js:368
 msgid "Please add at least one step to this workflow."
 msgstr "Veuillez ajouter au moins une étape à ce workflow."
 
-#: js/forms/workflowForm.js:379
+#: js/forms/workflowForm.js:374
 msgid ""
 "Please click the Add button to the first step before submitting this "
 "workflow."
@@ -748,12 +759,12 @@ msgstr "Site(s) gérant(s)"
 #: ajax_forms/getAdminWorkflowForm.php:266 ajax_forms/getAttachmentForm.php:89
 #: ajax_forms/getContactForm.php:161 ajax_forms/getCostForm.php:335
 #: ajax_forms/getDetailSubjectUpdateForm.php:38
-#: ajax_forms/getGeneralDetailSubjectForm.php:128
+#: ajax_forms/getGeneralDetailSubjectForm.php:130
 #: ajax_forms/getGeneralSubjectUpdateForm.php:38
 #: ajax_forms/getLicenseForm.php:191 ajax_forms/getNewDowntimeForm.php:115
 #: ajax_forms/getNewIssueForm.php:132 ajax_forms/getNewResourceForm.php:295
 #: ajax_forms/getNoteForm.php:61 ajax_forms/getOrderForm.php:160
-#: ajax_forms/getUpdateProductForm.php:423 resources/cataloging_edit.php:102
+#: ajax_forms/getUpdateProductForm.php:429 resources/cataloging_edit.php:102
 msgid "submit"
 msgstr "Envoyer"
 
@@ -769,14 +780,14 @@ msgstr "Envoyer"
 #: ajax_forms/getAdminWorkflowForm.php:267 ajax_forms/getAttachmentForm.php:90
 #: ajax_forms/getContactForm.php:162 ajax_forms/getCostForm.php:336
 #: ajax_forms/getDetailSubjectUpdateForm.php:39
-#: ajax_forms/getGeneralDetailSubjectForm.php:129
+#: ajax_forms/getGeneralDetailSubjectForm.php:131
 #: ajax_forms/getGeneralSubjectUpdateForm.php:39
 #: ajax_forms/getImportSaveCfgForm.php:28 ajax_forms/getLicenseForm.php:192
 #: ajax_forms/getNewDowntimeForm.php:116 ajax_forms/getNewDowntimeForm.php:125
 #: ajax_forms/getNewIssueForm.php:133 ajax_forms/getNewIssueForm.php:142
 #: ajax_forms/getNewResourceForm.php:296 ajax_forms/getNoteForm.php:62
 #: ajax_forms/getOrderForm.php:161 ajax_forms/getResourceSubjectForm.php:48
-#: ajax_forms/getUpdateProductForm.php:424 importFunds.php:64
+#: ajax_forms/getUpdateProductForm.php:430 importFunds.php:64
 #: resources/cataloging_edit.php:103
 msgid "cancel"
 msgstr "Annuler"
@@ -936,6 +947,19 @@ msgstr "Utilisateurs attribués"
 msgid "add user"
 msgstr "Ajouter un utilisateur"
 
+#: ajax_forms/getAdminUserGroupForm.php:82
+#: ajax_forms/getAdminWorkflowForm.php:155 ajax_forms/getCostForm.php:168
+#: ajax_forms/getGeneralDetailSubjectForm.php:76
+#: ajax_forms/getLicenseForm.php:76 ajax_forms/getNewIssueForm.php:75
+#: ajax_forms/getResourceSubjectForm.php:26
+#: ajax_forms/getResourceSubjectForm.php:33
+#: ajax_forms/getUpdateProductForm.php:124
+#: ajax_forms/getUpdateProductForm.php:153
+#: ajax_forms/getUpdateProductForm.php:266
+#: ajax_forms/getUpdateProductForm.php:359
+msgid "Add"
+msgstr "Ajouter"
+
 #: ajax_forms/getAdminUserUpdateForm.php:21
 msgid "Edit User"
 msgstr "Modifier un utilisateur"
@@ -990,12 +1014,12 @@ msgid "Acquisition Type:"
 msgstr "Type d'acquisition:"
 
 #: ajax_forms/getAdminWorkflowForm.php:74
-#: ajax_forms/getUpdateProductForm.php:170
+#: ajax_forms/getUpdateProductForm.php:176
 msgid "Format:"
 msgstr "Format:"
 
 #: ajax_forms/getAdminWorkflowForm.php:89 ajax_forms/getAttachmentForm.php:35
-#: ajax_forms/getUpdateProductForm.php:330
+#: ajax_forms/getUpdateProductForm.php:336
 #: ajax_htmldata/getAttachmentDetails.php:47
 #: ajax_htmldata/getDowntimeList.php:17
 msgid "Type:"
@@ -1076,7 +1100,7 @@ msgstr "Adresse email:"
 msgid "Address:"
 msgstr "Adresse:"
 
-#: ajax_forms/getContactForm.php:92 ajax_forms/getUpdateProductForm.php:208
+#: ajax_forms/getContactForm.php:92 ajax_forms/getUpdateProductForm.php:214
 #: ajax_htmldata/getProductDetails.php:90
 msgid "Archived:"
 msgstr "Archivé:"
@@ -1129,6 +1153,10 @@ msgstr "Remarque"
 msgid "Invoice"
 msgstr "Facture"
 
+#: ajax_forms/getCostForm.php:168
+msgid "add payment"
+msgstr "Ajouter un paiement"
+
 #: ajax_forms/getGeneralDetailSubjectForm.php:18
 msgid "Add / Edit Subject Relationships"
 msgstr "Ajouter / modifier les liens entre sujets"
@@ -1142,15 +1170,11 @@ msgstr "Sujet général"
 msgid "Detailed Subjects"
 msgstr "Sujets spécifiques"
 
-#: ajax_forms/getGeneralDetailSubjectForm.php:75
+#: ajax_forms/getGeneralDetailSubjectForm.php:76
 msgid "add detail subject"
 msgstr "Ajouter un sujet spécifique"
 
-#: ajax_forms/getGeneralDetailSubjectForm.php:105
-msgid "remove detailed subject"
-msgstr "Supprimer un sujet spécifique"
-
-#: ajax_forms/getGeneralDetailSubjectForm.php:107
+#: ajax_forms/getGeneralDetailSubjectForm.php:109
 #: ajax_htmldata/getAdminSubjectDisplay.php:30
 #: ajax_htmldata/getAdminSubjectDisplay.php:71
 msgid "subject in use"
@@ -1335,7 +1359,7 @@ msgstr "Ajouter une licence"
 msgid "remove license link"
 msgstr "Supprimer le lien de la licence"
 
-#: ajax_forms/getLicenseForm.php:103 ajax_forms/getUpdateProductForm.php:300
+#: ajax_forms/getLicenseForm.php:103 ajax_forms/getUpdateProductForm.php:306
 msgid "remove "
 msgstr "Supprimer "
 
@@ -1421,7 +1445,7 @@ msgstr "Signaler un nouveau problème"
 msgid "* required fields"
 msgstr "* champs obligatoires"
 
-#: ajax_forms/getNewIssueForm.php:29 ajax_forms/getUpdateProductForm.php:238
+#: ajax_forms/getNewIssueForm.php:29 ajax_forms/getUpdateProductForm.php:244
 #: ajax_htmldata/getContactDetails.php:83
 msgid "Organization:"
 msgstr "Organisation:"
@@ -1443,10 +1467,6 @@ msgstr "Me copier dans l'email:"
 #: ajax_forms/getNewIssueForm.php:72
 msgid "CC:"
 msgstr "CC:"
-
-#: ajax_forms/getNewIssueForm.php:75
-msgid "Add"
-msgstr "Ajouter"
 
 #: ajax_forms/getNewIssueForm.php:77
 msgid "Current CCs:"
@@ -1623,10 +1643,6 @@ msgid "Parents:"
 msgstr "Ressources principales:"
 
 #: ajax_forms/getUpdateProductForm.php:124
-msgid "add Parent resource"
-msgstr "Ajouter une ressource principale"
-
-#: ajax_forms/getUpdateProductForm.php:124
 msgid "add Parent Resource"
 msgstr "Ajouter une ressource principale"
 
@@ -1635,39 +1651,35 @@ msgstr "Ajouter une ressource principale"
 msgid "ISSN / ISBN:"
 msgstr "ISSN / ISBN:"
 
-#: ajax_forms/getUpdateProductForm.php:152
+#: ajax_forms/getUpdateProductForm.php:153
 msgid "add Isbn"
 msgstr "Ajouter ISBN"
 
-#: ajax_forms/getUpdateProductForm.php:237
+#: ajax_forms/getUpdateProductForm.php:243
 msgid "Role:"
 msgstr "Rôle:"
 
-#: ajax_forms/getUpdateProductForm.php:260
+#: ajax_forms/getUpdateProductForm.php:266
 msgid "add organization"
 msgstr "Ajouter une organisation"
 
-#: ajax_forms/getUpdateProductForm.php:300
+#: ajax_forms/getUpdateProductForm.php:306
 msgid "remove organization"
 msgstr "Supprimer une organisation"
 
-#: ajax_forms/getUpdateProductForm.php:300
+#: ajax_forms/getUpdateProductForm.php:306
 msgid "organization"
 msgstr "organisation"
 
-#: ajax_forms/getUpdateProductForm.php:322
+#: ajax_forms/getUpdateProductForm.php:328
 msgid "Aliases"
 msgstr "Alias"
 
-#: ajax_forms/getUpdateProductForm.php:331
+#: ajax_forms/getUpdateProductForm.php:337
 msgid "Alias:"
 msgstr "Alias:"
 
-#: ajax_forms/getUpdateProductForm.php:353
-msgid "add this alias"
-msgstr "Ajouter cet alias"
-
-#: ajax_forms/getUpdateProductForm.php:353
+#: ajax_forms/getUpdateProductForm.php:359
 msgid "add alias"
 msgstr "Ajouter des alias"
 
@@ -2895,13 +2907,19 @@ msgstr "Statistiques d'utilisation"
 msgid "Management"
 msgstr "Gestion"
 
-#: user.php:102
+#: user.php:103
 msgid ""
 "Login is not working.  Check the .htaccess file and the "
 "remoteAuthVariableName specified in /admin/configuration.ini"
 msgstr ""
 "La connexion ne fonctionne pas. Vérifiez le fichier .htaccess et la valeur "
 "remoteAuthVariableName indiquée dans le fichier /admin/configuration.ini"
+
+#~ msgid "add Parent resource"
+#~ msgstr "Ajouter une ressource principale"
+
+#~ msgid "add this alias"
+#~ msgstr "Ajouter cet alias"
 
 #~ msgid "Displaying "
 #~ msgstr "Affichage de "
@@ -2956,9 +2974,6 @@ msgstr ""
 
 #~ msgid "add this payment"
 #~ msgstr "Ajouter ce paiement"
-
-#~ msgid "add payment"
-#~ msgstr "Ajouter un paiement"
 
 #~ msgid "Error - Either price or fund is required"
 #~ msgstr "Erreur, fond ou quantité est obligatoire"

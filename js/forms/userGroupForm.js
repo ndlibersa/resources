@@ -112,8 +112,13 @@ $(document).ready(function(){
 			//it's too confusing to chain all of the children.
 			$('.newUserTR').appendTo('.userTable');
 
-			$('.newUserTR').children().children().children('.addUser').replaceWith("<img src='images/cross.gif' class='remove' alt='" + _("remove user from group") + "' title='" + _("remove from group") + "'/>");
-
+			$('.newUserTR').children().children().children('.addUser').attr({
+			  src: 'images/cross.gif',
+			  alt: _("remove user from group"),
+			  title: _("remove from group")
+			});
+			
+			$('.newUserTR').children().children().children('.addUser').addClass('remove');
 			$('.loginID').addClass('changeSelect');
 			$('.loginID').addClass('idleField');
 			$('.loginID').css("background-color","");

@@ -1,0 +1,12 @@
+diff --git a/user.php b/user.php
+index 3bbbad6..1a4111c 100644
+--- a/user.php
++++ b/user.php
+@@ -53,6 +53,7 @@ if ($config->settings->authModule == 'Y'){
+ 		$authURL = $util->getCORALURL() . "auth/" . $addURL . htmlentities($_SERVER['REQUEST_URI']);
+ 		header('Location: ' . $authURL, true);
+ 
++		exit; //PREVENT SECURITY HOLE
+ 	}
+ 
+ 

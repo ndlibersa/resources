@@ -145,8 +145,9 @@ class Resource extends DatabaseObject {
 			$object = new ResourceRelationship(new NamedArguments(array('primaryKey' => $result['resourceRelationshipID'])));
 			array_push($objects, $object);
 		}else{
+			$db = new DBService;
 			foreach ($result as $row) {
-				$object = new ResourceRelationship(new NamedArguments(array('primaryKey' => $row['resourceRelationshipID'])));
+				$object = new ResourceRelationship(new NamedArguments(array('primaryKey' => $row['resourceRelationshipID'],'db'=>$db)));
 				array_push($objects, $object);
 			}
 		}
@@ -747,11 +748,6 @@ class Resource extends DatabaseObject {
 
 		return $objects;
 	}
-
-
-
-
-
 
 	//returns array of the initial note object
 	public function getInitialNote(){

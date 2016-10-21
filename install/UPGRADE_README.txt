@@ -1,3 +1,7 @@
+1.4.1 The 1.4.1 update is a security fix
+
+	- No database changes. 
+
 1.4 The 1.4 update to the CORAL Resources module includes the following enhancements:
 
 	-Added Issue tracker feature that allows tracking of down resources.
